@@ -9,6 +9,9 @@ export class Canvas extends Component {
     @property({ type: Node })
     canvas: Node;
 
+    @property({ type: Node })
+    mainCanvas: Node;
+
     start() {
         Canvas.instance = this;
     }
