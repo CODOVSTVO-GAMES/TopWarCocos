@@ -2,6 +2,7 @@ import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Canvas } from './Canvas/Canvas';
 import { ObjectParameters } from './ObjectParameters';
+import { SpawnObjects } from './SpawnObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -34,6 +35,7 @@ export class TouchObject extends Component {
     touchStart() {
         if (this.isMove == true) return;
 
+        MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
         this.node.setParent(MapStorage.instance.parentObject, true);
         this.isMove = true;
         this.xPos = this.node.position.x;
@@ -81,18 +83,24 @@ export class TouchObject extends Component {
                     cellFound = true;
                 }
                 else {
-                    // if (currentDistance < 60) {
-                    // console.log(this.objectParameters.type + " " + MapStorage.instance.arrayObjectParameters[i].type);
-                    // if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
-                    //     console.log("SUCCES");
-                    //     this.destroy();
-                    // }
-                    // }
+                    if (currentDistance < 60) {
+                        if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
+                            if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
+                                SpawnObjects.instance.spawnObjectsMerge(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
+                                MapStorage.instance.arrayObjectParameters[this.objectParameters.index]
+                                MapStorage.instance.arrayObjectParameters[i] = null;
+                                MapStorage.instance.arrayObjectParameters[i].destroy();
+                                this.node.destroy();
+                                return;
+                            }
+                        }
+                    }
                 }
             }
-
-        } 
+        }
         if (cellFound == true) {
+            MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
+            MapStorage.instance.arrayObjectParameters[indexObject] = this.objectParameters;
             this.node.setParent(MapStorage.instance.coords[indexObject], true);
             this.node.position = new Vec3(0, 0, 0);
         }

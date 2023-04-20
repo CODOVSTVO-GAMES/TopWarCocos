@@ -113,7 +113,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "91d0c5ed-8fb4-4aa4-b00d-e07bf6d9abf6@f9941",
+      "__uuid__": "a9e944a9-014d-4f29-b067-439943d7fad3@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -146,6 +146,10 @@
     "__prefab": {
       "__id__": 7
     },
+    "type": "",
+    "spriteObject": {
+      "__id__": 4
+    },
     "_id": ""
   },
   {
@@ -165,6 +169,9 @@
     },
     "object": {
       "__id__": 1
+    },
+    "objectParameters": {
+      "__id__": 6
     },
     "_id": ""
   },

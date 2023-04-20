@@ -1,4 +1,5 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, Sprite } from 'cc';
+import { SpriteStorage } from './SpriteStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -8,9 +9,19 @@ export class ObjectParameters extends Component {
     public type: string;
 
     @property({ type: Number })
-    public index: number;
+    public level: number;
 
     @property({ type: Number })
-    public level: number;
+    public index: number;
+
+    @property({ type: Node })
+    public nodeObject: Node;
+
+    @property({ type: Sprite })
+    public spriteObject: Sprite;
+
+    start() {
+        this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
+    }
 }
 

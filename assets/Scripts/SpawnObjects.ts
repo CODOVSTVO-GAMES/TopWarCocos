@@ -17,6 +17,8 @@ export class SpawnObjects extends Component {
         let object = instantiate(Prefabs.instance.getPrefab(type));
         object.parent = MapStorage.instance.coords[index];
         object.getComponent(ObjectParameters).type = type;
+        object.getComponent(ObjectParameters).level = level;
+        object.getComponent(ObjectParameters).index = index;
         MapStorage.instance.arrayObjectParameters[index] = object.getComponent(ObjectParameters);
     }
 
@@ -41,7 +43,7 @@ export class SpawnObjects extends Component {
         }
     }
 
-    spawnObjectsMerge(coord: number) {
-
+    spawnObjectsMerge(type: string, level: number, index: number) {
+        this.spawnObjectsPos(type, level + 1, index);
     }
 }
