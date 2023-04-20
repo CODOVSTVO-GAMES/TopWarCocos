@@ -2,8 +2,7 @@ import { _decorator, Component, instantiate } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
-import { TypesObjects } from './Static/TypesObjects';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
 export class SpawnObjects extends Component {
@@ -14,29 +13,37 @@ export class SpawnObjects extends Component {
         SpawnObjects.instance = this;
     }
 
-    start() {
-        setTimeout(() => { this.spawnObjects(1); }, 1000);
+    spawnObjectsPos(type: string, level: number, index: number) {
+        let object = instantiate(Prefabs.instance.getPrefab(type));
+        object.parent = MapStorage.instance.coords[index];
+        object.getComponent(ObjectParameters).type = type;
+        object.getComponent(ObjectParameters).level = level;
+        object.getComponent(ObjectParameters).index = index;
+        MapStorage.instance.arrayObjectParameters[index] = object.getComponent(ObjectParameters);
     }
 
-    spawnObjects(coord: number) {
-        let object = instantiate(Prefabs.instance.getPrefab(TypesObjects.BUILD_0));
-        object.parent = MapStorage.instance.coords[coord];
-        MapStorage.instance.arrayObjectParameters[coord] = object.getComponent(ObjectParameters);
-    }
-
-    spawnObjectsPos(coord: number) {
-
-    }
-
-    spawnObjectsNearby(coord: number) {
+    spawnObjectsNearby(type: string, level: number, index: number) {
 
     }
 
-    spawnObjectsNearbyRandom(type: string) {
-        console.log("q");
+    spawnObjectsRandom(type: string, level: number) {
+        let indexObject = 0;
+        let iterationsCount = 0;
+        while (true) {
+            indexObject = Math.floor(Math.random() * MapStorage.instance.mapSize);
+            iterationsCount += 1;
+            if (MapStorage.instance.arrayObjectParameters[indexObject] == null) {
+                this.spawnObjectsPos(type, level, indexObject);
+                break;
+            }
+            if (MapStorage.instance.mapSize <= iterationsCount) {
+                console.log("error");
+                break;
+            }
+        }
     }
 
-    spawnObjectsMerge(coord: number) {
-
+    spawnObjectsMerge(type: string, level: number, index: number) {
+        this.spawnObjectsPos(type, level + 1, index);
     }
 }

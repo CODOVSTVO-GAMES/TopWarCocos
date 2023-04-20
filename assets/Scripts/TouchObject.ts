@@ -1,6 +1,8 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Canvas } from './Canvas/Canvas';
+import { ObjectParameters } from './ObjectParameters';
+import { SpawnObjects } from './SpawnObjects';
 import { TouchStatus } from './TouchStatus';
 const { ccclass, property } = _decorator;
 
@@ -9,6 +11,9 @@ export class TouchObject extends Component {
 
     @property({ type: Node })
     public object: Node;
+
+    @property({ type: ObjectParameters })
+    public objectParameters: ObjectParameters;
 
     public xPos: number = 0;
     public yPos: number = 0;
@@ -30,6 +35,7 @@ export class TouchObject extends Component {
     touchStart() {
         if (TouchStatus.instance.status == true) return;
 
+        MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
         this.object.setParent(MapStorage.instance.parentObject, true);
         TouchStatus.instance.status = true;
         this.xPos = this.object.position.x;
@@ -69,14 +75,36 @@ export class TouchObject extends Component {
     processing() {
         let minDistance = 100000;
         let indexObject = 0;
+        let cellFound = false;
         for (let i = 0; i < MapStorage.instance.coords.length; i++) {
             let currentDistance = Vec3.distance(this.object.position, MapStorage.instance.coords[i].position);
             if (currentDistance < minDistance) {
-                minDistance = currentDistance;
-                indexObject = i;
+                if (MapStorage.instance.arrayObjectParameters[i] == null) {
+                    minDistance = currentDistance;
+                    indexObject = i;
+                    cellFound = true;
+                }
+                else {
+                    if (currentDistance < 60) {
+                        if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
+                            if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
+                                SpawnObjects.instance.spawnObjectsMerge(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
+                                MapStorage.instance.arrayObjectParameters[this.objectParameters.index]
+                                MapStorage.instance.arrayObjectParameters[i] = null;
+                                MapStorage.instance.arrayObjectParameters[i].destroy();
+                                this.node.destroy();
+                                return;
+                            }
+                        }
+                    }
+                }
             }
         }
-        this.object.setParent(MapStorage.instance.coords[indexObject], true);
-        this.object.position = new Vec3(0, 0, 0);
+        if (cellFound == true) {
+            MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
+            MapStorage.instance.arrayObjectParameters[indexObject] = this.objectParameters;
+            this.object.setParent(MapStorage.instance.coords[indexObject], true);
+            this.object.position = new Vec3(0, 0, 0);
+        }
     }
 }

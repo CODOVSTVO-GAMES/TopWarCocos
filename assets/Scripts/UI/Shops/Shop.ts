@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { SpawnObjects } from '../../SpawnObjects';
 import { TypesObjects } from '../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
@@ -8,13 +8,10 @@ export class Shop extends Component {
 
     buyitem(event, customEventData) {
         if (Number(customEventData) == 0) {
-            SpawnObjects.instance.spawnObjectsNearbyRandom(TypesObjects.BUILD_0);
+            SpawnObjects.instance.spawnObjectsRandom(TypesObjects.BARTACK_OVERLAND, 1);
         }
         else if (Number(customEventData) == 1) {
-            SpawnObjects.instance.spawnObjectsNearbyRandom(TypesObjects.BUILD_1);
-        }
-        else if (Number(customEventData) == 2) {
-            SpawnObjects.instance.spawnObjectsNearbyRandom(TypesObjects.BUILD_2);
+            SpawnObjects.instance.spawnObjectsRandom(TypesObjects.GOLD_MINE, 1);
         }
     }
 }
