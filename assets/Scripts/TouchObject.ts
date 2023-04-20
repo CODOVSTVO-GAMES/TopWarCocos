@@ -1,6 +1,5 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
-import { Canvas } from './Canvas/Canvas';
 import { ObjectParameters } from './ObjectParameters';
 import { SpawnObjects } from './SpawnObjects';
 import { TouchStatus } from './TouchStatus';
