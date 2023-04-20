@@ -1,6 +1,7 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Canvas } from './Canvas/Canvas';
+import { TouchStatus } from './TouchStatus';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -11,74 +12,71 @@ export class TouchObject extends Component {
 
     public xPos: number = 0;
     public yPos: number = 0;
-    public isMove: boolean = false;
 
     onLoad() {
-        this.node.on(Input.EventType.TOUCH_START, this.touchStart, this);
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+        this.object.on(Input.EventType.TOUCH_START, this.touchStart, this);
+        this.object.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
+        this.object.on(Input.EventType.TOUCH_END, this.touchEnd, this);
+        this.object.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
     }
 
     onDestroy() {
-        this.node.off(Input.EventType.TOUCH_START, this.touchStart);
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_MOVE, this.touchMove);
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_END, this.touchEnd);
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
+        this.object.off(Input.EventType.TOUCH_START, this.touchStart);
+        this.object.off(Input.EventType.TOUCH_MOVE, this.touchMove);
+        this.object.off(Input.EventType.TOUCH_END, this.touchEnd);
+        this.object.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
     }
 
     touchStart() {
-        console.log("Start " + this.isMove);
-        if (this.isMove == true) return;
+        if (TouchStatus.instance.status == true) return;
 
-        this.node.setParent(MapStorage.instance.parentObject, true);
-        this.isMove = true;
-        this.xPos = this.node.position.x;
-        this.yPos = this.node.position.y;
+        this.object.setParent(MapStorage.instance.parentObject, true);
+        TouchStatus.instance.status = true;
+        this.xPos = this.object.position.x;
+        this.yPos = this.object.position.y;
     }
 
     touchMove(e: Touch) {
-        console.log("MOVE " + this.isMove);
-        if (this.isMove == false) return;
+        if (TouchStatus.instance.status == false) return;
 
         this.xPos += e.getDelta().x;
         this.yPos += e.getDelta().y;
     }
 
     touchEnd() {
-        console.log("enD " + this.isMove);
-        if (this.isMove == false) return;
+        if (TouchStatus.instance.status == false) return;
 
         this.processing();
-        this.isMove = false;
+        TouchStatus.instance.status = false;
+        TouchStatus.instance.status = false;
     }
 
     touchCancel() {
-        console.log("canceL " + this.isMove);
-        if (this.isMove == false) return;
+        if (TouchStatus.instance.status == false) return;
 
         this.processing();
-        this.isMove = false;
+        TouchStatus.instance.status = false;
+        TouchStatus.instance.status = false;
     }
 
     update() {
-        if (this.isMove == false) return;
+        if (TouchStatus.instance.status == false) return;
 
         let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
-        this.node.position = pos;
+        this.object.position = pos;
     }
 
     processing() {
         let minDistance = 100000;
         let indexObject = 0;
         for (let i = 0; i < MapStorage.instance.coords.length; i++) {
-            let currentDistance = Vec3.distance(this.node.position, MapStorage.instance.coords[i].position);
+            let currentDistance = Vec3.distance(this.object.position, MapStorage.instance.coords[i].position);
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = i;
             }
         }
-        this.node.setParent(MapStorage.instance.coords[indexObject], true);
-        this.node.position = new Vec3(0, 0, 0);
+        this.object.setParent(MapStorage.instance.coords[indexObject], true);
+        this.object.position = new Vec3(0, 0, 0);
     }
 }
