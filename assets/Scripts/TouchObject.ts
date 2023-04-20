@@ -13,7 +13,7 @@ export class TouchObject extends Component {
     public yPos: number = 0;
     public isMove: boolean = false;
 
-    onLoad() {
+    start() {
         this.node.on(Input.EventType.TOUCH_START, this.touchStart, this);
         Canvas.instance.canvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
         Canvas.instance.canvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
@@ -45,7 +45,7 @@ export class TouchObject extends Component {
 
     touchEnd() {
         if (this.isMove == false) return;
-        
+
         this.processing();
         this.isMove = false;
     }

@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node } from 'cc';
+import { _decorator, Component, Node } from 'cc';
 import { ObjectParameters } from '../ObjectParameters';
 const { ccclass, property } = _decorator;
 
@@ -17,8 +17,11 @@ export class MapStorage extends Component {
     @property({ type: ObjectParameters })
     public arrayObjectParameters: ObjectParameters[] = [];
 
-    start() {
+    onLoad() {
         MapStorage.instance = this;
+    }
+
+    start() {
         this.arrayObjectParameters = new Array(MapStorage.mapSize);
     }
 }
