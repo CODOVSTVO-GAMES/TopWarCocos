@@ -4,10 +4,13 @@ const { ccclass, property } = _decorator;
 @ccclass('ObjectParameters')
 export class ObjectParameters extends Component {
 
+    @property({ type: String })
+    public type: string;
 
-    
-    start() {
+    @property({ type: Number })
+    public index: number;
 
-    }
+    @property({ type: Number })
+    public level: number;
 }
 

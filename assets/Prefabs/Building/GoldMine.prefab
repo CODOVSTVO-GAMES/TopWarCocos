@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "item_0",
+    "_name": "GoldMine",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "item_0",
+    "_name": "GoldMine",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -165,6 +165,9 @@
     },
     "object": {
       "__id__": 1
+    },
+    "objectParameters": {
+      "__id__": 6
     },
     "_id": ""
   },

@@ -1,6 +1,7 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Canvas } from './Canvas/Canvas';
+import { ObjectParameters } from './ObjectParameters';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -8,6 +9,9 @@ export class TouchObject extends Component {
 
     @property({ type: Node })
     public object: Node;
+
+    @property({ type: ObjectParameters })
+    public objectParameters: ObjectParameters;
 
     public xPos: number = 0;
     public yPos: number = 0;
@@ -28,7 +32,6 @@ export class TouchObject extends Component {
     }
 
     touchStart() {
-        console.log("Start " + this.isMove);
         if (this.isMove == true) return;
 
         this.node.setParent(MapStorage.instance.parentObject, true);
@@ -38,7 +41,6 @@ export class TouchObject extends Component {
     }
 
     touchMove(e: Touch) {
-        console.log("MOVE " + this.isMove);
         if (this.isMove == false) return;
 
         this.xPos += e.getDelta().x;
@@ -46,7 +48,6 @@ export class TouchObject extends Component {
     }
 
     touchEnd() {
-        console.log("enD " + this.isMove);
         if (this.isMove == false) return;
 
         this.processing();
@@ -54,7 +55,6 @@ export class TouchObject extends Component {
     }
 
     touchCancel() {
-        console.log("canceL " + this.isMove);
         if (this.isMove == false) return;
 
         this.processing();
@@ -71,14 +71,30 @@ export class TouchObject extends Component {
     processing() {
         let minDistance = 100000;
         let indexObject = 0;
+        let cellFound = false;
         for (let i = 0; i < MapStorage.instance.coords.length; i++) {
             let currentDistance = Vec3.distance(this.node.position, MapStorage.instance.coords[i].position);
             if (currentDistance < minDistance) {
-                minDistance = currentDistance;
-                indexObject = i;
+                if (MapStorage.instance.arrayObjectParameters[i] == null) {
+                    minDistance = currentDistance;
+                    indexObject = i;
+                    cellFound = true;
+                }
+                else {
+                    // if (currentDistance < 60) {
+                    // console.log(this.objectParameters.type + " " + MapStorage.instance.arrayObjectParameters[i].type);
+                    // if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
+                    //     console.log("SUCCES");
+                    //     this.destroy();
+                    // }
+                    // }
+                }
             }
+
+        } 
+        if (cellFound == true) {
+            this.node.setParent(MapStorage.instance.coords[indexObject], true);
+            this.node.position = new Vec3(0, 0, 0);
         }
-        this.node.setParent(MapStorage.instance.coords[indexObject], true);
-        this.node.position = new Vec3(0, 0, 0);
     }
 }
