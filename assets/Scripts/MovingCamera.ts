@@ -15,19 +15,19 @@ export class MovingCamera extends Component {
     start() {
     }
 
-    onload() {
-        Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_START, this.touchStart, this);
-        Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
-        Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
-    }
+    // onload() {
+    //     Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_START, this.touchStart, this);
+    //     Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
+    //     Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+    //     Canvas.instance.mainCanvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
+    // }
 
-    onDestroy() {
-        Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_START, this.touchStart, this);
-        Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
-        Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_END, this.touchEnd, this);
-    }
+    // onDestroy() {
+    //     Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_START, this.touchStart, this);
+    //     Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_MOVE, this.touchMove, this);
+    //     Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+    //     Canvas.instance.mainCanvas.off(Input.EventType.TOUCH_END, this.touchEnd, this);
+    // }
 
     touchStart() {
         if (this.isMove == true) return;
@@ -57,10 +57,10 @@ export class MovingCamera extends Component {
         this.isMove = false;
     }
 
-    update() {
-        if (this.isMove == false) return;
+    // update() {
+    //     if (this.isMove == false) return;
 
-        let vec3: Vec3 = new Vec3(this.xPos, this.yPos, 0);
-        this.node.position = vec3;
-    }
+    //     let vec3: Vec3 = new Vec3(this.xPos, this.yPos, 0);
+    //     this.node.position = vec3;
+    // }
 }

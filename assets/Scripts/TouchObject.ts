@@ -13,7 +13,7 @@ export class TouchObject extends Component {
     public yPos: number = 0;
     public isMove: boolean = false;
 
-    start() {
+    onLoad() {
         this.node.on(Input.EventType.TOUCH_START, this.touchStart, this);
         Canvas.instance.canvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
         Canvas.instance.canvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
@@ -28,6 +28,7 @@ export class TouchObject extends Component {
     }
 
     touchStart() {
+        console.log("Start " + this.isMove);
         if (this.isMove == true) return;
 
         this.node.setParent(MapStorage.instance.parentObject, true);
@@ -37,6 +38,7 @@ export class TouchObject extends Component {
     }
 
     touchMove(e: Touch) {
+        console.log("MOVE " + this.isMove);
         if (this.isMove == false) return;
 
         this.xPos += e.getDelta().x;
@@ -44,6 +46,7 @@ export class TouchObject extends Component {
     }
 
     touchEnd() {
+        console.log("enD " + this.isMove);
         if (this.isMove == false) return;
 
         this.processing();
@@ -51,6 +54,7 @@ export class TouchObject extends Component {
     }
 
     touchCancel() {
+        console.log("canceL " + this.isMove);
         if (this.isMove == false) return;
 
         this.processing();
