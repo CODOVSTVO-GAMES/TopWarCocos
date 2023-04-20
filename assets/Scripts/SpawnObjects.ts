@@ -2,7 +2,7 @@ import { _decorator, Component, instantiate } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
-import { TypesObject } from './Static/TypesObjects';
+import { TypesObjects } from './Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjects')
@@ -19,7 +19,7 @@ export class SpawnObjects extends Component {
     }
 
     spawnObjects(coord: number) {
-        let object = instantiate(Prefabs.instance.getPrefab(TypesObject.BUILD_0));
+        let object = instantiate(Prefabs.instance.getPrefab(TypesObjects.BUILD_0));
         object.parent = MapStorage.instance.coords[coord];
         MapStorage.instance.arrayObjectParameters[coord] = object.getComponent(ObjectParameters);
     }
@@ -30,6 +30,10 @@ export class SpawnObjects extends Component {
 
     spawnObjectsNearby(coord: number) {
 
+    }
+
+    spawnObjectsNearbyRandom(type: string) {
+        console.log("q");
     }
 
     spawnObjectsMerge(coord: number) {
