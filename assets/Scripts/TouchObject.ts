@@ -1,5 +1,5 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
-import { MapStorage } from './MapStorage';
+import { MapStorage } from './Storage/MapStorage';
 import { Canvas } from './Canvas/Canvas';
 const { ccclass, property } = _decorator;
 
@@ -39,49 +39,42 @@ export class TouchObject extends Component {
     touchMove(e: Touch) {
         if (this.isMove == false) return;
 
-        console.log("move");
         this.xPos += e.getDelta().x;
         this.yPos += e.getDelta().y;
-
     }
 
     touchEnd() {
         if (this.isMove == false) return;
-
+        
+        this.processing();
         this.isMove = false;
     }
 
     touchCancel() {
         if (this.isMove == false) return;
 
+        this.processing();
         this.isMove = false;
     }
 
-    alo() {
-        // let dir = 100000;
-        // let index = 0;
-        // for (let i = 0; i < MapStorage.instance.coords.length; i++) {
-        //     dir = 
-        //     if () {
+    update() {
+        if (this.isMove == false) return;
 
-        //     }
-        // }
+        let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
+        this.node.position = pos;
     }
 
-//     update() {
-//         if (this.isMove == false) return;
-
-//         let vec3: Vec3 = new Vec3(this.xPos, this.yPos, 0);
-// vec3.
-//         this.node.position = vec3;
-//     }
-
-    // onTouchStart(event: EventTouch) {
-    //     const touch = event.touch!;
-    //     console.log(this.node.position);
-    // }
-    // onTouchEnd(event: EventTouch) {
-    //     const touch = event.touch!;
-    //     console.log(this.node.position);
-    // }
+    processing() {
+        let minDistance = 100000;
+        let indexObject = 0;
+        for (let i = 0; i < MapStorage.instance.coords.length; i++) {
+            let currentDistance = Vec3.distance(this.node.position, MapStorage.instance.coords[i].position);
+            if (currentDistance < minDistance) {
+                minDistance = currentDistance;
+                indexObject = i;
+            }
+        }
+        this.node.setParent(MapStorage.instance.coords[indexObject], true);
+        this.node.position = new Vec3(0, 0, 0);
+    }
 }

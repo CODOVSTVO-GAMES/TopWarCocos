@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Node } from 'cc';
-import { ObjectParameters } from './ObjectParameters';
+import { ObjectParameters } from '../ObjectParameters';
 const { ccclass, property } = _decorator;
 
 @ccclass('MapStorage')
