@@ -12,7 +12,7 @@ export class BarracksLogic extends Component {
 
     public createTroop() {
         console.log("createTroop");
-        SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, 1, this.objectParameters.index, 2);
+        SpawnObjects.instance.spawnObjectsPos(TypesObjects.TROOP_OVERLAND, 1, 0);
     }
 }
 
