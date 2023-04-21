@@ -22,8 +22,8 @@ export class SpawnObjects extends Component {
         MapStorage.instance.arrayObjectParameters[index] = object.getComponent(ObjectParameters);
     }
 
-    spawnObjectsNearby(type: string, level: number, index: number) {
-
+    spawnObjectsNearby(type: string, level: number, index: number, count: number) {
+        
     }
 
     spawnObjectsRandom(type: string, level: number) {

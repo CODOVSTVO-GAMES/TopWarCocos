@@ -16,7 +16,7 @@ export class TouchObject extends Component {
 
     public xPos: number = 0;
     public yPos: number = 0;
-    public isMove: boolean = false;
+    public isMove: boolean;
 
     onLoad() {
         this.object.on(Input.EventType.TOUCH_START, this.touchStart, this);
@@ -33,9 +33,9 @@ export class TouchObject extends Component {
     }
 
     touchStart() {
-        if (TouchStatus.instance.status == true && this.isMove) return;
+        if (TouchStatus.instance.activeTouch == true && this.isMove) return;
 
-        TouchStatus.instance.status = true;
+        TouchStatus.instance.activeTouch = true;
         MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
         this.object.setParent(MapStorage.instance.parentObject, true);
         this.xPos = this.object.position.x;
@@ -44,30 +44,30 @@ export class TouchObject extends Component {
     }
 
     touchMove(e: Touch) {
-        if (TouchStatus.instance.status == false && this.isMove == false) return;
+        if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
         this.xPos += e.getDelta().x;
         this.yPos += e.getDelta().y;
     }
 
     touchEnd() {
-        if (TouchStatus.instance.status == false && this.isMove == false) return;
+        if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
         this.processing();
         this.isMove = false;
-        TouchStatus.instance.status = false;
+        TouchStatus.instance.activeTouch = false;
     }
 
     touchCancel() {
-        if (TouchStatus.instance.status == false && this.isMove == false) return;
+        if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
         this.processing();
         this.isMove = false;
-        TouchStatus.instance.status = false;
+        TouchStatus.instance.activeTouch = false;
     }
 
     update() {
-        if (TouchStatus.instance.status == false || this.isMove == false) return;
+        if (TouchStatus.instance.activeTouch == false || this.isMove == false) return;
 
         let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
         this.object.position = pos;
@@ -86,22 +86,30 @@ export class TouchObject extends Component {
                     cellFound = true;
                 }
                 else {
-                    // if (currentDistance < 60) {
-                    //     if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
-                    //         if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
-                    //             SpawnObjects.instance.spawnObjectsMerge(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
-                    //             MapStorage.instance.arrayObjectParameters[this.objectParameters.index]
-                    //             MapStorage.instance.arrayObjectParameters[i] = null;
-                    //             MapStorage.instance.arrayObjectParameters[i].destroy();
-                    //             this.node.destroy();
-                    //             return;
-                    //         }
-                    //     }
-                    // }
+                    if (currentDistance < 60) {
+                        if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
+                            if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
+                                let type = MapStorage.instance.arrayObjectParameters[i].type;
+                                let level = MapStorage.instance.arrayObjectParameters[i].level;
+                                let index = MapStorage.instance.arrayObjectParameters[i].index;
+                                MapStorage.instance.arrayObjectParameters[i].nodeObject.destroy();
+                                MapStorage.instance.arrayObjectParameters[i] = null;
+                                MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
+                                this.node.destroy();
+                                SpawnObjects.instance.spawnObjectsMerge(type, level, index);
+                                return;
+                            }
+                        }
+                    }
                 }
             }
         }
         if (cellFound == true) {
+
+            if (this.objectParameters.index == indexObject) {
+                console.log("onClickObject");
+            }
+
             MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
             this.objectParameters.index = indexObject;
             MapStorage.instance.arrayObjectParameters[indexObject] = this.objectParameters;
