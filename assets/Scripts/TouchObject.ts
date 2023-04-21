@@ -16,6 +16,7 @@ export class TouchObject extends Component {
 
     public xPos: number = 0;
     public yPos: number = 0;
+    public isMove: boolean = false;
 
     onLoad() {
         this.object.on(Input.EventType.TOUCH_START, this.touchStart, this);
@@ -32,40 +33,41 @@ export class TouchObject extends Component {
     }
 
     touchStart() {
-        if (TouchStatus.instance.status == true) return;
+        if (TouchStatus.instance.status == true && this.isMove) return;
 
+        TouchStatus.instance.status = true;
         MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
         this.object.setParent(MapStorage.instance.parentObject, true);
-        TouchStatus.instance.status = true;
         this.xPos = this.object.position.x;
         this.yPos = this.object.position.y;
+        this.isMove = true;
     }
 
     touchMove(e: Touch) {
-        if (TouchStatus.instance.status == false) return;
+        if (TouchStatus.instance.status == false && this.isMove == false) return;
 
         this.xPos += e.getDelta().x;
         this.yPos += e.getDelta().y;
     }
 
     touchEnd() {
-        if (TouchStatus.instance.status == false) return;
+        if (TouchStatus.instance.status == false && this.isMove == false) return;
 
         this.processing();
-        TouchStatus.instance.status = false;
+        this.isMove = false;
         TouchStatus.instance.status = false;
     }
 
     touchCancel() {
-        if (TouchStatus.instance.status == false) return;
+        if (TouchStatus.instance.status == false && this.isMove == false) return;
 
         this.processing();
-        TouchStatus.instance.status = false;
+        this.isMove = false;
         TouchStatus.instance.status = false;
     }
 
     update() {
-        if (TouchStatus.instance.status == false) return;
+        if (TouchStatus.instance.status == false || this.isMove == false) return;
 
         let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
         this.object.position = pos;
@@ -84,23 +86,24 @@ export class TouchObject extends Component {
                     cellFound = true;
                 }
                 else {
-                    if (currentDistance < 60) {
-                        if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
-                            if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
-                                SpawnObjects.instance.spawnObjectsMerge(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
-                                MapStorage.instance.arrayObjectParameters[this.objectParameters.index]
-                                MapStorage.instance.arrayObjectParameters[i] = null;
-                                MapStorage.instance.arrayObjectParameters[i].destroy();
-                                this.node.destroy();
-                                return;
-                            }
-                        }
-                    }
+                    // if (currentDistance < 60) {
+                    //     if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
+                    //         if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
+                    //             SpawnObjects.instance.spawnObjectsMerge(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
+                    //             MapStorage.instance.arrayObjectParameters[this.objectParameters.index]
+                    //             MapStorage.instance.arrayObjectParameters[i] = null;
+                    //             MapStorage.instance.arrayObjectParameters[i].destroy();
+                    //             this.node.destroy();
+                    //             return;
+                    //         }
+                    //     }
+                    // }
                 }
             }
         }
         if (cellFound == true) {
             MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
+            this.objectParameters.index = indexObject;
             MapStorage.instance.arrayObjectParameters[indexObject] = this.objectParameters;
             this.object.setParent(MapStorage.instance.coords[indexObject], true);
             this.object.position = new Vec3(0, 0, 0);
