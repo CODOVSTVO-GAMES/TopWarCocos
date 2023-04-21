@@ -2,7 +2,7 @@ import { _decorator, Component, instantiate, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
-const { ccclass } = _decorator;
+const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjects')
 export class SpawnObjects extends Component {
@@ -27,11 +27,11 @@ export class SpawnObjects extends Component {
             let minDistance = 100000;
             let indexObject = 0;
             for (let j = 0; j < MapStorage.instance.mapSize; j++) {
-                let currentDistance = Vec3.distance(MapStorage.instance.coords[index].position, MapStorage.instance.coords[i].position);
+                let currentDistance = Vec3.distance(MapStorage.instance.coords[index].position, MapStorage.instance.coords[j].position);
                 if (currentDistance < minDistance) {
-                    if (MapStorage.instance.arrayObjectParameters[i] == null) {
+                    if (MapStorage.instance.arrayObjectParameters[j] == null) {
                         minDistance = currentDistance;
-                        indexObject = i;
+                        indexObject = j;
                     }
                 }
             }
