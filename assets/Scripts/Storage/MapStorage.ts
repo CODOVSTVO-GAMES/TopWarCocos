@@ -6,7 +6,7 @@ const { ccclass, property } = _decorator;
 export class MapStorage extends Component {
 
     public static instance: MapStorage;
-    public mapSize: number = 25;
+    public mapSize: number = 35;
 
     @property({ type: Node })
     public parentObject: Node;
