@@ -9,7 +9,6 @@ export class ZoomCamera extends Component {
     public camera: Camera;
 
     onEnable() {
-        console.log(this.camera)
         Canvas.instance.canvas.on(Node.EventType.MOUSE_WHEEL, this.mouseScroll, this);
     }
 

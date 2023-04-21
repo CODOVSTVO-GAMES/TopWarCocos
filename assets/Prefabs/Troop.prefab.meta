@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "7516d78c-31ba-432f-9f54-800e7ce1050c",
+  "uuid": "d4df606a-2f4d-4368-83b3-536ddef3afdd",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "TroopMarine"
+    "syncNodeName": "Troop"
   }
 }

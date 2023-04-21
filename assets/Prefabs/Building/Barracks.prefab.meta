@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f600edf4-6b3b-401d-9813-a8838cd0f8e2",
+  "uuid": "368fd2f2-143e-4e24-95d9-bf22017e0c18",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "BarracksAir"
+    "syncNodeName": "Barracks"
   }
 }
