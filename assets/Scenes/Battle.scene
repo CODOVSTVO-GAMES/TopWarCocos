@@ -157,6 +157,8 @@
     "_enabled": true,
     "__prefab": null,
     "coords": [],
+    "arrayWarriorParametrsOwn": [],
+    "arrayWarriorParametrsEnemy": [],
     "_id": "5ahCvj2HNM2Zk64wWOsZXX"
   },
   {

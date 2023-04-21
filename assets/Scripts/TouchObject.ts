@@ -107,7 +107,7 @@ export class TouchObject extends Component {
         }
         if (cellFound == true) {
             if (this.objectParameters.index == indexObject) {
-                if (this.objectParameters.type == TypesObjects.BARTACK_OVERLAND) {
+                if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
                     this.objectParameters.getBarracksInterface().openInterface();
                 }
                 else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {

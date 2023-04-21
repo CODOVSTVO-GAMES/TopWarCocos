@@ -27,9 +27,9 @@ export class Prefabs extends Component {
         if (type == TypesObjects.TROOP_AIR) return this.troop;
         else if (type == TypesObjects.TROOP_MARINE) return this.troop;
         else if (type == TypesObjects.TROOP_OVERLAND) return this.troop;
-        else if (type == TypesObjects.BARTACK_AIR) return this.barracks;
-        else if (type == TypesObjects.BARTACK_MARINE) return this.barracks;
-        else if (type == TypesObjects.BARTACK_OVERLAND) return this.barracks;
+        else if (type == TypesObjects.BARRACKS_AIR) return this.barracks;
+        else if (type == TypesObjects.BARRACKS_MARINE) return this.barracks;
+        else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracks;
         else if (type == TypesObjects.TOWN_HALL) return this.townHall;
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine;
         else return null;
