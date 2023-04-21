@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate } from 'cc';
+import { _decorator, Component, instantiate, Vec3 } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
@@ -23,7 +23,20 @@ export class SpawnObjects extends Component {
     }
 
     spawnObjectsNearby(type: string, level: number, index: number, count: number) {
-        
+        for (let i = 0; i < count; i++) {
+            let minDistance = 100000;
+            let indexObject = 0;
+            for (let j = 0; j < MapStorage.instance.mapSize; j++) {
+                let currentDistance = Vec3.distance(MapStorage.instance.coords[index].position, MapStorage.instance.coords[i].position);
+                if (currentDistance < minDistance) {
+                    if (MapStorage.instance.arrayObjectParameters[i] == null) {
+                        minDistance = currentDistance;
+                        indexObject = i;
+                    }
+                }
+            }
+            SpawnObjects.instance.spawnObjectsPos(type, level, indexObject);
+        }
     }
 
     spawnObjectsRandom(type: string, level: number) {

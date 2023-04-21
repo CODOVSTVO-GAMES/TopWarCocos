@@ -3,6 +3,7 @@ import { MapStorage } from './Storage/MapStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { SpawnObjects } from './SpawnObjects';
 import { TouchStatus } from './TouchStatus';
+import { TypesObjects } from './Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -46,8 +47,8 @@ export class TouchObject extends Component {
     touchMove(e: Touch) {
         if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
-        this.xPos += e.getDelta().x;
-        this.yPos += e.getDelta().y;
+        this.xPos += (e.getDelta().x * 2);
+        this.yPos += (e.getDelta().y * 2);
     }
 
     touchEnd() {
@@ -105,11 +106,14 @@ export class TouchObject extends Component {
             }
         }
         if (cellFound == true) {
-
             if (this.objectParameters.index == indexObject) {
-                console.log("onClickObject");
+                if (this.objectParameters.type == TypesObjects.BARTACK_OVERLAND) {
+                    this.objectParameters.getBarracksInterface().openInterface();
+                }
+                else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+                    this.objectParameters.getGoldMineInterface().openInterface();
+                }
             }
-
             MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
             this.objectParameters.index = indexObject;
             MapStorage.instance.arrayObjectParameters[indexObject] = this.objectParameters;

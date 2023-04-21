@@ -6170,27 +6170,11 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "troopAir": {
+    "troop": {
       "__uuid__": "d4df606a-2f4d-4368-83b3-536ddef3afdd",
       "__expectedType__": "cc.Prefab"
     },
-    "troopMarine": {
-      "__uuid__": "7516d78c-31ba-432f-9f54-800e7ce1050c",
-      "__expectedType__": "cc.Prefab"
-    },
-    "troopOverland": {
-      "__uuid__": "f175e33c-6d29-4974-a6b7-df6b12b48e28",
-      "__expectedType__": "cc.Prefab"
-    },
-    "barracksAir": {
-      "__uuid__": "f600edf4-6b3b-401d-9813-a8838cd0f8e2",
-      "__expectedType__": "cc.Prefab"
-    },
-    "barracksMarine": {
-      "__uuid__": "a7ed2654-ac64-4cda-b29e-a6280b8b8c62",
-      "__expectedType__": "cc.Prefab"
-    },
-    "barracksOverland": {
+    "barracks": {
       "__uuid__": "368fd2f2-143e-4e24-95d9-bf22017e0c18",
       "__expectedType__": "cc.Prefab"
     },
