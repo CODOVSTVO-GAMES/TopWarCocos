@@ -2,8 +2,8 @@ import { _decorator, Component, Node, Sprite, CCString, CCFloat } from 'cc';
 import { SpriteStorage } from '../SpriteStorage';
 const { ccclass, property } = _decorator;
 
-@ccclass('WarriorParameters')
-export class WarriorParameters extends Component {
+@ccclass('TroopParameters')
+export class TroopParameters extends Component {
 
     @property({ type: CCString })
     public type: string;
@@ -21,6 +21,10 @@ export class WarriorParameters extends Component {
     public spriteObject: Sprite;
 
     start() {
-        this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
+        // this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
+    }
+
+    log() {
+        console.log("Type: " + this.type + "; Level: " + this.level + "; Index: " + this.index);
     }
 }
