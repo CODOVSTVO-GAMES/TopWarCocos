@@ -6329,7 +6329,12 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "townHall": [],
+    "townHall": [
+      {
+        "__uuid__": "52486c4d-376d-495e-9f34-de60ceefb19e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "goldMine": [
       {
         "__uuid__": "4b8551be-65ed-4bda-a4f4-53dfe6a00dd3@f9941",

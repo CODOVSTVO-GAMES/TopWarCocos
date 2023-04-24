@@ -1,12 +1,15 @@
-import { _decorator, Component, Label, Node } from 'cc';
-import { ObjectParameters } from '../../ObjectParameters';
+import { _decorator, Component, Node, Label } from 'cc';
+import { ObjectParameters } from '../ObjectParameters';
 const { ccclass, property } = _decorator;
 
-@ccclass('GoldMineInterface')
-export class GoldMineInterface extends Component {
+@ccclass('ObjectInterface')
+export class ObjectInterface extends Component {
 
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
+
+    @property({ type: Node })
+    public messageObject: Node;
 
     @property({ type: Node })
     public titleObject: Node;
@@ -20,13 +23,15 @@ export class GoldMineInterface extends Component {
     @property({ type: Label })
     public levelText: Label;
 
-    public openInterface() {
+    public openInterface(type: string) {
+        this.messageObject.active = true;
         this.titleObject.active = true;
         this.levelObject.active = true;
         this.updateText();
     }
 
     public closeInterface() {
+        this.messageObject.active = false;
         this.titleObject.active = false;
         this.levelObject.active = false;
     }

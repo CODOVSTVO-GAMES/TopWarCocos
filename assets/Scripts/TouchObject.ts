@@ -1,9 +1,8 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
-import { MapStorage } from './Storage/MapStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { SpawnObjects } from './SpawnObjects';
 import { TouchStatus } from './TouchStatus';
-import { TypesObjects } from './Static/TypesObjects';
+import { MapController } from './MapController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -37,8 +36,8 @@ export class TouchObject extends Component {
         if (TouchStatus.instance.activeTouch == true && this.isMove) return;
 
         TouchStatus.instance.activeTouch = true;
-        MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
-        this.object.setParent(MapStorage.instance.parentObject, true);
+        MapController.setObjectParameter(null, this.objectParameters.index);
+        this.object.setParent(MapController.getParentObject(), true);
         this.xPos = this.object.position.x;
         this.yPos = this.object.position.y;
         this.isMove = true;
@@ -78,24 +77,24 @@ export class TouchObject extends Component {
         let minDistance = 100000;
         let indexObject = 0;
         let cellFound = false;
-        for (let i = 0; i < MapStorage.instance.coords.length; i++) {
-            let currentDistance = Vec3.distance(this.object.position, MapStorage.instance.coords[i].position);
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            let currentDistance = Vec3.distance(this.object.position, MapController.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                if (MapStorage.instance.arrayObjectParameters[i] == null) {
+                if (MapController.getObjectParameter(i) == null) {
                     minDistance = currentDistance;
                     indexObject = i;
                     cellFound = true;
                 }
                 else {
                     if (currentDistance < 60) {
-                        if (this.objectParameters.type == MapStorage.instance.arrayObjectParameters[i].type) {
-                            if (this.objectParameters.level == MapStorage.instance.arrayObjectParameters[i].level) {
-                                let type = MapStorage.instance.arrayObjectParameters[i].type;
-                                let level = MapStorage.instance.arrayObjectParameters[i].level;
-                                let index = MapStorage.instance.arrayObjectParameters[i].index;
-                                MapStorage.instance.arrayObjectParameters[i].nodeObject.destroy();
-                                MapStorage.instance.arrayObjectParameters[i] = null;
-                                MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
+                        if (this.objectParameters.type == MapController.getObjectParameter(i).type) {
+                            if (this.objectParameters.level == MapController.getObjectParameter(i).level) {
+                                let type = MapController.getObjectParameter(i).type;
+                                let level = MapController.getObjectParameter(i).level;
+                                let index = MapController.getObjectParameter(i).index;
+                                MapController.getObjectParameter(i).nodeObject.destroy();
+                                MapController.setObjectParameter(null, i);
+                                MapController.setObjectParameter(null, this.objectParameters.index);
                                 this.node.destroy();
                                 SpawnObjects.instance.spawnObjectsMerge(type, level, index);
                                 return;
@@ -107,17 +106,12 @@ export class TouchObject extends Component {
         }
         if (cellFound == true) {
             if (this.objectParameters.index == indexObject) {
-                if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                    this.objectParameters.getBarracksInterface().openInterface();
-                }
-                else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                    this.objectParameters.getGoldMineInterface().openInterface();
-                }
+                this.objectParameters.getObjectInterface().openInterface(this.objectParameters.type);
             }
-            MapStorage.instance.arrayObjectParameters[this.objectParameters.index] = null;
+            MapController.setObjectParameter(null, this.objectParameters.index);
             this.objectParameters.index = indexObject;
-            MapStorage.instance.arrayObjectParameters[indexObject] = this.objectParameters;
-            this.object.setParent(MapStorage.instance.coords[indexObject], true);
+            MapController.setObjectParameter(this.objectParameters, indexObject);
+            this.object.setParent(MapController.getCoord(indexObject), true);
             this.object.position = new Vec3(0, 0, 0);
         }
     }

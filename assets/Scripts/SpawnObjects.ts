@@ -2,6 +2,7 @@ import { _decorator, Component, instantiate, Vec3 } from 'cc';
 import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
 import { MapController } from './MapController';
+import { TypesObjects } from './Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjects')
@@ -13,9 +14,13 @@ export class SpawnObjects extends Component {
         SpawnObjects.instance = this;
     }
 
+    start() {
+        this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 4);
+    }
+
     spawnObjectsPos(type: string, level: number, index: number) {
         let object = instantiate(Prefabs.instance.getPrefab(type));
-        MapController.getParent(object, index);
+        MapController.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
@@ -27,7 +32,7 @@ export class SpawnObjects extends Component {
             let minDistance = 100000;
             let indexObject = 0;
             for (let j = 0; j < MapController.getMapSize(); j++) {
-                let currentDistance = Vec3.distance(MapController.getCoords(index).position, MapController.getCoords(j).position);
+                let currentDistance = Vec3.distance(MapController.getCoordPosition(index), MapController.getCoordPosition(j));
                 if (currentDistance < minDistance) {
                     if (MapController.getObjectParameter(j) == null) {
                         minDistance = currentDistance;

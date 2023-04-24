@@ -1,9 +1,8 @@
 import { _decorator, Component, Node, Sprite, CCString, CCFloat } from 'cc';
 import { SpriteStorage } from './SpriteStorage';
-import { BarracksInterface } from './GameObjects/Barracks/BarracksInterface';
-import { BarracksLogic } from './GameObjects/Barracks/BarracksLogic';
-import { GoldMineInterface } from './GameObjects/GoldMine/GoldMineInterface';
-import { GoldMineLogic } from './GameObjects/GoldMine/GoldMineLogic';
+import { ObjectInterface } from './GameObjects/ObjectInterface';
+import { BarracksLogic } from './GameObjects/BarracksLogic';
+import { GoldMineLogic } from './GameObjects/GoldMineLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -28,33 +27,24 @@ export class ObjectParameters extends Component {
     //Links
     //=================================================
 
-    public barracksInterface: BarracksInterface;
+    public objectInterface: ObjectInterface;
     public barracksLogic: BarracksLogic;
-
-    public goldMineInterface: GoldMineInterface;
     public goldMineLogic: GoldMineLogic;
 
     start() {
-        console.log('start');
         this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
     }
 
-    getBarracksInterface(): BarracksInterface {
-        try { this.barracksInterface = this.getComponent(BarracksInterface); }
-        catch { console.log("error: barracksInterface not received"); }
-        return this.barracksInterface;
+    getObjectInterface(): ObjectInterface {
+        try { this.objectInterface = this.getComponent(ObjectInterface); }
+        catch { console.log("error: objectInterface not received"); }
+        return this.objectInterface;
     }
 
     getBarracksLogic(): BarracksLogic {
         try { this.barracksLogic = this.getComponent(BarracksLogic); }
         catch { console.log("error: barracksLogic not received"); }
         return this.barracksLogic;
-    }
-
-    getGoldMineInterface(): GoldMineInterface {
-        try { this.goldMineInterface = this.getComponent(GoldMineInterface); }
-        catch { console.log("error: goldMineInterface not received"); }
-        return this.goldMineInterface;
     }
 
     getGoldMineLogic(): GoldMineLogic {

@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
-import { SpawnObjects } from '../../SpawnObjects';
-import { TypesObjects } from '../../Static/TypesObjects';
-import { ObjectParameters } from '../../ObjectParameters';
+import { SpawnObjects } from '../SpawnObjects';
+import { TypesObjects } from '../Static/TypesObjects';
+import { ObjectParameters } from '../ObjectParameters';
 const { ccclass, property } = _decorator;
 
 @ccclass('BarracksLogic')
