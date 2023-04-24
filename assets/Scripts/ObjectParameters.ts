@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Sprite } from 'cc';
+import { _decorator, Component, Node, Sprite, CCString, CCFloat } from 'cc';
 import { SpriteStorage } from './SpriteStorage';
 import { BarracksInterface } from './GameObjects/Barracks/BarracksInterface';
 import { BarracksLogic } from './GameObjects/Barracks/BarracksLogic';
@@ -9,13 +9,13 @@ const { ccclass, property } = _decorator;
 @ccclass('ObjectParameters')
 export class ObjectParameters extends Component {
 
-    @property({ type: String })
+    @property({ type: CCString })
     public type: string;
 
-    @property({ type: Number })
+    @property({ type: CCFloat })
     public level: number;
 
-    @property({ type: Number })
+    @property({ type: CCFloat })
     public index: number;
 
     @property({ type: Node })
@@ -35,6 +35,7 @@ export class ObjectParameters extends Component {
     public goldMineLogic: GoldMineLogic;
 
     start() {
+        console.log('start');
         this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
     }
 

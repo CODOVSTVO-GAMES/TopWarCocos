@@ -37,8 +37,8 @@ export class SpriteStorage extends Component {
 
     getSprite(type: string, level: number): SpriteFrame {
         if (type == TypesObjects.TROOP_AIR) return this.troopAir[level - 1];
-        else if (type == TypesObjects.TROOP_MARINE) return this.troopAir[level - 1];
-        else if (type == TypesObjects.TROOP_OVERLAND) return this.troopAir[level - 1];
+        else if (type == TypesObjects.TROOP_MARINE) return this.troopMarine[level - 1];
+        else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverland[level - 1];
         else if (type == TypesObjects.BARRACKS_AIR) return this.barracksAir[level - 1];
         else if (type == TypesObjects.BARRACKS_MARINE) return this.barracksMarine[level - 1];
         else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracksOverland[level - 1];

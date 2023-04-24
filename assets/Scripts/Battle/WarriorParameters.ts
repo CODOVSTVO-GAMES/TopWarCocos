@@ -1,17 +1,17 @@
-import { _decorator, Component, Node, Sprite } from 'cc';
+import { _decorator, Component, Node, Sprite, CCString, CCFloat } from 'cc';
 import { SpriteStorage } from '../SpriteStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('WarriorParameters')
 export class WarriorParameters extends Component {
 
-    @property({ type: String })
+    @property({ type: CCString })
     public type: string;
 
-    @property({ type: Number })
+    @property({ type: CCFloat })
     public level: number;
 
-    @property({ type: Number })
+    @property({ type: CCFloat })
     public index: number;
 
     @property({ type: Node })
