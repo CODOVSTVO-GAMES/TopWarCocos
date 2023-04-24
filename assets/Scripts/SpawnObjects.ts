@@ -15,7 +15,7 @@ export class SpawnObjects extends Component {
     }
 
     start() {
-        this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 4);
+        // this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 4);
     }
 
     spawnObjectsPos(type: string, level: number, index: number) {

@@ -1,4 +1,4 @@
-import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
+import { _decorator, Color, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { SpawnObjects } from './SpawnObjects';
 import { TouchStatus } from './TouchStatus';
@@ -37,7 +37,9 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true;
         MapController.setObjectParameter(null, this.objectParameters.index);
+        MapController.openCellFree();
         this.object.setParent(MapController.getParentObject(), true);
+        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 180);
         this.xPos = this.object.position.x;
         this.yPos = this.object.position.y;
         this.isMove = true;
@@ -55,6 +57,9 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
+        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 255);
+        MapController.closeCellFree();
+        MapController.closeCellSelected();
         TouchStatus.instance.activeTouch = false;
     }
 
@@ -63,6 +68,9 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
+        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 255);
+        MapController.closeCellFree();
+        MapController.closeCellSelected();
         TouchStatus.instance.activeTouch = false;
     }
 
@@ -71,6 +79,8 @@ export class TouchObject extends Component {
 
         let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
         this.object.position = pos;
+        MapController.closeCellSelected();
+        MapController.openCellSelected(this.object.position);
     }
 
     processing() {

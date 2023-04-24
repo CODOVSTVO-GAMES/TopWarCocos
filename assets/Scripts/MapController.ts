@@ -31,5 +31,40 @@ export class MapController {
     static getObjectParameter(index: number): ObjectParameters {
         return MapStorage.instance.arrayObjectParameters[index];
     }
+
+    static openCellFree() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            if (this.getObjectParameter(i) == null) {
+                MapStorage.instance.cellFree[i].active = true;
+            }
+        }
+    }
+
+    static openCellSelected(pos: Vec3) {
+        let minDistance = 1000000;
+        let indexObject = 0;
+        for (let j = 0; j < MapController.getMapSize(); j++) {
+            let currentDistance = Vec3.distance(pos, MapController.getCoordPosition(j));
+            if (currentDistance < minDistance) {
+                if (MapController.getObjectParameter(j) == null) {
+                    minDistance = currentDistance;
+                    indexObject = j;
+                }
+            }
+        }
+        MapStorage.instance.cellSelected[indexObject].active = true;
+    }
+
+    static closeCellFree() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            MapStorage.instance.cellFree[i].active = false;
+        }
+    }
+
+    static closeCellSelected() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            MapStorage.instance.cellSelected[i].active = false;
+        }
+    }
 }
 
