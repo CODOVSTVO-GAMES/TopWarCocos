@@ -19,9 +19,10 @@ export class MapStorage extends Component {
 
     onLoad() {
         MapStorage.instance = this;
+        this.arrayObjectParameters = new Array(this.mapSize);
     }
 
     start() {
-        this.arrayObjectParameters = new Array(this.mapSize);
+        
     }
 }
