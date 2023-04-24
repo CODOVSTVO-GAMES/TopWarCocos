@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
-import { ObjectParameters } from '../../ObjectParameters';
 import { SpawnObjects } from '../../SpawnObjects';
 import { TypesObjects } from '../../Static/TypesObjects';
+import { ObjectParameters } from '../../ObjectParameters';
 const { ccclass, property } = _decorator;
 
 @ccclass('BarracksLogic')
@@ -11,8 +11,6 @@ export class BarracksLogic extends Component {
     public objectParameters: ObjectParameters;
 
     public createTroop() {
-        console.log("createTroop");
-        SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, 1, this.objectParameters.index, 2);
+        SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, 1, this.getComponent(ObjectParameters).index, 2);
     }
 }
-
