@@ -1,7 +1,11 @@
 {
   "name": "TopWar",
   "uuid": "9fc4e0ba-2f8b-4873-a0b2-aa86f7e403b6",
+  "type": "module",
   "creator": {
     "version": "3.7.2"
+  },
+  "dependencies": {
+    "crypto-es": "^1.2.7"
   }
 }

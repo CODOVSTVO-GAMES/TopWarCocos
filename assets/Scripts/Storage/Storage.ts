@@ -24,55 +24,94 @@ export class Storage extends Component {
 
     private experience: number = 0;
 
-    //game variables
-
     addCoins(number: number){
         this.coins += number;
+    }
+    getCoins(){
+        return this.coins
     }
 
     addGems(number: number){
         this.gems += number;
     }
+    getGems(){
+        return this.gems
+    }
 
     addEnergy(number: number){
         this.energy += number;
+    }
+    getEnergy(){
+        return this.energy
     }
 
     addPower(number: number){
         this.power += number;
     }
+    getPower(){
+        return this.power
+    }
 
     addExpirience(number: number){
         //Добавляем опыт, проверяем уровень
     }
-
-    //
-
-    getCoins(){
-        return this.coins
-    }
-
-    getGems(){
-        return this.gems
-    }
-
-    getEnergy(){
-        return this.energy
-    }
-
-    getPower(){
-        return this.power
+    getExpirience(){
+        return this.experience
     }
 
     getLevel(){
         return this.level
     }
+    
+    //game variables
 
-    getExpirience(){
-        return this.experience
+
+    //technical variables
+    
+    @property({ type: String })
+    private sessionHash: string = '';
+
+    @property({ type: String })
+    private sessionId: string = '0';
+
+    @property({ type: String })
+    private nodeId: string = '';
+    
+    @property({ type: String })
+    private userId: string = 'cocos';
+
+    setSessionHash(sessionHash: string){
+        // console.log("Hash instaled")
+        this.sessionHash = sessionHash;
+    }
+    getSessionHash() : string{
+        return this.sessionHash
     }
 
-    //
+    setSessionId(sessionId: string){
+        this.sessionId = sessionId
+    }
+    getSessionId(){
+        // console.log("request sessionid")
+        return this.sessionId
+    }
+    
+    setNodeId(nodeId: string){
+        this.nodeId = nodeId
+    }
+    getNodeId(){
+        return this.nodeId
+    }
+
+    setuserId(userId: string){
+        this.userId = userId
+    }
+    getuserId(){
+        // console.log("request userid")
+        return this.userId
+    }
+
+    //technical variables
 
 }
 
