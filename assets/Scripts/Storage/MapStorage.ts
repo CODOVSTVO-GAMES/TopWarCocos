@@ -24,6 +24,7 @@ export class MapStorage extends Component {
 
     public cellFree: Node[] = [];
     public cellSelected: Node[] = [];
+    public cellBlock: Node[] = [];
 
     onLoad() {
         MapStorage.instance = this;
@@ -32,9 +33,11 @@ export class MapStorage extends Component {
     start() {
         this.cellFree = new Array(this.mapSize);
         this.cellSelected = new Array(this.mapSize);
+        this.cellBlock = new Array(this.mapSize);
         this.arrayObjectParameters = new Array(this.mapSize);
         this.arrayBlockObject = new Array(this.mapSize);
         MapController.initCellFree();
         MapController.initCellSelected();
+        MapController.initCellBlock();
     }
 }

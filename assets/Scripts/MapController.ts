@@ -64,10 +64,33 @@ export class MapController {
             }
         }
         if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
-            MapStorage.instance.cellSelected[indexObject].active = true;
-            MapStorage.instance.cellSelected[indexObject - 1].active = true;
-            MapStorage.instance.cellSelected[indexObject - 5].active = true;
-            MapStorage.instance.cellSelected[indexObject - 6].active = true;
+            if (MapStorage.instance.arrayBlockObject[indexObject] == null) {
+                MapStorage.instance.cellSelected[indexObject].active = true;
+            }
+            else {
+                MapStorage.instance.cellBlock[indexObject].active = true;
+            }
+
+            if (MapStorage.instance.arrayBlockObject[indexObject - 1] == null) {
+                MapStorage.instance.cellSelected[indexObject - 1].active = true;
+            }
+            else {
+                MapStorage.instance.cellBlock[indexObject - 1].active = true;
+            }
+
+            if (MapStorage.instance.arrayBlockObject[indexObject - 5] == null) {
+                MapStorage.instance.cellSelected[indexObject - 5].active = true;
+            }
+            else {
+                MapStorage.instance.cellBlock[indexObject - 5].active = true;
+            }
+
+            if (MapStorage.instance.arrayBlockObject[indexObject - 6] == null) {
+                MapStorage.instance.cellSelected[indexObject - 6].active = true;
+            }
+            else {
+                MapStorage.instance.cellBlock[indexObject - 6].active = true;
+            }
         }
     }
 
@@ -80,6 +103,12 @@ export class MapController {
     static closeCellSelected() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             MapStorage.instance.cellSelected[i].active = false;
+        }
+    }
+
+    static closeCellBlock() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            MapStorage.instance.cellBlock[i].active = false;
         }
     }
 
@@ -97,8 +126,12 @@ export class MapController {
         this.closeCellSelected();
     }
 
-
-
+    static initCellBlock() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            MapStorage.instance.cellBlock[i] = this.getCoord(i).getComponent(Cell).cellBlock;
+        }
+        this.closeCellBlock();
+    }
 
     static alo(index: number) {
         MapStorage.instance.arrayBlockObject[index - 1].destroy();
