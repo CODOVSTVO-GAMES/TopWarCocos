@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Sprite, CCString, CCFloat } from 'cc';
+import { _decorator, Component, Node, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
 import { SpriteStorage } from './SpriteStorage';
 import { ObjectInterface } from './GameObjects/ObjectInterface';
 import { BarracksLogic } from './GameObjects/BarracksLogic';
@@ -9,13 +9,16 @@ const { ccclass, property } = _decorator;
 export class ObjectParameters extends Component {
 
     @property({ type: CCString })
-    public type: string;
+    public type: string = "";
 
     @property({ type: CCFloat })
-    public level: number;
+    public level: number = 0;
 
     @property({ type: CCFloat })
-    public index: number;
+    public index: number = 0;
+
+    @property({ type: CCBoolean })
+    public inBattle: boolean = false;
 
     @property({ type: Node })
     public nodeObject: Node;

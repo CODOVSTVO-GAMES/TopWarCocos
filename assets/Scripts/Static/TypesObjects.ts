@@ -9,4 +9,7 @@ export class TypesObjects {
 
     public static TOWN_HALL: string = "townHall";
     public static GOLD_MINE: string = "goldMine";
+
+    public static TEAM_ENEMY: string = "teamEnemy";
+    public static TEAM_OWN: string = "teamOwn";
 }
