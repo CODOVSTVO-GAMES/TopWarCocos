@@ -37,6 +37,7 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true;
         MapController.setObjectParameter(null, this.objectParameters.index);
+        MapController.alo(this.objectParameters.index);
         MapController.openCellFree();
         this.object.setParent(MapController.getParentObject(), true);
         this.objectParameters.spriteObject.color = new Color(255, 255, 255, 180); 
@@ -122,6 +123,7 @@ export class TouchObject extends Component {
             this.objectParameters.index = indexObject;
             MapController.setObjectParameter(this.objectParameters, indexObject);
             this.object.setParent(MapController.getCoord(indexObject), true);
+            SpawnObjects.instance.spawnBlockObjects(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
             this.object.position = new Vec3(0, 0, 0);
         }
     }

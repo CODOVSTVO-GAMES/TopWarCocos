@@ -4,6 +4,7 @@ import { ObjectInterface } from './GameObjects/ObjectInterface';
 import { BarracksLogic } from './GameObjects/BarracksLogic';
 import { GoldMineLogic } from './GameObjects/GoldMineLogic';
 import { TypesObjects } from './Static/TypesObjects';
+import { BlockObject } from './BlockObject';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -19,7 +20,7 @@ export class ObjectParameters extends Component {
     public index: number;
 
     @property({ type: CCBoolean })
-    public blockObject: boolean;
+    public blockObjectBOOOL: boolean;
 
     @property({ type: Node })
     public nodeObject: Node;
@@ -27,24 +28,25 @@ export class ObjectParameters extends Component {
     @property({ type: Sprite })
     public spriteObject: Sprite;
 
-    // @property({ type: ObjectParameters })
-    // public parentObject: ObjectParameters;
-
-    // @property({ type: ObjectParameters })
-    // public childrenObject: ObjectParameters[] = [];
-
     //=================================================
     //Links
     //=================================================
 
+    public blockObject: BlockObject;
     public objectInterface: ObjectInterface;
     public barracksLogic: BarracksLogic;
     public goldMineLogic: GoldMineLogic;
 
     start() {
-        if (this.blockObject == false) {
+        if (this.blockObjectBOOOL == false) {
             this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
         }
+    }
+
+    getBlockObject(): BlockObject {
+        try { this.blockObject = this.getComponent(BlockObject); }
+        catch { console.log("error: test not received"); }
+        return this.blockObject;
     }
 
     getObjectInterface(): ObjectInterface {

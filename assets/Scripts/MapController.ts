@@ -3,6 +3,7 @@ import { MapStorage } from './Storage/MapStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { Cell } from './Cell';
 import { TypesObjects } from './Static/TypesObjects';
+import { BlockObject } from './BlockObject';
 
 export class MapController {
 
@@ -12,6 +13,10 @@ export class MapController {
 
     static setObjectParameter(objectParameters: ObjectParameters, index: number) {
         MapStorage.instance.arrayObjectParameters[index] = objectParameters;
+    }
+
+    static setBlockObject(blockObject: BlockObject, index: number) {
+        MapStorage.instance.arrayBlockObject[index] = blockObject;
     }
 
     static getMapSize(): number {
@@ -34,9 +39,13 @@ export class MapController {
         return MapStorage.instance.arrayObjectParameters[index];
     }
 
+    static getBlockObject(index: number): BlockObject {
+        return MapStorage.instance.arrayBlockObject[index];
+    }
+
     static openCellFree() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            if (this.getObjectParameter(i) == null) {
+            if (this.getObjectParameter(i) == null && this.getBlockObject(i) == null) {
                 MapStorage.instance.cellFree[i].active = true;
             }
         }
@@ -86,6 +95,18 @@ export class MapController {
             MapStorage.instance.cellSelected[i] = this.getCoord(i).getComponent(Cell).cellSelected;
         }
         this.closeCellSelected();
+    }
+
+
+
+
+    static alo(index: number) {
+        MapStorage.instance.arrayBlockObject[index - 1].destroy();
+        MapStorage.instance.arrayBlockObject[index - 5].destroy();
+        MapStorage.instance.arrayBlockObject[index - 6].destroy();
+        MapStorage.instance.arrayBlockObject[index - 1] = null;
+        MapStorage.instance.arrayBlockObject[index - 5] = null;
+        MapStorage.instance.arrayBlockObject[index - 6] = null;
     }
 }
 

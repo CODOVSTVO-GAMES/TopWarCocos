@@ -3,6 +3,7 @@ import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
 import { MapController } from './MapController';
 import { TypesObjects } from './Static/TypesObjects';
+import { BlockObject } from './BlockObject';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjects')
@@ -14,28 +15,20 @@ export class SpawnObjects extends Component {
         SpawnObjects.instance = this;
     }
 
-    start() {
-        // this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 4);
-    }
-
     spawnObjectsPos(type: string, level: number, index: number) {
         let object = instantiate(Prefabs.instance.getPrefab(type));
+        MapController.setParent(object, index);
         if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
             let arrayIndexs = [1, 5, 6];
-            // object.getComponent(ObjectParameters).childrenObject = new Array(3);
             for (let i = 0; i < 3; i++) {
                 let blockObject = instantiate(Prefabs.instance.getPrefab(TypesObjects.BLOCK_OBJECT));
                 MapController.setParent(blockObject, index - arrayIndexs[i]);
-                // object.getComponent(ObjectParameters).childrenObject[i] = blockObject.getComponent(ObjectParameters);
-                blockObject.getComponent(ObjectParameters).type = type;
-                blockObject.getComponent(ObjectParameters).index = level;
-                blockObject.getComponent(ObjectParameters).index = index - arrayIndexs[i];
-                blockObject.getComponent(ObjectParameters).blockObject = true;
-                // blockObject.getComponent(ObjectParameters).parentObject = object.getComponent(ObjectParameters);
-                MapController.setObjectParameter(blockObject.getComponent(ObjectParameters), index - arrayIndexs[i]);
+                blockObject.getComponent(BlockObject).type = type;
+                blockObject.getComponent(BlockObject).index = level;
+                blockObject.getComponent(BlockObject).index = index - arrayIndexs[i];
+                MapController.setBlockObject(blockObject.getComponent(BlockObject), index - arrayIndexs[i]);
             }
         }
-        MapController.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
@@ -78,5 +71,17 @@ export class SpawnObjects extends Component {
 
     spawnObjectsMerge(type: string, level: number, index: number) {
         this.spawnObjectsPos(type, level + 1, index);
+    }
+
+    spawnBlockObjects(type: string, level: number, index: number) {
+        let arrayIndexs = [1, 5, 6];
+        for (let i = 0; i < 3; i++) {
+            let blockObject = instantiate(Prefabs.instance.getPrefab(TypesObjects.BLOCK_OBJECT));
+            MapController.setParent(blockObject, index - arrayIndexs[i]);
+            blockObject.getComponent(BlockObject).type = type;
+            blockObject.getComponent(BlockObject).index = level;
+            blockObject.getComponent(BlockObject).index = index - arrayIndexs[i];
+            MapController.setBlockObject(blockObject.getComponent(BlockObject), index - arrayIndexs[i]);
+        }
     }
 }
