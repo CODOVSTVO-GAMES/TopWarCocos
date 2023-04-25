@@ -8,6 +8,9 @@ export class Prefabs extends Component {
     public static instance: Prefabs;
 
     @property({ type: Prefab })
+    private blockObject: Prefab;
+
+    @property({ type: Prefab })
     private troop: Prefab;
 
     @property({ type: Prefab })
@@ -24,7 +27,8 @@ export class Prefabs extends Component {
     }
 
     getPrefab(type: string): Prefab {
-        if (type == TypesObjects.TROOP_AIR) return this.troop;
+        if (type == TypesObjects.BLOCK_OBJECT) return this.blockObject;
+        else if (type == TypesObjects.TROOP_AIR) return this.troop;
         else if (type == TypesObjects.TROOP_MARINE) return this.troop;
         else if (type == TypesObjects.TROOP_OVERLAND) return this.troop;
         else if (type == TypesObjects.BARRACKS_AIR) return this.barracks;

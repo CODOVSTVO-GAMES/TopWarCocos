@@ -20,6 +20,21 @@ export class SpawnObjects extends Component {
 
     spawnObjectsPos(type: string, level: number, index: number) {
         let object = instantiate(Prefabs.instance.getPrefab(type));
+        if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
+            let arrayIndexs = [1, 5, 6];
+            // object.getComponent(ObjectParameters).childrenObject = new Array(3);
+            for (let i = 0; i < 3; i++) {
+                let blockObject = instantiate(Prefabs.instance.getPrefab(TypesObjects.BLOCK_OBJECT));
+                MapController.setParent(blockObject, index - arrayIndexs[i]);
+                // object.getComponent(ObjectParameters).childrenObject[i] = blockObject.getComponent(ObjectParameters);
+                blockObject.getComponent(ObjectParameters).type = type;
+                blockObject.getComponent(ObjectParameters).index = level;
+                blockObject.getComponent(ObjectParameters).index = index - arrayIndexs[i];
+                blockObject.getComponent(ObjectParameters).blockObject = true;
+                // blockObject.getComponent(ObjectParameters).parentObject = object.getComponent(ObjectParameters);
+                MapController.setObjectParameter(blockObject.getComponent(ObjectParameters), index - arrayIndexs[i]);
+            }
+        }
         MapController.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;

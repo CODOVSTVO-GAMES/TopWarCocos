@@ -39,7 +39,7 @@ export class TouchObject extends Component {
         MapController.setObjectParameter(null, this.objectParameters.index);
         MapController.openCellFree();
         this.object.setParent(MapController.getParentObject(), true);
-        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 180);
+        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 180); 
         this.xPos = this.object.position.x;
         this.yPos = this.object.position.y;
         this.isMove = true;
@@ -80,7 +80,7 @@ export class TouchObject extends Component {
         let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
         this.object.position = pos;
         MapController.closeCellSelected();
-        MapController.openCellSelected(this.object.position);
+        MapController.openCellSelected(this.objectParameters.type, this.object.position);
     }
 
     processing() {

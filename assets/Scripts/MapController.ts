@@ -1,6 +1,8 @@
 import { _decorator, Node, Vec3, } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { ObjectParameters } from './ObjectParameters';
+import { Cell } from './Cell';
+import { TypesObjects } from './Static/TypesObjects';
 
 export class MapController {
 
@@ -40,7 +42,7 @@ export class MapController {
         }
     }
 
-    static openCellSelected(pos: Vec3) {
+    static openCellSelected(type: string, pos: Vec3) {
         let minDistance = 1000000;
         let indexObject = 0;
         for (let j = 0; j < MapController.getMapSize(); j++) {
@@ -52,7 +54,12 @@ export class MapController {
                 }
             }
         }
-        MapStorage.instance.cellSelected[indexObject].active = true;
+        if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
+            MapStorage.instance.cellSelected[indexObject].active = true;
+            MapStorage.instance.cellSelected[indexObject - 1].active = true;
+            MapStorage.instance.cellSelected[indexObject - 5].active = true;
+            MapStorage.instance.cellSelected[indexObject - 6].active = true;
+        }
     }
 
     static closeCellFree() {
@@ -65,6 +72,20 @@ export class MapController {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             MapStorage.instance.cellSelected[i].active = false;
         }
+    }
+
+    static initCellFree() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            MapStorage.instance.cellFree[i] = this.getCoord(i).getComponent(Cell).cellFree;
+        }
+        this.closeCellFree();
+    }
+
+    static initCellSelected() {
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            MapStorage.instance.cellSelected[i] = this.getCoord(i).getComponent(Cell).cellSelected;
+        }
+        this.closeCellSelected();
     }
 }
 
