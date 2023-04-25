@@ -1,4 +1,6 @@
 export class TypesObjects {
+    public static BLOCK_OBJECT: string = "blockObject";
+
     public static TROOP_AIR: string = "troopAir";
     public static TROOP_MARINE: string = "troopMarine";
     public static TROOP_OVERLAND: string = "troopOverland";

@@ -37,6 +37,7 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true;
         MapController.setObjectParameter(null, this.objectParameters.index);
+        MapController.alo(this.objectParameters.index);
         MapController.openCellFree();
         this.object.setParent(MapController.getParentObject(), true);
         this.objectParameters.spriteObject.color = new Color(255, 255, 255, 180);
@@ -80,7 +81,8 @@ export class TouchObject extends Component {
         let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
         this.object.position = pos;
         MapController.closeCellSelected();
-        MapController.openCellSelected(this.object.position);
+        MapController.initCellBlock();
+        MapController.openCellSelected(this.objectParameters.type, this.object.position);
     }
 
     processing() {
@@ -90,7 +92,7 @@ export class TouchObject extends Component {
         for (let i = 0; i < MapController.getMapSize(); i++) {
             let currentDistance = Vec3.distance(this.object.position, MapController.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                if (MapController.getObjectParameter(i) == null) {
+                if (MapController.getObjectParameter(i) == null && MapController.getBlockObject(i) == null) {
                     minDistance = currentDistance;
                     indexObject = i;
                     cellFound = true;
@@ -120,8 +122,10 @@ export class TouchObject extends Component {
             }
             MapController.setObjectParameter(null, this.objectParameters.index);
             this.objectParameters.index = indexObject;
+            // this.objectParameters.getObjectInterface().closeInterface();
             MapController.setObjectParameter(this.objectParameters, indexObject);
             this.object.setParent(MapController.getCoord(indexObject), true);
+            SpawnObjects.instance.spawnBlockObjects(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
             this.object.position = new Vec3(0, 0, 0);
         }
     }
