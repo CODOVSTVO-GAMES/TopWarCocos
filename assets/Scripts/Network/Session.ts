@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
 import { Sender } from './Sender';
 import { Storage } from '../Storage/Storage';
-import { MD5 } from 'crypto-es/lib/md5.js';
+import {md5} from './md5';
 
 
 const { ccclass, property } = _decorator;
@@ -46,7 +46,7 @@ export class Session extends Component {
     }
 
     hashGenerate(str: string) : string {
-        return MD5(str).toString();
+        return md5(str).toString();
     }
 
 }

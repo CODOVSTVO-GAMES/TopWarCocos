@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, CCString, Component } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Storage')
@@ -68,16 +68,16 @@ export class Storage extends Component {
 
     //technical variables
     
-    @property({ type: String })
+    @property({ type: CCString })
     private sessionHash: string = '';
 
-    @property({ type: String })
+    @property({ type: CCString })
     private sessionId: string = '0';
 
-    @property({ type: String })
+    @property({ type: CCString })
     private nodeId: string = '';
     
-    @property({ type: String })
+    @property({ type: CCString })
     private userId: string = 'cocos';
 
     setSessionHash(sessionHash: string){
@@ -111,7 +111,6 @@ export class Storage extends Component {
         return this.userId
     }
 
-    //technical variables
+    // //technical variables
 
 }
-

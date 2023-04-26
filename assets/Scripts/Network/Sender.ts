@@ -1,5 +1,5 @@
-import { _decorator, Component, js, Node } from 'cc';
-import { MD5 } from 'crypto-es/lib/md5.js';
+import { _decorator, Component } from 'cc';
+import {md5} from './md5';
 
 const { ccclass, property } = _decorator;
 
@@ -50,7 +50,7 @@ export class Sender extends Component {
     }
 
     hashGenerator(str: string) : string {
-        return MD5(str).toString();
+        return md5(str).toString();
     }  
 
 }
