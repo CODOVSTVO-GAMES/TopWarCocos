@@ -9,5 +9,8 @@ export class Cell extends Component {
 
     @property({ type: Node })
     public cellSelected: Node;
+
+    @property({ type: Node })
+    public cellBlock: Node;
 }
 

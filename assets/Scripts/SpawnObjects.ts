@@ -42,7 +42,7 @@ export class SpawnObjects extends Component {
             for (let j = 0; j < MapController.getMapSize(); j++) {
                 let currentDistance = Vec3.distance(MapController.getCoordPosition(index), MapController.getCoordPosition(j));
                 if (currentDistance < minDistance) {
-                    if (MapController.getObjectParameter(j) == null) {
+                    if (MapController.getObjectParameter(j) == null && MapController.getBlockObject(j) == null) {
                         minDistance = currentDistance;
                         indexObject = j;
                     }
@@ -58,7 +58,7 @@ export class SpawnObjects extends Component {
         while (true) {
             indexObject = Math.floor(Math.random() * MapController.getMapSize());
             iterationsCount += 1;
-            if (MapController.getObjectParameter(indexObject) == null) {
+            if (MapController.getObjectParameter(indexObject) == null && MapController.getBlockObject(indexObject) == null) {
                 this.spawnObjectsPos(type, level, indexObject);
                 break;
             }
