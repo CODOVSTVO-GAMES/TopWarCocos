@@ -8,7 +8,7 @@ export class Sender extends Component {
 
     public static instance: Sender
 
-    private url: string = "http://localhost:9601/";
+    private url: string = "http://codovstvo.ru:9651/";
 
     onLoad() {
         Sender.instance = this;

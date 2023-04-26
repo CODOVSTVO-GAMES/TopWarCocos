@@ -21,13 +21,13 @@
         "__id__": 12
       },
       {
-        "__id__": 420
+        "__id__": 422
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 425
+      "__id__": 427
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -58,7 +58,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 426
+      "__id__": 428
     },
     "_id": "f035c30d-2a71-4d1f-97c7-0929070edcda"
   },
@@ -80,22 +80,22 @@
         "__id__": 402
       },
       {
-        "__id__": 407
-      },
-      {
         "__id__": 409
       },
       {
         "__id__": 411
       },
       {
-        "__id__": 27
-      },
-      {
         "__id__": 413
       },
       {
-        "__id__": 418
+        "__id__": 27
+      },
+      {
+        "__id__": 415
+      },
+      {
+        "__id__": 420
       }
     ],
     "_active": true,
@@ -6453,6 +6453,9 @@
       },
       {
         "__id__": 405
+      },
+      {
+        "__id__": 407
       }
     ],
     "_active": true,
@@ -6685,10 +6688,10 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "SpawnObjects",
+    "_name": "ConfigStorage",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 2
+      "__id__": 402
     },
     "_children": [],
     "_active": true,
@@ -6725,10 +6728,10 @@
       "y": 0,
       "z": 0
     },
-    "_id": "64EvChX+BJ254edr1oT4SI"
+    "_id": "24pn2aDORD+5cUAJkrE7//"
   },
   {
-    "__type__": "543e2bco6NAR7EIg3rPAJCy",
+    "__type__": "14beduln51LH4N7I+xFn3LD",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -6736,11 +6739,11 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_id": "danoLaUdtK/4dONGCZVBfP"
+    "_id": "b94CJvogNNHKgRU1r6QUOg"
   },
   {
     "__type__": "cc.Node",
-    "_name": "Prefabs",
+    "_name": "SpawnObjects",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -6780,10 +6783,10 @@
       "y": 0,
       "z": 0
     },
-    "_id": "3063cyKV5Aaq9mcbdgvgFO"
+    "_id": "64EvChX+BJ254edr1oT4SI"
   },
   {
-    "__type__": "6755e+JOUhPm6cPltpqhS38",
+    "__type__": "543e2bco6NAR7EIg3rPAJCy",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -6791,31 +6794,11 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "blockObject": {
-      "__uuid__": "1ac71408-ff40-46ad-9cbe-e367bf98439d",
-      "__expectedType__": "cc.Prefab"
-    },
-    "troop": {
-      "__uuid__": "d4df606a-2f4d-4368-83b3-536ddef3afdd",
-      "__expectedType__": "cc.Prefab"
-    },
-    "barracks": {
-      "__uuid__": "368fd2f2-143e-4e24-95d9-bf22017e0c18",
-      "__expectedType__": "cc.Prefab"
-    },
-    "townHall": {
-      "__uuid__": "7ed3dce8-286c-41ff-a141-fb41af186017",
-      "__expectedType__": "cc.Prefab"
-    },
-    "goldMine": {
-      "__uuid__": "b88719b1-6cd5-4947-a9bd-57a37f516dd8",
-      "__expectedType__": "cc.Prefab"
-    },
-    "_id": "c8aqL/DcpNxoLha6ysoBYL"
+    "_id": "danoLaUdtK/4dONGCZVBfP"
   },
   {
     "__type__": "cc.Node",
-    "_name": "SpriteStorage",
+    "_name": "Prefabs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -6855,6 +6838,81 @@
       "y": 0,
       "z": 0
     },
+    "_id": "3063cyKV5Aaq9mcbdgvgFO"
+  },
+  {
+    "__type__": "6755e+JOUhPm6cPltpqhS38",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 411
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "blockObject": {
+      "__uuid__": "1ac71408-ff40-46ad-9cbe-e367bf98439d",
+      "__expectedType__": "cc.Prefab"
+    },
+    "troop": {
+      "__uuid__": "d4df606a-2f4d-4368-83b3-536ddef3afdd",
+      "__expectedType__": "cc.Prefab"
+    },
+    "barracks": {
+      "__uuid__": "368fd2f2-143e-4e24-95d9-bf22017e0c18",
+      "__expectedType__": "cc.Prefab"
+    },
+    "townHall": {
+      "__uuid__": "7ed3dce8-286c-41ff-a141-fb41af186017",
+      "__expectedType__": "cc.Prefab"
+    },
+    "goldMine": {
+      "__uuid__": "b88719b1-6cd5-4947-a9bd-57a37f516dd8",
+      "__expectedType__": "cc.Prefab"
+    },
+    "_id": "c8aqL/DcpNxoLha6ysoBYL"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "SpriteStorage",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 414
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
     "_id": "f7mu/xDP5FRZXVFJOKP8c8"
   },
   {
@@ -6862,7 +6920,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 411
+      "__id__": 413
     },
     "_enabled": true,
     "__prefab": null,
@@ -7013,10 +7071,10 @@
     },
     "_children": [
       {
-        "__id__": 414
+        "__id__": 416
       },
       {
-        "__id__": 416
+        "__id__": 418
       }
     ],
     "_active": true,
@@ -7056,13 +7114,13 @@
     "_name": "MovingCamera",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 413
+      "__id__": 415
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 415
+        "__id__": 417
       }
     ],
     "_prefab": null,
@@ -7100,7 +7158,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 414
+      "__id__": 416
     },
     "_enabled": true,
     "__prefab": null,
@@ -7117,13 +7175,13 @@
     "_name": "ZoomCamera",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 413
+      "__id__": 415
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 417
+        "__id__": 419
       }
     ],
     "_prefab": null,
@@ -7161,7 +7219,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 416
+      "__id__": 418
     },
     "_enabled": true,
     "__prefab": null,
@@ -7181,7 +7239,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 419
+        "__id__": 421
       }
     ],
     "_prefab": null,
@@ -7219,7 +7277,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 418
+      "__id__": 420
     },
     "_enabled": true,
     "__prefab": null,
@@ -7234,10 +7292,10 @@
     },
     "_children": [
       {
-        "__id__": 421
+        "__id__": 423
       },
       {
-        "__id__": 423
+        "__id__": 425
       }
     ],
     "_active": true,
@@ -7277,13 +7335,13 @@
     "_name": "Sender",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 420
+      "__id__": 422
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 422
+        "__id__": 424
       }
     ],
     "_prefab": null,
@@ -7321,7 +7379,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 421
+      "__id__": 423
     },
     "_enabled": true,
     "__prefab": null,
@@ -7332,13 +7390,13 @@
     "_name": "Session",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 420
+      "__id__": 422
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 424
+        "__id__": 426
       }
     ],
     "_prefab": null,
@@ -7376,7 +7434,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 423
+      "__id__": 425
     },
     "_enabled": true,
     "__prefab": null,
@@ -7470,22 +7528,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 427
-    },
-    "shadows": {
-      "__id__": 428
-    },
-    "_skybox": {
       "__id__": 429
     },
-    "fog": {
+    "shadows": {
       "__id__": 430
     },
-    "octree": {
+    "_skybox": {
       "__id__": 431
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 432
+    },
+    "octree": {
+      "__id__": 433
+    },
+    "lightProbeInfo": {
+      "__id__": 434
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
