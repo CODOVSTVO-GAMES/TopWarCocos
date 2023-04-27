@@ -2,15 +2,15 @@ import { _decorator, Component, Node } from 'cc';
 import { Item } from '../Structures/Item';
 const { ccclass, property } = _decorator;
 
-@ccclass('InventarStorage')
-export class InventarStorage extends Component {
+@ccclass('InventoryStorage')
+export class InventoryStorage extends Component {
 
-    public static instance: InventarStorage
+    public static instance: InventoryStorage
 
     private inventory: Array<Item> = []
 
     start() {
-        InventarStorage.instance = this
+        InventoryStorage.instance = this
     }
 
     addItem(type:string, quantity: number){
@@ -35,4 +35,5 @@ export class InventarStorage extends Component {
         }
         return 0
     }
+
 }
