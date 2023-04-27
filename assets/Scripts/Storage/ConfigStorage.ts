@@ -34,7 +34,7 @@ export class ConfigStorage extends Component {
 
     }
 
-    getTroopConfigByTypeAndLevel(type: string, level: number) {
+    getConfigByTypeAndLevel(type: string, level: number) {
         for(let x = 0; x < this.globalConfig.length; x++){
             if(this.globalConfig[x].type == type && this.globalConfig[x].level == level){
                 return this.globalConfig[x]

@@ -1,5 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { Item } from '../Structures/Item';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('InventoryStorage')
@@ -23,6 +24,7 @@ export class InventoryStorage extends Component {
         this.inventory.push(new Item(type, quantity))
     }
 
+    //сортировку потом
     getAllItem() : Array<Item> {
         return this.inventory
     }

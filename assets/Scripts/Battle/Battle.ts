@@ -157,6 +157,20 @@ export class Battle extends Component {
                 return;
             }
         }
+        
+        this.sortedArrayCards()
+    }
+
+    sortedArrayCards(){
+        this.arrayCards.sort((a,b) => {
+            if (a.level < b.level){
+                return -1
+            }
+            if (b.level > a.level){
+                return 1
+            }
+            return
+        })//может сортировать в другую сторону
     }
 
     inBattle() {
