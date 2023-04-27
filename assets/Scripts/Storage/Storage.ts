@@ -111,6 +111,9 @@ export class Storage extends Component {
         return this.userId
     }
 
-    // //technical variables
+    //technical variables
+
+
+    //
 
 }
