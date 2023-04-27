@@ -5,4 +5,9 @@ export class TypesAttack {
 
     public static HORIZON: string = "hor";
     public static VERTICAL: string = "ver";
+
+
+
+
+    public static NONE: string = "none";
 }

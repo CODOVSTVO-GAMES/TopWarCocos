@@ -34,7 +34,7 @@ export class TouchObject extends Component {
 
     touchStart() {
         if (TouchStatus.instance.activeTouch == true && this.isMove) return;
-
+        
         TouchStatus.instance.activeTouch = true;
         MapController.setObjectParameter(null, this.objectParameters.index);
         MapController.alo(this.objectParameters.index);
