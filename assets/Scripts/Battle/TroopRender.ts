@@ -1,7 +1,7 @@
 import { _decorator, Component, Node, Sprite } from 'cc';
 import { SpriteStorage } from '../SpriteStorage';
 import { TypesObjects } from '../Static/TypesObjects';
-import { Battle, Unit } from './Battle';
+import { Battle } from './Battle';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopRender')
@@ -36,7 +36,7 @@ export class TroopRender extends Component {
     }
 
     log() {
-        if (this.team == TypesObjects.TEAM_OWN) {
+        if (this.team == TypesObjects.TEAM_OWN && Battle.instance.isBattle == false) {
             Battle.instance.clickTroop(this.index);
             this.nodeObject.destroy();
         }
