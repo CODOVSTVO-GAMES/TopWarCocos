@@ -1,7 +1,7 @@
-import { _decorator, Component, Node, Sprite } from 'cc';
+import { _decorator, Component, Label, Node, Sprite, Vec3 } from 'cc';
 import { SpriteStorage } from '../SpriteStorage';
 import { TypesObjects } from '../Static/TypesObjects';
-import { Battle } from './Battle';
+import { Battle, Unit } from './Battle';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopRender')
@@ -17,22 +17,33 @@ export class TroopRender extends Component {
     @property({ type: Sprite })
     public spriteObject: Sprite;
 
+    @property({ type: Label })
+    public hpText: Label;
+
+    public unitInfo: Unit;
+
     start() {
         let type;
         let level;
         if (this.team == TypesObjects.TEAM_OWN) {
-            let unit = Battle.instance.arrayOwn[this.index];
-            type = unit.type;
-            level = unit.level;
+            this.unitInfo = Battle.instance.arrayOwn[this.index];
+            type = this.unitInfo.type;
+            level = this.unitInfo.level;
+            this.hpText.string = this.unitInfo.hp.toString();
         }
         else if (this.team == TypesObjects.TEAM_ENEMY) {
-            let unit = Battle.instance.arrayEnemy[this.index];
-            type = unit.type;
-            level = unit.level;
+            this.unitInfo = Battle.instance.arrayEnemy[this.index];
+            type = this.unitInfo.type;
+            level = this.unitInfo.level;
+            this.hpText.string = this.unitInfo.hp.toString();
         }
         if (type != null && level != null) {
             this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(type, level);
         }
+    }
+
+    renderInfo() {
+        this.hpText.string = this.unitInfo.hp.toString();
     }
 
     log() {
