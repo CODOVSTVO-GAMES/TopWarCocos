@@ -24,7 +24,7 @@ export class SpawnObjects extends Component {
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
-        MapController.setObjectParameter(object.getComponent(ObjectParameters), index);
+        MapController.setObjectParameter(object.getComponent(ObjectParameters), type, index);
     }
 
     spawnObjectsNearby(type: string, level: number, index: number, count: number) {

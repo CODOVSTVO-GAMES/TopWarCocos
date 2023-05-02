@@ -12,9 +12,9 @@ export class MovingCamera extends Component {
     @property({ type: Camera })
     public camera: Camera;
 
-    public xPos: number = 0;
-    public yPos: number = 0;
-    public isMove: boolean = false;
+    public xPos: number;
+    public yPos: number;
+    public isMove: boolean;
 
     // onEnable() {
     //     Canvas.instance.canvas.on(Input.EventType.TOUCH_START, this.touchStart, this);

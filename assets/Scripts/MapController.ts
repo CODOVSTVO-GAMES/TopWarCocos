@@ -1,8 +1,8 @@
 import { _decorator, Node, Vec3, Color } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { ObjectParameters } from './ObjectParameters';
-import { Cell } from './Cell';
 import { TypesObjects } from './Static/TypesObjects';
+import { Cell } from './Cell';
 
 export class MapController {
 
@@ -10,8 +10,28 @@ export class MapController {
         object.parent = MapStorage.instance.coords[index];
     }
 
-    static setObjectParameter(objectParameters: ObjectParameters, index: number) {
-        MapStorage.instance.arrayObjectParameters[index] = objectParameters;
+    static setObjectParameter(objectParameters: ObjectParameters, type: string, index: number) {
+
+        if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
+            MapStorage.instance.arrayObjectParameters[index] = objectParameters;
+        }
+        else if (type == TypesObjects.BARRACKS_AIR || type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
+            MapStorage.instance.arrayObjectParameters[index] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 1] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 6] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 7] = objectParameters;
+        }
+        else if (type == TypesObjects.TOWN_HALL) {
+            MapStorage.instance.arrayObjectParameters[index] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 1] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 2] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 6] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 7] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 8] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 12] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 13] = objectParameters;
+            MapStorage.instance.arrayObjectParameters[index - 14] = objectParameters;
+        }
     }
 
     static upgradeLevel(index: number) {
@@ -19,7 +39,7 @@ export class MapController {
         MapStorage.instance.arrayObjectParameters[index].updateSprite();
     }
 
-    static TEST() {
+    static onTransparencyObjects() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             if (MapStorage.instance.arrayObjectParameters[i] != null) {
                 MapStorage.instance.arrayObjectParameters[i].spriteObject.color = new Color(255, 255, 255, 140);
@@ -28,7 +48,7 @@ export class MapController {
         }
     }
 
-    static ALO() {
+    static offTransparencyObjects() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             if (MapStorage.instance.arrayObjectParameters[i] != null) {
                 MapStorage.instance.arrayObjectParameters[i].spriteObject.color = new Color(255, 255, 255, 255);
@@ -57,6 +77,16 @@ export class MapController {
         return MapStorage.instance.arrayObjectParameters[index];
     }
 
+    static getFreeCell(): number {
+        let count: number;
+        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+            if (MapStorage.instance.arrayObjectParameters[i] != null) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
     static openCellFree() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             if (this.getObjectParameter(i) == null) {
@@ -67,31 +97,41 @@ export class MapController {
 
     static openCellSelected(type: string, pos: Vec3) {
         let minDistance = 1000000;
-        let indexObject = 0;
+        let indexObject: number;
         for (let j = 0; j < MapController.getMapSize(); j++) {
-            let currentDistance = Vec3.distance(pos, MapController.getCoordPosition(j));
+            let currentDistance = Vec3.distance(pos, this.getCoordPosition(j));
             if (currentDistance < minDistance) {
-                // if (MapController.getObjectParameter(j) == null) {
-                    minDistance = currentDistance;
-                    indexObject = j;
-                // }
+                minDistance = currentDistance;
+                indexObject = j;
             }
         }
-        MapStorage.instance.cellSelected[indexObject].active = true;
-        if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
-            MapStorage.instance.cellSelected[indexObject - 1].active = true;
-            MapStorage.instance.cellSelected[indexObject - 6].active = true;
-            MapStorage.instance.cellSelected[indexObject - 7].active = true;
+        let numberIterations: number;
+        let indexArray: number;
+        if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
+            numberIterations = 1;
+            indexArray = 0;
+        }
+        else if (type == TypesObjects.BARRACKS_AIR || type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
+            numberIterations = 4;
+            indexArray = 1;
         }
         else if (type == TypesObjects.TOWN_HALL) {
-            MapStorage.instance.cellSelected[indexObject - 1].active = true;
-            MapStorage.instance.cellSelected[indexObject - 2].active = true;
-            MapStorage.instance.cellSelected[indexObject - 6].active = true;
-            MapStorage.instance.cellSelected[indexObject - 7].active = true;
-            MapStorage.instance.cellSelected[indexObject - 8].active = true;
-            MapStorage.instance.cellSelected[indexObject - 12].active = true;
-            MapStorage.instance.cellSelected[indexObject - 13].active = true;
-            MapStorage.instance.cellSelected[indexObject - 14].active = true;
+            numberIterations = 9;
+            indexArray = 2;
+        }
+        let arrayIndexShift = [[0], [0, 1, 6, 7], [0, 1, 2, 6, 7, 8, 12, 13, 14]];
+        for (let i = 0; i < numberIterations; i++) {
+            if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexShift[indexArray][i]] == null) {
+                MapStorage.instance.cellSelected[indexObject - arrayIndexShift[indexArray][i]].active = true;
+            }
+            else {
+                if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexShift[indexArray][i]].type == type) {
+                    MapStorage.instance.cellSelected[indexObject - arrayIndexShift[indexArray][i]].active = true;
+                }
+                else {
+                    MapStorage.instance.cellBlock[indexObject - arrayIndexShift[indexArray][i]].active = true;
+                }
+            }
         }
     }
 
@@ -134,4 +174,3 @@ export class MapController {
         this.closeCellBlock();
     }
 }
-

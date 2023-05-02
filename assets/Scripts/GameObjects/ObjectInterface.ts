@@ -5,9 +5,6 @@ const { ccclass, property } = _decorator;
 @ccclass('ObjectInterface')
 export class ObjectInterface extends Component {
 
-    @property({ type: ObjectParameters })
-    public objectParameters: ObjectParameters;
-
     @property({ type: Node })
     public messageObject: Node;
 
@@ -23,10 +20,13 @@ export class ObjectInterface extends Component {
     @property({ type: Label })
     public levelText: Label;
 
-    public openInterface(type: string) {
+    private objectParameters: ObjectParameters;
+
+    public openInterface(objectParameters: ObjectParameters) {
         this.messageObject.active = true;
         this.titleObject.active = true;
         this.levelObject.active = true;
+        this.objectParameters = objectParameters;
         this.updateText();
     }
 

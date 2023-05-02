@@ -9,16 +9,16 @@ const { ccclass, property } = _decorator;
 export class ObjectParameters extends Component {
 
     @property({ type: CCString })
-    public type: string = "";
+    public type: string;
 
     @property({ type: CCFloat })
-    public level: number = 0;
+    public level: number;
 
     @property({ type: CCFloat })
-    public index: number = 0;
+    public index: number;
 
     @property({ type: CCBoolean })
-    public inBattle: boolean = false;
+    public inBattle: boolean;
 
     @property({ type: Node })
     public nodeObject: Node;

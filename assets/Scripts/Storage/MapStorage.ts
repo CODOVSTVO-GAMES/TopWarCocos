@@ -16,6 +16,9 @@ export class MapStorage extends Component {
     public coords: Node[] = [];
 
     @property({ type: ObjectParameters })
+    public selectedObject: ObjectParameters;
+
+    @property({ type: ObjectParameters })
     public arrayObjectParameters: ObjectParameters[] = [];
 
     public cellFree: Node[] = [];
