@@ -2,7 +2,6 @@ import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
 import { MapController } from './MapController';
-import { TypesObjects } from './Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')

@@ -1,6 +1,3 @@
-import { TypesItems } from "../Static/TypesItems"
-import { TypesObjects } from "../Static/TypesObjects"
-
 export class GlobalConfigurationUnits {
     type: string
     level: number
@@ -29,7 +26,8 @@ export class GlobalConfigurationUnits {
     productionInTime: number // производство в минуту(рудники)
 
 
-    constructor(type: string, level: number,
+    constructor(
+        type: string, level: number,
 
         experience: number, power: number,
 
@@ -62,6 +60,5 @@ export class GlobalConfigurationUnits {
         this.expPerSpawn = expPerSpawn
         this.productionInTime = productionInTime
     }
-
 }
 

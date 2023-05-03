@@ -20,9 +20,6 @@ export class TypesObjects {
     public static WALL: string = "wall";
     public static BATTLE: string = "battle";
 
-
-
-
     //--------------------------------------------------------
     public static TEAM_ENEMY: string = "teamEnemy";
     public static TEAM_OWN: string = "teamOwn";

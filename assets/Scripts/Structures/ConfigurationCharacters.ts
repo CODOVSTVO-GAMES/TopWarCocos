@@ -1,4 +1,3 @@
-
 export class ConfigurationCharacters {
     public level: number;
     public attack: number;

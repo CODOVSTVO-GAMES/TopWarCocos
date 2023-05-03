@@ -1,119 +1,124 @@
-import { _decorator, Component } from 'cc';
+import { _decorator, CCString, Component } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Storage')
 export class Storage extends Component {
-    //Отдает и изменяет данные
+
     public static instance: Storage;
 
-    start() {
+    @property({ type: CCString })
+    private sessionHash: string;
+
+    @property({ type: CCString })
+    private sessionId: string;
+
+    @property({ type: CCString })
+    private nodeId: string;
+
+    @property({ type: CCString })
+    private userId: string = "cocos";
+
+    private coins: number = 0;
+    private gems: number = 0;
+    private energy: number = 0;
+    private power: number = 0;
+    private level: number = 0;
+    private experience: number = 0;
+
+    onLoad() {
         Storage.instance = this;
     }
 
-    //game variables
-
-    private coins: number = 0;
-
-    private gems: number = 0;
-
-    private energy: number = 0;
-
-    private power: number = 0;
-
-    private level: number = 0;
-
-    private experience: number = 0;
-
-    addCoins(number: number){
-        this.coins += number;
+    addCoins(value: number) {
+        this.coins += value;
     }
-    getCoins(){
+
+    reduceCoins(value: number) {
+        this.coins -= value;
+    }
+
+    getCoins(): number {
         return this.coins
     }
 
-    addGems(number: number){
-        this.gems += number;
+    addGems(value: number) {
+        this.gems += value;
     }
-    getGems(){
+
+    reduceGems(value: number) {
+        this.gems -= value;
+    }
+
+    getGems(): number {
         return this.gems
     }
 
-    addEnergy(number: number){
-        this.energy += number;
+    addEnergy(value: number) {
+        this.energy += value;
     }
-    getEnergy(){
+
+    reduceEnergy(value: number) {
+        this.energy -= value;
+    }
+
+    getEnergy(): number {
         return this.energy
     }
 
-    addPower(number: number){
-        this.power += number;
+    addPower(value: number) {
+        this.power += value;
     }
-    getPower(){
+
+    reducePower(value: number) {
+        this.power += value;
+    }
+
+    getPower(): number {
         return this.power
     }
 
-    addExpirience(number: number){
-        //Добавляем опыт, проверяем уровень
+    addExpirience(value: number) {
+        this.experience += value;
     }
-    getExpirience(){
+
+    getExpirience(): number {
         return this.experience
     }
 
-    getLevel(){
+    getLevel(): number {
         return this.level
     }
-    
-    //game variables
-
 
     //technical variables
-    
-    @property({ type: String })
-    private sessionHash: string = '';
 
-    @property({ type: String })
-    private sessionId: string = '0';
-
-    @property({ type: String })
-    private nodeId: string = '';
-    
-    @property({ type: String })
-    private userId: string = 'cocos';
-
-    setSessionHash(sessionHash: string){
-        // console.log("Hash instaled")
+    setSessionHash(sessionHash: string) {
         this.sessionHash = sessionHash;
     }
-    getSessionHash() : string{
+    getSessionHash(): string {
         return this.sessionHash
     }
 
-    setSessionId(sessionId: string){
+    setSessionId(sessionId: string) {
         this.sessionId = sessionId
     }
-    getSessionId(){
-        // console.log("request sessionid")
+
+    getSessionId(): string {
         return this.sessionId
     }
-    
-    setNodeId(nodeId: string){
+
+    setNodeId(nodeId: string) {
         this.nodeId = nodeId
     }
-    getNodeId(){
+
+    getNodeId(): string {
         return this.nodeId
     }
 
-    setuserId(userId: string){
+    setUserId(userId: string) {
         this.userId = userId
     }
-    getuserId(){
-        // console.log("request userid")
+
+    getUserId(): string {
         return this.userId
     }
-
-    //technical variables
-
-
-    //
-
 }

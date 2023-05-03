@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesAttack } from '../Static/TypesAttack';
 import { GlobalConfigurationUnits } from '../Structures/GlobalConfigurationUnits';
@@ -40,5 +40,4 @@ export class ConfigStorage extends Component {
         }
         throw "Не существует такого войска"
     }
-
 }
