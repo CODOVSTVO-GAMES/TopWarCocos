@@ -31,6 +31,9 @@ export class SpriteStorage extends Component {
     @property({ type: SpriteFrame })
     public goldMine: SpriteFrame[] = [];
 
+    @property({ type: SpriteFrame })
+    public characters: SpriteFrame[] = [];
+
     onLoad() {
         SpriteStorage.instance = this;
     }

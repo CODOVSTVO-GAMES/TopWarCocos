@@ -17,6 +17,9 @@ export class TroopRender extends Component {
     @property({ type: Sprite })
     public spriteObject: Sprite;
 
+    @property({ type: Sprite })
+    public sliderObject: Sprite;
+
     @property({ type: Label })
     public hpText: Label;
 
@@ -29,21 +32,25 @@ export class TroopRender extends Component {
             this.unitInfo = Battle.instance.arrayOwn[this.index];
             type = this.unitInfo.type;
             level = this.unitInfo.level;
-            this.hpText.string = this.unitInfo.hp.toString();
         }
         else if (this.team == TypesObjects.TEAM_ENEMY) {
             this.unitInfo = Battle.instance.arrayEnemy[this.index];
             type = this.unitInfo.type;
             level = this.unitInfo.level;
-            this.hpText.string = this.unitInfo.hp.toString();
         }
+        this.hpText.string = this.unitInfo.hp.toString();
+        this.sliderObject.fillRange = this.unitInfo.hp / this.unitInfo.availableHp;
         if (type != null && level != null) {
             this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(type, level);
         }
     }
 
     renderInfo() {
+        if (this.unitInfo.hp < 0) {
+            this.unitInfo.hp = 0;
+        }
         this.hpText.string = this.unitInfo.hp.toString();
+        this.sliderObject.fillRange = this.unitInfo.hp / this.unitInfo.availableHp;
     }
 
     log() {

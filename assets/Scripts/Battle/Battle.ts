@@ -67,7 +67,7 @@ export class Battle extends Component {
 
     getFreeUnits(): FreeUnit[] {
         let array = new Array(13);
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 5; i++) {
             array[i] = new FreeUnit(TypesObjects.TROOP_OVERLAND, i + 1, i + 1, 10);
         }
         return array;
@@ -75,9 +75,9 @@ export class Battle extends Component {
 
     genEnemyUnits(): Unit[] {
         let array = new Array(6);
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 5; i++) {
             let config = ConfigStorage.instance.getConfigByTypeAndLevel(TypesObjects.TROOP_OVERLAND, i + 1);
-            array[i] = new Unit(config.hp, config.damage, i, config.level, 1, TypesAttack.HORIZON, config.attackType, config.type);
+            array[i] = new Unit(config.hp, config.hp, config.damage, i, config.level, 1, TypesAttack.HORIZON, config.attackType, config.type);
         }
         return array;
     }
@@ -89,8 +89,7 @@ export class Battle extends Component {
                     this.spawnTroop(i, TypesObjects.TEAM_OWN);
                 }
                 else {
-                    this.arrayOwn[i].link.nodeObject.destroy();
-                    this.spawnTroop(i, TypesObjects.TEAM_OWN);
+                    this.arrayOwn[i].link.renderInfo();
                 }
                 if (this.arrayOwn[i].hp <= 0) {
                     if (this.arrayOwn[i].quantity > 1) {
@@ -114,8 +113,7 @@ export class Battle extends Component {
                     this.spawnTroop(i, TypesObjects.TEAM_ENEMY);
                 }
                 else {
-                    this.arrayEnemy[i].link.nodeObject.destroy();
-                    this.spawnTroop(i, TypesObjects.TEAM_ENEMY);
+                    this.arrayEnemy[i].link.renderInfo();
                 }
                 if (this.arrayEnemy[i].hp <= 0) {
                     if (this.arrayEnemy[i].quantity > 1) {
@@ -147,8 +145,7 @@ export class Battle extends Component {
     }
 
     quantityRender() {
-        for (let i = 0; i < this.quantityPlaces.length; i++)
-        {
+        for (let i = 0; i < this.quantityPlaces.length; i++) {
             let available = 0; // доступно
             let result: string;
             if (this.arrayOwn[i] != null) {
@@ -165,7 +162,7 @@ export class Battle extends Component {
     }
 
     characterSelection() {
-        this.configCharacter = CharacterBuffs.instance.getConfigByType("blackVdova");
+        this.configCharacter = CharacterBuffs.instance.getConfigByType("character_0");
         let count: number = this.configCharacter.leadership / 100;
         for (let i = 0; i < count; i++) {
             this.quantityPlaces[i]++;
@@ -174,7 +171,7 @@ export class Battle extends Component {
 
     clickCard(event, customEventData) {
         for (let i = 0; i < this.arrayOwn.length; i++) {
-            if (this.arrayOwn[i] == null) {
+            if (this.arrayOwn[i] == null && this.quantityPlaces[i] > 0) {
                 let quantity = 0;
                 let unit = this.arrayCards[customEventData];
                 let config = ConfigStorage.instance.getConfigByTypeAndLevel(unit.type, unit.level);
@@ -184,7 +181,7 @@ export class Battle extends Component {
                 else {
                     quantity = this.quantityPlaces[i];
                 }
-                this.arrayOwn[i] = new Unit(config.hp + this.configCharacter.protection, config.damage + this.configCharacter.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                this.arrayOwn[i] = new Unit(config.hp + this.configCharacter.protection, config.hp + this.configCharacter.protection, config.damage + this.configCharacter.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
@@ -228,10 +225,12 @@ export class Battle extends Component {
 
     returnUnitInFreeArray(unit: Unit) {
         for (let x = 0; x < this.arrayCards.length; x++) {
-            if (this.arrayCards[x] != undefined && this.arrayCards[x].type == unit.type && this.arrayCards[x].level == unit.level) {
-                this.arrayCards[x].quantity += unit.quantity;
-                this.sortedArrayCards();
-                return;
+            if (this.arrayCards[x] != null) {
+                if (this.arrayCards[x].type == unit.type && this.arrayCards[x].level == unit.level) {
+                    this.arrayCards[x].quantity += unit.quantity;
+                    this.sortedArrayCards();
+                    return;
+                }
             }
         }
         for (let x = 0; x < this.arrayCards.length; x++) {
@@ -299,7 +298,9 @@ export class Battle extends Component {
                             console.log(units_1[i].level + "|" + units_1[i].hp + "|" + units_1[i].damage + " > " + units_2[units[j]].level + "|" + units_2[units[j]].hp + "|" + units_2[units[j]].damage);
                         }
                     }
+                    this.enemyRender();
                     this.ownRender();
+                    this.quantityRender();
                     units_1[i].attackNumber = this.attackNumber;
                 }
             }
@@ -398,10 +399,48 @@ export class Battle extends Component {
         }
         return conclusion;
     }
+
+    quickPlacement() {
+        for (let i = 0; i < this.arrayOwn.length; i++) {
+            let unit = this.arrayOwn[i];
+            if (unit != null) {
+                this.returnUnitInFreeArray(unit);
+                this.arrayOwn[i].link.nodeObject.destroy();
+                this.arrayOwn[i] = null;
+                this.ownRender();
+                this.quantityRender();
+            }
+        }
+        for (let i = 0; i < this.arrayOwn.length; i++) {
+            let unit = this.arrayCards[0];
+            if (unit != null && this.quantityPlaces[i] > 0) {
+                let quantity = 0;
+                let config = ConfigStorage.instance.getConfigByTypeAndLevel(unit.type, unit.level);
+                if (this.quantityPlaces[i] > unit.quantity) {
+                    quantity = unit.quantity;
+                }
+                else {
+                    quantity = this.quantityPlaces[i];
+                }
+                this.arrayOwn[i] = new Unit(config.hp + this.configCharacter.protection, config.hp + this.configCharacter.protection, config.damage + this.configCharacter.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                if (unit.quantity > quantity) {
+                    unit.quantity -= quantity;
+                }
+                else {
+                    this.arrayCards.splice(0, 1);
+                    this.arrayCards.push(null);
+                }
+            }
+        }
+        this.ownRender();
+        this.cardsRender();
+        this.quantityRender();
+    }
 }
 
 export class Unit {
     hp: number;
+    availableHp: number;
     damage: number;
     index: number;
     level: number;
@@ -412,8 +451,9 @@ export class Unit {
     type: string;
     link: TroopRender;
 
-    constructor(hp: number, damage: number, index: number, level: number, quantity: number, typeAttack: string, typeShot: string, type: string) {
+    constructor(hp: number, availableHp: number, damage: number, index: number, level: number, quantity: number, typeAttack: string, typeShot: string, type: string) {
         this.hp = hp
+        this.availableHp = availableHp;
         this.damage = damage;
         this.index = index;
         this.level = level;
@@ -437,8 +477,8 @@ class FreeUnit {
         this.hp = hp;
     }
 }
-// бафы персонажей 
+// бафы персонажей +
 // количество воинов на ячейке +
 // выстрелы
-// быстрая расстановка
-// hp
+// быстрая расстановка +
+// hp +

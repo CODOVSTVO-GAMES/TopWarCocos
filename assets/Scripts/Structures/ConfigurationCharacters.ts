@@ -1,14 +1,16 @@
 
 export class ConfigurationCharacters {
-    public type: string;
+    public level: number;
     public attack: number;
     public protection: number;
     public leadership: number;
+    public type: string;
 
-    constructor(type: string, attack: number, protection: number, leadership: number) {
-        this.type = type;
+    constructor(level: number, attack: number, protection: number, leadership: number, type: string) {
+        this.level = level;
         this.attack = attack;
         this.protection = protection;
         this.leadership = leadership;
+        this.type = type;
     }
 }
