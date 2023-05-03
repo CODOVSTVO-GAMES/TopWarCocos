@@ -127,19 +127,19 @@ export class TouchObject extends Component {
             if (this.objectParameters.index == indexObject) {
                 this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
             }
+            else {
 
-            if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND || this.objectParameters.type == TypesObjects.GOLD_MINE) {
+            }
 
-                let arrayIndexs = [1, 6, 7];
-                for (let i = 0; i < 3; i++) {
-                    if (MapController.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
-                        if (this.objectParameters.type == MapController.getObjectParameter(indexObject - arrayIndexs[i]).type) {
-                            if (this.objectParameters.level == MapController.getObjectParameter(indexObject - arrayIndexs[i]).level) {
-                                MapController.upgradeLevel(indexObject - arrayIndexs[i]);
-                                this.mainObject.destroy();
-                                block = true;
-                                return;
-                            }
+            let arrayIndexs = MapController.getArrayIndexs(this.objectParameters.type);
+            for (let i = 0; i < 3; i++) {
+                if (MapController.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
+                    if (this.objectParameters.type == MapController.getObjectParameter(indexObject - arrayIndexs[i]).type) {
+                        if (this.objectParameters.level == MapController.getObjectParameter(indexObject - arrayIndexs[i]).level) {
+                            MapController.upgradeLevel(indexObject - arrayIndexs[i]);
+                            this.mainObject.destroy();
+                            block = true;
+                            return;
                         }
                     }
                 }

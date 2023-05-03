@@ -32,6 +32,13 @@ export class SpriteStorage extends Component {
     public goldMine: SpriteFrame[] = [];
 
     @property({ type: SpriteFrame })
+    public wall: SpriteFrame[] = [];
+
+    @property({ type: SpriteFrame })
+    public battle: SpriteFrame[] = [];
+
+
+    @property({ type: SpriteFrame })
     public characters: SpriteFrame[] = [];
 
     onLoad() {
@@ -47,6 +54,8 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracksOverland[level - 1];
         else if (type == TypesObjects.TOWN_HALL) return this.townHall[level - 1];
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine[level - 1];
+        else if (type == TypesObjects.WALL) return this.wall[level - 1];
+        else if (type == TypesObjects.BATTLE) return this.battle[level - 1];
         else return null;
     }
 }

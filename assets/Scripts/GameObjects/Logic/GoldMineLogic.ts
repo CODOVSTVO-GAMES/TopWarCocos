@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { ObjectParameters } from '../ObjectParameters';
+import { ObjectParameters } from '../../ObjectParameters';
 const { ccclass, property } = _decorator;
 
 @ccclass('GoldMineLogic')

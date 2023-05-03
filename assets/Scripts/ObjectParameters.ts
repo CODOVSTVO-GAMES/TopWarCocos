@@ -1,8 +1,8 @@
 import { _decorator, Component, Node, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
 import { SpriteStorage } from './SpriteStorage';
-import { ObjectInterface } from './GameObjects/ObjectInterface';
-import { BarracksLogic } from './GameObjects/BarracksLogic';
-import { GoldMineLogic } from './GameObjects/GoldMineLogic';
+import { ObjectInterface } from './GameObjects/Interface/ObjectInterface';
+import { BarracksLogic } from './GameObjects/Logic/BarracksLogic';
+import { GoldMineLogic } from './GameObjects/Logic/GoldMineLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
