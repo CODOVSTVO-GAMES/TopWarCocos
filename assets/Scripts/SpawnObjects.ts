@@ -15,7 +15,9 @@ export class SpawnObjects extends Component {
     }
 
     start() {
-        this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 35);
+        this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
+        this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
+        this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
     }
 
     spawnObjectsPos(type: string, level: number, index: number) {
@@ -27,20 +29,33 @@ export class SpawnObjects extends Component {
         MapController.setObjectParameter(object.getComponent(ObjectParameters), type, index);
     }
 
-    spawnObjectsNearby(type: string, level: number, index: number, count: number) {
-        for (let i = 0; i < count; i++) {
-            let minDistance = 100000;
-            let indexObject = 0;
-            for (let j = 0; j < MapController.getMapSize(); j++) {
-                let currentDistance = Vec3.distance(MapController.getCoordPosition(index), MapController.getCoordPosition(j));
-                if (currentDistance < minDistance) {
-                    if (MapController.getObjectParameter(j) == null) {
-                        minDistance = currentDistance;
-                        indexObject = j;
+    spawnObjectsNearby(type: string, level: number, index: number) {
+        let minDistance: number = 100000;
+        let indexSpawnObject: number = 0;
+        let isSpawnObject: boolean = false;
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            let currentDistance: number = Vec3.distance(MapController.getCoordPosition(index), MapController.getCoordPosition(i));
+            if (currentDistance < minDistance) {
+                let arrayIndexs: number[] = MapController.getArrayIndexs(type);
+                let check: boolean = false;
+                for (let j = 0; j < arrayIndexs.length; j++) {
+                    if (MapController.getObjectParameter(i - arrayIndexs[j]) != null) {
+                        check = true;
+                        break;
                     }
                 }
+                if (check == false) {
+                    minDistance = currentDistance;
+                    indexSpawnObject = i;
+                    isSpawnObject = true;
+                }
             }
-            SpawnObjects.instance.spawnObjectsPos(type, level, indexObject);
+        }
+        if (isSpawnObject) {
+            SpawnObjects.instance.spawnObjectsPos(type, level, indexSpawnObject);
+        }
+        else {
+            console.log("error: there is no free space.");
         }
     }
 

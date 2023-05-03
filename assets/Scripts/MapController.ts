@@ -2,6 +2,7 @@ import { _decorator, Node, Vec3, Color } from 'cc';
 import { MapStorage } from './Storage/MapStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { TypesObjects } from './Static/TypesObjects';
+import { IndexsObject } from './Static/IndexsObject';
 import { Cell } from './Cell';
 
 export class MapController {
@@ -11,26 +12,9 @@ export class MapController {
     }
 
     static setObjectParameter(objectParameters: ObjectParameters, type: string, index: number) {
-
-        if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
-            MapStorage.instance.arrayObjectParameters[index] = objectParameters;
-        }
-        else if (type == TypesObjects.BARRACKS_AIR || type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
-            MapStorage.instance.arrayObjectParameters[index] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 1] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 6] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 7] = objectParameters;
-        }
-        else if (type == TypesObjects.TOWN_HALL) {
-            MapStorage.instance.arrayObjectParameters[index] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 1] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 2] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 6] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 7] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 8] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 12] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 13] = objectParameters;
-            MapStorage.instance.arrayObjectParameters[index - 14] = objectParameters;
+        let arrayIndexs: number[] = this.getArrayIndexs(type);
+        for (let i = 0; i < arrayIndexs.length; i++) {
+            MapStorage.instance.arrayObjectParameters[index - arrayIndexs[i]] = objectParameters;
         }
     }
 
@@ -87,6 +71,36 @@ export class MapController {
         return count;
     }
 
+    static getArrayIndexs(type: string): number[] {
+        if (type == TypesObjects.TROOP_OVERLAND) {
+            return IndexsObject.object1x1;
+        }
+        else if (
+            type == TypesObjects.TROOP_AIR ||
+            type == TypesObjects.BARRACKS_AIR ||
+            type == TypesObjects.BARRACKS_MARINE ||
+            type == TypesObjects.BARRACKS_OVERLAND ||
+            type == TypesObjects.GOLD_MINE ||
+            type == TypesObjects.BANK ||
+            type == TypesObjects.AUTOCOMBINE ||
+            type == TypesObjects.RADAR ||
+            type == TypesObjects.TREASURES ||
+            type == TypesObjects.MANIPULATOR ||
+            type == TypesObjects.REPAIR_SHOP ||
+            type == TypesObjects.LOBBY_WARS ||
+            type == TypesObjects.WALL ||
+            type == TypesObjects.BATTLE
+        ) {
+            return IndexsObject.object2x2;
+        }
+        else if (type == TypesObjects.TROOP_MARINE) {
+            return IndexsObject.object3x2;
+        }
+        else if (type == TypesObjects.TOWN_HALL) {
+            return IndexsObject.object3x3;
+        }
+    }
+
     static openCellFree() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             if (this.getObjectParameter(i) == null) {
@@ -96,8 +110,9 @@ export class MapController {
     }
 
     static openCellSelected(type: string, pos: Vec3) {
-        let minDistance = 1000000;
+        let minDistance: number = 1000000;
         let indexObject: number;
+        let arrayIndexs: number[] = this.getArrayIndexs(type);
         for (let j = 0; j < MapController.getMapSize(); j++) {
             let currentDistance = Vec3.distance(pos, this.getCoordPosition(j));
             if (currentDistance < minDistance) {
@@ -105,31 +120,16 @@ export class MapController {
                 indexObject = j;
             }
         }
-        let numberIterations: number;
-        let indexArray: number;
-        if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
-            numberIterations = 1;
-            indexArray = 0;
-        }
-        else if (type == TypesObjects.BARRACKS_AIR || type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
-            numberIterations = 4;
-            indexArray = 1;
-        }
-        else if (type == TypesObjects.TOWN_HALL) {
-            numberIterations = 9;
-            indexArray = 2;
-        }
-        let arrayIndexShift = [[0], [0, 1, 6, 7], [0, 1, 2, 6, 7, 8, 12, 13, 14]];
-        for (let i = 0; i < numberIterations; i++) {
-            if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexShift[indexArray][i]] == null) {
-                MapStorage.instance.cellSelected[indexObject - arrayIndexShift[indexArray][i]].active = true;
+        for (let i = 0; i < arrayIndexs.length; i++) {
+            if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexs[i]] == null) {
+                MapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
             }
             else {
-                if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexShift[indexArray][i]].type == type) {
-                    MapStorage.instance.cellSelected[indexObject - arrayIndexShift[indexArray][i]].active = true;
+                if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexs[i]].type == type) {
+                    MapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
                 }
                 else {
-                    MapStorage.instance.cellBlock[indexObject - arrayIndexShift[indexArray][i]].active = true;
+                    MapStorage.instance.cellBlock[indexObject - arrayIndexs[i]].active = true;
                 }
             }
         }
