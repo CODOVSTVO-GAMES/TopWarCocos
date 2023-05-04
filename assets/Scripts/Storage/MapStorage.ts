@@ -1,6 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { ObjectParameters } from '../ObjectParameters';
-import { MapController } from '../MapController';
+import { HighlightBaseMap } from '../BaseMap/HighlightBaseMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('MapStorage')
@@ -34,8 +34,8 @@ export class MapStorage extends Component {
         this.cellSelected = new Array(this.mapSize);
         this.cellBlock = new Array(this.mapSize);
         this.arrayObjectParameters = new Array(this.mapSize);
-        MapController.initCellFree();
-        MapController.initCellSelected();
-        MapController.initCellBlock();
+        HighlightBaseMap.initCellFree();
+        HighlightBaseMap.initCellSelected();
+        HighlightBaseMap.initCellBlock();
     }
 }

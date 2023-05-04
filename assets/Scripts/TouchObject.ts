@@ -1,7 +1,9 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
-import { MapController } from './MapController';
+import { MapController } from './BaseMap/MapController';
+import { MapStorage } from './Storage/MapStorage';
+import { HighlightBaseMap } from './BaseMap/HighlightBaseMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -43,6 +45,13 @@ export class TouchObject extends Component {
         MapController.onTransparencyObjects();
         MapController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         MapController.openCellFree();
+
+        if (MapStorage.instance.selectedObject) {
+            MapStorage.instance.selectedObject.getObjectInterface().closeInterface();
+        }
+
+        MapStorage.instance.selectedObject = this.objectParameters;
+
         this.mainObject.setParent(MapController.getParentObject(), true);
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
@@ -63,9 +72,9 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        MapController.closeCellFree();
-        MapController.closeCellSelected();
-        MapController.closeCellBlock();
+        HighlightBaseMap.closeCellFree();
+        HighlightBaseMap.closeCellSelected();
+        HighlightBaseMap.closeCellBlock();
         MapController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
@@ -75,9 +84,9 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        MapController.closeCellFree();
-        MapController.closeCellSelected();
-        MapController.closeCellBlock();
+        HighlightBaseMap.closeCellFree();
+        HighlightBaseMap.closeCellSelected();
+        HighlightBaseMap.closeCellBlock();
         MapController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
@@ -86,8 +95,8 @@ export class TouchObject extends Component {
         if (TouchStatus.instance.activeTouch == false || this.isMove == false) return;
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
-        MapController.closeCellSelected();
-        MapController.initCellBlock();
+        HighlightBaseMap.closeCellSelected();
+        HighlightBaseMap.initCellBlock();
         MapController.openCellSelected(this.objectParameters.type, this.mainObject.position);
     }
 

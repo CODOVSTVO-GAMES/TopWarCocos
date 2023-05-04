@@ -1,9 +1,8 @@
 import { _decorator, Node, Vec3, Color } from 'cc';
-import { MapStorage } from './Storage/MapStorage';
-import { ObjectParameters } from './ObjectParameters';
-import { TypesObjects } from './Static/TypesObjects';
-import { IndexsObject } from './Static/IndexsObject';
-import { Cell } from './Cell';
+import { MapStorage } from '../Storage/MapStorage';
+import { ObjectParameters } from '../ObjectParameters';
+import { TypesObjects } from '../Static/TypesObjects';
+import { IndexsObject } from '../Static/IndexsObject';
 
 export class MapController {
 
@@ -133,44 +132,5 @@ export class MapController {
                 }
             }
         }
-    }
-
-    static closeCellFree() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellFree[i].active = false;
-        }
-    }
-
-    static closeCellSelected() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellSelected[i].active = false;
-        }
-    }
-
-    static closeCellBlock() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellBlock[i].active = false;
-        }
-    }
-
-    static initCellFree() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellFree[i] = this.getCoord(i).getComponent(Cell).cellFree;
-        }
-        this.closeCellFree();
-    }
-
-    static initCellSelected() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellSelected[i] = this.getCoord(i).getComponent(Cell).cellSelected;
-        }
-        this.closeCellSelected();
-    }
-
-    static initCellBlock() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellBlock[i] = this.getCoord(i).getComponent(Cell).cellBlock;
-        }
-        this.closeCellBlock();
     }
 }
