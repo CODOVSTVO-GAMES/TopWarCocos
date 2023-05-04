@@ -333,7 +333,7 @@ export class Battle extends Component {
                         this.attack();
                     }
                     else {
-                        RedirectionToScene.redirect(SceneNames.BASE_MAP);
+                        RedirectionToScene.redirect(SceneNames.HOME_MAP);
                     }
                 }, 1000);
             }

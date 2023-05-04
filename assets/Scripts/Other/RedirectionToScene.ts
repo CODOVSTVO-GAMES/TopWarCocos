@@ -5,8 +5,8 @@ export class RedirectionToScene {
 
     static redirect(name: string) {
         switch (name) {
-            case SceneNames.BASE_MAP:
-                director.loadScene("Home");
+            case SceneNames.HOME_MAP:
+                director.loadScene("HomeMap");
                 break;
             case SceneNames.GLOBAL_MAP:
                 director.loadScene("GlobalMap");
