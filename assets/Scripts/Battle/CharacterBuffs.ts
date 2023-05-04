@@ -14,13 +14,13 @@ export class CharacterBuffs extends Component {
     }
 
     initOwerland() {
-        this.configCharacter.push(new ConfigurationCharacters(0, 0, 0, 300, "character_0"));
-        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 300, "character_1"));
-        this.configCharacter.push(new ConfigurationCharacters(2, 1, 1, 300, "character_2"));
-        this.configCharacter.push(new ConfigurationCharacters(3, 1, 1, 300, "character_3"));
-        this.configCharacter.push(new ConfigurationCharacters(4, 1, 1, 300, "character_4"));
-        this.configCharacter.push(new ConfigurationCharacters(5, 1, 1, 300, "character_5"));
-        this.configCharacter.push(new ConfigurationCharacters(6, 1, 1, 300, "character_6"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 0, 0, 100, "character_0"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 100, "character_1"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 200, "character_2"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 200, "character_3"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 300, "character_4"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 300, "character_5"));
+        this.configCharacter.push(new ConfigurationCharacters(1, 1, 1, 400, "character_6"));
     }
 
     getConfigByType(type: string) {

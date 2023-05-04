@@ -801,6 +801,9 @@
     "nodeObject": {
       "__id__": 1
     },
+    "bullet": {
+      "__id__": 20
+    },
     "spriteObject": {
       "__id__": 30
     },

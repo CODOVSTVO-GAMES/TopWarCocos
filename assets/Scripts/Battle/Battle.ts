@@ -8,6 +8,7 @@ import { ConfigStorage } from '../Storage/ConfigStorage';
 import { ConfigurationCharacters } from '../Structures/ConfigurationCharacters';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
+import { TypesTeam } from '../Static/TypesTeam';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -86,7 +87,7 @@ export class Battle extends Component {
         for (let i = 0; i < this.arrayOwn.length; i++) {
             if (this.arrayOwn[i] != null) {
                 if (this.arrayOwn[i].link == null) {
-                    this.spawnTroop(i, TypesObjects.TEAM_OWN);
+                    this.spawnTroop(i, TypesTeam.TEAM_OWN);
                 }
                 else {
                     this.arrayOwn[i].link.renderInfo();
@@ -110,7 +111,7 @@ export class Battle extends Component {
         for (let i = 0; i < this.arrayEnemy.length; i++) {
             if (this.arrayEnemy[i] != null) {
                 if (this.arrayEnemy[i].link == null) {
-                    this.spawnTroop(i, TypesObjects.TEAM_ENEMY);
+                    this.spawnTroop(i, TypesTeam.TEAM_ENEMY);
                 }
                 else {
                     this.arrayEnemy[i].link.renderInfo();
@@ -209,12 +210,12 @@ export class Battle extends Component {
         let coords;
         let units;
         let troop;
-        if (team == TypesObjects.TEAM_OWN) {
+        if (team == TypesTeam.TEAM_OWN) {
             coords = BattleMap.instance.coordsOwn;
             units = this.arrayOwn;
             troop = this.troopOwn;
         }
-        else if (team == TypesObjects.TEAM_ENEMY) {
+        else if (team == TypesTeam.TEAM_ENEMY) {
             coords = BattleMap.instance.coordsEnemy;
             units = this.arrayEnemy;
             troop = this.troopEnemy;
@@ -287,6 +288,7 @@ export class Battle extends Component {
     attack() {
         let units_1;
         let units_2;
+        let delay;
         if (this.attackingTeam == 0) {
             units_1 = this.arrayEnemy.slice(0);
             units_2 = this.arrayOwn.slice(0);
@@ -305,17 +307,16 @@ export class Battle extends Component {
                     let units = this.goalSelection(units_1[i].link.team, units_1[i].type, TypesAttack.HORIZON, config.attackType);
                     if (units.length > 0) {
                         for (let j = 0; j < units.length; j++) {
+                            // yield return new WaitForSeconds(1f);
                             units_2[units[j]].hp -= units_1[i].damage;
                             console.log(units_1[i].level + "|" + units_1[i].hp + "|" + units_1[i].damage + " > " + units_2[units[j]].level + "|" + units_2[units[j]].hp + "|" + units_2[units[j]].damage);
                         }
                     }
-                    // this.enemyRender();
-                    // this.ownRender();
-                    // this.quantityRender();
                     units_1[i].attackNumber = this.attackNumber;
                     units_1[i].link.shotRender();
                 }
             }
+            delay++;
             if (i == units_1.length - 1) {
                 if (this.attackingTeam == 0) {
                     this.attackingTeam = 1;
@@ -336,11 +337,12 @@ export class Battle extends Component {
                         RedirectionToScene.redirect(SceneNames.HOME_MAP);
                     }
                 }, 1000);
+                console.log("проверим")
             }
         }
     }
 
-    renderShot() {
+    troopAttack(i: number, units_1: Unit[], units_2: Unit[]) {
 
     }
 
@@ -376,10 +378,10 @@ export class Battle extends Component {
         let units;
         let quantity;
         let arrayUnits = [];
-        if (team == TypesObjects.TEAM_ENEMY) {
+        if (team == TypesTeam.TEAM_ENEMY) {
             units = this.arrayOwn.slice(0);
         }
-        else if (team == TypesObjects.TEAM_OWN) {
+        else if (team == TypesTeam.TEAM_OWN) {
             units = this.arrayEnemy.slice(0);
         }
         switch (typeShot) {
@@ -510,6 +512,7 @@ class FreeUnit {
 }
 // бафы персонажей +
 // количество воинов на ячейке +
-// выстрелы
+// выстрелы +
 // быстрая расстановка +
 // hp +
+// задержки между выстрелами
