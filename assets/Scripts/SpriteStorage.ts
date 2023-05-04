@@ -37,7 +37,6 @@ export class SpriteStorage extends Component {
     @property({ type: SpriteFrame })
     public battle: SpriteFrame[] = [];
 
-
     @property({ type: SpriteFrame })
     public characters: SpriteFrame[] = [];
 
@@ -56,6 +55,14 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine[level - 1];
         else if (type == TypesObjects.WALL) return this.wall[level - 1];
         else if (type == TypesObjects.BATTLE) return this.battle[level - 1];
+        else if (type == TypesObjects.CHARACTER_0) return this.characters[0];
+        else if (type == TypesObjects.CHARACTER_1) return this.characters[1];
+        else if (type == TypesObjects.CHARACTER_2) return this.characters[2];
+        else if (type == TypesObjects.CHARACTER_3) return this.characters[3];
+        else if (type == TypesObjects.CHARACTER_4) return this.characters[4];
+        else if (type == TypesObjects.CHARACTER_5) return this.characters[5];
+        else if (type == TypesObjects.CHARACTER_6) return this.characters[6];
+        else if (type == TypesObjects.CHARACTER_7) return this.characters[7];
         else return null;
     }
 }

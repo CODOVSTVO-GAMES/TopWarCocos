@@ -6,7 +6,8 @@ import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
 import { ConfigStorage } from '../Storage/ConfigStorage';
 import { ConfigurationCharacters } from '../Structures/ConfigurationCharacters';
-import { CharacterBuffs } from './CharacterBuffs';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { SceneNames } from '../Static/SceneNames';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -15,13 +16,13 @@ export class Battle extends Component {
     public static instance: Battle;
 
     @property({ type: Prefab })
-    public troop: Prefab;
+    public troopOwn: Prefab;
+
+    @property({ type: Prefab })
+    public troopEnemy: Prefab;
 
     @property({ type: Node })
     public inBattleBtn: Node;
-
-    @property({ type: Node })
-    public endScreen: Node;
 
     @property({ type: Node })
     public cards: Node[] = [];
@@ -41,7 +42,7 @@ export class Battle extends Component {
     public arrayOwn: Unit[] = [];
     public arrayEnemy: Unit[] = [];
     public arrayCards: FreeUnit[] = [];
-    public configCharacter: ConfigurationCharacters;
+    public characters: ConfigurationCharacters[] = [];
     public quantityPlaces: number[] = [];
     public isBattle: boolean = false;
     public level: number = 2;
@@ -62,7 +63,6 @@ export class Battle extends Component {
         this.enemyRender();
         this.cardsRender();
         this.sortedArrayCards();
-        this.quantityRender();
     }
 
     getFreeUnits(): FreeUnit[] {
@@ -162,11 +162,18 @@ export class Battle extends Component {
     }
 
     characterSelection() {
-        this.configCharacter = CharacterBuffs.instance.getConfigByType("character_0");
-        let count: number = this.configCharacter.leadership / 100;
-        for (let i = 0; i < count; i++) {
-            this.quantityPlaces[i]++;
+        let count: number = this.characterSum().leadership / 100;
+        this.quantityPlaces = new Array(6).fill(1);
+        this.quantityPlaces[5] = 0;
+        while (count > 0) {
+            for (let i = 0; i < this.quantityPlaces.length; i++) {
+                if (this.quantityPlaces[i] > 0 && count > 0) {
+                    this.quantityPlaces[i]++;
+                    count--;
+                }
+            }
         }
+        this.quantityRender();
     }
 
     clickCard(event, customEventData) {
@@ -181,7 +188,8 @@ export class Battle extends Component {
                 else {
                     quantity = this.quantityPlaces[i];
                 }
-                this.arrayOwn[i] = new Unit(config.hp + this.configCharacter.protection, config.hp + this.configCharacter.protection, config.damage + this.configCharacter.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                let sum = this.characterSum();
+                this.arrayOwn[i] = new Unit(config.hp + sum.protection, config.hp + sum.protection, config.damage + sum.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
@@ -200,15 +208,18 @@ export class Battle extends Component {
     spawnTroop(i: number, team: string) {
         let coords;
         let units;
+        let troop;
         if (team == TypesObjects.TEAM_OWN) {
             coords = BattleMap.instance.coordsOwn;
             units = this.arrayOwn;
+            troop = this.troopOwn;
         }
         else if (team == TypesObjects.TEAM_ENEMY) {
             coords = BattleMap.instance.coordsEnemy;
             units = this.arrayEnemy;
+            troop = this.troopEnemy;
         }
-        let gameObject = instantiate(this.troop);
+        let gameObject = instantiate(troop);
         gameObject.setParent(coords[i]);
         units[i].link = gameObject.getComponent(TroopRender);
         units[i].link.index = units[i].index;
@@ -298,10 +309,11 @@ export class Battle extends Component {
                             console.log(units_1[i].level + "|" + units_1[i].hp + "|" + units_1[i].damage + " > " + units_2[units[j]].level + "|" + units_2[units[j]].hp + "|" + units_2[units[j]].damage);
                         }
                     }
-                    this.enemyRender();
-                    this.ownRender();
-                    this.quantityRender();
+                    // this.enemyRender();
+                    // this.ownRender();
+                    // this.quantityRender();
                     units_1[i].attackNumber = this.attackNumber;
+                    units_1[i].link.shotRender();
                 }
             }
             if (i == units_1.length - 1) {
@@ -321,11 +333,15 @@ export class Battle extends Component {
                         this.attack();
                     }
                     else {
-                        this.endScreen.active = true;
+                        RedirectionToScene.redirect(SceneNames.BASE_MAP);
                     }
                 }, 1000);
             }
         }
+    }
+
+    renderShot() {
+
     }
 
     troopAlive(): boolean {
@@ -422,7 +438,8 @@ export class Battle extends Component {
                 else {
                     quantity = this.quantityPlaces[i];
                 }
-                this.arrayOwn[i] = new Unit(config.hp + this.configCharacter.protection, config.hp + this.configCharacter.protection, config.damage + this.configCharacter.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                let sum = this.characterSum();
+                this.arrayOwn[i] = new Unit(config.hp + sum.protection, config.hp + sum.protection, config.damage + sum.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
@@ -435,6 +452,20 @@ export class Battle extends Component {
         this.ownRender();
         this.cardsRender();
         this.quantityRender();
+    }
+
+    characterSum(): ConfigurationCharacters {
+        let attack = 0;
+        let protection = 0;
+        let leadership = 0;
+        for (let i = 0; i < this.characters.length; i++) {
+            if (this.characters[i] != null) {
+                attack += this.characters[i].attack;
+                protection += this.characters[i].protection;
+                leadership += this.characters[i].leadership;
+            }
+        }
+        return new ConfigurationCharacters(0, attack, protection, leadership, "sum");
     }
 }
 
