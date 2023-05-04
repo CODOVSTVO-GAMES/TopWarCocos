@@ -8,7 +8,7 @@ export class Sender extends Component {
 
     public static instance: Sender
 
-    private url: string = "http://codovstvo.ru:9651/";
+    private url: string = "http://codovstvo.ru:9650/";
 
     onLoad() {
         Sender.instance = this;
@@ -21,7 +21,7 @@ export class Sender extends Component {
         // console.log(body)
 
         let x = '{"data":'+ body + ',"hash": "' + this.getHashJsonObject(JSON.parse(body)) + '"}'
-
+        console.log(x)
         xhr.send(x);
         
         xhr.onload = function () {
