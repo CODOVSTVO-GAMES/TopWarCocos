@@ -13,9 +13,8 @@ export class TypesItems {
     public static PLAN_CREATE_AIRPORT: string = "pca";
     public static PLAN_CREATE_MINE: string = "pcm";
 
-    public static PLAN_MAIN_BUILDING: string = "pmb";
+    public static PLAN_TOWN_HALL: string = "pmb";
 
-    
     public static BOOK_EXP_GREEN: string = "beg";
     public static BOOK_EXP_WHITE: string = "bew";
     public static BOOK_EXP_BLUE: string = "beb";
