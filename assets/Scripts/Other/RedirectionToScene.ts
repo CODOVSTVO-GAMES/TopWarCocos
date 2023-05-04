@@ -5,6 +5,9 @@ export class RedirectionToScene {
 
     static redirect(name: string) {
         switch (name) {
+            case SceneNames.LOADING_GAME:
+                director.loadScene("LoadingGame");
+                break;
             case SceneNames.HOME_MAP:
                 director.loadScene("HomeMap");
                 break;

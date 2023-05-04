@@ -44,11 +44,9 @@ export class TouchObject extends Component {
         TouchStatus.instance.activeTouch = true;
         MapController.onTransparencyObjects();
         MapController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
-        MapController.openCellFree();
+        HighlightHomeMap.openCellFree();
 
-        if (MapStorage.instance.selectedObject) {
-            MapStorage.instance.selectedObject.getObjectInterface().closeInterface();
-        }
+        MapController.closeInterface();
 
         MapStorage.instance.selectedObject = this.objectParameters;
 
@@ -97,7 +95,7 @@ export class TouchObject extends Component {
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.initCellBlock();
-        MapController.openCellSelected(this.objectParameters.type, this.mainObject.position);
+        HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.position);
     }
 
     processing() {
@@ -118,6 +116,7 @@ export class TouchObject extends Component {
                 }
                 else {
                     if (currentDistance < 60) {
+                        console.log("ALO 111111111111");
                         if (this.objectParameters.type == MapController.getObjectParameter(i).type) {
                             if (this.objectParameters.level == MapController.getObjectParameter(i).level) {
                                 MapController.upgradeLevel(i);
@@ -134,9 +133,6 @@ export class TouchObject extends Component {
 
             if (this.objectParameters.index == indexObject) {
                 this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
-            }
-            else {
-
             }
 
             let arrayIndexs = MapController.getArrayIndexs(this.objectParameters.type);

@@ -20,13 +20,17 @@ export class SpawnObjects extends Component {
         this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
     }
 
-    spawnObjectsPos(type: string, level: number, index: number) {
+    spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
         let object = instantiate(Prefabs.instance.getPrefab(type));
         MapController.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
+        if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
+            object.getComponent(ObjectParameters).onTransparencyObject();
+        }
         MapController.setObjectParameter(object.getComponent(ObjectParameters), type, index);
+        return object.getComponent(ObjectParameters);
     }
 
     spawnObjectsNearby(type: string, level: number, index: number) {
@@ -52,7 +56,7 @@ export class SpawnObjects extends Component {
             }
         }
         if (isSpawnObject) {
-            SpawnObjects.instance.spawnObjectsPos(type, level, indexSpawnObject);
+            return SpawnObjects.instance.spawnObjectsPos(type, level, indexSpawnObject);
         }
         else {
             console.log("error: there is no free space.");

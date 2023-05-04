@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
+import { _decorator, Component, Node, Color, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
 import { SpriteStorage } from './SpriteStorage';
 import { ObjectInterface } from './GameObjects/Interface/ObjectInterface';
 import { BarracksLogic } from './GameObjects/Logic/BarracksLogic';
@@ -43,6 +43,16 @@ export class ObjectParameters extends Component {
 
     updateSprite() {
         this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
+    }
+
+    onTransparencyObject() {
+        this.spriteObject.color = new Color(255, 255, 255, 140);
+        this.backgraundObject.color = new Color(255, 255, 255, 140);
+    }
+
+    offTransparencyObject() {
+        this.spriteObject.color = new Color(255, 255, 255, 255);
+        this.backgraundObject.color = new Color(255, 255, 255, 255);
     }
 
     getObjectInterface(): ObjectInterface {

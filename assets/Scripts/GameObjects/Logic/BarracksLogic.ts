@@ -10,15 +10,25 @@ export class BarracksLogic extends Component {
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
+    @property({ type: ObjectParameters })
+    public arrrrrrrrrr: ObjectParameters[] = [];
+
     public createTroop() {
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_AIR, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            this.arrrrrrrrrr.push(SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_AIR, this.objectParameters.level, this.getComponent(ObjectParameters).index));
         }
         else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_MARINE, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            this.arrrrrrrrrr.push(SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_MARINE, this.objectParameters.level, this.getComponent(ObjectParameters).index));
         }
         else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            this.arrrrrrrrrr.push(SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, this.objectParameters.level, this.getComponent(ObjectParameters).index));
         }
+        this.delay();
+    }
+
+    delay() {
+        setTimeout(() => {
+            this.arrrrrrrrrr[0].offTransparencyObject();
+        }, 1000);
     }
 }

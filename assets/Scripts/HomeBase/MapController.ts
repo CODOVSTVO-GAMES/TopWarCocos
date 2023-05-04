@@ -25,8 +25,7 @@ export class MapController {
     static onTransparencyObjects() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             if (MapStorage.instance.arrayObjectParameters[i] != null) {
-                MapStorage.instance.arrayObjectParameters[i].spriteObject.color = new Color(255, 255, 255, 140);
-                MapStorage.instance.arrayObjectParameters[i].backgraundObject.color = new Color(255, 255, 255, 140);
+                MapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
             }
         }
     }
@@ -34,8 +33,7 @@ export class MapController {
     static offTransparencyObjects() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {
             if (MapStorage.instance.arrayObjectParameters[i] != null) {
-                MapStorage.instance.arrayObjectParameters[i].spriteObject.color = new Color(255, 255, 255, 255);
-                MapStorage.instance.arrayObjectParameters[i].backgraundObject.color = new Color(255, 255, 255, 255);
+                MapStorage.instance.arrayObjectParameters[i].offTransparencyObject();
             }
         }
     }
@@ -100,36 +98,10 @@ export class MapController {
         }
     }
 
-    static openCellFree() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            if (this.getObjectParameter(i) == null) {
-                MapStorage.instance.cellFree[i].active = true;
-            }
-        }
-    }
-
-    static openCellSelected(type: string, pos: Vec3) {
-        let minDistance: number = 1000000;
-        let indexObject: number;
-        let arrayIndexs: number[] = this.getArrayIndexs(type);
-        for (let j = 0; j < MapController.getMapSize(); j++) {
-            let currentDistance = Vec3.distance(pos, this.getCoordPosition(j));
-            if (currentDistance < minDistance) {
-                minDistance = currentDistance;
-                indexObject = j;
-            }
-        }
-        for (let i = 0; i < arrayIndexs.length; i++) {
-            if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexs[i]] == null) {
-                MapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
-            }
-            else {
-                if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexs[i]].type == type) {
-                    MapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
-                }
-                else {
-                    MapStorage.instance.cellBlock[indexObject - arrayIndexs[i]].active = true;
-                }
+    static closeInterface() {
+        if (MapStorage.instance.selectedObject) {
+            if (MapStorage.instance.selectedObject.getObjectInterface()) {
+                MapStorage.instance.selectedObject.getObjectInterface().closeInterface();
             }
         }
     }

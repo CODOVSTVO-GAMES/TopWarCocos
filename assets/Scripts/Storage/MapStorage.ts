@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, director } from 'cc';
 import { ObjectParameters } from '../ObjectParameters';
 import { HighlightHomeMap } from '../HomeBase/HighlightHomeMap';
 const { ccclass, property } = _decorator;
@@ -34,8 +34,8 @@ export class MapStorage extends Component {
         this.cellSelected = new Array(this.mapSize);
         this.cellBlock = new Array(this.mapSize);
         this.arrayObjectParameters = new Array(this.mapSize);
-        HighlightHomeMap.initCellFree();
-        HighlightHomeMap.initCellSelected();
-        HighlightHomeMap.initCellBlock();
+        // HighlightHomeMap.initCellFree();
+        // HighlightHomeMap.initCellSelected();
+        // HighlightHomeMap.initCellBlock();
     }
 }
