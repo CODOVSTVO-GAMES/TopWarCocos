@@ -8,7 +8,7 @@ export class Sender extends Component {
 
     public static instance: Sender
 
-    private url: string = "http://codovstvo.ru:9650/";
+    private url: string = "http://codovstvo.ru:9600/";
 
     onLoad() {
         Sender.instance = this;
@@ -18,10 +18,8 @@ export class Sender extends Component {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", this.url + endpoint, true);
         xhr.setRequestHeader("Content-Type", "application/json");
-        // console.log(body)
 
-        let x = '{"data":'+ body + ',"hash": "' + this.getHashJsonObject(JSON.parse(body)) + '"}'
-        console.log(x)
+        let x = '{"data":'+ body + ',"hash":"' + this.getHash(body) + '"}'
         xhr.send(x);
         
         xhr.onload = function () {
@@ -33,20 +31,8 @@ export class Sender extends Component {
         }
     }  
 
-    getRandomHash() : string{
-        return this.hashGenerator((Math.random() * 1000).toString())
-    }
-
-    getHashJsonObject(json: JSON) : string{
-        return this.hashGenerator(this.cookJsonToContertHash(json))
-    }
-
-    cookJsonToContertHash(json: JSON) : string {
-        let str = ''
-        for(var key in json){
-            str += key + '_' + json[key] + ','
-        }
-        return str
+    getHash(str: string) : string{
+        return this.hashGenerator("data_"+ str)
     }
 
     hashGenerator(str: string) : string {

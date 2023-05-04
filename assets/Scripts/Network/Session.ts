@@ -21,20 +21,20 @@ export class Session extends Component {
 
     getStartSessionData(userId: string, sessionId: string) {
         let hash = this.hashGenerate(sessionId + '_' + userId)
-        Sender.instance.sendPostRequest('session', '{"userId":"' + userId + '","sessionHash":"' + hash + '", "sessionId":"' + sessionId + '"}', this.parseResponce);
+        Sender.instance.sendPostRequest('session', '{"userId":"' + userId + '","sessionHash":"' + hash + '","sessionId":"' + sessionId + '"}', this.parseResponce);
     }
 
     updateSessionData() {
-        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + Storage.instance.getSessionHash() + '", "sessionId":"' + Storage.instance.getSessionId() + '"}', this.parseResponce);
+        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + Storage.instance.getSessionHash() + '","sessionId":"' + Storage.instance.getSessionId() + '"}', this.parseResponce);
     }
 
     parseResponce(status: number, body: string) {
         if (status == 200) {
             let json = JSON.parse(body)
+            // console.log(json)
 
             Storage.instance.setSessionHash(json.hash)
-            Storage.instance.setSessionId(json.sessionid)
-            Storage.instance.setNodeId(json.nodeid.toString())
+            Storage.instance.setSessionId(json.sessionId)
         }
         else if (status == 403) {
             console.log("Отказано " + body)
