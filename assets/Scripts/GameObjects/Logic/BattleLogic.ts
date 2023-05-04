@@ -1,5 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
-import { MapController } from '../../BaseMap/MapController';
+import { MapController } from '../../HomeBase/MapController';
 import { ObjectParameters } from '../../ObjectParameters';
 import { RedirectionToScene } from '../../Other/RedirectionToScene';
 import { SceneNames } from '../../Static/SceneNames';

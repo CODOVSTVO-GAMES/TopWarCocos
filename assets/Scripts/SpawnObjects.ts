@@ -1,7 +1,7 @@
 import { _decorator, Component, instantiate, Vec3 } from 'cc';
 import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
-import { MapController } from './BaseMap/MapController';
+import { MapController } from './HomeBase/MapController';
 import { TypesObjects } from './Static/TypesObjects';
 const { ccclass, property } = _decorator;
 

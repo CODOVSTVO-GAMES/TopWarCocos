@@ -2,7 +2,7 @@ import { _decorator } from 'cc';
 import { MapStorage } from '../Storage/MapStorage';
 import { Cell } from './Cell';
 
-export class HighlightBaseMap {
+export class HighlightHomeMap {
 
     static initCellFree() {
         for (let i = 0; i < MapStorage.instance.mapSize; i++) {

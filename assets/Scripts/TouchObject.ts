@@ -1,9 +1,9 @@
 import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
-import { MapController } from './BaseMap/MapController';
+import { MapController } from './HomeBase/MapController';
 import { MapStorage } from './Storage/MapStorage';
-import { HighlightBaseMap } from './BaseMap/HighlightBaseMap';
+import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -72,9 +72,9 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        HighlightBaseMap.closeCellFree();
-        HighlightBaseMap.closeCellSelected();
-        HighlightBaseMap.closeCellBlock();
+        HighlightHomeMap.closeCellFree();
+        HighlightHomeMap.closeCellSelected();
+        HighlightHomeMap.closeCellBlock();
         MapController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
@@ -84,9 +84,9 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        HighlightBaseMap.closeCellFree();
-        HighlightBaseMap.closeCellSelected();
-        HighlightBaseMap.closeCellBlock();
+        HighlightHomeMap.closeCellFree();
+        HighlightHomeMap.closeCellSelected();
+        HighlightHomeMap.closeCellBlock();
         MapController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
@@ -95,8 +95,8 @@ export class TouchObject extends Component {
         if (TouchStatus.instance.activeTouch == false || this.isMove == false) return;
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
-        HighlightBaseMap.closeCellSelected();
-        HighlightBaseMap.initCellBlock();
+        HighlightHomeMap.closeCellSelected();
+        HighlightHomeMap.initCellBlock();
         MapController.openCellSelected(this.objectParameters.type, this.mainObject.position);
     }
 
