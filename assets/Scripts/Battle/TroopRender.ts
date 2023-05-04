@@ -1,4 +1,4 @@
-import { _decorator, Component, Label, Node, Sprite, Vec3 } from 'cc';
+import { _decorator, Animation, Component, Label, Node, Sprite } from 'cc';
 import { SpriteStorage } from '../SpriteStorage';
 import { TypesObjects } from '../Static/TypesObjects';
 import { Battle, Unit } from './Battle';
@@ -22,6 +22,9 @@ export class TroopRender extends Component {
 
     @property({ type: Label })
     public hpText: Label;
+
+    @property({ type: Animation })
+    public anim: Animation;
 
     public unitInfo: Unit;
 
@@ -51,6 +54,10 @@ export class TroopRender extends Component {
         }
         this.hpText.string = this.unitInfo.hp.toString();
         this.sliderObject.fillRange = this.unitInfo.hp / this.unitInfo.availableHp;
+    }
+
+    shotRender() {
+        this.anim.play();
     }
 
     log() {

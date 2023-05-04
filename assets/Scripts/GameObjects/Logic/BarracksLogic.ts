@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { SpawnObjects } from '../../SpawnObjects';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { ObjectParameters } from '../../ObjectParameters';

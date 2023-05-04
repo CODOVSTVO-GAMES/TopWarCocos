@@ -1,4 +1,5 @@
 import { _decorator, CCString, Component } from 'cc';
+import { MainInterface } from '../UI/MainInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('Storage')
@@ -22,7 +23,7 @@ export class Storage extends Component {
     private gems: number = 0;
     private energy: number = 0;
     private power: number = 0;
-    private level: number = 0;
+    private level: number = 1;
     private experience: number = 0;
 
     onLoad() {
@@ -31,10 +32,12 @@ export class Storage extends Component {
 
     addCoins(value: number) {
         this.coins += value;
+        MainInterface.instance.updateAmountCoins();
     }
 
     reduceCoins(value: number) {
         this.coins -= value;
+        MainInterface.instance.updateAmountCoins();
     }
 
     getCoins(): number {
@@ -43,10 +46,12 @@ export class Storage extends Component {
 
     addGems(value: number) {
         this.gems += value;
+        MainInterface.instance.updateAmountGems();
     }
 
     reduceGems(value: number) {
         this.gems -= value;
+        MainInterface.instance.updateAmountGems();
     }
 
     getGems(): number {
@@ -67,10 +72,12 @@ export class Storage extends Component {
 
     addPower(value: number) {
         this.power += value;
+        MainInterface.instance.updateCountPower();
     }
 
     reducePower(value: number) {
         this.power += value;
+        MainInterface.instance.updateCountPower();
     }
 
     getPower(): number {
