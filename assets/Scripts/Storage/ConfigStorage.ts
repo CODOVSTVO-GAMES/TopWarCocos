@@ -13,6 +13,8 @@ export class ConfigStorage extends Component {
 
     private globalConfig: Array<GlobalConfigurationUnits> = []
 
+    private levelConfig: Array<Level> = []
+
     onLoad() {
         ConfigStorage.instance = this;
         this.initOwerland()
@@ -33,6 +35,42 @@ export class ConfigStorage extends Component {
         this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
         this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
         this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+
+    }
+
+    initLevel(){
+        this.levelConfig.push(new Level(1, 100, 420, 50))
+        this.levelConfig.push(new Level(2, 270, 420, 50))
+        this.levelConfig.push(new Level(3, 770, 420, 50))
+        this.levelConfig.push(new Level(4, 2270, 420, 50))
+        this.levelConfig.push(new Level(5, 6570, 420, 50))
+        this.levelConfig.push(new Level(6, 20800, 420, 50))
+        this.levelConfig.push(new Level(7, 58600, 420, 50))
+        this.levelConfig.push(new Level(8, 100, 1130, 50))
+        this.levelConfig.push(new Level(9, 100, 420, 50))
+        this.levelConfig.push(new Level(10, 100, 420, 50))
+
+        this.levelConfig.push(new Level(11, 100, 420, 50))
+        this.levelConfig.push(new Level(12, 100, 420, 50))
+        this.levelConfig.push(new Level(13, 100, 420, 50))
+        this.levelConfig.push(new Level(14, 100, 420, 50))
+        this.levelConfig.push(new Level(15, 100, 420, 50))
+        this.levelConfig.push(new Level(16, 100, 420, 50))
+        this.levelConfig.push(new Level(17, 100, 420, 50))
+        this.levelConfig.push(new Level(18, 100, 420, 50))
+        this.levelConfig.push(new Level(19, 100, 420, 50))
+        this.levelConfig.push(new Level(20, 100, 420, 50))
+
+        this.levelConfig.push(new Level(21, 100, 420, 50))
+        this.levelConfig.push(new Level(22, 100, 420, 50))
+        this.levelConfig.push(new Level(23, 100, 420, 50))
+        this.levelConfig.push(new Level(24, 100, 420, 50))
+        this.levelConfig.push(new Level(25, 100, 420, 50))
+        this.levelConfig.push(new Level(26, 100, 420, 50))
+        this.levelConfig.push(new Level(27, 100, 420, 50))
+        this.levelConfig.push(new Level(28, 100, 420, 50))
+        this.levelConfig.push(new Level(29, 100, 420, 50))
+        this.levelConfig.push(new Level(30, 100, 420, 50))
 
     }
 
