@@ -1,6 +1,5 @@
-import { _decorator, Color, Component, Input, Node, Touch, Vec3 } from 'cc';
+import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
-import { SpawnObjects } from './SpawnObjects';
 import { TouchStatus } from './TouchStatus';
 import { MapController } from './MapController';
 const { ccclass, property } = _decorator;
@@ -9,40 +8,46 @@ const { ccclass, property } = _decorator;
 export class TouchObject extends Component {
 
     @property({ type: Node })
-    public object: Node;
+    public touchObject: Node;
+
+    @property({ type: Node })
+    public mainObject: Node;
 
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
-    public xPos: number = 0;
-    public yPos: number = 0;
+    public xPos: number;
+    public yPos: number;
+    public initialIndex: number;
+    public isProcessing: boolean;
     public isMove: boolean;
 
     onLoad() {
-        this.object.on(Input.EventType.TOUCH_START, this.touchStart, this);
-        this.object.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        this.object.on(Input.EventType.TOUCH_END, this.touchEnd, this);
-        this.object.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+        this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this);
+        this.touchObject.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
+        this.touchObject.on(Input.EventType.TOUCH_END, this.touchEnd, this);
+        this.touchObject.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
     }
 
     onDestroy() {
-        this.object.off(Input.EventType.TOUCH_START, this.touchStart);
-        this.object.off(Input.EventType.TOUCH_MOVE, this.touchMove);
-        this.object.off(Input.EventType.TOUCH_END, this.touchEnd);
-        this.object.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
+        this.touchObject.off(Input.EventType.TOUCH_START, this.touchStart);
+        this.touchObject.off(Input.EventType.TOUCH_MOVE, this.touchMove);
+        this.touchObject.off(Input.EventType.TOUCH_END, this.touchEnd);
+        this.touchObject.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
     }
 
     touchStart() {
         if (TouchStatus.instance.activeTouch == true && this.isMove) return;
-        
+
         TouchStatus.instance.activeTouch = true;
-        MapController.setObjectParameter(null, this.objectParameters.index);
-        MapController.alo(this.objectParameters.index);
+        MapController.onTransparencyObjects();
+        MapController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         MapController.openCellFree();
-        this.object.setParent(MapController.getParentObject(), true);
-        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 180);
-        this.xPos = this.object.position.x;
-        this.yPos = this.object.position.y;
+        this.mainObject.setParent(MapController.getParentObject(), true);
+        this.xPos = this.mainObject.position.x;
+        this.yPos = this.mainObject.position.y;
+        this.initialIndex = this.objectParameters.index;
+        this.isProcessing = true;
         this.isMove = true;
     }
 
@@ -58,9 +63,10 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 255);
         MapController.closeCellFree();
         MapController.closeCellSelected();
+        MapController.closeCellBlock();
+        MapController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 
@@ -69,30 +75,34 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        this.objectParameters.spriteObject.color = new Color(255, 255, 255, 255);
         MapController.closeCellFree();
         MapController.closeCellSelected();
+        MapController.closeCellBlock();
+        MapController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 
     update() {
         if (TouchStatus.instance.activeTouch == false || this.isMove == false) return;
 
-        let pos: Vec3 = new Vec3(this.xPos, this.yPos, 0);
-        this.object.position = pos;
+        this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         MapController.closeCellSelected();
         MapController.initCellBlock();
-        MapController.openCellSelected(this.objectParameters.type, this.object.position);
+        MapController.openCellSelected(this.objectParameters.type, this.mainObject.position);
     }
 
     processing() {
+        if (this.isProcessing == false) return;
+        this.isProcessing = false;
+
         let minDistance = 100000;
         let indexObject = 0;
         let cellFound = false;
+        let block = false;
         for (let i = 0; i < MapController.getMapSize(); i++) {
-            let currentDistance = Vec3.distance(this.object.position, MapController.getCoordPosition(i));
+            let currentDistance = Vec3.distance(this.mainObject.position, MapController.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                if (MapController.getObjectParameter(i) == null && MapController.getBlockObject(i) == null) {
+                if (MapController.getObjectParameter(i) == null) {
                     minDistance = currentDistance;
                     indexObject = i;
                     cellFound = true;
@@ -101,14 +111,9 @@ export class TouchObject extends Component {
                     if (currentDistance < 60) {
                         if (this.objectParameters.type == MapController.getObjectParameter(i).type) {
                             if (this.objectParameters.level == MapController.getObjectParameter(i).level) {
-                                let type = MapController.getObjectParameter(i).type;
-                                let level = MapController.getObjectParameter(i).level;
-                                let index = MapController.getObjectParameter(i).index;
-                                MapController.getObjectParameter(i).nodeObject.destroy();
-                                MapController.setObjectParameter(null, i);
-                                MapController.setObjectParameter(null, this.objectParameters.index);
-                                this.node.destroy();
-                                SpawnObjects.instance.spawnObjectsMerge(type, level, index);
+                                MapController.upgradeLevel(i);
+                                this.mainObject.destroy();
+                                block = true;
                                 return;
                             }
                         }
@@ -116,17 +121,34 @@ export class TouchObject extends Component {
                 }
             }
         }
-        if (cellFound == true) {
+        if (cellFound == true && block == false) {
+
             if (this.objectParameters.index == indexObject) {
-                this.objectParameters.getObjectInterface().openInterface(this.objectParameters.type);
+                this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
             }
-            MapController.setObjectParameter(null, this.objectParameters.index);
+            else {
+
+            }
+
+            let arrayIndexs = MapController.getArrayIndexs(this.objectParameters.type);
+            for (let i = 0; i < 3; i++) {
+                if (MapController.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
+                    if (this.objectParameters.type == MapController.getObjectParameter(indexObject - arrayIndexs[i]).type) {
+                        if (this.objectParameters.level == MapController.getObjectParameter(indexObject - arrayIndexs[i]).level) {
+                            MapController.upgradeLevel(indexObject - arrayIndexs[i]);
+                            this.mainObject.destroy();
+                            block = true;
+                            return;
+                        }
+                    }
+                }
+            }
+
+            MapController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
             this.objectParameters.index = indexObject;
-            // this.objectParameters.getObjectInterface().closeInterface();
-            MapController.setObjectParameter(this.objectParameters, indexObject);
-            this.object.setParent(MapController.getCoord(indexObject), true);
-            SpawnObjects.instance.spawnBlockObjects(this.objectParameters.type, this.objectParameters.level, this.objectParameters.index);
-            this.object.position = new Vec3(0, 0, 0);
+            MapController.setObjectParameter(this.objectParameters, this.objectParameters.type, indexObject);
+            this.mainObject.setParent(MapController.getCoord(indexObject));
+            this.mainObject.position = Vec3.ZERO;
         }
     }
 }

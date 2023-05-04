@@ -1,6 +1,3 @@
-import { TypesItems } from "../Static/TypesItems"
-import { TypesObjects } from "../Static/TypesObjects"
-
 export class GlobalConfigurationUnits {
     type: string
     level: number
@@ -13,7 +10,7 @@ export class GlobalConfigurationUnits {
     damage: number
     attackType: string
     timeCreation: number
-    
+
     //цена покупки
     priceBuy: number
 
@@ -29,18 +26,19 @@ export class GlobalConfigurationUnits {
     productionInTime: number // производство в минуту(рудники)
 
 
-    constructor(type: string, level: number, 
+    constructor(
+        type: string, level: number,
 
-                experience: number, power: number,
+        experience: number, power: number,
 
-                imprivementResourceType: string, imprivementResourceNumber: number, priceUpdate: number,
-                
-                hp: number, damage: number, attackType: string, timeCreation: number, priceBuy: number,
+        imprivementResourceType: string, imprivementResourceNumber: number, priceUpdate: number,
 
-                attackBonus: number,
+        hp: number, damage: number, attackType: string, timeCreation: number, priceBuy: number,
 
-                expPerSpawn: number, productionInTime: number
-        ){
+        attackBonus: number,
+
+        expPerSpawn: number, productionInTime: number
+    ) {
         this.type = type
         this.level = level
 
@@ -62,6 +60,5 @@ export class GlobalConfigurationUnits {
         this.expPerSpawn = expPerSpawn
         this.productionInTime = productionInTime
     }
-
 }
 

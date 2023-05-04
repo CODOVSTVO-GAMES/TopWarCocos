@@ -1,4 +1,5 @@
 export class Item {
+    
     type: string
     quantity: number
     

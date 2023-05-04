@@ -3,7 +3,6 @@ import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
 import { MapController } from './MapController';
 import { TypesObjects } from './Static/TypesObjects';
-import { BlockObject } from './BlockObject';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjects')
@@ -15,40 +14,48 @@ export class SpawnObjects extends Component {
         SpawnObjects.instance = this;
     }
 
+    start() {
+        this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
+        this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
+        this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
+    }
+
     spawnObjectsPos(type: string, level: number, index: number) {
         let object = instantiate(Prefabs.instance.getPrefab(type));
         MapController.setParent(object, index);
-        if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.GOLD_MINE) {
-            let arrayIndexs = [1, 5, 6];
-            for (let i = 0; i < 3; i++) {
-                let blockObject = instantiate(Prefabs.instance.getPrefab(TypesObjects.BLOCK_OBJECT));
-                MapController.setParent(blockObject, index - arrayIndexs[i]);
-                blockObject.getComponent(BlockObject).type = type;
-                blockObject.getComponent(BlockObject).index = level;
-                blockObject.getComponent(BlockObject).index = index - arrayIndexs[i];
-                MapController.setBlockObject(blockObject.getComponent(BlockObject), index - arrayIndexs[i]);
-            }
-        }
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
-        MapController.setObjectParameter(object.getComponent(ObjectParameters), index);
+        MapController.setObjectParameter(object.getComponent(ObjectParameters), type, index);
     }
 
-    spawnObjectsNearby(type: string, level: number, index: number, count: number) {
-        for (let i = 0; i < count; i++) {
-            let minDistance = 100000;
-            let indexObject = 0;
-            for (let j = 0; j < MapController.getMapSize(); j++) {
-                let currentDistance = Vec3.distance(MapController.getCoordPosition(index), MapController.getCoordPosition(j));
-                if (currentDistance < minDistance) {
-                    if (MapController.getObjectParameter(j) == null && MapController.getBlockObject(j) == null) {
-                        minDistance = currentDistance;
-                        indexObject = j;
+    spawnObjectsNearby(type: string, level: number, index: number) {
+        let minDistance: number = 100000;
+        let indexSpawnObject: number = 0;
+        let isSpawnObject: boolean = false;
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            let currentDistance: number = Vec3.distance(MapController.getCoordPosition(index), MapController.getCoordPosition(i));
+            if (currentDistance < minDistance) {
+                let arrayIndexs: number[] = MapController.getArrayIndexs(type);
+                let check: boolean = false;
+                for (let j = 0; j < arrayIndexs.length; j++) {
+                    if (MapController.getObjectParameter(i - arrayIndexs[j]) != null) {
+                        check = true;
+                        break;
                     }
                 }
+                if (check == false) {
+                    minDistance = currentDistance;
+                    indexSpawnObject = i;
+                    isSpawnObject = true;
+                }
             }
-            SpawnObjects.instance.spawnObjectsPos(type, level, indexObject);
+        }
+        if (isSpawnObject) {
+            SpawnObjects.instance.spawnObjectsPos(type, level, indexSpawnObject);
+        }
+        else {
+            console.log("error: there is no free space.");
         }
     }
 
@@ -58,7 +65,7 @@ export class SpawnObjects extends Component {
         while (true) {
             indexObject = Math.floor(Math.random() * MapController.getMapSize());
             iterationsCount += 1;
-            if (MapController.getObjectParameter(indexObject) == null && MapController.getBlockObject(indexObject) == null) {
+            if (MapController.getObjectParameter(indexObject) == null) {
                 this.spawnObjectsPos(type, level, indexObject);
                 break;
             }
@@ -71,17 +78,5 @@ export class SpawnObjects extends Component {
 
     spawnObjectsMerge(type: string, level: number, index: number) {
         this.spawnObjectsPos(type, level + 1, index);
-    }
-
-    spawnBlockObjects(type: string, level: number, index: number) {
-        let arrayIndexs = [1, 5, 6];
-        for (let i = 0; i < 3; i++) {
-            let blockObject = instantiate(Prefabs.instance.getPrefab(TypesObjects.BLOCK_OBJECT));
-            MapController.setParent(blockObject, index - arrayIndexs[i]);
-            blockObject.getComponent(BlockObject).type = type;
-            blockObject.getComponent(BlockObject).index = level;
-            blockObject.getComponent(BlockObject).index = index - arrayIndexs[i];
-            MapController.setBlockObject(blockObject.getComponent(BlockObject), index - arrayIndexs[i]);
-        }
     }
 }
