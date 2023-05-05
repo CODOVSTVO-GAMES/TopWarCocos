@@ -571,5 +571,4 @@ export class ConfigStorage extends Component {
         }
         throw "Не существует такого уровня героя"
     }
-
 }

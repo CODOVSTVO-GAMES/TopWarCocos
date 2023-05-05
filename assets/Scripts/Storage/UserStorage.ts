@@ -21,35 +21,4 @@ export class UserStorage extends Component {
     onLoad() {
         UserStorage.instance = this;
     }
-
-    setSessionHash(sessionHash: string) {
-        this.sessionHash = sessionHash;
-    }
-    getSessionHash(): string {
-        return this.sessionHash
-    }
-
-    setSessionId(sessionId: string) {
-        this.sessionId = sessionId
-    }
-
-    getSessionId(): string {
-        return this.sessionId
-    }
-
-    setNodeId(nodeId: string) {
-        this.nodeId = nodeId
-    }
-
-    getNodeId(): string {
-        return this.nodeId
-    }
-
-    setUserId(userId: string) {
-        this.userId = userId
-    }
-
-    getUserId(): string {
-        return this.userId
-    }
 }

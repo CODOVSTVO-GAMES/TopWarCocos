@@ -1,67 +1,71 @@
 import { _decorator, Node, Vec3, Color } from 'cc';
-import { MapStorage } from '../Storage/MapStorage';
-import { ObjectParameters } from '../ObjectParameters';
-import { TypesObjects } from '../Static/TypesObjects';
-import { IndexsObject } from '../Static/IndexsObject';
+import { HomeMapStorage } from '../HomeMapStorage';
+import { ObjectParameters } from '../../ObjectParameters';
+import { TypesObjects } from '../../Static/TypesObjects';
+import { IndexsObject } from '../../Static/IndexsObject';
 
-export class MapController {
+export class ControllerHomeMapStorage {
 
     static setParent(object: Node, index: number) {
-        object.parent = MapStorage.instance.coords[index];
+        object.parent = HomeMapStorage.instance.coords[index];
     }
 
     static setObjectParameter(objectParameters: ObjectParameters, type: string, index: number) {
         let arrayIndexs: number[] = this.getArrayIndexs(type);
         for (let i = 0; i < arrayIndexs.length; i++) {
-            MapStorage.instance.arrayObjectParameters[index - arrayIndexs[i]] = objectParameters;
+            HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexs[i]] = objectParameters;
         }
     }
 
     static upgradeLevel(index: number) {
-        MapStorage.instance.arrayObjectParameters[index].level += 1;
-        MapStorage.instance.arrayObjectParameters[index].updateSprite();
+        HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
+        HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
     }
 
     static onTransparencyObjects() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            if (MapStorage.instance.arrayObjectParameters[i] != null) {
-                MapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
+                HomeMapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
             }
         }
     }
 
     static offTransparencyObjects() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            if (MapStorage.instance.arrayObjectParameters[i] != null) {
-                MapStorage.instance.arrayObjectParameters[i].offTransparencyObject();
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
+                HomeMapStorage.instance.arrayObjectParameters[i].offTransparencyObject();
             }
         }
     }
 
     static getMapSize(): number {
-        return MapStorage.instance.mapSize;
+        return HomeMapStorage.instance.mapSize;
     }
 
     static getParentObject(): Node {
-        return MapStorage.instance.parentSelectObject;
+        return HomeMapStorage.instance.parentSelectObject;
     }
 
     static getCoord(index: number): Node {
-        return MapStorage.instance.coords[index];
+        return HomeMapStorage.instance.coords[index];
     }
 
     static getCoordPosition(index: number): Vec3 {
-        return MapStorage.instance.coords[index].position;
+        return HomeMapStorage.instance.coords[index].position;
+    }
+
+    static getCoordWorldPosition(index: number): Vec3 {
+        return HomeMapStorage.instance.coords[index].getWorldPosition();
     }
 
     static getObjectParameter(index: number): ObjectParameters {
-        return MapStorage.instance.arrayObjectParameters[index];
+        return HomeMapStorage.instance.arrayObjectParameters[index];
     }
 
     static getFreeCell(): number {
         let count: number;
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            if (MapStorage.instance.arrayObjectParameters[i] != null) {
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
                 count += 1;
             }
         }
@@ -99,9 +103,9 @@ export class MapController {
     }
 
     static closeInterface() {
-        if (MapStorage.instance.selectedObject) {
-            if (MapStorage.instance.selectedObject.getObjectInterface()) {
-                MapStorage.instance.selectedObject.getObjectInterface().closeInterface();
+        if (HomeMapStorage.instance.selectedObject) {
+            if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
+                HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
             }
         }
     }

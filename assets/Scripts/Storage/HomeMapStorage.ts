@@ -2,10 +2,10 @@ import { _decorator, Component, Node } from 'cc';
 import { ObjectParameters } from '../ObjectParameters';
 const { ccclass, property } = _decorator;
 
-@ccclass('MapStorage')
-export class MapStorage extends Component {
+@ccclass('HomeMapStorage')
+export class HomeMapStorage extends Component {
 
-    public static instance: MapStorage;
+    public static instance: HomeMapStorage;
 
     public mapSize: number = 64;
 
@@ -23,7 +23,7 @@ export class MapStorage extends Component {
     public cellBlock: Node[] = [];
 
     onLoad() {
-        MapStorage.instance = this;
+        HomeMapStorage.instance = this;
     }
 
     start() {

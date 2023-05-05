@@ -235,7 +235,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 551.3573407202216,
+    "_orthoHeight": 540,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -880,7 +880,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "MapStorage",
+    "_name": "HomeMapStorage",
     "_objFlags": 0,
     "_parent": {
       "__id__": 20
@@ -923,7 +923,7 @@
     "_id": "a4vxU1e6dApJB1FkngzPmN"
   },
   {
-    "__type__": "caa08yfSNNLe4MnFC7rubaS",
+    "__type__": "6a786whzGJN1at4mOf+9uil",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -932,7 +932,7 @@
     "_enabled": true,
     "__prefab": null,
     "arrayObjectParameters": [],
-    "_id": "1aNs3cG8lJVIDqgvauQZJB"
+    "_id": "2dzSNdFDBGCYk6JUgsRAeI"
   },
   {
     "__type__": "cc.Node",
