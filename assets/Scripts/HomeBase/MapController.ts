@@ -43,7 +43,7 @@ export class MapController {
     }
 
     static getParentObject(): Node {
-        return MapStorage.instance.parentObject;
+        return MapStorage.instance.parentSelectObject;
     }
 
     static getCoord(index: number): Node {

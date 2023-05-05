@@ -1,6 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { Sender } from './Sender';
-import { Storage } from '../Storage/Storage';
+import { UserStorage } from '../Storage/UserStorage';
 import { md5 } from './md5';
 const { ccclass, property } = _decorator;
 
@@ -14,7 +14,7 @@ export class Session extends Component {
     }
 
     start() {
-        this.getStartSessionData(Storage.instance.getUserId(), Storage.instance.getSessionId());
+        this.getStartSessionData(UserStorage.instance.getUserId(), UserStorage.instance.getSessionId());
 
         this.schedule(this.updateSessionData, 60)
     }
@@ -25,7 +25,7 @@ export class Session extends Component {
     }
 
     updateSessionData() {
-        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + Storage.instance.getSessionHash() + '","sessionId":"' + Storage.instance.getSessionId() + '"}', this.parseResponce);
+        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + UserStorage.instance.getSessionHash() + '","sessionId":"' + UserStorage.instance.getSessionId() + '"}', this.parseResponce);
     }
 
     parseResponce(status: number, body: string) {
@@ -33,8 +33,8 @@ export class Session extends Component {
             let json = JSON.parse(body)
             // console.log(json)
 
-            Storage.instance.setSessionHash(json.hash)
-            Storage.instance.setSessionId(json.sessionId)
+            UserStorage.instance.setSessionHash(json.hash)
+            UserStorage.instance.setSessionId(json.sessionId)
         }
         else if (status == 403) {
             console.log("Отказано " + body)
