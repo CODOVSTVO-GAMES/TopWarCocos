@@ -26,7 +26,15 @@ export class ControllerTroopStorage {
         }
     }
 
-    static getTroopStorage() {
+    static getSizeTroopAir() {
+        return TroopStorage.instance.sizeTroopAir;
+    }
 
+    static getSizeTroopMarine() {
+        return TroopStorage.instance.sizeTroopMarine;
+    }
+
+    static getSizeTroopOverland() {
+        return TroopStorage.instance.sizeTroopOverland;
     }
 }
