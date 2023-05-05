@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopStorage')
@@ -14,9 +14,5 @@ export class TroopStorage extends Component {
 
     onLoad() {
         TroopStorage.instance = this;
-    }
-
-    start() {
-
     }
 }

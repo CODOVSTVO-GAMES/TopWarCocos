@@ -1,7 +1,7 @@
 import { _decorator, Component, Input, Vec3, Touch, Node, Camera } from 'cc';
 import { TouchStatus } from '../TouchStatus';
 import { Canvas } from '../Canvas/Canvas';
-import { MapController } from '../HomeBase/MapController';
+import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
@@ -34,7 +34,7 @@ export class MovingCamera extends Component {
     touchStart() {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
-        MapController.closeInterface();
+        ControllerHomeMapStorage.closeInterface();
 
         this.isMove = true;
         this.xPos = this.object.position.x;

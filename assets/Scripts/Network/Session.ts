@@ -2,6 +2,7 @@ import { _decorator, Component, Node } from 'cc';
 import { Sender } from './Sender';
 import { UserStorage } from '../Storage/UserStorage';
 import { md5 } from './md5';
+import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('Session')
@@ -14,7 +15,8 @@ export class Session extends Component {
     }
 
     start() {
-        this.getStartSessionData(UserStorage.instance.getUserId(), UserStorage.instance.getSessionId());
+        this.getStartSessionData(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId());
+
 
         this.schedule(this.updateSessionData, 60)
     }
@@ -25,7 +27,7 @@ export class Session extends Component {
     }
 
     updateSessionData() {
-        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + UserStorage.instance.getSessionHash() + '","sessionId":"' + UserStorage.instance.getSessionId() + '"}', this.parseResponce);
+        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + ControllerUserStorage.getSessionHash() + '","sessionId":"' + ControllerUserStorage.getSessionId() + '"}', this.parseResponce);
     }
 
     parseResponce(status: number, body: string) {
@@ -33,8 +35,8 @@ export class Session extends Component {
             let json = JSON.parse(body)
             // console.log(json)
 
-            UserStorage.instance.setSessionHash(json.hash)
-            UserStorage.instance.setSessionId(json.sessionId)
+            ControllerUserStorage.setSessionHash(json.hash)
+            ControllerUserStorage.setSessionId(json.sessionId)
         }
         else if (status == 403) {
             console.log("Отказано " + body)
