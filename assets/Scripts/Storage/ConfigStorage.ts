@@ -4,6 +4,8 @@ import { TypesAttack } from '../Static/TypesAttack';
 import { GlobalConfigurationUnits } from '../Structures/GlobalConfigurationUnits';
 import { TypesItems } from '../Static/TypesItems';
 import { Level } from '../Structures/Level';
+import { HeroConfig } from '../Structures/HeroConfig';
+import { HeroLevel } from '../Structures/HeroLevel';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -14,6 +16,10 @@ export class ConfigStorage extends Component {
     private globalConfig: Array<GlobalConfigurationUnits> = []
 
     private levelConfig: Array<Level> = []
+
+    private heroConfig: Array<HeroConfig> = []
+
+    private heroLevelConfig: Array<HeroLevel> = []
 
     onLoad() {
         ConfigStorage.instance = this;
@@ -74,7 +80,35 @@ export class ConfigStorage extends Component {
 
     }
 
-    getConfigByTypeAndLevel(type: string, level: number) {
+    initHeroLevel(){
+        this.heroLevelConfig.push(new HeroLevel("r", 1, 0))
+        this.heroLevelConfig.push(new HeroLevel("r", 2, 250))
+        this.heroLevelConfig.push(new HeroLevel("r", 3, 500))
+        this.heroLevelConfig.push(new HeroLevel("r", 4, 750))
+        this.heroLevelConfig.push(new HeroLevel("r", 5, 1000))
+        this.heroLevelConfig.push(new HeroLevel("r", 6, 1250))
+        this.heroLevelConfig.push(new HeroLevel("r", 7, 1500))
+        this.heroLevelConfig.push(new HeroLevel("r", 8, 1750))
+        this.heroLevelConfig.push(new HeroLevel("r", 9, 2000))
+        this.heroLevelConfig.push(new HeroLevel("r", 10, 2250))
+
+        this.heroLevelConfig.push(new HeroLevel("r", 11, 2500))
+        this.heroLevelConfig.push(new HeroLevel("r", 12, 3000))
+        this.heroLevelConfig.push(new HeroLevel("r", 13, 3500))
+        this.heroLevelConfig.push(new HeroLevel("r", 14, 4000))
+        this.heroLevelConfig.push(new HeroLevel("r", 15, 4500))
+        this.heroLevelConfig.push(new HeroLevel("r", 16, 5000))
+        this.heroLevelConfig.push(new HeroLevel("r", 17, 5500))
+        this.heroLevelConfig.push(new HeroLevel("r", 18, 6000))
+        this.heroLevelConfig.push(new HeroLevel("r", 19, 6500))
+        this.heroLevelConfig.push(new HeroLevel("r", 20, 7000))
+    }
+
+    initHeroConfig(){
+        this.heroConfig.push(new HeroConfig("r", "blackWidow", 120, 180, 200, 24, 36))  // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
+    }
+
+    getConfigByTypeAndLevel(type: string, level: number) : GlobalConfigurationUnits{
         for (let x = 0; x < this.globalConfig.length; x++) {
             if (this.globalConfig[x].type == type && this.globalConfig[x].level == level) {
                 return this.globalConfig[x]
@@ -82,6 +116,8 @@ export class ConfigStorage extends Component {
         }
         throw "Не существует такого обьекта"
     }
+
+    //--------------------------------------------------------------
 
     getLevelExpirienceByLevel(level: number){
         for(let x = 0; x < this.levelConfig.length; x++){
@@ -113,10 +149,30 @@ export class ConfigStorage extends Component {
     getLevelByExpirience(experience: number){
         for(let x = 0; x < this.levelConfig.length; x++){
             if(this.levelConfig[x + 1].expirience > experience){
-                return this.levelConfig[x].levelNumber // будет работать не корректно при несортированом массиве
+                return this.levelConfig[x].levelNumber // будет работать корректно при сортированом массиве
             }
         }
         throw "Не существует такого уровня"
+    }
+
+    //--------------------------------------------------------------
+
+    getHeroLevelExpirienceByTypeAndLevel(type: string, level: number){
+        for(let x = 0; x < this.heroLevelConfig.length; x++){
+            if(this.heroLevelConfig[x].levelNumber == level && this.heroLevelConfig[x].type == type){
+                return  this.heroLevelConfig[x].heroExpirience
+            }
+        }
+        throw "Не существует такого уровня героя"
+    }
+
+    getHeroConfigByCodeName(codeName: string) : HeroConfig{
+        for(let x = 0; x < this.heroConfig.length; x++){
+            if(this.heroConfig[x].codeName == codeName){
+                return  this.heroConfig[x]
+            }
+        }
+        throw "Не существует такого уровня героя"
     }
 
 }
