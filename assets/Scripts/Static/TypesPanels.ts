@@ -1,6 +1,4 @@
-import { _decorator, Component } from 'cc';
-
-export class TypesPanel extends Component {
+export class TypesPanel {
     public static CARD_PROFIL: string = "profile";
     public static CARD_POWER: string = "profile";
     public static CARD_HEROES: string = "profile";

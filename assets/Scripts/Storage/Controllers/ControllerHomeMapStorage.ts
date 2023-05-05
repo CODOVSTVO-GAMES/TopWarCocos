@@ -1,4 +1,4 @@
-import { _decorator, Node, Vec3, Color } from 'cc';
+import { _decorator, Node, Vec3 } from 'cc';
 import { HomeMapStorage } from '../HomeMapStorage';
 import { ObjectParameters } from '../../ObjectParameters';
 import { TypesObjects } from '../../Static/TypesObjects';

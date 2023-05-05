@@ -38,24 +38,30 @@ export class HighlightHomeMap {
         let minDistance: number = 1000000;
         let indexObject: number;
         let arrayIndexs: number[] = ControllerHomeMapStorage.getArrayIndexs(type);
-        for (let j = 0; j < ControllerHomeMapStorage.getMapSize(); j++) {
-            let currentDistance = Vec3.distance(ControllerHomeMapStorage.getCoordWorldPosition(j), pos);
+        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
+            let currentDistance = Vec3.distance(ControllerHomeMapStorage.getCoordWorldPosition(i), pos);
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
-                indexObject = j;
+                indexObject = i;
             }
         }
         for (let i = 0; i < arrayIndexs.length; i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) == null) {
-                HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
-            }
-            else {
-                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type == type) {
+            try {
+                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) == null) {
                     HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
                 }
                 else {
-                    HomeMapStorage.instance.cellBlock[indexObject - arrayIndexs[i]].active = true;
+                    if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type == type) {
+                        HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
+                    }
+                    else {
+                        HomeMapStorage.instance.cellBlock[indexObject - arrayIndexs[i]].active = true;
+                    }
                 }
+            }
+            catch
+            {
+                
             }
         }
     }
