@@ -3,7 +3,7 @@ import { Prefabs } from './Prefabs';
 import { ObjectParameters } from './ObjectParameters';
 import { MapController } from './HomeBase/MapController';
 import { TypesObjects } from './Static/TypesObjects';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
 export class SpawnObjects extends Component {
@@ -15,9 +15,11 @@ export class SpawnObjects extends Component {
     }
 
     start() {
-        this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
-        this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
-        this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
+        setTimeout(() => {
+            this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
+            this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
+            this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
+        }, 2000);
     }
 
     spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
@@ -26,9 +28,9 @@ export class SpawnObjects extends Component {
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
-        if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
-            object.getComponent(ObjectParameters).onTransparencyObject();
-        }
+        // if (type == TypesObjects.TROOP_AIR || type == TypesObjects.TROOP_MARINE || type == TypesObjects.TROOP_OVERLAND) {
+        //     object.getComponent(ObjectParameters).onTransparencyObject();
+        // }
         MapController.setObjectParameter(object.getComponent(ObjectParameters), type, index);
         return object.getComponent(ObjectParameters);
     }

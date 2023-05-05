@@ -23,12 +23,12 @@ export class BarracksLogic extends Component {
         else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
             this.arrrrrrrrrr.push(SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, this.objectParameters.level, this.getComponent(ObjectParameters).index));
         }
-        this.delay();
+        // this.delay();
     }
 
-    delay() {
-        setTimeout(() => {
-            this.arrrrrrrrrr[0].offTransparencyObject();
-        }, 1000);
-    }
+    // delay() {
+    //     setTimeout(() => {
+    //         this.arrrrrrrrrr[0].offTransparencyObject();
+    //     }, 1000);
+    // }
 }

@@ -1,5 +1,5 @@
 import { _decorator, Component, Label } from 'cc';
-import { Storage } from '../Storage/Storage';
+import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('MainInterface')
@@ -31,19 +31,19 @@ export class MainInterface extends Component {
     }
 
     updateAmountCoins() {
-        this.amountCoins.string = Storage.instance.getCoins().toString();
+        this.amountCoins.string = ControllerGameStorage.getCoins().toString();
     }
 
     updateAmountGems() {
-        this.amountGems.string = Storage.instance.getGems().toString();
+        this.amountGems.string = ControllerGameStorage.getGems().toString();
     }
 
     updateCountLevel() {
-        this.countLevel.string = Storage.instance.getLevel().toString();
+        this.countLevel.string = ControllerGameStorage.getLevel().toString();
     }
 
     updateCountPower() {
-        this.countPower.string = Storage.instance.getPower().toString();
+        this.countPower.string = ControllerGameStorage.getPower().toString();
     }
 }
 

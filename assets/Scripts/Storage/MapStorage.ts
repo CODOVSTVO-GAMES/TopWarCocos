@@ -1,19 +1,15 @@
-import { _decorator, Component, Node, director } from 'cc';
+import { _decorator, Component, Node } from 'cc';
 import { ObjectParameters } from '../ObjectParameters';
-import { HighlightHomeMap } from '../HomeBase/HighlightHomeMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('MapStorage')
 export class MapStorage extends Component {
 
     public static instance: MapStorage;
+
     public mapSize: number = 64;
 
-    @property({ type: Node })
-    public parentObject: Node;
-
-    @property({ type: Node })
-    public coords: Node[] = [];
+    public parentSelectObject: Node;
 
     @property({ type: ObjectParameters })
     public selectedObject: ObjectParameters;
@@ -21,6 +17,7 @@ export class MapStorage extends Component {
     @property({ type: ObjectParameters })
     public arrayObjectParameters: ObjectParameters[] = [];
 
+    public coords: Node[] = [];
     public cellFree: Node[] = [];
     public cellSelected: Node[] = [];
     public cellBlock: Node[] = [];
@@ -30,12 +27,10 @@ export class MapStorage extends Component {
     }
 
     start() {
+        this.coords = new Array(this.mapSize);
+        this.arrayObjectParameters = new Array(this.mapSize);
         this.cellFree = new Array(this.mapSize);
         this.cellSelected = new Array(this.mapSize);
         this.cellBlock = new Array(this.mapSize);
-        this.arrayObjectParameters = new Array(this.mapSize);
-        // HighlightHomeMap.initCellFree();
-        // HighlightHomeMap.initCellSelected();
-        // HighlightHomeMap.initCellBlock();
     }
 }

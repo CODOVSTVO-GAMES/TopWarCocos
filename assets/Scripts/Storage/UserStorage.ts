@@ -1,107 +1,55 @@
-import { _decorator, Component, Node } from 'cc';
-import { ConfigStorage } from './ConfigStorage';
+import { _decorator, CCString, Component } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('UserStorage')
 export class UserStorage extends Component {
 
-    public static instance: UserStorage
+    public static instance: UserStorage;
 
-    start() {
-        UserStorage.instance = this
+    @property({ type: CCString })
+    public sessionHash: string;
+
+    @property({ type: CCString })
+    public sessionId: string;
+
+    @property({ type: CCString })
+    public nodeId: string;
+
+    @property({ type: CCString })
+    public userId: string = "cocos";
+
+    onLoad() {
+        UserStorage.instance = this;
     }
 
-    private coins: number = 0;
-
-    private coinsInTime: number = 0;
-
-    private gems: number = 0;
-
-    private energy: number = 0;
-
-    private experience: number = 0;
-
-    private level: number = 0;
-
-    //power
-
-    private maxPower: number = 0;
-
-    private territoryPower: number = 0;
-
-    private technoPower: number = 0;
-
-    private heroPower: number = 0;
-
-    private arsenalPower: number = 0;
-
-    private professionPower: number = 0;
-
-    //power
-
-    addCoins(number: number){
-        this.coins += number;
+    setSessionHash(sessionHash: string) {
+        this.sessionHash = sessionHash;
     }
-    getCoins(){
-        return this.coins
+    getSessionHash(): string {
+        return this.sessionHash
     }
 
-    addGems(number: number){
-        this.gems += number;
-    }
-    getGems(){
-        return this.gems
+    setSessionId(sessionId: string) {
+        this.sessionId = sessionId
     }
 
-    addEnergy(number: number){
-        this.energy += number;
-    }
-    getEnergy(){
-        return this.energy
+    getSessionId(): string {
+        return this.sessionId
     }
 
-    addExpirience(number: number){
-        this.experience += number
-        if(this.experience > ConfigStorage.instance.getLevelExpirienceByLevel(this.level)){//точнее будет работать при установке уровня по опыту а не +1
-            this.level = ConfigStorage.instance.getLevelByExpirience(this.experience);
-        }
+    setNodeId(nodeId: string) {
+        this.nodeId = nodeId
     }
 
-    getExpirience(){
-        return this.experience
+    getNodeId(): string {
+        return this.nodeId
     }
 
-    getExpirienceForNextLevel(){
-        return ConfigStorage.instance.getLevelExpirienceByLevel(this.level + 1) - this.experience
+    setUserId(userId: string) {
+        this.userId = userId
     }
 
-    getLevel(){
-        return this.level
-    }
-
-
-    getPowerMax() : number {
-        return this.maxPower
-    }
-
-    getPower() : number {
-        return this.territoryPower + this.technoPower + this.heroPower + this.arsenalPower + this.professionPower
-    }
-
-    addPowerTerritory(power : number) {
-        this.territoryPower += power
-        this.updateMaxPower()
-    }
-
-    addPowerTechno(power : number) {
-        this.technoPower += power
-        this.updateMaxPower()
-    }
-
-    updateMaxPower(){
-        if (this.getPower() > this.maxPower){
-            this.maxPower = this.getPower()
-        }
+    getUserId(): string {
+        return this.userId
     }
 }
-
