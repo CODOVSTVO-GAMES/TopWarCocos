@@ -95,7 +95,7 @@ export class TouchObject extends Component {
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.initCellBlock();
-        HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.position);
+        HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.worldPosition);
     }
 
     processing() {

@@ -1,34 +1,34 @@
 import { _decorator, Vec3 } from 'cc';
-import { MapStorage } from '../Storage/MapStorage';
 import { MapController } from './MapController';
+import { MapStorage } from '../Storage/MapStorage';
 import { Cell } from './Cell';
 
 export class HighlightHomeMap {
 
     static initCellFree() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellFree[i] = MapStorage.instance.coords[i].getComponent(Cell).cellFree;
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            MapStorage.instance.cellFree[i] = MapController.getCoord(i).getComponent(Cell).cellFree;
         }
         this.closeCellFree();
     }
 
     static initCellSelected() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellSelected[i] = MapStorage.instance.coords[i].getComponent(Cell).cellSelected;
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            MapStorage.instance.cellSelected[i] = MapController.getCoord(i).getComponent(Cell).cellSelected;
         }
         this.closeCellSelected();
     }
 
     static initCellBlock() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            MapStorage.instance.cellBlock[i] = MapStorage.instance.coords[i].getComponent(Cell).cellBlock;
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            MapStorage.instance.cellBlock[i] = MapController.getCoord(i).getComponent(Cell).cellBlock;
         }
         this.closeCellBlock();
     }
 
     static openCellFree() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
-            if (MapStorage.instance.arrayObjectParameters[i] == null) {
+        for (let i = 0; i < MapController.getMapSize(); i++) {
+            if (MapController.getObjectParameter(i) == null) {
                 MapStorage.instance.cellFree[i].active = true;
             }
         }
@@ -39,18 +39,23 @@ export class HighlightHomeMap {
         let indexObject: number;
         let arrayIndexs: number[] = MapController.getArrayIndexs(type);
         for (let j = 0; j < MapController.getMapSize(); j++) {
-            let currentDistance = Vec3.distance(pos, MapController.getCoordPosition(j));
+            let currentDistance = Vec3.distance(pos, MapController.getCoordWorldPosition(j));
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = j;
             }
         }
+
+
+        console.log(indexObject);
+
+        
         for (let i = 0; i < arrayIndexs.length; i++) {
-            if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexs[i]] == null) {
+            if (MapController.getObjectParameter(indexObject - arrayIndexs[i]) == null) {
                 MapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
             }
             else {
-                if (MapStorage.instance.arrayObjectParameters[indexObject - arrayIndexs[i]].type == type) {
+                if (MapController.getObjectParameter(indexObject - arrayIndexs[i]).type == type) {
                     MapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
                 }
                 else {
@@ -61,19 +66,19 @@ export class HighlightHomeMap {
     }
 
     static closeCellFree() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+        for (let i = 0; i < MapController.getMapSize(); i++) {
             MapStorage.instance.cellFree[i].active = false;
         }
     }
 
     static closeCellSelected() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+        for (let i = 0; i < MapController.getMapSize(); i++) {
             MapStorage.instance.cellSelected[i].active = false;
         }
     }
 
     static closeCellBlock() {
-        for (let i = 0; i < MapStorage.instance.mapSize; i++) {
+        for (let i = 0; i < MapController.getMapSize(); i++) {
             MapStorage.instance.cellBlock[i].active = false;
         }
     }

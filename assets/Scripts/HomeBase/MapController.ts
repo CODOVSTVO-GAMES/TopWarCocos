@@ -54,6 +54,10 @@ export class MapController {
         return MapStorage.instance.coords[index].position;
     }
 
+    static getCoordWorldPosition(index: number): Vec3 {
+        return MapStorage.instance.coords[index].worldPosition;
+    }
+
     static getObjectParameter(index: number): ObjectParameters {
         return MapStorage.instance.arrayObjectParameters[index];
     }
