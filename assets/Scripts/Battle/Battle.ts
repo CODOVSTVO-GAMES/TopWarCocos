@@ -26,6 +26,9 @@ export class Battle extends Component {
     public inBattleBtn: Node;
 
     @property({ type: Node })
+    public quickPlacementBtn: Node;
+
+    @property({ type: Node })
     public cards: Node[] = [];
 
     @property({ type: Sprite })
@@ -275,6 +278,7 @@ export class Battle extends Component {
                 if (this.arrayOwn[i] != null) {
                     this.isBattle = true;
                     this.inBattleBtn.active = false;
+                    this.quickPlacementBtn.active = false;
                     for (let i = 0; i < this.cards.length; i++) {
                         this.cards[i].active = false;
                     }
@@ -288,7 +292,8 @@ export class Battle extends Component {
     attack() {
         let units_1;
         let units_2;
-        let delay;
+        let delay = 0;
+        let countBullet = 0;
         if (this.attackingTeam == 0) {
             units_1 = this.arrayEnemy.slice(0);
             units_2 = this.arrayOwn.slice(0);
@@ -307,13 +312,11 @@ export class Battle extends Component {
                     let units = this.goalSelection(units_1[i].link.team, units_1[i].type, TypesAttack.HORIZON, config.attackType);
                     if (units.length > 0) {
                         for (let j = 0; j < units.length; j++) {
-                            // yield return new WaitForSeconds(1f);
-                            units_2[units[j]].hp -= units_1[i].damage;
-                            console.log(units_1[i].level + "|" + units_1[i].hp + "|" + units_1[i].damage + " > " + units_2[units[j]].level + "|" + units_2[units[j]].hp + "|" + units_2[units[j]].damage);
+                            countBullet++;
+                            this.troopAttackInvoke(i, j, units, units_1, units_2, countBullet);
                         }
                     }
                     units_1[i].attackNumber = this.attackNumber;
-                    units_1[i].link.shotRender();
                 }
             }
             delay++;
@@ -330,20 +333,26 @@ export class Battle extends Component {
                     this.ownRender();
                     this.quantityRender();
                     if (this.troopAlive()) {
-                        console.log("---------------")
                         this.attack();
                     }
                     else {
                         RedirectionToScene.redirect(SceneNames.HOME_MAP);
                     }
-                }, 1000);
-                console.log("проверим")
+                }, countBullet * 1000 + 1000);
             }
         }
     }
 
-    troopAttack(i: number, units_1: Unit[], units_2: Unit[]) {
+    troopAttackInvoke(i: number, j: number, units: number[], units_1: Unit[], units_2: Unit[], countBullet: number) {
+        setTimeout(() => units_1[i].link.shotRender(), countBullet * 1000 - 1000);
+        setTimeout(() => this.troopAttack(i, j, units, units_1, units_2), countBullet * 1000);
+    }
 
+    troopAttack(i: number, j: number, units: number[], units_1: Unit[], units_2: Unit[]) {
+        units_2[units[j]].hp -= units_1[i].damage;
+        this.enemyRender();
+        this.ownRender();
+        this.quantityRender();
     }
 
     troopAlive(): boolean {

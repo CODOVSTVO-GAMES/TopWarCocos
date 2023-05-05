@@ -25,7 +25,9 @@ export class CharacterSelection extends Component {
     }
 
     randomCharacter(event, customEventData) {
-        this.saveRenderCharacter(customEventData);
+        if (Battle.instance.isBattle == false) {
+            this.saveRenderCharacter(customEventData);
+        }
     }
 
     saveRenderCharacter(index: number) {

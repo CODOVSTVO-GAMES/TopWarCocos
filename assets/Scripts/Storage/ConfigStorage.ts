@@ -426,7 +426,7 @@ export class ConfigStorage extends Component {
         //30->
     }
 
-    initLevel(){
+    initLevel() {
         this.levelConfig.push(new Level(1, 100, 420, 50))
         this.levelConfig.push(new Level(2, 270, 420, 50))
         this.levelConfig.push(new Level(3, 770, 420, 50))
@@ -462,7 +462,7 @@ export class ConfigStorage extends Component {
 
     }
 
-    initHeroLevel(){
+    initHeroLevel() {
         this.heroLevelConfig.push(new HeroLevel("r", 1, 0))
         this.heroLevelConfig.push(new HeroLevel("r", 2, 250))
         this.heroLevelConfig.push(new HeroLevel("r", 3, 500))
@@ -497,7 +497,7 @@ export class ConfigStorage extends Component {
         this.heroLevelConfig.push(new HeroLevel("r", 30, 13750))
     }
 
-    initHeroConfig(){
+    initHeroConfig() {
         this.heroConfig.push(new HeroConfig("r", "blackWidow", 120, 180, 200, 24, 36))  // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
     }
 
@@ -514,36 +514,36 @@ export class ConfigStorage extends Component {
 
     //--------------------------------------------------------------
 
-    getLevelExpirienceByLevel(level: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if( this.levelConfig[x].levelNumber == level){
-                return  this.levelConfig[x].expirience
+    getLevelExpirienceByLevel(level: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x].levelNumber == level) {
+                return this.levelConfig[x].expirience
             }
         }
         throw "Не существует такого уровня"
     }
 
-    getLevelPowerByLevel(level: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if( this.levelConfig[x].levelNumber == level){
-                return  this.levelConfig[x].powerUponReceipt
+    getLevelPowerByLevel(level: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x].levelNumber == level) {
+                return this.levelConfig[x].powerUponReceipt
             }
         }
         throw "Не существует такого уровня"
     }
 
-    getLevelEnergyByLevel(level: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if( this.levelConfig[x].levelNumber == level){
-                return  this.levelConfig[x].energyUponREceipt
+    getLevelEnergyByLevel(level: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x].levelNumber == level) {
+                return this.levelConfig[x].energyUponREceipt
             }
         }
         throw "Не существует такого уровня"
     }
 
-    getLevelByExpirience(experience: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if(this.levelConfig[x + 1].expirience > experience){
+    getLevelByExpirience(experience: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x + 1].expirience > experience) {
                 return this.levelConfig[x].levelNumber // будет работать корректно при сортированом массиве
             }
         }
@@ -552,10 +552,10 @@ export class ConfigStorage extends Component {
 
     //--------------------------------------------------------------
 
-    getHeroLevelExpirienceByTypeAndLevel(type: string, level: number){
-        for(let x = 0; x < this.heroLevelConfig.length; x++){
-            if(this.heroLevelConfig[x].levelNumber == level && this.heroLevelConfig[x].type == type){
-                return  this.heroLevelConfig[x].heroExpirience
+    getHeroLevelExpirienceByTypeAndLevel(type: string, level: number) {
+        for (let x = 0; x < this.heroLevelConfig.length; x++) {
+            if (this.heroLevelConfig[x].levelNumber == level && this.heroLevelConfig[x].type == type) {
+                return this.heroLevelConfig[x].heroExpirience
             }
         }
         throw "Не существует такого уровня героя"

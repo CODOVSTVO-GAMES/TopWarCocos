@@ -24,7 +24,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 355
+      "__id__": 351
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -55,7 +55,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 356
+      "__id__": 352
     },
     "_id": "e257c2c5-53b1-451b-b797-515492350217"
   },
@@ -71,16 +71,10 @@
         "__id__": 3
       },
       {
-        "__id__": 349
-      },
-      {
         "__id__": 21
       },
       {
-        "__id__": 351
-      },
-      {
-        "__id__": 353
+        "__id__": 349
       },
       {
         "__id__": 310
@@ -12825,7 +12819,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "SpriteStorage",
+    "_name": "CharacterBuffs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -12865,278 +12859,6 @@
       "y": 0,
       "z": 0
     },
-    "_id": "96YV8bBv1F4JQMCMAS4A98"
-  },
-  {
-    "__type__": "7ade9zGYY1H1rCfbzw2Rk9D",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 349
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "troopAir": [],
-    "troopMarine": [
-      {
-        "__uuid__": "128c3c53-5416-4edf-a4df-3613d6e9e985@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "9caeb4bb-5e00-4b02-9871-3b5ca4db8460@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "f55f29ab-ebf8-41d1-a1b3-b01cc6f28526@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "df9ce380-455e-472f-b643-9502d6a68e4a@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "fb848d4f-9773-4c7b-abe8-b627b92ed53e@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "47bfba3f-37c3-455d-9841-0c73e9f8ae53@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "bcea56d5-0d9c-4236-a25e-b116070f0f74@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "0bd2accf-4342-4df3-a892-2ffa05ce304e@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "159a5a14-5716-45ab-a3f6-a4c1647ca746@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "3f79f663-2c3a-4b5c-9dd3-be805f6bed42@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "f320db46-6431-4704-9cfa-3e1272da776a@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "e0d958e8-2aca-43ab-b585-44585f23d2b4@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "12977d04-7891-49c2-9488-980cce68c3d8@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "troopOverland": [
-      {
-        "__uuid__": "139714a6-3557-4e7e-856c-e869a16a0b5d@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "b32db1c1-8b38-4e81-b56a-5f416562b974@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "3b4a9b2c-3c32-4917-8287-ba6858ecbcdc@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "5822703b-3abd-417a-a156-3376309ad1f2@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "7241075f-1b37-4839-b882-86e100748a3a@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "3ce207d6-6b3d-4ba1-acf0-3b580f9c2d71@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "a72b0bec-0b3b-47b2-af4e-306810da209e@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "1a97ffb7-540a-4740-958e-1a6177d87ab5@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "2fd5e735-5716-4779-8dad-a76b9bc1642e@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "6a8244f3-c002-46d3-b8e9-eb3578fefc46@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "b881c080-1844-48bc-bae6-e747a89d488a@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "a23c298c-9298-484b-bf1f-f83db2e74ecc@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "6be8babf-d1cd-491e-9014-92bd65b23b3e@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "13ff24ab-522b-4c67-9242-cbf8fc30ef6b@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "barracksAir": [],
-    "barracksMarine": [],
-    "barracksOverland": [],
-    "townHall": [],
-    "goldMine": [],
-    "wall": [],
-    "battle": [],
-    "characters": [
-      {
-        "__uuid__": "321e805f-099e-4acb-94f4-2e51ef41c2cd@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "4a1d2c6b-e540-46c4-820d-a1a7a8dc3d72@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "2fca020c-067f-421d-8b1f-c38d72cb6293@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "47484b0e-23a8-4ac9-8d36-f5a1ebfd43c0@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "697c901b-ccb7-4cd6-9090-1b4b28fbad0b@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "d32208fa-a212-40b0-af5f-f8d8d86451ce@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "e3bee884-374d-4a94-b8e1-d26b0bdd2e35@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "bb3bcf7f-a8a3-4ba5-8ffe-2fd88bed8232@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "4a834abd-15ff-4f83-9ab5-cf4b33451cf5@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "cea8db95-d3ea-464f-ac7c-cbc0769e629c@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "_id": "cci/T9CrJK76+nzw2fOmgz"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "ConfigStorage",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 352
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "3eUXzZq4dE6rRG7rS4j1qG"
-  },
-  {
-    "__type__": "14beduln51LH4N7I+xFn3LD",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 351
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "_id": "5ekQDOccJArIBuj5Z9wPmi"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "CharacterBuffs",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 354
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
     "_id": "63HU5TcyRParUfaU8G2rge"
   },
   {
@@ -13144,7 +12866,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 353
+      "__id__": 349
     },
     "_enabled": true,
     "__prefab": null,
@@ -13161,22 +12883,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 357
+      "__id__": 353
     },
     "shadows": {
-      "__id__": 358
+      "__id__": 354
     },
     "_skybox": {
-      "__id__": 359
+      "__id__": 355
     },
     "fog": {
-      "__id__": 360
+      "__id__": 356
     },
     "octree": {
-      "__id__": 361
+      "__id__": 357
     },
     "lightProbeInfo": {
-      "__id__": 362
+      "__id__": 358
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
