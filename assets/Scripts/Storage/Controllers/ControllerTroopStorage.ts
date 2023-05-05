@@ -12,19 +12,21 @@ export class ControllerTroopStorage {
         TroopStorage.instance.sizeTroopOverland = new Array(TroopStorage.instance.sizeTroopStorage);
 
         for (let i = 0; i < MapController.getMapSize(); i++) {
-            if (MapController.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
-                TroopStorage.instance.sizeTroopAir[MapController.getObjectParameter(i).level - 1] += 1;
-            }
-            else if (MapController.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
-                TroopStorage.instance.sizeTroopMarine[MapController.getObjectParameter(i).level - 1] += 1;
-            }
-            else if (MapController.getObjectParameter(i).type == TypesObjects.TROOP_OVERLAND) {
-                TroopStorage.instance.sizeTroopOverland[MapController.getObjectParameter(i).level - 1] += 1;
+            if (MapController.getObjectParameter(i) != null) {
+                if (MapController.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
+                    TroopStorage.instance.sizeTroopAir[MapController.getObjectParameter(i).level - 1] += 1;
+                }
+                else if (MapController.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
+                    TroopStorage.instance.sizeTroopMarine[MapController.getObjectParameter(i).level - 1] += 1;
+                }
+                else if (MapController.getObjectParameter(i).type == TypesObjects.TROOP_OVERLAND) {
+                    TroopStorage.instance.sizeTroopOverland[MapController.getObjectParameter(i).level - 1] += 1;
+                }
             }
         }
     }
 
     static getTroopStorage() {
-        
+
     }
 }
