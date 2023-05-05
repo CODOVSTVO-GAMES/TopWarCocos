@@ -25,26 +25,28 @@ export class ConfigStorage extends Component {
         ConfigStorage.instance = this;
         this.initOwerland()
         this.initLevel()
+        this.initHeroLevel()
+        this.initHeroConfig()
     }
 
     initOwerland() {
         let type = TypesObjects.TROOP_OVERLAND
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 2, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 3, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 4, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 5, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 6, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 7, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 0, 0,TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 2, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 3, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 4, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 5, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 6, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 7, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
+        this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 0, 0, TypesItems.PLAN_MAX_OVERLAND, 0, 0, 5, 1, TypesAttack.ONE, 1, 1, 0, 1, 1))
 
     }
 
-    initLevel(){
+    initLevel() {
         this.levelConfig.push(new Level(1, 100, 420, 50))
         this.levelConfig.push(new Level(2, 270, 420, 50))
         this.levelConfig.push(new Level(3, 770, 420, 50))
@@ -80,7 +82,7 @@ export class ConfigStorage extends Component {
 
     }
 
-    initHeroLevel(){
+    initHeroLevel() {
         this.heroLevelConfig.push(new HeroLevel("r", 1, 0))
         this.heroLevelConfig.push(new HeroLevel("r", 2, 250))
         this.heroLevelConfig.push(new HeroLevel("r", 3, 500))
@@ -104,11 +106,11 @@ export class ConfigStorage extends Component {
         this.heroLevelConfig.push(new HeroLevel("r", 20, 7000))
     }
 
-    initHeroConfig(){
+    initHeroConfig() {
         this.heroConfig.push(new HeroConfig("r", "blackWidow", 120, 180, 200, 24, 36))  // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
     }
 
-    getConfigByTypeAndLevel(type: string, level: number) : GlobalConfigurationUnits{
+    getConfigByTypeAndLevel(type: string, level: number): GlobalConfigurationUnits {
         for (let x = 0; x < this.globalConfig.length; x++) {
             if (this.globalConfig[x].type == type && this.globalConfig[x].level == level) {
                 return this.globalConfig[x]
@@ -119,36 +121,36 @@ export class ConfigStorage extends Component {
 
     //--------------------------------------------------------------
 
-    getLevelExpirienceByLevel(level: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if( this.levelConfig[x].levelNumber == level){
-                return  this.levelConfig[x].expirience
+    getLevelExpirienceByLevel(level: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x].levelNumber == level) {
+                return this.levelConfig[x].expirience
             }
         }
         throw "Не существует такого уровня"
     }
 
-    getLevelPowerByLevel(level: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if( this.levelConfig[x].levelNumber == level){
-                return  this.levelConfig[x].powerUponReceipt
+    getLevelPowerByLevel(level: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x].levelNumber == level) {
+                return this.levelConfig[x].powerUponReceipt
             }
         }
         throw "Не существует такого уровня"
     }
 
-    getLevelEnergyByLevel(level: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if( this.levelConfig[x].levelNumber == level){
-                return  this.levelConfig[x].energyUponREceipt
+    getLevelEnergyByLevel(level: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x].levelNumber == level) {
+                return this.levelConfig[x].energyUponREceipt
             }
         }
         throw "Не существует такого уровня"
     }
 
-    getLevelByExpirience(experience: number){
-        for(let x = 0; x < this.levelConfig.length; x++){
-            if(this.levelConfig[x + 1].expirience > experience){
+    getLevelByExpirience(experience: number) {
+        for (let x = 0; x < this.levelConfig.length; x++) {
+            if (this.levelConfig[x + 1].expirience > experience) {
                 return this.levelConfig[x].levelNumber // будет работать корректно при сортированом массиве
             }
         }
@@ -157,19 +159,19 @@ export class ConfigStorage extends Component {
 
     //--------------------------------------------------------------
 
-    getHeroLevelExpirienceByTypeAndLevel(type: string, level: number){
-        for(let x = 0; x < this.heroLevelConfig.length; x++){
-            if(this.heroLevelConfig[x].levelNumber == level && this.heroLevelConfig[x].type == type){
-                return  this.heroLevelConfig[x].heroExpirience
+    getHeroLevelExpirienceByTypeAndLevel(type: string, level: number) {
+        for (let x = 0; x < this.heroLevelConfig.length; x++) {
+            if (this.heroLevelConfig[x].levelNumber == level && this.heroLevelConfig[x].type == type) {
+                return this.heroLevelConfig[x].heroExpirience
             }
         }
         throw "Не существует такого уровня героя"
     }
 
-    getHeroConfigByCodeName(codeName: string) : HeroConfig{
-        for(let x = 0; x < this.heroConfig.length; x++){
-            if(this.heroConfig[x].codeName == codeName){
-                return  this.heroConfig[x]
+    getHeroConfigByCodeName(codeName: string): HeroConfig {
+        for (let x = 0; x < this.heroConfig.length; x++) {
+            if (this.heroConfig[x].codeName == codeName) {
+                return this.heroConfig[x]
             }
         }
         throw "Не существует такого уровня героя"
