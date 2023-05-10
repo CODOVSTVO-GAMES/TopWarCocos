@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Vec3 } from 'cc';
-import { Prefabs } from './Prefabs';
+import { PrefabsStorage } from './Storage/PrefabsStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { TypesObjects } from './Static/TypesObjects';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
@@ -17,17 +17,19 @@ export class SpawnObjects extends Component {
     start() {
         setTimeout(() => {
             this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
+            this.spawnObjectsPos(TypesObjects.AUTOCOMBINE, 1, 26);
             this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
             this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
         }, 2000);
     }
 
     spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
-        let object = instantiate(Prefabs.instance.getPrefab(type));
+        let object = instantiate(PrefabsStorage.instance.getPrefab(type));
         ControllerHomeMapStorage.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
+        console.log("aaaaaaaaaa");
         ControllerHomeMapStorage.setObjectParameter(object.getComponent(ObjectParameters), type, index);
         return object.getComponent(ObjectParameters);
     }

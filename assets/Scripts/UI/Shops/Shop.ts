@@ -19,6 +19,9 @@ export class Shop extends Component {
         else if (Number(customEventData) == 3) {
             SpawnObjects.instance.spawnObjectsNearby(TypesObjects.GOLD_MINE, 1, 14);
         }
+        else if (Number(customEventData) == 4) {
+            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.AUTOCOMBINE, 1, 14);
+        }
     }
 }
 

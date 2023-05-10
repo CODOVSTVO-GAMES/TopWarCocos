@@ -1,7 +1,7 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab, Sprite } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TroopRender } from './TroopRender';
-import { SpriteStorage } from '../SpriteStorage';
+import { SpriteStorage } from '../Storage/SpriteStorage';
 import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
 import { ConfigStorage } from '../Storage/ConfigStorage';

@@ -1,5 +1,6 @@
 import { _decorator, Component, Label } from 'cc';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;
 
 @ccclass('MainInterface')
@@ -31,11 +32,11 @@ export class MainInterface extends Component {
     }
 
     updateAmountCoins() {
-        this.amountCoins.string = ControllerGameStorage.getCoins().toString();
+        this.amountCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins());
     }
 
     updateAmountGems() {
-        this.amountGems.string = ControllerGameStorage.getGems().toString();
+        this.amountGems.string = ConvertLargeNumber.convert(ControllerGameStorage.getGems());
     }
 
     updateCountLevel() {
