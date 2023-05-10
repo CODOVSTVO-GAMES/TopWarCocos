@@ -23,7 +23,9 @@ export class ObjectInterface extends Component {
     private objectParameters: ObjectParameters;
 
     public openInterface(objectParameters: ObjectParameters) {
-        this.messageObject.active = true;
+        if (this.messageObject) {
+            this.messageObject.active = true;
+        }
         this.titleObject.active = true;
         this.levelObject.active = true;
         this.objectParameters = objectParameters;
@@ -31,7 +33,9 @@ export class ObjectInterface extends Component {
     }
 
     public closeInterface() {
-        this.messageObject.active = false;
+        if (this.messageObject) {
+            this.messageObject.active = false;
+        }
         this.titleObject.active = false;
         this.levelObject.active = false;
     }

@@ -3,6 +3,7 @@ import { SpriteStorage } from './Storage/SpriteStorage';
 import { ObjectInterface } from './GameObjects/Interface/ObjectInterface';
 import { BarracksLogic } from './GameObjects/Logic/BarracksLogic';
 import { GoldMineLogic } from './GameObjects/Logic/GoldMineLogic';
+import { GoldMineInterface } from './GameObjects/Interface/GoldMineInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -34,6 +35,8 @@ export class ObjectParameters extends Component {
     //=================================================
 
     public objectInterface: ObjectInterface;
+    public goldMineInterface: GoldMineInterface;
+
     public barracksLogic: BarracksLogic;
     public goldMineLogic: GoldMineLogic;
 
@@ -59,6 +62,12 @@ export class ObjectParameters extends Component {
         try { this.objectInterface = this.getComponent(ObjectInterface); }
         catch { console.log("error: objectInterface not received"); }
         return this.objectInterface;
+    }
+
+    getGoldMineInterface(): GoldMineInterface {
+        try { this.goldMineInterface = this.getComponent(GoldMineInterface); }
+        catch { console.log("error: goldMineInterface not received"); }
+        return this.goldMineInterface;
     }
 
     getBarracksLogic(): BarracksLogic {

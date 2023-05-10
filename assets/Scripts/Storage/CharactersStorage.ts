@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { ConfigStorage } from './ConfigStorage';
 import { TypesObjects } from '../Static/TypesObjects';
+import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('CharactersStorage')
@@ -17,7 +17,7 @@ export class CharactersStorage extends Component {
     }
 
     start() {
-        let config = ConfigStorage.instance.getHeroConfigByCodeName("blackWidow");
+        let config = ControllerConfigStorage.getHeroConfigByCodeName("blackWidow");
         this.characters[0] = new CharacterInfo(1, 0, 1, config.type, config.codeName, TypesObjects.TROOP_OVERLAND);
     }
 }
