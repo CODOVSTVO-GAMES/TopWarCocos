@@ -5,10 +5,10 @@ import { SpriteStorage } from '../Storage/SpriteStorage';
 import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
 import { ConfigStorage } from '../Storage/ConfigStorage';
-import { ConfigurationCharacters } from '../Structures/ConfigurationCharacters';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { TypesTeam } from '../Static/TypesTeam';
+import { CharacterInfo } from '../Structures/CharacterInfo';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -46,7 +46,7 @@ export class Battle extends Component {
     public arrayOwn: Unit[] = [];
     public arrayEnemy: Unit[] = [];
     public arrayCards: FreeUnit[] = [];
-    public characters: ConfigurationCharacters[] = [];
+    public characters: CharacterInfo[] = [];
     public quantityPlaces: number[] = [];
     public isBattle: boolean = false;
     public level: number = 2;
@@ -465,7 +465,9 @@ export class Battle extends Component {
         this.quantityRender();
     }
 
-    characterSum(): ConfigurationCharacters {
+    characterSum(): CharacterInfo {
+        let exp = 0;
+        let stars = 0;
         let attack = 0;
         let protection = 0;
         let leadership = 0;
@@ -476,7 +478,7 @@ export class Battle extends Component {
                 leadership += this.characters[i].leadership;
             }
         }
-        return new ConfigurationCharacters(0, attack, protection, leadership, "sum");
+        return new CharacterInfo(0, exp, stars, attack, protection, leadership, "sum", "sum", "sum");
     }
 }
 

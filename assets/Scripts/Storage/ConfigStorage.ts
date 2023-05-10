@@ -6,6 +6,7 @@ import { TypesItems } from '../Static/TypesItems';
 import { Level } from '../Structures/Level';
 import { HeroConfig } from '../Structures/HeroConfig';
 import { HeroLevel } from '../Structures/HeroLevel';
+import { TypesCharacters } from '../Static/TypesCharacters';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -498,7 +499,18 @@ export class ConfigStorage extends Component {
     }
 
     initHeroConfig() {
-        this.heroConfig.push(new HeroConfig("r", "blackWidow", 120, 180, 200, 24, 36))  // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
+    }
+
+    getHeroConfig(): HeroConfig[] {
+        return this.heroConfig;
     }
 
     getConfigByTypeAndLevel(type: string, level: number) : GlobalConfigurationUnits{

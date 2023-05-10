@@ -2,6 +2,7 @@ import { _decorator, Component, Node } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
 import { ConfigStorage } from './ConfigStorage';
 import { TypesObjects } from '../Static/TypesObjects';
+import { TypesCharacters } from '../Static/TypesCharacters';
 const { ccclass, property } = _decorator;
 
 @ccclass('CharactersStorage')
@@ -11,13 +12,22 @@ export class CharactersStorage extends Component {
 
     public characters: CharacterInfo[] = [];
 
+    private storageTypes: string[] = [TypesCharacters.BLACK_WIDOW, TypesCharacters.CHARACTER_1, TypesCharacters.CHARACTER_2, TypesCharacters.CHARACTER_3, TypesCharacters.CHARACTER_4, TypesCharacters.CHARACTER_5, TypesCharacters.CHARACTER_6, TypesCharacters.CHARACTER_7];
+
     onLoad() {
         CharactersStorage.instance = this;
-        this.characters = new Array(68);
+        // this.characters = new Array(68);
     }
 
     start() {
-        let config = ConfigStorage.instance.getHeroConfigByCodeName("blackWidow");
-        this.characters[0] = new CharacterInfo(1, 0, 1, config.type, config.codeName, TypesObjects.TROOP_OVERLAND);
+        for (let i = 0; i < this.storageTypes.length; i++) {
+            let config = ConfigStorage.instance.getHeroConfigByCodeName(this.storageTypes[i]);
+            this.characters.push(new CharacterInfo(i, 0, 1, config.startDamage, config.startDefense, config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
+        }
+        console.log(this.characters)
+    }
+
+    getRandomCharacter(): CharacterInfo {
+        return this.characters[Math.floor(Math.random() * this.characters.length)];
     }
 }

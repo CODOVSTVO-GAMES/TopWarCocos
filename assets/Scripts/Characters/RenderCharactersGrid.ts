@@ -1,6 +1,7 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { CharactersStorage } from '../Storage/CharactersStorage';
+import { CharacterInfo } from '../Structures/CharacterInfo';
 const { ccclass, property } = _decorator;
 
 @ccclass('RenderCharactersGrid')
@@ -20,18 +21,34 @@ export class RenderCharactersGrid extends Component {
     @property({ type: Label })
     public levels: Label[] = [];
 
+    public charactersRendered: CharacterInfo[] = [];
+
     onLoad() {
         RenderCharactersGrid.instance = this;
     }
 
     renderCharacters() {
-        for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
-            if (this.images[i] != null && this.names[i] != null && this.levels[i] != null && CharactersStorage.instance.characters[i] != null) {
-                this.images[i].spriteFrame = SpriteStorage.instance.getSprite(CharactersStorage.instance.characters[i].codeName, CharactersStorage.instance.characters[i].level);
-                this.typeTroop[i].spriteFrame = SpriteStorage.instance.getSprite(CharactersStorage.instance.characters[i].typeTroop, 0);
-                this.names[i].string = CharactersStorage.instance.characters[i].codeName;
-                this.levels[i].string = "Ур. " + CharactersStorage.instance.characters[i].level;
+        this.sortedCharacters();
+        for (let i = 0; i < this.charactersRendered.length; i++) {
+            if (this.images[i] != null && this.names[i] != null && this.levels[i] != null && this.charactersRendered[i] != null) {
+                this.images[i].spriteFrame = SpriteStorage.instance.getSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
+                this.typeTroop[i].spriteFrame = SpriteStorage.instance.getSprite(this.charactersRendered[i].typeTroop, 0);
+                this.names[i].string = this.charactersRendered[i].codeName;
+                this.levels[i].string = "Ур. " + this.charactersRendered[i].level;
             }
         }
+    }
+
+    sortedCharacters() {
+        this.charactersRendered = CharactersStorage.instance.characters;
+        this.charactersRendered.sort((a, b) => {
+            if (a.level > b.level) {
+                return 1;
+            }
+            else {
+                return -1;
+            }
+            return 0;
+        });
     }
 }
