@@ -19,6 +19,5 @@ export class CharactersStorage extends Component {
     start() {
         let config = ConfigStorage.instance.getHeroConfigByCodeName("blackWidow");
         this.characters[0] = new CharacterInfo(1, 0, 1, config.type, config.codeName, TypesObjects.TROOP_OVERLAND);
-        console.log(this.characters);
     }
 }
