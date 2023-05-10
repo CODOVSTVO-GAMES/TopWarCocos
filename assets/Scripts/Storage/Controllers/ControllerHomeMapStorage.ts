@@ -76,6 +76,9 @@ export class ControllerHomeMapStorage {
         if (type == TypesObjects.TROOP_OVERLAND) {
             return IndexsObject.object1x1;
         }
+        else if (type == TypesObjects.BULLETIN_BOARD) {
+            return IndexsObject.object1x2;
+        }
         else if (
             type == TypesObjects.TROOP_AIR ||
             type == TypesObjects.BARRACKS_AIR ||

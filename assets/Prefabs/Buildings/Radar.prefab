@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "Bank",
+    "_name": "Radar",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Bank",
+    "_name": "Radar",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -237,7 +237,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "d87fc824-846a-4ea4-8c6a-d4c318ce7c52@f9941",
+      "__uuid__": "321e805f-099e-4acb-94f4-2e51ef41c2cd@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,

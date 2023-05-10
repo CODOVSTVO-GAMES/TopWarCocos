@@ -31,6 +31,12 @@ export class PrefabsStorage extends Component {
     @property({ type: Prefab })
     private autocombine: Prefab;
 
+    @property({ type: Prefab })
+    private radar: Prefab;
+
+    @property({ type: Prefab })
+    private treasures: Prefab;
+
 
 
     @property({ type: Prefab })
@@ -54,6 +60,7 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine;
         else if (type == TypesObjects.BANK) return this.bank;
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine;
+        else if (type == TypesObjects.RADAR) return this.radar;
 
 
 
