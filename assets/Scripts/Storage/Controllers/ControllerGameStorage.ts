@@ -55,6 +55,7 @@ export class ControllerGameStorage {
         if (this.getExperience() > ConfigStorage.instance.getLevelExpirienceByLevel(this.getLevel())) {
             GameStorage.instance.level = ConfigStorage.instance.getLevelByExpirience(this.getExperience());
         }
+        MainInterface.instance.updateCountLevel();
     }
 
     static getExperience(): number {

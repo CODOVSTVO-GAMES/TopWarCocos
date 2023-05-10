@@ -101,7 +101,9 @@ export class TouchObject extends Component {
         let minDistance = 100000;
         let indexObject = 0;
         let cellFound = false;
-        let block = false;
+
+
+
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance = Vec3.distance(this.mainObject.position, ControllerHomeMapStorage.getCoordPosition(i));
             if (currentDistance < minDistance) {
@@ -110,46 +112,70 @@ export class TouchObject extends Component {
                     indexObject = i;
                     cellFound = true;
                 }
-                else {
-                    if (currentDistance < 60) {
-                        console.log("ALO 111111111111");
-                        if (this.objectParameters.type == ControllerHomeMapStorage.getObjectParameter(i).type) {
-                            if (this.objectParameters.level == ControllerHomeMapStorage.getObjectParameter(i).level) {
-                                ControllerHomeMapStorage.upgradeLevel(i);
-                                this.mainObject.destroy();
-                                block = true;
-                                return;
-                            }
-                        }
-                    }
-                }
             }
         }
-        if (cellFound == true && block == false) {
 
-            if (this.objectParameters.index == indexObject) {
-                this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
-            }
-
-            let arrayIndexs = ControllerHomeMapStorage.getArrayIndexs(this.objectParameters.type);
-            for (let i = 0; i < 3; i++) {
-                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
-                    if (this.objectParameters.type == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type) {
-                        if (this.objectParameters.level == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).level) {
-                            ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[i]);
-                            this.mainObject.destroy();
-                            block = true;
-                            return;
-                        }
-                    }
-                }
-            }
-
+        if (this.initialIndex == indexObject || cellFound == false) {
+            console.log("ale");
+            this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
             ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
             this.objectParameters.index = indexObject;
             ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, indexObject);
             this.mainObject.setParent(ControllerHomeMapStorage.getCoord(indexObject));
             this.mainObject.position = Vec3.ZERO;
+            return;
+        }
+        else {
+            console.log("alo");
+            let arrayIndexs = ControllerHomeMapStorage.getArrayIndexs(this.objectParameters.type);
+            let count = 0;
+            let indexMerge = 0;
+            for (let i = 0; i < arrayIndexs.length; i++) {
+                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
+                    if (this.objectParameters.type == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type) {
+                        if (this.objectParameters.level == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).level) {
+                            count += 1;
+                            indexMerge = i;
+                            console.log("KAIF");
+                        }
+                        else {
+                            console.log("NO LEVEL");
+                            this.objectParameters.index = this.initialIndex;
+                            this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+                            ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+                            ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, this.initialIndex);
+                            this.mainObject.setParent(ControllerHomeMapStorage.getCoord(this.initialIndex));
+                            this.mainObject.position = Vec3.ZERO;
+                            return;
+                        }
+                    }
+                    else {
+                        console.log("NO TYPE");
+                        this.objectParameters.index = this.initialIndex;
+                        this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+                        ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+                        ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, this.initialIndex);
+                        this.mainObject.setParent(ControllerHomeMapStorage.getCoord(this.initialIndex));
+                        this.mainObject.position = Vec3.ZERO;
+                        return;
+                    }
+                }
+                else {
+                    console.log("NULL");
+                }
+            }
+            if (count > 0) {
+                ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                this.mainObject.destroy();
+            }
+            else {
+                this.objectParameters.index = indexObject;
+                this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+                ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+                ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, indexObject);
+                this.mainObject.setParent(ControllerHomeMapStorage.getCoord(indexObject));
+                this.mainObject.position = Vec3.ZERO;
+            }
         }
     }
 }
