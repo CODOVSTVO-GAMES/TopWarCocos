@@ -14,13 +14,13 @@ export class ConfigStorage extends Component {
 
     public static instance: ConfigStorage;
 
-    private globalConfig: Array<GlobalConfigurationUnits> = []
+    public globalConfig: Array<GlobalConfigurationUnits> = []
 
-    private levelConfig: Array<Level> = []
+    public levelConfig: Array<Level> = []
 
-    private heroConfig: Array<HeroConfig> = []
+    public heroConfig: Array<HeroConfig> = []
 
-    private heroLevelConfig: Array<HeroLevel> = []
+    public heroLevelConfig: Array<HeroLevel> = []
 
     onLoad() {
         ConfigStorage.instance = this;
@@ -512,85 +512,4 @@ export class ConfigStorage extends Component {
     getHeroConfig(): HeroConfig[] {
         return this.heroConfig;
     }
-
-    getConfigByTypeAndLevel(type: string, level: number) : GlobalConfigurationUnits{
-        if (type == TypesObjects.BARRACKS_OVERLAND || type == TypesObjects.BARRACKS_AIR ||type == TypesObjects.BARRACKS_MARINE) throw "Запрещено запрашивать этот тип этим методом."
-
-        for (let x = 0; x < this.globalConfig.length; x++) {
-            if (this.globalConfig[x].type == type && this.globalConfig[x].level == level) {
-                return this.globalConfig[x]
-            }
-        }
-        throw "Не существует такого обьекта"
-    }
-
-    getProductionInTimeMineByLevel(level: number) : number{
-        for (let x = 0; x < this.globalConfig.length; x++) {
-            if (this.globalConfig[x].imprivementResourceType == TypesItems.PLAN_MAX_MINE && this.globalConfig[x].level == level) {
-                return this.globalConfig[x].productionInTime
-            }
-        }
-        throw "Не существует такого уровня шахты"
-    }
-
-    //--------------------------------------------------------------
-
-    getLevelExpirienceByLevel(level: number) {
-        for (let x = 0; x < this.levelConfig.length; x++) {
-            if (this.levelConfig[x].levelNumber == level) {
-                return this.levelConfig[x].expirience
-            }
-        }
-        throw "Не существует такого уровня"
-    }
-
-    getLevelPowerByLevel(level: number) {
-        for (let x = 0; x < this.levelConfig.length; x++) {
-            if (this.levelConfig[x].levelNumber == level) {
-                return this.levelConfig[x].powerUponReceipt
-            }
-        }
-        throw "Не существует такого уровня"
-    }
-
-    getLevelEnergyByLevel(level: number) {
-        for (let x = 0; x < this.levelConfig.length; x++) {
-            if (this.levelConfig[x].levelNumber == level) {
-                return this.levelConfig[x].energyUponREceipt
-            }
-        }
-        throw "Не существует такого уровня"
-    }
-
-    getLevelByExpirience(experience: number) {
-        for (let x = 0; x < this.levelConfig.length; x++) {
-            if (this.levelConfig[x + 1].expirience > experience) {
-                return this.levelConfig[x].levelNumber // будет работать корректно при сортированом массиве
-            }
-        }
-        throw "Не существует такого уровня"
-    }
-
-    //--------------------------------------------------------------
-
-    getHeroLevelExpirienceByTypeAndLevel(type: string, level: number) {
-        for (let x = 0; x < this.heroLevelConfig.length; x++) {
-            if (this.heroLevelConfig[x].levelNumber == level && this.heroLevelConfig[x].type == type) {
-                return this.heroLevelConfig[x].heroExpirience
-            }
-        }
-        throw "Не существует такого уровня героя"
-    }
-
-    //--------------------------------------------------------------
-
-    getHeroConfigByCodeName(codeName: string) : HeroConfig{
-        for(let x = 0; x < this.heroConfig.length; x++){
-            if(this.heroConfig[x].codeName == codeName){
-                return  this.heroConfig[x]
-            }
-        }
-        throw "Не существует такого уровня героя"
-    }
-    
 }

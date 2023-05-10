@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { ConfigStorage } from './ConfigStorage';
 import { TypesObjects } from '../Static/TypesObjects';
+import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
 import { TypesCharacters } from '../Static/TypesCharacters';
 const { ccclass, property } = _decorator;
 
@@ -21,10 +21,9 @@ export class CharactersStorage extends Component {
 
     start() {
         for (let i = 0; i < this.storageTypes.length; i++) {
-            let config = ConfigStorage.instance.getHeroConfigByCodeName(this.storageTypes[i]);
+            let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]);
             this.characters.push(new CharacterInfo(i, 0, 1, config.startDamage, config.startDefense, config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
         }
-        console.log(this.characters)
     }
 
     getRandomCharacter(): CharacterInfo {

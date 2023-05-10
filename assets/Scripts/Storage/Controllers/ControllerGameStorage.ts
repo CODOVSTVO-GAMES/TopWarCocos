@@ -1,7 +1,7 @@
 import { _decorator } from 'cc';
 import { GameStorage } from '../GameStorage';
-import { ConfigStorage } from '../ConfigStorage';
 import { MainInterface } from '../../UI/MainInterface';
+import { ControllerConfigStorage } from './ControllerConfigStorage';
 
 export class ControllerGameStorage {
 
@@ -52,8 +52,8 @@ export class ControllerGameStorage {
     static addExperience(value: number) {
         GameStorage.instance.experience += value;
         //точнее будет работать при установке уровня по опыту а не +1
-        if (this.getExperience() > ConfigStorage.instance.getLevelExpirienceByLevel(this.getLevel())) {
-            GameStorage.instance.level = ConfigStorage.instance.getLevelByExpirience(this.getExperience());
+        if (this.getExperience() > ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel())) {
+            GameStorage.instance.level = ControllerConfigStorage.getLevelByExpirience(this.getExperience());
         }
         MainInterface.instance.updateCountLevel();
     }
@@ -63,7 +63,7 @@ export class ControllerGameStorage {
     }
 
     static getExpirienceForNextLevel() {
-        return ConfigStorage.instance.getLevelExpirienceByLevel(this.getLevel() + 1) - this.getExperience();
+        return ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel() + 1) - this.getExperience();
     }
 
     //Level

@@ -17,7 +17,6 @@ export class SpawnObjects extends Component {
     start() {
         setTimeout(() => {
             this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
-            this.spawnObjectsPos(TypesObjects.AUTOCOMBINE, 1, 26);
             this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
             this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
         }, 2000);
@@ -29,7 +28,6 @@ export class SpawnObjects extends Component {
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
         object.getComponent(ObjectParameters).index = index;
-        console.log("aaaaaaaaaa");
         ControllerHomeMapStorage.setObjectParameter(object.getComponent(ObjectParameters), type, index);
         return object.getComponent(ObjectParameters);
     }
