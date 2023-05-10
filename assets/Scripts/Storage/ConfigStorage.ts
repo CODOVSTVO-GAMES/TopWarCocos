@@ -512,6 +512,15 @@ export class ConfigStorage extends Component {
         throw "Не существует такого обьекта"
     }
 
+    getProductionInTimeMineByLevel(level: number) : number{
+        for (let x = 0; x < this.globalConfig.length; x++) {
+            if (this.globalConfig[x].imprivementResourceType == TypesItems.PLAN_MAX_MINE && this.globalConfig[x].level == level) {
+                return this.globalConfig[x].productionInTime
+            }
+        }
+        throw "Не существует такого уровня шахты"
+    }
+
     //--------------------------------------------------------------
 
     getLevelExpirienceByLevel(level: number) {
@@ -571,4 +580,5 @@ export class ConfigStorage extends Component {
         }
         throw "Не существует такого уровня героя"
     }
+    
 }
