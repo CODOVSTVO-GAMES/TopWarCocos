@@ -1,5 +1,5 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
-import { SpriteStorage } from '../SpriteStorage';
+import { SpriteStorage } from '../Storage/SpriteStorage';
 import { CharactersStorage } from '../Storage/CharactersStorage';
 const { ccclass, property } = _decorator;
 

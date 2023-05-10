@@ -16,6 +16,7 @@ export class TypesObjects {
     public static MANIPULATOR: string = "manipulator";
     public static REPAIR_SHOP: string = "repairShop";
     public static LOBBY_WARS: string = "lobbyWar";
+    public static BULLETIN_BOARD: string = "bulletinBoard";
 
     public static WALL: string = "wall";
     public static BATTLE: string = "battle";

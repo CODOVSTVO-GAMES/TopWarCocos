@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Color, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
-import { SpriteStorage } from './SpriteStorage';
+import { SpriteStorage } from './Storage/SpriteStorage';
 import { ObjectInterface } from './GameObjects/Interface/ObjectInterface';
 import { BarracksLogic } from './GameObjects/Logic/BarracksLogic';
 import { GoldMineLogic } from './GameObjects/Logic/GoldMineLogic';

@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Vec3 } from 'cc';
-import { Prefabs } from './Prefabs';
+import { PrefabsStorage } from './Storage/PrefabsStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { TypesObjects } from './Static/TypesObjects';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
@@ -23,7 +23,7 @@ export class SpawnObjects extends Component {
     }
 
     spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
-        let object = instantiate(Prefabs.instance.getPrefab(type));
+        let object = instantiate(PrefabsStorage.instance.getPrefab(type));
         ControllerHomeMapStorage.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;

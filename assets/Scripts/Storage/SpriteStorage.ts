@@ -1,6 +1,6 @@
 import { _decorator, Component, SpriteFrame } from 'cc';
-import { TypesObjects } from './Static/TypesObjects';
-import { TypesCharacters } from './Static/TypesCharacters';
+import { TypesObjects } from '../Static/TypesObjects';
+import { TypesCharacters } from '../Static/TypesCharacters';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpriteStorage')

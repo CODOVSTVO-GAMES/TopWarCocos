@@ -1,5 +1,5 @@
 import { _decorator, Animation, Component, Label, Node, Sprite } from 'cc';
-import { SpriteStorage } from '../SpriteStorage';
+import { SpriteStorage } from '../Storage/SpriteStorage';
 import { Battle, Unit } from './Battle';
 import { TypesTeam } from '../Static/TypesTeam';
 const { ccclass, property } = _decorator;
