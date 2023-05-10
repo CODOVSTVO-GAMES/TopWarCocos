@@ -6,6 +6,8 @@ const { ccclass, property } = _decorator;
 @ccclass('RenderCharactersGrid')
 export class RenderCharactersGrid extends Component {
 
+    public static instance: RenderCharactersGrid;
+
     @property({ type: Sprite })
     public images: Sprite[] = [];
 
@@ -15,13 +17,16 @@ export class RenderCharactersGrid extends Component {
     @property({ type: Label })
     public names: Label[] = [];
 
-    start() {
-
+    onLoad() {
+        RenderCharactersGrid.instance = this;
     }
 
     renderCharacters() {
-        for (let i = 0; i < this.images.length; i++) {
-            this.images[i].spriteFrame = SpriteStorage.instance.getSprite(CharactersStorage.instance.characters[i].codeName, CharactersStorage.instance.characters[i].level);
+        for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
+            if (this.images[i] != null && this.names[i] != null) {
+                this.images[i].spriteFrame = SpriteStorage.instance.getSprite(CharactersStorage.instance.characters[i].codeName, CharactersStorage.instance.characters[i].level);
+                this.names[i].string = CharactersStorage.instance.characters[i].codeName;
+            }
         }
     }
 }
