@@ -521,6 +521,15 @@ export class ConfigStorage extends Component {
         throw "Не существует такого уровня шахты"
     }
 
+    getExpPerSpawnMineByLevel(level: number) : number{
+        for (let x = 0; x < this.globalConfig.length; x++) {
+            if (this.globalConfig[x].imprivementResourceType == TypesItems.PLAN_MAX_MINE && this.globalConfig[x].level == level) {
+                return this.globalConfig[x].expPerSpawn
+            }
+        }
+        throw "Не существует такого уровня шахты"
+    }
+
     //--------------------------------------------------------------
 
     getLevelExpirienceByLevel(level: number) {
