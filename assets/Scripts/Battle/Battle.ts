@@ -93,6 +93,11 @@ export class Battle extends Component {
                     this.spawnTroop(i, TypesTeam.TEAM_OWN);
                 }
                 else {
+                    let config = ControllerConfigStorage.getConfigByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
+                    let sum = this.characterSum();
+                    this.arrayOwn[i].hp = config.hp + sum.defense;
+                    this.arrayOwn[i].availableHp = config.hp + sum.defense;
+                    this.arrayOwn[i].damage = config.damage + sum.damage;
                     this.arrayOwn[i].link.renderInfo();
                 }
                 if (this.arrayOwn[i].hp <= 0) {
@@ -193,7 +198,7 @@ export class Battle extends Component {
                     quantity = this.quantityPlaces[i];
                 }
                 let sum = this.characterSum();
-                this.arrayOwn[i] = new Unit(config.hp + sum.protection, config.hp + sum.protection, config.damage + sum.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                this.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
@@ -450,7 +455,7 @@ export class Battle extends Component {
                     quantity = this.quantityPlaces[i];
                 }
                 let sum = this.characterSum();
-                this.arrayOwn[i] = new Unit(config.hp + sum.protection, config.hp + sum.protection, config.damage + sum.attack, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                this.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
@@ -473,8 +478,8 @@ export class Battle extends Component {
         let leadership = 0;
         for (let i = 0; i < this.characters.length; i++) {
             if (this.characters[i] != null) {
-                attack += this.characters[i].attack;
-                protection += this.characters[i].protection;
+                attack += this.characters[i].damage;
+                protection += this.characters[i].defense;
                 leadership += this.characters[i].leadership;
             }
         }
