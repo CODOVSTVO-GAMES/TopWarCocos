@@ -3,8 +3,8 @@ export class HeroConfig {
     codeName: string
 
     startDamage: number
-    startLeader: number
     startDefense: number
+    startLeader: number
 
     coefDamage: number
     coefDefense: number
@@ -14,10 +14,11 @@ export class HeroConfig {
         this.codeName = codeName
 
         this.startDamage = startDamage
-        this.startLeader = startLeader
         this.startDefense = startDefense
+        this.startLeader = startLeader
 
         this.coefDamage = coefDamage
         this.coefDefense = coefDefense
     }
+    
 }

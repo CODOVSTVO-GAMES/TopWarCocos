@@ -5,8 +5,7 @@ const { ccclass, property } = _decorator;
 @ccclass('RenderCharacterInfo')
 export class RenderCharacterInfo extends Component {
 
-    @property({ type: Node })
-    public modal: Node;
+    public static instance: RenderCharacterInfo;
 
     @property({ type: Label })
     public heroName: Label;
@@ -41,15 +40,25 @@ export class RenderCharacterInfo extends Component {
     @property({ type: Sprite })
     public stars: Sprite[] = [];
 
-    renderCharacter(index: number) {
-        console.log(CharactersStorage.instance.characters[index]);
+    onLoad() {
+        RenderCharacterInfo.instance = this;
     }
 
-    modalOpen(event, customEventData) {
-        this.modal.active = true;
-    }
+    renderCharacter(index: number): boolean {
 
-    modalClose() {
-        this.modal.active = false;
+        let character = CharactersStorage.instance.characters[index];
+        if (character != null) {
+            this.heroName.string = character.codeName;
+            this.heroType.string = character.type;
+            this.heroLevel.string = character.level.toString();
+            this.damage.string = character.damage.toString();
+            this.defense.string = character.defense.toString();
+            this.leadership.string = character.leadership.toString();
+            this.experience.string = character.exp.toString();
+            this.combatPower.string = "210";
+
+            return true;
+        }
+        return false;
     }
 }
