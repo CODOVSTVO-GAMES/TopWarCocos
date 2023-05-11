@@ -2,10 +2,18 @@ import { _decorator } from 'cc';
 import { GameStorage } from '../GameStorage';
 import { MainInterface } from '../../UI/MainInterface';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
+import { Test } from '../../Test';
+import { ControllerBufferStorage } from './ControllerBufferStorage';
+import { TypesStorages } from '../../Static/TypesStorages';
 
 export class ControllerGameStorage {
 
-    // Coins
+    // =================================================================
+
+    static equateCoins(value: number) {
+        GameStorage.instance.coins == value;
+    }
+
     static addCoins(value: number) {
         if (value == 0) return;
         GameStorage.instance.coins += value;
@@ -24,7 +32,12 @@ export class ControllerGameStorage {
         return GameStorage.instance.coins;
     }
 
-    //Gems
+    // =================================================================
+
+    static equateGems(value: number) {
+        GameStorage.instance.gems == value;
+    }
+
     static addGems(value: number) {
         if (value == 0) return;
         GameStorage.instance.gems += value;
@@ -43,7 +56,12 @@ export class ControllerGameStorage {
         return GameStorage.instance.gems;
     }
 
-    //Energy
+    // =================================================================
+
+    static equateEnergy(value: number) {
+        GameStorage.instance.energy == value;
+    }
+
     static addEnergy(value: number) {
         if (value == 0) return;
         GameStorage.instance.energy += value;
@@ -60,7 +78,12 @@ export class ControllerGameStorage {
         return GameStorage.instance.energy;
     }
 
-    //Experience
+    // =================================================================
+
+    static equateExperience(value: number) {
+        GameStorage.instance.experience == value;
+    }
+
     static addExperience(value: number) {
         if (value == 0) return;
         GameStorage.instance.experience += value;
@@ -83,7 +106,12 @@ export class ControllerGameStorage {
         return ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel() + 1) - this.getExperience();
     }
 
-    //Level
+    // =================================================================
+
+    static equateLevel(value: number) {
+        GameStorage.instance.level == value;
+    }
+
     static addLevel(value: number) {
         if (value == 0) return;
         GameStorage.instance.level += value;
@@ -95,7 +123,32 @@ export class ControllerGameStorage {
         return GameStorage.instance.level;
     }
 
-    //Power
+    // =================================================================
+
+    static equateMaxPower(value: number) {
+        GameStorage.instance.maxPower == value;
+    }
+
+    static equateTerritoryPower(value: number) {
+        GameStorage.instance.territoryPower == value;
+    }
+
+    static equateTechnoPower(value: number) {
+        GameStorage.instance.technoPower == value;
+    }
+
+    static equateHeroPower(value: number) {
+        GameStorage.instance.heroPower == value;
+    }
+
+    static equateArsenalPower(value: number) {
+        GameStorage.instance.arsenalPower == value;
+    }
+
+    static equateProfessionPower(value: number) {
+        GameStorage.instance.professionPower == value;
+    }
+
     static getPowerMax(): number {
         return GameStorage.instance.maxPower;
     }
@@ -129,7 +182,24 @@ export class ControllerGameStorage {
         }
     }
 
+    // =================================================================
+
     static updateGameStorage() {
+        let obj = {
+            coins: GameStorage.instance.coins,
+            coinsInTime: GameStorage.instance.coinsInTime,
+            gems: GameStorage.instance.gems,
+            energy: GameStorage.instance.energy,
+            experience: GameStorage.instance.experience,
+            level: GameStorage.instance.level,
+            maxPower: GameStorage.instance.maxPower,
+            territoryPower: GameStorage.instance.territoryPower,
+            technoPower: GameStorage.instance.technoPower,
+            heroPower: GameStorage.instance.heroPower,
+            arsenalPower: GameStorage.instance.arsenalPower,
+            professionPower: GameStorage.instance.professionPower,
+        };
+        ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
         console.log("updateGameStorage");
     }
 }

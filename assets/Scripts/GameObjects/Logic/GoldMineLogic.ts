@@ -25,7 +25,7 @@ export class GoldMineLogic extends Component {
                     return;
                 }
                 this.work();
-            }, 100);
+            }, 10);
         }
     }
 

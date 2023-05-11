@@ -2,8 +2,8 @@ export class CharacterInfo {
     public level: number;
     public exp: number;
     public stars: number;
-    public attack: number;
-    public protection: number;
+    public damage: number;
+    public defense: number;
     public leadership: number;
     public type: string;
     public codeName: string;
@@ -13,8 +13,8 @@ export class CharacterInfo {
         this.level = level;
         this.exp = exp;
         this.stars = stars;
-        this.attack = attack;
-        this.protection = protection;
+        this.damage = attack;
+        this.defense = protection;
         this.leadership = leadership;
         this.type = type;
         this.codeName = codeName;

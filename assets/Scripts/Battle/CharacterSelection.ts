@@ -27,6 +27,7 @@ export class CharacterSelection extends Component {
     randomCharacter(event, customEventData) {
         if (Battle.instance.isBattle == false) {
             this.saveRenderCharacter(customEventData);
+            Battle.instance.ownRender();
         }
     }
 

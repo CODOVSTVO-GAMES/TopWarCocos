@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
 import { TypesObjects } from '../Static/TypesObjects';
 import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
