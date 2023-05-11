@@ -110,21 +110,21 @@ export class ControllerGameStorage {
 
     static addPowerTerritory(value: number) {
         if (value == 0) return;
-        GameStorage.instance.territoryPower += value
-        this.updateMaxPower()
+        GameStorage.instance.territoryPower += value;
+        this.updateMaxPower();
         this.updateGameStorage();
     }
 
     static addPowerTechno(value: number) {
         if (value == 0) return
-        GameStorage.instance.technoPower += value
-        this.updateMaxPower()
+        GameStorage.instance.technoPower += value;
+        this.updateMaxPower();
         this.updateGameStorage();
     }
 
     static updateMaxPower() {
         if (this.getPower() > this.getPowerMax()) {
-            GameStorage.instance.maxPower = this.getPower()
+            GameStorage.instance.maxPower = this.getPower();
             this.updateGameStorage();
         }
     }
