@@ -499,7 +499,7 @@ export class ConfigStorage extends Component {
     }
 
     initHeroConfig() {
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + (5 * heroStarStady))
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
