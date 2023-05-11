@@ -42,6 +42,9 @@ export class GameStorage extends Component {
     @property({ type: CCInteger })
     public professionPower: number = 0;
 
+    @property({ type: CCInteger })
+    public formationPower: number = 0;
+
     onLoad() {
         GameStorage.instance = this
     }

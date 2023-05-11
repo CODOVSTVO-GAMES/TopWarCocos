@@ -148,7 +148,9 @@ export class TouchObject extends Component {
 
     putAnObject(index: number) {
         this.objectParameters.index = index;
-        this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+        if (this.initialIndex == index) {
+            this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+        }
         ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         this.mainObject.setParent(ControllerHomeMapStorage.getCoord(index));

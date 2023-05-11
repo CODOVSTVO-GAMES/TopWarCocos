@@ -18,9 +18,9 @@ export class DataStorage extends Component {
         this.saveData()
     }
 
-    saveData(){
-        let arrs : Object[] = []
-        setTimeout(()=>Sender.instance.send('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), ControllerBufferStorage.getBuffer()), this.parseDataStorageResponce), 3000)
+    saveData() {
+        let arrs: Object[] = []
+        setTimeout(() => Sender.instance.send('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), ControllerBufferStorage.getBuffer()), this.parseDataStorageResponce), 3000)
     }
 
     parseDataStorageResponce(status: number, body: any) {

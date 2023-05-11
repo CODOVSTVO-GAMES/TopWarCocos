@@ -149,34 +149,87 @@ export class ControllerGameStorage {
         GameStorage.instance.professionPower == value;
     }
 
-    static getPowerMax(): number {
-        return GameStorage.instance.maxPower;
-    }
-
     static getPower(): number {
         return GameStorage.instance.territoryPower +
             GameStorage.instance.technoPower +
             GameStorage.instance.heroPower +
             GameStorage.instance.arsenalPower +
-            GameStorage.instance.professionPower;
+            GameStorage.instance.professionPower +
+            GameStorage.instance.formationPower;
     }
 
-    static addPowerTerritory(value: number) {
+    static getMaxPower(): number {
+        return GameStorage.instance.maxPower;
+    }
+
+    static getTerritoryPower(): number {
+        return GameStorage.instance.territoryPower;
+    }
+
+    static getTechnoPower(): number {
+        return GameStorage.instance.technoPower;
+    }
+
+    static getHeroPower(): number {
+        return GameStorage.instance.heroPower;
+    }
+
+    static getArsenalPower(): number {
+        return GameStorage.instance.arsenalPower;
+    }
+
+    static getProfessionPower(): number {
+        return GameStorage.instance.professionPower;
+    }
+
+    static getFormationPower(): number {
+        return GameStorage.instance.formationPower;
+    }
+
+    static addTerritoryPower(value: number) {
         if (value == 0) return;
         GameStorage.instance.territoryPower += value;
         this.updateMaxPower();
         this.updateGameStorage();
     }
 
-    static addPowerTechno(value: number) {
+    static addTechnoPower(value: number) {
         if (value == 0) return
         GameStorage.instance.technoPower += value;
         this.updateMaxPower();
         this.updateGameStorage();
     }
 
+    static addHeroPower(value: number) {
+        if (value == 0) return
+        GameStorage.instance.heroPower += value;
+        this.updateMaxPower();
+        this.updateGameStorage();
+    }
+
+    static addArsenalPower(value: number) {
+        if (value == 0) return
+        GameStorage.instance.arsenalPower += value;
+        this.updateMaxPower();
+        this.updateGameStorage();
+    }
+
+    static addProfessionPower(value: number) {
+        if (value == 0) return
+        GameStorage.instance.professionPower += value;
+        this.updateMaxPower();
+        this.updateGameStorage();
+    }
+
+    static addFormationPower(value: number) {
+        if (value == 0) return
+        GameStorage.instance.formationPower += value;
+        this.updateMaxPower();
+        this.updateGameStorage();
+    }
+
     static updateMaxPower() {
-        if (this.getPower() > this.getPowerMax()) {
+        if (this.getPower() > this.getMaxPower()) {
             GameStorage.instance.maxPower = this.getPower();
             this.updateGameStorage();
         }

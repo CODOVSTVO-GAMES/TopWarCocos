@@ -1,6 +1,6 @@
 export class TypesPanel {
-    public static CARD_PROFIL: string = "profile";
-    public static CARD_POWER: string = "profile";
+    public static PROFILE: string = "profile";
+    public static POWER: string = "power";
     public static CARD_HEROES: string = "profile";
     public static SHOP_COINS: string = "shopCoins";
     public static SHOP_GEMS: string = "shopGems";
