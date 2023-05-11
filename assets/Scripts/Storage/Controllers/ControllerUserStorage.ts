@@ -11,11 +11,11 @@ export class ControllerUserStorage {
         return UserStorage.instance.sessionHash;
     }
 
-    static setSessionId(sessionId: string) {
+    static setSessionId(sessionId: number) {
         UserStorage.instance.sessionId = sessionId;
     }
 
-    static getSessionId(): string {
+    static getSessionId(): number {
         return UserStorage.instance.sessionId;
     }
 

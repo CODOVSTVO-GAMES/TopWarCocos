@@ -10,12 +10,15 @@ export class UserStorage extends Component {
     public sessionHash: string;
 
     @property({ type: CCString })
-    public sessionId: string;
+    public sessionId: number;
 
     @property({ type: CCString })
     public userId: string = "cocos";
 
     onLoad() {
         UserStorage.instance = this;
+        this.sessionId = 0
+        this.userId = "egor"
     }
+
 }
