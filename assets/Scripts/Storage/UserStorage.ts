@@ -13,12 +13,11 @@ export class UserStorage extends Component {
     public sessionId: number;
 
     @property({ type: CCString })
-    public userId: string = "cocos";
+    public userId: string;
 
     onLoad() {
         UserStorage.instance = this;
         this.sessionId = 0
         this.userId = "egor"
     }
-
 }

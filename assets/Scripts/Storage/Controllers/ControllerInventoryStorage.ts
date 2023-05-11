@@ -1,6 +1,7 @@
 import { _decorator } from 'cc';
 import { InventoryStorage } from '../InventoryStorage';
 import { Item } from '../../Structures/Item';
+import { ControllerBufferStorage } from './ControllerBufferStorage';
 
 export class ControllerInventoryStorage {
 
@@ -22,9 +23,9 @@ export class ControllerInventoryStorage {
     }
 
     static getQuantityByType(type: string): number {
-        for (let x = 0; x < InventoryStorage.instance.inventory.length; x++) {
-            if (InventoryStorage.instance.inventory[x].type == type) {
-                return InventoryStorage.instance.inventory[x].quantity;
+        for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
+            if (InventoryStorage.instance.inventory[i].type == type) {
+                return InventoryStorage.instance.inventory[i].quantity;
             }
         }
         return 0;

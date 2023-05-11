@@ -1,5 +1,4 @@
 export class HeroConfig {
-    
     type: string
     codeName: string
 
@@ -9,8 +8,8 @@ export class HeroConfig {
 
     coefDamage: number
     coefDefense: number
-    
-    constructor(type: string, codeName: string , startDamage: number, startLeader: number, startDefense: number, coefDamage: number, coefDefense: number ){
+
+    constructor(type: string, codeName: string, startDamage: number, startLeader: number, startDefense: number, coefDamage: number, coefDefense: number) {
         this.type = type
         this.codeName = codeName
 
@@ -21,5 +20,4 @@ export class HeroConfig {
         this.coefDamage = coefDamage
         this.coefDefense = coefDefense
     }
-    
 }
