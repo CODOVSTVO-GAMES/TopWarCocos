@@ -13,9 +13,6 @@ export class UserStorage extends Component {
     public sessionId: string;
 
     @property({ type: CCString })
-    public nodeId: string;
-
-    @property({ type: CCString })
     public userId: string = "cocos";
 
     onLoad() {

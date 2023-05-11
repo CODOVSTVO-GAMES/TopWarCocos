@@ -19,14 +19,6 @@ export class ControllerUserStorage {
         return UserStorage.instance.sessionId;
     }
 
-    static setNodeId(nodeId: string) {
-        UserStorage.instance.nodeId = nodeId;
-    }
-
-    static getNodeId(): string {
-        return UserStorage.instance.nodeId;
-    }
-
     static setUserId(userId: string) {
         UserStorage.instance.userId = userId
     }
