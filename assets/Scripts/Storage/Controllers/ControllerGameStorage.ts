@@ -76,6 +76,10 @@ export class ControllerGameStorage {
     }
 
     static getExpirienceForNextLevel() {
+        return ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel() + 1);
+    }
+
+    static getRemainingExpirienceForNextLevel() {
         return ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel() + 1) - this.getExperience();
     }
 
