@@ -10,7 +10,7 @@ export class GoldMineLogic extends Component {
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
-    public alo: number = 0;
+    public time: number = 0;
 
     start() {
         this.work();
@@ -19,9 +19,9 @@ export class GoldMineLogic extends Component {
     work() {
         if (this.node) {
             setTimeout(() => {
-                this.alo -= 0.02;
-                this.objectParameters.getGoldMineInterface().render(this.alo);
-                if (this.alo <= -1) {
+                this.time -= 0.02;
+                this.objectParameters.getGoldMineInterface().render(this.time);
+                if (this.time <= -1) {
                     return;
                 }
                 this.work();
@@ -30,8 +30,8 @@ export class GoldMineLogic extends Component {
     }
 
     collect() {
-        if (this.alo <= -1) {
-            this.alo = 0;
+        if (this.time <= -1) {
+            this.time = 0;
             ControllerGameStorage.addCoins(ControllerConfigStorage.getProductionInTimeMineByLevel(this.objectParameters.level));
             this.work();
         }

@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
 import { RedirectionToScene } from '../../Other/RedirectionToScene';
 import { SceneNames } from '../../Static/SceneNames';

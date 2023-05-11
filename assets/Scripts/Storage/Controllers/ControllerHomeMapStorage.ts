@@ -15,11 +15,13 @@ export class ControllerHomeMapStorage {
         for (let i = 0; i < arrayIndexs.length; i++) {
             HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexs[i]] = objectParameters;
         }
+        this.updateHomeMapStorage();
     }
 
     static upgradeLevel(index: number) {
         HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
         HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
+        this.updateHomeMapStorage();
     }
 
     static onTransparencyObjects() {
@@ -111,5 +113,9 @@ export class ControllerHomeMapStorage {
                 HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
             }
         }
+    }
+
+    static updateHomeMapStorage() {
+        console.log("updateHomeMapStorage");
     }
 }

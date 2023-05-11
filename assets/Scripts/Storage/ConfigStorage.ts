@@ -507,6 +507,13 @@ export class ConfigStorage extends Component {
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_8, 280, 340, 500, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_9, 300, 360, 500, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_10, 320, 380, 600, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_11, 340, 400, 600, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_12, 360, 420, 700, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_13, 380, 440, 700, 24, 36));
+        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36));
     }
 
     getHeroConfig(): HeroConfig[] {
