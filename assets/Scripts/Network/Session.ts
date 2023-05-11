@@ -1,9 +1,10 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, js, math, Node } from 'cc';
 import { Sender } from './Sender';
-import { UserStorage } from '../Storage/UserStorage';
 import { md5 } from './md5';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
-const { ccclass, property } = _decorator;
+import { SessionDataDTO } from './DTO/SessionDataDTO';
+import { ResponseDTO } from './DTO/ResponseDTO';
+const { ccclass } = _decorator;
 
 @ccclass('Session')
 export class Session extends Component {
@@ -15,37 +16,46 @@ export class Session extends Component {
     }
 
     start() {
-        this.getStartSessionData(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId());
-
-
+        this.getStartSessionData(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId())
         this.schedule(this.updateSessionData, 60)
     }
 
-    getStartSessionData(userId: string, sessionId: string) {
-        let hash = this.hashGenerate(sessionId + '_' + userId)
-        Sender.instance.sendPostRequest('session', '{"userId":"' + userId + '","sessionHash":"' + hash + '","sessionId":"' + sessionId + '"}', this.parseResponce);
+    getStartSessionData(userId: string, sessionId: number) {
+        const sessionDataDTO = new SessionDataDTO(userId, this.getRandomHash(), sessionId)
+        Sender.instance.send('session', sessionDataDTO, this.parseSessionResponce);
     }
 
     updateSessionData() {
-        Sender.instance.sendPostRequest('session', '{"userId":"' + '5365675465' + '","sessionHash":"' + ControllerUserStorage.getSessionHash() + '","sessionId":"' + ControllerUserStorage.getSessionId() + '"}', this.parseResponce);
+        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
+        Sender.instance.send('session', sessionDataDTO, this.parseSessionResponce);
     }
 
-    parseResponce(status: number, body: string) {
+    parseSessionResponce(status: number, body: any) {
+        const json = JSON.parse(body)
         if (status == 200) {
-            let json = JSON.parse(body)
-            // console.log(json)
+            const responseDTO = new ResponseDTO(json.data)
 
-            ControllerUserStorage.setSessionHash(json.hash)
-            ControllerUserStorage.setSessionId(json.sessionId)
+            const sessionJson = JSON.parse(JSON.stringify(responseDTO.data))
+
+            const sessionDataDTO = new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
+
+            ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
+            ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
         }
         else if (status == 403) {
-            console.log("Отказано " + body)
-        } else if (status == 502) {
-            console.log('Запрос не дошел до сервера' + body)
+            console.log("Перезагрузить клиент " + body)
+        } else if (status == 502 || status == 408) {
+            console.log('Повторить запрос позже' + body)
+        } else if (status == 400) {
+            console.log('Я хз че делать' + body)
         }
     }
 
     hashGenerate(str: string): string {
         return md5(str).toString();
+    }
+
+    getRandomHash(): string {
+        return this.hashGenerate(Math.random().toString())
     }
 }

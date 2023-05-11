@@ -1,5 +1,6 @@
 import { _decorator, Component } from 'cc';
 import {md5} from './md5';
+import { RequestDTO } from './DTO/RequestDTO';
 
 const { ccclass, property } = _decorator;
 
@@ -8,19 +9,25 @@ export class Sender extends Component {
 
     public static instance: Sender
 
-    private url: string = "http://codovstvo.ru:9600/";
+    private url: string = "http://localhost:9600/";
 
     onLoad() {
         Sender.instance = this;
     }
 
-    sendPostRequest(endpoint: string, body: string, func: Function) {
+    send(endpoint: string, data: object, func: Function){
+        const requestDTO = new RequestDTO(data, this.getHash(data))
+        this.postRequest(endpoint, requestDTO, func)
+    }
+
+    private postRequest(endpoint: string, data: RequestDTO, func: Function) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", this.url + endpoint, true);
         xhr.setRequestHeader("Content-Type", "application/json");
-
-        let x = '{"data":'+ body + ',"hash":"' + this.getHash(body) + '"}'
-        xhr.send(x);
+        
+        // console.log(JSON.stringify(data))
+        
+        xhr.send(JSON.stringify(data));
         
         xhr.onload = function () {
             func(xhr.status, xhr.responseText)
@@ -31,11 +38,12 @@ export class Sender extends Component {
         }
     }  
 
-    getHash(str: string) : string{
-        return this.hashGenerator("data_"+ str)
+    private getHash(obj: object) : string{
+        const str = JSON.stringify(obj)
+        return this.hashGenerator("data_" + str)
     }
 
-    hashGenerator(str: string) : string {
+    private hashGenerator(str: string) : string {
         return md5(str).toString();
     }  
 
