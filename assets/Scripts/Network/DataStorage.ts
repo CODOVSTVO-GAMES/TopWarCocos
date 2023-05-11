@@ -2,6 +2,7 @@ import { _decorator, Component, Node } from 'cc';
 import { DataStorageDTO } from './DTO/DataStorageDTO';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 import { Sender } from './Sender';
+import { ControllerBufferStorage } from '../Storage/Controllers/ControllerBufferStorage';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
@@ -19,10 +20,7 @@ export class DataStorage extends Component {
 
     saveData(){
         let arrs : Object[] = []
-        arrs.push({"name":"xxx", "value":{'x':"sdsds"}})
-        arrs.push({"name":"xqwxx", "value":{'x':"sd4234sds"}})
-        arrs.push({"name":"xq123123wxx", "value":{'x':"sdsd234324s"}})
-        setTimeout(()=>Sender.instance.send('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), arrs), this.parseDataStorageResponce), 3000)
+        setTimeout(()=>Sender.instance.send('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), ControllerBufferStorage.getBuffer()), this.parseDataStorageResponce), 3000)
     }
 
     parseDataStorageResponce(status: number, body: any) {
