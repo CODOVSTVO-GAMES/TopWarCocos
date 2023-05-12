@@ -1,6 +1,6 @@
 import { _decorator } from 'cc';
 import { TechnicalConfig } from "../Static/TechnicalConfig";
-import { Cryptor } from "./Cryptor";
+import { Cryptor } from "./other/Cryptor";
 import { RequestDTO } from "./DTO/RequestDTO";
 import { ResponseDTO } from "./DTO/ResponseDTO";
 
@@ -21,10 +21,10 @@ export class ClientService {
         // console.log(JSON.stringify(data))
 
         var xhr = new XMLHttpRequest();
-        if (type == "GET"){//спецификация HTTP не дает отправить тело в гет запросе
-            xhr.open(type, 'http://' + TechnicalConfig.SERVER_DOMAIN + endpoint +'?dto='+ JSON.stringify(data), true);
+        if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
+            xhr.open(type, 'http://' + TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(data), true);
             xhr.send()
-        }else{
+        } else {
             xhr.open(type, 'http://' + TechnicalConfig.SERVER_DOMAIN + endpoint, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(data));
@@ -40,21 +40,28 @@ export class ClientService {
         }
     }
 
-    private static globalResponseParser(status: number, body: any, customFunction : Function){
-        console.log('Глобальный парсер активирован статус:' + status)
-        if (status == 200){
-            const json = JSON.parse(body)//может не распарсить, что делаем?
+    private static globalResponseParser(status: number, body: any, customFunction: Function) {
+        // console.log('Глобальный парсер статус: ' + status)
+        if (status == 200) {
+            let json
+            try {
+                json = JSON.parse(body)
+            } catch (e) {
+                // console.log(e)//дебаг
+                throw "Невозможно распарсить ответ сервера, что делаем? (Лог ОШИБКА на сервер + ???)"
+            }
+
             const responseDTO = new ResponseDTO(json.data)
             const sessionJson = JSON.parse(JSON.stringify(responseDTO.data))
             customFunction(sessionJson)
         }
-        else if (status == 403){
+        else if (status == 403) {
             console.log('Сервер выдал 403. Перезагрузите клиент')
         }
-        else if (status == 403){
+        else if (status == 403) {
             console.log('Сервер выдал 502 или 408. Повторите запрос позже')
         }
-        else if (status == 400){
+        else if (status == 400) {
             console.log('Сервер выдал 400. Что будем делать???')
         }
     }
