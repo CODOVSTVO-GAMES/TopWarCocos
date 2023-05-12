@@ -21,6 +21,7 @@ export class HomeMapStorage extends Component {
     public cellFree: Node[] = [];
     public cellSelected: Node[] = [];
     public cellBlock: Node[] = [];
+    public cellHint: Node[] = [];
 
     onLoad() {
         HomeMapStorage.instance = this;
@@ -32,5 +33,6 @@ export class HomeMapStorage extends Component {
         this.cellFree = new Array(this.mapSize);
         this.cellSelected = new Array(this.mapSize);
         this.cellBlock = new Array(this.mapSize);
+        this.cellHint = new Array(this.mapSize);
     }
 }

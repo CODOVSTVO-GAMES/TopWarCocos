@@ -1,13 +1,13 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
-import { SpriteStorage } from '../Storage/SpriteStorage';
-import { CharactersStorage } from '../Storage/CharactersStorage';
-import { CharacterInfo } from '../Structures/CharacterInfo';
+import { CharacterInfo } from '../../../Structures/CharacterInfo';
+import { SpriteStorage } from '../../../Storage/SpriteStorage';
+import { CharactersStorage } from '../../../Storage/CharactersStorage';
 const { ccclass, property } = _decorator;
 
-@ccclass('RenderCharactersGrid')
-export class RenderCharactersGrid extends Component {
+@ccclass('ModalCharacterGridInterface')
+export class ModalCharacterGridInterface extends Component {
 
-    public static instance: RenderCharactersGrid;
+    public static instance: ModalCharacterGridInterface;
 
     @property({ type: Sprite })
     public images: Sprite[] = [];
@@ -24,7 +24,7 @@ export class RenderCharactersGrid extends Component {
     public charactersRendered: CharacterInfo[] = [];
 
     onLoad() {
-        RenderCharactersGrid.instance = this;
+        ModalCharacterGridInterface.instance = this;
     }
 
     renderCharacters() {

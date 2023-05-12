@@ -31,6 +31,7 @@ export class InitHomeMap extends Component {
         HighlightHomeMap.initCellFree();
         HighlightHomeMap.initCellSelected();
         HighlightHomeMap.initCellBlock();
+        HighlightHomeMap.initCellHint();
     }
 }
 

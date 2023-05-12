@@ -1,11 +1,11 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
-import { CharactersStorage } from '../Storage/CharactersStorage';
+import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 const { ccclass, property } = _decorator;
 
-@ccclass('RenderCharacterInfo')
-export class RenderCharacterInfo extends Component {
+@ccclass('ModalCharacterInfoIntarface')
+export class ModalCharacterInfoIntarface extends Component {
 
-    public static instance: RenderCharacterInfo;
+    public static instance: ModalCharacterInfoIntarface;
 
     @property({ type: Label })
     public heroName: Label;
@@ -41,7 +41,7 @@ export class RenderCharacterInfo extends Component {
     public stars: Sprite[] = [];
 
     onLoad() {
-        RenderCharacterInfo.instance = this;
+        ModalCharacterInfoIntarface.instance = this;
     }
 
     renderCharacter(index: number): boolean {

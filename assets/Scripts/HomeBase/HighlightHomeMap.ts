@@ -26,6 +26,13 @@ export class HighlightHomeMap {
         this.closeCellBlock();
     }
 
+    static initCellHint() {
+        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
+            HomeMapStorage.instance.cellHint[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellHint;
+        }
+        this.closeCellHint();
+    }
+
     static openCellFree() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) {
@@ -48,10 +55,12 @@ export class HighlightHomeMap {
         for (let i = 0; i < arrayIndexs.length; i++) {
             try {
                 if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) == null) {
+                    HomeMapStorage.instance.cellHint[indexObject - arrayIndexs[i]].active = false;
                     HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
                 }
                 else {
                     if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type == type) {
+                        HomeMapStorage.instance.cellHint[indexObject - arrayIndexs[i]].active = false;
                         HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
                     }
                     else {
@@ -61,7 +70,20 @@ export class HighlightHomeMap {
             }
             catch
             {
-                
+
+            }
+        }
+    }
+
+    static openCellHint(type: string, level: number) {
+        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
+            if (ControllerHomeMapStorage.getObjectParameter(i)) {
+                if (ControllerHomeMapStorage.getObjectParameter(i).type == type) {
+                    if (ControllerHomeMapStorage.getObjectParameter(i).level == level) {
+                        HomeMapStorage.instance.cellFree[i].active = false;
+                        HomeMapStorage.instance.cellHint[i].active = true;
+                    }
+                }
             }
         }
     }
@@ -81,6 +103,12 @@ export class HighlightHomeMap {
     static closeCellBlock() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             HomeMapStorage.instance.cellBlock[i].active = false;
+        }
+    }
+
+    static closeCellHint() {
+        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
+            HomeMapStorage.instance.cellHint[i].active = false;
         }
     }
 }

@@ -12,7 +12,7 @@ export class BarracksLogic extends Component {
 
     public createTroop() {
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-           SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_AIR, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_AIR, this.objectParameters.level, this.getComponent(ObjectParameters).index);
         }
         else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
             SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_MARINE, this.objectParameters.level, this.getComponent(ObjectParameters).index);
@@ -22,8 +22,7 @@ export class BarracksLogic extends Component {
         }
     }
 
-    wokr()
-    {
-
+    wokr() {
+        
     }
 }

@@ -51,6 +51,7 @@ export class TouchObject extends Component {
 
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.closeCellBlock();
+        HighlightHomeMap.openCellHint(this.objectParameters.type, this.objectParameters.level);
         HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.getWorldPosition());
 
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
@@ -70,6 +71,8 @@ export class TouchObject extends Component {
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.closeCellBlock();
+        HighlightHomeMap.closeCellHint();
+        HighlightHomeMap.openCellHint(this.objectParameters.type, this.objectParameters.level);
         HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.getWorldPosition());
     }
 
@@ -81,6 +84,7 @@ export class TouchObject extends Component {
         HighlightHomeMap.closeCellFree();
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.closeCellBlock();
+        HighlightHomeMap.closeCellHint();
         ControllerHomeMapStorage.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
@@ -93,6 +97,7 @@ export class TouchObject extends Component {
         HighlightHomeMap.closeCellFree();
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.closeCellBlock();
+        HighlightHomeMap.closeCellHint();
         ControllerHomeMapStorage.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }

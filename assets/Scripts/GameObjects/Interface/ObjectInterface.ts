@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Label } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
+import { TypesObjects } from '../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectInterface')

@@ -1,8 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
-import { RenderCharactersGrid } from '../Characters/RenderCharactersGrid';
 import { ModalExperienceInerface } from './Modals/ModalExperience/ModalExperienceInerface';
 import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
 import { TypesModals } from '../Static/TypesModals';
+import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -32,11 +32,7 @@ export class SecondaryInterface extends Component {
     public listOpeningModals: string[] = [];
 
     start() {
-        this.backgraund.active = false;
-        this.profile.active = false;
-        this.experience.active = false;
-        this.powar.active = false;
-        this.characters.active = false;
+        this.closeAllModals();
     }
 
     openModal(type: string) {
@@ -77,13 +73,15 @@ export class SecondaryInterface extends Component {
     closeAllModals() {
         this.backgraund.active = false;
         this.profile.active = false;
+        this.shopCoins.active = false;
+        this.shopGems.active = false;
         this.experience.active = false;
         this.powar.active = false;
         this.characters.active = false;
     }
 
     charactersOpen() {
-        RenderCharactersGrid.instance.renderCharacters();
+        ModalCharacterGridInterface.instance.renderCharacters();
         this.backgraund.active = true;
         this.characters.active = true;
     }
@@ -92,6 +90,4 @@ export class SecondaryInterface extends Component {
         this.backgraund.active = false;
         this.characters.active = false;
     }
-
-
 }

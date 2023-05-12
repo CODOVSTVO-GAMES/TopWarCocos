@@ -22,7 +22,7 @@ export class GoldMineLogic extends Component {
                 this.time -= 0.002;
                 this.objectParameters.getGoldMineInterface().render(this.time);
                 if (this.time <= -1) {
-                    return
+                    return;
                 }
                 this.work();
             }, 10);
