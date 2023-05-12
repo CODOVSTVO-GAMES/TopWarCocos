@@ -67,7 +67,7 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine[level - 1];
 
 
-        
+
         else if (type == TypesObjects.WALL) return this.wall[level - 1];
         else if (type == TypesObjects.BATTLE) return this.battle[level - 1];
         else if (type == TypesCharacters.BLACK_WIDOW) return this.characters[0];

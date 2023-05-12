@@ -19,6 +19,18 @@ export class ControllerInventoryStorage {
         this.updateInvenoryStorage();
     }
 
+    static reduceItem(type: string, quantity: number) {
+        if (quantity == 0) return;
+        for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
+            if (InventoryStorage.instance.inventory[i].type == type) {
+                InventoryStorage.instance.inventory[i].quantity -= quantity;
+                this.updateInvenoryStorage();
+                return;
+            }
+        }
+        this.updateInvenoryStorage();
+    }
+
     static getAllItems(): Array<Item> {
         return InventoryStorage.instance.inventory;
     }

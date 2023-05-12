@@ -21,4 +21,9 @@ export class BarracksLogic extends Component {
             SpawnObjects.instance.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, this.objectParameters.level, this.getComponent(ObjectParameters).index);
         }
     }
+
+    wokr()
+    {
+
+    }
 }

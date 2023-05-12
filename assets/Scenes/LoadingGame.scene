@@ -1639,8 +1639,18 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "bank": [],
-    "autocombine": [],
+    "bank": [
+      {
+        "__uuid__": "d87fc824-846a-4ea4-8c6a-d4c318ce7c52@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
+    "autocombine": [
+      {
+        "__uuid__": "10f3e90a-314e-4e73-a0d8-47979a1f6de7@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "wall": [
       {
         "__uuid__": "048551ca-78ec-478d-8f55-d33aca157dbf@f9941",
