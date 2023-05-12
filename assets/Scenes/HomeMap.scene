@@ -493,7 +493,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 960,
+      "x": 959.9999999999999,
       "y": 540,
       "z": 0
     },
@@ -32374,7 +32374,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Sender",
+    "_name": "DataStorage",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1612

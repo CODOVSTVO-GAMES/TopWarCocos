@@ -1,10 +1,13 @@
-import { _decorator, Component, js, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { DataStorageDTO } from './DTO/DataStorageDTO';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
-import { Sender } from './Sender';
 import { ResponseDTO } from './DTO/ResponseDTO';
 import { DataStorageResponseDTO } from './DTO/DataStorageResponseDTO';
 import { TypesStorages } from '../Static/TypesStorages';
+import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { ClientService } from './ClientService';
+import { SessionService } from './SessionService';
+import { DataStorageService } from './DataStorageService';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
@@ -18,43 +21,32 @@ export class DataStorage extends Component {
 
     start() {
         let myArr = [TypesStorages.GAME_STORAGE]
-        setTimeout(() => this.getData(myArr))
-    }
-
-    saveData(data: string) {
-        Sender.instance.post('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), data), this.parseDataStorageResponce)
-    }
-
-    async getData(keys: Array<string>) {
-        const strKeys = JSON.parse(JSON.stringify(keys))
-        Sender.instance.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), this.parseDataStorageResponce)
+        setTimeout(() => DataStorageService.getData(myArr), 1000)
     }
 
     dataRecipient(objects: object[]) {
-        let json = JSON.parse(JSON.stringify(objects))
+        if (objects == null) throw 'Пришел пустой обьект'
 
-        console.log(json[0].value)
+        for (let l = 0; l < objects.length; l++) {
+            const json = JSON.parse(JSON.stringify(objects[l]))
 
-        console.log(json[0].value.level)
+            console.log(json.key) //название класса
+            const jsonValue = JSON.parse(json.value)// обьект класса
 
-        // console.log("SERVER-DATA: " + JSON.parse(JSON.stringify(objects[0])).level);
-    }
-
-    parseDataStorageResponce(status: number, body: any) {
-        const json = JSON.parse(body)
-        if (status == 200) {
-            const responseDTO = new ResponseDTO(json.data)
-            const dataStorageJson = JSON.parse(JSON.stringify(responseDTO.data))
-            const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects)
-
-            DataStorage.instance.dataRecipient(dataStorageResponseDTO.dataObjects)
-        }
-        else if (status == 403) {//статусы пересмотреть
-            console.log("Перезагрузить клиент " + body)
-        } else if (status == 502 || status == 408) {
-            console.log('Повторить запрос позже' + body)
-        } else if (status == 400) {
-            console.log('Я хз че делать' + body)
+            if (json.key == TypesStorages.GAME_STORAGE) {
+                console.log(jsonValue.coins)
+                ControllerGameStorage.equateCoins(jsonValue.coins);
+                ControllerGameStorage.equateGems(jsonValue.coinsInTime);
+                ControllerGameStorage.equateGems(jsonValue.gems);
+                ControllerGameStorage.equateEnergy(jsonValue.energy);
+                ControllerGameStorage.equateExperience(jsonValue.experience);
+                ControllerGameStorage.equateMaxPower(jsonValue.maxPower);
+                ControllerGameStorage.equateTerritoryPower(jsonValue.territoryPower);
+                ControllerGameStorage.equateTechnoPower(jsonValue.technoPower);
+                ControllerGameStorage.equateHeroPower(jsonValue.heroPower);
+                ControllerGameStorage.equateArsenalPower(jsonValue.arsenalPower);
+                ControllerGameStorage.equateProfessionPower(jsonValue.professionPower);
+            }
         }
     }
 
