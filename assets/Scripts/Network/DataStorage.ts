@@ -1,10 +1,10 @@
 import { _decorator, Component, js, Node } from 'cc';
 import { DataStorageDTO } from './DTO/DataStorageDTO';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
-import { Sender } from './Sender';
-import { ControllerBufferStorage } from '../Storage/Controllers/ControllerBufferStorage';
 import { ResponseDTO } from './DTO/ResponseDTO';
 import { DataStorageResponseDTO } from './DTO/DataStorageResponseDTO';
+import { ClientService } from './ClientService';
+import { SessionService } from './SessionService';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
@@ -19,18 +19,20 @@ export class DataStorage extends Component {
     start(): void {
         let myArr = ['gameStorage', 'gameStorage']
         setTimeout(() => this.getData(myArr))
+        SessionService.getStartSessionData("swe", 0)
+        console.log('------')
     }
 
     saveData(data: string) {
-        Sender.instance.post('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), data), this.parseDataStorageResponce)
+        ClientService.post('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), data), this.parseDataStorageResponce)
     }
 
-    async getData(keys: Array<string>) {
+    getData(keys: Array<string>) {
         const strKeys = JSON.parse(JSON.stringify(keys))
-        Sender.instance.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), this.parseDataStorageResponce)
+        ClientService.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), this.parseDataStorageResponce)
     }
 
-    dataRecipient(objects : object[]){
+    dataRecipient(objects: object[]) {
         console.log('------')
         console.log(objects)
     }

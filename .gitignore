@@ -22,3 +22,5 @@ node_modules/
 # WebStorm
 #//////////////////////////
 .idea/
+
+assets/Scripts/Static/TechnicalConfig.ts
