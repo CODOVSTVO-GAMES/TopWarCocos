@@ -1,4 +1,5 @@
 import { _decorator, CCString, Component } from 'cc';
+import { TechnicalConfig } from '../Static/TechnicalConfig';
 const { ccclass, property } = _decorator;
 
 @ccclass('UserStorage')
@@ -18,6 +19,6 @@ export class UserStorage extends Component {
     onLoad() {
         UserStorage.instance = this;
         this.sessionId = 0
-        this.userId = "egor"
+        this.userId = TechnicalConfig.NAME
     }
 }
