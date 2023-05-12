@@ -1,10 +1,11 @@
-import { _decorator, Component, js, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { DataStorageDTO } from './DTO/DataStorageDTO';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { Sender } from './Sender';
 import { ResponseDTO } from './DTO/ResponseDTO';
 import { DataStorageResponseDTO } from './DTO/DataStorageResponseDTO';
-import { ClientService } from './ClientService';
-import { SessionService } from './SessionService';
+import { TypesStorages } from '../Static/TypesStorages';
+import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
@@ -16,11 +17,9 @@ export class DataStorage extends Component {
         DataStorage.instance = this;
     }
 
-    start(): void {
-        let myArr = ['gameStorage', 'gameStorage']
-        setTimeout(() => this.getData(myArr))
-        SessionService.getStartSessionData("swe", 0)
-        console.log('------')
+    start() {
+        let myArr = [TypesStorages.GAME_STORAGE]
+        setTimeout(() => this.getData(myArr), 3000)
     }
 
     saveData(data: string) {
@@ -33,8 +32,35 @@ export class DataStorage extends Component {
     }
 
     dataRecipient(objects: object[]) {
-        console.log('------')
-        console.log(objects)
+
+        if(objects == null) return;
+
+        if (objects.length > 0) {
+
+            console.log("stage 0");
+
+            let json = JSON.parse(JSON.stringify(objects));
+            let obj = JSON.parse(json[0].value);
+
+            console.log("stage 1");
+
+            console.log("SERVER-COINS: " + obj.coins);
+
+            ControllerGameStorage.equateCoins(obj.coins);
+            ControllerGameStorage.equateGems(obj.coinsInTime);
+            ControllerGameStorage.equateGems(obj.gems);
+            ControllerGameStorage.equateEnergy(obj.energy);
+            ControllerGameStorage.equateExperience(obj.experience);
+            ControllerGameStorage.equateMaxPower(obj.maxPower);
+            ControllerGameStorage.equateTerritoryPower(obj.territoryPower);
+            ControllerGameStorage.equateTechnoPower(obj.technoPower);
+            ControllerGameStorage.equateHeroPower(obj.heroPower);
+            ControllerGameStorage.equateArsenalPower(obj.arsenalPower);
+            ControllerGameStorage.equateProfessionPower(obj.professionPower);
+
+            console.log("stage 2");
+
+        }
     }
 
     parseDataStorageResponce(status: number, body: any) {
