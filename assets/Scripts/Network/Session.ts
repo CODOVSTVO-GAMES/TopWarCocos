@@ -22,12 +22,12 @@ export class Session extends Component {
 
     getStartSessionData(userId: string, sessionId: number) {
         const sessionDataDTO = new SessionDataDTO(userId, this.getRandomHash(), sessionId)
-        Sender.instance.send('session', sessionDataDTO, this.parseSessionResponce);
+        Sender.instance.post('session', sessionDataDTO, this.parseSessionResponce);
     }
 
     updateSessionData() {
         const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
-        Sender.instance.send('session', sessionDataDTO, this.parseSessionResponce);
+        Sender.instance.post('session', sessionDataDTO, this.parseSessionResponce);
     }
 
     parseSessionResponce(status: number, body: any) {

@@ -15,18 +15,20 @@ export class Sender extends Component {
         Sender.instance = this;
     }
 
-    send(endpoint: string, data: object, func: Function) {
+    post(endpoint: string, data: object, func: Function) {
         const requestDTO = new RequestDTO(data, this.getHash(data))
-        this.postRequest(endpoint, requestDTO, func)
+        this.request(endpoint, requestDTO, func, "POST")
     }
 
-    private postRequest(endpoint: string, data: RequestDTO, func: Function) {
+    get(endpoint: string, data: object, func: Function){
+        const requestDTO = new RequestDTO(data, this.getHash(data))
+        this.request(endpoint, requestDTO, func, "GET")
+    }
+
+    private request(endpoint: string, data: RequestDTO, func: Function, type: string) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", this.url + endpoint, true);
+        xhr.open(type, this.url + endpoint, true);
         xhr.setRequestHeader("Content-Type", "application/json");
-
-        // console.log(JSON.stringify(data))
-
         xhr.send(JSON.stringify(data));
 
         xhr.onload = function () {

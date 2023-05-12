@@ -15,12 +15,16 @@ export class DataStorage extends Component {
     }
 
     start(): void {
-        this.saveData()
+        setTimeout(() => this.saveData(ControllerBufferStorage.getBuffer()), 3000)
+        this.getData(["gameStorage"])
     }
 
-    saveData() {
-        let arrs: Object[] = []
-        setTimeout(() => Sender.instance.send('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), ControllerBufferStorage.getBuffer()), this.parseDataStorageResponce), 3000)
+    saveData(data : string) {
+        Sender.instance.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), data), this.parseDataStorageResponce)
+    }
+
+    getData(keys: [string]) {
+        console.log(keys[0])
     }
 
     parseDataStorageResponce(status: number, body: any) {
