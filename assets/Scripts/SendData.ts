@@ -13,9 +13,11 @@ export class SendData extends Component {
     send() {
         if (this.node) {
             setTimeout(() => {
-                console.log("send data");
-                DataStorage.instance.saveData(ControllerBufferStorage.getBuffer());
-                ControllerBufferStorage.clearBufferStorage();
+                if (ControllerBufferStorage.isBufferFull()) {
+                    console.log("send data");
+                    DataStorage.instance.saveData(ControllerBufferStorage.getBuffer());
+                    ControllerBufferStorage.clearBufferStorage();
+                }
                 this.send();
             }, 2000);
         }
