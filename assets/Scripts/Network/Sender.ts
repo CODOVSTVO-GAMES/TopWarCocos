@@ -20,16 +20,25 @@ export class Sender extends Component {
         this.request(endpoint, requestDTO, func, "POST")
     }
 
-    get(endpoint: string, data: object, func: Function){
+    get(endpoint: string, data: object, func: Function) {
         const requestDTO = new RequestDTO(data, this.getHash(data))
         this.request(endpoint, requestDTO, func, "GET")
     }
 
     private request(endpoint: string, data: RequestDTO, func: Function, type: string) {
+        // console.log(data)
+        // console.log(JSON.stringify(data))
+
         var xhr = new XMLHttpRequest();
-        xhr.open(type, this.url + endpoint, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(data));
+        if (type == "GET"){//спецификация HTTP не дает отправить тело в гет запросе
+            xhr.open(type, this.url + endpoint +'?dto='+ JSON.stringify(data), true);
+            xhr.send()
+            console.log(this.url + endpoint +'?dto='+ JSON.stringify(data))
+        }else{
+            xhr.open(type, this.url + endpoint, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        }
 
         xhr.onload = function () {
             func(xhr.status, xhr.responseText)

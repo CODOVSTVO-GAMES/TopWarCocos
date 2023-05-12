@@ -17,6 +17,14 @@ export class ControllerBufferStorage {
         return JSON.parse(JSON.stringify(BufferStorage.instance.arrayBuffer));
     }
 
+    static isBufferFull(): boolean {
+        if (BufferStorage.instance.arrayBuffer.length > 0) {
+            return true
+        }
+        return false
+    }
+
+
     static clearBufferStorage() {
         BufferStorage.instance.arrayBuffer = new Array<Buffer>;
     }
