@@ -1,11 +1,11 @@
 import { _decorator, Component } from 'cc';
 import { DataStorageDTO } from './DTO/DataStorageDTO';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
-import { Sender } from './Sender';
 import { ResponseDTO } from './DTO/ResponseDTO';
 import { DataStorageResponseDTO } from './DTO/DataStorageResponseDTO';
 import { TypesStorages } from '../Static/TypesStorages';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { ClientService } from './ClientService';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
