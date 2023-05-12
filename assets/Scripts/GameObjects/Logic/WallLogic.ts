@@ -15,4 +15,3 @@ export class WallLogic extends Component {
         this.node.destroy();
     }
 }
-

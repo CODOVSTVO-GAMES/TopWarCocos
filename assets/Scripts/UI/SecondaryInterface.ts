@@ -32,11 +32,7 @@ export class SecondaryInterface extends Component {
     public listOpeningModals: string[] = [];
 
     start() {
-        this.backgraund.active = false;
-        this.profile.active = false;
-        this.experience.active = false;
-        this.powar.active = false;
-        this.characters.active = false;
+        this.closeAllModals();
     }
 
     openModal(type: string) {
@@ -77,6 +73,8 @@ export class SecondaryInterface extends Component {
     closeAllModals() {
         this.backgraund.active = false;
         this.profile.active = false;
+        this.shopCoins.active = false;
+        this.shopGems.active = false;
         this.experience.active = false;
         this.powar.active = false;
         this.characters.active = false;
@@ -92,6 +90,4 @@ export class SecondaryInterface extends Component {
         this.backgraund.active = false;
         this.characters.active = false;
     }
-
-
 }

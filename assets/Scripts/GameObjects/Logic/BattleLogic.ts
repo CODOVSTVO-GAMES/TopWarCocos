@@ -19,4 +19,3 @@ export class BattleLogic extends Component {
         this.node.destroy();
     }
 }
-
