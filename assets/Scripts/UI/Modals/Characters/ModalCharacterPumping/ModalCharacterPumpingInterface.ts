@@ -27,18 +27,41 @@ export class ModalCharacterPumpingInterface extends Component {
 
     onLoad() {
         ModalCharacterPumpingInterface.instance = this;
+        for (let i = 0; i < this.tabs.length; i++) {
+            this.tabs[i].active = false;
+        }
+    }
+
+    pushButtonTab(event, customEventData) {
+        switch (customEventData) {
+            case "0":
+                this.renderModalPumping(TypesModalPumping.PARAMETERS);
+                break;
+            case "1":
+                this.renderModalPumping(TypesModalPumping.PUMPING_LEVEL);
+                break;
+            case "2":
+                this.renderModalPumping(TypesModalPumping.PUMPING_STARS);
+                break;
+        }
     }
 
     renderModalPumping(tab: string) {
         switch (tab) {
             case TypesModalPumping.PARAMETERS:
-
+                this.tabs[0].active = true;
+                this.tabs[1].active = false;
+                this.tabs[2].active = false;
                 break;
             case TypesModalPumping.PUMPING_LEVEL:
-
+                this.tabs[0].active = false;
+                this.tabs[1].active = true;
+                this.tabs[2].active = false;
                 break;
             case TypesModalPumping.PUMPING_STARS:
-
+                this.tabs[0].active = false;
+                this.tabs[1].active = false;
+                this.tabs[2].active = true;
                 break;
         }
     }
