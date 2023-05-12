@@ -2,9 +2,9 @@ import { _decorator, Component, js, Node } from 'cc';
 import { DataStorageDTO } from './DTO/DataStorageDTO';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 import { Sender } from './Sender';
-import { ControllerBufferStorage } from '../Storage/Controllers/ControllerBufferStorage';
 import { ResponseDTO } from './DTO/ResponseDTO';
 import { DataStorageResponseDTO } from './DTO/DataStorageResponseDTO';
+import { TypesStorages } from '../Static/TypesStorages';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
@@ -16,8 +16,8 @@ export class DataStorage extends Component {
         DataStorage.instance = this;
     }
 
-    start(): void {
-        let myArr = ['gameStorage', 'gameStorage']
+    start() {
+        let myArr = [TypesStorages.GAME_STORAGE]
         setTimeout(() => this.getData(myArr))
     }
 
@@ -30,9 +30,14 @@ export class DataStorage extends Component {
         Sender.instance.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), this.parseDataStorageResponce)
     }
 
-    dataRecipient(objects : object[]){
-        console.log('------')
-        console.log(objects)
+    dataRecipient(objects: object[]) {
+        let json = JSON.parse(JSON.stringify(objects))
+
+        console.log(json[0].value)
+
+        console.log(json[0].value.level)
+
+        // console.log("SERVER-DATA: " + JSON.parse(JSON.stringify(objects[0])).level);
     }
 
     parseDataStorageResponce(status: number, body: any) {
