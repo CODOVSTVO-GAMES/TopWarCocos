@@ -34,9 +34,7 @@ export class Session extends Component {
         const json = JSON.parse(body)
         if (status == 200) {
             const responseDTO = new ResponseDTO(json.data)
-
             const sessionJson = JSON.parse(JSON.stringify(responseDTO.data))
-
             const sessionDataDTO = new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
 
             ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)

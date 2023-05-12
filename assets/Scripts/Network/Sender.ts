@@ -9,7 +9,7 @@ export class Sender extends Component {
 
     public static instance: Sender
 
-    private url: string = "http://localhost:9600/";
+    private url: string = "http://codovstvo.ru:9600/";
 
     onLoad() {
         Sender.instance = this;
@@ -33,7 +33,6 @@ export class Sender extends Component {
         if (type == "GET"){//спецификация HTTP не дает отправить тело в гет запросе
             xhr.open(type, this.url + endpoint +'?dto='+ JSON.stringify(data), true);
             xhr.send()
-            console.log(this.url + endpoint +'?dto='+ JSON.stringify(data))
         }else{
             xhr.open(type, this.url + endpoint, true);
             xhr.setRequestHeader("Content-Type", "application/json");
