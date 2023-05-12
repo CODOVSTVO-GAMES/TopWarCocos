@@ -1,8 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
-import { RenderCharactersGrid } from '../Characters/RenderCharactersGrid';
 import { ModalExperienceInerface } from './Modals/ModalExperience/ModalExperienceInerface';
 import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
 import { TypesModals } from '../Static/TypesModals';
+import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -83,7 +83,7 @@ export class SecondaryInterface extends Component {
     }
 
     charactersOpen() {
-        RenderCharactersGrid.instance.renderCharacters();
+        ModalCharacterGridInterface.instance.renderCharacters();
         this.backgraund.active = true;
         this.characters.active = true;
     }
