@@ -253,6 +253,7 @@ export class ControllerGameStorage {
             professionPower: GameStorage.instance.professionPower,
         };
         ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
+        ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
         console.log("updateGameStorage");
     }
 }

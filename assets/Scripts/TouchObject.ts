@@ -50,6 +50,10 @@ export class TouchObject extends Component {
 
         HomeMapStorage.instance.selectedObject = this.objectParameters;
 
+        HighlightHomeMap.closeCellSelected();
+        HighlightHomeMap.initCellBlock();
+        HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.getWorldPosition());
+
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
@@ -100,20 +104,16 @@ export class TouchObject extends Component {
 
         let minDistance = 100000;
         let indexObject = 0;
-        let cellFound = false;
 
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance = Vec3.distance(this.mainObject.position, ControllerHomeMapStorage.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                if (ControllerHomeMapStorage.getObjectParameter(i) == null) {
-                    minDistance = currentDistance;
-                    indexObject = i;
-                    cellFound = true;
-                }
+                minDistance = currentDistance;
+                indexObject = i;
             }
         }
 
-        if (this.initialIndex == indexObject || cellFound == false) {
+        if (this.initialIndex == indexObject) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
             ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
             this.objectParameters.index = indexObject;
@@ -122,27 +122,31 @@ export class TouchObject extends Component {
             this.mainObject.position = Vec3.ZERO;
             return;
         }
-        else {
-            let arrayIndexs = ControllerHomeMapStorage.getArrayIndexs(this.objectParameters.type);
-            let count = 0;
-            let indexMerge = 0;
-            for (let i = 0; i < arrayIndexs.length; i++) {
-                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
-                    if (this.objectParameters.type == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type) {
-                        if (this.objectParameters.level == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).level) {
-                            count += 1;
-                            indexMerge = i;
-                        }
-                        else return this.putAnObject(this.initialIndex)
+        let arrayIndexs = ControllerHomeMapStorage.getArrayIndexs(this.objectParameters.type);
+        let count = 0;
+        let indexMerge = 0;
+        for (let i = 0; i < arrayIndexs.length; i++) {
+            if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) != null) {
+                if (this.objectParameters.type == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type) {
+                    if (this.objectParameters.level == ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).level) {
+                        count += 1;
+                        indexMerge = i;
                     }
-                    else return this.putAnObject(this.initialIndex)
+                    else {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+                else {
+                    return this.putAnObject(this.initialIndex);
                 }
             }
-            if (count > 0) {
-                ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                this.mainObject.destroy();
-            }
-            else return this.putAnObject(indexObject);
+        }
+        if (count > 0) {
+            ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+            this.mainObject.destroy();
+        }
+        else {
+            this.putAnObject(indexObject);
         }
     }
 
@@ -151,7 +155,6 @@ export class TouchObject extends Component {
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         }
-        ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         this.mainObject.setParent(ControllerHomeMapStorage.getCoord(index));
         this.mainObject.position = Vec3.ZERO;
