@@ -1,13 +1,8 @@
 import { _decorator, Component } from 'cc';
-import { DataStorageDTO } from './DTO/DataStorageDTO';
-import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
-import { ResponseDTO } from './DTO/ResponseDTO';
-import { DataStorageResponseDTO } from './DTO/DataStorageResponseDTO';
 import { TypesStorages } from '../Static/TypesStorages';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
-import { ClientService } from './ClientService';
-import { SessionService } from './SessionService';
 import { DataStorageService } from './DataStorageService';
+import { SessionService } from './SessionService';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')
@@ -21,7 +16,9 @@ export class DataStorage extends Component {
 
     start() {
         let myArr = [TypesStorages.GAME_STORAGE]
-        setTimeout(() => DataStorageService.getData(myArr), 1000)
+        SessionService.getStartSessionData()
+        this.schedule(SessionService.updateSessionData, 60)
+        setTimeout(() => DataStorageService.getData(myArr), 3000)
     }
 
     dataRecipient(objects: object[]) {

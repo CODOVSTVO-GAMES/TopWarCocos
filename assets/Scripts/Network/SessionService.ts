@@ -1,18 +1,17 @@
 import { ControllerUserStorage } from "../Storage/Controllers/ControllerUserStorage";
 import { ClientService } from "./ClientService";
-import { Cryptor } from "./other/Cryptor";
 import { SessionDataDTO } from "./DTO/SessionDataDTO";
 
 export class SessionService {
 
-    static getStartSessionData(userId: string, sessionId: number) {
-        const sessionDataDTO = new SessionDataDTO(userId, Cryptor.getRandomHash(), sessionId)
-        ClientService.post('session', sessionDataDTO, this.parseSessionResponce);
+    static getStartSessionData() {
+        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
+        ClientService.post('session', sessionDataDTO, SessionService.parseSessionResponce);
     }
 
     static updateSessionData() {
         const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
-        ClientService.post('session', sessionDataDTO, this.parseSessionResponce);
+        ClientService.post('session', sessionDataDTO, SessionService.parseSessionResponce);
     }
 
     static parseSessionResponce(data: any) {

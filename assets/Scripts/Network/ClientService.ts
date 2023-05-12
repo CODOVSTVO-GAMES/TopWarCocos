@@ -3,16 +3,17 @@ import { TechnicalConfig } from "../Static/TechnicalConfig";
 import { Cryptor } from "./other/Cryptor";
 import { RequestDTO } from "./DTO/RequestDTO";
 import { ResponseDTO } from "./DTO/ResponseDTO";
+import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 
 export class ClientService {
 
     static post(endpoint: string, data: object, func: Function) {
-        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data))
+        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
         this.request(endpoint, requestDTO, func, "POST")
     }
 
     static get(endpoint: string, data: object, func: Function) {
-        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data))
+        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
         this.request(endpoint, requestDTO, func, "GET")
     }
 
@@ -52,8 +53,8 @@ export class ClientService {
             }
 
             const responseDTO = new ResponseDTO(json.data)
-            const sessionJson = JSON.parse(JSON.stringify(responseDTO.data))
-            customFunction(sessionJson)
+            const responseJson = JSON.parse(JSON.stringify(responseDTO.data))
+            customFunction(responseJson)
         }
         else if (status == 403) {
             console.log('Сервер выдал 403. Перезагрузите клиент')

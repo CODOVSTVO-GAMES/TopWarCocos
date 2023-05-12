@@ -7,12 +7,14 @@ import { DataStorage } from "./DataStorage"
 export class DataStorageService {
 
     static saveData(data: string) {
-        ClientService.post('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), data), this.parseDataStorageResponce)
+        console.log('save data request')
+        ClientService.post('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), data), DataStorageService.parseDataStorageResponce)
     }
 
     static getData(keys: Array<string>) {
+        console.log('get data request')
         const strKeys = JSON.parse(JSON.stringify(keys))
-        ClientService.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), this.parseDataStorageResponce)
+        ClientService.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), DataStorageService.parseDataStorageResponce)
     }
 
     static parseDataStorageResponce(data: any) {

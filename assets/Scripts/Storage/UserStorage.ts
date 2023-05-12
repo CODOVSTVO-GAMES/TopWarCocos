@@ -1,5 +1,6 @@
 import { _decorator, CCString, Component } from 'cc';
 import { TechnicalConfig } from '../Static/TechnicalConfig';
+import { Cryptor } from '../Network/other/Cryptor';
 const { ccclass, property } = _decorator;
 
 @ccclass('UserStorage')
@@ -20,5 +21,6 @@ export class UserStorage extends Component {
         UserStorage.instance = this;
         this.sessionId = 0
         this.userId = TechnicalConfig.NAME
+        this.sessionHash = Cryptor.getRandomHash()
     }
 }
