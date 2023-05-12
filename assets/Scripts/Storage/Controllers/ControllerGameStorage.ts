@@ -2,7 +2,6 @@ import { _decorator } from 'cc';
 import { GameStorage } from '../GameStorage';
 import { MainInterface } from '../../UI/MainInterface';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
-import { Test } from '../../Test';
 import { ControllerBufferStorage } from './ControllerBufferStorage';
 import { TypesStorages } from '../../Static/TypesStorages';
 
@@ -253,7 +252,6 @@ export class ControllerGameStorage {
             professionPower: GameStorage.instance.professionPower,
         };
         ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
-        ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
         console.log("updateGameStorage");
     }
 }

@@ -3,14 +3,14 @@ import { CharacterInfo } from '../Structures/CharacterInfo';
 import { TypesObjects } from '../Static/TypesObjects';
 import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
 import { TypesCharacters } from '../Static/TypesCharacters';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('CharactersStorage')
 export class CharactersStorage extends Component {
 
     public static instance: CharactersStorage;
 
-    public characters: CharacterInfo[] = [];
+    public characters: Array<CharacterInfo> = [];
 
     private storageTypes: string[] = [TypesCharacters.BLACK_WIDOW, TypesCharacters.CHARACTER_1, TypesCharacters.CHARACTER_2, TypesCharacters.CHARACTER_3, TypesCharacters.CHARACTER_4, TypesCharacters.CHARACTER_5, TypesCharacters.CHARACTER_6, TypesCharacters.CHARACTER_7];
 

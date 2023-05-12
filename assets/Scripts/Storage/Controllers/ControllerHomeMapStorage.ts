@@ -18,6 +18,14 @@ export class ControllerHomeMapStorage {
         this.updateHomeMapStorage();
     }
 
+    static setSelectObject(objectParameters: ObjectParameters) {
+        HomeMapStorage.instance.selectedObject = objectParameters;
+    }
+
+    static deleteSelectObject() {
+        HomeMapStorage.instance.selectedObject = null;
+    }
+
     static upgradeLevel(index: number) {
         HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
         HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
