@@ -70,7 +70,7 @@ export class HighlightHomeMap {
             }
             catch
             {
-
+                console.log("error");
             }
         }
     }
