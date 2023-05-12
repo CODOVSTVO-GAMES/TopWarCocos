@@ -19,9 +19,9 @@ export class ControllerBufferStorage {
 
     static isBufferFull(): boolean {
         if (BufferStorage.instance.arrayBuffer.length > 0) {
-            return true
+            return true;
         }
-        return false
+        return false;
     }
 
 
