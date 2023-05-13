@@ -3,6 +3,7 @@ import { TypesStorages } from '../Static/TypesStorages';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 import { DataStorageService } from './DataStorageService';
 import { SessionService } from './SessionService';
+import { EventService } from './EventService';
 const { ccclass } = _decorator;
 
 @ccclass('DataStorage')

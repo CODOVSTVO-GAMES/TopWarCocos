@@ -67,5 +67,8 @@ export class ClientService {
             console.log('Сервер выдал 400. Что будем делать???')
             customFunction('responseJson', false)
         }
+        else {
+            console.log('Сервер выдал неизвестный статус. Что будем делать??? status: ' + status)
+        }
     }
 }
