@@ -48,22 +48,24 @@ export class ClientService {
             try {
                 json = JSON.parse(body)
             } catch (e) {
-                // console.log(e)//дебаг
                 throw "Невозможно распарсить ответ сервера, что делаем? (Лог ОШИБКА на сервер + ???)"
             }
 
             const responseDTO = new ResponseDTO(json.data)
             const responseJson = JSON.parse(JSON.stringify(responseDTO.data))
-            customFunction(responseJson)
+            customFunction(responseJson, true)
         }
         else if (status == 403) {
             console.log('Сервер выдал 403. Перезагрузите клиент')
+            customFunction('responseJson', false)
         }
         else if (status == 403) {
             console.log('Сервер выдал 502 или 408. Повторите запрос позже')
+            customFunction('responseJson', false)
         }
         else if (status == 400) {
             console.log('Сервер выдал 400. Что будем делать???')
+            customFunction('responseJson', false)
         }
     }
 }

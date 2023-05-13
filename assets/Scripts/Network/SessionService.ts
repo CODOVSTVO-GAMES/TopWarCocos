@@ -6,15 +6,16 @@ export class SessionService {
 
     static getStartSessionData() {
         const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
-        ClientService.post('session', sessionDataDTO, SessionService.parseSessionResponce);
+        ClientService.post('session', sessionDataDTO, SessionService.parseSessionPostResponce);
     }
 
     static updateSessionData() {
         const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
-        ClientService.post('session', sessionDataDTO, SessionService.parseSessionResponce);
+        ClientService.post('session', sessionDataDTO, SessionService.parseSessionPostResponce);
     }
 
-    static parseSessionResponce(data: any) {
+    static parseSessionPostResponce(data: any, isDone: boolean) {
+        if (!isDone) console.log("Ошибка запроса сессии")
         const sessionJson = JSON.parse(JSON.stringify(data))
         const sessionDataDTO = new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
         ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)

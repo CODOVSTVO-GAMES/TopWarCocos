@@ -18,7 +18,7 @@ export class DataStorage extends Component {
         let myArr = [TypesStorages.GAME_STORAGE]
         SessionService.getStartSessionData()
         this.schedule(SessionService.updateSessionData, 60)
-        setTimeout(() => DataStorageService.getData(myArr), 3000)
+        setTimeout(() => DataStorageService.getData(myArr), 4000)
     }
 
     dataRecipient(objects: object[]) {
