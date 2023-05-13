@@ -1,8 +1,8 @@
-import { ControllerUserStorage } from "../Storage/Controllers/ControllerUserStorage"
-import { ClientService } from "./ClientService"
-import { DataStorageDTO } from "./DTO/DataStorageDTO"
-import { DataStorageResponseDTO } from "./DTO/DataStorageResponseDTO"
-import { DataStorage } from "./DataStorage"
+import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserStorage"
+import { ClientService } from "../other/ClientService"
+import { DataStorageDTO } from "../DTO/DataStorageDTO"
+import { DataStorageResponseDTO } from "../DTO/DataStorageResponseDTO"
+import { NetworkClient } from "../NetworkClient"
 
 export class DataStorageService {
 
@@ -17,14 +17,14 @@ export class DataStorageService {
         ClientService.get('data-storage', new DataStorageDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce)
     }
 
-    static parseDataStorageGetResponce(data: any, isDone : boolean) {
+    static parseDataStorageGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("Ошибка запроса дата сторадж гет")
         const dataStorageJson = JSON.parse(JSON.stringify(data))
         const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects)
-        DataStorage.instance.dataRecipient(dataStorageResponseDTO.dataObjects)
+        NetworkClient.instance.dataRecipient(dataStorageResponseDTO.dataObjects)
     }
 
-    static parseDataStoragePostResponce(data: any, isDone : boolean) {
+    static parseDataStoragePostResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("Ошибка запроса дата сторадж пост")
         console.log('post DS done')
     }

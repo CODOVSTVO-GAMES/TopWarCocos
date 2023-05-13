@@ -1,9 +1,9 @@
 import { _decorator } from 'cc';
-import { TechnicalConfig } from "../Static/TechnicalConfig";
-import { Cryptor } from "./other/Cryptor";
-import { RequestDTO } from "./DTO/RequestDTO";
-import { ResponseDTO } from "./DTO/ResponseDTO";
-import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { TechnicalConfig } from "../../Static/TechnicalConfig";
+import { Cryptor } from "./Cryptor";
+import { RequestDTO } from "../DTO/RequestDTO";
+import { ResponseDTO } from "../DTO/ResponseDTO";
+import { ControllerUserStorage } from '../../Storage/Controllers/ControllerUserStorage';
 
 export class ClientService {
 

@@ -20,10 +20,27 @@ export class ControllerBufferStorage {
     static isBufferFull(): boolean {
         if (BufferStorage.instance.arrayBuffer.length > 0) {
             return true;
-        }
-        return false;
+        } else { return false }
+
+    }
+    static addEventToQueue(event: string) {
+        BufferStorage.instance.eventsQueue.push(event)
     }
 
+    static getQueueEvents(): Array<string> {
+        return BufferStorage.instance.eventsQueue
+    }
+
+    static isEventsQueueFull(): boolean {
+        if (BufferStorage.instance.eventsQueue.length > 0) {
+            return true;
+        } else { return false }
+
+    }
+
+    static clearEventsQueue() {
+        BufferStorage.instance.eventsQueue = new Array<string>;
+    }
 
     static clearBufferStorage() {
         BufferStorage.instance.arrayBuffer = new Array<Buffer>;

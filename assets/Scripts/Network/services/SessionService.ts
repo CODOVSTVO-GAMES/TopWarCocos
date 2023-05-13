@@ -1,6 +1,6 @@
-import { ControllerUserStorage } from "../Storage/Controllers/ControllerUserStorage";
-import { ClientService } from "./ClientService";
-import { SessionDataDTO } from "./DTO/SessionDataDTO";
+import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserStorage";
+import { ClientService } from "../other/ClientService";
+import { SessionDataDTO } from "../DTO/SessionDataDTO";
 
 export class SessionService {
 

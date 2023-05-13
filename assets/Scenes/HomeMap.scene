@@ -32368,7 +32368,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "DataStorage",
+    "_name": "NetworkClient",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1612
@@ -32408,10 +32408,10 @@
       "y": 0,
       "z": 0
     },
-    "_id": "587ETjerRGEaPP3zQj9ULP"
+    "_id": "ba3rgCBAJJzaJbBUHDDQy4"
   },
   {
-    "__type__": "2fa3bBFEVtO4Zmgd6jBG98G",
+    "__type__": "5ad06nNndFGr6Q+msUUkpZS",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -32419,7 +32419,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_id": "a0X9I48jNLXZ4Jz+LWLOqw"
+    "_id": "afH2khk8ZCppUvE3peLMR6"
   },
   {
     "__type__": "cc.PrefabInfo",

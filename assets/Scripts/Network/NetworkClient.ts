@@ -1,25 +1,40 @@
-import { _decorator, Component } from 'cc';
-import { TypesStorages } from '../Static/TypesStorages';
+import { _decorator, Component, Node } from 'cc';
+import { ControllerBufferStorage } from '../Storage/Controllers/ControllerBufferStorage';
+import { DataStorageService } from './services/DataStorageService';
+import { EventService } from './services/EventService';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
-import { DataStorageService } from './DataStorageService';
-import { SessionService } from './SessionService';
-import { EventService } from './EventService';
+import { TypesStorages } from '../Static/TypesStorages';
+import { SessionService } from './services/SessionService';
 const { ccclass } = _decorator;
 
-@ccclass('DataStorage')
-export class DataStorage extends Component {
+@ccclass('NetworkClient')
+export class NetworkClient extends Component {
 
-    public static instance: DataStorage
+    public static instance: NetworkClient
 
     onLoad() {
-        DataStorage.instance = this;
-    }
-
-    start() {
-        let myArr = [TypesStorages.GAME_STORAGE]
+        NetworkClient.instance = this
         SessionService.getStartSessionData()
         this.schedule(SessionService.updateSessionData, 60)
-        setTimeout(() => DataStorageService.getData(myArr), 4000)
+        this.schedule(this.sendEvents, 5)
+        this.schedule(this.sendData, 4)
+
+        let myArr = [TypesStorages.GAME_STORAGE]
+        setTimeout(() => DataStorageService.getData(myArr), 2000)
+    }
+
+    private sendData() {
+        if (ControllerBufferStorage.isBufferFull()) {
+            DataStorageService.saveData(ControllerBufferStorage.getBuffer());
+            ControllerBufferStorage.clearBufferStorage();
+        }
+    }
+
+    private sendEvents() {
+        if (ControllerBufferStorage.isEventsQueueFull()) {
+            EventService.requestToService(ControllerBufferStorage.getQueueEvents())
+            ControllerBufferStorage.clearEventsQueue()
+        }
     }
 
     dataRecipient(objects: object[]) {
