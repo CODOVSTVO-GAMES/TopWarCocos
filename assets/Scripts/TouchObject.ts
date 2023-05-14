@@ -126,34 +126,33 @@ export class TouchObject extends Component {
         let indexMerge = 0;
         for (let i = 0; i < arrayIndexs.length; i++) {
             let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i])
-            if (tempObjParam != null 
-                && this.objectParameters.type == tempObjParam.type 
-                && this.objectParameters.level == tempObjParam.level
-                ) 
-            {
-                //В дальнейшем это условие можно будет удалить
-                if (
-                    this.objectParameters.type != TypesObjects.TOWN_HALL &&
-                    this.objectParameters.type != TypesObjects.BANK &&
-                    this.objectParameters.type != TypesObjects.AUTOCOMBINE &&
-                    this.objectParameters.type != TypesObjects.RADAR &&
-                    this.objectParameters.type != TypesObjects.TREASURES &&
-                    this.objectParameters.type != TypesObjects.MANIPULATOR &&
-                    this.objectParameters.type != TypesObjects.REPAIR_SHOP &&
-                    this.objectParameters.type != TypesObjects.LOBBY_WARS &&
-                    this.objectParameters.type != TypesObjects.BULLETIN_BOARD &&
-                    this.objectParameters.type != TypesObjects.WALL &&
-                    this.objectParameters.type != TypesObjects.BATTLE
-                ) {
-                    count += 1;
-                    indexMerge = i;
-                }
+            if (tempObjParam != null) {
+                if (this.objectParameters.type == tempObjParam.type && this.objectParameters.level == tempObjParam.level) {
+                    //В дальнейшем это условие можно будет удалить
+                    if (
+                        this.objectParameters.type != TypesObjects.TOWN_HALL &&
+                        this.objectParameters.type != TypesObjects.BANK &&
+                        this.objectParameters.type != TypesObjects.AUTOCOMBINE &&
+                        this.objectParameters.type != TypesObjects.RADAR &&
+                        this.objectParameters.type != TypesObjects.TREASURES &&
+                        this.objectParameters.type != TypesObjects.MANIPULATOR &&
+                        this.objectParameters.type != TypesObjects.REPAIR_SHOP &&
+                        this.objectParameters.type != TypesObjects.LOBBY_WARS &&
+                        this.objectParameters.type != TypesObjects.BULLETIN_BOARD &&
+                        this.objectParameters.type != TypesObjects.WALL &&
+                        this.objectParameters.type != TypesObjects.BATTLE
+                    ) {
+                        count += 1;
+                        indexMerge = i;
+                    }
 
-            }
-            else {
-                return this.putAnObject(this.initialIndex);
+                }
+                else {
+                    return this.putAnObject(this.initialIndex);
+                }
             }
         }
+
         if (count > 0) {
             ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
             // ControllerHomeMapStorage.deleteSelectObject();
