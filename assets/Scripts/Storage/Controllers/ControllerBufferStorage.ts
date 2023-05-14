@@ -20,7 +20,8 @@ export class ControllerBufferStorage {
     static isBufferFull(): boolean {
         if (BufferStorage.instance.arrayBuffer.length > 0) {
             return true;
-        } else { return false }
+        } 
+        return false
 
     }
     static addEventToQueue(event: string) {
@@ -34,7 +35,8 @@ export class ControllerBufferStorage {
     static isEventsQueueFull(): boolean {
         if (BufferStorage.instance.eventsQueue.length > 0) {
             return true;
-        } else { return false }
+        }
+        return false
 
     }
 

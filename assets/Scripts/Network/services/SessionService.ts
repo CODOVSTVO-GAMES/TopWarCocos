@@ -15,7 +15,7 @@ export class SessionService {
     }
 
     static parseSessionPostResponce(data: any, isDone: boolean) {
-        if (!isDone) console.log("Ошибка запроса сессии")
+        if (!isDone) console.log("update session error")
         const sessionJson = JSON.parse(JSON.stringify(data))
         const sessionDataDTO = new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
         ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)

@@ -16,7 +16,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.globalConfig[i]
             }
         }
-        throw "Не существует такого обьекта"
+        throw "не существует такого обьекта"
     }
 
     static getProductionInTimeMineByLevel(level: number): number {
@@ -25,7 +25,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.globalConfig[i].productionInTime
             }
         }
-        throw "Не существует такого уровня шахты"
+        throw "не существует такого уровня шахты"
     }
 
     static getExpPerSpawnMineByLevel(level: number): number {
@@ -34,7 +34,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.globalConfig[i].expPerSpawn
             }
         }
-        throw "Не существует такого уровня шахты"
+        throw "не существует такого уровня шахты"
     }
 
     static getLevelExpirienceByLevel(level: number) {
@@ -43,7 +43,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.levelConfig[i].expirience
             }
         }
-        throw "Не существует такого уровня"
+        throw "не существует такого уровня"
     }
 
     static getLevelPowerByLevel(level: number) {
@@ -52,7 +52,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.levelConfig[i].powerUponReceipt
             }
         }
-        throw "Не существует такого уровня"
+        throw "не существует такого уровня"
     }
 
     static getLevelEnergyByLevel(level: number) {
@@ -61,7 +61,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.levelConfig[i].energyUponREceipt
             }
         }
-        throw "Не существует такого уровня"
+        throw "не существует такого уровня"
     }
 
     static getLevelByExpirience(experience: number) {
@@ -70,7 +70,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.levelConfig[i].levelNumber // будет работать корректно при сортированом массиве
             }
         }
-        throw "Не существует такого уровня"
+        throw "не существует такого уровня"
     }
 
     static getHeroLevelExpirienceByTypeAndLevel(type: string, level: number) {
@@ -79,7 +79,7 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.heroLevelConfig[i].heroExpirience
             }
         }
-        throw "Не существует такого уровня героя"
+        throw "не существует такого уровня героя"
     }
 
     static getHeroConfigByCodeName(codeName: string): HeroConfig {
@@ -88,6 +88,6 @@ export class ControllerConfigStorage {
                 return ConfigStorage.instance.heroConfig[i]
             }
         }
-        throw "Не существует такого уровня героя"
+        throw "не существует такого уровня героя"
     }
 }

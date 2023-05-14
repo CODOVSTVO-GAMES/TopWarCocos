@@ -297,7 +297,7 @@ export class Battle extends Component {
     attack() {
         let units_1;
         let units_2;
-        let delay = 0;
+        let delay = 0;// зочем делей?
         let countBullet = 0;
         if (this.attackingTeam == 0) {
             units_1 = this.arrayEnemy.slice(0);
@@ -315,11 +315,9 @@ export class Battle extends Component {
                 if (units_1[i].attackNumber < this.attackNumber) {
                     let config = ControllerConfigStorage.getConfigByTypeAndLevel(units_1[i].type, units_1[i].level);
                     let units = this.goalSelection(units_1[i].link.team, units_1[i].type, TypesAttack.HORIZON, config.attackType);
-                    if (units.length > 0) {
-                        for (let j = 0; j < units.length; j++) {
-                            countBullet++;
-                            this.troopAttackInvoke(i, j, units, units_1, units_2, countBullet);
-                        }
+                    for (let j = 0; j < units.length; j++) {
+                        countBullet++;
+                        this.troopAttackInvoke(i, j, units, units_1, units_2, countBullet);
                     }
                     units_1[i].attackNumber = this.attackNumber;
                 }

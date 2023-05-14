@@ -54,17 +54,18 @@ export class HighlightHomeMap {
         }
         for (let i = 0; i < arrayIndexs.length; i++) {
             try {
-                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]) == null) {
-                    HomeMapStorage.instance.cellHint[indexObject - arrayIndexs[i]].active = false;
-                    HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
+                let tempIndex = indexObject - arrayIndexs[i]
+                if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
+                    HomeMapStorage.instance.cellHint[tempIndex].active = false;
+                    HomeMapStorage.instance.cellSelected[tempIndex].active = true;
                 }
                 else {
-                    if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i]).type == type) {
-                        HomeMapStorage.instance.cellHint[indexObject - arrayIndexs[i]].active = false;
-                        HomeMapStorage.instance.cellSelected[indexObject - arrayIndexs[i]].active = true;
+                    if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
+                        HomeMapStorage.instance.cellHint[tempIndex].active = false;
+                        HomeMapStorage.instance.cellSelected[tempIndex].active = true;
                     }
                     else {
-                        HomeMapStorage.instance.cellBlock[indexObject - arrayIndexs[i]].active = true;
+                        HomeMapStorage.instance.cellBlock[tempIndex].active = true;
                     }
                 }
             }
