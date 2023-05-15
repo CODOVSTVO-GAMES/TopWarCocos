@@ -54,7 +54,7 @@ export class ModalCharacterInfoIntarface extends Component {
             this.damage.string = character.damage.toString();
             this.defense.string = character.defense.toString();
             this.leadership.string = character.leadership.toString();
-            this.experience.string = character.exp.toString();
+            this.experience.string = character.experience.toString();
             this.combatPower.string = "210";
 
             return true;
