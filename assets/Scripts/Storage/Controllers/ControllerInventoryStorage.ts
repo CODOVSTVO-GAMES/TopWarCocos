@@ -45,14 +45,14 @@ export class ControllerInventoryStorage {
     }
 
     static updateInvenoryStorage() {
-        let obj: Object[] = [];
-        for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
-            obj.push({
-                type: InventoryStorage.instance.inventory[i].type,
-                quantity: InventoryStorage.instance.inventory[i].quantity
-            });
-        }
-        ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
-        console.log("updateInvenoryStorage");
+        // let obj: Object[] = [];
+        // for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
+        //     obj.push({
+        //         type: InventoryStorage.instance.inventory[i].type,
+        //         quantity: InventoryStorage.instance.inventory[i].quantity
+        //     });
+        // }
+        // ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
+        // console.log("updateInvenoryStorage");
     }
 }

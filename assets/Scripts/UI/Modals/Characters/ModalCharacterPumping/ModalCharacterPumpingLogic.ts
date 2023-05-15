@@ -33,7 +33,6 @@ export class ModalCharacterPumpingLogic extends Component {
                 exp = 30000;
                 break;
         }
-
         this.spendBooks(exp);
     }
 

@@ -3,6 +3,8 @@ import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
 import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
+import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { TypesInventory } from '../../../../Static/TypesInventory';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingInterface')
@@ -27,6 +29,8 @@ export class ModalCharacterPumpingInterface extends Component {
 
     @property({ type: Sprite })
     public flags: Sprite[] = [];
+
+    private books: string[] = [TypesInventory.WHITE_BOOK_EXPERIENCE, TypesInventory.GREEN_BOOK_EXPERIENCE, TypesInventory.BLUE_BOOK_EXPERIENCE, TypesInventory.PURPLE_BOOK_EXPERIENCE, TypesInventory.ORANGE_BOOK_EXPERIENCE];
 
     onLoad() {
         ModalCharacterPumpingInterface.instance = this;
@@ -72,8 +76,14 @@ export class ModalCharacterPumpingInterface extends Component {
 
     renderModalTexts() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
-        this.level.string = "Ур. " + character.level;
-        this.experience.string = character.experience + "/" + ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level);
-
+        if (character != null) {
+            let targerExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level);
+            this.level.string = "Ур. " + character.level;
+            this.experience.string = character.experience + "/" + targerExp;
+            this.slider.fillRange = character.experience / targerExp;
+            for (let i = 0; i < this.quantity.length; i++) {
+                this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(this.books[i]);
+            }
+        }
     }
 }
