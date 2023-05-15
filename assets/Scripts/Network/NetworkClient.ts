@@ -20,7 +20,7 @@ export class NetworkClient extends Component {
         this.schedule(this.sendData, 4)
 
         let myArr = [TypesStorages.GAME_STORAGE]
-        setTimeout(() => DataStorageService.getData(myArr), 1000)
+        setTimeout(() => DataStorageService.getData(myArr), 500)
     }
 
     private sendData() {

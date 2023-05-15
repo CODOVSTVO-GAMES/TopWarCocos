@@ -9,7 +9,7 @@ export class LoadingGame extends Component {
     start() {
         setTimeout(() => {
             RedirectionToScene.redirect(SceneNames.HOME_MAP);
-        }, 2000);
+        }, 1000);
     }
 }
 

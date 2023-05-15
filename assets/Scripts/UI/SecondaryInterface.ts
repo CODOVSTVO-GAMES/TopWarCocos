@@ -8,6 +8,8 @@ const { ccclass, property } = _decorator;
 @ccclass('SecondaryInterface')
 export class SecondaryInterface extends Component {
 
+    public static instance: SecondaryInterface;
+
     @property({ type: Node })
     public backgraund: Node;
 
@@ -30,6 +32,10 @@ export class SecondaryInterface extends Component {
     public characters: Node;
 
     public listOpeningModals: string[] = [];
+
+    onLoad() {
+        SecondaryInterface.instance = this;
+    }
 
     start() {
         this.closeAllModals();

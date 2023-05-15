@@ -19,7 +19,7 @@ export class SpawnObjects extends Component {
             this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
             this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
             this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
-        }, 2000);
+        }, 500);
     }
 
     spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
