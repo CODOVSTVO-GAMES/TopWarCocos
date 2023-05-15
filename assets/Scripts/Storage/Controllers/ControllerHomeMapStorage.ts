@@ -110,7 +110,7 @@ export class ControllerHomeMapStorage {
         else if (type == TypesObjects.TROOP_MARINE) {
             return IndexsObject.object3x2;
         }
-        else if (type == TypesObjects.TOWN_HALL) {
+        else if (type == TypesObjects.COMMAND_POST) {
             return IndexsObject.object3x3;
         }
     }

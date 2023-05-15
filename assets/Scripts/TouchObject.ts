@@ -130,7 +130,7 @@ export class TouchObject extends Component {
                 if (this.objectParameters.type == tempObjParam.type && this.objectParameters.level == tempObjParam.level) {
                     //В дальнейшем это условие можно будет удалить
                     if (
-                        this.objectParameters.type != TypesObjects.TOWN_HALL &&
+                        this.objectParameters.type != TypesObjects.COMMAND_POST &&
                         this.objectParameters.type != TypesObjects.BANK &&
                         this.objectParameters.type != TypesObjects.AUTOCOMBINE &&
                         this.objectParameters.type != TypesObjects.RADAR &&

@@ -7,7 +7,7 @@ export class TypesObjects {
     public static BARRACKS_MARINE: string = "barracksMarine";
     public static BARRACKS_OVERLAND: string = "barracksOverland";
 
-    public static TOWN_HALL: string = "townHall";
+    public static COMMAND_POST: string = "commandPost";
     public static GOLD_MINE: string = "goldMine";
     public static BANK: string = "bank";
     public static AUTOCOMBINE: string = "autocombine";

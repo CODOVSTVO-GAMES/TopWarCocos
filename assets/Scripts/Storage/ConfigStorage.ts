@@ -50,7 +50,7 @@ export class ConfigStorage extends Component {
     }
 
     initMainBuilding() {
-        let type = TypesObjects.TOWN_HALL
+        let type = TypesObjects.COMMAND_POST
         let typeItem = TypesItems.PLAN_MAX_MAINBUILDING
 
         this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 0, 0, 0, 0))

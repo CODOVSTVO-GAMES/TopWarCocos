@@ -40,7 +40,7 @@ export class MainInterface extends Component {
     }
 
     updateCountLevel() {
-        this.countLevel.string = ControllerGameStorage.getLevel().toString();
+        this.countLevel.string = "Ур. " + ControllerGameStorage.getLevel().toString();
     }
 
     updateCountPower() {

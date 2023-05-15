@@ -1236,7 +1236,7 @@
       "__uuid__": "368fd2f2-143e-4e24-95d9-bf22017e0c18",
       "__expectedType__": "cc.Prefab"
     },
-    "townHall": {
+    "commandPost": {
       "__uuid__": "7ed3dce8-286c-41ff-a141-fb41af186017",
       "__expectedType__": "cc.Prefab"
     },
@@ -1250,6 +1250,14 @@
     },
     "autocombine": {
       "__uuid__": "523e1b4a-6bef-4681-a329-2b83c1dd78ca",
+      "__expectedType__": "cc.Prefab"
+    },
+    "radar": {
+      "__uuid__": "5d865065-439b-4e10-b185-b0e35e82d83e",
+      "__expectedType__": "cc.Prefab"
+    },
+    "treasures": {
+      "__uuid__": "17adcccc-7009-49e4-b518-6a8f1b8bfb00",
       "__expectedType__": "cc.Prefab"
     },
     "wall": {

@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "TownHall",
+    "_name": "CommandPost",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "TownHall",
+    "_name": "CommandPost",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -49,10 +49,13 @@
       },
       {
         "__id__": 47
+      },
+      {
+        "__id__": 49
       }
     ],
     "_prefab": {
-      "__id__": 49
+      "__id__": 51
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -692,10 +695,12 @@
   },
   {
     "__type__": "cc.ClickEvent",
-    "target": null,
+    "target": {
+      "__id__": 1
+    },
     "component": "",
-    "_componentId": "bbb76DQFClHb6bXZrcOUmXY",
-    "handler": "createTroop",
+    "_componentId": "7c6aeornVJOZIoorWvbJx+F",
+    "handler": "click",
     "customEventData": ""
   },
   {
@@ -1076,6 +1081,26 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "d3bwhKj49AWJAliUxzB1U6"
+  },
+  {
+    "__type__": "7c6aeornVJOZIoorWvbJx+F",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 50
+    },
+    "objectParameters": {
+      "__id__": 7
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "21A2RMnr5PzplbBkvPLxi4"
   },
   {
     "__type__": "cc.PrefabInfo",

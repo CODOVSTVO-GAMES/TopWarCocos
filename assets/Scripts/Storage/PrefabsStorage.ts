@@ -20,7 +20,7 @@ export class PrefabsStorage extends Component {
     private barracks: Prefab;
 
     @property({ type: Prefab })
-    private townHall: Prefab;
+    private commandPost: Prefab;
 
     @property({ type: Prefab })
     private goldMine: Prefab;
@@ -56,7 +56,7 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.BARRACKS_AIR) return this.barracks;
         else if (type == TypesObjects.BARRACKS_MARINE) return this.barracks;
         else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracks;
-        else if (type == TypesObjects.TOWN_HALL) return this.townHall;
+        else if (type == TypesObjects.COMMAND_POST) return this.commandPost;
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine;
         else if (type == TypesObjects.BANK) return this.bank;
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine;

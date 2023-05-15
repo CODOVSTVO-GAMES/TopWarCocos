@@ -18,7 +18,7 @@ export class SpawnObjects extends Component {
         setTimeout(() => {
             this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
             this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
-            this.spawnObjectsPos(TypesObjects.TOWN_HALL, 1, 63);
+            this.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 63);
         }, 500);
     }
 

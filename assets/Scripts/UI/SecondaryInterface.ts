@@ -3,6 +3,7 @@ import { ModalExperienceInerface } from './Modals/ModalExperience/ModalExperienc
 import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
 import { TypesModals } from '../Static/TypesModals';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
+import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalCommandPostInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -30,6 +31,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public characters: Node;
+
+    @property({ type: Node })
+    public commandPost: Node;
 
     public listOpeningModals: string[] = [];
 
@@ -64,6 +68,14 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.powar.active = true;
         }
+        else if (type == "") {
+
+        }
+        else if (type == TypesModals.COMMAND_POST) {
+            ModalCommandPostInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.commandPost.active = true;
+        }
     }
 
     openProfile() { this.openModal(TypesModals.PROFILE); }
@@ -84,6 +96,7 @@ export class SecondaryInterface extends Component {
         this.experience.active = false;
         this.powar.active = false;
         this.characters.active = false;
+        this.commandPost.active = false;
     }
 
     charactersOpen() {
