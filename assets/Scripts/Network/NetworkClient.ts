@@ -20,7 +20,7 @@ export class NetworkClient extends Component {
         this.schedule(this.sendData, 4)
 
         let myArr = [TypesStorages.GAME_STORAGE]
-        setTimeout(() => DataStorageService.getData(myArr), 2000)
+        setTimeout(() => DataStorageService.getData(myArr), 1000)
     }
 
     private sendData() {
@@ -39,15 +39,10 @@ export class NetworkClient extends Component {
 
     dataRecipient(objects: object[]) {
         if (objects == null) throw 'Пришел пустой обьект'
-
         for (let l = 0; l < objects.length; l++) {
             const json = JSON.parse(JSON.stringify(objects[l]))
-
-            console.log(json.key) //название класса
             const jsonValue = JSON.parse(json.value)// обьект класса
-
             if (json.key == TypesStorages.GAME_STORAGE) {
-                console.log(jsonValue.coins)
                 ControllerGameStorage.equateCoins(jsonValue.coins);
                 ControllerGameStorage.equateGems(jsonValue.coinsInTime);
                 ControllerGameStorage.equateGems(jsonValue.gems);
@@ -60,8 +55,16 @@ export class NetworkClient extends Component {
                 ControllerGameStorage.equateArsenalPower(jsonValue.arsenalPower);
                 ControllerGameStorage.equateProfessionPower(jsonValue.professionPower);
             }
+            else if (json.key == TypesStorages.HOME_MAP_STORAGE) {
+
+            }
+            else if (json.key == TypesStorages.INVENTORY_STORAGE) {
+
+            }
+            else if (json.key == TypesStorages.CHARACTER_STORAGE) {
+
+            }
         }
     }
-
 }
 
