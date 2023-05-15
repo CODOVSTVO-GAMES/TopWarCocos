@@ -1,5 +1,8 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
+import { CharactersStorage } from '../../../../Storage/CharactersStorage';
+import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
+import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingInterface')
@@ -64,5 +67,13 @@ export class ModalCharacterPumpingInterface extends Component {
                 this.tabs[2].active = true;
                 break;
         }
+        this.renderModalTexts();
+    }
+
+    renderModalTexts() {
+        let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
+        this.level.string = "Ур. " + character.level;
+        this.experience.string = character.experience + "/" + ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level);
+
     }
 }

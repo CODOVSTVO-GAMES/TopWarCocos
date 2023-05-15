@@ -82,6 +82,15 @@ export class ControllerConfigStorage {
         throw "не существует такого уровня героя"
     }
 
+    static getHeroLevelByExpirienceAndType(experience: number) {
+        for (let i = 0; i < ConfigStorage.instance.heroLevelConfig.length; i++) {
+            if (ConfigStorage.instance.heroLevelConfig[i + 1].heroExpirience > experience) {
+                return ConfigStorage.instance.heroLevelConfig[i].levelNumber // будет работать корректно при сортированом массиве
+            }
+        }
+        throw "не существует такого уровня"
+    }
+
     static getHeroConfigByCodeName(codeName: string): HeroConfig {
         for (let i = 0; i < ConfigStorage.instance.heroConfig.length; i++) {
             if (ConfigStorage.instance.heroConfig[i].codeName == codeName) {

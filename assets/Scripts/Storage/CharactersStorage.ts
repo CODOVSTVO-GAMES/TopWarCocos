@@ -17,6 +17,7 @@ export class CharactersStorage extends Component {
     onLoad() {
         CharactersStorage.instance = this;
         // this.characters = new Array(68);
+        setInterval(() => console.log(this.characters), 1000)
     }
 
     start() {
@@ -24,7 +25,7 @@ export class CharactersStorage extends Component {
             let heroLevel = i;
             let heroStarStady = 5;
             let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
-            this.characters.push(new CharacterInfo(i, 0, 1, config.startDamage + (config.coefDamage * heroLevel + 5 * heroStarStady), config.startDefense + (config.coefDefense * heroLevel + 5 * heroStarStady), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
+            this.characters.push(new CharacterInfo(1, 0, 1, config.startDamage + (config.coefDamage * heroLevel + 5 * heroStarStady), config.startDefense + (config.coefDefense * heroLevel + 5 * heroStarStady), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
         }
     }
 

@@ -5,6 +5,7 @@ import { TypesStorages } from '../../Static/TypesStorages';
 import { CharacterInfo } from '../../Structures/CharacterInfo';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
 import { ModalCharacterInfoIntarface } from '../../UI/Modals/Characters/ModalCharacterInfo/ModalCharacterInfoInterface';
+import { ModalCharacterPumpingInterface } from '../../UI/Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
 
 export class ControllerCharactrerStorage {
 
@@ -18,8 +19,9 @@ export class ControllerCharactrerStorage {
         if (value == 0) return;
         CharactersStorage.instance.characters[index].experience += value;
         if (this.getExperience(index) > ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index))) {
-            CharactersStorage.instance.characters[index].level = this.getLevel(index) + 1;
+            CharactersStorage.instance.characters[index].level = ControllerConfigStorage.getHeroLevelByExpirienceAndType(this.getExperience(index));
             ModalCharacterInfoIntarface.instance.renderCharacter(index);
+            ModalCharacterPumpingInterface.instance.renderModalTexts();
         }
         this.updateCharactrerStorage();
     }
