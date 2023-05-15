@@ -95,7 +95,7 @@ export class SecondaryInterface extends Component {
         this.shopGems.active = false;
         this.experience.active = false;
         this.powar.active = false;
-        this.characters.active = false;
+        // this.characters.active = false;
         this.commandPost.active = false;
     }
 

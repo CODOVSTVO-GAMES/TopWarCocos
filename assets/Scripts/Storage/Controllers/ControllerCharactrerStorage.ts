@@ -18,10 +18,17 @@ export class ControllerCharactrerStorage {
     static addExperience(value: number, index: number) {
         if (value == 0) return;
         CharactersStorage.instance.characters[index].experience += value;
-        if (this.getExperience(index) > ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index))) {
-            CharactersStorage.instance.characters[index].level = ControllerConfigStorage.getHeroLevelByExpirienceAndType(this.getExperience(index));
-            ModalCharacterInfoIntarface.instance.renderCharacter(index);
-            ModalCharacterPumpingInterface.instance.renderModalTexts();
+        let targetExperience;
+        while (this.getExperience(index) > targetExperience) {
+            targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index));
+            if (this.getExperience(index) > targetExperience) {
+                CharactersStorage.instance.characters[index].level++;
+                CharactersStorage.instance.characters[index].experience -= targetExperience;
+                ModalCharacterInfoIntarface.instance.renderCharacter(index);
+                ModalCharacterPumpingInterface.instance.renderModalTexts();
+                targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index));
+                console.log(targetExperience)
+            }
         }
         this.updateCharactrerStorage();
     }
@@ -37,7 +44,7 @@ export class ControllerCharactrerStorage {
     }
 
     // =================================================================
-    
+
     static updateCharactrerStorage() {
         let obj: Object[] = [];
         for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {

@@ -76,9 +76,12 @@ export class ModalCharacterPumpingInterface extends Component {
 
     renderModalTexts() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
+        console.log(character)
+        console.log(ModalCharacterPumpingLogic.instance.characterIndex)
         if (character != null) {
             let targerExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level);
             this.level.string = "Ур. " + character.level;
+            console.log(character.experience + "/" + targerExp);
             this.experience.string = character.experience + "/" + targerExp;
             this.slider.fillRange = character.experience / targerExp;
             for (let i = 0; i < this.quantity.length; i++) {
