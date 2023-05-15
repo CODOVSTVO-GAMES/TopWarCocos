@@ -1,6 +1,6 @@
 export class CharacterInfo {
     public level: number;
-    public exp: number;
+    public experience: number;
     public stars: number;
     public damage: number;
     public defense: number;
@@ -9,9 +9,9 @@ export class CharacterInfo {
     public codeName: string;
     public typeTroop: string;
 
-    constructor(level: number, exp: number, stars: number, attack: number, protection: number, leadership: number, type: string, codeName: string, typeTroop: string) {
+    constructor(level: number, experience: number, stars: number, attack: number, protection: number, leadership: number, type: string, codeName: string, typeTroop: string) {
         this.level = level;
-        this.exp = exp;
+        this.experience = experience;
         this.stars = stars;
         this.damage = attack;
         this.defense = protection;
