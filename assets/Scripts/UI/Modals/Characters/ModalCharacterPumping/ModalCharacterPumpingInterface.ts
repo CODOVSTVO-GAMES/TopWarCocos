@@ -30,8 +30,6 @@ export class ModalCharacterPumpingInterface extends Component {
     @property({ type: Sprite })
     public flags: Sprite[] = [];
 
-    private books: string[] = [TypesInventory.WHITE_BOOK_EXPERIENCE, TypesInventory.GREEN_BOOK_EXPERIENCE, TypesInventory.BLUE_BOOK_EXPERIENCE, TypesInventory.PURPLE_BOOK_EXPERIENCE, TypesInventory.ORANGE_BOOK_EXPERIENCE];
-
     onLoad() {
         ModalCharacterPumpingInterface.instance = this;
         for (let i = 0; i < this.tabs.length; i++) {
@@ -75,16 +73,14 @@ export class ModalCharacterPumpingInterface extends Component {
     }
 
     renderModalTexts() {
-        console.log(ModalCharacterPumpingLogic.instance.characterIndex)
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
             let targerExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
             this.level.string = "Ур. " + character.level;
-            console.log(character.experience + "/" + targerExp);
             this.experience.string = character.experience + "/" + targerExp;
             this.slider.fillRange = character.experience / targerExp;
             for (let i = 0; i < this.quantity.length; i++) {
-                this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(this.books[i]);
+                this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(TypesInventory.BOOKS[i]);
             }
         }
     }
