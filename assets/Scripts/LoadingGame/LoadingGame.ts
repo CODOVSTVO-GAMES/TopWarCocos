@@ -12,34 +12,34 @@ const { ccclass } = _decorator;
 export class LoadingGame extends Component {
 
     start() {
-        // setTimeout(() => {
-        //     RedirectionToScene.redirect(SceneNames.HOME_MAP);
-        // }, 1000);
-        if (TechnicalConfig.ISENGINE){
-            LoadingGame.getSession()
-        }
-        else{
-            LoadingGame.initSDKAndGetUserInfo()
-        }
+        setTimeout(() => {
+            RedirectionToScene.redirect(SceneNames.HOME_MAP);
+        }, 1000);
+        // if (TechnicalConfig.ISENGINE){
+        //     LoadingGame.getSession()
+        // }
+        // else{
+        //     LoadingGame.initSDKAndGetUserInfo()
+        // }
     }
 
-    static initSDKAndGetUserInfo() {
-        OkConnector.initPlugin() //getSession вызывается после получения данных в колбеке
-    }
+    // static initSDKAndGetUserInfo() {
+    //     OkConnector.initPlugin() //getSession вызывается после получения данных в колбеке
+    // }
 
-    static getSession() {
-        SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
-    }
+    // static getSession() {
+    //     SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
+    // }
 
-    static getStorages() {
-        let myArr = [TypesStorages.GAME_STORAGE]
-        DataStorageService.getData(myArr)//redirectToHomeMap вызывается после получения данных в колбеке
-    }
+    // static getStorages() {
+    //     let myArr = [TypesStorages.GAME_STORAGE]
+    //     DataStorageService.getData(myArr)//redirectToHomeMap вызывается после получения данных в колбеке
+    // }
 
-    static redirectToHomeMap() {
-        console.log('redirect scene')
-        RedirectionToScene.redirect(SceneNames.HOME_MAP);
-    }
+    // static redirectToHomeMap() {
+    //     console.log('redirect scene')
+    //     RedirectionToScene.redirect(SceneNames.HOME_MAP);
+    // }
 
 
 
