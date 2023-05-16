@@ -5,6 +5,8 @@ import { EventService } from './services/EventService';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 import { TypesStorages } from '../Static/TypesStorages';
 import { SessionService } from './services/SessionService';
+import { OkConnector } from './OkConnector';
+import { LoadingGame } from '../LoadingGame/LoadingGame';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -14,13 +16,13 @@ export class NetworkClient extends Component {
 
     onLoad() {
         NetworkClient.instance = this
-        SessionService.getStartSessionData()
+        // SessionService.getStartSessionData()
         this.schedule(SessionService.updateSessionData, 60)
         this.schedule(this.sendEvents, 5)
         this.schedule(this.sendData, 4)
 
-        let myArr = [TypesStorages.GAME_STORAGE]
-        setTimeout(() => DataStorageService.getData(myArr), 500)
+        // let myArr = [TypesStorages.GAME_STORAGE]
+        // setTimeout(() => DataStorageService.getData(myArr), 500)
     }
 
     private sendData() {
@@ -65,6 +67,7 @@ export class NetworkClient extends Component {
 
             }
         }
+        LoadingGame.redirectToHomeMap()
     }
 }
 

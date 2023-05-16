@@ -17,9 +17,13 @@ export class DataStorageService {
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get data error")
-        const dataStorageJson = JSON.parse(JSON.stringify(data))
-        const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects)
-        NetworkClient.instance.dataRecipient(dataStorageResponseDTO.dataObjects)
+        else{
+            console.log("get data done")
+            const dataStorageJson = JSON.parse(JSON.stringify(data))
+            const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects)
+            NetworkClient.instance.dataRecipient(dataStorageResponseDTO.dataObjects)
+        }
+        
     }
 
     static parseDataStoragePostResponce(data: any, isDone: boolean) {

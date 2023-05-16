@@ -23,10 +23,10 @@ export class ClientService {
 
         var xhr = new XMLHttpRequest();
         if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
-            xhr.open(type, 'http://' + TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(data), true);
+            xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(data), true);
             xhr.send()
         } else {
-            xhr.open(type, 'http://' + TechnicalConfig.SERVER_DOMAIN + endpoint, true);
+            xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(data));
         }
