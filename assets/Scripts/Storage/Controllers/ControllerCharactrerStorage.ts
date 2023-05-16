@@ -18,18 +18,17 @@ export class ControllerCharactrerStorage {
     static addExperience(value: number, index: number) {
         if (value == 0) return;
         CharactersStorage.instance.characters[index].experience += value;
-        let targetExperience;
+        let targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index) + 1);
         while (this.getExperience(index) > targetExperience) {
-            targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index));
+            console.log("Цикл " + this.getExperience(index) + " > " + targetExperience)
             if (this.getExperience(index) > targetExperience) {
                 CharactersStorage.instance.characters[index].level++;
                 CharactersStorage.instance.characters[index].experience -= targetExperience;
-                ModalCharacterInfoIntarface.instance.renderCharacter(index);
-                ModalCharacterPumpingInterface.instance.renderModalTexts();
-                targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index));
-                console.log(targetExperience)
+                targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index) + 1);
             }
         }
+        ModalCharacterInfoIntarface.instance.renderCharacter(index);
+        ModalCharacterPumpingInterface.instance.renderModalTexts();
         this.updateCharactrerStorage();
     }
 
