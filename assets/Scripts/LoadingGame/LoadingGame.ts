@@ -5,6 +5,7 @@ import { OkConnector } from '../Network/OkConnector';
 import { SessionService } from '../Network/services/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/services/DataStorageService';
+import { TechnicalConfig } from '../Static/TechnicalConfig';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')
@@ -14,7 +15,12 @@ export class LoadingGame extends Component {
         // setTimeout(() => {
         //     RedirectionToScene.redirect(SceneNames.HOME_MAP);
         // }, 1000);
-        LoadingGame.initSDKAndGetUserInfo()
+        if (TechnicalConfig.ISENGINE){
+            LoadingGame.getSession()
+        }
+        else{
+            LoadingGame.initSDKAndGetUserInfo()
+        }
     }
 
     static initSDKAndGetUserInfo() {
