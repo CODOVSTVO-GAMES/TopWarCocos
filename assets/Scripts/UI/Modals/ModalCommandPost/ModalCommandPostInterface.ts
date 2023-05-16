@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Label } from 'cc';
+import { _decorator, Component, Label } from 'cc';
 import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;

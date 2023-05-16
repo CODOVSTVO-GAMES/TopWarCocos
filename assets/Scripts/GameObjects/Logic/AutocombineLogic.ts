@@ -7,7 +7,6 @@ const { ccclass, property } = _decorator;
 export class AutocombineLogic extends Component {
 
     click() {
-        SecondaryInterface.instance.openModal(TypesModals.AUT);
+        SecondaryInterface.instance.openModal(TypesModals.AUTOCOMBINE);
     }
 }
-

@@ -118,8 +118,10 @@ export class ControllerHomeMapStorage {
     static getQuantityObjectsByType(type: string): number {
         let count = 0;
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i].type == type) {
-                count += 1;
+            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
+                if (HomeMapStorage.instance.arrayObjectParameters[i].type == type) {
+                    count += 1;
+                }
             }
         }
         return count;
@@ -128,9 +130,11 @@ export class ControllerHomeMapStorage {
     static getQuantityObjectsByTypeAndLevel(type: string, level: number): number {
         let count = 0;
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i].type == type) {
-                if (HomeMapStorage.instance.arrayObjectParameters[i].level == level) {
-                    count += 1;
+            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
+                if (HomeMapStorage.instance.arrayObjectParameters[i].type == type) {
+                    if (HomeMapStorage.instance.arrayObjectParameters[i].level == level) {
+                        count += 1;
+                    }
                 }
             }
         }

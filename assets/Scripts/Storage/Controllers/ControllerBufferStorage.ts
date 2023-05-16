@@ -21,7 +21,7 @@ export class ControllerBufferStorage {
         if (BufferStorage.instance.arrayBuffer.length > 0) {
             return true;
         } 
-        return false
+        return false;
 
     }
     static addEventToQueue(event: string) {
@@ -36,7 +36,7 @@ export class ControllerBufferStorage {
         if (BufferStorage.instance.eventsQueue.length > 0) {
             return true;
         }
-        return false
+        return false;
 
     }
 

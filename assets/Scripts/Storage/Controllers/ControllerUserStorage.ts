@@ -20,7 +20,7 @@ export class ControllerUserStorage {
     }
 
     static setUserId(userId: string) {
-        UserStorage.instance.userId = userId
+        UserStorage.instance.userId = userId;
     }
 
     static getUserId(): string {

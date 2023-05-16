@@ -4,6 +4,7 @@ import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
 import { TypesModals } from '../Static/TypesModals';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalCommandPostInterface';
+import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutocombineInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -34,6 +35,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public commandPost: Node;
+
+    @property({ type: Node })
+    public autocombine: Node;
 
     public listOpeningModals: string[] = [];
 
@@ -68,13 +72,20 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.powar.active = true;
         }
-        else if (type == "") {
-
+        else if (type == TypesModals.CHARACTERS) {
+            ModalCharacterGridInterface.instance.renderCharacters();
+            this.backgraund.active = true;
+            this.characters.active = true;
         }
         else if (type == TypesModals.COMMAND_POST) {
             ModalCommandPostInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.commandPost.active = true;
+        }
+        else if (type == TypesModals.AUTOCOMBINE) {
+            ModalAutocombineInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.autocombine.active = true;
         }
     }
 
@@ -88,6 +99,12 @@ export class SecondaryInterface extends Component {
 
     openPower() { this.openModal(TypesModals.POWER); }
 
+    openCharacters() { this.openModal(TypesModals.CHARACTERS); }
+
+    openCommandPost() { this.openModal(TypesModals.COMMAND_POST); }
+
+    openAutocombine() { this.openModal(TypesModals.AUTOCOMBINE); }
+
     closeAllModals() {
         this.backgraund.active = false;
         this.profile.active = false;
@@ -95,18 +112,8 @@ export class SecondaryInterface extends Component {
         this.shopGems.active = false;
         this.experience.active = false;
         this.powar.active = false;
-        // this.characters.active = false;
-        this.commandPost.active = false;
-    }
-
-    charactersOpen() {
-        ModalCharacterGridInterface.instance.renderCharacters();
-        this.backgraund.active = true;
-        this.characters.active = true;
-    }
-
-    charactersClose() {
-        this.backgraund.active = false;
         this.characters.active = false;
+        this.commandPost.active = false;
+        this.autocombine.active = false;
     }
 }
