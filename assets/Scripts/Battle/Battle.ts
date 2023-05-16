@@ -244,18 +244,18 @@ export class Battle extends Component {
     }
 
     returnUnitInFreeArray(unit: Unit) {
-        for (let x = 0; x < this.arrayCards.length; x++) {
-            if (this.arrayCards[x] != null) {
-                if (this.arrayCards[x].type == unit.type && this.arrayCards[x].level == unit.level) {
-                    this.arrayCards[x].quantity += unit.quantity;
+        for (let i = 0; i < this.arrayCards.length; i++) {
+            if (this.arrayCards[i] != null) {
+                if (this.arrayCards[i].type == unit.type && this.arrayCards[i].level == unit.level) {
+                    this.arrayCards[i].quantity += unit.quantity;
                     this.sortedArrayCards();
                     return;
                 }
             }
         }
-        for (let x = 0; x < this.arrayCards.length; x++) {
-            if (this.arrayCards[x] == null) {
-                this.arrayCards[x] = new FreeUnit(unit.type, unit.level, unit.quantity, unit.hp);
+        for (let i = 0; i < this.arrayCards.length; i++) {
+            if (this.arrayCards[i] == null) {
+                this.arrayCards[i] = new FreeUnit(unit.type, unit.level, unit.quantity, unit.hp);
                 this.sortedArrayCards();
                 return;
             }

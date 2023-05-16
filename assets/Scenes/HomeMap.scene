@@ -1596,8 +1596,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 499.9999999999998,
-      "height": 300
+      "width": 472.93499999999995,
+      "height": 840.7733333333334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1620,13 +1620,13 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 184,
+      "r": 255,
+      "g": 255,
       "b": 255,
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "a9e944a9-014d-4f29-b067-439943d7fad3@f9941",
+      "__uuid__": "35278861-abaf-40e2-aea7-1f3fdb88900b@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -1642,7 +1642,7 @@
     "_isTrimmedMode": true,
     "_useGrayscale": false,
     "_atlas": null,
-    "_id": "a7OX1TJVJOcKIHdm9JOKUS"
+    "_id": "54xLwzG0ROjIyx5JBkQsgN"
   },
   {
     "__type__": "cc.BlockInputEvents",
@@ -27118,7 +27118,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -345.634,
+      "x": -340,
       "y": 460,
       "z": 0
     },
