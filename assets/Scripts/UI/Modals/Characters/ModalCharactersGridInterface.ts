@@ -2,6 +2,7 @@ import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { CharacterInfo } from '../../../Structures/CharacterInfo';
 import { SpriteStorage } from '../../../Storage/SpriteStorage';
 import { CharactersStorage } from '../../../Storage/CharactersStorage';
+import { TypesCharacters } from '../../../Static/TypesCharacters';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterGridInterface')
@@ -40,8 +41,39 @@ export class ModalCharacterGridInterface extends Component {
     }
 
     sortedCharacters() {
-        this.charactersRendered = CharactersStorage.instance.characters;
-        this.charactersRendered.sort((a, b) => {
+        // this.charactersRendered = CharactersStorage.instance.characters;
+
+        let str = ''
+        for (let l = 0; l < CharactersStorage.instance.characters.length; l++) {
+            str = str + CharactersStorage.instance.characters[l].type + ','
+        }
+        console.log('1+' + str)
+
+        let rCharacters = new Array<CharacterInfo>
+        let srCharacters = new Array<CharacterInfo>
+        let ssrCharacters = new Array<CharacterInfo>
+
+        for (let l = 0; l < CharactersStorage.instance.characters.length; l++) {
+            if (CharactersStorage.instance.characters[l].type == 'r') {
+                rCharacters.push(CharactersStorage.instance.characters[l])
+            } else if (CharactersStorage.instance.characters[l].type == 'sr') {
+                srCharacters.push(CharactersStorage.instance.characters[l])
+            } else if (CharactersStorage.instance.characters[l].type == 'ssr') {
+                ssrCharacters.push(CharactersStorage.instance.characters[l])
+            }
+        }
+
+        rCharacters = this.sortArrayCharacterInfoByLevel(rCharacters)
+        srCharacters = this.sortArrayCharacterInfoByLevel(srCharacters)
+        ssrCharacters = this.sortArrayCharacterInfoByLevel(ssrCharacters)
+
+        this.charactersRendered = ssrCharacters
+        this.charactersRendered = this.charactersRendered.concat(srCharacters)
+        this.charactersRendered = this.charactersRendered.concat(rCharacters)
+    }
+
+    private sortArrayCharacterInfoByLevel(arr: Array<CharacterInfo>): Array<CharacterInfo> {
+        arr.sort((a, b) => {
             if (a.level > b.level) {
                 return 1;
             }
@@ -49,6 +81,7 @@ export class ModalCharacterGridInterface extends Component {
                 return -1;
             }
             return 0;
-        });
+        })
+        return arr
     }
 }

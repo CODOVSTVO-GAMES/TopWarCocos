@@ -4,6 +4,5 @@ export class TechnicalConfig {
     public static SERVER_DOMAIN: string = 'https://codovstvo.ru:9600/'
     
     public static ISPROD = false;
-
     // public static ISPROD = true;
 }

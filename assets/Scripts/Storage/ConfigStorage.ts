@@ -502,11 +502,11 @@ export class ConfigStorage extends Component {
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + (5 * heroStarStady))
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36));
+        this.heroConfig.push(new HeroConfig("ssr", TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
+        this.heroConfig.push(new HeroConfig("sr", TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
+        this.heroConfig.push(new HeroConfig("sr", TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_8, 280, 340, 500, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_9, 300, 360, 500, 24, 36));
         this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_10, 320, 380, 600, 24, 36));
