@@ -23,7 +23,6 @@ export class ModalCharacterInfoLogic extends Component {
     }
 
     modalOpen(event, customEventData) {
-        console.log("openModal = " + customEventData);
         this.characterIndex = customEventData;
         this.modal.active = ModalCharacterInfoIntarface.instance.renderCharacter(customEventData);
     }
@@ -34,23 +33,20 @@ export class ModalCharacterInfoLogic extends Component {
     }
 
     modalParametersOpen() {
-        ModalCharacterPumpingInterface.instance.renderModalPumping(TypesModalPumping.PARAMETERS);
         ModalCharacterPumpingLogic.instance.characterIndex = this.characterIndex;
-        console.log("PARAMETRERS " + this.characterIndex);
+        ModalCharacterPumpingInterface.instance.renderModalPumping(TypesModalPumping.PARAMETERS);
         this.modalPumping.active = true;
     }
 
     modalPumpingLevelOpen() {
-        ModalCharacterPumpingInterface.instance.renderModalPumping(TypesModalPumping.PUMPING_LEVEL);
         ModalCharacterPumpingLogic.instance.characterIndex = this.characterIndex;
-        console.log("LEEEEEVEL " + this.characterIndex);
+        ModalCharacterPumpingInterface.instance.renderModalPumping(TypesModalPumping.PUMPING_LEVEL);
         this.modalPumping.active = true;
     }
 
     modalPumpingStarsOpen() {
-        ModalCharacterPumpingInterface.instance.renderModalPumping(TypesModalPumping.PUMPING_STARS);
         ModalCharacterPumpingLogic.instance.characterIndex = this.characterIndex;
-        console.log("STARS " + this.characterIndex);
+        ModalCharacterPumpingInterface.instance.renderModalPumping(TypesModalPumping.PUMPING_STARS);
         this.modalPumping.active = true;
     }
 

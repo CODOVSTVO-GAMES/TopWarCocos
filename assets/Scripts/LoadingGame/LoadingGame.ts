@@ -11,10 +11,10 @@ const { ccclass } = _decorator;
 export class LoadingGame extends Component {
 
     start() {
-        // setTimeout(() => {
-        //     RedirectionToScene.redirect(SceneNames.HOME_MAP);
-        // }, 1000);
-        LoadingGame.initSDKAndGetUserInfo()
+        setTimeout(() => {
+            RedirectionToScene.redirect(SceneNames.HOME_MAP);
+        }, 1000);
+        // LoadingGame.initSDKAndGetUserInfo()
     }
 
     static initSDKAndGetUserInfo() {

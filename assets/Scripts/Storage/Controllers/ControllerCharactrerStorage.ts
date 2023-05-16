@@ -20,15 +20,16 @@ export class ControllerCharactrerStorage {
         CharactersStorage.instance.characters[index].experience += value;
         let targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index) + 1);
         while (this.getExperience(index) > targetExperience) {
-            console.log("Цикл " + this.getExperience(index) + " > " + targetExperience)
             if (this.getExperience(index) > targetExperience) {
                 CharactersStorage.instance.characters[index].level++;
                 CharactersStorage.instance.characters[index].experience -= targetExperience;
                 targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index) + 1);
             }
         }
+        
         ModalCharacterInfoIntarface.instance.renderCharacter(index);
         ModalCharacterPumpingInterface.instance.renderModalTexts();
+        CharactersStorage.instance.recalculationCharacter(index);
         this.updateCharactrerStorage();
     }
 

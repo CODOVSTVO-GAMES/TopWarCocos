@@ -70,6 +70,7 @@ export class ModalCharacterGridInterface extends Component {
         this.charactersRendered = ssrCharacters
         this.charactersRendered = this.charactersRendered.concat(srCharacters)
         this.charactersRendered = this.charactersRendered.concat(rCharacters)
+        CharactersStorage.instance.characters = this.charactersRendered;
     }
 
     private sortArrayCharacterInfoByLevel(arr: Array<CharacterInfo>): Array<CharacterInfo> {
