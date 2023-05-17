@@ -6,6 +6,7 @@ import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { TypesCharacters } from '../../../../Static/TypesCharacters';
 import { ModalCharacterPumpingInterface } from './ModalCharacterPumpingInterface';
 import { CharacterInfo } from '../../../../Structures/CharacterInfo';
+import { ModalCharacterInfoIntarface } from '../ModalCharacterInfo/ModalCharacterInfoInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingLogic')
@@ -66,7 +67,10 @@ export class ModalCharacterPumpingLogic extends Component {
         if (ControllerInventoryStorage.getQuantityByType(typeFragment) > 4) {
             character.stars++;
             ControllerInventoryStorage.reduceItem(typeFragment, 4);
+            CharactersStorage.instance.recalculationCharacter(this.characterIndex);
+            ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
             ModalCharacterPumpingInterface.instance.renderModalPumpingStars();
+            ControllerCharactrerStorage.updateCharactrerStorage();
         }
     }
 

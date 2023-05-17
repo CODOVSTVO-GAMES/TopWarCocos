@@ -53,6 +53,7 @@ export class NetworkClient extends Component {
         for (let l = 0; l < objects.length; l++) {
             const json = JSON.parse(JSON.stringify(objects[l]));
             const jsonValue = JSON.parse(json.value);
+            console.log(jsonValue);
             if (json.key == TypesStorages.GAME_STORAGE) {
                 ControllerGameStorage.equateCoins(jsonValue.coins);
                 ControllerGameStorage.equateGems(jsonValue.gems);
