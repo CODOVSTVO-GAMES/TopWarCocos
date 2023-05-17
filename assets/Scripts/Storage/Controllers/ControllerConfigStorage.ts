@@ -216,16 +216,6 @@ export class ControllerConfigStorage {
         throw "Главное здание такого уровня не найдено"
     }
 
-    static getAttackBonusRepairBuilding(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].attackBonus
-            }
-        }
-        throw "Главное здание такого уровня не найдено"
-    }
-
     static getNumberWokrShopRepairBuilding(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
             if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
