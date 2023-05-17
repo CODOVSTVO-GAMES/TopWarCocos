@@ -16,6 +16,8 @@ export class CharactersStorage extends Component {
 
     onLoad() {
         CharactersStorage.instance = this;
+        // this.characters = new Array(68);
+        // setInterval(() => console.log(this.characters), 1000)
     }
 
     start() {

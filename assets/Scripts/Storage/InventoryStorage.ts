@@ -16,8 +16,12 @@ export class InventoryStorage extends Component {
     }
 
     start() {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < TypesInventory.BOOKS.length; i++) {
             ControllerInventoryStorage.addItem(TypesInventory.BOOKS[i], 12)
+        }
+
+        for (let i = 0; i < TypesInventory.FRAGMENTS.length; i++) {
+            ControllerInventoryStorage.addItem(TypesInventory.FRAGMENTS[i], 5);
         }
     }
 }
