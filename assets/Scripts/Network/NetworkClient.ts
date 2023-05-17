@@ -5,8 +5,10 @@ import { EventService } from './services/EventService';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 import { TypesStorages } from '../Static/TypesStorages';
 import { SessionService } from './services/SessionService';
-import { LoadingGame } from '../LoadingGame/LoadingGame';
 import { ControllerCommandPostStorage } from '../Storage/Controllers/ControllerCommandPostStorage';
+import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { SceneNames } from '../Static/SceneNames';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -40,16 +42,23 @@ export class NetworkClient extends Component {
     }
 
     dataRecipient(objects: object[]) {
+        if (ControllerUserStorage.getIsNewUser()) {
+            ControllerGameStorage.assignStartingValues();
+            ControllerCommandPostStorage.assignStartingValues();
+            RedirectionToScene.redirect(SceneNames.HOME_MAP);
+            return;
+        }
+
         if (objects == null) throw 'Пришел пустой обьект';
         for (let l = 0; l < objects.length; l++) {
             const json = JSON.parse(JSON.stringify(objects[l]));
             const jsonValue = JSON.parse(json.value);
             if (json.key == TypesStorages.GAME_STORAGE) {
                 ControllerGameStorage.equateCoins(jsonValue.coins);
-                ControllerGameStorage.equateGems(jsonValue.coinsInTime);
                 ControllerGameStorage.equateGems(jsonValue.gems);
                 ControllerGameStorage.equateEnergy(jsonValue.energy);
                 ControllerGameStorage.equateExperience(jsonValue.experience);
+                ControllerGameStorage.equateLevel(jsonValue.level);
                 ControllerGameStorage.equateMaxPower(jsonValue.maxPower);
                 ControllerGameStorage.equateTerritoryPower(jsonValue.territoryPower);
                 ControllerGameStorage.equateTechnoPower(jsonValue.technoPower);
@@ -82,7 +91,7 @@ export class NetworkClient extends Component {
                 ControllerCommandPostStorage.equateLevelBuildBarracksOverland(jsonValue.levelBuildBarracksOverland);
             }
         }
-        LoadingGame.redirectToHomeMap()
+        RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
 }
 

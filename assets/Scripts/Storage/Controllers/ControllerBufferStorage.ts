@@ -5,6 +5,7 @@ import { Buffer } from '../../Structures/Buffer';
 export class ControllerBufferStorage {
 
     static addItem(type: string, obj: Object) {
+        console.log(type);
         if (obj == null || obj == undefined) {
             console.log("addItem пришел пустой обьект")
             return
@@ -45,7 +46,6 @@ export class ControllerBufferStorage {
             return true;
         }
         return false;
-
     }
 
     static clearEventsQueue() {

@@ -24,23 +24,22 @@ export class LoadingGame extends Component {
         OkConnector.initPlugin() //getSession вызывается после получения данных в колбеке
     }
 
+    static getUser() {
+        UserService.getUser(ControllerUserStorage.getUserId())
+    }
+
     static getSession() {
         SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
     }
 
     static getStorages() {
-        let myArr = [TypesStorages.GAME_STORAGE]
+        let myArr = [TypesStorages.GAME_STORAGE, TypesStorages.COMMAND_POST_STORAGE];
         DataStorageService.getData(myArr)//redirectToHomeMap вызывается после получения данных в колбеке
     }
 
     static redirectToHomeMap() {
         console.log('redirect scene')
-        this.getUser()
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
-    }
-
-    static getUser() {
-        UserService.getUser(ControllerUserStorage.getUserId())
     }
 
 }

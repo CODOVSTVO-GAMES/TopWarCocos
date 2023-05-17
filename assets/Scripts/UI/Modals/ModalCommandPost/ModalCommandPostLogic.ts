@@ -4,24 +4,17 @@ const { ccclass, property } = _decorator;
 @ccclass('ModalCommandPostLogic')
 export class ModalCommandPostLogic extends Component {
 
-    openA() {
+    @property({ type: Node })
+    public upgrateCommandPost: Node;
 
+    @property({ type: Node })
+    public upgrateOther: Node;
+
+    openUpgradeCommandPost() {
+        this.upgrateCommandPost.active = true;
     }
 
-    openB() {
-
-    }
-
-    openC() {
-
-    }
-
-    openD() {
-
-    }
-
-    openE() {
-
+    openUpgradeOther(event, customEventData) {
+        this.upgrateOther.active = true;
     }
 }
-

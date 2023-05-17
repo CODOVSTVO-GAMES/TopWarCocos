@@ -1,4 +1,4 @@
-import { _decorator, CCString, Component } from 'cc';
+import { _decorator, CCBoolean, CCObject, CCString, Component } from 'cc';
 import { TechnicalConfig } from '../Static/TechnicalConfig';
 import { Cryptor } from '../Network/other/Cryptor';
 const { ccclass, property } = _decorator;
@@ -17,10 +17,22 @@ export class UserStorage extends Component {
     @property({ type: CCString })
     public userId: string;
 
+    @property({ type: CCBoolean })
+    public isNewUser: boolean;
+
+    @property({ type: CCObject })
+    public accountsId: Array<string>;
+
+    @property({ type: CCString })
+    public accountId: string;
+
+    @property({ type: CCString })
+    public permission: string;
+
     onLoad() {
         UserStorage.instance = this;
-        this.sessionId = 0
-        this.userId = TechnicalConfig.NAME
-        this.sessionHash = Cryptor.getRandomHash()
+        this.sessionId = 0;
+        this.userId = TechnicalConfig.NAME;
+        this.sessionHash = Cryptor.getRandomHash();
     }
 }

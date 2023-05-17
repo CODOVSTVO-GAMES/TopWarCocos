@@ -99,4 +99,132 @@ export class ControllerConfigStorage {
         }
         throw "не существует такого уровня героя"
     }
+
+
+    //---------------------------------------------------------------------------------------------------
+
+    static getPowerMainBuildingByLevel(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].power
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getExpMainBuildingByLevel(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].experience
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getPriceUpdateMainBuildingByLevel(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].priceUpdate
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getImprivementResourceTypeMainBuildingByLevel(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceType
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getImprivementResourceNumberMainBuildingByLevel(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceNumber
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getAttackBonusMainBuildingByLevel(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].attackBonus
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+
+    //---------------------------------------------------------------------------------------------------
+
+    static getPowerRepairBuilding(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].power
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getExpRepairBuilding(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].experience
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getPriceUpdateRepairBuilding(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].priceUpdate
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getImprivementResourceTypeRepairBuilding(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceType
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getImprivementResourceNumberRepairBuilding(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceNumber
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    static getNumberWokrShopRepairBuilding(level: number) {
+        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigStorage.instance.mainAndRepairBuildings[i].level
+            }
+        }
+        throw "Главное здание такого уровня не найдено"
+    }
+
+    //---------------------------------------------------------------------------------------------------
 }

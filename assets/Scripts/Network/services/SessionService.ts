@@ -6,12 +6,12 @@ import { LoadingGame } from "../../LoadingGame/LoadingGame";
 export class SessionService {
 
     static getStartSessionData() {
-        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
+        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getAccountId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
         ClientService.post('session', sessionDataDTO, SessionService.parseGetSessionResponce);
     }
 
     static updateSessionData() {
-        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
+        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getAccountId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
         ClientService.post('session', sessionDataDTO, SessionService.parseUpdateSessionResponce);
     }
 
@@ -21,7 +21,7 @@ export class SessionService {
         ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
         ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
 
-        console.log("update session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', userId: ' + ControllerUserStorage.getUserId())
+        console.log("update session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', userId: ' + ControllerUserStorage.getAccountId())
     }
 
     static parseGetSessionResponce(data: any, isDone: boolean) {
@@ -31,7 +31,7 @@ export class SessionService {
             ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
             ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
 
-            console.log("get session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', userId: ' + ControllerUserStorage.getUserId())
+            console.log("get session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', userId: ' + ControllerUserStorage.getAccountId())
             LoadingGame.getStorages()
         }
 

@@ -48,10 +48,5 @@ export class GameStorage extends Component {
     onLoad() {
         GameStorage.instance = this
     }
-
-    start() {
-        this.coins = 1000;
-        this.level = 1;
-    }
 }
 

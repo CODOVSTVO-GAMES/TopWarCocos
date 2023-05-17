@@ -13,7 +13,7 @@ export class OkConnector {
                 FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { console.log("SDK init"); OkConnector.getUserInfo() }, function () {
                     console.log('SDK error');
                     if (!TechnicalConfig.ISPROD) {
-                        LoadingGame.getSession()
+                        LoadingGame.getUser()
                     } else {
                         console.log("Игра не запустится")
                     }
@@ -39,7 +39,7 @@ export class OkConnector {
         if (data) {
             ControllerUserStorage.setUserId(data['uid'])
             console.log("OK get UserInfo done")
-            LoadingGame.getSession()
+            LoadingGame.getUser()
         } else {
             console.log("err " + error)
         }

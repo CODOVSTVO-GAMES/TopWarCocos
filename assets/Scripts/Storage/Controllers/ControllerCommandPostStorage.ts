@@ -7,6 +7,25 @@ export class ControllerCommandPostStorage {
 
     // =================================================================
 
+    static assignStartingValues() {
+        CommandPostStorage.instance.levelCommandPost = 1;
+        CommandPostStorage.instance.levelRepairShop = 1;
+        CommandPostStorage.instance.levelMergeGoldMine = 1;
+        CommandPostStorage.instance.levelBuildGoldMine = 1;
+        CommandPostStorage.instance.levelMergeTroopAir = 1;
+        CommandPostStorage.instance.levelMergeBarracksAir = 1;
+        CommandPostStorage.instance.levelBuildBarracksAir = 1;
+        CommandPostStorage.instance.levelMergeTroopMarine = 1;
+        CommandPostStorage.instance.levelMergeBarracksMarine = 1;
+        CommandPostStorage.instance.levelBuildBarracksMarine = 1;
+        CommandPostStorage.instance.levelMergeTroopOverland = 1;
+        CommandPostStorage.instance.levelMergeBarracksOverland = 1;
+        CommandPostStorage.instance.levelBuildBarracksOverland = 1;
+        this.updateCommandPostStorage();
+    }
+
+    // =================================================================
+
     static equateLevelCommandPost(value: number) {
         CommandPostStorage.instance.levelCommandPost = value;
     }
@@ -202,7 +221,6 @@ export class ControllerCommandPostStorage {
             levelMergeBarracksOverland: CommandPostStorage.instance.levelMergeBarracksOverland,
             levelBuildBarracksOverland: CommandPostStorage.instance.levelBuildBarracksOverland,
         };
-        ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
-        console.log("updateCommandPostStorage");
+        ControllerBufferStorage.addItem(TypesStorages.COMMAND_POST_STORAGE, obj);
     }
 }

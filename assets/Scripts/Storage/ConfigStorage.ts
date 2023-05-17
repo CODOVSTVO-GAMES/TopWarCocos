@@ -7,6 +7,7 @@ import { Level } from '../Structures/Level';
 import { HeroConfig } from '../Structures/HeroConfig';
 import { HeroLevel } from '../Structures/HeroLevel';
 import { TypesCharacters } from '../Static/TypesCharacters';
+import { MainAndRepairBuildings } from '../Structures/MainAndRepairBuildings';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -15,6 +16,8 @@ export class ConfigStorage extends Component {
     public static instance: ConfigStorage;
 
     public globalConfig: Array<GlobalConfigurationUnits> = []
+
+    public mainAndRepairBuildings: Array<MainAndRepairBuildings>
 
     public levelConfig: Array<Level> = []
 
@@ -53,94 +56,84 @@ export class ConfigStorage extends Component {
         let type = TypesObjects.COMMAND_POST
         let typeItem = TypesItems.PLAN_MAX_MAINBUILDING
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 0, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 2, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 0, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 3, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 0, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 4, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 0, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 5, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 0, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 1, 0, 0, typeItem, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 2, 0, 0, typeItem, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 3, 0, 0, typeItem, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 4, 0, 0, typeItem, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 5, 0, 0, typeItem, 0, 0, 0))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 6, 160, 970, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 0, 0.6, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 7, 2200, 1020, typeItem, 20, 0, 0, 0, TypesAttack.NONE, 0, 0, 0.7, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 5810, 1070, typeItem, 30, 0, 0, 0, TypesAttack.NONE, 0, 0, 0.8, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 12300, 1130, typeItem, 35, 0, 0, 0, TypesAttack.NONE, 0, 0, 0.9, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 24000, 1190, typeItem, 40, 0, 0, 0, TypesAttack.NONE, 0, 0, 1, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 6, 160, 970, typeItem, 10, 800, 0.6))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 7, 2200, 1020, typeItem, 20, 11000, 0.7))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 8, 5810, 1070, typeItem, 30, 29000, 0.8))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 9, 12300, 1130, typeItem, 35, 61900, 0.9))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 10, 24000, 1190, typeItem, 40, 120000, 1))
 
-        //10->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 11, 54000, 1240, typeItem, 45, 0, 0, 0, TypesAttack.NONE, 0, 0, 1.2, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 12, 119000, 1310, typeItem, 50, 0, 0, 0, TypesAttack.NONE, 0, 0, 1.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 13, 365000, 1380, typeItem, 60, 0, 0, 0, TypesAttack.NONE, 0, 0, 2, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 14, 1040000, 1450, typeItem, 70, 0, 0, 0, TypesAttack.NONE, 0, 0, 2.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 15, 3610000, 1520, typeItem, 80, 0, 0, 0, TypesAttack.NONE, 0, 0, 3, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 11, 54000, 1240, typeItem, 45, 270000, 1.2))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 12, 119000, 1310, typeItem, 50, 599000, 1.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 13, 365000, 1380, typeItem, 60, 1820000, 2))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 14, 1040000, 1450, typeItem, 70, 5200000, 2.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 15, 3610000, 1520, typeItem, 80, 18000000, 3))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 16, 9740000, 1610, typeItem, 90, 0, 0, 0, TypesAttack.NONE, 0, 0, 3.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 17, 24600000, 1690, typeItem, 100, 0, 0, 0, TypesAttack.NONE, 0, 0, 4, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 18, 60000000, 1770, typeItem, 120, 0, 0, 0, TypesAttack.NONE, 0, 0, 4.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 19, 163000000, 1860, typeItem, 140, 0, 0, 0, TypesAttack.NONE, 0, 0, 5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 20, 378000000, 1960, typeItem, 160, 0, 0, 0, TypesAttack.NONE, 0, 0, 5.5, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 16, 9740000, 1610, typeItem, 90, 48700000, 3.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 17, 24600000, 1690, typeItem, 100, 123000000, 4))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 18, 60000000, 1770, typeItem, 120, 300000000, 4.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 19, 163000000, 1860, typeItem, 140, 816000000, 5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 20, 378000000, 1960, typeItem, 160, 1890000000, 5.5))
 
-        //20->
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 21, 832000000, 2060, typeItem, 180, 4160000000, 6))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 22, 1780000000, 2170, typeItem, 210, 8930000000, 6.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 23, 4030000000, 2290, typeItem, 240, 20100000000, 7))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 24, 7410000000, 2410, typeItem, 280, 37000000000, 7.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 25, 15800000000, 2540, typeItem, 320, 79000000000, 8))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 21, 832000000, 2060, typeItem, 180, 0, 0, 0, TypesAttack.NONE, 0, 0, 6, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 22, 1780000000, 2170, typeItem, 210, 0, 0, 0, TypesAttack.NONE, 0, 0, 6.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 23, 4030000000, 2290, typeItem, 240, 0, 0, 0, TypesAttack.NONE, 0, 0, 7, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 24, 7410000000, 2410, typeItem, 280, 0, 0, 0, TypesAttack.NONE, 0, 0, 7.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 25, 15800000000, 2540, typeItem, 320, 0, 0, 0, TypesAttack.NONE, 0, 0, 8, 0, 0))
-
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 26, 33100000000, 2680, typeItem, 370, 0, 0, 0, TypesAttack.NONE, 0, 0, 8.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 27, 67000000000, 2810, typeItem, 420, 0, 0, 0, TypesAttack.NONE, 0, 0, 9, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 28, 155000000000, 2960, typeItem, 480, 0, 0, 0, TypesAttack.NONE, 0, 0, 9.5, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 29, 314000000000, 3120, typeItem, 560, 0, 0, 0, TypesAttack.NONE, 0, 0, 10, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 30, 634000000000, 3260, typeItem, 640, 0, 0, 0, TypesAttack.NONE, 0, 0, 10.5, 0, 0))
-
-        //30->
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 26, 33100000000, 2680, typeItem, 370, 165000000000, 8.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 27, 67000000000, 2810, typeItem, 420, 335000000000, 9))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 28, 155000000000, 2960, typeItem, 480, 778000000000, 9.5))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 29, 314000000000, 3120, typeItem, 560, 1570000000000, 10))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 20, 634000000000, 3260, typeItem, 640, 3170000000000, 10.5))
     }
 
     initRepairBuilding() {
         let type = TypesObjects.REPAIR_SHOP
         let typeItem = TypesItems.PLAN_MAX_MAINBUILDING
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 1, 0, 0, typeItem, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 2, 12000, 580, typeItem, 5, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 3, 27000, 610, typeItem, 5, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 4, 59900, 640, typeItem, 10, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 5, 182000, 670, typeItem, 10, 0, 0))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 60000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 2, 12000, 580, typeItem, 5, 0, 0, 0, TypesAttack.NONE, 0, 135000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 3, 27000, 610, typeItem, 5, 0, 0, 0, TypesAttack.NONE, 0, 299000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 4, 59900, 640, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 913000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 5, 182000, 670, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 2600000, 0, 0, 0))
-
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 6, 520000, 710, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 9030000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 7, 1800000, 750, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 24300000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 4870000, 780, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 61600000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 12300000, 830, typeItem, 15, 0, 0, 0, TypesAttack.NONE, 0, 150000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 30000000, 870, typeItem, 15, 0, 0, 0, TypesAttack.NONE, 0, 408000000, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 6, 520000, 710, typeItem, 10, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 7, 1800000, 750, typeItem, 10, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 8, 4870000, 780, typeItem, 10, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 9, 12300000, 830, typeItem, 15, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 10, 30000000, 870, typeItem, 15, 0, 0))
 
         //10->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 11, 81600000, 910, typeItem, 20, 0, 0, 0, TypesAttack.NONE, 0, 945000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 12, 189000000, 960, typeItem, 20, 0, 0, 0, TypesAttack.NONE, 0, 2080000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 13, 416000000, 1010, typeItem, 20, 0, 0, 0, TypesAttack.NONE, 0, 4460000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 14, 893000000, 1060, typeItem, 25, 0, 0, 0, TypesAttack.NONE, 0, 10000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 15, 2010000000, 1120, typeItem, 30, 0, 0, 0, TypesAttack.NONE, 0, 18500000000, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 11, 81600000, 910, typeItem, 20, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 12, 189000000, 960, typeItem, 20, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 13, 416000000, 1010, typeItem, 20, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 14, 893000000, 1060, typeItem, 25, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 15, 2010000000, 1120, typeItem, 30, 0, 0))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 16, 3710000000, 1170, typeItem, 35, 0, 0, 0, TypesAttack.NONE, 0, 39500000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 17, 7900000000, 1240, typeItem, 40, 0, 0, 0, TypesAttack.NONE, 0, 82800000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 18, 16500000000, 1310, typeItem, 45, 0, 0, 0, TypesAttack.NONE, 0, 167000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 19, 33500000000, 1380, typeItem, 50, 0, 0, 0, TypesAttack.NONE, 0, 389000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 20, 77800000000, 1450, typeItem, 60, 0, 0, 0, TypesAttack.NONE, 0, 785000000000, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 16, 3710000000, 1170, typeItem, 35, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 17, 7900000000, 1240, typeItem, 40, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 18, 16500000000, 1310, typeItem, 45, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 19, 33500000000, 1380, typeItem, 50, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 20, 77800000000, 1450, typeItem, 60, 0, 0))
 
         //20->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 21, 77800000000, 1520, typeItem, 65, 0, 0, 0, TypesAttack.NONE, 0, 785000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 22, 317000000000, 1600, typeItem, 75, 0, 0, 0, TypesAttack.NONE, 0, 1580000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 23, 640000000000, 1690, typeItem, 85, 0, 0, 0, TypesAttack.NONE, 0, 3200000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 24, 1290000000000, 1770, typeItem, 100, 0, 0, 0, TypesAttack.NONE, 0, 6460000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 25, 2610000000000, 1860, typeItem, 115, 0, 0, 0, TypesAttack.NONE, 0, 13000000000000, 0, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 21, 77800000000, 1520, typeItem, 65, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 22, 317000000000, 1600, typeItem, 75, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 23, 640000000000, 1690, typeItem, 85, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 24, 1290000000000, 1770, typeItem, 100, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 25, 2610000000000, 1860, typeItem, 115, 0, 0))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 26, 5270000000000, 1950, typeItem, 170, 0, 0, 0, TypesAttack.NONE, 0, 26300000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 27, 10600000000000, 2050, typeItem, 255, 0, 0, 0, TypesAttack.NONE, 0, 53200000000000, 0, 0, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 28, 24700000000000, 2160, typeItem, 375, 0, 0, 0, TypesAttack.NONE, 0, 123000000000000, 0, 0, 0))
-        // this.globalConfig.push(new GlobalConfigurationUnits(type, 29,     314000000000, 3120,     typeItem, 560, 0,     0, 0, TypesAttack.NONE, 0, 0,     10,      0, 0))
-        // this.globalConfig.push(new GlobalConfigurationUnits(type, 30,     634000000000, 3260,     typeItem, 640, 0,     0, 0, TypesAttack.NONE, 0, 0,     10.5,      0, 0))
-
-        //30->
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 26, 5270000000000, 1950, typeItem, 170, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 27, 10600000000000, 2050, typeItem, 255, 0, 0))
+        this.mainAndRepairBuildings.push(new MainAndRepairBuildings(type, 28, 24700000000000, 2160, typeItem, 375, 0, 0))
     }
 
     initGoldMine() {
@@ -496,7 +489,7 @@ export class ConfigStorage extends Component {
         this.heroLevelConfig.push(new HeroLevel("r", 28, 12250))
         this.heroLevelConfig.push(new HeroLevel("r", 29, 13000))
         this.heroLevelConfig.push(new HeroLevel("r", 30, 13750))
-        
+
 
 
         this.heroLevelConfig.push(new HeroLevel("sr", 1, 0))
