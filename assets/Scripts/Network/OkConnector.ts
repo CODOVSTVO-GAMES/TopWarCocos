@@ -38,9 +38,8 @@ export class OkConnector {
     static callbackUserGetInfo(status, data, error) {
         if (data) {
             ControllerUserStorage.setUserId(data['uid'])
-            console.log("OK getUserInfo done")
-            setTimeout(LoadingGame.getSession, 100)
-            // LoadingGame.getSession()
+            console.log("OK get UserInfo done")
+            LoadingGame.getSession()
         } else {
             console.log("err " + error)
         }

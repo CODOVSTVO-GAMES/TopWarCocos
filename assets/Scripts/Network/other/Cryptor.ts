@@ -3,6 +3,7 @@ import { md5 } from './md5';
 export class Cryptor {
 
     static hashGenerate(str: string): string {
+        // console.log(md5(str).toString())
         return md5(str).toString();
     }
 

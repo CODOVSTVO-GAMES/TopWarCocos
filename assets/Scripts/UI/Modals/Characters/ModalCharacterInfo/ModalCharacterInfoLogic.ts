@@ -29,6 +29,7 @@ export class ModalCharacterInfoLogic extends Component {
 
     modalClose() {
         ModalCharacterGridInterface.instance.renderCharacters();
+        ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
         this.modal.active = false;
     }
 

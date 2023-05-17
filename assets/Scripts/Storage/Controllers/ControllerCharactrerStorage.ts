@@ -27,9 +27,9 @@ export class ControllerCharactrerStorage {
             }
         }
         
+        CharactersStorage.instance.recalculationCharacter(index);
         ModalCharacterInfoIntarface.instance.renderCharacter(index);
         ModalCharacterPumpingInterface.instance.renderModalTexts();
-        CharactersStorage.instance.recalculationCharacter(index);
         this.updateCharactrerStorage();
     }
 
