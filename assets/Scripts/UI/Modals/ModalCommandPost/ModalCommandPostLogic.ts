@@ -5,16 +5,16 @@ const { ccclass, property } = _decorator;
 export class ModalCommandPostLogic extends Component {
 
     @property({ type: Node })
-    public commandPostPanel: Node;
+    public upgrateCommandPost: Node;
 
     @property({ type: Node })
-    public otherPanel: Node;
+    public upgrateOther: Node;
 
     openUpgradeCommandPost() {
-        this.commandPostPanel.active = true;
+        this.upgrateCommandPost.active = true;
     }
 
-    openOther() {
-        this.otherPanel.active = true;
+    openUpgradeOther() {
+        this.upgrateOther.active = true;
     }
 }

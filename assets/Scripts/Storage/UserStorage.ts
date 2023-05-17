@@ -31,8 +31,8 @@ export class UserStorage extends Component {
 
     onLoad() {
         UserStorage.instance = this;
-        this.sessionId = 0
-        this.userId = TechnicalConfig.NAME
-        this.sessionHash = Cryptor.getRandomHash()
+        this.sessionId = 0;
+        this.userId = TechnicalConfig.NAME;
+        this.sessionHash = Cryptor.getRandomHash();
     }
 }

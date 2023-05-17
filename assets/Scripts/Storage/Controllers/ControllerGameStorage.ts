@@ -9,6 +9,24 @@ export class ControllerGameStorage {
 
     // =================================================================
 
+    static assignStartingValues() {
+        GameStorage.instance.coins = 1000;
+        GameStorage.instance.coinsInTime = 0;
+        GameStorage.instance.gems = 70;
+        GameStorage.instance.energy = 0;
+        GameStorage.instance.experience = 0;
+        GameStorage.instance.level = 1;
+        GameStorage.instance.maxPower = 0;
+        GameStorage.instance.territoryPower = 0;
+        GameStorage.instance.technoPower = 0;
+        GameStorage.instance.heroPower = 0;
+        GameStorage.instance.arsenalPower = 0;
+        GameStorage.instance.professionPower = 0;
+        GameStorage.instance.formationPower = 0;
+    }
+
+    // =================================================================
+
     static equateCoins(value: number) {
         GameStorage.instance.coins = value;
     }

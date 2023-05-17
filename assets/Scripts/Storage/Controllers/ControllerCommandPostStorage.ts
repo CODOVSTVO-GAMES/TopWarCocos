@@ -7,6 +7,24 @@ export class ControllerCommandPostStorage {
 
     // =================================================================
 
+    static assignStartingValues() {
+        CommandPostStorage.instance.levelCommandPost = 1000;
+        CommandPostStorage.instance.levelRepairShop = 0;
+        CommandPostStorage.instance.levelMergeGoldMine = 70;
+        CommandPostStorage.instance.levelBuildGoldMine = 0;
+        CommandPostStorage.instance.levelMergeTroopAir = 0;
+        CommandPostStorage.instance.levelMergeBarracksAir = 1;
+        CommandPostStorage.instance.levelBuildBarracksAir = 0;
+        CommandPostStorage.instance.levelMergeTroopMarine = 0;
+        CommandPostStorage.instance.levelMergeBarracksMarine = 0;
+        CommandPostStorage.instance.levelBuildBarracksMarine = 0;
+        CommandPostStorage.instance.levelMergeTroopOverland = 0;
+        CommandPostStorage.instance.levelMergeBarracksOverland = 0;
+        CommandPostStorage.instance.levelBuildBarracksOverland = 0;
+    }
+
+    // =================================================================
+
     static equateLevelCommandPost(value: number) {
         CommandPostStorage.instance.levelCommandPost = value;
     }
