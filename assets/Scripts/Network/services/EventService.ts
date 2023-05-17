@@ -1,7 +1,6 @@
 import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserStorage"
 import { ClientService } from "../other/ClientService"
 import { EventsDTO } from "../DTO/EventsDTO"
-import { NetworkClient } from "../NetworkClient"
 import { ControllerBufferStorage } from "../../Storage/Controllers/ControllerBufferStorage"
 
 export class EventService {

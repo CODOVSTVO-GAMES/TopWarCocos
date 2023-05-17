@@ -5,6 +5,8 @@ import { OkConnector } from '../Network/OkConnector';
 import { SessionService } from '../Network/services/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/services/DataStorageService';
+import { UserService } from '../Network/services/UserService';
+import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')
@@ -33,7 +35,12 @@ export class LoadingGame extends Component {
 
     static redirectToHomeMap() {
         console.log('redirect scene')
+        this.getUser()
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
+    }
+
+    static getUser() {
+        UserService.getUser(ControllerUserStorage.getUserId())
     }
 
 }
