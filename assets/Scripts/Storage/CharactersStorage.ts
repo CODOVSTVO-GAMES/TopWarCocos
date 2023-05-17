@@ -22,9 +22,9 @@ export class CharactersStorage extends Component {
 
     start() {
         for (let i = 0; i < this.storageTypes.length; i++) {
-            let heroLevel = i;
+            let heroLevel = 1;
             let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
-            this.characters.push(new CharacterInfo(1, 0, 1, config.startDamage + (config.coefDamage * heroLevel + 5 * 1), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
+            this.characters.push(new CharacterInfo(heroLevel, 0, 1, config.startDamage + (config.coefDamage * heroLevel + 5 * 1), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
         }
     }
 
@@ -33,7 +33,7 @@ export class CharactersStorage extends Component {
     }
 
     recalculationCharacter(index: number) {
-        let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[index]);
+        let config = ControllerConfigStorage.getHeroConfigByCodeName(this.characters[index].codeName);
         this.characters[index].damage = config.startDamage + (config.coefDamage * this.characters[index].level + 5 * this.characters[index].stars);
         this.characters[index].defense = config.startDefense + (config.coefDefense * this.characters[index].level + 5 * this.characters[index].stars);
     }
