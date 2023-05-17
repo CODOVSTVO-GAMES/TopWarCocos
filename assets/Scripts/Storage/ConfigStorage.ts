@@ -17,7 +17,7 @@ export class ConfigStorage extends Component {
 
     public globalConfig: Array<GlobalConfigurationUnits> = []
 
-    public mainAndRepairBuildings: Array<MainAndRepairBuildings>
+    public mainAndRepairBuildings: Array<MainAndRepairBuildings> = []
 
     public levelConfig: Array<Level> = []
 
