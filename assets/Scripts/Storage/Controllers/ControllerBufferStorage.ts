@@ -5,7 +5,15 @@ import { Buffer } from '../../Structures/Buffer';
 export class ControllerBufferStorage {
 
     static addItem(type: string, obj: Object) {
+        if (obj == null || obj == undefined) {
+            console.log("addItem пришел пустой обьект")
+            return
+        }
+
         for (let i = 0; i < BufferStorage.instance.arrayBuffer.length; i++) {
+            if (BufferStorage.instance.arrayBuffer[i] == undefined) {
+                console.log("addItem в цикле появился undefined")
+            }
             if (BufferStorage.instance.arrayBuffer[i].name == type) {
                 delete BufferStorage.instance.arrayBuffer[i];
             }
@@ -20,7 +28,7 @@ export class ControllerBufferStorage {
     static isBufferFull(): boolean {
         if (BufferStorage.instance.arrayBuffer.length > 0) {
             return true;
-        } 
+        }
         return false;
 
     }
