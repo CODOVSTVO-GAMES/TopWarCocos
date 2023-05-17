@@ -15,12 +15,8 @@ export class LoadingGame extends Component {
         // setTimeout(() => {
         //     RedirectionToScene.redirect(SceneNames.HOME_MAP);
         // }, 1000);
-        if (TechnicalConfig.ISENGINE){
-            LoadingGame.getSession()
-        }
-        else{
-            LoadingGame.initSDKAndGetUserInfo()
-        }
+        // LoadingGame.getSession()
+        LoadingGame.initSDKAndGetUserInfo()
     }
 
     static initSDKAndGetUserInfo() {
@@ -41,12 +37,5 @@ export class LoadingGame extends Component {
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
 
-
-
-
-    //загрузить данные о пользователе
-    //получить сессию
-    //получить стораджи
-    //запустить домашнюю сцену
 }
 
