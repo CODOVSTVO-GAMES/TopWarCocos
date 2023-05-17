@@ -5,7 +5,6 @@ import { EventService } from './services/EventService';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 import { TypesStorages } from '../Static/TypesStorages';
 import { SessionService } from './services/SessionService';
-import { LoadingGame } from '../LoadingGame/LoadingGame';
 import { ControllerCommandPostStorage } from '../Storage/Controllers/ControllerCommandPostStorage';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 import { RedirectionToScene } from '../Other/RedirectionToScene';

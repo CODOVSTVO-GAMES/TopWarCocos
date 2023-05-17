@@ -11,13 +11,10 @@ export class UserService {
 
     static parseGetUserResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get user error")
-        console.log(data)
-
         ControllerUserStorage.setAccountsId(data.accountsId)
         ControllerUserStorage.setAccountId()
         ControllerUserStorage.setPermission(data.permission)
         ControllerUserStorage.setIsNewUser(data.isNewUser)
         LoadingGame.getSession()
     }
-
 }
