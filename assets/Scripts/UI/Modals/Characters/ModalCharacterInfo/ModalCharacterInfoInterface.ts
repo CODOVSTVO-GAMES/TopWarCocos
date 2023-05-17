@@ -1,5 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
+import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterInfoIntarface')
@@ -56,7 +57,8 @@ export class ModalCharacterInfoIntarface extends Component {
             this.leadership.string = character.leadership.toString();
             this.experience.string = character.experience.toString();
             this.combatPower.string = "210";
-
+            this.sliderLevel.fillRange = character.experience / ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+            
             return true;
         }
         return false;
