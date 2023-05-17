@@ -1,8 +1,9 @@
 import { _decorator, Component, Node } from 'cc';
-import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ControllerCharactrerStorage } from '../../../../Storage/Controllers/ControllerCharactrerStorage';
 import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
 import { TypesInventory } from '../../../../Static/TypesInventory';
+import { CharactersStorage } from '../../../../Storage/CharactersStorage';
+import { TypesCharacters } from '../../../../Static/TypesCharacters';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingLogic')
@@ -55,5 +56,21 @@ export class ModalCharacterPumpingLogic extends Component {
 
     spendBooks(quantity: number) {
         ControllerCharactrerStorage.addExperience(quantity, this.characterIndex);
+    }
+
+    upgradeStars() {
+        let typeFragment;
+        let character = CharactersStorage.instance.characters[this.characterIndex];
+        switch (character.codeName) {
+            case TypesCharacters.BLACK_WIDOW:
+                typeFragment = TypesInventory.FRAGMENT_BLACK_WIDOW;
+                break;
+            case TypesCharacters.BLACK_WIDOW:
+                typeFragment = TypesInventory.FRAGMENT_BLACK_WIDOW;
+                break;
+        }
+        if (ControllerInventoryStorage.getQuantityByType(TypesInventory.FRAGMENTS[this.characterIndex]) > 4) {
+
+        }
     }
 }

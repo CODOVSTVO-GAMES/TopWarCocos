@@ -21,8 +21,17 @@ export class ModalCharacterPumpingInterface extends Component {
     @property({ type: Label })
     public experience: Label;
 
+    @property({ type: Label })
+    public starTitle: Label;
+
     @property({ type: Sprite })
     public slider: Sprite;
+
+    @property({ type: Sprite })
+    public sliderStars: Sprite;
+
+    @property({ type: Node })
+    public stars: Node[] = [];
 
     @property({ type: Label })
     public quantity: Label[] = [];
@@ -69,19 +78,29 @@ export class ModalCharacterPumpingInterface extends Component {
                 this.tabs[2].active = true;
                 break;
         }
-        this.renderModalTexts();
+        this.renderModalPumpingLevelTexts();
     }
 
-    renderModalTexts() {
+    renderModalPumpingLevelTexts() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            let targerExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+            let targetExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
             this.level.string = "Ур. " + character.level;
-            this.experience.string = character.experience + "/" + targerExp;
-            this.slider.fillRange = character.experience / targerExp;
-            console.log(character.experience / targerExp);
+            this.experience.string = character.experience + "/" + targetExp;
+            this.slider.fillRange = character.experience / targetExp;
             for (let i = 0; i < this.quantity.length; i++) {
                 this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(TypesInventory.BOOKS[i]);
+            }
+        }
+    }
+
+    renderModalPumpingStars() {
+        let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
+        if (character != null) {
+            this.starTitle.string = "Фрагменты для след. этапа: " + "0" + "/4";
+            this.sliderStars.fillRange = character.stars > 5 ? (character.stars % 5) / 5 : character.stars / 5;
+            for (let i = 0; i < 5; i++) {
+                this.stars[i].active = true;
             }
         }
     }
