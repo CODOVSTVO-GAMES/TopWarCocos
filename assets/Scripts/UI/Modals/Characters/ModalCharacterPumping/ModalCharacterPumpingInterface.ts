@@ -71,17 +71,19 @@ export class ModalCharacterPumpingInterface extends Component {
                 this.tabs[0].active = false;
                 this.tabs[1].active = true;
                 this.tabs[2].active = false;
+                this.renderModalPumpingLevel();
                 break;
             case TypesModalPumping.PUMPING_STARS:
                 this.tabs[0].active = false;
                 this.tabs[1].active = false;
                 this.tabs[2].active = true;
+                this.renderModalPumpingStars();
                 break;
         }
-        this.renderModalPumpingLevelTexts();
+
     }
 
-    renderModalPumpingLevelTexts() {
+    renderModalPumpingLevel() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
             let targetExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
@@ -97,10 +99,10 @@ export class ModalCharacterPumpingInterface extends Component {
     renderModalPumpingStars() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            this.starTitle.string = "Фрагменты для след. этапа: " + "0" + "/4";
+            this.starTitle.string = "Фрагменты для след. этапа: " + ControllerInventoryStorage.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character)) + "/4";
             this.sliderStars.fillRange = character.stars > 5 ? (character.stars % 5) / 5 : character.stars / 5;
             for (let i = 0; i < 5; i++) {
-                this.stars[i].active = true;
+                this.stars[i].active = character.stars / 5 > i ? true : false;
             }
         }
     }

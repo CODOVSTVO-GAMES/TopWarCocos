@@ -29,7 +29,7 @@ export class ControllerCharactrerStorage {
         
         CharactersStorage.instance.recalculationCharacter(index);
         ModalCharacterInfoIntarface.instance.renderCharacter(index);
-        ModalCharacterPumpingInterface.instance.renderModalPumpingLevelTexts();
+        ModalCharacterPumpingInterface.instance.renderModalPumpingLevel();
         this.updateCharactrerStorage();
     }
 
