@@ -154,6 +154,6 @@ export class ControllerHomeMapStorage {
     }
 
     static updateHomeMapStorage() {
-        console.log("updateHomeMapStorage");
+
     }
 }

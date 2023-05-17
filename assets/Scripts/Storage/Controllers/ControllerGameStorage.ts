@@ -23,6 +23,7 @@ export class ControllerGameStorage {
         GameStorage.instance.arsenalPower = 0;
         GameStorage.instance.professionPower = 0;
         GameStorage.instance.formationPower = 0;
+        this.updateGameStorage();
     }
 
     // =================================================================
@@ -270,6 +271,5 @@ export class ControllerGameStorage {
             professionPower: GameStorage.instance.professionPower,
         };
         ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
-        console.log("updateGameStorage");
     }
 }

@@ -53,6 +53,5 @@ export class ControllerInventoryStorage {
         //     });
         // }
         // ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
-        // console.log("updateInvenoryStorage");
     }
 }

@@ -33,7 +33,6 @@ export class ControllerUserStorage {
 
     static setAccountId() {
         UserStorage.instance.accountId = this.getUserId() + "-" + this.getAccountsId()[0]
-        console.log(UserStorage.instance.accountId)
     }
 
     static setAccountsId(accountsId: Array<string>) {
