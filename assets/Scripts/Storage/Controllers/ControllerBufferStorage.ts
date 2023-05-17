@@ -46,7 +46,6 @@ export class ControllerBufferStorage {
             return true;
         }
         return false;
-
     }
 
     static clearEventsQueue() {
