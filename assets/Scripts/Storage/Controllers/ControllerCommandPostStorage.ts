@@ -8,19 +8,20 @@ export class ControllerCommandPostStorage {
     // =================================================================
 
     static assignStartingValues() {
-        CommandPostStorage.instance.levelCommandPost = 1000;
-        CommandPostStorage.instance.levelRepairShop = 0;
-        CommandPostStorage.instance.levelMergeGoldMine = 70;
-        CommandPostStorage.instance.levelBuildGoldMine = 0;
-        CommandPostStorage.instance.levelMergeTroopAir = 0;
+        CommandPostStorage.instance.levelCommandPost = 1;
+        CommandPostStorage.instance.levelRepairShop = 1;
+        CommandPostStorage.instance.levelMergeGoldMine = 1;
+        CommandPostStorage.instance.levelBuildGoldMine = 1;
+        CommandPostStorage.instance.levelMergeTroopAir = 1;
         CommandPostStorage.instance.levelMergeBarracksAir = 1;
-        CommandPostStorage.instance.levelBuildBarracksAir = 0;
-        CommandPostStorage.instance.levelMergeTroopMarine = 0;
-        CommandPostStorage.instance.levelMergeBarracksMarine = 0;
-        CommandPostStorage.instance.levelBuildBarracksMarine = 0;
-        CommandPostStorage.instance.levelMergeTroopOverland = 0;
-        CommandPostStorage.instance.levelMergeBarracksOverland = 0;
-        CommandPostStorage.instance.levelBuildBarracksOverland = 0;
+        CommandPostStorage.instance.levelBuildBarracksAir = 1;
+        CommandPostStorage.instance.levelMergeTroopMarine = 1;
+        CommandPostStorage.instance.levelMergeBarracksMarine = 1;
+        CommandPostStorage.instance.levelBuildBarracksMarine = 1;
+        CommandPostStorage.instance.levelMergeTroopOverland = 1;
+        CommandPostStorage.instance.levelMergeBarracksOverland = 1;
+        CommandPostStorage.instance.levelBuildBarracksOverland = 1;
+        this.updateCommandPostStorage();
     }
 
     // =================================================================
@@ -220,7 +221,6 @@ export class ControllerCommandPostStorage {
             levelMergeBarracksOverland: CommandPostStorage.instance.levelMergeBarracksOverland,
             levelBuildBarracksOverland: CommandPostStorage.instance.levelBuildBarracksOverland,
         };
-        ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
-        console.log("updateCommandPostStorage");
+        ControllerBufferStorage.addItem(TypesStorages.COMMAND_POST_STORAGE, obj);
     }
 }

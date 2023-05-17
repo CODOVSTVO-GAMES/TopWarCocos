@@ -33,7 +33,7 @@ export class LoadingGame extends Component {
     }
 
     static getStorages() {
-        let myArr = [TypesStorages.GAME_STORAGE]
+        let myArr = [TypesStorages.GAME_STORAGE, TypesStorages.COMMAND_POST_STORAGE];
         DataStorageService.getData(myArr)//redirectToHomeMap вызывается после получения данных в колбеке
     }
 

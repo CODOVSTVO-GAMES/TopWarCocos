@@ -14,7 +14,7 @@ export class ModalCommandPostLogic extends Component {
         this.upgrateCommandPost.active = true;
     }
 
-    openUpgradeOther() {
+    openUpgradeOther(event, customEventData) {
         this.upgrateOther.active = true;
     }
 }
