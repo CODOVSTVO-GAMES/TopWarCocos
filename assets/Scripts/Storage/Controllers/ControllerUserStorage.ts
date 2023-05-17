@@ -26,4 +26,38 @@ export class ControllerUserStorage {
     static getUserId(): string {
         return UserStorage.instance.userId;
     }
+
+    static getAccountId(): string {
+        return UserStorage.instance.accountId;
+    }
+
+    static setAccountId() {
+        UserStorage.instance.accountId = this.getUserId() + "-" + this.getAccountsId()[0]
+        console.log(UserStorage.instance.accountId)
+    }
+
+    static setAccountsId(accountsId: Array<string>) {
+        UserStorage.instance.accountsId = accountsId;
+    }
+
+    static getAccountsId(): Array<string> {
+        return UserStorage.instance.accountsId;
+    }
+
+    static setIsNewUser(isNewUser: boolean) {
+        UserStorage.instance.isNewUser = isNewUser;
+    }
+
+    static getIsNewUser(): boolean {
+        return UserStorage.instance.isNewUser;
+    }
+
+    static setPermission(permission: string) {
+        UserStorage.instance.permission = permission;
+    }
+
+    static getPermission(): string {
+        return UserStorage.instance.permission;
+    }
+
 }

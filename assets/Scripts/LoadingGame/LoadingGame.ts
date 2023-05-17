@@ -24,6 +24,10 @@ export class LoadingGame extends Component {
         OkConnector.initPlugin() //getSession вызывается после получения данных в колбеке
     }
 
+    static getUser() {
+        UserService.getUser(ControllerUserStorage.getUserId())
+    }
+
     static getSession() {
         SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
     }
@@ -35,12 +39,7 @@ export class LoadingGame extends Component {
 
     static redirectToHomeMap() {
         console.log('redirect scene')
-        this.getUser()
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
-    }
-
-    static getUser() {
-        UserService.getUser(ControllerUserStorage.getUserId())
     }
 
 }
