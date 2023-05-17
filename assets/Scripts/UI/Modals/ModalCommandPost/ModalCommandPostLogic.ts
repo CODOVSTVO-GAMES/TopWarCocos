@@ -3,12 +3,25 @@ const { ccclass, property } = _decorator;
 
 @ccclass('ModalCommandPostLogic')
 export class ModalCommandPostLogic extends Component {
-    start() {
+
+    openA() {
 
     }
 
-    update(deltaTime: number) {
-        
+    openB() {
+
+    }
+
+    openC() {
+
+    }
+
+    openD() {
+
+    }
+
+    openE() {
+
     }
 }
 

@@ -27,5 +27,25 @@ export class CommandPostStorage extends Component {
     onLoad() {
         CommandPostStorage.instance = this;
     }
+
+    start() {
+        this.levelCommandPost = 1;
+        this.levelRepairShop = 1;
+
+        this.levelMergeGoldMine = 1;
+        this.levelBuildGoldMine = 1;
+
+        this.levelMergeTroopAir = 1;
+        this.levelMergeBarracksAir = 1;
+        this.levelBuildBarracksAir = 1;
+
+        this.levelMergeTroopMarine = 1;
+        this.levelMergeBarracksMarine = 1;
+        this.levelBuildBarracksMarine = 1;
+
+        this.levelMergeTroopOverland = 1;
+        this.levelMergeBarracksOverland = 1;
+        this.levelBuildBarracksOverland = 1;
+    }
 }
 

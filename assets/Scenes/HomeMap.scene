@@ -20266,7 +20266,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -20875,7 +20875,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -21484,7 +21484,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -22093,7 +22093,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -22702,7 +22702,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -23311,7 +23311,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -23920,7 +23920,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -24529,7 +24529,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -25138,7 +25138,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -25747,7 +25747,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -26356,7 +26356,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -26965,7 +26965,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -27574,7 +27574,7 @@
     "__prefab": null,
     "clickEvents": [],
     "_interactable": true,
-    "_transition": 2,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -30395,6 +30395,45 @@
     },
     "gems": {
       "__id__": 706
+    },
+    "levelCommandPost": {
+      "__id__": 716
+    },
+    "levelRepairShop": {
+      "__id__": 732
+    },
+    "levelMergeGoldMine": {
+      "__id__": 748
+    },
+    "levelBuildGoldMine": {
+      "__id__": 764
+    },
+    "levelMergeTroopAir": {
+      "__id__": 780
+    },
+    "levelMergeBarracksAir": {
+      "__id__": 796
+    },
+    "levelBuildBarracksAir": {
+      "__id__": 812
+    },
+    "levelMergeTroopMarine": {
+      "__id__": 828
+    },
+    "levelMergeBarracksMarine": {
+      "__id__": 844
+    },
+    "levelBuildBarracksMarine": {
+      "__id__": 860
+    },
+    "levelMergeTroopOverland": {
+      "__id__": 876
+    },
+    "levelMergeBarracksOverland": {
+      "__id__": 892
+    },
+    "levelBuildBarracksOverland": {
+      "__id__": 908
     },
     "_id": "8cte1aXC1H34Q1lx60L5Nx"
   },
@@ -34792,7 +34831,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 547.920227920228,
+    "_orthoHeight": 540,
     "_near": 0,
     "_far": 1000,
     "_color": {
