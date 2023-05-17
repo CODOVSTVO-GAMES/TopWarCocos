@@ -5,7 +5,6 @@ import { OkConnector } from '../Network/OkConnector';
 import { SessionService } from '../Network/services/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/services/DataStorageService';
-import { TechnicalConfig } from '../Static/TechnicalConfig';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')

@@ -32,7 +32,7 @@ export class SessionService {
             ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
 
             console.log("get session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', userId: ' + ControllerUserStorage.getUserId())
-            setTimeout(LoadingGame.getStorages, 500)
+            LoadingGame.getStorages()
         }
 
     }

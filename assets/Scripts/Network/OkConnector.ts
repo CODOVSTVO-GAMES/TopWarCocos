@@ -39,8 +39,7 @@ export class OkConnector {
         if (data) {
             ControllerUserStorage.setUserId(data['uid'])
             console.log("OK get UserInfo done")
-            setTimeout(LoadingGame.getSession, 300)
-            // LoadingGame.getSession()
+            LoadingGame.getSession()
         } else {
             console.log("err " + error)
         }
