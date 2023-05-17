@@ -79,6 +79,7 @@ export class ModalCharacterPumpingInterface extends Component {
             this.level.string = "Ур. " + character.level;
             this.experience.string = character.experience + "/" + targerExp;
             this.slider.fillRange = character.experience / targerExp;
+            console.log(character.experience / targerExp);
             for (let i = 0; i < this.quantity.length; i++) {
                 this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(TypesInventory.BOOKS[i]);
             }

@@ -48,6 +48,7 @@ export class ModalCharacterInfoIntarface extends Component {
     renderCharacter(index: number): boolean {
 
         let character = CharactersStorage.instance.characters[index];
+        console.log(character);
         if (character != null) {
             this.heroName.string = character.codeName;
             this.heroType.string = character.type;
