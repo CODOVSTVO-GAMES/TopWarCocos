@@ -210,7 +210,7 @@ export class ControllerConfigStorage {
     //unitsConfig
 
     static getConfigUnitsByTypeAndLevel(type: string, level: number): UnitsCongig {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -223,7 +223,7 @@ export class ControllerConfigStorage {
     }
 
     static getExpirienceUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -236,7 +236,7 @@ export class ControllerConfigStorage {
     }
 
     static getPowerUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -249,7 +249,7 @@ export class ControllerConfigStorage {
     }
 
     static getHpUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -262,7 +262,7 @@ export class ControllerConfigStorage {
     }
 
     static getDamageUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -275,7 +275,7 @@ export class ControllerConfigStorage {
     }
 
     static getAttackTypeUnitsByTypeAndLevel(type: string, level: number): string {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -288,7 +288,7 @@ export class ControllerConfigStorage {
     }
 
     static getTimeCreationUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -301,7 +301,7 @@ export class ControllerConfigStorage {
     }
 
     static getPriceBuyUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -314,7 +314,7 @@ export class ControllerConfigStorage {
     }
 
     static getPriceUpdateUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -327,7 +327,7 @@ export class ControllerConfigStorage {
     }
 
     static getImprivementResourceTypeUnitsByTypeAndLevel(type: string, level: number): string {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -340,7 +340,7 @@ export class ControllerConfigStorage {
     }
 
     static getImprivementResourceNumberUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -353,7 +353,7 @@ export class ControllerConfigStorage {
     }
 
     static getExpPerSpawnUnitsByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+        if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -370,7 +370,7 @@ export class ControllerConfigStorage {
 
 
     static getExpirienceBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -383,7 +383,7 @@ export class ControllerConfigStorage {
     }
 
     static getPowerBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -396,7 +396,7 @@ export class ControllerConfigStorage {
     }
 
     static getPriceUpdateBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -409,7 +409,7 @@ export class ControllerConfigStorage {
     }
 
     static getImprivementResourceTypeBuildingMergeByTypeAndLevel(type: string, level: number): string {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -422,7 +422,7 @@ export class ControllerConfigStorage {
     }
 
     static getIimprivementResourceNumberBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -438,7 +438,7 @@ export class ControllerConfigStorage {
     //configSpawnBuildings
 
     static getExpirienceBuildingSpawnByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -451,7 +451,7 @@ export class ControllerConfigStorage {
     }
 
     static getPowerBuildingSpawnByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -464,7 +464,7 @@ export class ControllerConfigStorage {
     }
 
     static getPriceBuyBuildingSpawnByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -477,7 +477,7 @@ export class ControllerConfigStorage {
     }
 
     static getPriceUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -490,7 +490,7 @@ export class ControllerConfigStorage {
     }
 
     static getIimprivementResourceTypeUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): string {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -503,7 +503,7 @@ export class ControllerConfigStorage {
     }
 
     static getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -516,7 +516,7 @@ export class ControllerConfigStorage {
     }
 
     static getExpPerSpawnResourceNumberUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
