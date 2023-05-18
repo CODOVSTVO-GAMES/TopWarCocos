@@ -465,126 +465,126 @@ export class ConfigStorage extends Component {
     }
 
     initHeroLevel() {
-        this.heroLevelConfig.push(new HeroLevel("r", 1, 0))
-        this.heroLevelConfig.push(new HeroLevel("r", 2, 250))
-        this.heroLevelConfig.push(new HeroLevel("r", 3, 500))
-        this.heroLevelConfig.push(new HeroLevel("r", 4, 750))
-        this.heroLevelConfig.push(new HeroLevel("r", 5, 1000))
-        this.heroLevelConfig.push(new HeroLevel("r", 6, 1250))
-        this.heroLevelConfig.push(new HeroLevel("r", 7, 1500))
-        this.heroLevelConfig.push(new HeroLevel("r", 8, 1750))
-        this.heroLevelConfig.push(new HeroLevel("r", 9, 2000))
-        this.heroLevelConfig.push(new HeroLevel("r", 10, 2250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 1, 0))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 2, 250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 3, 500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 4, 750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 5, 1000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 6, 1250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 7, 1500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 8, 1750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 9, 2000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 10, 2250))
 
-        this.heroLevelConfig.push(new HeroLevel("r", 11, 2500))
-        this.heroLevelConfig.push(new HeroLevel("r", 12, 3000))
-        this.heroLevelConfig.push(new HeroLevel("r", 13, 3500))
-        this.heroLevelConfig.push(new HeroLevel("r", 14, 4000))
-        this.heroLevelConfig.push(new HeroLevel("r", 15, 4500))
-        this.heroLevelConfig.push(new HeroLevel("r", 16, 5000))
-        this.heroLevelConfig.push(new HeroLevel("r", 17, 5500))
-        this.heroLevelConfig.push(new HeroLevel("r", 18, 6000))
-        this.heroLevelConfig.push(new HeroLevel("r", 19, 6500))
-        this.heroLevelConfig.push(new HeroLevel("r", 20, 7000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 11, 2500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 12, 3000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 13, 3500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 14, 4000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 15, 4500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 16, 5000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 17, 5500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 18, 6000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 19, 6500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 20, 7000))
 
-        this.heroLevelConfig.push(new HeroLevel("r", 21, 7500))
-        this.heroLevelConfig.push(new HeroLevel("r", 22, 8000))
-        this.heroLevelConfig.push(new HeroLevel("r", 23, 8500))
-        this.heroLevelConfig.push(new HeroLevel("r", 24, 9250))
-        this.heroLevelConfig.push(new HeroLevel("r", 25, 10000))
-        this.heroLevelConfig.push(new HeroLevel("r", 26, 10750))
-        this.heroLevelConfig.push(new HeroLevel("r", 27, 11500))
-        this.heroLevelConfig.push(new HeroLevel("r", 28, 12250))
-        this.heroLevelConfig.push(new HeroLevel("r", 29, 13000))
-        this.heroLevelConfig.push(new HeroLevel("r", 30, 13750))
-
-
-
-        this.heroLevelConfig.push(new HeroLevel("sr", 1, 0))
-        this.heroLevelConfig.push(new HeroLevel("sr", 2, 250))
-        this.heroLevelConfig.push(new HeroLevel("sr", 3, 500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 4, 750))
-        this.heroLevelConfig.push(new HeroLevel("sr", 5, 1000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 6, 1250))
-        this.heroLevelConfig.push(new HeroLevel("sr", 7, 1500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 8, 1750))
-        this.heroLevelConfig.push(new HeroLevel("sr", 9, 2000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 10, 2250))
-
-        this.heroLevelConfig.push(new HeroLevel("sr", 11, 2500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 12, 3000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 13, 3500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 14, 4000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 15, 4500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 16, 5000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 17, 5500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 18, 6000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 19, 6500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 20, 7000))
-
-        this.heroLevelConfig.push(new HeroLevel("sr", 21, 7500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 22, 8000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 23, 8500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 24, 9250))
-        this.heroLevelConfig.push(new HeroLevel("sr", 25, 10000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 26, 10750))
-        this.heroLevelConfig.push(new HeroLevel("sr", 27, 11500))
-        this.heroLevelConfig.push(new HeroLevel("sr", 28, 12250))
-        this.heroLevelConfig.push(new HeroLevel("sr", 29, 13000))
-        this.heroLevelConfig.push(new HeroLevel("sr", 30, 13750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 21, 7500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 22, 8000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 23, 8500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 24, 9250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 25, 10000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 26, 10750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 27, 11500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 28, 12250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 29, 13000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.R, 30, 13750))
 
 
 
-        this.heroLevelConfig.push(new HeroLevel("ssr", 1, 0))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 2, 250))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 3, 500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 4, 750))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 5, 1000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 6, 1250))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 7, 1500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 8, 1750))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 9, 2000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 10, 2250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 1, 0))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 2, 250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 3, 500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 4, 750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 5, 1000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 6, 1250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 7, 1500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 8, 1750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 9, 2000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 10, 2250))
 
-        this.heroLevelConfig.push(new HeroLevel("ssr", 11, 2500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 12, 3000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 13, 3500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 14, 4000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 15, 4500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 16, 5000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 17, 5500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 18, 6000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 19, 6500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 20, 7000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 11, 2500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 12, 3000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 13, 3500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 14, 4000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 15, 4500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 16, 5000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 17, 5500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 18, 6000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 19, 6500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 20, 7000))
 
-        this.heroLevelConfig.push(new HeroLevel("ssr", 21, 7500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 22, 8000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 23, 8500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 24, 9250))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 25, 10000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 26, 10750))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 27, 11500))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 28, 12250))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 29, 13000))
-        this.heroLevelConfig.push(new HeroLevel("ssr", 30, 13750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 21, 7500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 22, 8000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 23, 8500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 24, 9250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 25, 10000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 26, 10750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 27, 11500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 28, 12250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 29, 13000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SR, 30, 13750))
+
+
+
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 1, 0))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 2, 250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 3, 500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 4, 750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 5, 1000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 6, 1250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 7, 1500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 8, 1750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 9, 2000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 10, 2250))
+
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 11, 2500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 12, 3000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 13, 3500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 14, 4000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 15, 4500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 16, 5000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 17, 5500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 18, 6000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 19, 6500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 20, 7000))
+
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 21, 7500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 22, 8000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 23, 8500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 24, 9250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 25, 10000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 26, 10750))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 27, 11500))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 28, 12250))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 29, 13000))
+        this.heroLevelConfig.push(new HeroLevel(TypesCharacters.SSR, 30, 13750))
     }
 
     initHeroConfig() {
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + (5 * heroStarStady))
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36));
-        this.heroConfig.push(new HeroConfig("ssr", TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
-        this.heroConfig.push(new HeroConfig("sr", TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36));
-        this.heroConfig.push(new HeroConfig("sr", TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_8, 280, 340, 500, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_9, 300, 360, 500, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_10, 320, 380, 600, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_11, 340, 400, 600, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_12, 360, 420, 700, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_13, 380, 440, 700, 24, 36));
-        this.heroConfig.push(new HeroConfig("r", TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + (5 * heroStarStady))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.SSR, TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.SR, TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.SR, TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_8, 280, 340, 500, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_9, 300, 360, 500, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_10, 320, 380, 600, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_11, 340, 400, 600, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_12, 360, 420, 700, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_13, 380, 440, 700, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36));
     }
 
     getHeroConfig(): HeroConfig[] {

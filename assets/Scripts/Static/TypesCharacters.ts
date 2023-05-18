@@ -14,4 +14,8 @@ export class TypesCharacters {
     public static CHARACTER_12: string = "character_7";
     public static CHARACTER_13: string = "character_7";
     public static CHARACTER_14: string = "character_7";
+
+    public static R: string = "r";
+    public static SR: string = "sr";
+    public static SSR: string = "ssr";
 }
