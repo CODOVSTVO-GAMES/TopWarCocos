@@ -1,4 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
+import { UpgradeCommandPostInerface } from './UpgradePanel/UpgradeCommandPostInerface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCommandPostLogic')
@@ -18,6 +19,7 @@ export class ModalCommandPostLogic extends Component {
     }
 
     openUpgradeCommandPost() {
+        UpgradeCommandPostInerface.instance.updateInterface();
         this.backgraund.active = true;
         this.upgrateCommandPost.active = true;
     }

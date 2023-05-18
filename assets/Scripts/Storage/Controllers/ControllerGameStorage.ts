@@ -207,6 +207,7 @@ export class ControllerGameStorage {
     static addTerritoryPower(value: number) {
         if (value == 0) return;
         GameStorage.instance.territoryPower += value;
+        MainInterface.instance.updateCountPower();
         this.updateMaxPower();
         this.updateGameStorage();
     }
@@ -214,6 +215,7 @@ export class ControllerGameStorage {
     static addTechnoPower(value: number) {
         if (value == 0) return
         GameStorage.instance.technoPower += value;
+        MainInterface.instance.updateCountPower();
         this.updateMaxPower();
         this.updateGameStorage();
     }
@@ -221,6 +223,7 @@ export class ControllerGameStorage {
     static addHeroPower(value: number) {
         if (value == 0) return
         GameStorage.instance.heroPower += value;
+        MainInterface.instance.updateCountPower();
         this.updateMaxPower();
         this.updateGameStorage();
     }
@@ -228,6 +231,7 @@ export class ControllerGameStorage {
     static addArsenalPower(value: number) {
         if (value == 0) return
         GameStorage.instance.arsenalPower += value;
+        MainInterface.instance.updateCountPower();
         this.updateMaxPower();
         this.updateGameStorage();
     }
@@ -235,6 +239,7 @@ export class ControllerGameStorage {
     static addProfessionPower(value: number) {
         if (value == 0) return
         GameStorage.instance.professionPower += value;
+        MainInterface.instance.updateCountPower();
         this.updateMaxPower();
         this.updateGameStorage();
     }
@@ -242,6 +247,7 @@ export class ControllerGameStorage {
     static addFormationPower(value: number) {
         if (value == 0) return
         GameStorage.instance.formationPower += value;
+        MainInterface.instance.updateCountPower();
         this.updateMaxPower();
         this.updateGameStorage();
     }
