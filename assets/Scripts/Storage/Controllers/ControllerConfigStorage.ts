@@ -4,8 +4,18 @@ import { GlobalConfigurationUnits } from '../../Structures/GlobalConfigurationUn
 import { TypesObjects } from '../../Static/TypesObjects';
 import { TypesItems } from '../../Static/TypesItems';
 import { HeroConfig } from '../../Structures/HeroConfig';
+import { UnitsCongig } from '../../Structures/ConfigUnits';
 
 export class ControllerConfigStorage {
+
+    static getProdictionInTimeGoldMineByLevel(level: number): number {
+        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == TypesObjects.GOLD_MINE && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.mergeBuildingsConfig[i].imprivementResourceNumber
+            }
+        }
+        throw "не существует такого уровня шахты"
+    }
 
     static getConfigByTypeAndLevel(type: string, level: number): GlobalConfigurationUnits {
         if (type == TypesObjects.BARRACKS_AIR || type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.BARRACKS_OVERLAND) {
@@ -165,6 +175,7 @@ export class ControllerConfigStorage {
 
 
     //---------------------------------------------------------------------------------------------------
+    //powerRepairBuildings
 
     static getPowerRepairBuilding(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
@@ -227,4 +238,234 @@ export class ControllerConfigStorage {
     }
 
     //---------------------------------------------------------------------------------------------------
+    //unitsConfig
+
+    static getConfigUnitsByTypeAndLevel(type: string, level: number): UnitsCongig {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i]
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getExpirienceUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].experience
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPowerUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].power
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getHpUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].hp
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getDamageUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].damage
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getAttackTypeUnitsByTypeAndLevel(type: string, level: number): string {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].attackType
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getTimeCreationUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].timeCreation
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPriceBuyUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].priceBuy
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPriceUpdateUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].priceUpdate
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getImprivementResourceTypeUnitsByTypeAndLevel(type: string, level: number): string {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].imprivementResourceType
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getImprivementResourceNumberUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].imprivementResourceNumber
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getExpPerSpawnUnitsByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.TROOP_OVERLAND || type != TypesObjects.TROOP_MARINE || type != TypesObjects.TROOP_AIR) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
+            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
+                return ConfigStorage.instance.unitsConfig[i].expPerSpawn
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    //---------------------------------------------------------------------------------------------------
+    //configMergeBuildings
+
+
+    static getExpirienceBuildingMergeByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.mergeBuildingsConfig[i].experience
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPowerBuildingMergeByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.mergeBuildingsConfig[i].power
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPriceUpdateBuildingMergeByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.mergeBuildingsConfig[i].priceUpdate
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getImprivementResourceTypeBuildingMergeByTypeAndLevel(type: string, level: number): string {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.mergeBuildingsConfig[i].imprivementResourceType
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getIimprivementResourceNumberBuildingMergeByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.mergeBuildingsConfig[i].imprivementResourceNumber
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    //---------------------------------------------------------------------------------------------------
+    //configSpawnBuildings
+
 }

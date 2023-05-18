@@ -80,7 +80,7 @@ export class Battle extends Component {
     genEnemyUnits(): Unit[] {
         let array = new Array(6);
         for (let i = 0; i < 5; i++) {
-            let config = ControllerConfigStorage.getConfigByTypeAndLevel(TypesObjects.TROOP_OVERLAND, i + 1);
+            let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, i + 1);
             array[i] = new Unit(config.hp, config.hp, config.damage, i, config.level, 1, TypesAttack.HORIZON, config.attackType, config.type);
         }
         return array;
@@ -93,7 +93,7 @@ export class Battle extends Component {
                     this.spawnTroop(i, TypesTeam.TEAM_OWN);
                 }
                 else {
-                    let config = ControllerConfigStorage.getConfigByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
+                    let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
                     let sum = this.characterSum();
                     this.arrayOwn[i].hp = config.hp + sum.defense;
                     this.arrayOwn[i].availableHp = config.hp + sum.defense;
@@ -102,7 +102,7 @@ export class Battle extends Component {
                 }
                 if (this.arrayOwn[i].hp <= 0) {
                     if (this.arrayOwn[i].quantity > 1) {
-                        let config = ControllerConfigStorage.getConfigByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
+                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
                         this.arrayOwn[i].quantity--;
                         this.arrayOwn[i].hp = config.hp + this.arrayOwn[i].hp;
                     }
@@ -126,7 +126,7 @@ export class Battle extends Component {
                 }
                 if (this.arrayEnemy[i].hp <= 0) {
                     if (this.arrayEnemy[i].quantity > 1) {
-                        let config = ControllerConfigStorage.getConfigByTypeAndLevel(this.arrayEnemy[i].type, this.arrayEnemy[i].level);
+                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(this.arrayEnemy[i].type, this.arrayEnemy[i].level);
                         this.arrayEnemy[i].quantity--;
                         this.arrayEnemy[i].hp = config.hp + this.arrayEnemy[i].hp;
                     }
@@ -190,7 +190,7 @@ export class Battle extends Component {
             if (this.arrayOwn[i] == null && this.quantityPlaces[i] > 0) {
                 let quantity = 0;
                 let unit = this.arrayCards[customEventData];
-                let config = ControllerConfigStorage.getConfigByTypeAndLevel(unit.type, unit.level);
+                let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
                 if (this.quantityPlaces[i] > unit.quantity) {
                     quantity = unit.quantity;
                 }
@@ -313,7 +313,7 @@ export class Battle extends Component {
             }
             if (units_1[i] != null) {
                 if (units_1[i].attackNumber < this.attackNumber) {
-                    let config = ControllerConfigStorage.getConfigByTypeAndLevel(units_1[i].type, units_1[i].level);
+                    let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(units_1[i].type, units_1[i].level);
                     let units = this.goalSelection(units_1[i].link.team, units_1[i].type, TypesAttack.HORIZON, config.attackType);
                     for (let j = 0; j < units.length; j++) {
                         countBullet++;
@@ -445,7 +445,7 @@ export class Battle extends Component {
             let unit = this.arrayCards[0];
             if (unit != null && this.quantityPlaces[i] > 0) {
                 let quantity = 0;
-                let config = ControllerConfigStorage.getConfigByTypeAndLevel(unit.type, unit.level);
+                let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
                 if (this.quantityPlaces[i] > unit.quantity) {
                     quantity = unit.quantity;
                 }
