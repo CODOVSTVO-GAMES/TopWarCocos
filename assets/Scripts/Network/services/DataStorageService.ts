@@ -23,7 +23,6 @@ export class DataStorageService {
             const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects)
             NetworkClient.instance.dataRecipient(dataStorageResponseDTO.dataObjects)
         }
-
     }
 
     static parseDataStoragePostResponce(data: any, isDone: boolean) {

@@ -8,6 +8,7 @@ import { HeroConfig } from '../Structures/HeroConfig';
 import { HeroLevel } from '../Structures/HeroLevel';
 import { TypesCharacters } from '../Static/TypesCharacters';
 import { MainAndRepairBuildings } from '../Structures/MainAndRepairBuildings';
+import { UnitsCongig } from '../Structures/MergeUnits';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -18,6 +19,8 @@ export class ConfigStorage extends Component {
     public globalConfig: Array<GlobalConfigurationUnits> = []
 
     public mainAndRepairBuildings: Array<MainAndRepairBuildings> = []
+
+    public unitsConfig: Array<UnitsCongig> = []
 
     public levelConfig: Array<Level> = []
 
@@ -37,7 +40,12 @@ export class ConfigStorage extends Component {
         this.initGoldMine()
         //спавн рудников
 
-        this.initOwerland()
+
+        this.initOwerland2()
+        // this.initMarine2()
+        // this.initAir2()
+
+        // this.initOwerland()
         this.initMarine()
         this.initAir()
 
@@ -277,49 +285,49 @@ export class ConfigStorage extends Component {
         //30->
     }
 
-    initOwerland() {
+    initOwerland2() {
         let type = TypesObjects.TROOP_OVERLAND
         let typeItem = TypesItems.PLAN_MAX_OVERLAND
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0, typeItem, 0, 0, 5, 1, TypesAttack.ONE, 1, 10, 0, 2, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 2, 0, 0, typeItem, 0, 0, 10, 3, TypesAttack.ONE, 1, 20, 0, 4, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 3, 0, 0, typeItem, 0, 0, 20, 5, TypesAttack.ONE, 2, 40, 0, 8, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 4, 0, 0, typeItem, 0, 0, 28, 7, TypesAttack.ONE, 3, 80, 0, 16, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 5, 0, 0, typeItem, 0, 0, 39, 9, TypesAttack.ONE, 4, 160, 0, 32, 0))
+        this.unitsConfig.push(new UnitsCongig(type, 1, 0, 0, typeItem, 0, 0, 5, 1, TypesAttack.ONE, 1, 10, 2))
+        this.unitsConfig.push(new UnitsCongig(type, 2, 0, 0, typeItem, 0, 0, 10, 3, TypesAttack.ONE, 1, 20, 4))
+        this.unitsConfig.push(new UnitsCongig(type, 3, 0, 0, typeItem, 0, 0, 20, 5, TypesAttack.ONE, 2, 40, 8))
+        this.unitsConfig.push(new UnitsCongig(type, 4, 0, 0, typeItem, 0, 0, 28, 7, TypesAttack.ONE, 3, 80, 16))
+        this.unitsConfig.push(new UnitsCongig(type, 5, 0, 0, typeItem, 0, 0, 39, 9, TypesAttack.ONE, 4, 160, 32))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 6, 1100, 970, typeItem, 8, 5500, 55, 13, TypesAttack.TWO, 5, 320, 0, 64, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 7, 2900, 1020, typeItem, 10, 14500, 77, 19, TypesAttack.THREE, 10, 640, 0, 128, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 6190, 1070, typeItem, 12, 30900, 108, 27, TypesAttack.ONE, 16, 1280, 0, 256, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 12000, 1130, typeItem, 16, 60000, 150, 37, TypesAttack.VERTICAL, 20, 2560, 0, 512, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 27000, 1190, typeItem, 22, 135000, 210, 52, TypesAttack.HORIZON, 24, 5120, 0, 1020, 0))
+        this.unitsConfig.push(new UnitsCongig(type, 6, 1100, 970, typeItem, 8, 5500, 55, 13, TypesAttack.TWO, 5, 320, 64))
+        this.unitsConfig.push(new UnitsCongig(type, 7, 2900, 1020, typeItem, 10, 14500, 77, 19, TypesAttack.THREE, 10, 640, 128))
+        this.unitsConfig.push(new UnitsCongig(type, 8, 6190, 1070, typeItem, 12, 30900, 108, 27, TypesAttack.ONE, 16, 1280, 256))
+        this.unitsConfig.push(new UnitsCongig(type, 9, 12000, 1130, typeItem, 16, 60000, 150, 37, TypesAttack.VERTICAL, 20, 2560, 512))
+        this.unitsConfig.push(new UnitsCongig(type, 10, 27000, 1190, typeItem, 22, 135000, 210, 52, TypesAttack.HORIZON, 24, 5120, 1024))
 
         //10->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 11, 59900, 1240, typeItem, 28, 299000, 290, 72, TypesAttack.HORIZON, 32, 10200, 0, 2040, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 12, 182000, 1310, typeItem, 34, 913000, 410, 102, TypesAttack.THREE, 40, 20400, 0, 4090, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 13, 520000, 1380, typeItem, 42, 2600000, 570, 142, TypesAttack.ONE, 60, 40900, 0, 8190, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 14, 1800000, 1450, typeItem, 50, 9030000, 800, 200, TypesAttack.ONE, 100, 81900, 0, 16300, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 15, 4870000, 1520, typeItem, 60, 24300000, 1120, 280, TypesAttack.ONE, 200, 163000, 0, 32700, 0))
+        this.unitsConfig.push(new UnitsCongig(type, 11, 59900, 1240, typeItem, 28, 299000, 290, 72, TypesAttack.HORIZON, 32, 10200, 2048))
+        this.unitsConfig.push(new UnitsCongig(type, 12, 182000, 1310, typeItem, 34, 913000, 410, 102, TypesAttack.THREE, 40, 20400, 4090))
+        this.unitsConfig.push(new UnitsCongig(type, 13, 520000, 1380, typeItem, 42, 2600000, 570, 142, TypesAttack.ONE, 60, 40900, 8190))
+        this.unitsConfig.push(new UnitsCongig(type, 14, 1800000, 1450, typeItem, 50, 9030000, 800, 200, TypesAttack.ONE, 100, 81900, 16300))
+        this.unitsConfig.push(new UnitsCongig(type, 15, 4870000, 1520, typeItem, 60, 24300000, 1120, 280, TypesAttack.ONE, 200, 163000, 32700))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 16, 12300000, 1610, typeItem, 70, 61600000, 1600, 400, TypesAttack.HORIZON, 400, 327000, 0, 65500, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 17, 30000000, 1690, typeItem, 80, 150000000, 2200, 550, TypesAttack.VERTICAL, 800, 655000, 0, 131000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 18, 81600000, 1770, typeItem, 90, 408000000, 3100, 775, TypesAttack.TWO, 400, 1310000, 0, 262000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 19, 189000000, 1860, typeItem, 102, 945000000, 4300, 1070, TypesAttack.THREE, 870, 2620000, 0, 524000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 20, 416000000, 1960, typeItem, 114, 2080000000, 6000, 1500, TypesAttack.ONE, 1800, 5240000, 0, 1040000, 0))
+        this.unitsConfig.push(new UnitsCongig(type, 16, 12300000, 1610, typeItem, 70, 61600000, 1600, 400, TypesAttack.HORIZON, 400, 327000, 65500))
+        this.unitsConfig.push(new UnitsCongig(type, 17, 30000000, 1690, typeItem, 80, 150000000, 2200, 550, TypesAttack.VERTICAL, 800, 655000, 131000))
+        this.unitsConfig.push(new UnitsCongig(type, 18, 81600000, 1770, typeItem, 90, 408000000, 3100, 775, TypesAttack.TWO, 400, 1310000, 262000))
+        this.unitsConfig.push(new UnitsCongig(type, 19, 189000000, 1860, typeItem, 102, 945000000, 4300, 1070, TypesAttack.THREE, 870, 2620000, 524000))
+        this.unitsConfig.push(new UnitsCongig(type, 20, 416000000, 1960, typeItem, 114, 2080000000, 6000, 1500, TypesAttack.ONE, 1800, 5240000, 1040000))
 
         //20->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 21, 893000000, 2060, typeItem, 128, 4460000000, 8400, 2100, TypesAttack.ONE, 3600, 10400000, 0, 2090000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 22, 2010000000, 2170, typeItem, 142, 10000000000, 11800, 2950, TypesAttack.TWO, 5130, 20900000, 0, 4190000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 23, 3710000000, 2290, typeItem, 156, 18500000000, 17000, 4250, TypesAttack.ONE, 4050, 41900000, 0, 8380000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 24, 7900000000, 2410, typeItem, 172, 39500000000, 24000, 6000, TypesAttack.ONE, 5400, 83800000, 0, 16700000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 25, 16500000000, 2540, typeItem, 190, 82800000000, 34000, 8500, TypesAttack.TWO, 4200, 167000000, 0, 33500000, 0))
+        this.unitsConfig.push(new UnitsCongig(type, 21, 893000000, 2060, typeItem, 128, 4460000000, 8400, 2100, TypesAttack.ONE, 3600, 10400000, 2090000))
+        this.unitsConfig.push(new UnitsCongig(type, 22, 2010000000, 2170, typeItem, 142, 10000000000, 11800, 2950, TypesAttack.TWO, 5130, 20900000, 4190000))
+        this.unitsConfig.push(new UnitsCongig(type, 23, 3710000000, 2290, typeItem, 156, 18500000000, 17000, 4250, TypesAttack.ONE, 4050, 41900000, 8380000))
+        this.unitsConfig.push(new UnitsCongig(type, 24, 7900000000, 2410, typeItem, 172, 39500000000, 24000, 6000, TypesAttack.ONE, 5400, 83800000, 16700000))
+        this.unitsConfig.push(new UnitsCongig(type, 25, 16500000000, 2540, typeItem, 190, 82800000000, 34000, 8500, TypesAttack.TWO, 4200, 167000000, 33500000))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 26, 33500000000, 2680, typeItem, 206, 167000000000, 48000, 12000, TypesAttack.HORIZON, 4680, 355000000, 0, 67100000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 27, 77800000000, 2810, typeItem, 224, 389000000000, 67000, 16700, TypesAttack.ONE, 5220, 671000000, 0, 134000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 28, 157000000000, 2960, typeItem, 242, 785000000000, 94000, 23500, TypesAttack.ONE, 6960, 1340000000, 0, 268000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 29, 317000000000, 3120, typeItem, 260, 1580000000000, 132000, 33000, TypesAttack.ONE, 7750, 2680000000, 0, 536000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 30, 640000000000, 3260, typeItem, 280, 3200000000000, 180000, 45000, TypesAttack.ONE, 8630, 5360000000, 0, 1070000000, 0))
+        this.unitsConfig.push(new UnitsCongig(type, 26, 33500000000, 2680, typeItem, 206, 167000000000, 48000, 12000, TypesAttack.HORIZON, 4680, 355000000, 67100000))
+        this.unitsConfig.push(new UnitsCongig(type, 27, 77800000000, 2810, typeItem, 224, 389000000000, 67000, 16700, TypesAttack.ONE, 5220, 671000000, 134000000))
+        this.unitsConfig.push(new UnitsCongig(type, 28, 157000000000, 2960, typeItem, 242, 785000000000, 94000, 23500, TypesAttack.ONE, 6960, 1340000000, 268000000))
+        this.unitsConfig.push(new UnitsCongig(type, 29, 317000000000, 3120, typeItem, 260, 1580000000000, 132000, 33000, TypesAttack.ONE, 7750, 2680000000, 536000000))
+        this.unitsConfig.push(new UnitsCongig(type, 30, 640000000000, 3260, typeItem, 280, 3200000000000, 180000, 45000, TypesAttack.ONE, 8630, 5360000000, 1070000000))
 
         //30->
     }
