@@ -51,10 +51,11 @@ export class NetworkClient extends Component {
 
         if (objects == null) throw 'Пришел пустой обьект';
         for (let l = 0; l < objects.length; l++) {
-            const json = JSON.parse(JSON.stringify(objects[l]));
-            const jsonValue = JSON.parse(json.value);
-            console.log(jsonValue);
-            if (json.key == TypesStorages.GAME_STORAGE) {
+            const json = objects[l]
+            let jsonValue = json['value']
+
+            //console.log(jsonValue);// c сервера может придти {} пустой обьект
+            if (json['key'] == TypesStorages.GAME_STORAGE) {
                 ControllerGameStorage.equateCoins(jsonValue.coins);
                 ControllerGameStorage.equateGems(jsonValue.gems);
                 ControllerGameStorage.equateEnergy(jsonValue.energy);
@@ -67,16 +68,20 @@ export class NetworkClient extends Component {
                 ControllerGameStorage.equateArsenalPower(jsonValue.arsenalPower);
                 ControllerGameStorage.equateProfessionPower(jsonValue.professionPower);
             }
-            else if (json.key == TypesStorages.HOME_MAP_STORAGE) {
+            else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
 
             }
-            else if (json.key == TypesStorages.INVENTORY_STORAGE) {
+            else if (json['key'] == TypesStorages.INVENTORY_STORAGE) {
 
             }
-            else if (json.key == TypesStorages.CHARACTER_STORAGE) {
-
+            else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
+                for (let l = 0; l < jsonValue.length; l++) {
+                    console.log(jsonValue[0].exp)
+                    console.log(jsonValue[0].level)
+                    console.log(jsonValue[0].stars)
+                }
             }
-            else if (json.key == TypesStorages.COMMAND_POST_STORAGE) {
+            else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
                 ControllerCommandPostStorage.equateLevelCommandPost(jsonValue.levelCommandPost);
                 ControllerCommandPostStorage.equateLevelRepairShop(jsonValue.levelRepairShop);
                 ControllerCommandPostStorage.equateLevelMergeGoldMine(jsonValue.levelMergeGoldMine);

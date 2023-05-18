@@ -18,8 +18,8 @@ export class ControllerBufferStorage {
         BufferStorage.instance.arrayBuffer.push(new Buffer(type, obj));
     }
 
-    static getBuffer(): string {
-        return JSON.parse(JSON.stringify(BufferStorage.instance.arrayBuffer));
+    static getBuffer(): object[] {
+        return BufferStorage.instance.arrayBuffer
     }
 
     static isBufferFull(): boolean {
