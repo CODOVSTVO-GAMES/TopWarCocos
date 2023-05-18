@@ -1,28 +1,13 @@
-import { _decorator, Component, instantiate, Vec3 } from 'cc';
+import { _decorator, instantiate, Vec3 } from 'cc';
 import { PrefabsStorage } from './Storage/PrefabsStorage';
 import { ObjectParameters } from './ObjectParameters';
-import { TypesObjects } from './Static/TypesObjects';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
-export class SpawnObjects extends Component {
+export class SpawnObjects {
 
-    public static instance: SpawnObjects;
-
-    onLoad() {
-        SpawnObjects.instance = this;
-    }
-
-    start() {
-        setTimeout(() => {
-            this.spawnObjectsPos(TypesObjects.WALL, 1, 20);
-            this.spawnObjectsPos(TypesObjects.WALL, 1, 42);
-            this.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 63);
-        }, 500);
-    }
-
-    spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
+    static spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
         let object = instantiate(PrefabsStorage.instance.getPrefab(type));
         ControllerHomeMapStorage.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
@@ -32,7 +17,7 @@ export class SpawnObjects extends Component {
         return object.getComponent(ObjectParameters);
     }
 
-    spawnObjectsNearby(type: string, level: number, index: number) {
+    static spawnObjectsNearby(type: string, level: number, index: number) {
         let minDistance: number = 100000;
         let indexSpawnObject: number = 0;
         let isSpawnObject: boolean = false;
@@ -55,14 +40,14 @@ export class SpawnObjects extends Component {
             }
         }
         if (isSpawnObject) {
-            return SpawnObjects.instance.spawnObjectsPos(type, level, indexSpawnObject);
+            return this.spawnObjectsPos(type, level, indexSpawnObject);
         }
         else {
             console.log("error: there is no free space.");
         }
     }
 
-    spawnObjectsRandom(type: string, level: number) {
+    static spawnObjectsRandom(type: string, level: number) {
         let indexObject = 0;
         let iterationsCount = 0;
         while (true) {
@@ -79,7 +64,7 @@ export class SpawnObjects extends Component {
         }
     }
 
-    spawnObjectsMerge(type: string, level: number, index: number) {
+    static spawnObjectsMerge(type: string, level: number, index: number) {
         this.spawnObjectsPos(type, level + 1, index);
     }
 }

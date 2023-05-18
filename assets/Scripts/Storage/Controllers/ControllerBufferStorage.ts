@@ -5,10 +5,7 @@ import { Buffer } from '../../Structures/Buffer';
 export class ControllerBufferStorage {
 
     static addItem(type: string, obj: Object) {
-        if (obj == null) {
-            console.log("addItem пришел пустой обьект")
-            return;
-        }
+        if(obj == null) return;
         for (let i = 0; i < BufferStorage.instance.arrayBuffer.length; i++) {
             if (BufferStorage.instance.arrayBuffer[i].name == type) {
                 BufferStorage.instance.arrayBuffer.splice(i, 1);
@@ -19,7 +16,7 @@ export class ControllerBufferStorage {
     }
 
     static getBuffer(): object[] {
-        return BufferStorage.instance.arrayBuffer
+        return BufferStorage.instance.arrayBuffer;
     }
 
     static isBufferFull(): boolean {

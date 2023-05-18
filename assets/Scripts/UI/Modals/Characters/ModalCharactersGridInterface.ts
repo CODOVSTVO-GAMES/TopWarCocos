@@ -61,8 +61,8 @@ export class ModalCharacterGridInterface extends Component {
         // this.charactersRendered = CharactersStorage.instance.characters;
 
         let str = ''
-        for (let l = 0; l < CharactersStorage.instance.characters.length; l++) {
-            str = str + CharactersStorage.instance.characters[l].type + ','
+        for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
+            str = str + CharactersStorage.instance.characters[i].type + ','
         }
         console.log('1+' + str)
 

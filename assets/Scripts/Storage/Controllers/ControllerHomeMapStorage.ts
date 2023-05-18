@@ -3,8 +3,28 @@ import { HomeMapStorage } from '../HomeMapStorage';
 import { ObjectParameters } from '../../ObjectParameters';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { IndexsObject } from '../../Static/IndexsObject';
+import { ControllerBufferStorage } from './ControllerBufferStorage';
+import { TypesStorages } from '../../Static/TypesStorages';
+import { SpawnObjects } from '../../SpawnObjects';
 
 export class ControllerHomeMapStorage {
+
+    static assignStartingValues() {
+        setTimeout(() => {
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 20);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 42);
+            SpawnObjects.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 63);
+        }, 2000);
+    }
+
+    static assigningSaveValues(obj: Object[]) {
+        setTimeout(() => {
+            for (let i = 0; i < obj.length; i++) {
+                let json = JSON.parse(JSON.stringify(obj[i]));
+                SpawnObjects.spawnObjectsPos(json.type, json.level, json.index);
+            }
+        }, 2000);
+    }
 
     static setParent(object: Node, index: number) {
         object.parent = HomeMapStorage.instance.coords[index];
@@ -154,6 +174,18 @@ export class ControllerHomeMapStorage {
     }
 
     static updateHomeMapStorage() {
-
+        let obj: Object[] = [];
+        for (let i = 0; i < HomeMapStorage.instance.arrayObjectParameters.length; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
+                if (HomeMapStorage.instance.arrayObjectParameters[i].index == i) {
+                    obj.push({
+                        type: HomeMapStorage.instance.arrayObjectParameters[i].type,
+                        level: HomeMapStorage.instance.arrayObjectParameters[i].level,
+                        index: HomeMapStorage.instance.arrayObjectParameters[i].index
+                    });
+                }
+            }
+        }
+        ControllerBufferStorage.addItem(TypesStorages.HOME_MAP_STORAGE, obj);
     }
 }

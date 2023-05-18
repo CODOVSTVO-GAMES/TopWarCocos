@@ -6,6 +6,14 @@ import { TypesStorages } from '../../Static/TypesStorages';
 
 export class ControllerInventoryStorage {
 
+    static assignStartingValues() {
+
+    }
+
+    static assigningSaveValues(obj: Object) {
+
+    }
+
     static addItem(type: string, quantity: number) {
         if (quantity == 0) return;
         for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
@@ -45,13 +53,13 @@ export class ControllerInventoryStorage {
     }
 
     static updateInvenoryStorage() {
-        // let obj: Object[] = [];
-        // for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
-        //     obj.push({
-        //         type: InventoryStorage.instance.inventory[i].type,
-        //         quantity: InventoryStorage.instance.inventory[i].quantity
-        //     });
-        // }
-        // ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
+        let obj: Object[] = [];
+        for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
+            obj.push({
+                type: InventoryStorage.instance.inventory[i].type,
+                quantity: InventoryStorage.instance.inventory[i].quantity
+            });
+        }
+        ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
     }
 }

@@ -25,7 +25,6 @@ export class ModalCommandPostLogic extends Component {
     }
 
     openUpgradeOther(event, customEventData) {
-        console.log(customEventData);
         this.backgraund.active = true;
         this.upgrateOther.active = true;
     }

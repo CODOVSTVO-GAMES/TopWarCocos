@@ -13,6 +13,8 @@ export class ControllerCharactrerStorage {
 
     private static storageTypes: string[] = [TypesCharacters.BLACK_WIDOW, TypesCharacters.CHARACTER_1, TypesCharacters.CHARACTER_2, TypesCharacters.CHARACTER_3, TypesCharacters.CHARACTER_4, TypesCharacters.CHARACTER_5, TypesCharacters.CHARACTER_6, TypesCharacters.CHARACTER_7];
 
+    // =================================================================
+
     static assignStartingValues() {
         for (let i = 0; i < this.storageTypes.length; i++) {
             let heroLevel = 1;
@@ -21,6 +23,13 @@ export class ControllerCharactrerStorage {
         }
         this.updateCharactrerStorage();
     }
+
+    static assigningSaveValues(obj: Object) {
+        let json = JSON.parse(JSON.stringify(obj));
+
+    }
+
+    // =================================================================
 
     static getRandomCharacter(): CharacterInfo {
         return CharactersStorage.instance.characters[Math.floor(Math.random() * CharactersStorage.instance.characters.length)];

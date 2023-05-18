@@ -10,6 +10,8 @@ import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStor
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
+import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
+import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -19,13 +21,9 @@ export class NetworkClient extends Component {
 
     onLoad() {
         NetworkClient.instance = this
-        // SessionService.getStartSessionData()
         this.schedule(SessionService.updateSessionData, 60)
         this.schedule(this.sendEvents, 5)
         this.schedule(this.sendData, 4)
-
-        // let myArr = [TypesStorages.GAME_STORAGE]
-        // setTimeout(() => DataStorageService.getData(myArr), 500)
     }
 
     private sendData() {
@@ -45,57 +43,33 @@ export class NetworkClient extends Component {
     dataRecipient(objects: object[]) {
         if (ControllerUserStorage.getIsNewUser()) {
             ControllerGameStorage.assignStartingValues();
-            ControllerCommandPostStorage.assignStartingValues();
+            ControllerHomeMapStorage.assignStartingValues();
+            ControllerInventoryStorage.assignStartingValues();
             ControllerCharactrerStorage.assignStartingValues();
+            ControllerCommandPostStorage.assignStartingValues();
             RedirectionToScene.redirect(SceneNames.HOME_MAP);
             return;
         }
 
         if (objects == null) throw 'Пришел пустой обьект';
-        for (let l = 0; l < objects.length; l++) {
-            const json = objects[l]
-            let jsonValue = json['value']
 
-            //console.log(jsonValue);// c сервера может придти {} пустой обьект
+        for (let i = 0; i < objects.length; i++) {
+            const json = objects[i];
+            let jsonValue = json['value'];
             if (json['key'] == TypesStorages.GAME_STORAGE) {
-                ControllerGameStorage.equateCoins(jsonValue.coins);
-                ControllerGameStorage.equateGems(jsonValue.gems);
-                ControllerGameStorage.equateEnergy(jsonValue.energy);
-                ControllerGameStorage.equateExperience(jsonValue.experience);
-                ControllerGameStorage.equateLevel(jsonValue.level);
-                ControllerGameStorage.equateMaxPower(jsonValue.maxPower);
-                ControllerGameStorage.equateTerritoryPower(jsonValue.territoryPower);
-                ControllerGameStorage.equateTechnoPower(jsonValue.technoPower);
-                ControllerGameStorage.equateHeroPower(jsonValue.heroPower);
-                ControllerGameStorage.equateArsenalPower(jsonValue.arsenalPower);
-                ControllerGameStorage.equateProfessionPower(jsonValue.professionPower);
+                ControllerGameStorage.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
-
+                ControllerHomeMapStorage.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.INVENTORY_STORAGE) {
-
+                ControllerInventoryStorage.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
-                for (let l = 0; l < jsonValue.length; l++) {
-                    ControllerCharactrerStorage.equateProfessionPower(jsonValue[l].exp, jsonValue[l].level, jsonValue[l].stars, jsonValue[l].codeName);
-                    console.log(jsonValue[l].exp + " " + jsonValue[l].level + " " + jsonValue[l].stars + " " + jsonValue[l].codeName)
-                }
+                ControllerCharactrerStorage.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
-                ControllerCommandPostStorage.equateLevelCommandPost(jsonValue.levelCommandPost);
-                ControllerCommandPostStorage.equateLevelRepairShop(jsonValue.levelRepairShop);
-                ControllerCommandPostStorage.equateLevelMergeGoldMine(jsonValue.levelMergeGoldMine);
-                ControllerCommandPostStorage.equateLevelBuildGoldMine(jsonValue.levelBuildGoldMine);
-                ControllerCommandPostStorage.equateLevelMergeTroopAir(jsonValue.levelMergeTroopAir);
-                ControllerCommandPostStorage.equateLevelMergeBarracksAir(jsonValue.levelMergeBarracksAir);
-                ControllerCommandPostStorage.equateLevelBuildBarracksAir(jsonValue.levelBuildBarracksAir);
-                ControllerCommandPostStorage.equateLevelMergeTroopMarine(jsonValue.levelMergeTroopMarine);
-                ControllerCommandPostStorage.equateLevelMergeBarracksMarine(jsonValue.levelMergeBarracksMarine);
-                ControllerCommandPostStorage.equateLevelBuildBarracksMarine(jsonValue.levelBuildBarracksMarine);
-                ControllerCommandPostStorage.equateLevelMergeTroopOverland(jsonValue.levelMergeTroopOverland);
-                ControllerCommandPostStorage.equateLevelMergeBarracksOverland(jsonValue.levelMergeBarracksOverland);
-                ControllerCommandPostStorage.equateLevelBuildBarracksOverland(jsonValue.levelBuildBarracksOverland);
+                ControllerCommandPostStorage.assigningSaveValues(jsonValue);
             }
         }
         RedirectionToScene.redirect(SceneNames.HOME_MAP);

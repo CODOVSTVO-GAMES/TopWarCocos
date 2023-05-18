@@ -26,6 +26,23 @@ export class ControllerGameStorage {
         this.updateGameStorage();
     }
 
+    static assigningSaveValues(obj: Object) {
+        let json = JSON.parse(JSON.stringify(obj));
+        GameStorage.instance.coins = json.coins;
+        GameStorage.instance.coinsInTime = json.coinsInTime;
+        GameStorage.instance.gems = json.gems;
+        GameStorage.instance.energy = json.energy;
+        GameStorage.instance.experience = json.experience;
+        GameStorage.instance.level = json.level;
+        GameStorage.instance.maxPower = json.maxPower;
+        GameStorage.instance.territoryPower = json.territoryPower;
+        GameStorage.instance.technoPower = json.technoPower;
+        GameStorage.instance.heroPower = json.heroPower;
+        GameStorage.instance.arsenalPower = json.arsenalPower;
+        GameStorage.instance.professionPower = json.professionPower;
+        GameStorage.instance.formationPower = json.formationPower;
+    }
+
     // =================================================================
 
     static equateCoins(value: number) {

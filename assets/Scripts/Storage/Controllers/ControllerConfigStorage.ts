@@ -527,6 +527,4 @@ export class ControllerConfigStorage {
         }
         throw "не существует такого обьекта"
     }
-
-
 }

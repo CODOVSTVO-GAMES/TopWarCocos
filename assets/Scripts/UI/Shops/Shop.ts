@@ -9,19 +9,19 @@ export class Shop extends Component {
 
     buyitem(event, customEventData) {
         if (Number(customEventData) == 0) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir(), 14);
         }
         else if (Number(customEventData) == 1) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine(), 14);
         }
         else if (Number(customEventData) == 2) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland(), 14);
         }
         else if (Number(customEventData) == 3) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine(), 14);
         }
         else if (Number(customEventData) == 4) {
-            SpawnObjects.instance.spawnObjectsNearby(TypesObjects.AUTOCOMBINE, 1, 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.AUTOCOMBINE, 1, 14);
         }
     }
 }

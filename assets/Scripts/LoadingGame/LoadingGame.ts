@@ -13,10 +13,6 @@ const { ccclass } = _decorator;
 export class LoadingGame extends Component {
 
     start() {
-        // setTimeout(() => {
-        //     RedirectionToScene.redirect(SceneNames.HOME_MAP);
-        // }, 1000);
-        // LoadingGame.getSession()
         LoadingGame.initSDKAndGetUserInfo()
     }
 
@@ -32,8 +28,14 @@ export class LoadingGame extends Component {
         SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
     }
 
-    static getStorages() { 
-        let myArr = [TypesStorages.GAME_STORAGE, TypesStorages.CHARACTER_STORAGE, TypesStorages.COMMAND_POST_STORAGE];
+    static getStorages() {
+        let myArr = [
+            TypesStorages.GAME_STORAGE,
+            TypesStorages.HOME_MAP_STORAGE,
+            TypesStorages.INVENTORY_STORAGE,
+            TypesStorages.CHARACTER_STORAGE,
+            TypesStorages.COMMAND_POST_STORAGE
+        ];
         DataStorageService.getData(myArr)//redirectToHomeMap вызывается после получения данных в колбеке
     }
 

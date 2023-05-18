@@ -24,6 +24,23 @@ export class ControllerCommandPostStorage {
         this.updateCommandPostStorage();
     }
 
+    static assigningSaveValues(obj: Object) {
+        let json = JSON.parse(JSON.stringify(obj));
+        CommandPostStorage.instance.levelCommandPost = json.levelCommandPost;
+        CommandPostStorage.instance.levelRepairShop = json.levelRepairShop;
+        CommandPostStorage.instance.levelMergeGoldMine = json.levelMergeGoldMine;
+        CommandPostStorage.instance.levelBuildGoldMine = json.levelBuildGoldMine;
+        CommandPostStorage.instance.levelMergeTroopAir = json.levelMergeTroopAir;
+        CommandPostStorage.instance.levelMergeBarracksAir = json.levelMergeBarracksAir;
+        CommandPostStorage.instance.levelBuildBarracksAir = json.levelBuildBarracksAir;
+        CommandPostStorage.instance.levelMergeTroopMarine = json.levelMergeTroopMarine;
+        CommandPostStorage.instance.levelMergeBarracksMarine = json.levelMergeBarracksMarine;
+        CommandPostStorage.instance.levelBuildBarracksMarine = json.levelBuildBarracksMarine;
+        CommandPostStorage.instance.levelMergeTroopOverland = json.levelMergeTroopOverland;
+        CommandPostStorage.instance.levelMergeBarracksOverland = json.levelMergeBarracksOverland;
+        CommandPostStorage.instance.levelBuildBarracksOverland = json.levelBuildBarracksOverland;
+    }
+
     // =================================================================
 
     static equateLevelCommandPost(value: number) {
