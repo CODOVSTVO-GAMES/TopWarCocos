@@ -1,8 +1,6 @@
 import { _decorator } from 'cc';
 import { ConfigStorage } from '../ConfigStorage';
-import { GlobalConfigurationUnits } from '../../Structures/GlobalConfigurationUnits';
 import { TypesObjects } from '../../Static/TypesObjects';
-import { TypesItems } from '../../Static/TypesItems';
 import { HeroConfig } from '../../Structures/HeroConfig';
 import { UnitsCongig } from '../../Structures/ConfigUnits';
 
@@ -12,36 +10,6 @@ export class ControllerConfigStorage {
         for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
             if (ConfigStorage.instance.mergeBuildingsConfig[i].type == TypesObjects.GOLD_MINE && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
                 return ConfigStorage.instance.mergeBuildingsConfig[i].imprivementResourceNumber
-            }
-        }
-        throw "не существует такого уровня шахты"
-    }
-
-    static getConfigByTypeAndLevel(type: string, level: number): GlobalConfigurationUnits {
-        if (type == TypesObjects.BARRACKS_AIR || type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.BARRACKS_OVERLAND) {
-            throw "Запрещено запрашивать этот тип этим методом."
-        }
-        for (let i = 0; i < ConfigStorage.instance.globalConfig.length; i++) {
-            if (ConfigStorage.instance.globalConfig[i].type == type && ConfigStorage.instance.globalConfig[i].level == level) {
-                return ConfigStorage.instance.globalConfig[i]
-            }
-        }
-        throw "не существует такого обьекта"
-    }
-
-    static getProductionInTimeMineByLevel(level: number): number {
-        for (let i = 0; i < ConfigStorage.instance.globalConfig.length; i++) {
-            if (ConfigStorage.instance.globalConfig[i].imprivementResourceType == TypesItems.PLAN_MAX_MINE && ConfigStorage.instance.globalConfig[i].level == level) {
-                return ConfigStorage.instance.globalConfig[i].productionInTime
-            }
-        }
-        throw "не существует такого уровня шахты"
-    }
-
-    static getExpPerSpawnMineByLevel(level: number): number {
-        for (let i = 0; i < ConfigStorage.instance.globalConfig.length; i++) {
-            if (ConfigStorage.instance.globalConfig[i].imprivementResourceType == TypesItems.PLAN_MAX_MINE && ConfigStorage.instance.globalConfig[i].level == level) {
-                return ConfigStorage.instance.globalConfig[i].expPerSpawn
             }
         }
         throw "не существует такого уровня шахты"
@@ -112,6 +80,7 @@ export class ControllerConfigStorage {
 
 
     //---------------------------------------------------------------------------------------------------
+    //main building and repair building
 
     static getPowerMainBuildingByLevel(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
@@ -401,7 +370,7 @@ export class ControllerConfigStorage {
 
 
     static getExpirienceBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -414,7 +383,7 @@ export class ControllerConfigStorage {
     }
 
     static getPowerBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -427,7 +396,7 @@ export class ControllerConfigStorage {
     }
 
     static getPriceUpdateBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -440,7 +409,7 @@ export class ControllerConfigStorage {
     }
 
     static getImprivementResourceTypeBuildingMergeByTypeAndLevel(type: string, level: number): string {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -453,7 +422,7 @@ export class ControllerConfigStorage {
     }
 
     static getIimprivementResourceNumberBuildingMergeByTypeAndLevel(type: string, level: number): number {
-        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND|| type != TypesObjects.GOLD_MINE) {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
             throw "Запрещено запрашивать этот тип этим методом."
         }
 
@@ -467,5 +436,97 @@ export class ControllerConfigStorage {
 
     //---------------------------------------------------------------------------------------------------
     //configSpawnBuildings
+
+    static getExpirienceBuildingSpawnByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].experience
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPowerBuildingSpawnByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].power
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPriceBuyBuildingSpawnByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].priceBuy
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getPriceUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].priceUpdate
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getIimprivementResourceTypeUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): string {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].imprivementResourceType
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].imprivementResourceNumber
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
+    static getExpPerSpawnResourceNumberUpdateBuildingSpawnByTypeAndLevel(type: string, level: number): number {
+        if (type != TypesObjects.BARRACKS_MARINE || type != TypesObjects.BARRACKS_AIR || type != TypesObjects.BARRACKS_OVERLAND || type != TypesObjects.GOLD_MINE) {
+            throw "Запрещено запрашивать этот тип этим методом."
+        }
+
+        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigStorage.instance.spawnBuildingsConfig[i].expPerSpawn
+            }
+        }
+        throw "не существует такого обьекта"
+    }
+
 
 }

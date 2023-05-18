@@ -1,7 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesAttack } from '../Static/TypesAttack';
-import { GlobalConfigurationUnits } from '../Structures/GlobalConfigurationUnits';
 import { TypesItems } from '../Static/TypesItems';
 import { Level } from '../Structures/Level';
 import { HeroConfig } from '../Structures/HeroConfig';
@@ -17,8 +16,6 @@ const { ccclass } = _decorator;
 export class ConfigStorage extends Component {
 
     public static instance: ConfigStorage;
-
-    public globalConfig: Array<GlobalConfigurationUnits> = []
 
     public mainAndRepairBuildings: Array<MainAndRepairBuildings> = []
 
@@ -240,45 +237,45 @@ export class ConfigStorage extends Component {
         let type = TypesObjects.BARRACKS_OVERLAND
         let typeItem = TypesItems.PLAN_CREATE_BARRACK
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 1, 0, 0, typeItem, 0, 0, 0, 0, TypesAttack.NONE, 0, 400, 0, 80, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 2, 1180, 380, typeItem, 8, 0, 0, 0, TypesAttack.NONE, 0, 800, 0, 160, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 3, 2900, 420, typeItem, 10, 0, 0, 0, TypesAttack.NONE, 0, 1600, 0, 320, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 4, 6190, 440, typeItem, 12, 0, 0, 0, TypesAttack.NONE, 0, 3200, 0, 640, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 5, 12000, 460, typeItem, 16, 0, 0, 0, TypesAttack.NONE, 0, 6400, 0, 1280, 0))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 1, 0, 0, typeItem, 0, 5900, 400, 80))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 2, 1180, 380, typeItem, 8, 15300, 800, 160))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 3, 2900, 420, typeItem, 10, 30900, 1600, 320))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 4, 6190, 440, typeItem, 12, 60000, 3200, 640))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 5, 12000, 460, typeItem, 16, 135000, 6400, 1280))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 6, 27000, 480, typeItem, 22, 0, 0, 0, TypesAttack.NONE, 0, 12800, 0, 2560, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 7, 62500, 510, typeItem, 28, 0, 0, 0, TypesAttack.NONE, 0, 25600, 0, 5120, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 8, 182000, 540, typeItem, 34, 0, 0, 0, TypesAttack.NONE, 0, 51200, 0, 10240, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 9, 541000, 560, typeItem, 42, 0, 0, 0, TypesAttack.NONE, 0, 102000, 0, 20400, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 10, 1800000, 590, typeItem, 50, 0, 0, 0, TypesAttack.NONE, 0, 204000, 0, 40900, 0))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 6, 27000, 480, typeItem, 22, 312000, 12800, 2560))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 7, 62500, 510, typeItem, 28, 913000, 25600, 5120))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 8, 182000, 540, typeItem, 34, 2700000, 51200, 10240))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 9, 541000, 560, typeItem, 42, 9030000, 102000, 20400))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 10, 1800000, 590, typeItem, 50, 24300000, 204000, 40900))
 
         //10->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 11, 4870000, 620, typeItem, 60, 0, 0, 0, TypesAttack.NONE, 0, 409000, 0, 81900, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 12, 12300000, 660, typeItem, 70, 0, 0, 0, TypesAttack.NONE, 0, 819000, 0, 163000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 13, 30000000, 690, typeItem, 80, 0, 0, 0, TypesAttack.NONE, 0, 1630000, 0, 327000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 14, 81600000, 720, typeItem, 90, 0, 0, 0, TypesAttack.NONE, 0, 3270000, 0, 655000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 15, 189000000, 760, typeItem, 102, 0, 0, 0, TypesAttack.NONE, 0, 6550000, 0, 1310000, 0))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 11, 4870000, 620, typeItem, 60, 61600000, 409000, 81900))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 12, 12300000, 660, typeItem, 70, 150000000, 819000, 163000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 13, 30000000, 690, typeItem, 80, 408000000, 1630000, 327000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 14, 81600000, 720, typeItem, 90, 945000000, 3270000, 655000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 15, 189000000, 760, typeItem, 102, 2080000000, 6550000, 1310000))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 16, 416000000, 800, typeItem, 114, 0, 0, 0, TypesAttack.NONE, 0, 13100000, 0, 2620000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 17, 893000000, 840, typeItem, 128, 0, 0, 0, TypesAttack.NONE, 0, 26200000, 0, 5240000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 18, 2010000000, 890, typeItem, 142, 0, 0, 0, TypesAttack.NONE, 0, 52400000, 0, 10400000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 19, 3710000000, 930, typeItem, 156, 0, 0, 0, TypesAttack.NONE, 0, 104000000, 0, 20900000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 20, 7900000000, 980, typeItem, 172, 0, 0, 0, TypesAttack.NONE, 0, 209000000, 0, 41900000, 0))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 16, 416000000, 800, typeItem, 114, 4460000000, 13100000, 2620000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 17, 893000000, 840, typeItem, 128, 10000000000, 26200000, 5240000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 18, 2010000000, 890, typeItem, 142, 18500000000, 52400000, 10400000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 19, 3710000000, 930, typeItem, 156, 39500000000, 104000000, 20900000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 20, 7900000000, 980, typeItem, 172, 82800000000, 209000000, 41900000))
 
         //20->
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 21, 16500000000, 1030, typeItem, 190, 0, 0, 0, TypesAttack.NONE, 0, 419000000, 0, 83800000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 22, 33500000000, 1080, typeItem, 206, 0, 0, 0, TypesAttack.NONE, 0, 838000000, 0, 167000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 23, 78100000000, 1150, typeItem, 224, 0, 0, 0, TypesAttack.NONE, 0, 1670000000, 0, 335000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 24, 157000000000, 1210, typeItem, 242, 0, 0, 0, TypesAttack.NONE, 0, 3350000000, 0, 671000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 25, 317000000000, 1270, typeItem, 260, 0, 0, 0, TypesAttack.NONE, 0, 6710000000, 0, 1340000000, 0))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 21, 16500000000, 1030, typeItem, 190, 167000000000, 419000000, 83800000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 22, 33500000000, 1080, typeItem, 206, 390000000000, 838000000, 167000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 23, 78100000000, 1150, typeItem, 224, 789000000000, 1670000000, 335000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 24, 157000000000, 1210, typeItem, 242, 1580000000000, 3350000000, 671000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 25, 317000000000, 1270, typeItem, 260, 3200000000000, 6710000000, 1340000000))
 
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 26, 640000000000, 1340, typeItem, 280, 0, 0, 0, TypesAttack.NONE, 0, 13400000000, 0, 2680000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 27, 1290000000000, 1410, typeItem, 310, 0, 0, 0, TypesAttack.NONE, 0, 26800000000, 0, 5360000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 28, 2610000000000, 1480, typeItem, 340, 0, 0, 0, TypesAttack.NONE, 0, 53600000000, 0, 10700000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 29, 5270000000000, 1560, typeItem, 380, 0, 0, 0, TypesAttack.NONE, 0, 107000000000, 0, 21400000000, 0))
-        this.globalConfig.push(new GlobalConfigurationUnits(type, 30, 10600000000000, 1630, typeItem, 420, 0, 0, 0, TypesAttack.NONE, 0, 214000000000, 0, 42900000000, 0))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 26, 640000000000, 1340, typeItem, 280, 6460000000000, 13400000000, 2680000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 27, 1290000000000, 1410, typeItem, 310, 13000000000000, 26800000000, 5360000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 28, 2610000000000, 1480, typeItem, 340, 26300000000000, 53600000000, 10700000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 29, 5270000000000, 1560, typeItem, 380, 53200000000000, 107000000000, 21400000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 30, 10600000000000, 1630, typeItem, 420, 123000000000000, 214000000000, 42900000000))
 
         //30->
     }
