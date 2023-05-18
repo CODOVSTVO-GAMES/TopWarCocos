@@ -13,6 +13,10 @@ export class ControllerCharactrerStorage {
         return CharactersStorage.instance.characters[Math.floor(Math.random() * CharactersStorage.instance.characters.length)];
     }
 
+    static getCharacters(): CharacterInfo[] {
+        return CharactersStorage.instance.characters;
+    }
+
     // =================================================================
 
     static addExperience(value: number, index: number) {

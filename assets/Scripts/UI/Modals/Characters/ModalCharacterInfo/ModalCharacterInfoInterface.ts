@@ -38,8 +38,8 @@ export class ModalCharacterInfoIntarface extends Component {
     @property({ type: Sprite })
     public sliderStars: Sprite;
 
-    @property({ type: Sprite })
-    public stars: Sprite[] = [];
+    @property({ type: Node })
+    public stars: Node[] = [];
 
     onLoad() {
         ModalCharacterInfoIntarface.instance = this;
@@ -58,6 +58,10 @@ export class ModalCharacterInfoIntarface extends Component {
             this.experience.string = character.experience.toString();
             this.combatPower.string = "210";
             this.sliderLevel.fillRange = character.experience / ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+            this.sliderStars.fillRange = character.stars % 5 / 5;
+            for (let i = 0; i < this.stars.length; i++) {
+                this.stars[i].active = character.stars / 5 > i ? true : false;
+            }
             
             return true;
         }

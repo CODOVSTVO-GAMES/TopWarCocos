@@ -100,9 +100,9 @@ export class ModalCharacterPumpingInterface extends Component {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
             this.starTitle.string = "Фрагменты для след. этапа: " + ControllerInventoryStorage.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character)) + "/4";
-            this.sliderStars.fillRange = character.stars > 5 ? (character.stars % 5) / 5 : character.stars / 5;
-            for (let i = 0; i < 5; i++) {
-                this.stars[i].active = character.stars / 5 > i ? true : false;
+            this.sliderStars.fillRange = character.stars % 5 / 5;
+            for (let i = 0; i < this.stars.length; i++) {
+                this.stars[i].active = character.stars / 5 >= i ? true : false;
             }
         }
     }

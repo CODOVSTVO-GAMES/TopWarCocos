@@ -1,4 +1,4 @@
-import { _decorator, Component, Label, Node, Sprite } from 'cc';
+import { _decorator, Component, Label, Node, Sprite, SpriteFrame } from 'cc';
 import { CharacterInfo } from '../../../Structures/CharacterInfo';
 import { SpriteStorage } from '../../../Storage/SpriteStorage';
 import { CharactersStorage } from '../../../Storage/CharactersStorage';
@@ -15,6 +15,12 @@ export class ModalCharacterGridInterface extends Component {
 
     @property({ type: Sprite })
     public typeTroop: Sprite[] = [];
+
+    @property({ type: Sprite })
+    public cardsSprite: Sprite[] = [];
+
+    @property({ type: SpriteFrame })
+    public cardsBG: SpriteFrame[] = [];
 
     @property({ type: Label })
     public names: Label[] = [];
@@ -36,6 +42,17 @@ export class ModalCharacterGridInterface extends Component {
                 this.typeTroop[i].spriteFrame = SpriteStorage.instance.getSprite(this.charactersRendered[i].typeTroop, 0);
                 this.names[i].string = this.charactersRendered[i].codeName;
                 this.levels[i].string = "Ур. " + this.charactersRendered[i].level;
+                switch (this.charactersRendered[i].type) {
+                    case TypesCharacters.R:
+                        this.cardsSprite[i].spriteFrame = this.cardsBG[0];
+                        break;
+                    case TypesCharacters.SR:
+                        this.cardsSprite[i].spriteFrame = this.cardsBG[1];
+                        break;
+                    case TypesCharacters.SSR:
+                        this.cardsSprite[i].spriteFrame = this.cardsBG[2];
+                        break;
+                }
             }
         }
     }

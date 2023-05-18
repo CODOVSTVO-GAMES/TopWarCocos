@@ -9,6 +9,8 @@ import { SceneNames } from '../Static/SceneNames';
 import { TypesTeam } from '../Static/TypesTeam';
 import { ControllerConfigStorage } from '../Storage/Controllers/ControllerConfigStorage';
 import { CharacterInfo } from '../Structures/CharacterInfo';
+import { CharactersStorage } from '../Storage/CharactersStorage';
+import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -46,7 +48,6 @@ export class Battle extends Component {
     public arrayOwn: Unit[] = [];
     public arrayEnemy: Unit[] = [];
     public arrayCards: FreeUnit[] = [];
-    public characters: CharacterInfo[] = [];
     public quantityPlaces: number[] = [];
     public isBattle: boolean = false;
     public level: number = 2;
@@ -474,11 +475,12 @@ export class Battle extends Component {
         let attack = 0;
         let protection = 0;
         let leadership = 0;
-        for (let i = 0; i < this.characters.length; i++) {
-            if (this.characters[i] != null) {
-                attack += this.characters[i].damage;
-                protection += this.characters[i].defense;
-                leadership += this.characters[i].leadership;
+        let characters = ControllerCharactrerStorage.getCharacters();
+        for (let i = 0; i < characters.length; i++) {
+            if (characters[i] != null) {
+                attack += characters[i].damage;
+                protection += characters[i].defense;
+                leadership += characters[i].leadership;
             }
         }
         return new CharacterInfo(0, exp, stars, attack, protection, leadership, "sum", "sum", "sum");
