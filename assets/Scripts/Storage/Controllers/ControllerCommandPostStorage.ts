@@ -30,8 +30,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelCommandPost = value;
     }
 
-    static addLevelCommandPost(value: number) {
-        if (value == 0) return;
+    static addLevelCommandPost() {
+        CommandPostStorage.instance.levelCommandPost += 1;
         this.updateCommandPostStorage();
     }
 
@@ -43,8 +43,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelRepairShop = value;
     }
 
-    static addLevelRepairShop(value: number) {
-        if (value == 0) return;
+    static addLevelRepairShop() {
+        CommandPostStorage.instance.levelRepairShop += 1;
         this.updateCommandPostStorage();
     }
 
@@ -58,8 +58,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeGoldMine = value;
     }
 
-    static addLevelMergeGoldMine(value: number) {
-        if (value == 0) return;
+    static addLevelMergeGoldMine() {
+        CommandPostStorage.instance.levelMergeGoldMine += 1;
         this.updateCommandPostStorage();
     }
 
@@ -71,8 +71,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelBuildGoldMine = value;
     }
 
-    static addLevelBuildGoldMine(value: number) {
-        if (value == 0) return;
+    static addLevelBuildGoldMine() {
+        CommandPostStorage.instance.levelBuildGoldMine += 1;
         this.updateCommandPostStorage();
     }
 
@@ -86,8 +86,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeTroopAir = value;
     }
 
-    static addLevelMergeTroopAir(value: number) {
-        if (value == 0) return;
+    static addLevelMergeTroopAir() {
+        CommandPostStorage.instance.levelMergeTroopAir += 1;
         this.updateCommandPostStorage();
     }
 
@@ -99,8 +99,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeBarracksAir = value;
     }
 
-    static addLevelMergeBarracksAir(value: number) {
-        if (value == 0) return;
+    static addLevelMergeBarracksAir() {
+        CommandPostStorage.instance.levelMergeBarracksAir += 1;
         this.updateCommandPostStorage();
     }
 
@@ -112,8 +112,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelBuildBarracksAir = value;
     }
 
-    static addLevelBuildBarracksAir(value: number) {
-        if (value == 0) return;
+    static addLevelBuildBarracksAir() {
+        CommandPostStorage.instance.levelBuildBarracksAir += 1;
         this.updateCommandPostStorage();
     }
 
@@ -127,8 +127,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeTroopMarine = value;
     }
 
-    static addLevelMergeTroopMarine(value: number) {
-        if (value == 0) return;
+    static addLevelMergeTroopMarine() {
+        CommandPostStorage.instance.levelMergeTroopMarine += 1;
         this.updateCommandPostStorage();
     }
 
@@ -140,8 +140,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeBarracksMarine = value;
     }
 
-    static addLevelMergeBarracksMarine(value: number) {
-        if (value == 0) return;
+    static addLevelMergeBarracksMarine() {
+        CommandPostStorage.instance.levelMergeBarracksMarine += 1;
         this.updateCommandPostStorage();
     }
 
@@ -153,8 +153,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelBuildBarracksMarine = value;
     }
 
-    static addLevelBuildBarracksMarine(value: number) {
-        if (value == 0) return;
+    static addLevelBuildBarracksMarine() {
+        CommandPostStorage.instance.levelBuildBarracksMarine += 1;
         this.updateCommandPostStorage();
     }
 
@@ -168,8 +168,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeTroopOverland = value;
     }
 
-    static addLevelMergeTroopOverland(value: number) {
-        if (value == 0) return;
+    static addLevelMergeTroopOverland() {
+        CommandPostStorage.instance.levelMergeTroopOverland += 1;
         this.updateCommandPostStorage();
     }
 
@@ -181,8 +181,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeBarracksOverland = value;
     }
 
-    static addLevelMergeBarracksOverland(value: number) {
-        if (value == 0) return;
+    static addLevelMergeBarracksOverland() {
+        CommandPostStorage.instance.levelMergeBarracksOverland += 1;
         this.updateCommandPostStorage();
     }
 
@@ -194,8 +194,8 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelBuildBarracksOverland = value;
     }
 
-    static addLevelBuildBarracksOverland(value: number) {
-        if (value == 0) return;
+    static addLevelBuildBarracksOverland() {
+        CommandPostStorage.instance.levelBuildBarracksOverland += 1;
         this.updateCommandPostStorage();
     }
 
