@@ -26,7 +26,6 @@ export class ControllerCharactrerStorage {
                 targetExperience = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(CharactersStorage.instance.characters[index].type, this.getLevel(index) + 1);
             }
         }
-        
         CharactersStorage.instance.recalculationCharacter(index);
         ModalCharacterInfoIntarface.instance.renderCharacter(index);
         ModalCharacterPumpingInterface.instance.renderModalPumpingLevel();
@@ -51,13 +50,7 @@ export class ControllerCharactrerStorage {
             obj.push({
                 level: CharactersStorage.instance.characters[i].level,
                 exp: CharactersStorage.instance.characters[i].experience,
-                stars: CharactersStorage.instance.characters[i].stars,
-                damage: CharactersStorage.instance.characters[i].damage,
-                defense: CharactersStorage.instance.characters[i].defense,
-                leadership: CharactersStorage.instance.characters[i].leadership,
-                type: CharactersStorage.instance.characters[i].type,
-                codeName: CharactersStorage.instance.characters[i].codeName,
-                typeTroop: CharactersStorage.instance.characters[i].typeTroop,
+                stars: CharactersStorage.instance.characters[i].stars
             });
         }
         ControllerBufferStorage.addItem(TypesStorages.CHARACTER_STORAGE, obj);

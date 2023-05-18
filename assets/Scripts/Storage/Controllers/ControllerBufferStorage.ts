@@ -5,18 +5,14 @@ import { Buffer } from '../../Structures/Buffer';
 export class ControllerBufferStorage {
 
     static addItem(type: string, obj: Object) {
-        console.log(type);
-        if (obj == null || obj == undefined) {
+        if (obj == null) {
             console.log("addItem пришел пустой обьект")
-            return
+            return;
         }
-
         for (let i = 0; i < BufferStorage.instance.arrayBuffer.length; i++) {
-            if (BufferStorage.instance.arrayBuffer[i] == undefined) {
-                console.log("addItem в цикле появился undefined")
-            }
             if (BufferStorage.instance.arrayBuffer[i].name == type) {
-                delete BufferStorage.instance.arrayBuffer[i];
+                BufferStorage.instance.arrayBuffer.splice(i, 1);
+                return BufferStorage.instance.arrayBuffer.push(new Buffer(type, obj));
             }
         }
         BufferStorage.instance.arrayBuffer.push(new Buffer(type, obj));

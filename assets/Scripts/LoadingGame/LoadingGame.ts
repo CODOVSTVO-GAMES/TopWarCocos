@@ -32,8 +32,8 @@ export class LoadingGame extends Component {
         SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
     }
 
-    static getStorages() {
-        let myArr = [TypesStorages.GAME_STORAGE, TypesStorages.COMMAND_POST_STORAGE];
+    static getStorages() { 
+        let myArr = [TypesStorages.GAME_STORAGE, TypesStorages.CHARACTER_STORAGE, TypesStorages.COMMAND_POST_STORAGE];
         DataStorageService.getData(myArr)//redirectToHomeMap вызывается после получения данных в колбеке
     }
 
