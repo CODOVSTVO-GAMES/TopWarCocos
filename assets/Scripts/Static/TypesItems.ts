@@ -8,9 +8,11 @@ export class TypesItems {
     public static PLAN_MAX_AIRPORT: string = "pmair";
     public static PLAN_MAX_MAINBUILDING: string = "pmb";
 
-    public static PLAN_CREATE_BARRACK: string = "pcb";
-    public static PLAN_CREATE_ROPE: string = "pcr";
-    public static PLAN_CREATE_AIRPORT: string = "pca";
+    public static PLAN_CREATE_BARRACK_OWERLAND: string = "pcbo";
+    public static PLAN_CREATE_BARRACK_MARINE: string = "pcbm";
+    public static PLAN_CREATE_BARRACK_AIRPORT: string = "pcba";
+
+    public static PLAN_CREATE_ROPE: string = "pcr";//
     public static PLAN_CREATE_MINE: string = "pcm";
 
     public static BOOK_EXP_GREEN: string = "beg";

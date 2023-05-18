@@ -12,7 +12,6 @@ export class CharactersStorage extends Component {
 
     public characters: Array<CharacterInfo> = [];
 
-    private storageTypes: string[] = [TypesCharacters.BLACK_WIDOW, TypesCharacters.CHARACTER_1, TypesCharacters.CHARACTER_2, TypesCharacters.CHARACTER_3, TypesCharacters.CHARACTER_4, TypesCharacters.CHARACTER_5, TypesCharacters.CHARACTER_6, TypesCharacters.CHARACTER_7];
 
     onLoad() {
         CharactersStorage.instance = this;
@@ -21,11 +20,7 @@ export class CharactersStorage extends Component {
     }
 
     start() {
-        for (let i = 0; i < this.storageTypes.length; i++) {
-            let heroLevel = 1;
-            let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
-            this.characters.push(new CharacterInfo(heroLevel, 0, 5, config.startDamage + (config.coefDamage * heroLevel + 5), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
-        }
+        
     }
 
     getRandomCharacter(): CharacterInfo {

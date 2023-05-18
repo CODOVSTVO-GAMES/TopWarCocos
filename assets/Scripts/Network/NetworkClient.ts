@@ -9,6 +9,7 @@ import { ControllerCommandPostStorage } from '../Storage/Controllers/ControllerC
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
+import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -45,6 +46,7 @@ export class NetworkClient extends Component {
         if (ControllerUserStorage.getIsNewUser()) {
             ControllerGameStorage.assignStartingValues();
             ControllerCommandPostStorage.assignStartingValues();
+            ControllerCharactrerStorage.assignStartingValues();
             RedirectionToScene.redirect(SceneNames.HOME_MAP);
             return;
         }
@@ -76,9 +78,8 @@ export class NetworkClient extends Component {
             }
             else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
                 for (let l = 0; l < jsonValue.length; l++) {
-                    console.log(jsonValue[0].exp)
-                    console.log(jsonValue[0].level)
-                    console.log(jsonValue[0].stars)
+                    ControllerCharactrerStorage.equateProfessionPower(jsonValue[l].exp, jsonValue[l].level, jsonValue[l].stars, jsonValue[l].codeName);
+                    console.log(jsonValue[l].exp + " " + jsonValue[l].level + " " + jsonValue[l].stars + " " + jsonValue[l].codeName)
                 }
             }
             else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {

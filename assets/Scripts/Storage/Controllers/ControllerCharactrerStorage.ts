@@ -6,8 +6,21 @@ import { CharacterInfo } from '../../Structures/CharacterInfo';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
 import { ModalCharacterInfoIntarface } from '../../UI/Modals/Characters/ModalCharacterInfo/ModalCharacterInfoInterface';
 import { ModalCharacterPumpingInterface } from '../../UI/Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
+import { TypesCharacters } from '../../Static/TypesCharacters';
+import { TypesObjects } from '../../Static/TypesObjects';
 
 export class ControllerCharactrerStorage {
+
+    private static storageTypes: string[] = [TypesCharacters.BLACK_WIDOW, TypesCharacters.CHARACTER_1, TypesCharacters.CHARACTER_2, TypesCharacters.CHARACTER_3, TypesCharacters.CHARACTER_4, TypesCharacters.CHARACTER_5, TypesCharacters.CHARACTER_6, TypesCharacters.CHARACTER_7];
+
+    static assignStartingValues() {
+        for (let i = 0; i < this.storageTypes.length; i++) {
+            let heroLevel = 1;
+            let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
+            CharactersStorage.instance.characters.push(new CharacterInfo(heroLevel, 0, 5, config.startDamage + (config.coefDamage * heroLevel + 5), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
+        }
+        this.updateCharactrerStorage();
+    }
 
     static getRandomCharacter(): CharacterInfo {
         return CharactersStorage.instance.characters[Math.floor(Math.random() * CharactersStorage.instance.characters.length)];
@@ -15,6 +28,11 @@ export class ControllerCharactrerStorage {
 
     static getCharacters(): CharacterInfo[] {
         return CharactersStorage.instance.characters;
+    }
+
+    static equateProfessionPower(exp: number, level: number, stars: number, codeName: string) {
+        let config = ControllerConfigStorage.getHeroConfigByCodeName(codeName);
+        CharactersStorage.instance.characters.push(new CharacterInfo(level, exp, stars, config.startDamage + (config.coefDamage * level + 5), config.startDefense + (config.coefDefense * level + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
     }
 
     // =================================================================
@@ -54,7 +72,8 @@ export class ControllerCharactrerStorage {
             obj.push({
                 level: CharactersStorage.instance.characters[i].level,
                 exp: CharactersStorage.instance.characters[i].experience,
-                stars: CharactersStorage.instance.characters[i].stars
+                stars: CharactersStorage.instance.characters[i].stars,
+                codeName: CharactersStorage.instance.characters[i].codeName
             });
         }
         ControllerBufferStorage.addItem(TypesStorages.CHARACTER_STORAGE, obj);
