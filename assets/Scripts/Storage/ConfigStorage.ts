@@ -37,7 +37,7 @@ export class ConfigStorage extends Component {
         this.initRepairBuilding()
 
         this.initMergeGoldMine()
-        //спавн рудников
+        this.initBuildGoldMine()
 
         this.initOwerland()
         this.initMarine()
@@ -185,6 +185,54 @@ export class ConfigStorage extends Component {
 
         //30->
     }
+
+    initBuildGoldMine() {
+        let type = TypesObjects.GOLD_MINE
+        let typeItem = TypesItems.PLAN_CREATE_MINE
+
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 1, 0, 0, typeItem, 0, 0, 400, 80))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 2, 1180, 380, typeItem, 8, 5500, 800, 160))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 3, 2900, 420, typeItem, 10, 14500, 1600, 320))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 4, 6190, 440, typeItem, 12, 30900, 3200, 640))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 5, 12000, 460, typeItem, 16, 60000, 6400, 1280))
+
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 6, 27000, 480, typeItem, 22, 135000, 12800, 2560))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 7, 62500, 510, typeItem, 28, 312000, 25600, 5120))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 8, 182000, 540, typeItem, 34, 913000, 51200, 10240))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 9, 541000, 560, typeItem, 42, 2700000, 102000, 20400))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 10, 1800000, 590, typeItem, 50, 9030000, 204000, 40900))
+
+        //10->
+
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 11, 4870000, 620, typeItem, 60, 24300000, 409000, 81900))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 12, 12300000, 660, typeItem, 70, 61600000, 819000, 163000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 13, 30000000, 690, typeItem, 80, 150000000, 1630000, 327000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 14, 81600000, 720, typeItem, 90, 408000000, 3270000, 655000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 15, 189000000, 760, typeItem, 102, 945000000, 6550000, 1310000))
+
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 16, 416000000, 800, typeItem, 114, 2080000000, 13100000, 2620000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 17, 893000000, 840, typeItem, 128, 4460000000, 26200000, 5240000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 18, 2010000000, 890, typeItem, 142, 10000000000, 52400000, 10400000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 19, 3710000000, 930, typeItem, 156, 18500000000, 104000000, 20900000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 20, 7900000000, 980, typeItem, 172, 39500000000, 209000000, 41900000))
+
+        //20->
+
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 21, 16500000000, 1030, typeItem, 190, 82800000000, 419000000, 83800000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 22, 33500000000, 1080, typeItem, 206, 167000000000, 838000000, 167000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 23, 78100000000, 1150, typeItem, 224, 390000000000, 1670000000, 335000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 24, 157000000000, 1210, typeItem, 242, 789000000000, 3350000000, 671000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 25, 317000000000, 1270, typeItem, 260, 1580000000000, 6710000000, 1340000000))
+
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 26, 640000000000, 1340, typeItem, 280, 3200000000000, 13400000000, 2680000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 27, 1290000000000, 1410, typeItem, 310, 6460000000000, 26800000000, 5360000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 28, 2610000000000, 1480, typeItem, 340, 13000000000000, 53600000000, 10700000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 29, 5270000000000, 1560, typeItem, 380, 26300000000000, 107000000000, 21400000000))
+        this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 30, 10600000000000, 1630, typeItem, 420, 53200000000000, 214000000000, 42900000000))
+
+        //30->
+    }
+
 
     initBarrackMerge() {
         let type = TypesObjects.BARRACKS_OVERLAND
