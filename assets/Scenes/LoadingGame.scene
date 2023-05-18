@@ -1603,6 +1603,10 @@
       {
         "__uuid__": "cea8db95-d3ea-464f-ac7c-cbc0769e629c@f9941",
         "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4ac71cf8-d858-4a9f-8549-3c54ebb7a4b8@f9941",
+        "__expectedType__": "cc.SpriteFrame"
       }
     ],
     "townHall": [

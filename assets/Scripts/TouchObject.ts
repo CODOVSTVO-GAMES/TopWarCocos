@@ -4,6 +4,7 @@ import { TouchStatus } from './TouchStatus';
 import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
 import { TypesObjects } from './Static/TypesObjects';
+import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -154,9 +155,14 @@ export class TouchObject extends Component {
         }
 
         if (count > 0) {
-            ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-            // ControllerHomeMapStorage.deleteSelectObject();
-            this.mainObject.destroy();
+            if (this.objectParameters.level < ControllerCommandPostStorage.getLevelCommandPost()) {
+                ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                // ControllerHomeMapStorage.deleteSelectObject();
+                this.mainObject.destroy();
+            }
+            else {
+                this.putAnObject(this.initialIndex);
+            }
         }
         else {
             this.putAnObject(indexObject);

@@ -41,6 +41,8 @@ export class SecondaryInterface extends Component {
 
     public listOpeningModals: string[] = [];
 
+    public activeModal: string;
+
     onLoad() {
         SecondaryInterface.instance = this;
     }
@@ -50,6 +52,7 @@ export class SecondaryInterface extends Component {
     }
 
     openModal(type: string) {
+        this.activeModal = type;
         if (type == TypesModals.PROFILE) {
             this.backgraund.active = true;
             this.profile.active = true;
@@ -104,6 +107,16 @@ export class SecondaryInterface extends Component {
     openCommandPost() { this.openModal(TypesModals.COMMAND_POST); }
 
     openAutocombine() { this.openModal(TypesModals.AUTOCOMBINE); }
+
+    closeModal() {
+        this.backgraund.active = false;
+        if (this.activeModal == TypesModals.PROFILE) {
+            this.profile.active = false;
+        }
+        else if (this.activeModal == TypesModals.COMMAND_POST) {
+            this.commandPost.active = false;
+        }
+    }
 
     closeAllModals() {
         this.backgraund.active = false;
