@@ -25,9 +25,6 @@ export class HomeMapStorage extends Component {
 
     onLoad() {
         HomeMapStorage.instance = this;
-    }
-
-    start() {
         this.coords = new Array(this.mapSize);
         this.arrayObjectParameters = new Array(this.mapSize);
         this.cellFree = new Array(this.mapSize);

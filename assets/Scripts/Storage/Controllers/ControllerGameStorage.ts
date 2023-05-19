@@ -13,7 +13,8 @@ export class ControllerGameStorage {
         GameStorage.instance.coins = 1000;
         GameStorage.instance.coinsInTime = 0;
         GameStorage.instance.gems = 70;
-        GameStorage.instance.energy = 0;
+        GameStorage.instance.energy = 75;
+        GameStorage.instance.maxEnergy = 75;
         GameStorage.instance.experience = 0;
         GameStorage.instance.level = 1;
         GameStorage.instance.maxPower = 0;
@@ -32,6 +33,7 @@ export class ControllerGameStorage {
         GameStorage.instance.coinsInTime = json.coinsInTime;
         GameStorage.instance.gems = json.gems;
         GameStorage.instance.energy = json.energy;
+        GameStorage.instance.maxEnergy = json.maxEnergy;
         GameStorage.instance.experience = json.experience;
         GameStorage.instance.level = json.level;
         GameStorage.instance.maxPower = json.maxPower;
@@ -110,7 +112,27 @@ export class ControllerGameStorage {
     }
 
     static getEnergy(): number {
-        return GameStorage.instance.energy;
+        return GameStorage.instance.maxEnergy;
+    }
+
+    static equateMaxEnergy(value: number) {
+        GameStorage.instance.maxEnergy = value;
+    }
+
+    static addMaxEnergy(value: number) {
+        if (value == 0) return;
+        GameStorage.instance.maxEnergy += value;
+        this.updateGameStorage();
+    }
+
+    static reduceMaxEnergy(value: number) {
+        if (value == 0) return;
+        GameStorage.instance.maxEnergy -= value;
+        this.updateGameStorage();
+    }
+
+    static getMaxEnergy(): number {
+        return GameStorage.instance.maxEnergy;
     }
 
     // =================================================================
@@ -284,6 +306,7 @@ export class ControllerGameStorage {
             coinsInTime: GameStorage.instance.coinsInTime,
             gems: GameStorage.instance.gems,
             energy: GameStorage.instance.energy,
+            maxEnergy: GameStorage.instance.maxEnergy,
             experience: GameStorage.instance.experience,
             level: GameStorage.instance.level,
             maxPower: GameStorage.instance.maxPower,
@@ -292,6 +315,7 @@ export class ControllerGameStorage {
             heroPower: GameStorage.instance.heroPower,
             arsenalPower: GameStorage.instance.arsenalPower,
             professionPower: GameStorage.instance.professionPower,
+            formationPower: GameStorage.instance.formationPower
         };
         ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
     }
