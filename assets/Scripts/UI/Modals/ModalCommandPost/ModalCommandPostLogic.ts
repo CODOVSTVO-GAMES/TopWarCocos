@@ -17,7 +17,7 @@ export class ModalCommandPostLogic extends Component {
     @property({ type: Node })
     public upgrateOther: Node;
 
-    public typeActiveModal: string;
+    private typeActiveModal: string;
 
     onLoad() {
         ModalCommandPostLogic.instance = this;
@@ -35,7 +35,7 @@ export class ModalCommandPostLogic extends Component {
     }
 
     openRepairShop() {
-
+        UpgradeOtherInterface.instance.updateInterfaceRepairShop();
         this.typeActiveModal = "repairShop";
         this.openUpgradeOther();
     }
@@ -115,5 +115,10 @@ export class ModalCommandPostLogic extends Component {
         this.backgraund.active = false;
         this.upgrateCommandPost.active = false;
         this.upgrateOther.active = false;
+        this.typeActiveModal = "";
+    }
+
+    getTypeActiveModal(): string {
+        return this.typeActiveModal;
     }
 }
