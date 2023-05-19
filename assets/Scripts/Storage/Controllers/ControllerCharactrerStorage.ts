@@ -92,4 +92,3 @@ export class ControllerCharactrerStorage {
         ControllerBufferStorage.addItem(TypesStorages.CHARACTER_STORAGE, obj);
     }
 }
-

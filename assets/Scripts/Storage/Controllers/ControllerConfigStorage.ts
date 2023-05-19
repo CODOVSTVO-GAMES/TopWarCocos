@@ -3,6 +3,7 @@ import { ConfigStorage } from '../ConfigStorage';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { HeroConfig } from '../../Structures/HeroConfig';
 import { UnitsCongig } from '../../Structures/ConfigUnits';
+import { RadarConfig } from '../../Structures/RadarConfig';
 
 export class ControllerConfigStorage {
 
@@ -526,5 +527,18 @@ export class ControllerConfigStorage {
             }
         }
         throw "не существует такого обьекта"
+    }
+
+    static getRadarConfigByLevel(level: number): RadarConfig {
+        for (let i = 0; i < ConfigStorage.instance.radarConfig.length; i++) {
+            if (ConfigStorage.instance.radarConfig[i].level == level) {
+                return ConfigStorage.instance.radarConfig[i]
+            }
+        }
+        throw "Радар такого уровня не найден"
+    }
+
+    getHeroConfig(): HeroConfig[] {
+        return ConfigStorage.instance.heroConfig;
     }
 }
