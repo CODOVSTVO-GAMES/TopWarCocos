@@ -13,6 +13,9 @@ export class UpgradeCommandPostInerface extends Component {
     public static instance: UpgradeCommandPostInerface;
 
     @property({ type: Label })
+    public mainTitle: Label;
+
+    @property({ type: Label })
     public actualLevelObject: Label;
 
     @property({ type: Label })
@@ -59,6 +62,7 @@ export class UpgradeCommandPostInerface extends Component {
     }
 
     updateInterface() {
+        this.mainTitle.string = "Простой командный пункт";
         this.actualLevelObject.string = ControllerCommandPostStorage.getLevelCommandPost().toString();
         this.nextLevelObject.string = (ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
         this.level.string = "Ур." + ControllerGameStorage.getLevel().toString();

@@ -7,13 +7,13 @@ import { TypesStorages } from '../../Static/TypesStorages';
 export class ControllerInventoryStorage {
 
     static assignStartingValues() {
-
-    }
+        
+    }   
 
     static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj));
-
+            InventoryStorage.instance.inventory.push(new Item(json.type, json.quantity));
         }
     }
 

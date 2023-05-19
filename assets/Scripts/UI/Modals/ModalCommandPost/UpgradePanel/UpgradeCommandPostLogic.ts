@@ -19,7 +19,7 @@ export class UpgradeCommandPostLogic extends Component {
         ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerCommandPostStorage.addLevelCommandPost();
         UpgradeCommandPostInerface.instance.updateInterface();
-    }   
+    }
 
     getItems() {
 
