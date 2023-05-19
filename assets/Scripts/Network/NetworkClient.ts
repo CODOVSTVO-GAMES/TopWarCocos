@@ -12,6 +12,7 @@ import { SceneNames } from '../Static/SceneNames';
 import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
+import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -47,6 +48,7 @@ export class NetworkClient extends Component {
             ControllerInventoryStorage.assignStartingValues();
             ControllerCharactrerStorage.assignStartingValues();
             ControllerCommandPostStorage.assignStartingValues();
+            ControllerRadarStorage.assignStartingValues();
             RedirectionToScene.redirect(SceneNames.HOME_MAP);
             return;
         }
@@ -70,6 +72,9 @@ export class NetworkClient extends Component {
             }
             else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
                 ControllerCommandPostStorage.assigningSaveValues(jsonValue);
+            }
+            else if (json['key'] == TypesStorages.RADAR_STORAGE) {
+                ControllerRadarStorage.assigningSaveValues(jsonValue);
             }
         }
         RedirectionToScene.redirect(SceneNames.HOME_MAP);

@@ -19,10 +19,6 @@ export class CharactersStorage extends Component {
         // setInterval(() => console.log(this.characters), 1000)
     }
 
-    start() {
-        
-    }
-
     getRandomCharacter(): CharacterInfo {
         return this.characters[Math.floor(Math.random() * this.characters.length)];
     }
