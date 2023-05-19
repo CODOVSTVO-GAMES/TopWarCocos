@@ -82,6 +82,7 @@ export class ControllerConfigStorage {
     //---------------------------------------------------------------------------------------------------
     //main building and repair building
 
+
     static getPowerMainBuildingByLevel(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
             if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
@@ -146,6 +147,7 @@ export class ControllerConfigStorage {
     //---------------------------------------------------------------------------------------------------
     //powerRepairBuildings
 
+
     static getPowerRepairBuilding(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
             if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
@@ -206,8 +208,10 @@ export class ControllerConfigStorage {
         throw "Главное здание такого уровня не найдено"
     }
 
+
     //---------------------------------------------------------------------------------------------------
     //unitsConfig
+
 
     static getConfigUnitsByTypeAndLevel(type: string, level: number): UnitsCongig {
         if (type != TypesObjects.TROOP_OVERLAND && type != TypesObjects.TROOP_MARINE && type != TypesObjects.TROOP_AIR) {
@@ -365,6 +369,7 @@ export class ControllerConfigStorage {
         throw "не существует такого обьекта"
     }
 
+
     //---------------------------------------------------------------------------------------------------
     //configMergeBuildings
 
@@ -434,8 +439,10 @@ export class ControllerConfigStorage {
         throw "не существует такого обьекта"
     }
 
+
     //---------------------------------------------------------------------------------------------------
     //configSpawnBuildings
+
 
     static getExpirienceBuildingSpawnByTypeAndLevel(type: string, level: number): number {
         if (type != TypesObjects.BARRACKS_MARINE && type != TypesObjects.BARRACKS_AIR && type != TypesObjects.BARRACKS_OVERLAND && type != TypesObjects.GOLD_MINE) {
@@ -527,4 +534,17 @@ export class ControllerConfigStorage {
         }
         throw "не существует такого обьекта"
     }
+
+
+    //---------------------------------------------------------------------------------------------------
+    //expirienceRadar
+
+
+    static getExpirienceRadarByLevel(level: number): number {
+        return ConfigStorage.instance.expirienceRadar[level]
+    }
+
+
+    //---------------------------------------------------------------------------------------------------
+
 }
