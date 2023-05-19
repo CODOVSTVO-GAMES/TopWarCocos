@@ -31,6 +31,8 @@ export class ConfigStorage extends Component {
 
     public heroLevelConfig: Array<HeroLevel> = []
 
+    public expirienceRadar: Array<number> = []
+
     onLoad() {
         ConfigStorage.instance = this;
         this.initMainBuilding()
@@ -818,6 +820,31 @@ export class ConfigStorage extends Component {
         this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_12, 360, 420, 700, 24, 36));
         this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_13, 380, 440, 700, 24, 36));
         this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36));
+    }
+
+    initExpirienceRadar() {
+        this.expirienceRadar.push(28)
+        this.expirienceRadar.push(60)
+        this.expirienceRadar.push(120)
+        this.expirienceRadar.push(280)
+        this.expirienceRadar.push(580)
+        this.expirienceRadar.push(1260)
+        this.expirienceRadar.push(2725)
+        this.expirienceRadar.push(5860)
+        this.expirienceRadar.push(12700)
+        this.expirienceRadar.push(27800)
+
+        this.expirienceRadar.push(60200)
+        this.expirienceRadar.push(130000)
+        this.expirienceRadar.push(282000)
+        this.expirienceRadar.push(606300)
+        this.expirienceRadar.push(1300000)
+        this.expirienceRadar.push(2800000)
+        this.expirienceRadar.push(6000000)
+        this.expirienceRadar.push(12800000)
+        this.expirienceRadar.push(1)
+        this.expirienceRadar.push(1)
+        
     }
 
     getHeroConfig(): HeroConfig[] {
