@@ -1,5 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { UpgradeCommandPostInerface } from './UpgradePanel/UpgradeCommandPostInerface';
+import { UpgradeOtherInterface } from './UpgradePanel/UpgradeOtherInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCommandPostLogic')
@@ -24,7 +25,62 @@ export class ModalCommandPostLogic extends Component {
         this.upgrateCommandPost.active = true;
     }
 
-    openUpgradeOther(event, customEventData) {
+    openMergeGoldMine() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine();
+        this.openUpgradeOther();
+    }
+
+    openMergeTroopAir() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir();
+        this.openUpgradeOther();
+    }
+
+    openMergeTroopMarine() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine();
+        this.openUpgradeOther();
+    }
+
+    openMergeTroopOverland() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
+        this.openUpgradeOther();
+    }
+
+    openMergeBarracksAir() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir();
+        this.openUpgradeOther();
+    }
+
+    openMergeBarracksMarine() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine();
+        this.openUpgradeOther();
+    }
+
+    openMergeBarracksOverland() {
+        UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
+        this.openUpgradeOther();
+    }
+
+    openBuildGoldMine() {
+        UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine();
+        this.openUpgradeOther();
+    }
+
+    openBuildBarracksAir() {
+        UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir();
+        this.openUpgradeOther();
+    }
+
+    openBuildBarracksMarine() {
+        UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine();
+        this.openUpgradeOther();
+    }
+
+    openBuildBarracksOverland() {
+        UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland();
+        this.openUpgradeOther();
+    }
+
+    openUpgradeOther() {
         this.backgraund.active = true;
         this.upgrateOther.active = true;
     }

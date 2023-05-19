@@ -10,8 +10,11 @@ export class ControllerInventoryStorage {
 
     }
 
-    static assigningSaveValues(obj: Object) {
+    static assigningSaveValues(obj: Object[]) {
+        for (let i = 0; i < obj.length; i++) {
+            let json = JSON.parse(JSON.stringify(obj));
 
+        }
     }
 
     static addItem(type: string, quantity: number) {
@@ -19,8 +22,7 @@ export class ControllerInventoryStorage {
         for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
             if (InventoryStorage.instance.inventory[i].type == type) {
                 InventoryStorage.instance.inventory[i].quantity += quantity;
-                this.updateInvenoryStorage();
-                return;
+                return this.updateInvenoryStorage();
             }
         }
         InventoryStorage.instance.inventory.push(new Item(type, quantity));
@@ -32,8 +34,7 @@ export class ControllerInventoryStorage {
         for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
             if (InventoryStorage.instance.inventory[i].type == type) {
                 InventoryStorage.instance.inventory[i].quantity -= quantity;
-                this.updateInvenoryStorage();
-                return;
+                return this.updateInvenoryStorage();
             }
         }
         this.updateInvenoryStorage();

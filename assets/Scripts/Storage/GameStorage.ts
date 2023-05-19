@@ -7,43 +7,46 @@ export class GameStorage extends Component {
     public static instance: GameStorage
 
     @property({ type: CCInteger })
-    public coins: number = 0;
+    public coins: number;
 
     @property({ type: CCInteger })
-    public coinsInTime: number = 0;
+    public coinsInTime: number;
 
     @property({ type: CCInteger })
-    public gems: number = 0;
+    public gems: number;
 
     @property({ type: CCInteger })
-    public energy: number = 0;
+    public energy: number;
 
     @property({ type: CCInteger })
-    public experience: number = 0;
+    public maxEnergy: number;
 
     @property({ type: CCInteger })
-    public level: number = 0;
+    public experience: number;
 
     @property({ type: CCInteger })
-    public maxPower: number = 0;
+    public level: number;
 
     @property({ type: CCInteger })
-    public territoryPower: number = 0;
+    public maxPower: number;
 
     @property({ type: CCInteger })
-    public technoPower: number = 0;
+    public territoryPower: number;
 
     @property({ type: CCInteger })
-    public heroPower: number = 0;
+    public technoPower: number;
 
     @property({ type: CCInteger })
-    public arsenalPower: number = 0;
+    public heroPower: number;
 
     @property({ type: CCInteger })
-    public professionPower: number = 0;
+    public arsenalPower: number;
 
     @property({ type: CCInteger })
-    public formationPower: number = 0;
+    public professionPower: number;
+
+    @property({ type: CCInteger })
+    public formationPower: number;
 
     onLoad() {
         GameStorage.instance = this

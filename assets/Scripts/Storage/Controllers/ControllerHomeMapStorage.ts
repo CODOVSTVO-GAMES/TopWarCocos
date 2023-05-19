@@ -18,10 +18,23 @@ export class ControllerHomeMapStorage {
     }
 
     static assigningSaveValues(obj: Object[]) {
+        for (let i = 0; i < obj.length; i++) {
+            let json = JSON.parse(JSON.stringify(obj[i]));
+            let objParam = new ObjectParameters;
+            objParam.type = json.type;
+            objParam.level = json.level;
+            objParam.index = json.index;
+            this.setObjectParameter(objParam, objParam.type, objParam.index);
+        }
         setTimeout(() => {
-            for (let i = 0; i < obj.length; i++) {
-                let json = JSON.parse(JSON.stringify(obj[i]));
-                SpawnObjects.spawnObjectsPos(json.type, json.level, json.index);
+            for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+                if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+                if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+                SpawnObjects.spawnObjectsPos(
+                    HomeMapStorage.instance.arrayObjectParameters[i].type,
+                    HomeMapStorage.instance.arrayObjectParameters[i].level,
+                    HomeMapStorage.instance.arrayObjectParameters[i].index
+                );
             }
         }, 2000);
     }
