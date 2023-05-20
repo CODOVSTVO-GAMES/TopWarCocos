@@ -10,6 +10,7 @@ import { MainAndRepairBuildings } from '../Structures/MainAndRepairBuildings';
 import { UnitsCongig } from '../Structures/ConfigUnits';
 import { ConfigMergeBuildings } from '../Structures/ConfigMergeBuildings';
 import { ConfigSpawnBuildings } from '../Structures/ConfigSpawnBuildings';
+import { RadarConfig } from '../Structures/RadarConfig';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -30,6 +31,8 @@ export class ConfigStorage extends Component {
     public heroConfig: Array<HeroConfig> = []
 
     public heroLevelConfig: Array<HeroLevel> = []
+
+    public radarConfig: Array<RadarConfig> = []
 
     public expirienceRadar: Array<number> = []
 
@@ -822,6 +825,12 @@ export class ConfigStorage extends Component {
         this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36));
     }
 
+    initRadarConfig() {
+        this.radarConfig.push(new RadarConfig(1, 30, 2, 65, 4800));
+        this.radarConfig.push(new RadarConfig(2, 35, 3, 70, 4500));
+        this.radarConfig.push(new RadarConfig(3, 40, 4, 75, 4200));
+    }
+    
     initExpirienceRadar() {
         this.expirienceRadar.push(28)
         this.expirienceRadar.push(60)

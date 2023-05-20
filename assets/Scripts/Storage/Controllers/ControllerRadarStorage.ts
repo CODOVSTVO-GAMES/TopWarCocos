@@ -1,37 +1,58 @@
 import { _decorator, Component, Node } from 'cc';
 import { ControllerBufferStorage } from './ControllerBufferStorage';
 import { TypesStorages } from '../../Static/TypesStorages';
+import { RadarStorage } from '../RadarStorage';
+import { RadarTask } from '../../Structures/RadarTask';
 const { ccclass, property } = _decorator;
 
 @ccclass('ControllerRadarStorage')
 export class ControllerRadarStorage {
 
-    // =================================================================
-
     static assignStartingValues() {
-        // for (let i = 0; i < this.storageTypes.length; i++) {
-        //     let heroLevel = 1;
-        //     let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
-        //     CharactersStorage.instance.characters.push(new CharacterInfo(heroLevel, 0, 5, config.startDamage + (config.coefDamage * heroLevel + 5), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
-        // }
+        RadarStorage.instance.radarLevel = 1;
+        RadarStorage.instance.availableMissions = 30;
+        RadarStorage.instance.timeToUpdate = 11111;
+        RadarStorage.instance.signalQuality = 1;
         this.updateRadarStorage();
     }
 
     static assigningSaveValues(obj: Object) {
         let json = JSON.parse(JSON.stringify(obj));
+        RadarStorage.instance.radarLevel = json.radarLevel;
+        RadarStorage.instance.availableMissions = json.availableMissions;
+        RadarStorage.instance.timeToUpdate = json.timeToUpdate;
+        RadarStorage.instance.signalQuality = json.signalQuality;
 
+        // for (let i = 0; i < )
+        // RadarStorage.instance.tasks = json.tasks; for()
+    }
+
+    static getRadarTasks(): RadarTask[] {
+        return RadarStorage.instance.tasks;
+    }
+
+    static equateRadarTasks() {
+        
     }
 
     static updateRadarStorage() {
-        let obj: Object[] = [];
-        // for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
-        //     obj.push({
-        //         level: CharactersStorage.instance.characters[i].level,
-        //         exp: CharactersStorage.instance.characters[i].experience,
-        //         stars: CharactersStorage.instance.characters[i].stars,
-        //         codeName: CharactersStorage.instance.characters[i].codeName
-        //     });
-        // }
+        let tasks: Object[];
+        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+            tasks.push({
+                type: RadarStorage.instance.tasks[i].type,
+                stars: RadarStorage.instance.tasks[i].stars,
+                time: RadarStorage.instance.tasks[i].time,
+                rewards: RadarStorage.instance.tasks[i].rewards
+            });
+        }
+
+        let obj = {
+            radarLevel: RadarStorage.instance.radarLevel,
+            availableMissions: RadarStorage.instance.availableMissions,
+            timeToUpdate: RadarStorage.instance.timeToUpdate,
+            signalQuality: RadarStorage.instance.signalQuality,
+            tasks: tasks
+        };
         ControllerBufferStorage.addItem(TypesStorages.RADAR_STORAGE, obj);
     }
 }
