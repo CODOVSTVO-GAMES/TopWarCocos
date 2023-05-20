@@ -1,10 +1,10 @@
 export class DataStorageDTO {
-  userId: string
+  accountId: string
   sessionId: number
   dataObjects: object[]
 
-  constructor(userId: string, sessinId: number, dataObjects: object[]) {
-    this.userId = userId
+  constructor(accountId: string, sessinId: number, dataObjects: object[]) {
+    this.accountId = accountId
     this.sessionId = sessinId
     this.dataObjects = dataObjects;
   }

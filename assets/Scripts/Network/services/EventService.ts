@@ -7,7 +7,7 @@ export class EventService {
 
     static requestToService(events: Array<string>) {
         const strKeys = JSON.parse(JSON.stringify(events))
-        ClientService.post('events', new EventsDTO(ControllerUserStorage.getUserId(), ControllerUserStorage.getSessionId(), strKeys), EventService.parseDataStoragePostResponce)
+        ClientService.post('events', new EventsDTO(ControllerUserStorage.getAccountId(), ControllerUserStorage.getSessionId(), strKeys), EventService.parseDataStoragePostResponce)
     }
 
     static parseDataStoragePostResponce(data: any, isDone: boolean) {

@@ -1,10 +1,10 @@
 export class EventsDTO {
-  userId: string
+  accountId: string
   sessionId: number
   events: string
 
-  constructor(userId: string, sessinId: number, events: string) {
-    this.userId = userId
+  constructor(accountId: string, sessinId: number, events: string) {
+    this.accountId = accountId
     this.sessionId = sessinId
     this.events = events;
   }
