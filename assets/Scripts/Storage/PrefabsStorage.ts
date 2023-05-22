@@ -35,7 +35,8 @@ export class PrefabsStorage extends Component {
     private radar: Prefab;
 
     @property({ type: Prefab })
-    private treasures: Prefab;
+    private manipulator: Prefab;
+
 
 
 
@@ -61,7 +62,7 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.BANK) return this.bank;
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine;
         else if (type == TypesObjects.RADAR) return this.radar;
-
+        else if (type == TypesObjects.MANIPULATOR) return this.manipulator;
 
 
         else if (type == TypesObjects.WALL) return this.wall;

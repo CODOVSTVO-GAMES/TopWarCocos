@@ -13,6 +13,7 @@ export class ControllerHomeMapStorage {
         setTimeout(() => {
             SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 20);
             SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 42);
+            SpawnObjects.spawnObjectsPos(TypesObjects.MANIPULATOR, 1, 26);
             SpawnObjects.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 63);
         }, 2000);
     }

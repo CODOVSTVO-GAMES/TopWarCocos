@@ -246,7 +246,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "4b8551be-65ed-4bda-a4f4-53dfe6a00dd3@f9941",
+      "__uuid__": "6eb11953-de80-40ac-b3a4-6b531f4a8215@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -259,7 +259,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_useGrayscale": false,
     "_atlas": null,
     "_id": ""
