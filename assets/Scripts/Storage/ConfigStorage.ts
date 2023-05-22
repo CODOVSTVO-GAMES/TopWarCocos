@@ -34,6 +34,8 @@ export class ConfigStorage extends Component {
 
     public radarConfig: Array<RadarConfig> = []
 
+    public radarBasicRate: Array<number> = []
+
     public expirienceRadar: Array<number> = []
 
     public goldBoxConfig: Array<number> = []
@@ -63,9 +65,7 @@ export class ConfigStorage extends Component {
         this.initHeroLevel()
         this.initHeroConfig()
 
-    }
-
-    initGoldBox() {
+        this.initGoldBox()
 
     }
 
@@ -839,6 +839,8 @@ export class ConfigStorage extends Component {
     }
 
     initExpirienceRadar() {
+        this.expirienceRadar.push(1)
+
         this.expirienceRadar.push(28)
         this.expirienceRadar.push(60)
         this.expirienceRadar.push(120)
@@ -861,6 +863,90 @@ export class ConfigStorage extends Component {
         this.expirienceRadar.push(1)
         this.expirienceRadar.push(1)
 
+    }
+
+    initGoldBox() {
+        this.goldBoxConfig.push(1)
+
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(2)
+        this.goldBoxConfig.push(3)
+        this.goldBoxConfig.push(4)
+        this.goldBoxConfig.push(5)
+        this.goldBoxConfig.push(6)
+        this.goldBoxConfig.push(1530000)
+        this.goldBoxConfig.push(2740000)
+        this.goldBoxConfig.push(4570000)
+        this.goldBoxConfig.push(8370000)
+
+        this.goldBoxConfig.push(15000000)
+        this.goldBoxConfig.push(29600000)
+        this.goldBoxConfig.push(55400000)
+        this.goldBoxConfig.push(95800000)
+        this.goldBoxConfig.push(182000000)
+        this.goldBoxConfig.push(310000000)
+        this.goldBoxConfig.push(581000000)
+        this.goldBoxConfig.push(1030000000)
+        this.goldBoxConfig.push(1730000000)
+        this.goldBoxConfig.push(3190000000)
+
+        this.goldBoxConfig.push(5010000000)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(14500000000)
+        this.goldBoxConfig.push(26500000000)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(102000000000)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1170000000000)
+
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(1)
+        this.goldBoxConfig.push(497000000000000)
+    }
+
+    initRadarBacicRate() {
+        this.radarBasicRate.push(6)
+
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+        this.radarBasicRate.push(6)
+
+        this.radarBasicRate.push(8)
+        this.radarBasicRate.push(19)
+        this.radarBasicRate.push(19)
+        this.radarBasicRate.push(19)
+        this.radarBasicRate.push(19)
+        this.radarBasicRate.push(19)
+        this.radarBasicRate.push(24)
+        this.radarBasicRate.push(24)
+        this.radarBasicRate.push(24)
+        this.radarBasicRate.push(24)
+
+        this.radarBasicRate.push(24)
+        this.radarBasicRate.push(29)
+        this.radarBasicRate.push(29)
+        this.radarBasicRate.push(29)
+        this.radarBasicRate.push(29)
+        this.radarBasicRate.push(29)
+        this.radarBasicRate.push(1)
+        this.radarBasicRate.push(1)
+        this.radarBasicRate.push(1)
     }
 
     getHeroConfig(): HeroConfig[] {
