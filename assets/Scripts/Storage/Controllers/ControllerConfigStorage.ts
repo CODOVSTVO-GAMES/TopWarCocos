@@ -555,10 +555,26 @@ export class ControllerConfigStorage {
 
 
     static getExpirienceRadarByLevel(level: number): number {
+        if (ConfigStorage.instance.expirienceRadar.length < level) throw 'Уровень не существует'
         return ConfigStorage.instance.expirienceRadar[level]
     }
 
 
     //---------------------------------------------------------------------------------------------------
+    //goldBox
 
+    static getGoldByLevel(level: number): number {
+        if (ConfigStorage.instance.goldBoxConfig.length < level) throw 'Уровень не существует'
+        return ConfigStorage.instance.goldBoxConfig[level]
+    }
+
+    //---------------------------------------------------------------------------------------------------
+    //radarBasicRate
+
+    static getRadarBasicRateByLevel(level: number){
+        if (ConfigStorage.instance.radarBasicRate.length < level) throw 'Уровень не существует'
+        return ConfigStorage.instance.radarBasicRate[level]
+    }
+
+    //---------------------------------------------------------------------------------------------------
 }
