@@ -639,7 +639,7 @@ export class ControllerConfigStorage {
     //---------------------------------------------------------------------------------------------------
     //radarBasicRate
 
-    static getRadarBasicRateByLevel(level: number){
+    static getRadarBasicRateByLevel(level: number) {
         if (ConfigStorage.instance.radarBasicRate.length < level) throw 'Уровень не существует'
         return ConfigStorage.instance.radarBasicRate[level]
     }

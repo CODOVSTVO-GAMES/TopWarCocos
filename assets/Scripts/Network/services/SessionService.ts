@@ -20,6 +20,7 @@ export class SessionService {
         const sessionDataDTO = SessionService.parseResponse(data)
         ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
         ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
+        ControllerUserStorage.setServerTime(sessionDataDTO.serverTime)
 
         console.log("update session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + ControllerUserStorage.getAccountId())
     }
@@ -30,6 +31,7 @@ export class SessionService {
             const sessionDataDTO = SessionService.parseResponse(data)
             ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
             ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
+            ControllerUserStorage.setServerTime(sessionDataDTO.serverTime)
 
             console.log("get session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + ControllerUserStorage.getAccountId())
             LoadingGame.getStorages()
@@ -39,7 +41,9 @@ export class SessionService {
 
     static parseResponse(data: any): SessionDataDTO {
         const sessionJson = JSON.parse(JSON.stringify(data))
-        return new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
+        let sessionDataDTO = new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
+        sessionDataDTO.serverTime = sessionJson.serverTime
+        return sessionDataDTO
     }
 
 }

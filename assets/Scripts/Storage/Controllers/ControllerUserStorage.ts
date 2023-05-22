@@ -59,4 +59,12 @@ export class ControllerUserStorage {
         return UserStorage.instance.permission;
     }
 
+    static setServerTime(serverTime: number) {
+        UserStorage.instance.serverTime = serverTime
+    }
+
+    static getServerTime() {
+        return UserStorage.instance.serverTime
+    }
+
 }
