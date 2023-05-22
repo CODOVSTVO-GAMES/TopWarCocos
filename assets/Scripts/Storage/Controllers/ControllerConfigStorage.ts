@@ -210,7 +210,7 @@ export class ControllerConfigStorage {
     static getImprivementResourceNumberRepairBuilding(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
             if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
+                && ConfigStorage..mainAndRepairBuildings[i].level == level) {
                 return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceNumber
             }
         }
@@ -639,7 +639,7 @@ export class ControllerConfigStorage {
     //---------------------------------------------------------------------------------------------------
     //radarBasicRate
 
-    static getRadarBasicRateByLevel(level: number){
+    static getRadarBasicRateByLevel(level: number) {
         if (ConfigStorage.instance.radarBasicRate.length < level) throw 'Уровень не существует'
         return ConfigStorage.instance.radarBasicRate[level]
     }

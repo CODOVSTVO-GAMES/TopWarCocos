@@ -39,7 +39,6 @@ export class SessionService {
 
     static parseResponse(data: any): SessionDataDTO {
         const sessionJson = JSON.parse(JSON.stringify(data))
-        console.log("dddd" + sessionJson)
         return new SessionDataDTO(sessionJson.userId, sessionJson.sessionHash, sessionJson.sessionId)
     }
 

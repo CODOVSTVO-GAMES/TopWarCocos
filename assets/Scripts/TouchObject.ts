@@ -5,6 +5,8 @@ import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
 import { TypesObjects } from './Static/TypesObjects';
 import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
+import { BufferStorage } from './Storage/BufferStorage';
+import { ZoomCamera } from './Camera/ZoomCamera';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -39,7 +41,7 @@ export class TouchObject extends Component {
         this.touchObject.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
     }
 
-    touchStart() {
+    touchStart(e: Touch) {
         if (TouchStatus.instance.activeTouch == true && this.isMove) return;
 
         TouchStatus.instance.activeTouch = true;
@@ -66,8 +68,11 @@ export class TouchObject extends Component {
     touchMove(e: Touch) {
         if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
-        this.xPos += (e.getDelta().x * 1.9);
-        this.yPos += (e.getDelta().y * 1.9);
+        this.xPos += (e.getUIDelta().x * ZoomCamera.instance.zoomRaito);
+        this.yPos += (e.getUIDelta().y * ZoomCamera.instance.zoomRaito);
+
+        // this.xPos += (e.getDelta().x * 1.9);
+        // this.yPos += (e.getDelta().y * 1.9);
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         HighlightHomeMap.closeCellSelected();

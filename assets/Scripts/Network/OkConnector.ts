@@ -10,8 +10,8 @@ export class OkConnector {
         this.addJavaScript(this.SDK_URL).then(
             () => {
                 var rParams = FAPI.Util.getRequestParameters();
-                FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { console.log("SDK init"); OkConnector.getUserInfo() }, function () {
-                    console.log('SDK error');
+                FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { console.log("FAPI init"); OkConnector.getUserInfo() }, function () {
+                    console.log('FAPI error');
                     if (!TechnicalConfig.ISPROD) {
                         LoadingGame.getUser()
                     } else {
