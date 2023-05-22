@@ -46873,7 +46873,7 @@
     },
     "component": "",
     "_componentId": "69882XoDKlAS7PwUzWp++Lx",
-    "handler": "openCharacters",
+    "handler": "openRadar",
     "customEventData": ""
   },
   {
