@@ -29,6 +29,9 @@ export class UserStorage extends Component {
     @property({ type: CCString })
     public permission: string;
 
+    @property({ type: CCString })
+    public serverTime: number; //временно в этом сторадже
+
     onLoad() {
         UserStorage.instance = this;
         this.sessionId = 0;
