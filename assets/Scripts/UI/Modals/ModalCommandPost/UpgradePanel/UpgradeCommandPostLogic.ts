@@ -15,9 +15,9 @@ export class UpgradeCommandPostLogic extends Component {
     public actualLevelObjaect: Node;
 
     upgrateObject() {
+        ControllerCommandPostStorage.addLevelCommandPost();
         ControllerGameStorage.addExperience(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
-        ControllerCommandPostStorage.addLevelCommandPost();
         UpgradeCommandPostInerface.instance.updateInterface();
     }
 

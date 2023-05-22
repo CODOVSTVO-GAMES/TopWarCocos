@@ -11,7 +11,7 @@ export class WallLogic extends Component {
     public objectParameters: ObjectParameters;
 
     public click() {
-        SpawnObjects.instance.spawnObjectsPos(TypesObjects.BATTLE, 1, this.objectParameters.index);
+        SpawnObjects.spawnObjectsPos(TypesObjects.BATTLE, 1, this.objectParameters.index);
         this.node.destroy();
     }
 }

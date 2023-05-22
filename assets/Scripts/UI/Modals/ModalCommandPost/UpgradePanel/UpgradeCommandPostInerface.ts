@@ -51,11 +51,27 @@ export class UpgradeCommandPostInerface extends Component {
     @property({ type: Label })
     public nextMarchingCampaign: Label;
 
+
+
+    @property({ type: Label })
+    public requirementCoins: Label;
+
+    @property({ type: Label })
+    public requirementItems: Label;
+
+
+
     @property({ type: Sprite })
     public actualSpriteObject: Sprite;
 
     @property({ type: Sprite })
     public nextSpriteObject: Sprite;
+
+    @property({ type: Node })
+    public btnUpgrade: Node;
+
+    @property({ type: Node })
+    public btnGetItems: Node;
 
     onLoad() {
         UpgradeCommandPostInerface.instance = this;
@@ -66,18 +82,31 @@ export class UpgradeCommandPostInerface extends Component {
         this.actualLevelObject.string = ControllerCommandPostStorage.getLevelCommandPost().toString();
         this.nextLevelObject.string = (ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
         this.level.string = "Ур." + ControllerGameStorage.getLevel().toString();
-        this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
+        this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
-        this.receivedPower.string = "+" + ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()).toString();
+        this.receivedPower.string = "+" + ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
         this.actualAttactBonus.string = ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()).toString();
-        this.receivedAttactBonus.string = ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()).toString();
+        this.receivedAttactBonus.string = "+" + (ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1) - ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost())).toString();
         this.actualQuantityTroops.string = "0";
         this.nextQuantityTroops.string = "0";
         this.actualMarchingCampaign.string = "0";
         this.nextMarchingCampaign.string = "0";
 
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
+
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);
+    }
+
+    openUpgrade() {
+        this.btnUpgrade.active = true;
+        this.btnGetItems.active = false;
+    }
+
+    openGetItems() {
+        this.btnUpgrade.active = false;
+        this.btnGetItems.active = true;
     }
 }
 
