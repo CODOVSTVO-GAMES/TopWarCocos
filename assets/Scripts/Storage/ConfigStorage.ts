@@ -67,6 +67,9 @@ export class ConfigStorage extends Component {
 
         this.initGoldBox()
 
+        this.initRadarBacicRate();
+        this.initRadarConfig();
+
     }
 
     initMainBuilding() {
@@ -249,7 +252,7 @@ export class ConfigStorage extends Component {
 
     initBarrackMerge() {
         let type = TypesObjects.BARRACKS_OVERLAND
-        let typeItem = TypesItems.PLAN_MAX_BARRACK
+        let typeItem = TypesItems.PLAN_MAX_BARRACK_OVERLAND
 
         this.mergeBuildingsConfig.push(new ConfigMergeBuildings(type, 1, 0, 0, typeItem, 0, 0, 0))
         this.mergeBuildingsConfig.push(new ConfigMergeBuildings(type, 2, 0, 0, typeItem, 0, 0, 0))
@@ -437,7 +440,7 @@ export class ConfigStorage extends Component {
 
     initAirportMerge() {
         let type = TypesObjects.BARRACKS_AIR
-        let typeItem = TypesItems.PLAN_MAX_AIRPORT
+        let typeItem = TypesItems.PLAN_MAX_BARRACK_AIR
 
         this.mergeBuildingsConfig.push(new ConfigMergeBuildings(type, 1, 0, 0, typeItem, 0, 0, 0))
         this.mergeBuildingsConfig.push(new ConfigMergeBuildings(type, 2, 0, 0, typeItem, 0, 0, 0))
@@ -484,7 +487,7 @@ export class ConfigStorage extends Component {
 
     initAirBuild() {
         let type = TypesObjects.BARRACKS_AIR
-        let typeItem = TypesItems.PLAN_CREATE_BARRACK_AIRPORT
+        let typeItem = TypesItems.PLAN_CREATE_BARRACK_AIR
 
         this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 1, 0, 0, typeItem, 0, 0, 400, 80))
         this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 2, 1180, 380, typeItem, 8, 5900, 800, 160))

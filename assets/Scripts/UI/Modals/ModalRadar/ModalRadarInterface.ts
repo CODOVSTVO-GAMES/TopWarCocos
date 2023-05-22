@@ -11,6 +11,6 @@ export class ModalRadarInterface extends Component {
     }
 
     updateInterface() {
-        
+    
     }
 }

@@ -4,7 +4,7 @@ import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
 import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
 import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
-import { TypesInventory } from '../../../../Static/TypesInventory';
+import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingInterface')
@@ -91,7 +91,7 @@ export class ModalCharacterPumpingInterface extends Component {
             this.experience.string = character.experience + "/" + targetExp;
             this.slider.fillRange = character.experience / targetExp;
             for (let i = 0; i < this.quantity.length; i++) {
-                this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(TypesInventory.BOOKS[i]);
+                this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(TypesItems.BOOKS[i]);
             }
         }
     }

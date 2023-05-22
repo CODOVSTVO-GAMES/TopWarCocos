@@ -1,14 +1,10 @@
-import { _decorator, Component, Node } from 'cc';
-const { ccclass, property } = _decorator;
+export class RadarReward {
 
-@ccclass('RadarReward')
-export class RadarReward extends Component {
-    start() {
+    public type: string;
+    public quantity: number;
 
-    }
-
-    update(deltaTime: number) {
-        
+    constructor(type: string, quantity: number) {
+        this.type = type;
+        this.quantity = quantity;
     }
 }
-

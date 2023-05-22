@@ -3,6 +3,7 @@ import { ControllerBufferStorage } from './ControllerBufferStorage';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../RadarStorage';
 import { RadarTask } from '../../Structures/RadarTask';
+import { RadarReward } from '../../Structures/RadarReward';
 const { ccclass, property } = _decorator;
 
 @ccclass('ControllerRadarStorage')
@@ -31,8 +32,8 @@ export class ControllerRadarStorage {
         return RadarStorage.instance.tasks;
     }
 
-    static equateRadarTasks() {
-        
+    static equateRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
+        RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, reward));
     }
 
     static updateRadarStorage() {

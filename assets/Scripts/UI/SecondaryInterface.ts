@@ -98,7 +98,7 @@ export class SecondaryInterface extends Component {
         else if (type == TypesModals.RADAR) {
             ModalRadarInterface.instance.updateInterface();
             this.backgraund.active = true;
-            this.autocombine.active = true;
+            // this.ra.active = true;
         }
         else if (type == TypesModals.BACKPACK) {
             ModalBackpackInterface.instance.updateInterface();
