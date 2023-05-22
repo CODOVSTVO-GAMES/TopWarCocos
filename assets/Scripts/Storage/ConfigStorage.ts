@@ -36,6 +36,8 @@ export class ConfigStorage extends Component {
 
     public expirienceRadar: Array<number> = []
 
+    public goldBoxConfig: Array<number> = []
+
     onLoad() {
         ConfigStorage.instance = this;
         this.initMainBuilding()
@@ -49,7 +51,7 @@ export class ConfigStorage extends Component {
         this.initAir()
 
         this.initBarrackMerge()
-        this.initMainBuilding()
+        this.initBarrackBuild()
 
         this.initMarineBuild()
         this.initMarineMerge()
@@ -60,6 +62,11 @@ export class ConfigStorage extends Component {
         this.initLevel()
         this.initHeroLevel()
         this.initHeroConfig()
+
+    }
+
+    initGoldBox() {
+
     }
 
     initMainBuilding() {
@@ -830,7 +837,7 @@ export class ConfigStorage extends Component {
         this.radarConfig.push(new RadarConfig(2, 35, 3, 70, 4500));
         this.radarConfig.push(new RadarConfig(3, 40, 4, 75, 4200));
     }
-    
+
     initExpirienceRadar() {
         this.expirienceRadar.push(28)
         this.expirienceRadar.push(60)
@@ -853,7 +860,7 @@ export class ConfigStorage extends Component {
         this.expirienceRadar.push(12800000)
         this.expirienceRadar.push(1)
         this.expirienceRadar.push(1)
-        
+
     }
 
     getHeroConfig(): HeroConfig[] {
