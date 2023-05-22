@@ -32,7 +32,7 @@ export class GoldMineLogic extends Component {
     collect() {
         if (this.time <= -1) {
             this.time = 0;
-            ControllerGameStorage.addCoins(ControllerConfigStorage.getProductionInTimeMineByLevel(this.objectParameters.level));
+            ControllerGameStorage.addCoins(ControllerConfigStorage.getProdictionInTimeGoldMineByLevel(this.objectParameters.level));
             this.work();
         }
     }

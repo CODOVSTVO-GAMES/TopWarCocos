@@ -30816,6 +30816,12 @@
     "nextSpriteObject": {
       "__id__": 1019
     },
+    "btnUpgrade": {
+      "__id__": 1077
+    },
+    "btnGetItems": {
+      "__id__": 1088
+    },
     "_id": "06drHa13hMoKSyMeYouJep"
   },
   {
@@ -33446,7 +33452,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "UpgrateObject",
+    "_name": "Upgrade",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1008
@@ -33839,7 +33845,7 @@
         "__id__": 1089
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 1093
@@ -33855,7 +33861,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -259.948,
+      "y": -336.2,
       "z": 0
     },
     "_lrot": {
@@ -34357,6 +34363,12 @@
     },
     "nextSpriteObject": {
       "__id__": 1117
+    },
+    "btnUpgrade": {
+      "__id__": 1151
+    },
+    "btnGetItems": {
+      "__id__": 1162
     },
     "_id": "acglpeq55Gt4xLCU9BfeUC"
   },
@@ -36116,7 +36128,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "UpgrateObject",
+    "_name": "Upgrade",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1106
@@ -46939,7 +46951,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 547.920227920228,
+    "_orthoHeight": 577.137216189536,
     "_near": 0,
     "_far": 1000,
     "_color": {
