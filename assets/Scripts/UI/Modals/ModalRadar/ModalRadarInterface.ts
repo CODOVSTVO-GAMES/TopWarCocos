@@ -9,4 +9,8 @@ export class ModalRadarInterface extends Component {
     onLoad() {
         ModalRadarInterface.instance = this;
     }
+
+    updateInterface() {
+        
+    }
 }
