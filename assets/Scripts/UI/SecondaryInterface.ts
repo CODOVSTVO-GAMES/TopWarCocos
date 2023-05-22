@@ -5,6 +5,7 @@ import { TypesModals } from '../Static/TypesModals';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalCommandPostInterface';
 import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutocombineInterface';
+import { ModalRadarInterface } from './Modals/ModalRadar/ModalRadarInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -90,6 +91,11 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.autocombine.active = true;
         }
+        else if (type == TypesModals.RADAR) {
+            ModalRadarInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.autocombine.active = true;
+        }
     }
 
     openProfile() { this.openModal(TypesModals.PROFILE); }
@@ -107,6 +113,8 @@ export class SecondaryInterface extends Component {
     openCommandPost() { this.openModal(TypesModals.COMMAND_POST); }
 
     openAutocombine() { this.openModal(TypesModals.AUTOCOMBINE); }
+
+    openRadar() { this.openModal(TypesModals.RADAR); }
 
     closeModal() {
         this.backgraund.active = false;
