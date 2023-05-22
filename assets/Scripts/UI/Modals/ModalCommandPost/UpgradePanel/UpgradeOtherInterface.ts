@@ -36,6 +36,16 @@ export class UpgradeOtherInterface extends Component {
     @property({ type: Label })
     public receivedPower: Label;
 
+
+
+    @property({ type: Label })
+    public requirementCoins: Label;
+
+    @property({ type: Label })
+    public requirementItems: Label;
+
+
+
     @property({ type: Sprite })
     public actualSpriteObject: Sprite;
 
@@ -64,6 +74,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerMainBuildingByLevel(levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.REPAIR_SHOP, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.REPAIR_SHOP, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeGoldMine() {
@@ -78,6 +91,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.GOLD_MINE, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.GOLD_MINE, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeTroopAir() {
@@ -92,6 +108,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.TROOP_AIR, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.TROOP_AIR, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeTroopMarine() {
@@ -106,6 +125,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.TROOP_MARINE, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.TROOP_MARINE, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeTroopOverland() {
@@ -120,6 +142,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.TROOP_OVERLAND, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.TROOP_OVERLAND, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeBarracksAir() {
@@ -134,6 +159,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_AIR, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_AIR, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeBarracksMarine() {
@@ -148,6 +176,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_MARINE, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_MARINE, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceMergeBarracksOverland() {
@@ -162,6 +193,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_OVERLAND, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_OVERLAND, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceBuildGoldMine() {
@@ -176,6 +210,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.GOLD_MINE, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.GOLD_MINE, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceBuildBarracksAir() {
@@ -190,6 +227,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_AIR, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_AIR, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceBuildBarracksMarine() {
@@ -204,6 +244,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_MARINE, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_MARINE, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     updateInterfaceBuildBarracksOverland() {
@@ -218,6 +261,9 @@ export class UpgradeOtherInterface extends Component {
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, levelObject + 1).toString();
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_OVERLAND, levelObject);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.BARRACKS_OVERLAND, levelObject + 1);
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
     }
 
     openUpgrade() {

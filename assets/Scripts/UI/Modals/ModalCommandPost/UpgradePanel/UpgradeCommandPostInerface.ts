@@ -51,6 +51,16 @@ export class UpgradeCommandPostInerface extends Component {
     @property({ type: Label })
     public nextMarchingCampaign: Label;
 
+
+
+    @property({ type: Label })
+    public requirementCoins: Label;
+
+    @property({ type: Label })
+    public requirementItems: Label;
+
+
+
     @property({ type: Sprite })
     public actualSpriteObject: Sprite;
 
@@ -81,6 +91,9 @@ export class UpgradeCommandPostInerface extends Component {
         this.nextQuantityTroops.string = "0";
         this.actualMarchingCampaign.string = "0";
         this.nextMarchingCampaign.string = "0";
+
+        this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
+        this.requirementItems.string = "0/0";
 
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);

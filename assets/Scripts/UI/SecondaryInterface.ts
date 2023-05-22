@@ -1,11 +1,12 @@
 import { _decorator, Component, Node } from 'cc';
+import { TypesModals } from '../Static/TypesModals';
 import { ModalExperienceInerface } from './Modals/ModalExperience/ModalExperienceInerface';
 import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
-import { TypesModals } from '../Static/TypesModals';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalCommandPostInterface';
 import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutocombineInterface';
 import { ModalRadarInterface } from './Modals/ModalRadar/ModalRadarInterface';
+import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -39,6 +40,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public autocombine: Node;
+
+    @property({ type: Node })
+    public backpack: Node;
 
     public listOpeningModals: string[] = [];
 
@@ -96,6 +100,11 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.autocombine.active = true;
         }
+        else if (type == TypesModals.BACKPACK) {
+            ModalBackpackInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.backpack.active = true;
+        }
     }
 
     openProfile() { this.openModal(TypesModals.PROFILE); }
@@ -115,6 +124,8 @@ export class SecondaryInterface extends Component {
     openAutocombine() { this.openModal(TypesModals.AUTOCOMBINE); }
 
     openRadar() { this.openModal(TypesModals.RADAR); }
+
+    openBackpack() { this.openModal(TypesModals.BACKPACK); }
 
     closeModal() {
         this.backgraund.active = false;
@@ -136,5 +147,6 @@ export class SecondaryInterface extends Component {
         this.characters.active = false;
         this.commandPost.active = false;
         this.autocombine.active = false;
+        this.backpack.active = false;
     }
 }
