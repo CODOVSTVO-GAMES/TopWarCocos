@@ -66,8 +66,8 @@ export class TouchObject extends Component {
     touchMove(e: Touch) {
         if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
-        this.xPos += (e.getDelta().x * 2);
-        this.yPos += (e.getDelta().y * 2);
+        this.xPos += (e.getDelta().x * 1.9);
+        this.yPos += (e.getDelta().y * 1.9);
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         HighlightHomeMap.closeCellSelected();
