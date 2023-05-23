@@ -69,8 +69,9 @@ export class ConfigStorage extends Component {
 
         this.initGoldBox()
 
-        this.initRadarBacicRate();
-        this.initRadarConfig();
+        this.initRadarBacicRate()
+        this.initRadarConfig()
+        this.initRadarProgressNumber()
 
     }
 
