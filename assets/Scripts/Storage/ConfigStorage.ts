@@ -36,6 +36,8 @@ export class ConfigStorage extends Component {
 
     public radarBasicRate: Array<number> = []
 
+    public radarProgressNumber: Array<number> = []
+
     public expirienceRadar: Array<number> = []
 
     public goldBoxConfig: Array<number> = []
@@ -950,6 +952,15 @@ export class ConfigStorage extends Component {
         this.radarBasicRate.push(1)
         this.radarBasicRate.push(1)
         this.radarBasicRate.push(1)
+    }
+
+    initRadarProgressNumber() {
+        this.radarProgressNumber.push(1)
+
+        this.radarProgressNumber.push(3)
+        this.radarProgressNumber.push(30)
+        this.radarProgressNumber.push(300)
+        this.radarProgressNumber.push(1)
     }
 
     getHeroConfig(): HeroConfig[] {

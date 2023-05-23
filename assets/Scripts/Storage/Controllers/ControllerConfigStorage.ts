@@ -645,4 +645,14 @@ export class ControllerConfigStorage {
     }
 
     //---------------------------------------------------------------------------------------------------
+    //radarProgressNumber
+
+    static getRadarProgressNumberByLevel(level: number) {
+        if (ConfigStorage.instance.radarProgressNumber.length < level) throw 'Уровень не существует'
+        return ConfigStorage.instance.radarProgressNumber[level]
+    }
+
+
+
+    //---------------------------------------------------------------------------------------------------
 }
