@@ -32,6 +32,22 @@ export class ControllerRadarStorage {
         return RadarStorage.instance.tasks;
     }
 
+    static getRadarLevel(): number {
+        return RadarStorage.instance.radarLevel;
+    }
+
+    static getRadarAvailableMissions(): number {
+        return RadarStorage.instance.availableMissions;
+    }
+
+    static getRadarTime(): number {
+        return RadarStorage.instance.timeToUpdate;
+    }
+
+    static getRadarSignal(): number {
+        return RadarStorage.instance.signalQuality;
+    }
+
     static equateRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
         RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, reward));
     }

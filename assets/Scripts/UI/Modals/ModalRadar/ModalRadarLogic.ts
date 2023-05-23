@@ -6,6 +6,7 @@ import { TypesRadar } from '../../../Static/TypesRadar';
 import { RadarReward } from '../../../Structures/RadarReward';
 import { TypesItems } from '../../../Static/TypesItems';
 import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
+import { ModalRadarInterface } from './ModalRadarInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
@@ -31,6 +32,7 @@ export class ModalRadarLogic extends Component {
     start() {
         this.calculationRadar();
         this.spawnTasks();
+        this.startTimer();
     }
 
     calculationRadar() {
@@ -42,7 +44,6 @@ export class ModalRadarLogic extends Component {
 
     spawnTasks() {
         let radarTasks = ControllerRadarStorage.getRadarTasks();
-
         if (radarTasks.length < this.maxDisplayedTasks) {
             let stars = this.randomStars();
             ControllerRadarStorage.equateRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
@@ -62,8 +63,10 @@ export class ModalRadarLogic extends Component {
     }
 
     timer() {
+        console.log(this.time);
         if (this.time > 0) {
             this.time--;
+            ControllerRadarStorage.updateRadarStorage();
         }
         else {
             this.stopTimer();
@@ -107,5 +110,9 @@ export class ModalRadarLogic extends Component {
         }
         rewards.push(new RadarReward(TypesItems.EXPERIENCE, ControllerConfigStorage.getExpirienceRadarByLevel(ControllerGameStorage.getLevel()) * (1 + (0.25 * (stars - 1)))))
         return rewards;
+    }
+
+    signalGain() {
+        ModalRadarInterface.instance.updateInterface();
     }
 }
