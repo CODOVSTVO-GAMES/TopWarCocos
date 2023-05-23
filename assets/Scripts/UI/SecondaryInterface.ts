@@ -7,6 +7,7 @@ import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalComman
 import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutocombineInterface';
 import { ModalRadarInterface } from './Modals/ModalRadar/ModalRadarInterface';
 import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInterface';
+import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -43,6 +44,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public radar: Node;
+
+    @property({ type: Node })
+    public repairShop: Node;
 
     @property({ type: Node })
     public backpack: Node;
@@ -103,6 +107,11 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.radar.active = true;
         }
+        else if (type == TypesModals.REPAIR_SHOP) {
+            ModalRepairShopInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.repairShop.active = true;
+        }
         else if (type == TypesModals.BACKPACK) {
             ModalBackpackInterface.instance.updateInterface();
             this.backgraund.active = true;
@@ -128,6 +137,8 @@ export class SecondaryInterface extends Component {
 
     openRadar() { this.openModal(TypesModals.RADAR); }
 
+    openRepairShop() { this.openModal(TypesModals.REPAIR_SHOP); }
+
     openBackpack() { this.openModal(TypesModals.BACKPACK); }
 
     closeModal() {
@@ -137,6 +148,12 @@ export class SecondaryInterface extends Component {
         }
         else if (this.activeModal == TypesModals.COMMAND_POST) {
             this.commandPost.active = false;
+        }
+        else if (this.activeModal == TypesModals.RADAR) {
+            this.radar.active = false;
+        }
+        else if (this.activeModal == TypesModals.REPAIR_SHOP) {
+            this.repairShop.active = false;
         }
         else if (this.activeModal == TypesModals.BACKPACK) {
             this.backpack.active = false;
@@ -155,6 +172,7 @@ export class SecondaryInterface extends Component {
         this.commandPost.active = false;
         this.autocombine.active = false;
         this.radar.active = false;
+        this.repairShop.active = false;
         this.backpack.active = false;
         this.activeModal = "";
     }

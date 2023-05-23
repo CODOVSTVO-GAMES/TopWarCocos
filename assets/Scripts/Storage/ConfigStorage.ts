@@ -163,7 +163,7 @@ export class ConfigStorage extends Component {
 
     initMergeGoldMine() {
         let type = TypesObjects.GOLD_MINE
-        let typeItem = TypesItems.PLAN_MAX_MINE
+        let typeItem = TypesItems.PLAN_MAX_GOLD_MINE
 
         this.mergeBuildingsConfig.push(new ConfigMergeBuildings(type, 1, 0, 0, typeItem, 0, 0, 120))
         this.mergeBuildingsConfig.push(new ConfigMergeBuildings(type, 2, 0, 0, typeItem, 0, 0, 360))
@@ -208,7 +208,7 @@ export class ConfigStorage extends Component {
 
     initBuildGoldMine() {
         let type = TypesObjects.GOLD_MINE
-        let typeItem = TypesItems.PLAN_CREATE_MINE
+        let typeItem = TypesItems.PLAN_CREATE_GOLD_MINE
 
         this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 1, 0, 0, typeItem, 0, 0, 400, 80))
         this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 2, 1180, 380, typeItem, 8, 5500, 800, 160))
@@ -303,7 +303,7 @@ export class ConfigStorage extends Component {
 
     initBarrackBuild() {
         let type = TypesObjects.BARRACKS_OVERLAND
-        let typeItem = TypesItems.PLAN_CREATE_BARRACK_OWERLAND
+        let typeItem = TypesItems.PLAN_CREATE_BARRACK_OVERLAND
 
         this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 1, 0, 0, typeItem, 0, 0, 400, 80))
         this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(type, 2, 1180, 380, typeItem, 8, 5900, 800, 160))

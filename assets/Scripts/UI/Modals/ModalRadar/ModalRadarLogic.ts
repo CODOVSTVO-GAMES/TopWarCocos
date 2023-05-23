@@ -21,9 +21,9 @@ export class ModalRadarLogic extends Component {
     public maxTasks: number;
     public timerCoroutine: any;
 
-    public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OWERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
-                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_MINE, TypesItems.PLAN_CREATE_MINE],
-                                            [TypesItems.PLAN_MAX_MINE, TypesItems.PLAN_CREATE_MINE, TypesItems.GOLD_CHEST],
+    public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OVERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
+                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
+                                            [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
                                             [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
                                             [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
 

@@ -3,12 +3,24 @@ import { InventoryStorage } from '../InventoryStorage';
 import { Item } from '../../Structures/Item';
 import { ControllerBufferStorage } from './ControllerBufferStorage';
 import { TypesStorages } from '../../Static/TypesStorages';
+import { TypesItems } from '../../Static/TypesItems';
 
 export class ControllerInventoryStorage {
 
     static assignStartingValues() {
-        
-    }   
+        this.addItem(TypesItems.PLAN_MAX_MAINBUILDING, 100);
+
+        this.addItem(TypesItems.PLAN_MAX_GOLD_MINE, 100);
+        this.addItem(TypesItems.PLAN_CREATE_GOLD_MINE, 100);
+
+        this.addItem(TypesItems.PLAN_MAX_AIR, 100);
+        this.addItem(TypesItems.PLAN_MAX_MARINE, 100);
+        this.addItem(TypesItems.PLAN_MAX_OVERLAND, 100);
+
+        this.addItem(TypesItems.PLAN_MAX_BARRACK_AIR, 100);
+        this.addItem(TypesItems.PLAN_MAX_BARRACK_MARINE, 100);
+        this.addItem(TypesItems.PLAN_MAX_BARRACK_OVERLAND, 100);
+    }
 
     static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
