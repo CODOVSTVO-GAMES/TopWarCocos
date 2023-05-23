@@ -1277,6 +1277,10 @@
       "__uuid__": "817a2519-4d44-422b-aca8-89e3f8b47f55",
       "__expectedType__": "cc.Prefab"
     },
+    "expedition": {
+      "__uuid__": "418d0fd3-bb21-45a8-9bce-36e78274c231",
+      "__expectedType__": "cc.Prefab"
+    },
     "wall": {
       "__uuid__": "edac3a10-47e2-4625-9dc9-f079be53f1c7",
       "__expectedType__": "cc.Prefab"
@@ -1693,6 +1697,12 @@
     "lobbyWar": [
       {
         "__uuid__": "0fb68112-5dc3-4e68-9d8b-76fc1d738728@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
+    "expedition": [
+      {
+        "__uuid__": "c741688c-a309-49fa-8174-5fd1b11b9abb@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],

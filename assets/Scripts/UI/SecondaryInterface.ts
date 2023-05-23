@@ -138,6 +138,10 @@ export class SecondaryInterface extends Component {
         else if (this.activeModal == TypesModals.COMMAND_POST) {
             this.commandPost.active = false;
         }
+        else if (this.activeModal == TypesModals.BACKPACK) {
+            this.backpack.active = false;
+        }
+        this.activeModal = "";
     }
 
     closeAllModals() {
@@ -152,5 +156,10 @@ export class SecondaryInterface extends Component {
         this.autocombine.active = false;
         this.radar.active = false;
         this.backpack.active = false;
+        this.activeModal = "";
+    }
+
+    getTypeActiveModal(): string {
+        return this.activeModal;
     }
 }

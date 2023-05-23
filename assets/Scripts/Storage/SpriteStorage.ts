@@ -50,6 +50,9 @@ export class SpriteStorage extends Component {
     @property({ type: SpriteFrame })
     public lobbyWar: SpriteFrame[] = [];
 
+    @property({ type: SpriteFrame })
+    public expedition: SpriteFrame[] = [];
+
 
 
 
@@ -81,6 +84,7 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.MANIPULATOR) return this.manipulator[level - 1];
         else if (type == TypesObjects.REPAIR_SHOP) return this.repairShop[level - 1];
         else if (type == TypesObjects.LOBBY_WARS) return this.lobbyWar[level - 1];
+        else if (type == TypesObjects.EXPEDITION) return this.expedition[level - 1];
 
 
 
