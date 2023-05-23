@@ -37,7 +37,14 @@ export class PrefabsStorage extends Component {
     @property({ type: Prefab })
     private manipulator: Prefab;
 
+    @property({ type: Prefab })
+    private repairShop: Prefab;
 
+    @property({ type: Prefab })
+    private lobbyWar: Prefab;
+
+    @property({ type: Prefab })
+    private expedition: Prefab;
 
 
     @property({ type: Prefab })
@@ -63,6 +70,10 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine;
         else if (type == TypesObjects.RADAR) return this.radar;
         else if (type == TypesObjects.MANIPULATOR) return this.manipulator;
+        else if (type == TypesObjects.REPAIR_SHOP) return this.repairShop;
+        else if (type == TypesObjects.LOBBY_WARS) return this.lobbyWar;
+        else if (type == TypesObjects.EXPEDITION) return this.expedition;
+
 
 
         else if (type == TypesObjects.WALL) return this.wall;

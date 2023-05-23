@@ -12,7 +12,7 @@ export class ControllerRadarStorage {
     static assignStartingValues() {
         RadarStorage.instance.radarLevel = 1;
         RadarStorage.instance.availableMissions = 30;
-        RadarStorage.instance.timeToUpdate = 11111;
+        RadarStorage.instance.timeToUpdate = 0;
         RadarStorage.instance.signalQuality = 1;
         this.updateRadarStorage();
     }
@@ -32,12 +32,51 @@ export class ControllerRadarStorage {
         return RadarStorage.instance.tasks;
     }
 
+    static getRadarLevel(): number {
+        return RadarStorage.instance.radarLevel;
+    }
+
+    static getRadarAvailableMissions(): number {
+        return RadarStorage.instance.availableMissions;
+    }
+
+    static getRadarTime(): number {
+        return RadarStorage.instance.timeToUpdate;
+    }
+
+    static getRadarSignal(): number {
+        return RadarStorage.instance.signalQuality;
+    }
+
+    static addRadarAvailableMissions(value: number) {
+        if (value == 0) return;
+        RadarStorage.instance.availableMissions += value;
+        this.updateRadarStorage();
+    }
+
+    static reduceRadarTime(value: number) {
+        if (value == 0) return;
+        RadarStorage.instance.timeToUpdate -= value;
+        this.updateRadarStorage()
+    }
+    
+    static reduceRadarAvailableMissions(value: number) {
+        if (value == 0) return;
+        RadarStorage.instance.availableMissions -= value;
+        this.updateRadarStorage();
+    }
+
+    static equateRadarTime(time: number) {
+        RadarStorage.instance.timeToUpdate = time;
+        this.updateRadarStorage();
+    }
+
     static equateRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
         RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, reward));
     }
 
     static updateRadarStorage() {
-        let tasks: Object[];
+        let tasks = [];
         for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
             tasks.push({
                 type: RadarStorage.instance.tasks[i].type,

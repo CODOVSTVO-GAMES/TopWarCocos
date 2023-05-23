@@ -27,7 +27,7 @@ export class SpriteStorage extends Component {
     public barracksOverland: SpriteFrame[] = [];
 
     @property({ type: SpriteFrame })
-    public townHall: SpriteFrame[] = [];
+    public commandPost: SpriteFrame[] = [];
 
     @property({ type: SpriteFrame })
     public goldMine: SpriteFrame[] = [];
@@ -43,6 +43,15 @@ export class SpriteStorage extends Component {
 
     @property({ type: SpriteFrame })
     public manipulator: SpriteFrame[] = [];
+
+    @property({ type: SpriteFrame })
+    public repairShop: SpriteFrame[] = [];
+
+    @property({ type: SpriteFrame })
+    public lobbyWar: SpriteFrame[] = [];
+
+    @property({ type: SpriteFrame })
+    public expedition: SpriteFrame[] = [];
 
 
 
@@ -67,12 +76,15 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.BARRACKS_AIR) return this.barracksAir[level - 1];
         else if (type == TypesObjects.BARRACKS_MARINE) return this.barracksMarine[level - 1];
         else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracksOverland[level - 1];
-        else if (type == TypesObjects.COMMAND_POST) return this.townHall[level - 1];
+        else if (type == TypesObjects.COMMAND_POST) return this.commandPost[level - 1];
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine[level - 1];
         else if (type == TypesObjects.BANK) return this.bank[level - 1];
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine[level - 1];
         else if (type == TypesObjects.RADAR) return this.radar[level - 1];
         else if (type == TypesObjects.MANIPULATOR) return this.manipulator[level - 1];
+        else if (type == TypesObjects.REPAIR_SHOP) return this.repairShop[level - 1];
+        else if (type == TypesObjects.LOBBY_WARS) return this.lobbyWar[level - 1];
+        else if (type == TypesObjects.EXPEDITION) return this.expedition[level - 1];
 
 
 

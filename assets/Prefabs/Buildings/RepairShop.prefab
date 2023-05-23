@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "Bank",
+    "_name": "RepairShop",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Bank",
+    "_name": "RepairShop",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -237,7 +237,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "d87fc824-846a-4ea4-8c6a-d4c318ce7c52@f9941",
+      "__uuid__": "79b90f34-493b-40a0-babd-2289caf76ce4@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -502,7 +502,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 23
@@ -520,7 +520,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 180,
+      "y": 100,
       "z": 0
     },
     "_lrot": {

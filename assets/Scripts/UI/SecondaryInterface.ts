@@ -42,6 +42,9 @@ export class SecondaryInterface extends Component {
     public autocombine: Node;
 
     @property({ type: Node })
+    public radar: Node;
+
+    @property({ type: Node })
     public backpack: Node;
 
     public listOpeningModals: string[] = [];
@@ -98,7 +101,7 @@ export class SecondaryInterface extends Component {
         else if (type == TypesModals.RADAR) {
             ModalRadarInterface.instance.updateInterface();
             this.backgraund.active = true;
-            // this.ra.active = true;
+            this.radar.active = true;
         }
         else if (type == TypesModals.BACKPACK) {
             ModalBackpackInterface.instance.updateInterface();
@@ -135,6 +138,10 @@ export class SecondaryInterface extends Component {
         else if (this.activeModal == TypesModals.COMMAND_POST) {
             this.commandPost.active = false;
         }
+        else if (this.activeModal == TypesModals.BACKPACK) {
+            this.backpack.active = false;
+        }
+        this.activeModal = "";
     }
 
     closeAllModals() {
@@ -147,6 +154,12 @@ export class SecondaryInterface extends Component {
         this.characters.active = false;
         this.commandPost.active = false;
         this.autocombine.active = false;
+        this.radar.active = false;
         this.backpack.active = false;
+        this.activeModal = "";
+    }
+
+    getTypeActiveModal(): string {
+        return this.activeModal;
     }
 }
