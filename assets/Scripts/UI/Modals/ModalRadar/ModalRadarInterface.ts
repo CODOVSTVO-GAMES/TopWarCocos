@@ -41,7 +41,6 @@ export class ModalRadarInterface extends Component {
     }
 
     updateInterface() {
-        console.log("update");
         let radarLevel = ControllerRadarStorage.getRadarLevel();
         let config = ControllerConfigStorage.getRadarConfigByLevel(radarLevel);
         let cost;
@@ -51,6 +50,9 @@ export class ModalRadarInterface extends Component {
         else {
             cost = 10;
         }
+
+        // console.log()
+
         // this.sliderLevel.fillRange = ControllerRadarStorage.getRadar;
         this.sliderEnergy.fillRange = ControllerGameStorage.getEnergy() / config.maxEnergy;
         this.gemsText.string = ControllerGameStorage.getGems().toString();

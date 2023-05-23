@@ -7,6 +7,8 @@ import { RadarReward } from '../../../Structures/RadarReward';
 import { TypesItems } from '../../../Static/TypesItems';
 import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
 import { ModalRadarInterface } from './ModalRadarInterface';
+import { SecondaryInterface } from '../../SecondaryInterface';
+import { TypesModals } from '../../../Static/TypesModals';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
@@ -17,13 +19,12 @@ export class ModalRadarLogic extends Component {
     public maxEnergy: number;
     public maxDisplayedTasks: number;
     public maxTasks: number;
-    public time: number;
     public timerCoroutine: any;
 
-    public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OWERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND], 
-                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_MINE, TypesItems.PLAN_CREATE_MINE], 
-                                            [TypesItems.PLAN_MAX_MINE, TypesItems.PLAN_CREATE_MINE, TypesItems.GOLD_CHEST], 
-                                            [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE], 
+    public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OWERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
+                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_MINE, TypesItems.PLAN_CREATE_MINE],
+                                            [TypesItems.PLAN_MAX_MINE, TypesItems.PLAN_CREATE_MINE, TypesItems.GOLD_CHEST],
+                                            [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
                                             [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
 
     onLoad() {
@@ -47,6 +48,7 @@ export class ModalRadarLogic extends Component {
         if (radarTasks.length < this.maxDisplayedTasks) {
             let stars = this.randomStars();
             ControllerRadarStorage.equateRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
+            ControllerRadarStorage.reduceRadarAvailableMissions(1);
         }
         console.log(ControllerRadarStorage.getRadarTasks());
     }
@@ -63,10 +65,12 @@ export class ModalRadarLogic extends Component {
     }
 
     timer() {
-        console.log(this.time);
-        if (this.time > 0) {
-            this.time--;
+        if (ControllerRadarStorage.getRadarTime() > 0) {
+            ControllerRadarStorage.reduceRadarTime(1);
             ControllerRadarStorage.updateRadarStorage();
+            if (SecondaryInterface.instance.getTypeActiveModal() == TypesModals.RADAR) {
+                ModalRadarInterface.instance.updateInterface();
+            }
         }
         else {
             this.stopTimer();
