@@ -235,7 +235,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 577.137216189536,
+    "_orthoHeight": 609.3583415597236,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1269,6 +1269,14 @@
       "__uuid__": "d04ad12e-6396-4ebb-ba3b-c3697b13df23",
       "__expectedType__": "cc.Prefab"
     },
+    "repairShop": {
+      "__uuid__": "a416786c-46f7-40fd-91b7-1850fb038b09",
+      "__expectedType__": "cc.Prefab"
+    },
+    "lobbyWar": {
+      "__uuid__": "817a2519-4d44-422b-aca8-89e3f8b47f55",
+      "__expectedType__": "cc.Prefab"
+    },
     "wall": {
       "__uuid__": "edac3a10-47e2-4625-9dc9-f079be53f1c7",
       "__expectedType__": "cc.Prefab"
@@ -1588,9 +1596,21 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "townHall": [
+    "commandPost": [
       {
         "__uuid__": "52486c4d-376d-495e-9f34-de60ceefb19e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4aa23c62-a8c1-452e-b85a-8a66783302f2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4dbfc86f-3cbf-4927-a869-38ca1254ddb5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "2a1185af-f019-4307-907f-4435f0b66844@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
@@ -1648,7 +1668,12 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "radar": [],
+    "radar": [
+      {
+        "__uuid__": "47242bda-1f89-463e-9018-e0f603fb8e1a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "manipulator": [
       {
         "__uuid__": "6c00b08d-25f0-4452-907b-eb7c24324f72@f9941",
@@ -1656,6 +1681,18 @@
       },
       {
         "__uuid__": "0e7bd165-3c04-4f00-a910-a020b3033fb7@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
+    "repairShop": [
+      {
+        "__uuid__": "79b90f34-493b-40a0-babd-2289caf76ce4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
+    "lobbyWar": [
+      {
+        "__uuid__": "0fb68112-5dc3-4e68-9d8b-76fc1d738728@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
