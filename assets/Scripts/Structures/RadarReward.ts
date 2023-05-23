@@ -1,7 +1,6 @@
 export class RadarReward {
-
-    public type: string;
-    public quantity: number;
+    type: string;
+    quantity: number;
 
     constructor(type: string, quantity: number) {
         this.type = type;

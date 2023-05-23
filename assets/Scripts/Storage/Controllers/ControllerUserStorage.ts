@@ -1,5 +1,6 @@
 import { _decorator } from 'cc';
 import { UserStorage } from '../UserStorage';
+import { Product } from '../../Structures/Product';
 
 export class ControllerUserStorage {
 
@@ -65,6 +66,14 @@ export class ControllerUserStorage {
 
     static getServerTime() {
         return UserStorage.instance.serverTime
+    }
+
+    static setProducts(products: Array<Product>) {
+        UserStorage.instance.products = products
+    }
+
+    static getProducts() : Array<Product>{
+        return UserStorage.instance.products
     }
 
 }

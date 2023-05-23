@@ -26,6 +26,10 @@ export class OkConnector {
         FAPI.Client.call({ "fields": "uid", "method": "users.getCurrentUser" }, OkConnector.callbackUserGetInfo);
     }
 
+    static showPayment(title: string, description: string, code: string, price: number){
+        FAPI.UI.showPayment(title, description, code, price)
+    }
+
     static addJavaScript(src: string) {
         return new Promise(resolve => {
             let script = document.createElement('script')

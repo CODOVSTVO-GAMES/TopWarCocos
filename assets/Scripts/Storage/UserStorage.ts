@@ -1,6 +1,7 @@
 import { _decorator, CCBoolean, CCObject, CCString, Component } from 'cc';
 import { TechnicalConfig } from '../Static/TechnicalConfig';
 import { Cryptor } from '../Network/other/Cryptor';
+import { Product } from '../Structures/Product';
 const { ccclass, property } = _decorator;
 
 @ccclass('UserStorage')
@@ -31,6 +32,9 @@ export class UserStorage extends Component {
 
     @property({ type: CCString })
     public serverTime: number; //временно в этом сторадже
+
+    @property({ type: CCObject })
+    public products: Array<Product> //временно в этом сторадже
 
     onLoad() {
         UserStorage.instance = this;

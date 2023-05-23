@@ -1,11 +1,10 @@
 import { RadarReward } from "./RadarReward";
 
 export class RadarTask {
-
-    public type: string;
-    public stars: number;
-    public time: number;
-    public rewards: RadarReward[];
+    type: string;
+    stars: number;
+    time: number;
+    rewards: RadarReward[];
 
     constructor(type: string, stars: number, time: number, rewards: RadarReward[]) {
         this.type = type;

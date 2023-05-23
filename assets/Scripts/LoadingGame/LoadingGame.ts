@@ -7,6 +7,7 @@ import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/services/DataStorageService';
 import { UserService } from '../Network/services/UserService';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { PaymentsService } from '../Network/services/PaymentsService';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')
@@ -42,8 +43,8 @@ export class LoadingGame extends Component {
 
     static redirectToHomeMap() {
         console.log('redirect scene')
+        PaymentsService.getProducts()
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
-
 }
 
