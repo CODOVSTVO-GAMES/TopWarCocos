@@ -11,7 +11,7 @@ export class ModalBackpackInterface extends Component {
     }
 
     updateInterface() {
-        console.log("q");
+        
     }
 }
 

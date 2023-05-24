@@ -13,7 +13,7 @@ export class InitHomeMap extends Component {
     @property({ type: Node })
     public backgraund: Node;
 
-    start() {
+    onLoad() {
         this.fillParentObject();
         this.fillArrayCoords();
     }

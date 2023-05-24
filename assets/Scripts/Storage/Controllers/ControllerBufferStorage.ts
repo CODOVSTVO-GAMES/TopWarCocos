@@ -27,7 +27,7 @@ export class ControllerBufferStorage {
 
     }
     static addEventToQueue(event: string) {
-        BufferStorage.instance.eventsQueue.push(event)
+        BufferStorage.instance.eventsQueue.push(event);
     }
 
     static getQueueEvents(): Array<string> {

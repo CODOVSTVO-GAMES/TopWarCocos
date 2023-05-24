@@ -30,7 +30,10 @@ export class ControllerHomeMapStorage {
         setTimeout(() => {
             for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
                 if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
-                if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+                if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) {
+                    HomeMapStorage.instance.arrayObjectParameters[i] = null;
+                    continue;
+                }
                 SpawnObjects.spawnObjectsPos(
                     HomeMapStorage.instance.arrayObjectParameters[i].type,
                     HomeMapStorage.instance.arrayObjectParameters[i].level,

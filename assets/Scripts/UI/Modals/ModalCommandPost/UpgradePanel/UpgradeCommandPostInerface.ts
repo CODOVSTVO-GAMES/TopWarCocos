@@ -5,6 +5,8 @@ import { ControllerCommandPostStorage } from '../../../../Storage/Controllers/Co
 import { ControllerGameStorage } from '../../../../Storage/Controllers/ControllerGameStorage';
 import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
 import { ConvertLargeNumber } from '../../../../Other/ConvertLargeNumber';
+import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
 @ccclass('UpgradeCommandPostInerface')
@@ -93,7 +95,7 @@ export class UpgradeCommandPostInerface extends Component {
         this.nextMarchingCampaign.string = "0";
 
         this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
-        this.requirementItems.string = "0/0";
+        this.requirementItems.string = ControllerInventoryStorage.getQuantityByType(TypesItems.PLAN_MAX_MAINBUILDING) + "/1";
 
         this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);
         this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);

@@ -47,10 +47,6 @@ export class ControllerGameStorage {
 
     // =================================================================
 
-    static equateCoins(value: number) {
-        GameStorage.instance.coins = value;
-    }
-
     static addCoins(value: number) {
         if (value == 0) return;
         GameStorage.instance.coins += value;
@@ -70,10 +66,6 @@ export class ControllerGameStorage {
     }
 
     // =================================================================
-
-    static equateGems(value: number) {
-        GameStorage.instance.gems = value;
-    }
 
     static addGems(value: number) {
         if (value == 0) return;
@@ -95,10 +87,6 @@ export class ControllerGameStorage {
 
     // =================================================================
 
-    static equateEnergy(value: number) {
-        GameStorage.instance.energy = value;
-    }
-
     static addEnergy(value: number) {
         if (value == 0) return;
         GameStorage.instance.energy += value;
@@ -113,10 +101,6 @@ export class ControllerGameStorage {
 
     static getEnergy(): number {
         return GameStorage.instance.maxEnergy;
-    }
-
-    static equateMaxEnergy(value: number) {
-        GameStorage.instance.maxEnergy = value;
     }
 
     static addMaxEnergy(value: number) {
@@ -136,10 +120,6 @@ export class ControllerGameStorage {
     }
 
     // =================================================================
-
-    static equateExperience(value: number) {
-        GameStorage.instance.experience = value;
-    }
 
     static addExperience(value: number) {
         if (value == 0) return;
@@ -165,10 +145,6 @@ export class ControllerGameStorage {
 
     // =================================================================
 
-    static equateLevel(value: number) {
-        GameStorage.instance.level = value;
-    }
-
     static addLevel(value: number) {
         if (value == 0) return;
         GameStorage.instance.level += value;
@@ -182,29 +158,6 @@ export class ControllerGameStorage {
 
     // =================================================================
 
-    static equateMaxPower(value: number) {
-        GameStorage.instance.maxPower = value;
-    }
-
-    static equateTerritoryPower(value: number) {
-        GameStorage.instance.territoryPower = value;
-    }
-
-    static equateTechnoPower(value: number) {
-        GameStorage.instance.technoPower = value;
-    }
-
-    static equateHeroPower(value: number) {
-        GameStorage.instance.heroPower = value;
-    }
-
-    static equateArsenalPower(value: number) {
-        GameStorage.instance.arsenalPower = value;
-    }
-
-    static equateProfessionPower(value: number) {
-        GameStorage.instance.professionPower = value;
-    }
 
     static getPower(): number {
         return GameStorage.instance.territoryPower +

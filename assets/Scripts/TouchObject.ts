@@ -5,7 +5,6 @@ import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
 import { TypesObjects } from './Static/TypesObjects';
 import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
-import { BufferStorage } from './Storage/BufferStorage';
 import { ZoomCamera } from './Camera/ZoomCamera';
 const { ccclass, property } = _decorator;
 
@@ -134,24 +133,8 @@ export class TouchObject extends Component {
             let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i])
             if (tempObjParam != null) {
                 if (this.objectParameters.type == tempObjParam.type && this.objectParameters.level == tempObjParam.level) {
-                    //В дальнейшем это условие можно будет удалить
-                    if (
-                        this.objectParameters.type != TypesObjects.COMMAND_POST &&
-                        this.objectParameters.type != TypesObjects.BANK &&
-                        this.objectParameters.type != TypesObjects.AUTOCOMBINE &&
-                        this.objectParameters.type != TypesObjects.RADAR &&
-                        this.objectParameters.type != TypesObjects.TREASURES &&
-                        this.objectParameters.type != TypesObjects.MANIPULATOR &&
-                        this.objectParameters.type != TypesObjects.REPAIR_SHOP &&
-                        this.objectParameters.type != TypesObjects.LOBBY_WARS &&
-                        this.objectParameters.type != TypesObjects.BULLETIN_BOARD &&
-                        this.objectParameters.type != TypesObjects.WALL &&
-                        this.objectParameters.type != TypesObjects.BATTLE
-                    ) {
-                        count += 1;
-                        indexMerge = i;
-                    }
-
+                    count += 1;
+                    indexMerge = i;
                 }
                 else {
                     return this.putAnObject(this.initialIndex);
@@ -160,10 +143,47 @@ export class TouchObject extends Component {
         }
 
         if (count > 0) {
-            if (this.objectParameters.level < ControllerCommandPostStorage.getLevelCommandPost()) {
-                ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                // ControllerHomeMapStorage.deleteSelectObject();
-                this.mainObject.destroy();
+            if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
+            }
+            else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
+            }
+            else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
+            }
+            else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
+            }
+            else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
+            }
+            else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
+            }
+            else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) {
+                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
+                    this.mainObject.destroy();
+                }
             }
             else {
                 this.putAnObject(this.initialIndex);
@@ -180,7 +200,6 @@ export class TouchObject extends Component {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
-        // ControllerHomeMapStorage.deleteSelectObject();
         this.mainObject.setParent(ControllerHomeMapStorage.getCoord(index));
         this.mainObject.position = Vec3.ZERO;
     }
