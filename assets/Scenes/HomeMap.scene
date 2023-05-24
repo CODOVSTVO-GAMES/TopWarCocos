@@ -41863,6 +41863,13 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "parentNode": {
+      "__id__": 1284
+    },
+    "taskPrefab": {
+      "__uuid__": "19ceeb79-3795-4ed3-91c0-54fcde72975d",
+      "__expectedType__": "cc.Prefab"
+    },
     "sliderLevel": {
       "__id__": 1262
     },
@@ -51164,7 +51171,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 609.3583415597236,
+    "_orthoHeight": 547.920227920228,
     "_near": 0,
     "_far": 1000,
     "_color": {

@@ -32,7 +32,11 @@ export class ModalRadarLogic extends Component {
     }
     start() {
         this.calculationRadar();
-        this.spawnTasks();
+        let radarTasks = ControllerRadarStorage.getRadarTasks();
+        console.log(radarTasks.length)
+        if (radarTasks.length == 0) {
+            this.spawnTasks();
+        }
         this.startTimer();
     }
 

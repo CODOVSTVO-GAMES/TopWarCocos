@@ -19,13 +19,12 @@ export class ControllerRadarStorage {
 
     static assigningSaveValues(obj: Object) {
         let json = JSON.parse(JSON.stringify(obj));
+        console.log(json)
         RadarStorage.instance.radarLevel = json.radarLevel;
         RadarStorage.instance.availableMissions = json.availableMissions;
         RadarStorage.instance.timeToUpdate = json.timeToUpdate;
         RadarStorage.instance.signalQuality = json.signalQuality;
-
-        // for (let i = 0; i < )
-        // RadarStorage.instance.tasks = json.tasks; for()
+        RadarStorage.instance.tasks = json.tasks;
     }
 
     static getRadarTasks(): RadarTask[] {

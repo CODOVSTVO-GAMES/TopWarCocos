@@ -623,7 +623,6 @@ export class ControllerConfigStorage {
 
 
     static getExpirienceRadarByLevel(level: number): number {
-        console.log(level);
         if (ConfigStorage.instance.expirienceRadar.length < level) throw 'Уровень не существует'
         return ConfigStorage.instance.expirienceRadar[level]
     }
