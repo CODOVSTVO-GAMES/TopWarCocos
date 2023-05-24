@@ -4,7 +4,7 @@ import { ClientService } from "../other/ClientService";
 
 export class PaymentsService {
     static getProducts() {
-        ClientService.get('payments', {}, this.parseProductsGetResponce)
+        ClientService.get('payments/products', {}, this.parseProductsGetResponce)
     }
 
     static parseProductsGetResponce(data: any, isDone: boolean) {

@@ -20,14 +20,15 @@ export class OkConnector {
                 })
             }
         )
+        OkConnector.setApiCallback()
     }
 
     static getUserInfo() {
         FAPI.Client.call({ "fields": "uid", "method": "users.getCurrentUser" }, OkConnector.callbackUserGetInfo);
     }
 
-    static showPayment(title: string, description: string, code: string, price: number){
-        FAPI.UI.showPayment(title, description, code, price)
+    static showPayment(title: string, description: string, code: string, price: number) {
+        FAPI.UI.showPayment(title, description, code, price, null, null, "ok", "true")
     }
 
     static addJavaScript(src: string) {
@@ -49,4 +50,14 @@ export class OkConnector {
         }
     }
 
+    static setApiCallback() {
+        window.API_callback = (method: string, result: string, data: string) => {
+            if (method == 'showPayment') {
+                console.log('Статус платежа ' + result)
+                if (result == 'ok') {
+                    console.log("куплены предметы: " + data)
+                }
+            }
+        }
+    }
 }
