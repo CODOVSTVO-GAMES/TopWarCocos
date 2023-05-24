@@ -4,6 +4,7 @@ import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../RadarStorage';
 import { RadarTask } from '../../Structures/RadarTask';
 import { RadarReward } from '../../Structures/RadarReward';
+import { ControllerConfigStorage } from './ControllerConfigStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ControllerRadarStorage')
@@ -11,15 +12,15 @@ export class ControllerRadarStorage {
 
     static assignStartingValues() {
         RadarStorage.instance.radarLevel = 1;
+        let config = ControllerConfigStorage.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
         RadarStorage.instance.availableMissions = 30;
-        RadarStorage.instance.timeToUpdate = 0;
+        RadarStorage.instance.timeToUpdate = config.time;
         RadarStorage.instance.signalQuality = 1;
         this.updateRadarStorage();
     }
 
     static assigningSaveValues(obj: Object) {
         let json = JSON.parse(JSON.stringify(obj));
-        console.log(json)
         RadarStorage.instance.radarLevel = json.radarLevel;
         RadarStorage.instance.availableMissions = json.availableMissions;
         RadarStorage.instance.timeToUpdate = json.timeToUpdate;
@@ -53,20 +54,46 @@ export class ControllerRadarStorage {
         this.updateRadarStorage();
     }
 
+    static addRadarSignalQuantity(value: number) {
+        if (value == 0) return;
+        RadarStorage.instance.signalQuality += value;
+        this.updateRadarStorage();
+    }
+
     static reduceRadarTime(value: number) {
         if (value == 0) return;
         RadarStorage.instance.timeToUpdate -= value;
-        this.updateRadarStorage()
+        this.updateRadarStorage();
     }
-    
+
+    static reduceRadarTask(task: RadarTask) {
+        if (task == null) return;
+        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+            if (RadarStorage.instance.tasks[i] == task) {
+                RadarStorage.instance.tasks.splice(i, 1);
+            }
+        }
+        this.updateRadarStorage();
+    }
+
     static reduceRadarAvailableMissions(value: number) {
         if (value == 0) return;
         RadarStorage.instance.availableMissions -= value;
         this.updateRadarStorage();
     }
 
-    static equateRadarTime(time: number) {
-        RadarStorage.instance.timeToUpdate = time;
+    static equateRadarTime(value: number) {
+        RadarStorage.instance.timeToUpdate = value;
+        this.updateRadarStorage();
+    }
+
+    static equateRadarSignalQuantity(value: number) {
+        RadarStorage.instance.signalQuality = value;
+        this.updateRadarStorage();
+    }
+
+    static equateRadarAvailableMissions(value: number) {
+        RadarStorage.instance.availableMissions = value;
         this.updateRadarStorage();
     }
 
