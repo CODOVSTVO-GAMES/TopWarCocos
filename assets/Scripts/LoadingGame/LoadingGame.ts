@@ -43,7 +43,7 @@ export class LoadingGame extends Component {
 
     static redirectToHomeMap() {
         console.log('redirect scene')
-        PaymentsService.getProducts()
+        OkConnector.showPayment('title', 'description', '1', 1)
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
 }
