@@ -47,7 +47,7 @@ export class TypesItems {
 
     // герои
 
-    public static FRAGMENT_BLACK_WIDOW: string = "fbw";
+    public static FRAGMENT_BLACK_WIDOW: string = "fragmentBlackWidow";
     public static FRAGMENT_CHARACTER_1: string = "fragmentCharacter1";
     public static FRAGMENT_CHARACTER_2: string = "fragmentCharacter2";
     public static FRAGMENT_CHARACTER_3: string = "fragmentCharacter3";

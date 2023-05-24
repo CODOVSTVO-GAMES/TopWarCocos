@@ -1,12 +1,15 @@
 import { _decorator, Component, SpriteFrame } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesCharacters } from '../Static/TypesCharacters';
+import { TypesItems } from '../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpriteStorage')
 export class SpriteStorage extends Component {
 
     public static instance: SpriteStorage;
+
+    // =================================================================
 
     @property({ type: SpriteFrame })
     public troopAir: SpriteFrame[] = [];
@@ -53,23 +56,36 @@ export class SpriteStorage extends Component {
     @property({ type: SpriteFrame })
     public expedition: SpriteFrame[] = [];
 
-
-
-
     @property({ type: SpriteFrame })
     public wall: SpriteFrame[] = [];
 
     @property({ type: SpriteFrame })
     public battle: SpriteFrame[] = [];
 
+    // =================================================================
+
     @property({ type: SpriteFrame })
     public characters: SpriteFrame[] = [];
+
+    // =================================================================
+
+    @property({ type: SpriteFrame })
+    public a: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public b: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public c: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public d: SpriteFrame;
 
     onLoad() {
         SpriteStorage.instance = this;
     }
 
-    getSprite(type: string, level: number): SpriteFrame {
+    getObjectSprite(type: string, level: number): SpriteFrame {
         if (type == TypesObjects.TROOP_AIR) return this.troopAir[level - 1];
         else if (type == TypesObjects.TROOP_MARINE) return this.troopMarine[level - 1];
         else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverland[level - 1];
@@ -86,11 +102,12 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.LOBBY_WARS) return this.lobbyWar[level - 1];
         else if (type == TypesObjects.EXPEDITION) return this.expedition[level - 1];
 
-
-
         else if (type == TypesObjects.WALL) return this.wall[level - 1];
         else if (type == TypesObjects.BATTLE) return this.battle[level - 1];
-        else if (type == TypesCharacters.BLACK_WIDOW) return this.characters[0];
+    }
+
+    getCharacterSprite(type: string): SpriteFrame {
+        if (type == TypesCharacters.BLACK_WIDOW) return this.characters[0];
         else if (type == TypesCharacters.CHARACTER_1) return this.characters[1];
         else if (type == TypesCharacters.CHARACTER_2) return this.characters[2];
         else if (type == TypesCharacters.CHARACTER_3) return this.characters[3];
@@ -99,5 +116,39 @@ export class SpriteStorage extends Component {
         else if (type == TypesCharacters.CHARACTER_6) return this.characters[6];
         else if (type == TypesCharacters.CHARACTER_7) return this.characters[7];
         else return null;
+    }
+
+    getItemBackpack(type: string): SpriteFrame {
+        if (type == TypesItems.PLAN_MAX_OVERLAND) return this.a;
+        else if (type == TypesItems.PLAN_MAX_MARINE) return this.a;
+        else if (type == TypesItems.PLAN_MAX_OVERLAND) return this.a;
+        else if (type == TypesItems.PLAN_MAX_AIR) return this.a;
+        else if (type == TypesItems.PLAN_MAX_GOLD_MINE) return this.a;
+        else if (type == TypesItems.PLAN_MAX_BARRACK_OVERLAND) return this.a;
+        else if (type == TypesItems.PLAN_MAX_BARRACK_MARINE) return this.a;
+        else if (type == TypesItems.PLAN_MAX_BARRACK_AIR) return this.a;
+        else if (type == TypesItems.PLAN_MAX_MAINBUILDING) return this.a;
+        else if (type == TypesItems.PLAN_CREATE_BARRACK_OVERLAND) return this.a;
+        else if (type == TypesItems.PLAN_CREATE_BARRACK_MARINE) return this.a;
+        else if (type == TypesItems.PLAN_CREATE_BARRACK_AIR) return this.a;
+        else if (type == TypesItems.PLAN_CREATE_GOLD_MINE) return this.a;
+        else if (type == TypesItems.BOOK_EXP_GREEN) return this.a;
+        else if (type == TypesItems.BOOK_EXP_WHITE) return this.a;
+        else if (type == TypesItems.BOOK_EXP_BLUE) return this.a;
+        else if (type == TypesItems.BOOK_EXP_VIOLET) return this.a;
+        else if (type == TypesItems.BOOK_EXP_GOLD) return this.a;
+        else if (type == TypesItems.TICKET_NORMAL) return this.a;
+        else if (type == TypesItems.TICKET_PREMIUM) return this.a;
+        else if (type == TypesItems.TICKET_OWERLAND) return this.a;
+        else if (type == TypesItems.TICKET_MARINE) return this.a;
+        else if (type == TypesItems.TICKET_AIR) return this.a;
+        else if (type == TypesItems.TICKET_SKILLS) return this.a;
+        else if (type == TypesItems.GOLD_CHEST) return this.a;
+        else if (type == TypesItems.EXPERIENCE) return this.a;
+        else if (type == TypesItems.WHITE_BOOK_EXPERIENCE) return this.a;
+        else if (type == TypesItems.GREEN_BOOK_EXPERIENCE) return this.a;
+        else if (type == TypesItems.BLUE_BOOK_EXPERIENCE) return this.a;
+        else if (type == TypesItems.PURPLE_BOOK_EXPERIENCE) return this.a;
+        else if (type == TypesItems.ORANGE_BOOK_EXPERIENCE) return this.a;
     }
 }

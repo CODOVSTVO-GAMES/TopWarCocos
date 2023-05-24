@@ -3,7 +3,13 @@ const { ccclass, property } = _decorator;
 
 @ccclass('ModalBackpackLogic')
 export class ModalBackpackLogic extends Component {
-    
-    
+
+    delete() {
+
+    }
+
+    apply() {
+
+    }
 }
 

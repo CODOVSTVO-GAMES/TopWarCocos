@@ -8,6 +8,7 @@ import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutoco
 import { ModalRadarInterface } from './Modals/ModalRadar/ModalRadarInterface';
 import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInterface';
 import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
+import { ModalBankInterface } from './Modals/ModalBank/ModalBankInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -38,6 +39,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public commandPost: Node;
+
+    @property({ type: Node })
+    public bank: Node;
 
     @property({ type: Node })
     public autocombine: Node;
@@ -97,6 +101,11 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.commandPost.active = true;
         }
+        else if (type == TypesModals.BANK) {
+            ModalBankInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.bank.active = true;
+        }
         else if (type == TypesModals.AUTOCOMBINE) {
             ModalAutocombineInterface.instance.updateInterface();
             this.backgraund.active = true;
@@ -132,6 +141,8 @@ export class SecondaryInterface extends Component {
     openCharacters() { this.openModal(TypesModals.CHARACTERS); }
 
     openCommandPost() { this.openModal(TypesModals.COMMAND_POST); }
+
+    openBank() { this.openModal(TypesModals.BANK); }
 
     openAutocombine() { this.openModal(TypesModals.AUTOCOMBINE); }
 
@@ -170,6 +181,7 @@ export class SecondaryInterface extends Component {
         this.powar.active = false;
         this.characters.active = false;
         this.commandPost.active = false;
+        this.bank.active = false;
         this.autocombine.active = false;
         this.radar.active = false;
         this.repairShop.active = false;

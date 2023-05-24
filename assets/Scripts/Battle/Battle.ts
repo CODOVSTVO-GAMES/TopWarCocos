@@ -146,7 +146,7 @@ export class Battle extends Component {
                 this.cards[i].active = true;
                 this.texts[i].string = "Lvl. " + this.arrayCards[i].level;
                 this.quantity[i].string = this.arrayCards[i].quantity.toString();
-                this.sprites[i].spriteFrame = SpriteStorage.instance.getSprite(this.arrayCards[i].type, this.arrayCards[i].level);
+                this.sprites[i].spriteFrame = SpriteStorage.instance.getObjectSprite(this.arrayCards[i].type, this.arrayCards[i].level);
             }
             else {
                 this.cards[i].active = false;

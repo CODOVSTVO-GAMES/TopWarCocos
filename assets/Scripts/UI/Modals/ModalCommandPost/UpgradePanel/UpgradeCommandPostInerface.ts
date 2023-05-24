@@ -97,8 +97,8 @@ export class UpgradeCommandPostInerface extends Component {
         this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
         this.requirementItems.string = ControllerInventoryStorage.getQuantityByType(TypesItems.PLAN_MAX_MAINBUILDING) + "/1";
 
-        this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);
-        this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getSprite(TypesObjects.COMMAND_POST, 1);
+        this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, 1);
+        this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, 1);
     }
 
     openUpgrade() {
