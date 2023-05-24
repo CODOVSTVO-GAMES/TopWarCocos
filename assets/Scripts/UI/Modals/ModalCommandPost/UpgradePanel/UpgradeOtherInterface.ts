@@ -271,7 +271,6 @@ export class UpgradeOtherInterface extends Component {
     openUpgrade(trigger: boolean) {
         this.btnUpgrade.active = true;
         this.btnGetItems.active = false;
-        console.log("trigger: " + trigger);
         if (trigger) {
             this.btnUpgrade.getComponent(Button).interactable = true;
         }

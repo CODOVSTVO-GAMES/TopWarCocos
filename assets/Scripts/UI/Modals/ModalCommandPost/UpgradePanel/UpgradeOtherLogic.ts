@@ -16,7 +16,12 @@ export class UpgradeOtherLogic extends Component {
     static checkBtnModal() {
         switch (ModalCommandPostLogic.instance.getTypeActiveModal()) {
             case "repairShop":
-
+                if (ControllerCommandPostStorage.getLevelRepairShop() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                    UpgradeOtherInterface.instance.openUpgrade(true);
+                }
+                else {
+                    UpgradeOtherInterface.instance.openUpgrade(false);
+                }
                 break;
             case "mergeGoldMine":
                 if (ControllerCommandPostStorage.getLevelMergeGoldMine() < ControllerCommandPostStorage.getLevelCommandPost()) {

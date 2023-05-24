@@ -9,7 +9,7 @@ export class BufferStorage extends Component {
 
     public arrayBuffer: Array<Buffer> = [];
 
-    public eventsQueue: string[] = []
+    public eventsQueue: string[] = [];
 
     onLoad() {
         BufferStorage.instance = this;
