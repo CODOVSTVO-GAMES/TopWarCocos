@@ -151,7 +151,7 @@ export class UpgradeOtherInterface extends Component {
 
     updateInterfaceMergeBarracksAir() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeBarracksAir();
-        this.mainTitle.string = "Синтезировать казарму";
+        this.mainTitle.string = "Обьядинить базу ВВС";
         this.actualLevelObject_0.string = levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
         this.nextLevelObject.string = (levelObject + 1).toString();
@@ -185,7 +185,7 @@ export class UpgradeOtherInterface extends Component {
 
     updateInterfaceMergeBarracksOverland() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeBarracksOverland();
-        this.mainTitle.string = "Обьядинить базу ВВС";
+        this.mainTitle.string = "Синтезировать казарму";
         this.actualLevelObject_0.string = levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
         this.nextLevelObject.string = (levelObject + 1).toString();

@@ -20,9 +20,19 @@ export class ControllerInventoryStorage {
         this.addItem(TypesItems.PLAN_MAX_BARRACK_AIR, 100);
         this.addItem(TypesItems.PLAN_MAX_BARRACK_MARINE, 100);
         this.addItem(TypesItems.PLAN_MAX_BARRACK_OVERLAND, 100);
+
+        for (let i = 0; i < TypesItems.BOOKS.length; i++) {
+            ControllerInventoryStorage.addItem(TypesItems.BOOKS[i], 12)
+        }
+        for (let i = 0; i < TypesItems.FRAGMENTS.length; i++) {
+            ControllerInventoryStorage.addItem(TypesItems.FRAGMENTS[i], 50);
+        }
+        
+        this.updateInvenoryStorage();
     }
 
     static assigningSaveValues(obj: Object[]) {
+        console.log(obj);
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj));
             InventoryStorage.instance.inventory.push(new Item(json.type, json.quantity));

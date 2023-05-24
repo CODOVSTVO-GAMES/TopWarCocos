@@ -6,7 +6,7 @@ export class TypesItems {
     public static PLAN_MAX_BARRACK_OVERLAND: string = "pmb";
     public static PLAN_MAX_BARRACK_MARINE: string = "pmr";
     public static PLAN_MAX_BARRACK_AIR: string = "pmair";
-    public static PLAN_MAX_MAINBUILDING: string = "pmb";
+    public static PLAN_MAX_MAINBUILDING: string = "pmbq";
 
     public static PLAN_CREATE_BARRACK_OVERLAND: string = "pcbo";
     public static PLAN_CREATE_BARRACK_MARINE: string = "pcbm";

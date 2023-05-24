@@ -25,6 +25,7 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeTroopOverland = 5;
         CommandPostStorage.instance.levelMergeBarracksOverland = 5;
         CommandPostStorage.instance.levelBuildBarracksOverland = 1;
+        
         this.updateCommandPostStorage();
     }
 
