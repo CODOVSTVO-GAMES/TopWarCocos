@@ -84,7 +84,6 @@ export class ModalRadarInterface extends Component {
                     result = true;
                 }
             }
-            console.log("spawn " + result);
             if (result == false) {
                 let task = instantiate(this.taskPrefab);
                 task.setParent(this.parentNode);

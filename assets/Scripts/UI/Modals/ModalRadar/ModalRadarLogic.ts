@@ -22,10 +22,10 @@ export class ModalRadarLogic extends Component {
     public timerCoroutine: any;
 
     public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OVERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
-                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
-                                            [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
-                                            [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
-                                            [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
+    [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
+    [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
+    [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
+    [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
 
     onLoad() {
         ModalRadarLogic.instance = this;
@@ -33,8 +33,7 @@ export class ModalRadarLogic extends Component {
     start() {
         this.calculationRadar();
         let radarTasks = ControllerRadarStorage.getRadarTasks();
-        console.log(radarTasks.length)
-        if (radarTasks.length == 0) {
+        while (radarTasks.length < this.maxDisplayedTasks) {
             this.spawnTasks();
         }
         this.startTimer();
@@ -57,15 +56,35 @@ export class ModalRadarLogic extends Component {
         console.log(ControllerRadarStorage.getRadarTasks());
     }
 
-
-
-
     startTimer() {
         this.timerCoroutine = setInterval(() => this.timer(), 1000);
     }
 
     stopTimer() {
         clearInterval(this.timerCoroutine);
+        let config = ControllerConfigStorage.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
+        let availableMissions = ControllerRadarStorage.getRadarAvailableMissions();
+        if (config.maxTasks >= availableMissions + 5) {
+            ControllerRadarStorage.addRadarAvailableMissions(5);
+        }
+        else if (availableMissions < config.maxTasks) {
+            ControllerRadarStorage.addRadarAvailableMissions(config.maxTasks - availableMissions);
+        }
+        ControllerRadarStorage.equateRadarTime(config.time);
+        this.startTimer();
+    }
+
+    // endTask(task: RadarTask) {
+
+    // }
+
+    timeZero() {
+        ControllerRadarStorage.equateRadarTime(1);
+    }
+
+    sbros() {
+        ControllerRadarStorage.assignStartingValues();
+        // ModalRadarInterface.instance.tasks = [];
     }
 
     timer() {
@@ -121,6 +140,7 @@ export class ModalRadarLogic extends Component {
     }
 
     signalGain() {
+        ControllerRadarStorage.addRadarSignalQuantity(1);
         ModalRadarInterface.instance.updateInterface();
     }
 }
