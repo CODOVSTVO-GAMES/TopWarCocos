@@ -29,6 +29,8 @@ export class TypesItems {
     public static GOLD_CHEST: string = "gc";
     public static EXPERIENCE: string = "e";
 
+    public static GOLD: string = "g"; //обычное золото, используется для наград
+
     // особые
 
     public static WHITE_BOOK_EXPERIENCE: string = "wbe";
