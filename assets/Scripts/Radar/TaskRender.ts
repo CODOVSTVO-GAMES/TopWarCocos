@@ -3,6 +3,7 @@ import { TypesRadar } from '../Static/TypesRadar';
 import { RadarTask } from '../Structures/RadarTask';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
+import { ModalRadarLogic } from '../UI/Modals/ModalRadar/ModalRadarLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('TaskRender')
@@ -39,15 +40,17 @@ export class TaskRender extends Component {
     }
 
     pushTask() {
-        console.log(this.radarTask);
-        if (this.radarTask.type == TypesRadar.TASK_SALVATION) {
-            RedirectionToScene.redirect(SceneNames.BATTLE);
-        }
-        else if (this.radarTask.type == TypesRadar.TASK_DARK_LEGION) {
-            RedirectionToScene.redirect(SceneNames.BATTLE);
-        }
-        else if (this.radarTask.type == TypesRadar.TASK_PERSONAL) {
-            RedirectionToScene.redirect(SceneNames.BATTLE);
-        }
+        // console.log(this.radarTask);
+        // if (this.radarTask.type == TypesRadar.TASK_SALVATION) {
+        //     RedirectionToScene.redirect(SceneNames.BATTLE);
+        // }
+        // else if (this.radarTask.type == TypesRadar.TASK_DARK_LEGION) {
+        //     RedirectionToScene.redirect(SceneNames.BATTLE);
+        // }
+        // else if (this.radarTask.type == TypesRadar.TASK_PERSONAL) {
+        //     RedirectionToScene.redirect(SceneNames.BATTLE);
+        // }
+
+        ModalRadarLogic.instance.openRadarTask(this.radarTask);
     }
 }

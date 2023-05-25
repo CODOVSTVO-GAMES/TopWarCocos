@@ -9,6 +9,8 @@ import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGa
 import { ModalRadarInterface } from './ModalRadarInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
+import { RadarTask } from '../../../Structures/RadarTask';
+import { ModalRadarTaskInterface } from '../ModalRadarTask/ModalRadarTaskInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
@@ -16,16 +18,19 @@ export class ModalRadarLogic extends Component {
 
     public static instance: ModalRadarLogic;
 
+    @property({ type: Node })
+    public modalRadarTask: Node;
+
     public maxEnergy: number;
     public maxDisplayedTasks: number;
     public maxTasks: number;
     public timerCoroutine: any;
 
     public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OVERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
-    [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
-    [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
-    [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
-    [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
+                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
+                                            [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
+                                            [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
+                                            [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
 
     onLoad() {
         ModalRadarLogic.instance = this;
@@ -77,6 +82,15 @@ export class ModalRadarLogic extends Component {
     // endTask(task: RadarTask) {
 
     // }
+
+    openRadarTask(task: RadarTask) {
+        ModalRadarTaskInterface.instance.updateInterface(task);
+        this.modalRadarTask.active = true;
+    }
+
+    closeRadarTask() {
+        this.modalRadarTask.active = false;
+    }
 
     timeZero() {
         ControllerRadarStorage.equateRadarTime(1);

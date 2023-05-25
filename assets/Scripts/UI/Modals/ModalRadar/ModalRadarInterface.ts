@@ -89,10 +89,10 @@ export class ModalRadarInterface extends Component {
                 task.setParent(this.parentNode);
                 let x = Math.floor(Math.random() * 200);
                 let y = Math.floor(Math.random() * 200);
-                if (Math.floor(Math.random()) == 1) {
+                if (Math.floor(Math.random() * 2) == 1) {
                     x *= -1;
                 }
-                if (Math.floor(Math.random()) == 1) {
+                if (Math.floor(Math.random() * 2) == 1) {
                     y *= -1;
                 }
                 task.position = new Vec3(x, y, 0);
