@@ -47,7 +47,7 @@ export class TroopRender extends Component {
         this.hpText.string = this.unitInfo.hp.toString();
         this.sliderObject.fillRange = this.unitInfo.hp / this.unitInfo.availableHp;
         if (type != null && level != null) {
-            this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(type, level);
+            this.spriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(type, level);
         }
     }
 

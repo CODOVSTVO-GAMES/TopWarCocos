@@ -7,6 +7,8 @@ export class PrefabsStorage extends Component {
 
     public static instance: PrefabsStorage;
 
+    // =================================================================
+
     @property({ type: Prefab })
     private troopAir: Prefab;
 
@@ -46,18 +48,24 @@ export class PrefabsStorage extends Component {
     @property({ type: Prefab })
     private expedition: Prefab;
 
-
     @property({ type: Prefab })
     private wall: Prefab;
 
     @property({ type: Prefab })
     private battle: Prefab;
 
+    // =================================================================
+
+    @property({ type: Prefab })
+    private itemBackpack: Prefab;
+
+    // =================================================================
+
     onLoad() {
         PrefabsStorage.instance = this;
     }
 
-    getPrefab(type: string): Prefab {
+    getObjectPrefab(type: string): Prefab {
         if (type == TypesObjects.TROOP_AIR) return this.troopAir;
         else if (type == TypesObjects.TROOP_MARINE) return this.troopMarine;
         else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverland;
@@ -74,11 +82,13 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.LOBBY_WARS) return this.lobbyWar;
         else if (type == TypesObjects.EXPEDITION) return this.expedition;
 
-
-
         else if (type == TypesObjects.WALL) return this.wall;
         else if (type == TypesObjects.BATTLE) return this.battle;
         else return null;
+    }
+
+    getItemBackpack(): Prefab {
+        return this.itemBackpack;
     }
 }
 

@@ -27,7 +27,7 @@ export class ControllerInventoryStorage {
         for (let i = 0; i < TypesItems.FRAGMENTS.length; i++) {
             ControllerInventoryStorage.addItem(TypesItems.FRAGMENTS[i], 50);
         }
-        
+
         this.updateInvenoryStorage();
     }
 
@@ -60,6 +60,10 @@ export class ControllerInventoryStorage {
             }
         }
         this.updateInvenoryStorage();
+    }
+
+    static getInvenoryLength(): number {
+        return InventoryStorage.instance.inventory.length;
     }
 
     static getAllItems(): Array<Item> {

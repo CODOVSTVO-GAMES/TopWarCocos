@@ -35,7 +35,7 @@ export class CharacterSelection extends Component {
     saveRenderCharacter(index: number) {
         let characters = ControllerCharactrerStorage.getCharacters();
         characters[index] = CharactersStorage.instance.getRandomCharacter();
-        this.images[index].spriteFrame = SpriteStorage.instance.getSprite(characters[index].codeName, characters[index].level);
+        this.images[index].spriteFrame = SpriteStorage.instance.getObjectSprite(characters[index].codeName, characters[index].level);
         this.texts[index].string = "Ур. " + characters[index].level;
         Battle.instance.characterSelection();
     }

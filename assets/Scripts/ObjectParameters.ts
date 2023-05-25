@@ -45,7 +45,7 @@ export class ObjectParameters extends Component {
     }
 
     updateSprite() {
-        this.spriteObject.spriteFrame = SpriteStorage.instance.getSprite(this.type, this.level);
+        this.spriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(this.type, this.level);
     }
 
     onTransparencyObject() {

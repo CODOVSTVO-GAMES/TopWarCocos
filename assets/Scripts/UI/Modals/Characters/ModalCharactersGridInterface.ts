@@ -38,8 +38,8 @@ export class ModalCharacterGridInterface extends Component {
         this.sortedCharacters();
         for (let i = 0; i < this.charactersRendered.length; i++) {
             if (this.images[i] != null && this.names[i] != null && this.levels[i] != null && this.charactersRendered[i] != null) {
-                this.images[i].spriteFrame = SpriteStorage.instance.getSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
-                this.typeTroop[i].spriteFrame = SpriteStorage.instance.getSprite(this.charactersRendered[i].typeTroop, 0);
+                this.images[i].spriteFrame = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
+                this.typeTroop[i].spriteFrame = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].typeTroop, 0);
                 this.names[i].string = this.charactersRendered[i].codeName;
                 this.levels[i].string = "Ур. " + this.charactersRendered[i].level;
                 switch (this.charactersRendered[i].type) {

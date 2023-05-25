@@ -8,7 +8,7 @@ const { ccclass } = _decorator;
 export class SpawnObjects {
 
     static spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
-        let object = instantiate(PrefabsStorage.instance.getPrefab(type));
+        let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type));
         ControllerHomeMapStorage.setParent(object, index);
         object.getComponent(ObjectParameters).type = type;
         object.getComponent(ObjectParameters).level = level;
