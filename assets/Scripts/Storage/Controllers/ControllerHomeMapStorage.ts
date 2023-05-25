@@ -27,20 +27,6 @@ export class ControllerHomeMapStorage {
             objParam.index = json.index;
             this.setObjectParameter(objParam, objParam.type, objParam.index);
         }
-        setTimeout(() => {
-            for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-                if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
-                if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) {
-                    HomeMapStorage.instance.arrayObjectParameters[i] = null;
-                    continue;
-                }
-                SpawnObjects.spawnObjectsPos(
-                    HomeMapStorage.instance.arrayObjectParameters[i].type,
-                    HomeMapStorage.instance.arrayObjectParameters[i].level,
-                    HomeMapStorage.instance.arrayObjectParameters[i].index
-                );
-            }
-        }, 2000);
     }
 
     static setParent(object: Node, index: number) {
@@ -71,17 +57,15 @@ export class ControllerHomeMapStorage {
 
     static onTransparencyObjects() {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
-                HomeMapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
-            }
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            HomeMapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
         }
     }
 
     static offTransparencyObjects() {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
-                HomeMapStorage.instance.arrayObjectParameters[i].offTransparencyObject();
-            }
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            HomeMapStorage.instance.arrayObjectParameters[i].offTransparencyObject();
         }
     }
 
@@ -155,13 +139,10 @@ export class ControllerHomeMapStorage {
     static getQuantityObjectsByType(type: string): number {
         let quantity = 0;
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
-                if (HomeMapStorage.instance.arrayObjectParameters[i].index == i) {
-                    if (HomeMapStorage.instance.arrayObjectParameters[i].type == type) {
-                        quantity += 1;
-                    }
-                }
-            }
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
+            quantity += 1;
         }
         return quantity;
     }
@@ -169,15 +150,11 @@ export class ControllerHomeMapStorage {
     static getQuantityObjectsByTypeAndLevel(type: string, level: number): number {
         let quantity = 0;
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
-                if (HomeMapStorage.instance.arrayObjectParameters[i].index == i) {
-                    if (HomeMapStorage.instance.arrayObjectParameters[i].type == type) {
-                        if (HomeMapStorage.instance.arrayObjectParameters[i].level == level) {
-                            quantity += 1;
-                        }
-                    }
-                }
-            }
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].level == level) continue;
+            quantity += 1;
         }
         return quantity;
     }
@@ -193,15 +170,13 @@ export class ControllerHomeMapStorage {
     static updateHomeMapStorage() {
         let obj: Object[] = [];
         for (let i = 0; i < HomeMapStorage.instance.arrayObjectParameters.length; i++) {
-            if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
-                if (HomeMapStorage.instance.arrayObjectParameters[i].index == i) {
-                    obj.push({
-                        type: HomeMapStorage.instance.arrayObjectParameters[i].type,
-                        level: HomeMapStorage.instance.arrayObjectParameters[i].level,
-                        index: HomeMapStorage.instance.arrayObjectParameters[i].index
-                    });
-                }
-            }
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            obj.push({
+                type: HomeMapStorage.instance.arrayObjectParameters[i].type,
+                level: HomeMapStorage.instance.arrayObjectParameters[i].level,
+                index: HomeMapStorage.instance.arrayObjectParameters[i].index
+            });
         }
         ControllerBufferStorage.addItem(TypesStorages.HOME_MAP_STORAGE, obj);
     }

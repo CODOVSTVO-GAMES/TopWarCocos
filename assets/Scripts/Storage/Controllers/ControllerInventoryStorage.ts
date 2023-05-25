@@ -32,7 +32,6 @@ export class ControllerInventoryStorage {
     }
 
     static assigningSaveValues(obj: Object[]) {
-        console.log(obj);
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj));
             InventoryStorage.instance.inventory.push(new Item(json.type, json.quantity));

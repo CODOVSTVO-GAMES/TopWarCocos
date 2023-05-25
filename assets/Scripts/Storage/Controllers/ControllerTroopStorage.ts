@@ -11,18 +11,16 @@ export class ControllerTroopStorage {
         TroopStorage.instance.sizeTroopOverland = new Array(TroopStorage.instance.sizeTroopStorage);
 
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(i) != null) {
-                if (ControllerHomeMapStorage.getObjectParameter(i).index == i) {
-                    if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
-                        TroopStorage.instance.sizeTroopAir[ControllerHomeMapStorage.getObjectParameter(i).level - 1] += 1;
-                    }
-                    else if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
-                        TroopStorage.instance.sizeTroopMarine[ControllerHomeMapStorage.getObjectParameter(i).level - 1] += 1;
-                    }
-                    else if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_OVERLAND) {
-                        TroopStorage.instance.sizeTroopOverland[ControllerHomeMapStorage.getObjectParameter(i).level - 1] += 1;
-                    }
-                }
+            if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
+            if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;
+            if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
+                TroopStorage.instance.sizeTroopAir[ControllerHomeMapStorage.getObjectParameter(i).level - 1] += 1;
+            }
+            else if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
+                TroopStorage.instance.sizeTroopMarine[ControllerHomeMapStorage.getObjectParameter(i).level - 1] += 1;
+            }
+            else if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_OVERLAND) {
+                TroopStorage.instance.sizeTroopOverland[ControllerHomeMapStorage.getObjectParameter(i).level - 1] += 1;
             }
         }
     }

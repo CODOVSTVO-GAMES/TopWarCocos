@@ -2,6 +2,9 @@ import { _decorator, Component, Node } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { HighlightHomeMap } from './HighlightHomeMap';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
+import { SpawnObjects } from '../SpawnObjects';
+import { TypesStorages } from '../Static/TypesStorages';
+import { DataStorageService } from '../Network/services/DataStorageService';
 const { ccclass, property } = _decorator;
 
 @ccclass('InitHomeMap')
@@ -14,8 +17,10 @@ export class InitHomeMap extends Component {
     public backgraund: Node;
 
     onLoad() {
+        console.log("InitHomeMap OnLoad");
         this.fillParentObject();
         this.fillArrayCoords();
+        SpawnObjects.spawnObjectsFromStorage();
     }
 
     fillParentObject() {
