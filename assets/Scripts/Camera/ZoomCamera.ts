@@ -1,6 +1,5 @@
 import { _decorator, Component, Node, EventMouse, Camera } from 'cc';
 import { Canvas } from '../Canvas/Canvas';
-import { BufferStorage } from '../Storage/BufferStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ZoomCamera')

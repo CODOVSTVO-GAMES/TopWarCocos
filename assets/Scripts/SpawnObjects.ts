@@ -7,6 +7,17 @@ const { ccclass } = _decorator;
 @ccclass('SpawnObjects')
 export class SpawnObjects {
 
+    static spawnObjectsFromStorage() {
+        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
+            if (ControllerHomeMapStorage.getObjectParameter(i) == null) {
+                console.log("NULL OBJECT");
+                continue;
+            }
+            if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;
+            this.spawnObjectsPos(ControllerHomeMapStorage.getObjectParameter(i).type, ControllerHomeMapStorage.getObjectParameter(i).level, ControllerHomeMapStorage.getObjectParameter(i).index);
+        }
+    }
+
     static spawnObjectsPos(type: string, level: number, index: number): ObjectParameters {
         let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type));
         ControllerHomeMapStorage.setParent(object, index);

@@ -57,6 +57,8 @@ export class TouchObject extends Component {
         HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.getWorldPosition());
 
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
+        this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
         this.initialIndex = this.objectParameters.index;
@@ -144,46 +146,25 @@ export class TouchObject extends Component {
 
         if (count > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) {
-                    ControllerHomeMapStorage.upgradeLevel(indexObject - arrayIndexs[indexMerge]);
-                    this.mainObject.destroy();
-                }
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
             }
             else {
                 this.putAnObject(this.initialIndex);
@@ -192,6 +173,11 @@ export class TouchObject extends Component {
         else {
             this.putAnObject(indexObject);
         }
+    }
+
+    mergeObject(index: number) {
+        ControllerHomeMapStorage.upgradeLevel(index);
+        this.mainObject.destroy();
     }
 
     putAnObject(index: number) {

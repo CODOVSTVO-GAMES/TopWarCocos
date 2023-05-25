@@ -1,13 +1,9 @@
 import { _decorator, Component, Node, Label } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
-import { TypesObjects } from '../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectInterface')
 export class ObjectInterface extends Component {
-
-    @property({ type: Node })
-    public messageObject: Node;
 
     @property({ type: Node })
     public titleObject: Node;
@@ -24,9 +20,6 @@ export class ObjectInterface extends Component {
     private objectParameters: ObjectParameters;
 
     public openInterface(objectParameters: ObjectParameters) {
-        if (this.messageObject) {
-            this.messageObject.active = true;
-        }
         this.titleObject.active = true;
         this.levelObject.active = true;
         this.objectParameters = objectParameters;
@@ -34,9 +27,6 @@ export class ObjectInterface extends Component {
     }
 
     public closeInterface() {
-        if (this.messageObject) {
-            this.messageObject.active = false;
-        }
         this.titleObject.active = false;
         this.levelObject.active = false;
     }
