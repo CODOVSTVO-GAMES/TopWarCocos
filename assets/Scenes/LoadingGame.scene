@@ -56,7 +56,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 49
+      "__id__": 52
     },
     "_id": "744fc833-9456-4b30-a2f3-125339ab5e26"
   },
@@ -661,12 +661,15 @@
       },
       {
         "__id__": 45
+      },
+      {
+        "__id__": 48
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 48
+        "__id__": 51
       }
     ],
     "_prefab": null,
@@ -2019,6 +2022,105 @@
     "_id": "59E+su1CpCiaST5mPZi4AL"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "Bufer",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 19
+    },
+    "_children": [
+      {
+        "__id__": 49
+      }
+    ],
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "28mbYFKeJLx4FQhLswxuRU"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "BuferTasks",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 48
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 50
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "f4dtpy2hJPnrcBnkyLcMev"
+  },
+  {
+    "__type__": "a930cphg6ZChJV24T8ml4lo",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 49
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_id": "e6/X4V4l1Al6bFY8Sr+Mqr"
+  },
+  {
     "__type__": "60f9eHQfzZAALhzVlwtFqZ7",
     "_name": "",
     "_objFlags": 0,
@@ -2032,22 +2134,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 50
-    },
-    "shadows": {
-      "__id__": 51
-    },
-    "_skybox": {
-      "__id__": 52
-    },
-    "fog": {
       "__id__": 53
     },
-    "octree": {
+    "shadows": {
       "__id__": 54
     },
-    "lightProbeInfo": {
+    "_skybox": {
       "__id__": 55
+    },
+    "fog": {
+      "__id__": 56
+    },
+    "octree": {
+      "__id__": 57
+    },
+    "lightProbeInfo": {
+      "__id__": 58
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

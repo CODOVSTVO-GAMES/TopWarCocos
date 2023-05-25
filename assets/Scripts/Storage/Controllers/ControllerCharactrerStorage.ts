@@ -25,7 +25,6 @@ export class ControllerCharactrerStorage {
     }
 
     static assigningSaveValues(obj: Object[]) {
-        console.log(obj);
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]));
             let config = ControllerConfigStorage.getHeroConfigByCodeName(json.codeName);

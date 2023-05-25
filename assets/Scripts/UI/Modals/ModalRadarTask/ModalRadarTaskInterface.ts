@@ -5,6 +5,7 @@ import { TypesItems } from '../../../Static/TypesItems';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
 import { ModalRadarTaskLogic } from './ModalRadarTaskLogic';
+import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskInterface')
@@ -81,9 +82,15 @@ export class ModalRadarTaskInterface extends Component {
 
     startTimer() {
         let timer = setInterval(() => {
-            let time = ModalRadarTaskLogic.instance.task.time;
-            if (SecondaryInterface.instance.getTypeActiveModal() == TypesModals.RADAR && time > 0) {
-                this.title.string = "Задание завершится через " + time;
+            if (ModalRadarTaskLogic.instance.task != null) {
+                let time = ModalRadarTaskLogic.instance.task.time;
+                if (ModalRadarLogic.instance.modalRadarTask.active && time > 0) {
+                    ModalRadarTaskLogic.instance.task.time--;
+                    this.title.string = "Задание завершится через " + time;
+                }
+                else {
+                    clearInterval(timer);
+                }
             }
             else {
                 clearInterval(timer);

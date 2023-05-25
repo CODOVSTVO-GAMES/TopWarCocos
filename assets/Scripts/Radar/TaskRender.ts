@@ -40,17 +40,13 @@ export class TaskRender extends Component {
     }
 
     pushTask() {
-        // console.log(this.radarTask);
-        // if (this.radarTask.type == TypesRadar.TASK_SALVATION) {
-        //     RedirectionToScene.redirect(SceneNames.BATTLE);
-        // }
-        // else if (this.radarTask.type == TypesRadar.TASK_DARK_LEGION) {
-        //     RedirectionToScene.redirect(SceneNames.BATTLE);
-        // }
-        // else if (this.radarTask.type == TypesRadar.TASK_PERSONAL) {
-        //     RedirectionToScene.redirect(SceneNames.BATTLE);
-        // }
-
-        ModalRadarLogic.instance.openRadarTask(this.radarTask);
+        console.log(this.radarTask.status)
+        if (this.radarTask.status < 2) {
+            ModalRadarLogic.instance.openRadarTask(this.radarTask);
+        }
+        else {
+            ModalRadarLogic.instance.endTask(this.radarTask);
+            this.obj.destroy();
+        }
     }
 }

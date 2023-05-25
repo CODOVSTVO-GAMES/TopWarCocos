@@ -98,7 +98,7 @@ export class ControllerRadarStorage {
     }
 
     static equateRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
-        RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, reward));
+        RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, 0, reward));
     }
 
     static updateRadarStorage() {
@@ -108,6 +108,7 @@ export class ControllerRadarStorage {
                 type: RadarStorage.instance.tasks[i].type,
                 stars: RadarStorage.instance.tasks[i].stars,
                 time: RadarStorage.instance.tasks[i].time,
+                status: RadarStorage.instance.tasks[i].status,
                 rewards: RadarStorage.instance.tasks[i].rewards
             });
         }
