@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Node, Label } from 'cc';
 import { ControllerInventoryStorage } from '../../../Storage/Controllers/ControllerInventoryStorage';
 import { PrefabsStorage } from '../../../Storage/PrefabsStorage';
 const { ccclass, property } = _decorator;
@@ -10,6 +10,12 @@ export class ModalBackpackInterface extends Component {
 
     @property({ type: Node })
     private parentContent: Node;
+
+    @property({ type: Label })
+    private titleSelectItem: Label;
+
+    @property({ type: Label })
+    private usageQuantitySelectItem: Label;
 
     onLoad() {
         ModalBackpackInterface.instance = this;

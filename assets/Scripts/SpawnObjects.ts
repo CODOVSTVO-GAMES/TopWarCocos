@@ -9,10 +9,7 @@ export class SpawnObjects {
 
     static spawnObjectsFromStorage() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(i) == null) {
-                console.log("NULL OBJECT");
-                continue;
-            }
+            if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
             if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;
             this.spawnObjectsPos(ControllerHomeMapStorage.getObjectParameter(i).type, ControllerHomeMapStorage.getObjectParameter(i).level, ControllerHomeMapStorage.getObjectParameter(i).index);
         }

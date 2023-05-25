@@ -12,7 +12,7 @@ export class ModalBackpackLogic extends Component {
 
     public usageQuantitySelectItem: number;
 
-    delete() {
+    deleteItem() {
         ControllerInventoryStorage.reduceItem(this.typeItem, this.usageQuantitySelectItem);
         ModalBackpackInterface.instance.updateInterface();
     }
@@ -29,7 +29,7 @@ export class ModalBackpackLogic extends Component {
         }
     }
 
-    apply() {
+    applyItem() {
 
     }
 }
