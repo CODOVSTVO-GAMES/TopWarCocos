@@ -13,7 +13,6 @@ import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCh
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
 import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
-import { PaymentsService } from './services/PaymentsService';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
 const { ccclass } = _decorator;
 

@@ -10,7 +10,9 @@ export class OkConnector {
         this.addJavaScript(this.SDK_URL).then(
             () => {
                 var rParams = FAPI.Util.getRequestParameters();
-                FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { console.log("FAPI init"); OkConnector.getUserInfo() }, function () {
+                // console.log('referer: ' + rParams['referer'])
+                // console.log('locationip: ' + rParams['ip_geo_location'])
+                FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { OkConnector.ifSDKReady() }, function () {
                     console.log('FAPI error');
                     if (!TechnicalConfig.ISPROD) {
                         LoadingGame.getUser()
@@ -20,7 +22,13 @@ export class OkConnector {
                 })
             }
         )
+    }
+
+    static ifSDKReady() {
+        console.log("FAPI init")
         OkConnector.setApiCallback()
+        OkConnector.getUserInfo()
+        FAPI.UI.getPageInfo()
     }
 
     static getUserInfo() {
@@ -28,16 +36,23 @@ export class OkConnector {
     }
 
     static showPayment(title: string, description: string, code: string, price: number) {
-        FAPI.UI.showPayment(title, description, code, price, null, null, "ok", "true")
+        FAPI.UI.showPayment(title, description, code, price, null, null, "ok", "true")// можем прокинуть айди аккаунта в сервис
     }
 
-    static addJavaScript(src: string) {
-        return new Promise(resolve => {
-            let script = document.createElement('script')
-            script.src = src
-            script.addEventListener('load', resolve)
-            document.head.appendChild(script)
-        })
+    static loadRewardedAd() {
+        FAPI.UI.loadAd();
+    }
+
+    static showRewardedAd() {
+        FAPI.UI.showLoadedAd()
+    }
+
+    static showInterstitialAd() {
+        FAPI.UI.showAd()
+    }
+
+    static showRatingDialog() {
+        FAPI.UI.showRatingDialog();
     }
 
     static callbackUserGetInfo(status, data, error) {
@@ -50,12 +65,84 @@ export class OkConnector {
         }
     }
 
+    static showInvite() {
+        FAPI.UI.showInvite("Поиграй в мою игру!", "showInviteMyArg1=kek");
+        // в случае успеха возвращает в API_callback третьим параметром строку, в которой через запятую указаны id приглашенных друзей
+    }
+
+    static joinGroup() {
+        FAPI.UI.joinGroup(123123123, true); // при запросе написать проверку на участие в группе
+    }
+
+    static addJavaScript(src: string) {
+        return new Promise(resolve => {
+            let script = document.createElement('script')
+            script.src = src
+            script.addEventListener('load', resolve)
+            document.head.appendChild(script)
+        })
+    }
+
     static setApiCallback() {
         window.API_callback = (method: string, result: string, data: string) => {
-            if (method == 'showPayment') {
-                console.log('Статус платежа ' + result)
-                if (result == 'ok') {
-                    console.log("куплены предметы: " + data)
+
+            switch (method) {
+                case 'showPayment': {
+                    console.log('Статус платежа ' + result)
+                    if (result == 'ok') {
+                        console.log("куплены предметы: " + data)
+                    }
+                }
+                case 'loadRewardedAd': {
+                    if (result == 'ok') {
+                        console.log("Реклама с наградой загружена: " + data)
+                    }
+                    else {
+                        console.log("Реклама с наградой ошибка: " + data)
+                    }
+                }
+                case 'showLoadedAd': {
+                    if (result == 'ok') {
+                        console.log("Реклама с наградой показана: " + data)
+                    }
+                    else {
+                        console.log("Реклама с наградой ошибка показа: " + data)
+                    }
+                }
+                case 'showAd': {
+                    if (result == 'ok') {
+                        if (data == 'ready' || data == 'ad_prepared') {
+                            console.log("Реклама показывается: " + data)
+                        } else if (data == 'ad_shown') {
+                            console.log("Реклама показана: " + data)
+                        }
+                        else {
+                            console.log("Реклама статус: " + data)
+                        }
+                    }
+                    else {
+                        console.log("Реклама ошибка показа: " + data)//при дебаге принтануть резалт
+                    }
+                }
+                case 'showInvite': {
+                    if (result == 'ok') {
+                        console.log('showInvite ok ' + data)
+                    }
+                    else if (result == 'cancel') {
+                        console.log('showInvite cancel ' + data)
+                    }
+                    else {
+                        console.log('showInvite error ' + data)
+                    }
+                }
+                case 'showRatingDialog': {
+                    console.log("юзер поставил рейтинг " + data)
+                }
+                case 'joinGroup': {
+                    console.log("ивент вступления в группу. Результат " + data)
+                }
+                case 'getPageInfo': {
+                    console.log("page info " + data)
                 }
             }
         }

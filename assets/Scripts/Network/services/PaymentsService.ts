@@ -12,7 +12,7 @@ export class PaymentsService {
         else {
             // console.log("products get done")
             let productArray: Array<Product> = []
-            console.log(data)
+            // console.log(data)
             let array: object[] = JSON.parse(JSON.stringify(data))
             for (let l = 0; l < array.length; l++) {
                 let obj = array[l]
