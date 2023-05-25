@@ -508,7 +508,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 23
@@ -526,7 +526,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 100,
+      "y": 150,
       "z": 0
     },
     "_lrot": {
@@ -565,8 +565,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 40,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -702,8 +702,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "bbb76DQFClHb6bXZrcOUmXY",
-    "handler": "createTroop",
+    "_componentId": "9c3ed6a0iZK955uAozA6sQs",
+    "handler": "clickRadar",
     "customEventData": ""
   },
   {
@@ -1063,9 +1063,6 @@
     "_enabled": true,
     "__prefab": {
       "__id__": 48
-    },
-    "messageObject": {
-      "__id__": 22
     },
     "titleObject": {
       "__id__": 31

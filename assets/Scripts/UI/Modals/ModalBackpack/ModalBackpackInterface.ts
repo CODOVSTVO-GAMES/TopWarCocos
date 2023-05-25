@@ -42,4 +42,3 @@ export class ModalBackpackInterface extends Component {
         this.usageQuantitySelectItem.string = ModalBackpackLogic.instance.usageQuantitySelectItem.toString();
     }
 }
-

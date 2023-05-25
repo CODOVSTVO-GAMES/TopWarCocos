@@ -71,7 +71,7 @@ export class ModalBackpackLogic extends Component {
     }
 
     applyItem() {
-
-    }
+        console.log("applyItem");
+    }       
 }
 

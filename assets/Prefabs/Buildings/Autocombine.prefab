@@ -526,7 +526,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 180,
+      "y": 150,
       "z": 0
     },
     "_lrot": {
@@ -703,7 +703,7 @@
     },
     "component": "",
     "_componentId": "ede91ETQnZDk7UW8C69v70Y",
-    "handler": "click",
+    "handler": "clickAutocombine",
     "customEventData": ""
   },
   {
@@ -1064,7 +1064,6 @@
     "__prefab": {
       "__id__": 48
     },
-    "messageObject": null,
     "titleObject": {
       "__id__": 31
     },
