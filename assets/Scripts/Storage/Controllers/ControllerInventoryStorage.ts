@@ -21,6 +21,10 @@ export class ControllerInventoryStorage {
         this.addItem(TypesItems.PLAN_MAX_BARRACK_MARINE, 100);
         this.addItem(TypesItems.PLAN_MAX_BARRACK_OVERLAND, 100);
 
+        this.addItem(TypesItems.PLAN_CREATE_BARRACK_AIR, 100);
+        this.addItem(TypesItems.PLAN_CREATE_BARRACK_MARINE, 100);
+        this.addItem(TypesItems.PLAN_CREATE_BARRACK_OVERLAND, 100);
+
         for (let i = 0; i < TypesItems.BOOKS.length; i++) {
             ControllerInventoryStorage.addItem(TypesItems.BOOKS[i], 12)
         }
@@ -33,7 +37,7 @@ export class ControllerInventoryStorage {
 
     static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
-            let json = JSON.parse(JSON.stringify(obj));
+            let json = JSON.parse(JSON.stringify(obj[i]));
             InventoryStorage.instance.inventory.push(new Item(json.type, json.quantity));
         }
     }
@@ -55,6 +59,9 @@ export class ControllerInventoryStorage {
         for (let i = 0; i < InventoryStorage.instance.inventory.length; i++) {
             if (InventoryStorage.instance.inventory[i].type == type) {
                 InventoryStorage.instance.inventory[i].quantity -= quantity;
+                if (InventoryStorage.instance.inventory[i].quantity == 0) {
+                    InventoryStorage.instance.inventory.splice(i, 1);
+                }
                 return this.updateInvenoryStorage();
             }
         }
@@ -76,6 +83,14 @@ export class ControllerInventoryStorage {
             }
         }
         return 0;
+    }
+
+    static getQuantityByIndex(index: number): number {
+        return InventoryStorage.instance.inventory[index].quantity;
+    }
+
+    static getTypeByIndex(index: number): string {
+        return InventoryStorage.instance.inventory[index].type;
     }
 
     static updateInvenoryStorage() {

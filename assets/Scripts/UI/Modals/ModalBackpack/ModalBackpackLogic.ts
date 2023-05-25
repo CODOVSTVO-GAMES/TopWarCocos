@@ -1,19 +1,51 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { ControllerInventoryStorage } from '../../../Storage/Controllers/ControllerInventoryStorage';
 import { ModalBackpackInterface } from './ModalBackpackInterface';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('ModalBackpackLogic')
 export class ModalBackpackLogic extends Component {
 
-    public typeItem: string;
+    public static instance: ModalBackpackLogic;
+
+    public typeSelectItem: string;
 
     public quantitySelectItem: number;
 
     public usageQuantitySelectItem: number;
 
+    onLoad() {
+        ModalBackpackLogic.instance = this;
+    }
+
+    openModalBackpack() {
+        if (ControllerInventoryStorage.getInvenoryLength() > 0) {
+            this.typeSelectItem = ControllerInventoryStorage.getTypeByIndex(0);
+            this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+            this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        }
+    }
+
     deleteItem() {
-        ControllerInventoryStorage.reduceItem(this.typeItem, this.usageQuantitySelectItem);
+        if (ControllerInventoryStorage.getQuantityByType(this.typeSelectItem) == this.usageQuantitySelectItem) {
+            ControllerInventoryStorage.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
+            if (ControllerInventoryStorage.getInvenoryLength() > 0) {
+                console.log("FULL DELETE ITEM");
+                this.typeSelectItem = ControllerInventoryStorage.getTypeByIndex(0);
+                this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+                this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+            }
+            else {
+                this.typeSelectItem = "";
+                this.quantitySelectItem = 0;
+                this.usageQuantitySelectItem = 0;
+            }
+        }
+        else {
+            ControllerInventoryStorage.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
+            this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+            this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        }
         ModalBackpackInterface.instance.updateInterface();
     }
 
@@ -21,12 +53,21 @@ export class ModalBackpackLogic extends Component {
         if (this.quantitySelectItem > this.usageQuantitySelectItem) {
             this.usageQuantitySelectItem += 1;
         }
+        ModalBackpackInterface.instance.updateInterface();
     }
 
     reduceQuantitySelectItem() {
         if (this.usageQuantitySelectItem > 0) {
             this.usageQuantitySelectItem -= 1;
         }
+        ModalBackpackInterface.instance.updateInterface();
+    }
+
+    selectItem(type: string) {
+        this.typeSelectItem = type;
+        this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        ModalBackpackInterface.instance.updateInterface();
     }
 
     applyItem() {

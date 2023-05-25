@@ -55,7 +55,7 @@ export class ModalCharacterInfoIntarface extends Component {
             this.damage.string = character.damage.toString();
             this.defense.string = character.defense.toString();
             this.leadership.string = character.leadership.toString();
-            this.experience.string = character.experience.toString();
+            // this.experience.string = character.experience.toString();
             this.combatPower.string = "210";
             this.sliderLevel.fillRange = character.experience / ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
             this.sliderStars.fillRange = character.stars % 5 / 5;

@@ -9,6 +9,7 @@ import { ModalRadarInterface } from './Modals/ModalRadar/ModalRadarInterface';
 import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInterface';
 import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
 import { ModalBankInterface } from './Modals/ModalBank/ModalBankInterface';
+import { ModalBackpackLogic } from './Modals/ModalBackpack/ModalBackpackLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -122,6 +123,7 @@ export class SecondaryInterface extends Component {
             this.repairShop.active = true;
         }
         else if (type == TypesModals.BACKPACK) {
+            ModalBackpackLogic.instance.openModalBackpack();
             ModalBackpackInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.backpack.active = true;

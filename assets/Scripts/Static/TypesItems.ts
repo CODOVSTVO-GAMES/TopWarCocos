@@ -1,17 +1,17 @@
 export class TypesItems {
-    public static PLAN_MAX_OVERLAND: string = "pmo";
-    public static PLAN_MAX_MARINE: string = "pmm";
-    public static PLAN_MAX_AIR: string = "pma";
-    public static PLAN_MAX_GOLD_MINE: string = "pmm";
-    public static PLAN_MAX_BARRACK_OVERLAND: string = "pmb";
-    public static PLAN_MAX_BARRACK_MARINE: string = "pmr";
-    public static PLAN_MAX_BARRACK_AIR: string = "pmair";
-    public static PLAN_MAX_MAINBUILDING: string = "pmbq";
+    public static PLAN_MAX_OVERLAND: string = "planMaxOverland";
+    public static PLAN_MAX_MARINE: string = "planMaxMarine";
+    public static PLAN_MAX_AIR: string = "planMaxAir";
+    public static PLAN_MAX_GOLD_MINE: string = "planMaxGoldMine";
+    public static PLAN_MAX_BARRACK_OVERLAND: string = "planMaxBarrackOverland";
+    public static PLAN_MAX_BARRACK_MARINE: string = "planMaxBarrackMarine";
+    public static PLAN_MAX_BARRACK_AIR: string = "planMaxBarrackAir";
+    public static PLAN_MAX_MAINBUILDING: string = "planMaxMainBuilding";
 
-    public static PLAN_CREATE_BARRACK_OVERLAND: string = "pcbo";
-    public static PLAN_CREATE_BARRACK_MARINE: string = "pcbm";
-    public static PLAN_CREATE_BARRACK_AIR: string = "pcba";
-    public static PLAN_CREATE_GOLD_MINE: string = "pcm";
+    public static PLAN_CREATE_BARRACK_OVERLAND: string = "planCreateBarrackOverland";
+    public static PLAN_CREATE_BARRACK_MARINE: string = "planCreateBarrackMarine";
+    public static PLAN_CREATE_BARRACK_AIR: string = "planCreateBarrackAir";
+    public static PLAN_CREATE_GOLD_MINE: string = "planCreateGoldMine";
 
     public static BOOK_EXP_GREEN: string = "beg";
     public static BOOK_EXP_WHITE: string = "bew";

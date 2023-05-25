@@ -25,9 +25,10 @@ export class ControllerCharactrerStorage {
     }
 
     static assigningSaveValues(obj: Object[]) {
-        let json = JSON.parse(JSON.stringify(obj));
+        console.log(obj);
         for (let i = 0; i < obj.length; i++) {
-            let config = ControllerConfigStorage.getHeroConfigByCodeName(json[i].codeName);
+            let json = JSON.parse(JSON.stringify(obj[i]));
+            let config = ControllerConfigStorage.getHeroConfigByCodeName(json.codeName);
             CharactersStorage.instance.characters.push(new CharacterInfo(json.level, json.experience, json.stars, config.startDamage + (config.coefDamage * json.level + 5), config.startDefense + (config.coefDefense * json.level + 5 * 1), config.startLeader, config.type, config.codeName, json.type));
         }
     }
