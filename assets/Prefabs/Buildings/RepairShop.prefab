@@ -520,7 +520,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 100,
+      "y": 150,
       "z": 0
     },
     "_lrot": {
@@ -559,8 +559,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 40,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1057,9 +1057,6 @@
     "_enabled": true,
     "__prefab": {
       "__id__": 48
-    },
-    "messageObject": {
-      "__id__": 22
     },
     "titleObject": {
       "__id__": 31

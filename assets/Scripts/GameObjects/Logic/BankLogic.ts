@@ -3,10 +3,10 @@ import { SecondaryInterface } from '../../UI/SecondaryInterface';
 import { TypesModals } from '../../Static/TypesModals';
 const { ccclass, property } = _decorator;
 
-@ccclass('AutocombineLogic')
-export class AutocombineLogic extends Component {
+@ccclass('BankLogic')
+export class BankLogic extends Component {
 
-    clickAutocombine() {
-        SecondaryInterface.instance.openModal(TypesModals.AUTOCOMBINE);
+    clickBank() {
+        SecondaryInterface.instance.openModal(TypesModals.BANK);
     }
 }
