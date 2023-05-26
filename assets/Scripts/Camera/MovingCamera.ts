@@ -47,17 +47,17 @@ export class MovingCamera extends Component {
         this.xPos -= e.getDelta().x;
         this.yPos -= e.getDelta().y;
 
-        if (this.xPos > 675) {
-            this.xPos = 675;
+        if (this.xPos > 1000) {
+            this.xPos = 1000;
         }
-        else if (this.xPos < -675) {
-            this.xPos = -675;
+        else if (this.xPos < -1000) {
+            this.xPos = -1000;
         }
-        if (this.yPos > 250) {
-            this.yPos = 250;
+        if (this.yPos > 1000) {
+            this.yPos = 1000;
         }
-        else if (this.yPos < -250) {
-            this.yPos = -250;
+        else if (this.yPos < -1000) {
+            this.yPos = -1000;
         }
     }
 

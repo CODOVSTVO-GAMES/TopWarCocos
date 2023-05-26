@@ -36,7 +36,7 @@ export class ZoomCamera extends Component {
             }
         }
         else if (scroll < 0) {
-            if (this.camera.orthoHeight < 700) {
+            if (this.camera.orthoHeight < 5000) {
                 scroll = 50;
             }
             else {
