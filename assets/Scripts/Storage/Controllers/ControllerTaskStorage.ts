@@ -12,48 +12,32 @@ import { TaskStorage } from "../TaskStorage";
 
 export class ControllerTaskStorage {
 
-    static completeTask(taskType: string, level: number) {
-        this.activateTaskType(taskType)
-
-        let array: Array<number> = this.getArrayByType(taskType)
-
-        array = this.completeTaskWithLevelLessAndThisLevel(array, level)
-
-        array = this.showNearestTasks(array)
-
-        this.saveArrayByType(taskType, array)
+    static setActiveTaskTypes(array: Array<string>) {
+        TaskStorage.instance.activeTaskTypes = array
     }
 
-    static activateTaskType(taskType: string) {
-        //активирует цепочку квестов по типу
+    static addActiveTaskTypes(taskType: string) {
         for (let l = 0; l < TaskStorage.instance.activeTaskTypes.length; l++) {
             if (TaskStorage.instance.activeTaskTypes[l] == taskType) {
                 return
             }
         }
         TaskStorage.instance.activeTaskTypes.push(taskType)
-        this.showNearestTasks(this.getArrayByType(taskType))
     }
 
-    static collectReward(taskType: string, level: number) {
-        let array: Array<number> = this.getArrayByType(taskType)
-
-        let reward = new TaskReward(TypesItems.GOLD, 500)//получить из стораджа
-
-        //начислить награду
-
-        //
-
-        //отметить награду полученой
-        array[level] = 3
-
-        //активировать следующие задачи
-        array = this.showNearestTasks(array)
-
-        this.saveArrayByType(taskType, array)
+    static getActiveTaskTypes() {
+        return TaskStorage.instance.activeTaskTypes
     }
 
-    private static getArrayByType(taskType: string): Array<number> {
+    static setMapTasks(array: Array<number>) {
+        TaskStorage.instance.mapTasks = array
+    }
+
+    static getMapTasks() {
+        return TaskStorage.instance.mapTasks
+    }
+
+    static getArrayByType(taskType: string): Array<number> {
         let array
         if (taskType == TaskTypes.OPEN_MAP) {
             array = TaskStorage.instance.mapTasks
@@ -63,27 +47,7 @@ export class ControllerTaskStorage {
         return array
     }
 
-    private static saveArrayByType(taskType: string, array: Array<number>) {
-        if (taskType == TaskTypes.OPEN_MAP) {
-            TaskStorage.instance.mapTasks = array
-        } else {
-            throw "не существует такого типа квестов"
-        }
-    }
-
-    private static completeTaskWithLevelLessAndThisLevel(array: Array<number>, level: number): Array<number> {
-        //таcк этого уровня и меньше меняют статус на получите награду
-        for (let l = 0; l < array.length; l++) {
-            if (l <= level) {
-                if (array[l] == 0 || array[l] == 1) {
-                    array[l] = 2
-                }
-            }
-        }
-        return array
-    }
-
-    private static showNearestTasks(array: Array<number>): Array<number> {
+    static showNearestTasks(array: Array<number>): Array<number> {
         //открывает 2 ближайшие задачи
         let bufferNumber = 0
         for (let l = 0; l <= array.length; l++) {
@@ -96,4 +60,23 @@ export class ControllerTaskStorage {
         return array
     }
 
+    static completeTaskWithLevelLessAndThisLevel(array: Array<number>, level: number): Array<number> {
+        //таcк этого уровня и меньше меняют статус на получите награду
+        for (let l = 0; l < array.length; l++) {
+            if (l <= level) {
+                if (array[l] == 0 || array[l] == 1) {
+                    array[l] = 2
+                }
+            }
+        }
+        return array
+    }
+
+    static saveArrayByType(taskType: string, array: Array<number>) {
+        if (taskType == TaskTypes.OPEN_MAP) {
+            this.setMapTasks(array)
+        } else {
+            throw "не существует такого типа квестов"
+        }
+    }
 }

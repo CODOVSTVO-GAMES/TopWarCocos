@@ -53,12 +53,11 @@ export class ModalRadarLogic extends Component {
 
     spawnTasks() {
         let radarTasks = ControllerRadarStorage.getRadarTasks();
-        if (radarTasks.length < this.maxDisplayedTasks) {
+        if (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             let stars = this.randomStars();
             ControllerRadarStorage.equateRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
-            ControllerRadarStorage.reduceRadarAvailableMissions(1);
+            ControllerRadarStorage.reduceRadarAvailableMissions(10);
         }
-        console.log(ControllerRadarStorage.getRadarTasks());
     }
 
     startTimer() {
@@ -101,7 +100,6 @@ export class ModalRadarLogic extends Component {
 
     sbros() {
         ControllerRadarStorage.assignStartingValues();
-        // ModalRadarInterface.instance.tasks = [];
     }
 
     timer() {

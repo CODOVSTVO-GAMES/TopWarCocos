@@ -8,6 +8,8 @@ export class TaskStorage extends Component {
 
     public activeTaskTypes: Array<string> = []
 
+    public bufferTasksInfo = new Map<string, number>()
+
     public mapTasks: Array<number> = new Array(100)
 
     protected onLoad(): void {

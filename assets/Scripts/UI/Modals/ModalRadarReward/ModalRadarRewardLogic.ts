@@ -24,13 +24,13 @@ export class ModalRadarRewardLogic extends Component {
     }
 
     openModalReward(task: RadarTask) {
+        this.task = task;
         this.modalRadarReward.active = true;
         ModalRadarRewardInterface.instance.updateInterface(task);
     }
 
     closeModalReward() {
         this.modalRadarReward.active = false;
-        ModalRadarTaskLogic.instance.task
         for (let i = 0; i < this.task.rewards.length; i++) {
             if (this.task.rewards[i].type != TypesItems.EXPERIENCE) {
                 ControllerInventoryStorage.addItem(this.task.rewards[i].type, this.task.rewards[i].quantity);
@@ -39,6 +39,7 @@ export class ModalRadarRewardLogic extends Component {
                 ControllerGameStorage.addExperience(this.task.rewards[i].quantity);
             }
         }
+        ControllerRadarStorage.addRadarExperience(1);
         ControllerRadarStorage.reduceRadarTask(this.task);
         ModalRadarLogic.instance.endTask();
     }

@@ -23,6 +23,7 @@ export class ModalRadarRewardInterface extends Component {
     @property({ type: SpriteFrame })
     public rewardSprites: SpriteFrame[] = [];
 
+    
     onLoad() {
         ModalRadarRewardInterface.instance = this;
     }
