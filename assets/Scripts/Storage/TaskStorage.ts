@@ -1,18 +1,18 @@
 import { _decorator, Component, Node } from 'cc';
-import { ActiveTask } from '../Structures/ActiveTask';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('TaskStorage')
 export class TaskStorage extends Component {
 
     public static instance: TaskStorage;
 
-    public mapTasksStatus: Array<boolean> = new Array(100).fill(false)
+    public activeTaskTypes: Array<string> = []
 
-    public activeTasks: Array<ActiveTask> = []
+    public mapTasks: Array<number> = new Array(100)
 
     protected onLoad(): void {
         TaskStorage.instance = this
+        this.mapTasks = this.mapTasks.fill(0)
     }
 
 }

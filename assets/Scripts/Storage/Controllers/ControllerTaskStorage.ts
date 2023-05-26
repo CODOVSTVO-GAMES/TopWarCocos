@@ -1,44 +1,99 @@
 import { TaskTypes } from "../../Static/TaskTypes";
-import { ActiveTask } from "../../Structures/ActiveTask";
-import { MainTask } from "../../tasks/MainTasks";
+import { TypesItems } from "../../Static/TypesItems";
+import { TaskReward } from "../../Structures/TaskReward";
 import { TaskStorage } from "../TaskStorage";
+
+/**
+ * 0-закрыт
+ * 1-показан
+ * 2-заберите награду
+ * 3-получен
+ */
 
 export class ControllerTaskStorage {
 
-    static updateActiveTask(task: ActiveTask) {
-        let ifThereIs = false
+    static completeTask(taskType: string, level: number) {
+        this.activateTaskType(taskType)
 
-        for (let l = 0; l < TaskStorage.instance.activeTasks.length; l++) {
-            if (TaskStorage.instance.activeTasks[l].level < task.level && TaskStorage.instance.activeTasks[l].type == task.type && task.isDone == true) {//если задача меньше левелом и пришедшая задача выполнена - ставим статус тру
-                TaskStorage.instance.activeTasks[l].isDone = true
-                continue
-            }
+        let array: Array<number> = this.getArrayByType(taskType)
 
-            if (TaskStorage.instance.activeTasks[l].level == task.level && TaskStorage.instance.activeTasks[l].type == task.type) {//если задача есть и она пришла выполненой - ставим ей тру
-                if (task.isDone == true) {
-                    TaskStorage.instance.activeTasks[l].isDone = true
-                }
-                ifThereIs = true
+        array = this.completeTaskWithLevelLessAndThisLevel(array, level)
+
+        array = this.showNearestTasks(array)
+
+        this.saveArrayByType(taskType, array)
+    }
+
+    static activateTaskType(taskType: string) {
+        //активирует цепочку квестов по типу
+        for (let l = 0; l < TaskStorage.instance.activeTaskTypes.length; l++) {
+            if (TaskStorage.instance.activeTaskTypes[l] == taskType) {
+                return
             }
         }
+        TaskStorage.instance.activeTaskTypes.push(taskType)
+        this.showNearestTasks(this.getArrayByType(taskType))
+    }
 
-        if (!ifThereIs) {//если задачи нет добавляем присланую задачу
-            TaskStorage.instance.activeTasks.push(task)
+    static collectReward(taskType: string, level: number) {
+        let array: Array<number> = this.getArrayByType(taskType)
+
+        let reward = new TaskReward(TypesItems.GOLD, 500)//получить из стораджа
+
+        //начислить награду
+
+        //
+
+        //отметить награду полученой
+        array[level] = 3
+
+        //активировать следующие задачи
+        array = this.showNearestTasks(array)
+
+        this.saveArrayByType(taskType, array)
+    }
+
+    private static getArrayByType(taskType: string): Array<number> {
+        let array
+        if (taskType == TaskTypes.OPEN_MAP) {
+            array = TaskStorage.instance.mapTasks
+        } else {
+            throw "не существует такого типа квестов"
+        }
+        return array
+    }
+
+    private static saveArrayByType(taskType: string, array: Array<number>) {
+        if (taskType == TaskTypes.OPEN_MAP) {
+            TaskStorage.instance.mapTasks = array
+        } else {
+            throw "не существует такого типа квестов"
         }
     }
 
-    static collectTask(task: ActiveTask) {
-        for (let l = 0; l < TaskStorage.instance.activeTasks.length; l++) {
-            if (TaskStorage.instance.activeTasks[l].level == task.level && TaskStorage.instance.activeTasks[l].type == task.type) {
-                console.log('начислить награду ' + task.reward)
-                TaskStorage.instance.activeTasks.splice(l, 1) //должно удалить только задачу с таким номером. Не тестировал
-                break
+    private static completeTaskWithLevelLessAndThisLevel(array: Array<number>, level: number): Array<number> {
+        //таcк этого уровня и меньше меняют статус на получите награду
+        for (let l = 0; l < array.length; l++) {
+            if (l <= level) {
+                if (array[l] == 0 || array[l] == 1) {
+                    array[l] = 2
+                }
             }
         }
-        if (task.type == TaskTypes.OPEN_MAP) {//костыль. Перепишется при написании нескольких типов квестов
-            MainTask.openMap(task.level + 1)
-        }
+        return array
+    }
 
+    private static showNearestTasks(array: Array<number>): Array<number> {
+        //открывает 2 ближайшие задачи
+        let bufferNumber = 0
+        for (let l = 0; l <= array.length; l++) {
+            if (array[l] == 0 || array[l] == 1) {
+                array[l] = 1
+                bufferNumber++
+            }
+            if (bufferNumber >= 2) { break }
+        }
+        return array
     }
 
 }
