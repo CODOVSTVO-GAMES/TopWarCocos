@@ -18,18 +18,12 @@ export class HomeMapStorage extends Component {
     public arrayObjectParameters: ObjectParameters[] = [];
 
     public coords: Node[] = [];
-    public cellFree: Node[] = [];
-    public cellSelected: Node[] = [];
-    public cellBlock: Node[] = [];
-    public cellHint: Node[] = [];
+    public cellBackgraund: Node[] = [];
 
     onLoad() {
         HomeMapStorage.instance = this;
         this.coords = new Array(this.mapSize);
         this.arrayObjectParameters = new Array(this.mapSize);
-        this.cellFree = new Array(this.mapSize);
-        this.cellSelected = new Array(this.mapSize);
-        this.cellBlock = new Array(this.mapSize);
-        this.cellHint = new Array(this.mapSize);
+        this.cellBackgraund = new Array(this.mapSize);
     }
 }

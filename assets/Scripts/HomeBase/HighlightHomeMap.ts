@@ -7,7 +7,7 @@ export class HighlightHomeMap {
 
     static initCellFree() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellFree[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellBackground;
+            HomeMapStorage.instance.cellBackgraund[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellBackground;
         }
         this.closeCellFree();
     }
@@ -15,7 +15,7 @@ export class HighlightHomeMap {
     static openCellFree() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) {
-                HomeMapStorage.instance.cellFree[i].active = true;
+                HomeMapStorage.instance.cellBackgraund[i].active = true;
             }
         }
     }
@@ -35,16 +35,16 @@ export class HighlightHomeMap {
             try {
                 let tempIndex = indexObject - arrayIndexs[i]
                 if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
-                    HomeMapStorage.instance.cellHint[tempIndex].active = false;
-                    HomeMapStorage.instance.cellSelected[tempIndex].active = true;
+                    // HomeMapStorage.instance.cellHint[tempIndex].active = false;
+                    // HomeMapStorage.instance.cellSelected[tempIndex].active = true;
                 }
                 else {
                     if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
-                        HomeMapStorage.instance.cellHint[tempIndex].active = false;
-                        HomeMapStorage.instance.cellSelected[tempIndex].active = true;
+                        // HomeMapStorage.instance.cellHint[tempIndex].active = false;
+                        // HomeMapStorage.instance.cellSelected[tempIndex].active = true;
                     }
                     else {
-                        HomeMapStorage.instance.cellBlock[tempIndex].active = true;
+                        // HomeMapStorage.instance.cellBlock[tempIndex].active = true;
                     }
                 }
             }
@@ -60,8 +60,8 @@ export class HighlightHomeMap {
             if (ControllerHomeMapStorage.getObjectParameter(i)) {
                 if (ControllerHomeMapStorage.getObjectParameter(i).type == type) {
                     if (ControllerHomeMapStorage.getObjectParameter(i).level == level) {
-                        HomeMapStorage.instance.cellFree[i].active = false;
-                        HomeMapStorage.instance.cellHint[i].active = true;
+                        HomeMapStorage.instance.cellBackgraund[i].active = false;
+                        // HomeMapStorage.instance.cellHint[i].active = true;
                     }
                 }
             }
@@ -70,25 +70,25 @@ export class HighlightHomeMap {
 
     static closeCellFree() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellFree[i].active = false;
+            HomeMapStorage.instance.cellBackgraund[i].active = false;
         }
     }
 
     static closeCellSelected() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellSelected[i].active = false;
+            // HomeMapStorage.instance.cellSelected[i].active = false;
         }
     }
 
     static closeCellBlock() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellBlock[i].active = false;
+            // HomeMapStorage.instance.cellBlock[i].active = false;
         }
     }
 
     static closeCellHint() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellHint[i].active = false;
+            // HomeMapStorage.instance.cellHint[i].active = false;
         }
     }
 }
