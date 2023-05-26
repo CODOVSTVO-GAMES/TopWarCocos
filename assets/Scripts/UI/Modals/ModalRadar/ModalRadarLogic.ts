@@ -11,7 +11,6 @@ import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
 import { RadarTask } from '../../../Structures/RadarTask';
 import { ModalRadarTaskInterface } from '../ModalRadarTask/ModalRadarTaskInterface';
-import { ControllerInventoryStorage } from '../../../Storage/Controllers/ControllerInventoryStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
@@ -28,10 +27,10 @@ export class ModalRadarLogic extends Component {
     public timerCoroutine: any;
 
     public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OVERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
-    [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
-    [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
-    [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
-    [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
+                                            [TypesItems.PLAN_MAX_MAINBUILDING, TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE],
+                                            [TypesItems.PLAN_MAX_GOLD_MINE, TypesItems.PLAN_CREATE_GOLD_MINE, TypesItems.GOLD_CHEST],
+                                            [TypesItems.PLAN_MAX_MARINE, TypesItems.PLAN_CREATE_BARRACK_MARINE, TypesItems.PLAN_MAX_BARRACK_MARINE],
+                                            [TypesItems.PLAN_MAX_AIR, TypesItems.PLAN_CREATE_BARRACK_AIR, TypesItems.PLAN_MAX_BARRACK_AIR]];
 
     onLoad() {
         ModalRadarLogic.instance = this;
@@ -80,16 +79,7 @@ export class ModalRadarLogic extends Component {
         this.startTimer();
     }
 
-    endTask(task: RadarTask) {
-        for (let i = 0; i < task.rewards.length; i++) {
-            if (task.rewards[i].type != TypesItems.EXPERIENCE) {
-                ControllerInventoryStorage.addItem(task.rewards[i].type, task.rewards[i].quantity);
-            }
-            else {
-                ControllerGameStorage.addExperience(task.rewards[i].quantity);
-            }
-        }
-        ControllerRadarStorage.reduceRadarTask(task);
+    endTask() {
         let radarTasks = ControllerRadarStorage.getRadarTasks();
         while (radarTasks.length < this.maxDisplayedTasks) {
             this.spawnTasks();

@@ -45,7 +45,8 @@ export class TaskRender extends Component {
             ModalRadarLogic.instance.openRadarTask(this.radarTask);
         }
         else {
-            ModalRadarLogic.instance.endTask(this.radarTask);
+            ModalRadarRewardLogic.instance.openModalReward(task);
+            
             this.obj.destroy();
         }
     }

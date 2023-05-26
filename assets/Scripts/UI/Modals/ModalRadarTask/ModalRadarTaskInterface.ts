@@ -2,8 +2,6 @@ import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame } from '
 import { RadarTask } from '../../../Structures/RadarTask';
 import { TypesRadar } from '../../../Static/TypesRadar';
 import { TypesItems } from '../../../Static/TypesItems';
-import { SecondaryInterface } from '../../SecondaryInterface';
-import { TypesModals } from '../../../Static/TypesModals';
 import { ModalRadarTaskLogic } from './ModalRadarTaskLogic';
 import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
 const { ccclass, property } = _decorator;
@@ -18,6 +16,9 @@ export class ModalRadarTaskInterface extends Component {
 
     @property({ type: Label })
     public status: Label;
+
+    @property({ type: Label })
+    public btnText: Label;
 
     @property({ type: Sprite })
     public image: Sprite;
@@ -47,7 +48,14 @@ export class ModalRadarTaskInterface extends Component {
     updateInterface(task: RadarTask) {
         ModalRadarTaskLogic.instance.task = task;
         this.title.string = "Задание завершится через " + task.time;
-        this.status.string = "Не началось";
+        if (task.status == 0) {
+            this.status.string = "Не началось";
+            this.btnText.string = "Перейти";
+        }
+        else if (task.status == 1) {
+            this.status.string = "В походе";
+            this.btnText.string = "В походе...";
+        }
         this.image.color = this.getSpriteTask(task.type);
         for (let i = 0; i < this.stars.length; i++) {
             this.stars[i].active = i < task.stars;

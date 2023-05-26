@@ -1,8 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
 import { RadarTask } from '../../../Structures/RadarTask';
-import { RedirectionToScene } from '../../../Other/RedirectionToScene';
-import { SceneNames } from '../../../Static/SceneNames';
 import { BuferTasks } from '../../../Radar/BuferTasks';
+import { ModalRadarTaskInterface } from './ModalRadarTaskInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskLogic')
@@ -18,6 +17,6 @@ export class ModalRadarTaskLogic extends Component {
 
     pushButton() {
         BuferTasks.instance.addTask(this.task);
-        RedirectionToScene.redirect(SceneNames.GLOBAL_MAP);
+        ModalRadarTaskInterface.instance.updateInterface(this.task);
     }
 }
