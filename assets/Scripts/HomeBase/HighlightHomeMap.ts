@@ -7,30 +7,9 @@ export class HighlightHomeMap {
 
     static initCellFree() {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellFree[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellFree;
+            HomeMapStorage.instance.cellFree[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellBackground;
         }
         this.closeCellFree();
-    }
-
-    static initCellSelected() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellSelected[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellSelected;
-        }
-        this.closeCellSelected();
-    }
-
-    static initCellBlock() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellBlock[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellBlock;
-        }
-        this.closeCellBlock();
-    }
-
-    static initCellHint() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.cellHint[i] = ControllerHomeMapStorage.getCoord(i).getComponent(Cell).cellHint;
-        }
-        this.closeCellHint();
     }
 
     static openCellFree() {

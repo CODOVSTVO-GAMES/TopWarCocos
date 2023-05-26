@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
+import { _decorator, Component, Node, Prefab, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { HighlightHomeMap } from './HighlightHomeMap';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
@@ -29,9 +29,9 @@ export class InitHomeMap extends Component {
 
     fillArrayCoords() {
         let name: number = 0;
-        let pos = new Vec3(-500, 1000, 0);
-        let x = -500;
-        let y = 1000;
+        let pos = new Vec3(-100, 2000, 0);
+        let x = -100;
+        let y = 2000;
         let count = 0;
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             HomeMapStorage.instance.coords[i] = this.backgraund.getChildByName(name.toString());
@@ -48,9 +48,6 @@ export class InitHomeMap extends Component {
             }
         }
         HighlightHomeMap.initCellFree();
-        HighlightHomeMap.initCellSelected();
-        HighlightHomeMap.initCellBlock();
-        HighlightHomeMap.initCellHint();
     }
 }
 
