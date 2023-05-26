@@ -61,9 +61,7 @@ export class ModalRadarInterface extends Component {
             cost = 10;
         }
 
-        // console.log()
-
-        // this.sliderLevel.fillRange = ControllerRadarStorage.getRadar;
+        this.sliderLevel.fillRange = ControllerRadarStorage.getRadarExperience() / ControllerConfigStorage.getRadarProgressNumberByLevel(ControllerRadarStorage.getRadarLevel());
         this.sliderEnergy.fillRange = ControllerGameStorage.getEnergy() / config.maxEnergy;
         this.gemsText.string = ControllerGameStorage.getGems().toString();
         this.levelText.string = "Ур. " + ControllerRadarStorage.getRadarLevel();
@@ -83,8 +81,13 @@ export class ModalRadarInterface extends Component {
                 if (radarTasks[i] == this.tasks[j].radarTask) {
                     result = true;
                 }
+                if (i == 0) {
+                    if (this.tasks[j] != null) {
+                        this.tasks[j].render(this.tasks[j].radarTask);
+                    }
+                }
             }
-            if (result == false) {
+            if (result == false && radarTasks[i].status < 3) {
                 let task = instantiate(this.taskPrefab);
                 task.setParent(this.parentNode);
                 let x = Math.floor(Math.random() * 200);

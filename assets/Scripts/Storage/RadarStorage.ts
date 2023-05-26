@@ -11,6 +11,7 @@ export class RadarStorage extends Component {
     public availableMissions: number;
     public timeToUpdate: number;
     public signalQuality: number;
+    public radarExperience: number;
     public tasks: RadarTask[] = [];
 
     onLoad() {

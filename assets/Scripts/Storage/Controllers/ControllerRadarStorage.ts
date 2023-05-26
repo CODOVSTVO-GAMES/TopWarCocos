@@ -5,6 +5,7 @@ import { RadarStorage } from '../RadarStorage';
 import { RadarTask } from '../../Structures/RadarTask';
 import { RadarReward } from '../../Structures/RadarReward';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
+import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ControllerRadarStorage')
@@ -16,6 +17,7 @@ export class ControllerRadarStorage {
         RadarStorage.instance.availableMissions = 30;
         RadarStorage.instance.timeToUpdate = config.time;
         RadarStorage.instance.signalQuality = 1;
+        RadarStorage.instance.radarExperience = 0;
         this.updateRadarStorage();
     }
 
@@ -26,6 +28,7 @@ export class ControllerRadarStorage {
         RadarStorage.instance.timeToUpdate = json.timeToUpdate;
         RadarStorage.instance.signalQuality = json.signalQuality;
         RadarStorage.instance.tasks = json.tasks;
+        RadarStorage.instance.radarExperience = json.radarExperience;
     }
 
     static getRadarTasks(): RadarTask[] {
@@ -48,6 +51,10 @@ export class ControllerRadarStorage {
         return RadarStorage.instance.signalQuality;
     }
 
+    static getRadarExperience(): number {
+        return RadarStorage.instance.radarExperience;
+    }
+
     static addRadarAvailableMissions(value: number) {
         if (value == 0) return;
         RadarStorage.instance.availableMissions += value;
@@ -57,6 +64,19 @@ export class ControllerRadarStorage {
     static addRadarSignalQuantity(value: number) {
         if (value == 0) return;
         RadarStorage.instance.signalQuality += value;
+        this.updateRadarStorage();
+    }
+
+    static addRadarExperience(value: number) {
+        if (value == 0) return;
+        RadarStorage.instance.radarExperience += value;
+        let targetExperience = ControllerConfigStorage.getRadarProgressNumberByLevel(this.getRadarLevel());
+        while (this.getRadarExperience() > targetExperience) {
+            RadarStorage.instance.radarLevel++;
+            RadarStorage.instance.radarExperience -= targetExperience;
+            targetExperience = ControllerConfigStorage.getRadarProgressNumberByLevel(this.getRadarLevel());
+        }
+        ModalRadarInterface.instance.updateInterface();
         this.updateRadarStorage();
     }
 
@@ -101,6 +121,11 @@ export class ControllerRadarStorage {
         RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, 0, reward));
     }
 
+    static equateRadarExperience(value: number) {
+        RadarStorage.instance.radarExperience = value;
+        this.updateRadarStorage();
+    }
+
     static updateRadarStorage() {
         let tasks = [];
         for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
@@ -118,6 +143,7 @@ export class ControllerRadarStorage {
             availableMissions: RadarStorage.instance.availableMissions,
             timeToUpdate: RadarStorage.instance.timeToUpdate,
             signalQuality: RadarStorage.instance.signalQuality,
+            radarExperience: RadarStorage.instance.radarExperience,
             tasks: tasks
         };
         ControllerBufferStorage.addItem(TypesStorages.RADAR_STORAGE, obj);

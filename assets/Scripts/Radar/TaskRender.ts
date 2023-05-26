@@ -4,6 +4,7 @@ import { RadarTask } from '../Structures/RadarTask';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { ModalRadarLogic } from '../UI/Modals/ModalRadar/ModalRadarLogic';
+import { ModalRadarRewardLogic } from '../UI/Modals/ModalRadarReward/ModalRadarRewardLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('TaskRender')
@@ -11,6 +12,9 @@ export class TaskRender extends Component {
 
     @property({ type: Node })
     public obj: Node;
+
+    @property({ type: Node })
+    public message: Node;
 
     @property({ type: Sprite })
     public image: Sprite;
@@ -22,9 +26,17 @@ export class TaskRender extends Component {
 
     render(radarTask: RadarTask) {
         this.radarTask = radarTask;
-        this.image.color = this.getSprite(radarTask.type);
-        for (let i = 0; i < this.stars.length; i++) {
-            this.stars[i].active = i < radarTask.stars;
+        if (radarTask != null) {
+            this.image.color = this.getSprite(radarTask.type);
+            for (let i = 0; i < this.stars.length; i++) {
+                this.stars[i].active = i < radarTask.stars;
+            }
+            if (radarTask.status < 2) {
+                this.message.active = false;
+            }
+            else {
+                this.message.active = true;
+            }
         }
     }
 
@@ -40,13 +52,12 @@ export class TaskRender extends Component {
     }
 
     pushTask() {
-        console.log(this.radarTask.status)
         if (this.radarTask.status < 2) {
             ModalRadarLogic.instance.openRadarTask(this.radarTask);
         }
         else {
-            ModalRadarRewardLogic.instance.openModalReward(task);
-            
+            this.radarTask.status = 3;
+            ModalRadarRewardLogic.instance.openModalReward(this.radarTask);
             this.obj.destroy();
         }
     }
