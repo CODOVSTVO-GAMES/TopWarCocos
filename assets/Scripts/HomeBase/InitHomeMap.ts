@@ -29,9 +29,9 @@ export class InitHomeMap extends Component {
 
     fillArrayCoords() {
         let name: number = 0;
-        let pos = new Vec3(-1000, 3000, 0);
-        let x = -1000;
-        let y = 3000;
+        let pos = new Vec3(-500, 1000, 0);
+        let x = -500;
+        let y = 1000;
         let count = 0;
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             HomeMapStorage.instance.coords[i] = this.backgraund.getChildByName(name.toString());
@@ -40,7 +40,7 @@ export class InitHomeMap extends Component {
             pos.x += 70;
             pos.y -= 50;
             count += 1;
-            if (count == 80) {
+            if (count == 50) {
                 x -= 70;
                 y -= 50;
                 pos = new Vec3(x, y, 0);

@@ -7,7 +7,7 @@ export class HomeMapStorage extends Component {
 
     public static instance: HomeMapStorage;
 
-    public mapSize: number = 4000;
+    public mapSize: number = 2000;
 
     public parentSelectObject: Node;
 
