@@ -18,30 +18,6 @@ export class InitHomeMap extends Component {
     public coord: Prefab;
 
     onLoad() {
-        console.log("InitHomeMap OnLoad");
-
-        // let name: number = 0;
-        // let pos = new Vec3(0, 4000, 0);
-        // let x = 0;
-        // let y = 2000;
-        // let count = 0;
-        // for (let i = 0; i < 6084; i++) {
-        //     let object = instantiate(this.coord);
-        //     object.parent = this.parent1;
-        //     object.name = name.toString();
-        //     object.position = pos;
-        //     name += 1;
-        //     pos.x += 70;
-        //     pos.y -= 50;
-        //     count += 1;
-        //     if (count == 78) {
-        //         x -= 70;
-        //         y -= 50;
-        //         pos = new Vec3(x, y, 0);
-        //         count = 0;
-        //     }
-        // }
-
         this.fillParentObject();
         this.fillArrayCoords();
         SpawnObjects.spawnObjectsFromStorage();
@@ -53,9 +29,9 @@ export class InitHomeMap extends Component {
 
     fillArrayCoords() {
         let name: number = 0;
-        let pos = new Vec3(0, 4000, 0);
-        let x = 0;
-        let y = 4000;
+        let pos = new Vec3(-1000, 3000, 0);
+        let x = -1000;
+        let y = 3000;
         let count = 0;
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             HomeMapStorage.instance.coords[i] = this.backgraund.getChildByName(name.toString());
@@ -64,7 +40,7 @@ export class InitHomeMap extends Component {
             pos.x += 70;
             pos.y -= 50;
             count += 1;
-            if (count == 78) {
+            if (count == 80) {
                 x -= 70;
                 y -= 50;
                 pos = new Vec3(x, y, 0);

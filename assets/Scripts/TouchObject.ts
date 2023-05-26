@@ -181,6 +181,7 @@ export class TouchObject extends Component {
     }
 
     putAnObject(index: number) {
+        console.log(index);
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
