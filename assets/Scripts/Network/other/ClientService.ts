@@ -9,26 +9,32 @@ export class ClientService {
 
     static post(endpoint: string, data: object, func: Function) {
         const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
-        this.request(endpoint, requestDTO, func, "POST")
+        this.request(endpoint, requestDTO, func, "POST", data)
     }
 
     static get(endpoint: string, data: object, func: Function) {
         const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
-        this.request(endpoint, requestDTO, func, "GET")
+        this.request(endpoint, requestDTO, func, "GET", data)
     }
 
-    private static request(endpoint: string, data: RequestDTO, func: Function, type: string) {
+    private static request(endpoint: string, data: RequestDTO, func: Function, type: string, dataObj: object) {
         // console.log(data)
         // console.log(JSON.stringify(data))
-
         var xhr = new XMLHttpRequest();
+
         if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
-            xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(data), true);
+            xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(dataObj), true);
+            xhr.setRequestHeader("sessionId", ControllerUserStorage.getSessionId().toString());
+            xhr.setRequestHeader("sessionHash", ControllerUserStorage.getSessionHash());
+            xhr.setRequestHeader("dataHash", Cryptor.getHashByObj(dataObj));
             xhr.send()
         } else {
             xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(JSON.stringify(data));
+            xhr.setRequestHeader("sessionId", ControllerUserStorage.getSessionId().toString());
+            xhr.setRequestHeader("sessionHash", ControllerUserStorage.getSessionHash());
+            xhr.setRequestHeader("dataHash", Cryptor.getHashByObj(dataObj));
+            xhr.send(JSON.stringify(dataObj));
         }
 
         const globalParser = this.globalResponseParser
