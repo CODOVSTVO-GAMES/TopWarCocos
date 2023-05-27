@@ -18,8 +18,7 @@ export class ClientService {
     }
 
     private static request(endpoint: string, data: RequestDTO, func: Function, type: string, dataObj: object) {
-        // console.log(data)
-        // console.log(JSON.stringify(data))
+        // console.log(JSON.stringify(dataObj))
         var xhr = new XMLHttpRequest();
 
         if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
