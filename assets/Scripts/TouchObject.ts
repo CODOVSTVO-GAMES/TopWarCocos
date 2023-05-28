@@ -134,9 +134,14 @@ export class TouchObject extends Component {
         for (let i = 0; i < arrayIndexs.length; i++) {
             let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i])
             if (tempObjParam != null) {
-                if (this.objectParameters.type == tempObjParam.type && this.objectParameters.level == tempObjParam.level) {
-                    count += 1;
-                    indexMerge = i;
+                if (this.objectParameters.type == tempObjParam.type) {
+                    if (this.objectParameters.level == tempObjParam.level) {
+                        count += 1;
+                        indexMerge = i;
+                    }
+                    else {
+                        return this.putAnObject(this.initialIndex);
+                    }
                 }
                 else {
                     return this.putAnObject(this.initialIndex);
