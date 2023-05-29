@@ -51,7 +51,8 @@ export class ZoomCamera extends Component {
     }
 
     countCoomRaito(ortoHeight: number) {
-        let zoomRaito = ortoHeight / 468
+        // console.log(ortoHeight)
+        let zoomRaito = ortoHeight / 540
         this.zoomRaito = zoomRaito
     }
 }

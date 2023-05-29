@@ -72,9 +72,6 @@ export class TouchObject extends Component {
         this.xPos += (e.getUIDelta().x * ZoomCamera.instance.zoomRaito);
         this.yPos += (e.getUIDelta().y * ZoomCamera.instance.zoomRaito);
 
-        // this.xPos += (e.getDelta().x * 1.9);
-        // this.yPos += (e.getDelta().y * 1.9);
-
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
         HighlightHomeMap.closeCellSelected();
         HighlightHomeMap.closeCellBlock();
