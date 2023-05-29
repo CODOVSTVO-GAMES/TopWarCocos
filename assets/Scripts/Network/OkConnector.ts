@@ -13,7 +13,7 @@ export class OkConnector {
                 // console.log('referer: ' + rParams['referer'])
                 // console.log('locationip: ' + rParams['ip_geo_location'])
                 FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { OkConnector.ifSDKReady() }, function () {
-                    console.log('FAPI error');
+                    // console.log('FAPI error');
                     if (!TechnicalConfig.ISPROD) {
                         LoadingGame.getUser()
                     } else {
