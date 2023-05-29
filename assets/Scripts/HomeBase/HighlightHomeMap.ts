@@ -20,7 +20,7 @@ export class HighlightHomeMap {
         }
     }
 
-    static openCell(type: string, pos: Vec3) {
+    static openCell(type: string, level: number, pos: Vec3) {
         let minDistance: number = 1000000;
         let indexObject: number;
         let arrayIndexs: number[] = ControllerHomeMapStorage.getArrayIndexs(type);
@@ -36,12 +36,10 @@ export class HighlightHomeMap {
             try {
                 let tempIndex = indexObject - arrayIndexs[i]
                 if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
-                    // HomeMapStorage.instance.cellHint[tempIndex].active = false;
                     HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
                 }
                 else {
                     if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
-                        // HomeMapStorage.instance.cellHint[tempIndex].active = false;
                         HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
                     }
                     else {
@@ -54,17 +52,11 @@ export class HighlightHomeMap {
                 console.log("error");
             }
         }
-    }
-
-    static openCellHint(type: string, level: number) {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i)) {
-                if (ControllerHomeMapStorage.getObjectParameter(i).type == type) {
-                    if (ControllerHomeMapStorage.getObjectParameter(i).level == level) {
-                        // HomeMapStorage.instance.cellBackgraund[i].active = false;
-                        // HomeMapStorage.instance.cellHint[i].active = true;
-                    }
-                }
+                if (ControllerHomeMapStorage.getObjectParameter(i).type != type) continue;
+                if (ControllerHomeMapStorage.getObjectParameter(i).level != level) continue;
+                HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("h");
             }
         }
     }
