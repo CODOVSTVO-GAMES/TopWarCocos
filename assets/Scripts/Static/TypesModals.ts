@@ -18,5 +18,6 @@ export class TypesModals {
     public static BANK: string = "bank";
 
     public static DIALOG: string = "dialog";
+    public static WIRE_CUT: string = "wireCut";
 }
 
