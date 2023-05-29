@@ -1,8 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { TypesObjects } from '../Static/TypesObjects';
 import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
-import { TypesCharacters } from '../Static/TypesCharacters';
 const { ccclass } = _decorator;
 
 @ccclass('CharactersStorage')
@@ -14,8 +12,6 @@ export class CharactersStorage extends Component {
 
     onLoad() {
         CharactersStorage.instance = this;
-        // this.characters = new Array(68);
-        // setInterval(() => console.log(this.characters), 1000)
     }
 
     getRandomCharacter(): CharacterInfo {

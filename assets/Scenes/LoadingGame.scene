@@ -1470,6 +1470,50 @@
       {
         "__uuid__": "4dfd740c-9c48-431c-a1f7-d958bfd5f34d@f9941",
         "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "db79d2fc-bc8b-4863-b35d-4f3002a974e4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "203d24b3-6535-47ec-a50f-5ecd873d2f1f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "c2c4bd4f-2877-445f-b4cb-815a4dfadd5d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "5558951d-8b29-4606-b0cc-11ab21c446c3@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "1bde2ffe-b877-43fd-9ac8-4ebcea3d5932@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "73a19eac-92ce-425c-9ec7-115205f91f2b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "b43bcba8-85b9-4a6a-8837-cd9c9cc5ec6c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "89157c50-0f77-4a11-8a5a-6ac7b5588aee@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8207b92a-6fe9-4e73-8f2f-32e4ceb60c63@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "fa7a3aa9-a445-4bf3-ac53-16942b099d21@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "0836efdb-ad5b-41f6-99b8-d95cf49abc44@f9941",
+        "__expectedType__": "cc.SpriteFrame"
       }
     ],
     "barracksAir": [

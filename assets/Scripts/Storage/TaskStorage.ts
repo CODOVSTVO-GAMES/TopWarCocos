@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 const { ccclass } = _decorator;
 
 @ccclass('TaskStorage')
@@ -12,7 +12,7 @@ export class TaskStorage extends Component {
 
     public mapTasks: Array<number> = new Array(100)
 
-    protected onLoad(): void {
+    onLoad() {
         TaskStorage.instance = this
         this.mapTasks = this.mapTasks.fill(0)
     }
