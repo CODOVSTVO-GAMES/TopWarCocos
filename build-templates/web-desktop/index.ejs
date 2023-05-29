@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>GlobalWar</title>
+
+  <meta name="viewport"
+    content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="full-screen" content="yes" />
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="360-fullscreen" content="true" />
+
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <link rel="icon" href="favicon.ico" />
+  <style type="text/css">
+    body {
+      width: 100%;
+      height: 100%;
+      cursor: default;
+      padding: 0;
+      border: 0;
+      margin: 0;
+
+      text-align: center;
+      background-color: white;
+      font-family: Helvetica, Verdana, Arial, sans-serif;
+    }
+
+    body,
+    canvas,
+    div {
+      outline: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -khtml-user-select: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    /* Remove spin of input type number */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0;
+      /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    canvas {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    #GameDiv {
+      margin: 0 auto;
+      position: relative;
+      /* border: 5px solid black; */
+      /* border-radius: 10px; */
+      /* box-shadow: 0 5px 50px #333 */
+    }
+
+    #Cocos3dGameContainer,
+    #GameCanvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    :root {
+      --safe-top: env(safe-area-inset-top);
+      --safe-right: env(safe-area-inset-right);
+      --safe-bottom: env(safe-area-inset-bottom);
+      --safe-left: env(safe-area-inset-left);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="GameDiv" style="width: 100%; height: 100%;">
+    <div id="Cocos3dGameContainer">
+      <canvas id="GameCanvas" tabindex="99"></canvas>
+    </div>
+  </div>
+  <%- include(cocosTemplate, {}) %>
+</body>
+
+</html>

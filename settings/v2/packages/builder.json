@@ -1,7 +1,8 @@
 {
   "__version__": "1.3.4",
   "splash-setting": {
-    "totalTime": 1000,
-    "displayRatio": 1
+    "totalTime": 500,
+    "displayRatio": 1,
+    "url": "project://settings/splash.jpg"
   }
 }
