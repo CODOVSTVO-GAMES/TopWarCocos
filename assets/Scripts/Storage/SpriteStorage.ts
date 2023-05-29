@@ -70,13 +70,13 @@ export class SpriteStorage extends Component {
     // =================================================================
 
     @property({ type: SpriteFrame })
-    public a: SpriteFrame;
+    public coordFree: SpriteFrame;
 
     @property({ type: SpriteFrame })
-    public b: SpriteFrame;
+    public coordSelect: SpriteFrame;
 
     @property({ type: SpriteFrame })
-    public c: SpriteFrame;
+    public coodBlock: SpriteFrame;
 
     @property({ type: SpriteFrame })
     public d: SpriteFrame;
@@ -119,36 +119,42 @@ export class SpriteStorage extends Component {
     }
 
     getItemBackpack(type: string): SpriteFrame {
-        if (type == TypesItems.PLAN_MAX_OVERLAND) return this.a;
-        else if (type == TypesItems.PLAN_MAX_MARINE) return this.a;
-        else if (type == TypesItems.PLAN_MAX_OVERLAND) return this.a;
-        else if (type == TypesItems.PLAN_MAX_AIR) return this.a;
-        else if (type == TypesItems.PLAN_MAX_GOLD_MINE) return this.a;
-        else if (type == TypesItems.PLAN_MAX_BARRACK_OVERLAND) return this.a;
-        else if (type == TypesItems.PLAN_MAX_BARRACK_MARINE) return this.a;
-        else if (type == TypesItems.PLAN_MAX_BARRACK_AIR) return this.a;
-        else if (type == TypesItems.PLAN_MAX_MAINBUILDING) return this.a;
-        else if (type == TypesItems.PLAN_CREATE_BARRACK_OVERLAND) return this.a;
-        else if (type == TypesItems.PLAN_CREATE_BARRACK_MARINE) return this.a;
-        else if (type == TypesItems.PLAN_CREATE_BARRACK_AIR) return this.a;
-        else if (type == TypesItems.PLAN_CREATE_GOLD_MINE) return this.a;
-        else if (type == TypesItems.BOOK_EXP_GREEN) return this.a;
-        else if (type == TypesItems.BOOK_EXP_WHITE) return this.a;
-        else if (type == TypesItems.BOOK_EXP_BLUE) return this.a;
-        else if (type == TypesItems.BOOK_EXP_VIOLET) return this.a;
-        else if (type == TypesItems.BOOK_EXP_GOLD) return this.a;
-        else if (type == TypesItems.TICKET_NORMAL) return this.a;
-        else if (type == TypesItems.TICKET_PREMIUM) return this.a;
-        else if (type == TypesItems.TICKET_OWERLAND) return this.a;
-        else if (type == TypesItems.TICKET_MARINE) return this.a;
-        else if (type == TypesItems.TICKET_AIR) return this.a;
-        else if (type == TypesItems.TICKET_SKILLS) return this.a;
-        else if (type == TypesItems.GOLD_CHEST) return this.a;
-        else if (type == TypesItems.EXPERIENCE) return this.a;
-        else if (type == TypesItems.WHITE_BOOK_EXPERIENCE) return this.a;
-        else if (type == TypesItems.GREEN_BOOK_EXPERIENCE) return this.a;
-        else if (type == TypesItems.BLUE_BOOK_EXPERIENCE) return this.a;
-        else if (type == TypesItems.PURPLE_BOOK_EXPERIENCE) return this.a;
-        else if (type == TypesItems.ORANGE_BOOK_EXPERIENCE) return this.a;
+        if (type == TypesItems.PLAN_MAX_OVERLAND) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_MARINE) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_OVERLAND) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_AIR) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_GOLD_MINE) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_BARRACK_OVERLAND) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_BARRACK_MARINE) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_BARRACK_AIR) return this.coordFree;
+        else if (type == TypesItems.PLAN_MAX_MAINBUILDING) return this.coordFree;
+        else if (type == TypesItems.PLAN_CREATE_BARRACK_OVERLAND) return this.coordFree;
+        else if (type == TypesItems.PLAN_CREATE_BARRACK_MARINE) return this.coordFree;
+        else if (type == TypesItems.PLAN_CREATE_BARRACK_AIR) return this.coordFree;
+        else if (type == TypesItems.PLAN_CREATE_GOLD_MINE) return this.coordFree;
+        else if (type == TypesItems.BOOK_EXP_GREEN) return this.coordFree;
+        else if (type == TypesItems.BOOK_EXP_WHITE) return this.coordFree;
+        else if (type == TypesItems.BOOK_EXP_BLUE) return this.coordFree;
+        else if (type == TypesItems.BOOK_EXP_VIOLET) return this.coordFree;
+        else if (type == TypesItems.BOOK_EXP_GOLD) return this.coordFree;
+        else if (type == TypesItems.TICKET_NORMAL) return this.coordFree;
+        else if (type == TypesItems.TICKET_PREMIUM) return this.coordFree;
+        else if (type == TypesItems.TICKET_OWERLAND) return this.coordFree;
+        else if (type == TypesItems.TICKET_MARINE) return this.coordFree;
+        else if (type == TypesItems.TICKET_AIR) return this.coordFree;
+        else if (type == TypesItems.TICKET_SKILLS) return this.coordFree;
+        else if (type == TypesItems.GOLD_CHEST) return this.coordFree;
+        else if (type == TypesItems.EXPERIENCE) return this.coordFree;
+        else if (type == TypesItems.WHITE_BOOK_EXPERIENCE) return this.coordFree;
+        else if (type == TypesItems.GREEN_BOOK_EXPERIENCE) return this.coordFree;
+        else if (type == TypesItems.BLUE_BOOK_EXPERIENCE) return this.coordFree;
+        else if (type == TypesItems.PURPLE_BOOK_EXPERIENCE) return this.coordFree;
+        else if (type == TypesItems.ORANGE_BOOK_EXPERIENCE) return this.coordFree;
+    }
+
+    getSpriteCoord(type: string): SpriteFrame {
+        if (type == "f") return this.coordFree;
+        else if (type == "s") return this.coordSelect;
+        else if (type == "b") return this.coodBlock;
     }
 }

@@ -44,17 +44,11 @@ export class TouchObject extends Component {
         if (TouchStatus.instance.activeTouch == true && this.isMove) return;
 
         TouchStatus.instance.activeTouch = true;
-        ControllerHomeMapStorage.onTransparencyObjects();
+        // ControllerHomeMapStorage.onTransparencyObjects();
         ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         ControllerHomeMapStorage.setSelectObject(this.objectParameters);
-        HighlightHomeMap.openCellFree();
 
-        ControllerHomeMapStorage.closeInterface();
-
-        HighlightHomeMap.closeCellSelected();
-        HighlightHomeMap.closeCellBlock();
-        HighlightHomeMap.openCellHint(this.objectParameters.type, this.objectParameters.level);
-        HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.getWorldPosition());
+        HighlightHomeMap.openCell(this.objectParameters.type, this.mainObject.getWorldPosition());
 
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
@@ -73,11 +67,8 @@ export class TouchObject extends Component {
         this.yPos += (e.getUIDelta().y * ZoomCamera.instance.zoomRaito);
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
-        HighlightHomeMap.closeCellSelected();
-        HighlightHomeMap.closeCellBlock();
-        HighlightHomeMap.closeCellHint();
-        HighlightHomeMap.openCellHint(this.objectParameters.type, this.objectParameters.level);
-        HighlightHomeMap.openCellSelected(this.objectParameters.type, this.mainObject.getWorldPosition());
+
+        HighlightHomeMap.openCell(this.objectParameters.type, this.mainObject.getWorldPosition());
     }
 
     touchEnd() {
@@ -85,11 +76,8 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        HighlightHomeMap.closeCellFree();
-        HighlightHomeMap.closeCellSelected();
-        HighlightHomeMap.closeCellBlock();
-        HighlightHomeMap.closeCellHint();
-        ControllerHomeMapStorage.offTransparencyObjects();
+        HighlightHomeMap.closeSpriteCoord();
+        // ControllerHomeMapStorage.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 
@@ -98,11 +86,8 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        HighlightHomeMap.closeCellFree();
-        HighlightHomeMap.closeCellSelected();
-        HighlightHomeMap.closeCellBlock();
-        HighlightHomeMap.closeCellHint();
-        ControllerHomeMapStorage.offTransparencyObjects();
+        HighlightHomeMap.closeSpriteCoord();
+        // ControllerHomeMapStorage.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 

@@ -11,13 +11,16 @@ export class ControllerHomeMapStorage {
 
     static assignStartingValues() {
         setTimeout(() => {
-            SpawnObjects.spawnObjectsPos(TypesObjects.BANK, 1, 18);
-            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 20);
-            SpawnObjects.spawnObjectsPos(TypesObjects.AUTOCOMBINE, 1, 34);
-            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 36);
-            SpawnObjects.spawnObjectsPos(TypesObjects.RADAR, 1, 50);
-            SpawnObjects.spawnObjectsPos(TypesObjects.REPAIR_SHOP, 1, 50);
-            SpawnObjects.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 63);
+            SpawnObjects.spawnObjectsPos(TypesObjects.BANK, 1, 717);
+            SpawnObjects.spawnObjectsPos(TypesObjects.AUTOCOMBINE, 1, 719);
+            SpawnObjects.spawnObjectsPos(TypesObjects.RADAR, 1, 721);
+            SpawnObjects.spawnObjectsPos(TypesObjects.REPAIR_SHOP, 1, 723);
+            SpawnObjects.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 920);
+
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1118);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1120);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1218);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1220);
         }, 2000);
     }
 

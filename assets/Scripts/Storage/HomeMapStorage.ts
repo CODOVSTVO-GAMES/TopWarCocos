@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, Sprite } from 'cc';
 import { ObjectParameters } from '../ObjectParameters';
 const { ccclass, property } = _decorator;
 
@@ -18,12 +18,12 @@ export class HomeMapStorage extends Component {
     public arrayObjectParameters: ObjectParameters[] = [];
 
     public coords: Node[] = [];
-    public cellBackgraund: Node[] = [];
+    public spriteCoords: Sprite[] = [];
 
     onLoad() {
         HomeMapStorage.instance = this;
         this.coords = new Array(this.mapSize);
         this.arrayObjectParameters = new Array(this.mapSize);
-        this.cellBackgraund = new Array(this.mapSize);
+        this.spriteCoords = new Array(this.mapSize);
     }
 }

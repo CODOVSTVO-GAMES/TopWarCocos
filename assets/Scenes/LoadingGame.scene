@@ -235,7 +235,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 547.920227920228,
+    "_orthoHeight": 589.2351274787536,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1755,6 +1755,18 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
+    "coordFree": {
+      "__uuid__": "1df86e21-5ad2-405d-9deb-056ec1fa16b1@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "coordSelect": {
+      "__uuid__": "e9ac2387-bed0-4736-a855-7023e72d7c09@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "coodBlock": {
+      "__uuid__": "41ada0b2-d2f3-4fb7-ace4-850dde7fd3f4@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_id": "85M6Rk/PJMJb8oAePagnns"
   },
   {
