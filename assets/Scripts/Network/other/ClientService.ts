@@ -4,6 +4,7 @@ import { Cryptor } from "./Cryptor";
 import { RequestDTO } from "../DTO/RequestDTO";
 import { ResponseDTO } from "../DTO/ResponseDTO";
 import { ControllerUserStorage } from '../../Storage/Controllers/ControllerUserStorage';
+import { LoadingGame } from '../../LoadingGame/LoadingGame';
 
 export class ClientService {
 
@@ -63,8 +64,9 @@ export class ClientService {
         else if (status == 403) {
             console.log('Сервер выдал 403. Перезагрузите клиент')
             customFunction('responseJson', false)
+            // LoadingGame.reloadGame()
         }
-        else if (status == 403) {
+        else if (status == 408) {
             console.log('Сервер выдал 502 или 408. Повторите запрос позже')
             customFunction('responseJson', false)
         }

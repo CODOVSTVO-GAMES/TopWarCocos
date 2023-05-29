@@ -13,7 +13,7 @@ export class OkConnector {
                 // console.log('referer: ' + rParams['referer'])
                 // console.log('locationip: ' + rParams['ip_geo_location'])
                 FAPI.init(rParams["api_server"], rParams["apiconnection"], function () { OkConnector.ifSDKReady() }, function () {
-                    console.log('FAPI error');
+                    // console.log('FAPI error');
                     if (!TechnicalConfig.ISPROD) {
                         LoadingGame.getUser()
                     } else {
@@ -53,6 +53,18 @@ export class OkConnector {
 
     static showRatingDialog() {
         FAPI.UI.showRatingDialog();
+    }
+
+    static setVindowSize(width: number, height: number) {
+        let w = 0
+        let h = 0
+        if (width >= 760) {
+            width = 760
+        }
+        if (height >= 4000) {
+            height = 4000
+        }
+        FAPI.UI.setWindowSize(width, height);
     }
 
     static callbackUserGetInfo(status, data, error) {
@@ -143,6 +155,8 @@ export class OkConnector {
                 }
                 case 'getPageInfo': {
                     console.log("page info " + data)
+                    let info = JSON.parse(data)
+                    // OkConnector.setVindowSize(info['clientWidth'], info['clientHeight'])
                 }
             }
         }

@@ -16,5 +16,7 @@ export class TypesModals {
     public static REPAIR_SHOP: string = "repairShop";
     public static RADAR: string = "radar";
     public static BANK: string = "bank";
+
+    public static DIALOG: string = "dialog";
 }
 

@@ -12,7 +12,6 @@ export class CharactersStorage extends Component {
 
     public characters: Array<CharacterInfo> = [];
 
-
     onLoad() {
         CharactersStorage.instance = this;
         // this.characters = new Array(68);
