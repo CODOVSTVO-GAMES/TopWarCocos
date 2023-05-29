@@ -9,16 +9,16 @@ export class Shop extends Component {
 
     buyitem(event, customEventData) {
         if (Number(customEventData) == 0) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir(), 720);
         }
         else if (Number(customEventData) == 1) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine(), 720);
         }
         else if (Number(customEventData) == 2) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland(), 720);
         }
         else if (Number(customEventData) == 3) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine(), 14);
+            SpawnObjects.spawnObjectsNearby(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine(), 720);
         }
     }
 }
