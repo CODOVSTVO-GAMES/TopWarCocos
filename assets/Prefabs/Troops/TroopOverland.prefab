@@ -237,7 +237,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "139714a6-3557-4e7e-856c-e869a16a0b5d@f9941",
+      "__uuid__": "1030c677-9711-4f72-a4db-e94cfd51a906@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -1055,9 +1055,6 @@
     "_enabled": true,
     "__prefab": {
       "__id__": 48
-    },
-    "messageObject": {
-      "__id__": 22
     },
     "titleObject": {
       "__id__": 31
