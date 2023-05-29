@@ -12,14 +12,6 @@ export class HighlightHomeMap {
         this.closeSpriteCoord();
     }
 
-    static openCellFree() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(i) == null) {
-                HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("f");
-            }
-        }
-    }
-
     static openCell(type: string, level: number, pos: Vec3) {
         let minDistance: number = 1000000;
         let indexObject: number;
