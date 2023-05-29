@@ -6,6 +6,7 @@ import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMa
 import { TypesObjects } from './Static/TypesObjects';
 import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
 import { ZoomCamera } from './Camera/ZoomCamera';
+import { IndexesMap } from './Static/IndexesMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -158,6 +159,20 @@ export class TouchObject extends Component {
             }
         }
         else {
+            if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.TROOP_MARINE) {
+                for (let i = 0; i < IndexesMap.indexesEarth.length; i++) {
+                    if (IndexesMap.indexesEarth[i] == indexObject) {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+            }
+            else {
+                for (let i = 0; i < IndexesMap.indexesWater.length; i++) {
+                    if (IndexesMap.indexesWater[i] == indexObject) {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+            }
             this.putAnObject(indexObject);
         }
     }
@@ -171,6 +186,9 @@ export class TouchObject extends Component {
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+            if (this.objectParameters.type == TypesObjects.BARRACKS_AIR || this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
+                this.objectParameters.getBarracksLogic().openMessage();
+            }
         }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         this.mainObject.setParent(ControllerHomeMapStorage.getCoord(index));

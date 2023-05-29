@@ -28,7 +28,7 @@ export class InitHomeMap extends Component {
     }
 
     fillArrayCoords() {
-        let name: number = 0;
+        let name = 0;
         let pos = new Vec3(-100, 2000, 0);
         let x = -100;
         let y = 2000;

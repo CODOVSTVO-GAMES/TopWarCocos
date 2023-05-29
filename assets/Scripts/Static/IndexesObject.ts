@@ -1,4 +1,4 @@
-export class IndexsObject {
+export class IndexesObject {
     public static object1x1: number[] = [0];
     public static object1x2: number[] = [0, 1];
     public static object2x2: number[] = [0, 1, 50, 51];

@@ -18,4 +18,3 @@ export class ItemBackpack extends Component {
         this.quantityItem.string = quantity.toString();
     }
 }
-

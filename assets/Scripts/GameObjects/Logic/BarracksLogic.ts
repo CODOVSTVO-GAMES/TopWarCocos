@@ -10,6 +10,9 @@ export class BarracksLogic extends Component {
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
+    @property({ type: Node })
+    public message: Node;
+
     public or: string[] = [];
 
     public check: boolean = false;
@@ -27,6 +30,14 @@ export class BarracksLogic extends Component {
     }
 
     wokr() {
-        
+
+    }
+
+    openMessage() {
+
+    }
+
+    closeMessage() {
+
     }
 }
