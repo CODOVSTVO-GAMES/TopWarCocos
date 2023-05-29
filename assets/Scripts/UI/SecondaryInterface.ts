@@ -10,6 +10,9 @@ import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInte
 import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
 import { ModalBankInterface } from './Modals/ModalBank/ModalBankInterface';
 import { ModalBackpackLogic } from './Modals/ModalBackpack/ModalBackpackLogic';
+import { RenderDIalog } from './Modals/Dialogues/RenderDIalog';
+import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
+import { QueueItem } from '../Structures/InterfaceQueueStructure';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -56,7 +59,10 @@ export class SecondaryInterface extends Component {
     @property({ type: Node })
     public backpack: Node;
 
-    public listOpeningModals: string[] = [];
+    @property({ type: Node })
+    public dialog: Node;
+
+    public listOpeningModals: Array<QueueItem> = [];
 
     public activeModal: string;
 
@@ -69,6 +75,12 @@ export class SecondaryInterface extends Component {
     }
 
     openModal(type: string) {
+        // this.listOpeningModals.push(new QueueItem(type))
+        this.open(type)
+    }
+
+
+    private open(type: string) {
         this.activeModal = type;
         if (type == TypesModals.PROFILE) {
             this.backgraund.active = true;
@@ -127,6 +139,11 @@ export class SecondaryInterface extends Component {
             ModalBackpackInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.backpack.active = true;
+        }
+        else if (type == TypesModals.DIALOG) {
+            DIalogueLogic.renderDialog(0)
+            this.backgraund.active = true;
+            this.dialog.active = true
         }
     }
 
@@ -188,6 +205,7 @@ export class SecondaryInterface extends Component {
         this.radar.active = false;
         this.repairShop.active = false;
         this.backpack.active = false;
+        this.dialog.active = false
         this.activeModal = "";
     }
 

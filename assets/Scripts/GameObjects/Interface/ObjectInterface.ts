@@ -33,7 +33,7 @@ export class ObjectInterface extends Component {
 
     public updateText() {
         this.titleText.string = this.objectParameters.type;
-        this.levelText.string = "Уровень - " + this.objectParameters.level.toString();
+        this.levelText.string = "Ур. " + this.objectParameters.level.toString();
     }
 }
 

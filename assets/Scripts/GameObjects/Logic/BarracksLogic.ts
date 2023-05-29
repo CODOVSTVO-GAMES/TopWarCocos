@@ -10,6 +10,10 @@ export class BarracksLogic extends Component {
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
+    public or: string[] = [];
+
+    public check: boolean = false;
+
     public createTroop() {
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
             SpawnObjects.spawnObjectsNearby(TypesObjects.TROOP_AIR, this.objectParameters.level, this.getComponent(ObjectParameters).index);
