@@ -38,7 +38,7 @@ export class ModalRadarLogic extends Component {
     start() {
         this.calculationRadar();
         let radarTasks = ControllerRadarStorage.getRadarTasks();
-        while (radarTasks.length < this.maxDisplayedTasks) {
+        while (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             this.spawnTasks();
         }
         this.startTimer();
@@ -53,10 +53,11 @@ export class ModalRadarLogic extends Component {
 
     spawnTasks() {
         let radarTasks = ControllerRadarStorage.getRadarTasks();
+        // console.log(radarTasks.length + " < " + this.maxDisplayedTasks + " " + ControllerRadarStorage.getRadarAvailableMissions())
         if (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             let stars = this.randomStars();
             ControllerRadarStorage.equateRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
-            ControllerRadarStorage.reduceRadarAvailableMissions(10);
+            ControllerRadarStorage.reduceRadarAvailableMissions(1);
         }
     }
 
@@ -78,9 +79,9 @@ export class ModalRadarLogic extends Component {
         this.startTimer();
     }
 
-    endTask() {
+    spawnNewTasks() {
         let radarTasks = ControllerRadarStorage.getRadarTasks();
-        while (radarTasks.length < this.maxDisplayedTasks) {
+        while (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             this.spawnTasks();
         }
     }
@@ -120,9 +121,9 @@ export class ModalRadarLogic extends Component {
         if (random < 60) {
             return TypesRadar.TASK_SALVATION;
         }
-        else if (random < 95) {
-            return TypesRadar.TASK_DARK_LEGION;
-        }
+        // else if (random < 95) {
+        //     return TypesRadar.TASK_DARK_LEGION;
+        // }
         else {
             return TypesRadar.TASK_PERSONAL
         }

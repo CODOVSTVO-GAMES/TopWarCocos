@@ -57,7 +57,7 @@ export class ZoomCamera extends Component {
         let zoomRaito = ortoHeight / 960
         this.zoomRaito = zoomRaito
 
-        MainInterface.instance.resizeMainInterface(zoomRaito)
-        SecondaryInterface.instance.resizeSecondaryInterface(zoomRaito)
+        // MainInterface.instance.resizeMainInterface(zoomRaito)
+        // SecondaryInterface.instance.resizeSecondaryInterface(zoomRaito)
     }
 }

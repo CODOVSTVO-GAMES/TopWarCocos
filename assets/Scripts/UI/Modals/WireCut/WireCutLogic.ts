@@ -37,8 +37,10 @@ export class WireCutLogic extends Component {
         if (this.triggerPush) {
             this.wire.off(NodeEventType.MOUSE_ENTER, this.mouseEnder, this);
             WireCutInterface.instance.renderWireCut();
-            SecondaryInterface.instance.closeAllModals();
-            BuferTasks.instance.awardingPersonal();
+            setTimeout(() => {
+                SecondaryInterface.instance.closeAllModals();
+                BuferTasks.instance.awardingPersonal();
+            }, 1000);
         }
     }
 }

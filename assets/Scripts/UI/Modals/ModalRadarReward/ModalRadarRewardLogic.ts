@@ -30,10 +30,7 @@ export class ModalRadarRewardLogic extends Component {
     }
 
     closeModalReward() {
-        console.log(this.task)
-        
-        try {
-            this.modalRadarReward.active = false;
+        this.modalRadarReward.active = false;
         for (let i = 0; i < this.task.rewards.length; i++) {
             if (this.task.rewards[i].type != TypesItems.EXPERIENCE) {
                 ControllerInventoryStorage.addItem(this.task.rewards[i].type, this.task.rewards[i].quantity);
@@ -44,10 +41,6 @@ export class ModalRadarRewardLogic extends Component {
         }
         ControllerRadarStorage.addRadarExperience(1);
         ControllerRadarStorage.reduceRadarTask(this.task);
-        ModalRadarLogic.instance.endTask();
-        }
-        catch {
-            console.log("АщиБКА");
-        }
+        ModalRadarLogic.instance.spawnNewTasks();
     }
 }

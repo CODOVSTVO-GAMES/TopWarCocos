@@ -13,6 +13,7 @@ import { ModalBackpackLogic } from './Modals/ModalBackpack/ModalBackpackLogic';
 import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
+import { ModalRadarLogic } from './Modals/ModalRadar/ModalRadarLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -100,7 +101,7 @@ export class SecondaryInterface extends Component {
                 this.open(this.listOpeningModals[0]);
                 this.listOpeningModals.splice(0, 1);
             }
-        }, 1000);
+        }, 100);
 
         this.workQueue = false;
     }
@@ -156,6 +157,7 @@ export class SecondaryInterface extends Component {
         }
         else if (item.modalName == TypesModals.RADAR) {
             ModalRadarInterface.instance.updateInterface();
+            ModalRadarLogic.instance.spawnNewTasks();
             this.backgraund.active = true;
             this.radar.active = true;
         }

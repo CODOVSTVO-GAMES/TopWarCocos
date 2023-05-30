@@ -3,7 +3,6 @@ import { ControllerRadarStorage } from '../../../Storage/Controllers/ControllerR
 import { ControllerConfigStorage } from '../../../Storage/Controllers/ControllerConfigStorage';
 import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
 import { TaskRender } from '../../../Radar/TaskRender';
-import { RadarTask } from '../../../Structures/RadarTask';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarInterface')
