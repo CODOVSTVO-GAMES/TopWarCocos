@@ -1,4 +1,4 @@
-import { _decorator, Component, Label } from 'cc';
+import { _decorator, Component, Label, Node, v3 } from 'cc';
 import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;
@@ -20,6 +20,10 @@ export class MainInterface extends Component {
     @property({ type: Label })
     public countPower: Label;
 
+    @property({ type: Node })
+    public mainNode: Node
+
+
     onLoad() {
         MainInterface.instance = this;
     }
@@ -29,6 +33,10 @@ export class MainInterface extends Component {
         this.updateAmountGems();
         this.updateCountLevel();
         this.updateCountPower();
+    }
+
+    resizeMainInterface(raito = 1) {
+        // this.mainNode.setScale(v3(raito, raito, 0))
     }
 
     updateAmountCoins() {

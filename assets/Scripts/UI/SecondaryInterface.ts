@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, v3 } from 'cc';
 import { TypesModals } from '../Static/TypesModals';
 import { ModalExperienceInerface } from './Modals/ModalExperience/ModalExperienceInerface';
 import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
@@ -19,6 +19,9 @@ const { ccclass, property } = _decorator;
 export class SecondaryInterface extends Component {
 
     public static instance: SecondaryInterface;
+
+    @property({ type: Node })
+    public secondaryNode: Node;
 
     @property({ type: Node })
     public backgraund: Node;
@@ -77,6 +80,10 @@ export class SecondaryInterface extends Component {
     openModal(type: string) {
         // this.listOpeningModals.push(new QueueItem(type))
         this.open(type)
+    }
+
+    resizeSecondaryInterface(raito = 1) {
+        // this.secondaryNode.setScale(v3(raito, raito, 0))
     }
 
 
