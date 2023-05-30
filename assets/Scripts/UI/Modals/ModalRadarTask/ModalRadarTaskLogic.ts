@@ -19,8 +19,6 @@ export class ModalRadarTaskLogic extends Component {
     }
 
     pushButton() {
-        console.log(this.task);
-        
         if (this.task.type == TypesRadar.TASK_SALVATION) {
             BuferTasks.instance.addTaskSalvation(this.task);
             ModalRadarTaskInterface.instance.updateInterface(this.task);
