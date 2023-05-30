@@ -13,6 +13,10 @@ export class ZoomCamera extends Component {
 
     @property({ type: Camera })
     public camera: Camera;
+    
+    onLoad() {
+        ZoomCamera.instance = this;
+    }
 
     onEnable() {
         this.countCoomRaito(this.camera.orthoHeight)
@@ -21,10 +25,6 @@ export class ZoomCamera extends Component {
 
     onDisable() {
         Canvas.instance.canvas.off(Node.EventType.MOUSE_WHEEL, this.mouseScroll);
-    }
-
-    protected onLoad(): void {
-        ZoomCamera.instance = this
     }
 
     mouseScroll(e: EventMouse) {
@@ -49,15 +49,12 @@ export class ZoomCamera extends Component {
             scroll = 0;
         }
         this.camera.orthoHeight += scroll;
-        this.countCoomRaito(this.camera.orthoHeight)
+        this.countCoomRaito(this.camera.orthoHeight);
     }
 
     countCoomRaito(ortoHeight: number) {
-        // console.log(ortoHeight)
-        let zoomRaito = ortoHeight / 960
-        this.zoomRaito = zoomRaito
-
-        // MainInterface.instance.resizeMainInterface(zoomRaito)
-        // SecondaryInterface.instance.resizeSecondaryInterface(zoomRaito)
+        this.zoomRaito = ortoHeight / 960;
+        MainInterface.instance.resizeMainInterface(this.zoomRaito)
+        SecondaryInterface.instance.resizeSecondaryInterface(this.zoomRaito)
     }
 }
