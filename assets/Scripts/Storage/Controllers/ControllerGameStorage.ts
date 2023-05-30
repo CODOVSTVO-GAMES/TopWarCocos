@@ -109,12 +109,6 @@ export class ControllerGameStorage {
         this.updateGameStorage();
     }
 
-    static reduceMaxEnergy(value: number) {
-        if (value == 0) return;
-        GameStorage.instance.maxEnergy -= value;
-        this.updateGameStorage();
-    }
-
     static getMaxEnergy(): number {
         return GameStorage.instance.maxEnergy;
     }
@@ -145,9 +139,8 @@ export class ControllerGameStorage {
 
     // =================================================================
 
-    static addLevel(value: number) {
-        if (value == 0) return;
-        GameStorage.instance.level += value;
+    static addLevel() {
+        GameStorage.instance.level += 1;
         MainInterface.instance.updateCountLevel();
         this.updateGameStorage();
     }

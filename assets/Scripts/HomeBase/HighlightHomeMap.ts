@@ -31,11 +31,11 @@ export class HighlightHomeMap {
         let indexObject: number;
         let arrayIndexs: number[] = ControllerHomeMapStorage.getArrayIndexs(type);
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("f");
             let currentDistance = Vec3.distance(ControllerHomeMapStorage.getCoordWorldPosition(i), pos);
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = i;
+                if (minDistance < 42) break;
             }
         }
         if (type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.TROOP_MARINE) {

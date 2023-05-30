@@ -1694,6 +1694,22 @@
       {
         "__uuid__": "0836efdb-ad5b-41f6-99b8-d95cf49abc44@f9941",
         "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e26f62d3-7703-4e33-aaa3-2b31017b1f0a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "16c33a0e-22cd-4b03-bc0f-06a1bd5f5c5e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "140454bc-255a-46eb-9015-a928440a9ac5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8e810be6-a550-4824-a0e0-f7f4e4fe9eec@f9941",
+        "__expectedType__": "cc.SpriteFrame"
       }
     ],
     "barracksAir": [

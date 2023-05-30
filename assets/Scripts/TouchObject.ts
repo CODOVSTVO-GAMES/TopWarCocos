@@ -24,27 +24,31 @@ export class TouchObject extends Component {
     public xPos: number;
     public yPos: number;
     public initialIndex: number;
-    public isProcessing: boolean;
     public isMove: boolean;
 
     onLoad() {
         this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this);
         this.touchObject.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
         this.touchObject.on(Input.EventType.TOUCH_END, this.touchEnd, this);
-        this.touchObject.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
     }
 
     onDestroy() {
         this.touchObject.off(Input.EventType.TOUCH_START, this.touchStart);
         this.touchObject.off(Input.EventType.TOUCH_MOVE, this.touchMove);
         this.touchObject.off(Input.EventType.TOUCH_END, this.touchEnd);
-        this.touchObject.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
     }
 
     touchStart(e: Touch) {
         if (TouchStatus.instance.activeTouch == true && this.isMove) return;
 
         TouchStatus.instance.activeTouch = true;
+
+        if (ControllerHomeMapStorage.getSelectObject()) {
+            if (ControllerHomeMapStorage.getSelectObject().getObjectInterface()) {
+                ControllerHomeMapStorage.getSelectObject().getObjectInterface().closeInterface();
+            }
+        }
+
         ControllerHomeMapStorage.onTransparencyObjects();
         ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         ControllerHomeMapStorage.setSelectObject(this.objectParameters);
@@ -57,7 +61,6 @@ export class TouchObject extends Component {
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
         this.initialIndex = this.objectParameters.index;
-        this.isProcessing = true;
         this.isMove = true;
     }
 
@@ -82,20 +85,7 @@ export class TouchObject extends Component {
         TouchStatus.instance.activeTouch = false;
     }
 
-    touchCancel() {
-        if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
-
-        this.processing();
-        this.isMove = false;
-        HighlightHomeMap.closeSpriteCoord();
-        ControllerHomeMapStorage.offTransparencyObjects();
-        TouchStatus.instance.activeTouch = false;
-    }
-
     processing() {
-        if (this.isProcessing == false) return;
-        this.isProcessing = false;
-
         let minDistance = 100000;
         let indexObject = 0;
 
@@ -104,6 +94,7 @@ export class TouchObject extends Component {
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = i;
+                if (minDistance < 42) break;
             }
         }
 

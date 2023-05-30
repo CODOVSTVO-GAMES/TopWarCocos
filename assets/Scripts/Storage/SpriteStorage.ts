@@ -81,6 +81,8 @@ export class SpriteStorage extends Component {
     @property({ type: SpriteFrame })
     public cellHint: SpriteFrame;
 
+    // =================================================================
+
     onLoad() {
         SpriteStorage.instance = this;
     }
