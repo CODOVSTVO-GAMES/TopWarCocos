@@ -9,23 +9,45 @@ export class BuferTasks extends Component {
 
     public static instance: BuferTasks;
 
-    public ongoingTasks: RadarTask[] = [];
+    public ongoingSalvationTasks: RadarTask[] = [];
+    public ongoingDarkLegionTasks: RadarTask[] = [];
+    public ongoingPersonalTasks: RadarTask[] = [];
 
     onLoad() {
         BuferTasks.instance = this;
     }
 
-    addTask(task: RadarTask) {
-        this.ongoingTasks.push(task);
+    addTaskSalvation(task: RadarTask) {
+        this.ongoingSalvationTasks.push(task);
         task.status = 1;
-        setTimeout(() => this.awarding(), Math.floor(Math.random() * 5000) + 5000);
+        setTimeout(() => this.awardingSalvation(), Math.floor(Math.random() * 5000) + 5000);
     }
 
-    awarding() {
-        this.ongoingTasks[0].status = 2;
-        this.ongoingTasks.splice(0, 1);
-        if (ModalRadarRewardLogic.instance.task == this.ongoingTasks[0]) {
+    addTaskDarkLegion(task: RadarTask) {
+        this.ongoingDarkLegionTasks.push(task);
+        task.status = 1;
+    }
+
+    addTaskPersonal(task: RadarTask) {
+        this.ongoingPersonalTasks.push(task);
+        task.status = 1;
+    }
+
+    awardingSalvation() {
+        this.ongoingSalvationTasks[0].status = 2;
+        this.ongoingSalvationTasks.splice(0, 1);
+        if (ModalRadarRewardLogic.instance.task == this.ongoingSalvationTasks[0]) {
             ModalRadarLogic.instance.closeRadarTask();
         }
+    }
+
+    awardingDarkLegion() {
+        this.ongoingDarkLegionTasks[0].status = 2;
+        this.ongoingDarkLegionTasks.splice(0, 1);
+    }
+
+    awardingPersonal() {
+        this.ongoingPersonalTasks[0].status = 2;
+        this.ongoingPersonalTasks.splice(0, 1);
     }
 }

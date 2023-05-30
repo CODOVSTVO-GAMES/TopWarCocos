@@ -2,7 +2,7 @@ import { _decorator, Node, Vec3 } from 'cc';
 import { HomeMapStorage } from '../HomeMapStorage';
 import { ObjectParameters } from '../../ObjectParameters';
 import { TypesObjects } from '../../Static/TypesObjects';
-import { IndexsObject } from '../../Static/IndexsObject';
+import { IndexesObject } from '../../Static/IndexesObject';
 import { ControllerBufferStorage } from './ControllerBufferStorage';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { SpawnObjects } from '../../SpawnObjects';
@@ -49,10 +49,6 @@ export class ControllerHomeMapStorage {
 
     static setSelectObject(objectParameters: ObjectParameters) {
         HomeMapStorage.instance.selectedObject = objectParameters;
-    }
-
-    static deleteSelectObject() {
-        HomeMapStorage.instance.selectedObject = null;
     }
 
     static upgradeLevel(index: number) {
@@ -111,10 +107,10 @@ export class ControllerHomeMapStorage {
 
     static getArrayIndexs(type: string): number[] {
         if (type == TypesObjects.TROOP_OVERLAND) {
-            return IndexsObject.object1x1;
+            return IndexesObject.object1x1;
         }
         else if (type == TypesObjects.BULLETIN_BOARD) {
-            return IndexsObject.object1x2;
+            return IndexesObject.object1x2;
         }
         else if (
             type == TypesObjects.TROOP_AIR ||
@@ -132,13 +128,13 @@ export class ControllerHomeMapStorage {
             type == TypesObjects.WALL ||
             type == TypesObjects.BATTLE
         ) {
-            return IndexsObject.object2x2;
+            return IndexesObject.object2x2;
         }
         else if (type == TypesObjects.TROOP_MARINE) {
-            return IndexsObject.object3x2;
+            return IndexesObject.object3x2;
         }
         else if (type == TypesObjects.COMMAND_POST) {
-            return IndexsObject.object3x3;
+            return IndexesObject.object3x3;
         }
     }
 

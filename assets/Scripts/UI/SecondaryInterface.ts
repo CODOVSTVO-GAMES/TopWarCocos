@@ -10,9 +10,9 @@ import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInte
 import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
 import { ModalBankInterface } from './Modals/ModalBank/ModalBankInterface';
 import { ModalBackpackLogic } from './Modals/ModalBackpack/ModalBackpackLogic';
-import { RenderDIalog } from './Modals/Dialogues/RenderDIalog';
 import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
+import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -65,9 +65,14 @@ export class SecondaryInterface extends Component {
     @property({ type: Node })
     public dialog: Node;
 
+    @property({type: Node})
+    public wireCut: Node;
+
     public listOpeningModals: Array<QueueItem> = [];
 
-    public activeModal: string;
+    public activeModal: string = "";
+
+    private workQueue: boolean = false;
 
     onLoad() {
         SecondaryInterface.instance = this;
@@ -78,8 +83,26 @@ export class SecondaryInterface extends Component {
     }
 
     openModal(type: string) {
-        // this.listOpeningModals.push(new QueueItem(type))
-        this.open(type)
+        if (this.listOpeningModals.find((i) => i.modalName == type) == null) {
+            this.listOpeningModals.push(new QueueItem(type));
+            if (this.workQueue == false) {
+                this.queueModals();
+            }
+        }
+
+    }
+
+    private queueModals() {
+        this.workQueue = true;
+
+        setInterval(() => {
+            if (this.listOpeningModals.length > 0 && this.activeModal == "") {
+                this.open(this.listOpeningModals[0]);
+                this.listOpeningModals.splice(0, 1);
+            }
+        }, 1000);
+
+        this.workQueue = false;
     }
 
     resizeSecondaryInterface(raito = 1) {
@@ -87,70 +110,75 @@ export class SecondaryInterface extends Component {
     }
 
 
-    private open(type: string) {
-        this.activeModal = type;
-        if (type == TypesModals.PROFILE) {
+    private open(item: QueueItem) {
+        this.activeModal = item.modalName;
+        if (item.modalName == TypesModals.PROFILE) {
             this.backgraund.active = true;
             this.profile.active = true;
         }
-        else if (type == TypesModals.SHOP_COINS) {
+        else if (item.modalName == TypesModals.SHOP_COINS) {
             this.backgraund.active = true;
             this.shopCoins.active = true;
         }
-        else if (type == TypesModals.SHOP_GEMS) {
+        else if (item.modalName == TypesModals.SHOP_GEMS) {
             this.backgraund.active = true;
             this.shopGems.active = true;
         }
-        else if (type == TypesModals.EXPERIENCE) {
+        else if (item.modalName == TypesModals.EXPERIENCE) {
             ModalExperienceInerface.instance.updateInterface();
             this.backgraund.active = true;
             this.experience.active = true;
         }
-        else if (type == TypesModals.POWER) {
+        else if (item.modalName == TypesModals.POWER) {
             ModalPowerInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.powar.active = true;
         }
-        else if (type == TypesModals.CHARACTERS) {
+        else if (item.modalName == TypesModals.CHARACTERS) {
             ModalCharacterGridInterface.instance.renderCharacters();
             this.backgraund.active = true;
             this.characters.active = true;
         }
-        else if (type == TypesModals.COMMAND_POST) {
+        else if (item.modalName == TypesModals.COMMAND_POST) {
             ModalCommandPostInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.commandPost.active = true;
         }
-        else if (type == TypesModals.BANK) {
+        else if (item.modalName == TypesModals.BANK) {
             ModalBankInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.bank.active = true;
         }
-        else if (type == TypesModals.AUTOCOMBINE) {
+        else if (item.modalName == TypesModals.AUTOCOMBINE) {
             ModalAutocombineInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.autocombine.active = true;
         }
-        else if (type == TypesModals.RADAR) {
+        else if (item.modalName == TypesModals.RADAR) {
             ModalRadarInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.radar.active = true;
         }
-        else if (type == TypesModals.REPAIR_SHOP) {
+        else if (item.modalName == TypesModals.REPAIR_SHOP) {
             ModalRepairShopInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.repairShop.active = true;
         }
-        else if (type == TypesModals.BACKPACK) {
+        else if (item.modalName == TypesModals.BACKPACK) {
             ModalBackpackLogic.instance.openModalBackpack();
             ModalBackpackInterface.instance.updateInterface();
             this.backgraund.active = true;
             this.backpack.active = true;
         }
-        else if (type == TypesModals.DIALOG) {
+        else if (item.modalName == TypesModals.DIALOG) {
             DIalogueLogic.renderDialog(0)
             this.backgraund.active = true;
             this.dialog.active = true
+        }
+        else if (item.modalName == TypesModals.WIRE_CUT) {
+            WireCutInterface.instance.renderWire();
+            this.backgraund.active = true;
+            this.wireCut.active = true;
         }
     }
 
@@ -177,6 +205,8 @@ export class SecondaryInterface extends Component {
     openRepairShop() { this.openModal(TypesModals.REPAIR_SHOP); }
 
     openBackpack() { this.openModal(TypesModals.BACKPACK); }
+
+    openWireCut() { this.openModal(TypesModals.WIRE_CUT); }
 
     closeModal() {
         this.backgraund.active = false;
@@ -212,7 +242,8 @@ export class SecondaryInterface extends Component {
         this.radar.active = false;
         this.repairShop.active = false;
         this.backpack.active = false;
-        this.dialog.active = false
+        this.dialog.active = false;
+        this.wireCut.active = false;
         this.activeModal = "";
     }
 
