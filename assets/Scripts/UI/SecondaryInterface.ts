@@ -65,7 +65,7 @@ export class SecondaryInterface extends Component {
     @property({ type: Node })
     public dialog: Node;
 
-    @property({type: Node})
+    @property({ type: Node })
     public wireCut: Node;
 
     public listOpeningModals: Array<QueueItem> = [];
@@ -106,7 +106,7 @@ export class SecondaryInterface extends Component {
     }
 
     resizeSecondaryInterface(raito = 1) {
-        // this.secondaryNode.setScale(v3(raito, raito, 0))
+        this.secondaryNode.setScale(v3(raito, raito, 0))
     }
 
 

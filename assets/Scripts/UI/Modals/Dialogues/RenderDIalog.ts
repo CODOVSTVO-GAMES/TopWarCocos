@@ -19,9 +19,7 @@ export class RenderDIalog extends Component {
     }
 
     protected start(): void {
-        console.log('sd')
-        setTimeout(() => SecondaryInterface.instance.openModal(TypesModals.DIALOG), 3000)
-
+        // setTimeout(() => SecondaryInterface.instance.openModal(TypesModals.DIALOG), 3000)
     }
 
 
@@ -37,7 +35,7 @@ export class RenderDIalog extends Component {
     private setTitle(field: string) {
         this.title.string = field
     }
-    
+
 
 }
 
