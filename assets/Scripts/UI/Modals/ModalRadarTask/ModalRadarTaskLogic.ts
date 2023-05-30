@@ -30,7 +30,13 @@ export class ModalRadarTaskLogic extends Component {
         else if (this.task.type == TypesRadar.TASK_PERSONAL) {
             BuferTasks.instance.addTaskPersonal(this.task);
             ModalRadarLogic.instance.closeRadarTask();
-            SecondaryInterface.instance.openWireCut();
+            let random = Math.floor(Math.random() * 100);
+            if (random < 50) {
+                SecondaryInterface.instance.openWireCut();
+            }
+            else {
+                SecondaryInterface.instance.openBombDisposal();
+            }
             SecondaryInterface.instance.closeAllModals();
         }
     }

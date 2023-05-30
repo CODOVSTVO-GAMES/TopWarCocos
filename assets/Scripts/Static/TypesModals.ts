@@ -11,8 +11,9 @@ export class TypesModals {
     public static REPAIR_SHOP: string = "repairShop";
     public static RADAR: string = "radar";
     public static BANK: string = "bank";
+    public static WIRE_CUT: string = "wireCut";
+    public static BOMB_DISPOSAL: string = "bombDisposal";
 
     public static DIALOG: string = "dialog";
-    public static WIRE_CUT: string = "wireCut";
 }
 

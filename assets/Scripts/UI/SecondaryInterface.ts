@@ -14,6 +14,7 @@ import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 import { ModalRadarLogic } from './Modals/ModalRadar/ModalRadarLogic';
+import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -68,6 +69,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public wireCut: Node;
+
+    @property({ type: Node })
+    public bombDisposal: Node;
 
     public listOpeningModals: Array<QueueItem> = [];
 
@@ -182,6 +186,11 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.wireCut.active = true;
         }
+        else if (item.modalName == TypesModals.BOMB_DISPOSAL) {
+            BombDisposalLogic.instance.renderModal();
+            this.backgraund.active = true;
+            this.bombDisposal.active = true;
+        }
     }
 
     openProfile() { this.openModal(TypesModals.PROFILE); }
@@ -209,6 +218,8 @@ export class SecondaryInterface extends Component {
     openBackpack() { this.openModal(TypesModals.BACKPACK); }
 
     openWireCut() { this.openModal(TypesModals.WIRE_CUT); }
+
+    openBombDisposal() { this.openModal(TypesModals.BOMB_DISPOSAL); }
 
     closeModal() {
         this.backgraund.active = false;
@@ -246,6 +257,7 @@ export class SecondaryInterface extends Component {
         this.backpack.active = false;
         this.dialog.active = false;
         this.wireCut.active = false;
+        this.bombDisposal.active = false;
         this.activeModal = "";
     }
 
