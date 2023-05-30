@@ -35,8 +35,8 @@ export class MainInterface extends Component {
         this.updateCountPower();
     }
 
-    resizeMainInterface(raito: number) {
-        // this.mainNode.setScale(v3(raito, raito, 0));
+    resizeMainInterface(raito = 1) {
+        this.mainNode.setScale(v3(raito, raito, this.mainNode.scale.z))
     }
 
     updateAmountCoins() {
