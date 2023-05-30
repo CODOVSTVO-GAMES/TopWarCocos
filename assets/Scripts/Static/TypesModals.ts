@@ -8,11 +8,6 @@ export class TypesModals {
     public static COMMAND_POST: string = "commandPost";
     public static AUTOCOMBINE: string = "autocombine";
     public static BACKPACK: string = "backpack";
-    
-
-    public static LIST_HEROES: string = "listHeroes";
-    public static ALLIANCE: string = "alliance";
-    public static MAIL: string = "mail";
     public static REPAIR_SHOP: string = "repairShop";
     public static RADAR: string = "radar";
     public static BANK: string = "bank";

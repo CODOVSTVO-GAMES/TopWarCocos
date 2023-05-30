@@ -1,6 +1,5 @@
 import { _decorator, Component, Input, Vec3, Touch, Node, Camera } from 'cc';
 import { TouchStatus } from '../TouchStatus';
-import { Canvas } from '../Canvas/Canvas';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 const { ccclass, property } = _decorator;
 
@@ -9,6 +8,9 @@ export class MovingCamera extends Component {
 
     @property({ type: Node })
     public object: Node;
+    
+    @property({ type: Node })
+    public canvas: Node;
 
     @property({ type: Camera })
     public camera: Camera;
@@ -18,17 +20,17 @@ export class MovingCamera extends Component {
     public isMove: boolean;
 
     onEnable() {
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_START, this.touchStart, this);
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
-        Canvas.instance.canvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
+        this.canvas.on(Input.EventType.TOUCH_START, this.touchStart, this);
+        this.canvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
+        this.canvas.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+        this.canvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
     }
 
     onDisable() {
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_START, this.touchStart);
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_MOVE, this.touchMove);
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
-        Canvas.instance.canvas.off(Input.EventType.TOUCH_END, this.touchEnd);
+        this.canvas.off(Input.EventType.TOUCH_START, this.touchStart);
+        this.canvas.off(Input.EventType.TOUCH_MOVE, this.touchMove);
+        this.canvas.off(Input.EventType.TOUCH_CANCEL, this.touchCancel);
+        this.canvas.off(Input.EventType.TOUCH_END, this.touchEnd);
     }
 
     touchStart() {

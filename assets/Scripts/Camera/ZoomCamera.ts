@@ -1,5 +1,4 @@
 import { _decorator, Component, Node, EventMouse, Camera } from 'cc';
-import { Canvas } from '../Canvas/Canvas';
 import { MainInterface } from '../UI/MainInterface';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 const { ccclass, property } = _decorator;
@@ -9,22 +8,25 @@ export class ZoomCamera extends Component {
 
     public static instance: ZoomCamera
 
-    public zoomRaito: number;
+    @property({ type: Node })
+    public canvas: Node;
 
     @property({ type: Camera })
     public camera: Camera;
     
+    public zoomRaito: number;
+
     onLoad() {
         ZoomCamera.instance = this;
     }
 
     onEnable() {
         this.countCoomRaito(this.camera.orthoHeight)
-        Canvas.instance.canvas.on(Node.EventType.MOUSE_WHEEL, this.mouseScroll, this);
+        this.canvas.on(Node.EventType.MOUSE_WHEEL, this.mouseScroll, this);
     }
 
     onDisable() {
-        Canvas.instance.canvas.off(Node.EventType.MOUSE_WHEEL, this.mouseScroll);
+        this.canvas.off(Node.EventType.MOUSE_WHEEL, this.mouseScroll);
     }
 
     mouseScroll(e: EventMouse) {
