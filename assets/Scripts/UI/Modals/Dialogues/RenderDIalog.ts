@@ -22,7 +22,6 @@ export class RenderDIalog extends Component {
         // setTimeout(() => SecondaryInterface.instance.openModal(TypesModals.DIALOG), 3000)
     }
 
-
     renderDialog(title: string, text: string) {
         this.setTitle(title)
         this.setText(text)

@@ -107,7 +107,7 @@ export class SecondaryInterface extends Component {
     }
 
     resizeSecondaryInterface(raito = 1) {
-        this.secondaryNode.setScale(v3(raito, raito, 0))
+        this.secondaryNode.setScale(v3(raito, raito, this.secondaryNode.scale.z))
     }
 
 
