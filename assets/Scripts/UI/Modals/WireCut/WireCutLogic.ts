@@ -35,7 +35,6 @@ export class WireCutLogic extends Component {
 
     mouseEnder() {
         if (this.triggerPush) {
-            this.wire.off(NodeEventType.MOUSE_ENTER, this.mouseEnder, this);
             WireCutInterface.instance.renderWireCut();
             setTimeout(() => {
                 SecondaryInterface.instance.closeAllModals();
