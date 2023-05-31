@@ -6,6 +6,7 @@ import { RadarTask } from '../../Structures/RadarTask';
 import { RadarReward } from '../../Structures/RadarReward';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
 import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
+import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('ControllerRadarStorage')
@@ -75,6 +76,7 @@ export class ControllerRadarStorage {
             RadarStorage.instance.radarLevel++;
             RadarStorage.instance.radarExperience -= targetExperience;
             targetExperience = ControllerConfigStorage.getRadarProgressNumberByLevel(this.getRadarLevel());
+            ModalRadarLogic.instance.calculationRadar();
         }
         ModalRadarInterface.instance.updateInterface();
         this.updateRadarStorage();

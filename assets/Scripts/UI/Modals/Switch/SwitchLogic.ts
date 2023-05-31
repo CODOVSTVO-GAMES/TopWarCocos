@@ -22,14 +22,14 @@ export class SwitchLogic extends Component {
         this.handle.on(Input.EventType.TOUCH_START, this.touchStart, this);
         this.handle.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
         this.handle.on(Input.EventType.TOUCH_END, this.touchEnd, this);
-        this.handle.on(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+        this.handle.on(Input.EventType.TOUCH_CANCEL, this.touchEnd, this);
     }
 
     onDestroy() {
         this.handle.off(Input.EventType.TOUCH_START, this.touchStart, this);
         this.handle.off(Input.EventType.TOUCH_MOVE, this.touchMove, this);
         this.handle.off(Input.EventType.TOUCH_END, this.touchEnd, this);
-        this.handle.off(Input.EventType.TOUCH_CANCEL, this.touchCancel, this);
+        this.handle.off(Input.EventType.TOUCH_CANCEL, this.touchEnd, this);
     }
 
     renderModal() {
@@ -59,21 +59,6 @@ export class SwitchLogic extends Component {
     }
 
     touchEnd() {
-        if (this.triggerEnd == true && this.isMove == false) return;
-
-        if (this.yPos <= -125) {
-            if (this.triggerEnd == false) {
-                setTimeout(() => {
-                    SecondaryInterface.instance.closeAllModals();
-                    BuferTasks.instance.awardingPersonal();
-                }, 1000);
-            }
-            this.triggerEnd = true;
-        }
-        this.isMove = false;
-    }
-
-    touchCancel() {
         if (this.triggerEnd == true && this.isMove == false) return;
 
         if (this.yPos <= -125) {

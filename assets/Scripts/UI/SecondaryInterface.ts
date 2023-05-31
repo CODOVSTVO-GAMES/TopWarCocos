@@ -102,7 +102,6 @@ export class SecondaryInterface extends Component {
                 this.queueModals();
             }
         }
-
     }
 
     private queueModals() {
