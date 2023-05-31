@@ -31,12 +31,18 @@ export class ModalRadarTaskLogic extends Component {
             BuferTasks.instance.addTaskPersonal(this.task);
             ModalRadarLogic.instance.closeRadarTask();
             let random = Math.floor(Math.random() * 100);
-            if (random < 50) {
-                SecondaryInterface.instance.openWireCut();
-            }
-            else {
-                SecondaryInterface.instance.openBombDisposal();
-            }
+            // if (random < 25) {
+            //     SecondaryInterface.instance.openWireCut();
+            // }
+            // else if (random < 50) {
+            //     SecondaryInterface.instance.openBombDisposal();
+            // }
+            // else if (random < 75) {
+                // SecondaryInterface.instance.openQuestion();
+            // }
+            // else {
+                SecondaryInterface.instance.openSwith();
+            // }
             SecondaryInterface.instance.closeAllModals();
         }
     }

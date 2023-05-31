@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, random } from 'cc';
+import { _decorator, Component, Node } from 'cc';
 import { BombDisposalInterface } from './BombDisposalInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { BuferTasks } from '../../../Radar/BuferTasks';
