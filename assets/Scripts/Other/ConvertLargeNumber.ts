@@ -5,10 +5,7 @@ export class ConvertLargeNumber {
     static abbreviationsNumbers: string[] = ["K", "M", "G", "T", "P", "E", "Z", "Y", "R", "Q"];
 
     static convert(value: number): string {
-        if (value == 0) {
-            return "0";
-        }
-        else if (value < 1000) {
+        if (value < 1000) {
             return value.toString();
         }
         let count = 1000;

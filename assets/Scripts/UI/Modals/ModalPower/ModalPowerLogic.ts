@@ -5,7 +5,6 @@ const { ccclass } = _decorator;
 @ccclass('ModalPowerLogic')
 export class ModalPowerLogic extends Component {
 
-
     upgradeTerritoryPower() {
         SecondaryInterface.instance.closeAllModals();
 

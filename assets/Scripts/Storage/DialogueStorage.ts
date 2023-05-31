@@ -6,11 +6,9 @@ export class DialogueStorage extends Component {
 
     public static instance: DialogueStorage
 
-    protected onLoad(): void {
+    public dialogues: Array<Array<string>> = [['Юнит св', 'fdfwedwed', 'efef'], ['Персонаж 2', 'wefw']];
+
+    onLoad() {
         DialogueStorage.instance = this
     }
-
-    public dialogues: Array<Array<string>> = [['Юнит св', 'fdfwedwed', 'efef'], ['Персонаж 2', 'wefw']]
-
 }
-

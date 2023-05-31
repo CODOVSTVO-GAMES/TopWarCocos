@@ -75,9 +75,9 @@ export class SecondaryInterface extends Component {
 
     public listOpeningModals: Array<QueueItem> = [];
 
-    public activeModal: string = "";
+    public activeModal: string;
 
-    private workQueue: boolean = false;
+    private workQueue: boolean;
 
     onLoad() {
         SecondaryInterface.instance = this;
@@ -113,7 +113,6 @@ export class SecondaryInterface extends Component {
     resizeSecondaryInterface(raito = 1) {
         this.secondaryNode.setScale(v3(raito, raito, this.secondaryNode.scale.z))
     }
-
 
     private open(item: QueueItem) {
         this.activeModal = item.modalName;
