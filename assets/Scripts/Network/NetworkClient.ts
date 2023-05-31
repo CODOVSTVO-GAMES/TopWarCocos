@@ -15,6 +15,7 @@ import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInv
 import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
 import { PaymentsService } from './services/PaymentsService';
+import { ConfigService } from './services/ConfigService';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -80,6 +81,7 @@ export class NetworkClient extends Component {
             }
         }
         PaymentsService.getProducts();
+        ConfigService.getStartConfig()
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
 }
