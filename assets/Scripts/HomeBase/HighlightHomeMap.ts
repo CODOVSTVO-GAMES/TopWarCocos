@@ -14,22 +14,11 @@ export class HighlightHomeMap {
         this.closeSpriteCoord();
     }
 
-    static openCellWater() {
-        for (let i = 0; i < IndexesMap.indexesWater.length; i++) {
-            HomeMapStorage.instance.spriteCoords[IndexesMap.indexesWater[i]].spriteFrame = SpriteStorage.instance.getSpriteCoord("f");
-        }
-    }
-
-    static openCellEarth() {
-        for (let i = 0; i < IndexesMap.indexesEarth.length; i++) {
-            HomeMapStorage.instance.spriteCoords[IndexesMap.indexesEarth[i]].spriteFrame = SpriteStorage.instance.getSpriteCoord("f");
-        }
-    }
-
     static openCell(type: string, level: number, pos: Vec3) {
         let minDistance: number = 1000000;
         let indexObject: number;
-        let arrayIndexs: number[] = ControllerHomeMapStorage.getArrayIndexs(type);
+        let arrayIndexes: number[] = ControllerHomeMapStorage.getArrayIndexes(type);
+
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance = Vec3.distance(ControllerHomeMapStorage.getCoordWorldPosition(i), pos);
             if (currentDistance < minDistance) {
@@ -38,14 +27,26 @@ export class HighlightHomeMap {
                 if (minDistance < 42) break;
             }
         }
+
+        this.closeSpriteCoord();
+
+        let arrayIndexes1 = ControllerHomeMapStorage.getArrayIndexes1(type);
+
         if (type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.TROOP_MARINE) {
-            this.closeSpriteCoord();
-            this.openCellWater();
+            for (let i = 0; i < arrayIndexes1.length; i++) {
+                if (IndexesMap.indexes[indexObject - arrayIndexes1[i]].typeCoord == "water") {
+                    HomeMapStorage.instance.spriteCoords[indexObject - arrayIndexes1[i]].spriteFrame = SpriteStorage.instance.getSpriteCoord("f");
+                }
+            }
         }
         else {
-            this.closeSpriteCoord();
-            this.openCellEarth();
+            for (let i = 0; i < arrayIndexes1.length; i++) {
+                if (IndexesMap.indexes[indexObject - arrayIndexes1[i]].typeCoord == "earth") {
+                    HomeMapStorage.instance.spriteCoords[indexObject - arrayIndexes1[i]].spriteFrame = SpriteStorage.instance.getSpriteCoord("f");
+                }
+            }
         }
+
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
             if (ControllerHomeMapStorage.getObjectParameter(i).type == type) {
@@ -60,14 +61,47 @@ export class HighlightHomeMap {
                 HomeMapStorage.instance.spriteCoords[i].spriteFrame = null;
             }
         }
-        for (let i = 0; i < arrayIndexs.length; i++) {
-            let tempIndex = indexObject - arrayIndexs[i];
+
+        for (let i = 0; i < arrayIndexes.length; i++) {
+            let tempIndex = indexObject - arrayIndexes[i];
             if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
-                HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
+                if (type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.TROOP_MARINE) {
+                    if (IndexesMap.indexes[tempIndex].typeCoord == "water") {
+                        HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
+                    }
+                    else {
+                        HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("b");
+                    }
+                }
+                else {
+
+                    if (IndexesMap.indexes[tempIndex].typeCoord == "earth") {
+                        HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
+                    }
+                    else {
+                        HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("b");
+                    }
+                }
             }
             else {
                 if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
-                    HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
+                    if (type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.TROOP_MARINE) {
+                        if (IndexesMap.indexes[tempIndex].typeCoord == "water") {
+                            HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
+                        }
+                        else {
+                            HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("b");
+                        }
+                    }
+                    else {
+
+                        if (IndexesMap.indexes[tempIndex].typeCoord == "earth") {
+                            HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("s");
+                        }
+                        else {
+                            HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("b");
+                        }
+                    }
                 }
                 else {
                     HomeMapStorage.instance.spriteCoords[tempIndex].spriteFrame = SpriteStorage.instance.getSpriteCoord("b");

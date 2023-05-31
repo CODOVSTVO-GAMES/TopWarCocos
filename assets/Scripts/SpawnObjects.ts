@@ -27,28 +27,28 @@ export class SpawnObjects {
 
     static spawnObjectsNearby(type: string, level: number, index: number) {
         let minDistance: number = 100000;
-        let indexSpawnObject: number = 0;
+        let indexeSpawnObject: number = 0;
         let isSpawnObject: boolean = false;
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance: number = Vec3.distance(ControllerHomeMapStorage.getCoordPosition(index), ControllerHomeMapStorage.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                let arrayIndexs: number[] = ControllerHomeMapStorage.getArrayIndexs(type);
+                let arrayIndexes: number[] = ControllerHomeMapStorage.getArrayIndexes(type);
                 let check: boolean = false;
-                for (let j = 0; j < arrayIndexs.length; j++) {
-                    if (ControllerHomeMapStorage.getObjectParameter(i - arrayIndexs[j]) != null) {
+                for (let j = 0; j < arrayIndexes.length; j++) {
+                    if (ControllerHomeMapStorage.getObjectParameter(i - arrayIndexes[j]) != null) {
                         check = true;
                         break;
                     }
                 }
                 if (check == false) {
                     minDistance = currentDistance;
-                    indexSpawnObject = i;
+                    indexeSpawnObject = i;
                     isSpawnObject = true;
                 }
             }
         }
         if (isSpawnObject) {
-            return this.spawnObjectsPos(type, level, indexSpawnObject);
+            return this.spawnObjectsPos(type, level, indexeSpawnObject);
         }
         else {
             console.log("error: there is no free space.");

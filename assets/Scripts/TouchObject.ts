@@ -102,11 +102,11 @@ export class TouchObject extends Component {
             return this.putAnObject(indexObject);
         }
 
-        let arrayIndexs = ControllerHomeMapStorage.getArrayIndexs(this.objectParameters.type);
+        let arrayIndexes = ControllerHomeMapStorage.getArrayIndexes(this.objectParameters.type);
         let count = 0;
         let indexMerge = 0;
-        for (let i = 0; i < arrayIndexs.length; i++) {
-            let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexs[i])
+        for (let i = 0; i < arrayIndexes.length; i++) {
+            let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexes[i])
             if (tempObjParam != null) {
                 if (this.objectParameters.type == tempObjParam.type) {
                     if (this.objectParameters.level == tempObjParam.level) {
@@ -125,25 +125,25 @@ export class TouchObject extends Component {
 
         if (count > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) this.mergeObject(indexObject - arrayIndexs[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
             }
             else {
                 this.putAnObject(this.initialIndex);
@@ -151,17 +151,13 @@ export class TouchObject extends Component {
         }
         else {
             if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                for (let i = 0; i < IndexesMap.indexesEarth.length; i++) {
-                    if (IndexesMap.indexesEarth[i] == indexObject) {
-                        return this.putAnObject(this.initialIndex);
-                    }
+                if (IndexesMap.indexes[indexObject].typeCoord == "earth") {
+                    return this.putAnObject(this.initialIndex);
                 }
             }
             else {
-                for (let i = 0; i < IndexesMap.indexesWater.length; i++) {
-                    if (IndexesMap.indexesWater[i] == indexObject) {
-                        return this.putAnObject(this.initialIndex);
-                    }
+                if (IndexesMap.indexes[indexObject].typeCoord == "water") {
+                    return this.putAnObject(this.initialIndex);
                 }
             }
             this.putAnObject(indexObject);

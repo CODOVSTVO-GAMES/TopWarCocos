@@ -40,9 +40,9 @@ export class ControllerHomeMapStorage {
     }
 
     static setObjectParameter(objectParameters: ObjectParameters, type: string, index: number) {
-        let arrayIndexs: number[] = this.getArrayIndexs(type);
-        for (let i = 0; i < arrayIndexs.length; i++) {
-            HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexs[i]] = objectParameters;
+        let arrayIndexes: number[] = this.getArrayIndexes(type);
+        for (let i = 0; i < arrayIndexes.length; i++) {
+            HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexes[i]] = objectParameters;
         }
         this.updateHomeMapStorage();
     }
@@ -109,7 +109,7 @@ export class ControllerHomeMapStorage {
         return quantity;
     }
 
-    static getArrayIndexs(type: string): number[] {
+    static getArrayIndexes(type: string): number[] {
         if (type == TypesObjects.TROOP_OVERLAND) {
             return IndexesObject.object1x1;
         }
@@ -139,6 +139,39 @@ export class ControllerHomeMapStorage {
         }
         else if (type == TypesObjects.COMMAND_POST) {
             return IndexesObject.object3x3;
+        }
+    }
+
+    static getArrayIndexes1(type: string): number[] {
+        if (type == TypesObjects.TROOP_OVERLAND) {
+            return IndexesObject.obj1x1;
+        }
+        else if (type == TypesObjects.BULLETIN_BOARD) {
+            return IndexesObject.obj1x2;
+        }
+        else if (
+            type == TypesObjects.TROOP_AIR ||
+            type == TypesObjects.BARRACKS_AIR ||
+            type == TypesObjects.BARRACKS_MARINE ||
+            type == TypesObjects.BARRACKS_OVERLAND ||
+            type == TypesObjects.GOLD_MINE ||
+            type == TypesObjects.BANK ||
+            type == TypesObjects.AUTOCOMBINE ||
+            type == TypesObjects.RADAR ||
+            type == TypesObjects.TREASURES ||
+            type == TypesObjects.MANIPULATOR ||
+            type == TypesObjects.REPAIR_SHOP ||
+            type == TypesObjects.LOBBY_WARS ||
+            type == TypesObjects.WALL ||
+            type == TypesObjects.BATTLE
+        ) {
+            return IndexesObject.obj2x2;
+        }
+        else if (type == TypesObjects.TROOP_MARINE) {
+            return IndexesObject.obj3x2;
+        }
+        else if (type == TypesObjects.COMMAND_POST) {
+            return IndexesObject.obj3x3;
         }
     }
 
