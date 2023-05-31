@@ -32,7 +32,7 @@ export class SpawnObjects {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance: number = Vec3.distance(ControllerHomeMapStorage.getCoordPosition(index), ControllerHomeMapStorage.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                let arrayIndexes: number[] = ControllerHomeMapStorage.getArrayIndexes(type);
+                let arrayIndexes: number[] = ControllerHomeMapStorage.getArrayObject(type);
                 let check: boolean = false;
                 for (let j = 0; j < arrayIndexes.length; j++) {
                     if (ControllerHomeMapStorage.getObjectParameter(i - arrayIndexes[j]) != null) {

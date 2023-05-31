@@ -102,7 +102,7 @@ export class TouchObject extends Component {
             return this.putAnObject(indexObject);
         }
 
-        let arrayIndexes = ControllerHomeMapStorage.getArrayIndexes(this.objectParameters.type);
+        let arrayIndexes = ControllerHomeMapStorage.getArrayObject(this.objectParameters.type);
         let count = 0;
         let indexMerge = 0;
         for (let i = 0; i < arrayIndexes.length; i++) {
