@@ -14,6 +14,7 @@ import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeM
 import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
 import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
+import { PaymentsService } from './services/PaymentsService';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -78,7 +79,8 @@ export class NetworkClient extends Component {
                 ControllerRadarStorage.assigningSaveValues(jsonValue);
             }
         }
-        LoadingGame.redirectToHomeMap()
+        PaymentsService.getProducts();
+        RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
 }
 

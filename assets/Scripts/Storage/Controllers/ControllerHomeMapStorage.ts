@@ -6,21 +6,22 @@ import { IndexesObject } from '../../Static/IndexesObject';
 import { ControllerBufferStorage } from './ControllerBufferStorage';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { SpawnObjects } from '../../SpawnObjects';
+import { TypesLocation } from '../../Static/TypesLocation';
 
 export class ControllerHomeMapStorage {
 
     static assignStartingValues() {
         setTimeout(() => {
-            SpawnObjects.spawnObjectsPos(TypesObjects.BANK, 1, 717);
-            SpawnObjects.spawnObjectsPos(TypesObjects.AUTOCOMBINE, 1, 719);
-            SpawnObjects.spawnObjectsPos(TypesObjects.RADAR, 1, 721);
-            SpawnObjects.spawnObjectsPos(TypesObjects.REPAIR_SHOP, 1, 723);
-            SpawnObjects.spawnObjectsPos(TypesObjects.COMMAND_POST, 1, 920);
+            SpawnObjects.spawnObjectsPos(TypesObjects.BANK, TypesLocation.EARTH, 1, 717);
+            SpawnObjects.spawnObjectsPos(TypesObjects.AUTOCOMBINE, TypesLocation.EARTH, 1, 719);
+            SpawnObjects.spawnObjectsPos(TypesObjects.RADAR, TypesLocation.EARTH, 1, 721);
+            SpawnObjects.spawnObjectsPos(TypesObjects.REPAIR_SHOP, TypesLocation.EARTH, 1, 723);
+            SpawnObjects.spawnObjectsPos(TypesObjects.COMMAND_POST, TypesLocation.EARTH, 1, 920);
 
-            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1118);
-            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1120);
-            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1218);
-            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, 1, 1220);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, TypesLocation.EARTH, 1, 1118);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, TypesLocation.EARTH, 1, 1120);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, TypesLocation.EARTH, 1, 1218);
+            SpawnObjects.spawnObjectsPos(TypesObjects.WALL, TypesLocation.EARTH, 1, 1220);
         }, 2000);
     }
 
