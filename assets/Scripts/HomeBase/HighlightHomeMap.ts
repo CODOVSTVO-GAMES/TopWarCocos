@@ -17,7 +17,7 @@ export class HighlightHomeMap {
     static openCell(type: string, level: number, pos: Vec3) {
         let minDistance: number = 1000000;
         let indexObject: number;
-        let arrayIndexes: number[] = ControllerHomeMapStorage.getArrayIndexes(type);
+        let arrayIndexes: number[] = ControllerHomeMapStorage.getArrayObject(type);
 
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance = Vec3.distance(ControllerHomeMapStorage.getCoordWorldPosition(i), pos);
@@ -30,7 +30,7 @@ export class HighlightHomeMap {
 
         this.closeSpriteCoord();
 
-        let arrayIndexes1 = ControllerHomeMapStorage.getArrayIndexes1(type);
+        let arrayIndexes1 = ControllerHomeMapStorage.getArratRegionObject(type);
 
         if (type == TypesObjects.BARRACKS_MARINE || type == TypesObjects.TROOP_MARINE) {
             for (let i = 0; i < arrayIndexes1.length; i++) {
