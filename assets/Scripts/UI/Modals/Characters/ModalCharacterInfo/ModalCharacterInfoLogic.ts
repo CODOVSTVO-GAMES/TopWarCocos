@@ -24,7 +24,7 @@ export class ModalCharacterInfoLogic extends Component {
 
     modalOpen(event, customEventData) {
         this.characterIndex = customEventData;
-        this.modal.active = ModalCharacterInfoIntarface.instance.renderCharacter(customEventData);
+        this.modal.active = ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
     }
 
     modalClose() {

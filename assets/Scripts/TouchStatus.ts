@@ -6,7 +6,7 @@ export class TouchStatus extends Component {
 
     public static instance: TouchStatus;
 
-    public activeTouch: boolean = false;
+    public activeTouch: boolean;
 
     onEnable() {
         TouchStatus.instance = this;

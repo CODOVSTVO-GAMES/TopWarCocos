@@ -53,7 +53,7 @@ export class TouchObject extends Component {
         ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         ControllerHomeMapStorage.setSelectObject(this.objectParameters);
 
-        HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.level, this.mainObject.getWorldPosition());
+        HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.location, this.objectParameters.level, this.mainObject.getWorldPosition());
 
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
@@ -72,7 +72,7 @@ export class TouchObject extends Component {
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
 
-        HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.level, this.mainObject.getWorldPosition());
+        HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.location, this.objectParameters.level, this.mainObject.getWorldPosition());
     }
 
     touchEnd() {
@@ -80,7 +80,7 @@ export class TouchObject extends Component {
 
         this.processing();
         this.isMove = false;
-        HighlightHomeMap.closeSpriteCoord();
+        HighlightHomeMap.hideAllCoord();
         ControllerHomeMapStorage.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
@@ -150,17 +150,13 @@ export class TouchObject extends Component {
             }
         }
         else {
-            if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (IndexesMap.indexes[indexObject].typeCoord == "earth") {
-                    return this.putAnObject(this.initialIndex);
-                }
+
+            if (IndexesMap.indexes[indexObject].typeCoord != this.objectParameters.location) {
+                this.putAnObject(this.initialIndex);
             }
             else {
-                if (IndexesMap.indexes[indexObject].typeCoord == "water") {
-                    return this.putAnObject(this.initialIndex);
-                }
+                this.putAnObject(indexObject);
             }
-            this.putAnObject(indexObject);
         }
     }
 

@@ -24,6 +24,7 @@ export class ModalRadarLogic extends Component {
     public maxEnergy: number;
     public maxDisplayedTasks: number;
     public maxTasks: number;
+    public configTime: number;
     public timerCoroutine: any;
 
     public radarRewardsTypes: string[][] = [[TypesItems.PLAN_MAX_OVERLAND, TypesItems.PLAN_CREATE_BARRACK_OVERLAND, TypesItems.PLAN_MAX_BARRACK_OVERLAND],
@@ -37,18 +38,16 @@ export class ModalRadarLogic extends Component {
     }
     start() {
         this.calculationRadar();
-        let radarTasks = ControllerRadarStorage.getRadarTasks();
-        while (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
-            this.spawnTasks();
-        }
+        this.spawnNewTasks();
         this.startTimer();
     }
 
     calculationRadar() {
-        let config = ControllerConfigStorage.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
+        let config = ControllerConfigStorage.getRadarConfigByLevel(RadarStorage.instance.radarLevel); // получаем конфиг радара по уровню
         this.maxEnergy = config.maxEnergy;
         this.maxTasks = config.maxTasks;
         this.maxDisplayedTasks = config.displayedTasks;
+        this.configTime = config.time;
     }
 
     spawnTasks() {
@@ -56,7 +55,7 @@ export class ModalRadarLogic extends Component {
         if (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             let stars = this.randomStars();
             ControllerRadarStorage.equateRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
-            ControllerRadarStorage.reduceRadarAvailableMissions(1);
+            ControllerRadarStorage.reduceRadarAvailableMissions(1); // вычитаем одну миссию из счетчика доступных
         }
     }
 
@@ -66,15 +65,14 @@ export class ModalRadarLogic extends Component {
 
     stopTimer() {
         clearInterval(this.timerCoroutine);
-        let config = ControllerConfigStorage.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
         let availableMissions = ControllerRadarStorage.getRadarAvailableMissions();
-        if (config.maxTasks >= availableMissions + 5) {
-            ControllerRadarStorage.addRadarAvailableMissions(5);
+        if (this.maxTasks >= availableMissions + 5) {
+            ControllerRadarStorage.addRadarAvailableMissions(5); // по истечению таймера начисляется 5 миссий
         }
-        else if (availableMissions < config.maxTasks) {
-            ControllerRadarStorage.addRadarAvailableMissions(config.maxTasks - availableMissions);
+        else if (availableMissions < this.maxTasks) {
+            ControllerRadarStorage.addRadarAvailableMissions(this.maxTasks - availableMissions);
         }
-        ControllerRadarStorage.equateRadarTime(config.time);
+        ControllerRadarStorage.equateRadarTime(this.configTime);
         this.startTimer();
     }
 
@@ -121,7 +119,7 @@ export class ModalRadarLogic extends Component {
             return TypesRadar.TASK_SALVATION;
         }
         // else if (random < 95) {
-        //     return TypesRadar.TASK_DARK_LEGION;
+        //     return TypesRadar.TASK_DARK_LEGION; // этих заданий ещё не существует
         // }
         else {
             return TypesRadar.TASK_PERSONAL

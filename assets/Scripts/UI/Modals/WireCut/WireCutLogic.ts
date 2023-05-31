@@ -17,7 +17,6 @@ export class WireCutLogic extends Component {
     private triggerPush: boolean;
 
     onLoad() {
-
         this.wire.on(NodeEventType.MOUSE_ENTER, this.mouseEnder, this);
 
         this.zoneBox.on(Input.EventType.TOUCH_START, () => this.triggerPush = true, this);

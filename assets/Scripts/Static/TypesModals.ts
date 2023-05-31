@@ -13,7 +13,8 @@ export class TypesModals {
     public static BANK: string = "bank";
     public static WIRE_CUT: string = "wireCut";
     public static BOMB_DISPOSAL: string = "bombDisposal";
+    public static QUESTION: string = "question";
+    public static SWITCH: string = "switch";
 
     public static DIALOG: string = "dialog";
 }
-

@@ -19,25 +19,36 @@ export class ModalRadarTaskLogic extends Component {
     }
 
     pushButton() {
+        console.log(this.task);
         if (this.task.type == TypesRadar.TASK_SALVATION) {
-            BuferTasks.instance.addTaskSalvation(this.task);
-            ModalRadarTaskInterface.instance.updateInterface(this.task);
+            if (this.task.status < 1) {
+                BuferTasks.instance.addTaskSalvation(this.task);
+                ModalRadarTaskInterface.instance.updateInterface(this.task);
+            }
         }
         else if (this.task.type == TypesRadar.TASK_DARK_LEGION) {
-            BuferTasks.instance.addTaskDarkLegion(this.task);
-            ModalRadarTaskInterface.instance.updateInterface(this.task);
+            if (this.task.status < 1) {
+                BuferTasks.instance.addTaskDarkLegion(this.task);
+                ModalRadarTaskInterface.instance.updateInterface(this.task);
+            }
         }
         else if (this.task.type == TypesRadar.TASK_PERSONAL) {
             BuferTasks.instance.addTaskPersonal(this.task);
             ModalRadarLogic.instance.closeRadarTask();
+            SecondaryInterface.instance.closeAllModals();
             let random = Math.floor(Math.random() * 100);
-            if (random < 50) {
+            if (random < 25) {
                 SecondaryInterface.instance.openWireCut();
             }
-            else {
+            else if (random < 50) {
                 SecondaryInterface.instance.openBombDisposal();
             }
-            SecondaryInterface.instance.closeAllModals();
+            else if (random < 75) {
+                SecondaryInterface.instance.openQuestion();
+            }
+            else {
+                SecondaryInterface.instance.openSwith();
+            }
         }
     }
 }

@@ -15,6 +15,8 @@ import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 import { ModalRadarLogic } from './Modals/ModalRadar/ModalRadarLogic';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
+import { QuestionLogic } from './Modals/Question/QuestionLogic';
+import { SwitchLogic } from './Modals/Switch/SwitchLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -73,11 +75,17 @@ export class SecondaryInterface extends Component {
     @property({ type: Node })
     public bombDisposal: Node;
 
+    @property({ type: Node })
+    public question: Node;
+
+    @property({ type: Node })
+    public switch: Node;
+
     public listOpeningModals: Array<QueueItem> = [];
 
-    public activeModal: string = "";
+    public activeModal: string;
 
-    private workQueue: boolean = false;
+    private workQueue: boolean;
 
     onLoad() {
         SecondaryInterface.instance = this;
@@ -94,7 +102,6 @@ export class SecondaryInterface extends Component {
                 this.queueModals();
             }
         }
-
     }
 
     private queueModals() {
@@ -113,7 +120,6 @@ export class SecondaryInterface extends Component {
     resizeSecondaryInterface(raito = 1) {
         this.secondaryNode.setScale(v3(raito, raito, this.secondaryNode.scale.z))
     }
-
 
     private open(item: QueueItem) {
         this.activeModal = item.modalName;
@@ -191,6 +197,16 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.bombDisposal.active = true;
         }
+        else if (item.modalName == TypesModals.QUESTION) {
+            QuestionLogic.instance.renderModal();
+            this.backgraund.active = true;
+            this.question.active = true;
+        }
+        else if (item.modalName == TypesModals.SWITCH) {
+            SwitchLogic.instance.renderModal();
+            this.backgraund.active = true;
+            this.switch.active = true;
+        }
     }
 
     openProfile() { this.openModal(TypesModals.PROFILE); }
@@ -220,6 +236,10 @@ export class SecondaryInterface extends Component {
     openWireCut() { this.openModal(TypesModals.WIRE_CUT); }
 
     openBombDisposal() { this.openModal(TypesModals.BOMB_DISPOSAL); }
+
+    openQuestion() { this.openModal(TypesModals.QUESTION); }
+
+    openSwith() { this.openModal(TypesModals.SWITCH); }
 
     closeModal() {
         this.backgraund.active = false;
@@ -258,6 +278,8 @@ export class SecondaryInterface extends Component {
         this.dialog.active = false;
         this.wireCut.active = false;
         this.bombDisposal.active = false;
+        this.question.active = false;
+        this.switch.active = false;
         this.activeModal = "";
     }
 
