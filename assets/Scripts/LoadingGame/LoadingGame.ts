@@ -8,6 +8,7 @@ import { DataStorageService } from '../Network/services/DataStorageService';
 import { UserService } from '../Network/services/UserService';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
 import { PaymentsService } from '../Network/services/PaymentsService';
+import { ConfigService } from '../Network/services/ConfigService';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')
@@ -44,6 +45,7 @@ export class LoadingGame extends Component {
     static redirectToHomeMap() {
         console.log('redirect scene')
         PaymentsService.getProducts()
+        ConfigService.getStartConfig()
         // OkConnector.showPayment('title', 'description', '1', 1)
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
