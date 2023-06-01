@@ -4,6 +4,7 @@ import { ObjectInterface } from './GameObjects/Interface/ObjectInterface';
 import { BarracksLogic } from './GameObjects/Logic/BarracksLogic';
 import { GoldMineLogic } from './GameObjects/Logic/GoldMineLogic';
 import { GoldMineInterface } from './GameObjects/Interface/GoldMineInterface';
+import { MessageAnimation } from './Animations/Message/MessageAnimation';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -42,6 +43,8 @@ export class ObjectParameters extends Component {
 
     public barracksLogic: BarracksLogic;
     public goldMineLogic: GoldMineLogic;
+
+    public messageAnimation: MessageAnimation;
 
     start() {
         this.updateSprite();
