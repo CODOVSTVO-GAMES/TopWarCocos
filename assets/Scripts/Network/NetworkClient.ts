@@ -81,7 +81,6 @@ export class NetworkClient extends Component {
             }
         }
         PaymentsService.getProducts();
-        ConfigService.getStartConfig()
         RedirectionToScene.redirect(SceneNames.HOME_MAP);
     }
 }

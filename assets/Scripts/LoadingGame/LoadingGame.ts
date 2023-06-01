@@ -5,6 +5,7 @@ import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/services/DataStorageService';
 import { UserService } from '../Network/services/UserService';
 import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { ConfigService } from '../Network/services/ConfigService';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')
@@ -36,6 +37,7 @@ export class LoadingGame extends Component {
             TypesStorages.RADAR_STORAGE
         ];
         DataStorageService.getData(arrayActiveStorage)//redirectToHomeMap вызывается после получения данных в колбеке
+        ConfigService.getStartConfig()
     }
 }
 
