@@ -1,8 +1,7 @@
 export class IndexesObject {
     public static object1x1: number[] = [0];
-    public static object1x2: number[] = [0, 1];
     public static object2x2: number[] = [0, 1, 50, 51];
-    public static object3x2: number[] = [0, 1, 50, 51, 100, 101];
+    public static object2x3: number[] = [0, 1, 50, 51, 100, 101];
     public static object3x3: number[] = [0, 1, 2, 50, 51, 52, 100, 101, 102];
     public static object4x4: number[] = [0, 1, 2, 3, 50, 51, 52, 53, 100, 101, 102, 103, 150, 151, 152, 153];
 
@@ -21,10 +20,6 @@ export class IndexesObject {
         245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255
     ];
 
-    public static regionObject1x2: number[] = [
-
-    ];
-
     public static regionObject2x2: number[] = [
         -1, -2, -3, -4, -5,
         -44, -45, -46, -47, -48, -49, -50, -51, -52, -53, -54, -55,
@@ -41,7 +36,7 @@ export class IndexesObject {
         295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306,
     ];
 
-    public static regionObject3x2: number[] = [
+    public static regionObject2x3: number[] = [
         -1, -2, -3, -4, -5,
         -44, -45, -46, -47, -48, -49, -50, -51, -52, -53, -54, -55,
         -94, -95, -96, -97, -98, -99, -100, -101, -102, -103, -104, -105,

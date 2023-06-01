@@ -121,7 +121,6 @@ export class ControllerHomeMapStorage {
 
     static getArrayObject(type: string): number[] {
         if (type == TypesObjects.TROOP_OVERLAND) return IndexesObject.object1x1;
-        else if (type == TypesObjects.BULLETIN_BOARD) return IndexesObject.object1x2;
         else if (
             type == TypesObjects.TROOP_AIR ||
             type == TypesObjects.BARRACKS_AIR ||
@@ -138,13 +137,12 @@ export class ControllerHomeMapStorage {
             type == TypesObjects.WALL ||
             type == TypesObjects.BATTLE
         ) return IndexesObject.object2x2;
-        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.object3x2;
+        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.object2x3;
         else if (type == TypesObjects.COMMAND_POST) return IndexesObject.object3x3;
     }
 
     static getArratRegionObject(type: string): number[] {
         if (type == TypesObjects.TROOP_OVERLAND) return IndexesObject.regionObject1x1;
-        else if (type == TypesObjects.BULLETIN_BOARD) return IndexesObject.regionObject1x2;
         else if (
             type == TypesObjects.TROOP_AIR ||
             type == TypesObjects.BARRACKS_AIR ||
@@ -161,7 +159,7 @@ export class ControllerHomeMapStorage {
             type == TypesObjects.WALL ||
             type == TypesObjects.BATTLE
         ) return IndexesObject.regionObject2x2;
-        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.regionObject3x2;
+        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.regionObject2x3;
         else if (type == TypesObjects.COMMAND_POST) return IndexesObject.regionObject3x3;
     }
 

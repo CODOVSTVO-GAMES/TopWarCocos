@@ -18,8 +18,6 @@ export class TypesObjects {
     public static LOBBY_WARS: string = "lobbyWar";
     public static EXPEDITION: string = "expedition";
 
-    public static BULLETIN_BOARD: string = "bulletinBoard";
-
     public static WALL: string = "wall";
     public static BATTLE: string = "battle";
 }

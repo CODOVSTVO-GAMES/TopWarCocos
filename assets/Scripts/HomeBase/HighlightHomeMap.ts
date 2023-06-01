@@ -27,7 +27,7 @@ export class HighlightHomeMap {
 
         for (let i = 0; i < arrayRegionObject.length; i++) {
             try {
-                if (IndexesMap.indexes[indexObject - arrayRegionObject[i]].typeCoord == location) {
+                if (IndexesMap.indexesAllMap[indexObject - arrayRegionObject[i]].typeCoord == location) {
                     this.renderCoordFree(indexObject - arrayRegionObject[i]);
                 }
             }
@@ -52,7 +52,7 @@ export class HighlightHomeMap {
         for (let i = 0; i < arrayObject.length; i++) {
             let tempIndex = indexObject - arrayObject[i];
             if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
-                if (IndexesMap.indexes[tempIndex].typeCoord == location) {
+                if (IndexesMap.indexesAllMap[tempIndex].typeCoord == location) {
                     this.renderCoordSelect(tempIndex);
                 }
                 else {
@@ -61,7 +61,7 @@ export class HighlightHomeMap {
             }
             else {
                 if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
-                    if (IndexesMap.indexes[tempIndex].typeCoord == location) {
+                    if (IndexesMap.indexesAllMap[tempIndex].typeCoord == location) {
                         this.renderCoordSelect(tempIndex);
                     }
                     else {
@@ -116,4 +116,3 @@ export class HighlightHomeMap {
         }
     }
 }
-

@@ -151,11 +151,52 @@ export class TouchObject extends Component {
         }
         else {
 
-            if (IndexesMap.indexes[indexObject].typeCoord != this.objectParameters.location) {
+            if (IndexesMap.indexesAllMap[indexObject].typeCoord != this.objectParameters.location) {
                 this.putAnObject(this.initialIndex);
             }
             else {
-                this.putAnObject(indexObject);
+                if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
+                    this.putAnObject(indexObject);
+                }
+                else if (
+                    this.objectParameters.type == TypesObjects.TROOP_AIR ||
+                    this.objectParameters.type == TypesObjects.BARRACKS_AIR ||
+                    this.objectParameters.type == TypesObjects.BARRACKS_MARINE ||
+                    this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND ||
+                    this.objectParameters.type == TypesObjects.GOLD_MINE ||
+                    this.objectParameters.type == TypesObjects.BANK ||
+                    this.objectParameters.type == TypesObjects.AUTOCOMBINE ||
+                    this.objectParameters.type == TypesObjects.RADAR ||
+                    this.objectParameters.type == TypesObjects.TREASURES ||
+                    this.objectParameters.type == TypesObjects.MANIPULATOR ||
+                    this.objectParameters.type == TypesObjects.REPAIR_SHOP ||
+                    this.objectParameters.type == TypesObjects.LOBBY_WARS ||
+                    this.objectParameters.type == TypesObjects.WALL ||
+                    this.objectParameters.type == TypesObjects.BATTLE
+                ) {
+                    if (IndexesMap.indexesAllMap[indexObject].availableObject2x2 == false) {
+                        this.putAnObject(this.initialIndex);
+                    }
+                    else {
+                        this.putAnObject(indexObject);
+                    }
+                }
+                else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
+                    if (IndexesMap.indexesAllMap[indexObject].availableObject2x2 == false) {
+                        this.putAnObject(this.initialIndex);
+                    }
+                    else {
+                        this.putAnObject(indexObject);
+                    }
+                }
+                else if (this.objectParameters.type == TypesObjects.COMMAND_POST) {
+                    if (IndexesMap.indexesAllMap[indexObject].availableObject3x3 == false) {
+                        this.putAnObject(this.initialIndex);
+                    }
+                    else {
+                        this.putAnObject(indexObject);
+                    }
+                }
             }
         }
     }

@@ -59,7 +59,7 @@ export class SpawnObjects {
                         break;
                     }
                     if (i >= 50) {
-                        if (IndexesMap.indexes[i - arrayIndexes[j]].typeCoord != location) {
+                        if (IndexesMap.indexesAllMap[i - arrayIndexes[j]].typeCoord != location) {
                             check = true;
                             break;
                         }
