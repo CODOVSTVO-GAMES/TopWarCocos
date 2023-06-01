@@ -2010,7 +2010,7 @@
       "__uuid__": "41ada0b2-d2f3-4fb7-ace4-850dde7fd3f4@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "cellHint": {
+    "coordHint": {
       "__uuid__": "031eebda-c949-41bc-b4a8-f7b86fd16bd2@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },

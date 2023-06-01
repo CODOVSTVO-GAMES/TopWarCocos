@@ -5,12 +5,15 @@ import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMa
 import { IndexesMap } from './Static/IndexesMap';
 import { TypesObjects } from './Static/TypesObjects';
 import { TypesLocation } from './Static/TypesLocation';
+import { HomeMapStorage } from './Storage/HomeMapStorage';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
 export class SpawnObjects {
 
     static spawnObjectsFromStorage() {
+        console.log("arrayObjectParameter LENGTH: " + HomeMapStorage.instance.arrayObjectParameters.length);
+        console.log("coords LENGTH: " + HomeMapStorage.instance.coords.length);
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
             if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;

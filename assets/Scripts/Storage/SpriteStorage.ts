@@ -79,7 +79,7 @@ export class SpriteStorage extends Component {
     public coodBlock: SpriteFrame;
 
     @property({ type: SpriteFrame })
-    public cellHint: SpriteFrame;
+    public coordHint: SpriteFrame;
 
     // =================================================================
 
@@ -155,9 +155,9 @@ export class SpriteStorage extends Component {
     }
 
     getSpriteCoord(type: string): SpriteFrame {
-        if (type == "f") return this.coordFree;
-        else if (type == "s") return this.coordSelect;
-        else if (type == "b") return this.coodBlock;
-        else if (type == "h") return this.cellHint;
+        if (type == "coordFree") return this.coordFree;
+        else if (type == "coordSelect") return this.coordSelect;
+        else if (type == "coordBlock") return this.coodBlock;
+        else if (type == "coordHint") return this.coordHint;
     }
 }

@@ -1,4 +1,4 @@
-import { _decorator, Node, Vec3 } from 'cc';
+import { _decorator, Node, Sprite, Vec3 } from 'cc';
 import { HomeMapStorage } from '../HomeMapStorage';
 import { ObjectParameters } from '../../ObjectParameters';
 import { TypesObjects } from '../../Static/TypesObjects';
@@ -46,6 +46,15 @@ export class ControllerHomeMapStorage {
             HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexes[i]] = objectParameters;
         }
         this.updateHomeMapStorage();
+    }
+
+    static setCoord(coord: Node, index: number, pos: Vec3) {
+        HomeMapStorage.instance.coords[index] = coord;
+        HomeMapStorage.instance.coords[index].position = pos;
+    }
+
+    static setSpriteCoord(spriteCoord: Sprite, index: number) {
+        HomeMapStorage.instance.spriteCoords[index] = spriteCoord;
     }
 
     static setSelectObject(objectParameters: ObjectParameters) {
@@ -100,7 +109,7 @@ export class ControllerHomeMapStorage {
         return HomeMapStorage.instance.arrayObjectParameters[index];
     }
 
-    static getFreeCell(): number {
+    static getQuantityCoordFree(): number {
         let quantity: number;
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] != null) {
@@ -179,7 +188,7 @@ export class ControllerHomeMapStorage {
         return quantity;
     }
 
-    static closeInterface() {
+    static closeObjectInterface() {
         if (HomeMapStorage.instance.selectedObject) {
             if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
                 HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
@@ -188,8 +197,9 @@ export class ControllerHomeMapStorage {
     }
 
     static updateHomeMapStorage() {
+        console.log("update home map storage");
         let obj: Object[] = [];
-        for (let i = 0; i < HomeMapStorage.instance.arrayObjectParameters.length; i++) {
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
             obj.push({

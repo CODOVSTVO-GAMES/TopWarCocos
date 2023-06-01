@@ -36,7 +36,7 @@ export class MovingCamera extends Component {
     touchStart() {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
-        ControllerHomeMapStorage.closeInterface();
+        ControllerHomeMapStorage.closeObjectInterface();
 
         this.isMove = true;
         this.xPos = this.object.position.x;
