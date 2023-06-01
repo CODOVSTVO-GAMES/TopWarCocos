@@ -54,7 +54,7 @@ export class InitHomeMap extends Component {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             ControllerHomeMapStorage.setSpriteCoord(ControllerHomeMapStorage.getCoord(i).getComponent(Sprite), i);
         }
-        HighlightHomeMap.testMap();
+        // HighlightHomeMap.testMap();
     }
 }
 

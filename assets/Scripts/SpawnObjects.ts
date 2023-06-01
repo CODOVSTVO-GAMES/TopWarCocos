@@ -12,8 +12,6 @@ const { ccclass } = _decorator;
 export class SpawnObjects {
 
     static spawnObjectsFromStorage() {
-        console.log("arrayObjectParameter LENGTH: " + HomeMapStorage.instance.arrayObjectParameters.length);
-        console.log("coords LENGTH: " + HomeMapStorage.instance.coords.length);
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
             if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;

@@ -21,10 +21,12 @@ export class TouchObject extends Component {
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
-    public xPos: number;
-    public yPos: number;
-    public initialIndex: number;
-    public isMove: boolean;
+    private startPos: Vec3;
+    private xPos: number;
+    private yPos: number;
+    private distanceChanges: number;
+    private initialIndex: number;
+    private isMove: boolean;
 
     onLoad() {
         this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this);
@@ -53,13 +55,13 @@ export class TouchObject extends Component {
         ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         ControllerHomeMapStorage.setSelectObject(this.objectParameters);
 
-        HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.location, this.objectParameters.level, this.mainObject.getWorldPosition());
-
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
 
+        this.startPos = new Vec3(this.mainObject.position);
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
+        this.distanceChanges = 0;
         this.initialIndex = this.objectParameters.index;
         this.isMove = true;
     }
@@ -72,7 +74,12 @@ export class TouchObject extends Component {
 
         this.mainObject.position = new Vec3(this.xPos, this.yPos, 0);
 
-        HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.location, this.objectParameters.level, this.mainObject.getWorldPosition());
+        if (this.distanceChanges < 12) {
+            this.distanceChanges = Vec3.distance(this.mainObject.position, this.startPos);
+        }
+        else {
+            HighlightHomeMap.openCell(this.objectParameters.type, this.objectParameters.location, this.objectParameters.level, this.mainObject.getWorldPosition());
+        }
     }
 
     touchEnd() {

@@ -30,7 +30,6 @@ export class ModalBackpackLogic extends Component {
         if (ControllerInventoryStorage.getQuantityByType(this.typeSelectItem) == this.usageQuantitySelectItem) {
             ControllerInventoryStorage.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
             if (ControllerInventoryStorage.getInvenoryLength() > 0) {
-                console.log("FULL DELETE ITEM");
                 this.typeSelectItem = ControllerInventoryStorage.getTypeByIndex(0);
                 this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
                 this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
