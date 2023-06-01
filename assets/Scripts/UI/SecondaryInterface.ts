@@ -83,9 +83,9 @@ export class SecondaryInterface extends Component {
 
     public listOpeningModals: Array<QueueItem> = [];
 
-    public activeModal: string;
+    public activeModal: string = "";
 
-    private workQueue: boolean;
+    private workQueue: boolean = false;
 
     onLoad() {
         SecondaryInterface.instance = this;

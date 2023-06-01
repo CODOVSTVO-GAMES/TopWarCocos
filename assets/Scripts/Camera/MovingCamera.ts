@@ -1,6 +1,7 @@
 import { _decorator, Component, Input, Vec3, Touch, Node, Camera } from 'cc';
 import { TouchStatus } from '../TouchStatus';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
+import { ZoomCamera } from './ZoomCamera';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
@@ -46,8 +47,8 @@ export class MovingCamera extends Component {
     touchMove(e: Touch) {
         if (this.isMove == false || TouchStatus.instance.activeTouch == true) return;
 
-        this.xPos -= e.getDelta().x;
-        this.yPos -= e.getDelta().y;
+        this.xPos -= e.getUIDelta().x * ZoomCamera.instance.zoomRaito;
+        this.yPos -= e.getUIDelta().y * ZoomCamera.instance.zoomRaito;
 
         if (this.xPos > 1000) {
             this.xPos = 1000;

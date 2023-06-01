@@ -10,4 +10,3 @@ export class RadarLogic extends Component {
         SecondaryInterface.instance.openModal(TypesModals.RADAR);
     }
 }
-
