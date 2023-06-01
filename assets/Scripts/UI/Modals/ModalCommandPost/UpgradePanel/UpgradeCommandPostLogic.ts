@@ -18,8 +18,8 @@ export class UpgradeCommandPostLogic extends Component {
 
     upgrateObject() {
         ControllerCommandPostStorage.addLevelCommandPost();
-        ControllerGameStorage.reduceCoins(1);
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MAX_MAINBUILDING, 1);
+        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
+        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MAX_MAINBUILDING, ControllerConfigStorage.getImprivementResourceNumberMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerGameStorage.addExperience(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         UpgradeCommandPostInerface.instance.updateInterface();

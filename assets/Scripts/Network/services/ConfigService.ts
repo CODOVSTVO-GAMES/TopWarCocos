@@ -1,5 +1,4 @@
 import { ConfigStorage } from "../../Storage/ConfigStorage"
-import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserStorage"
 import { ConfigDTO } from "../DTO/ConfigDTO"
 import { ClientService } from "../other/ClientService"
 
@@ -13,8 +12,6 @@ export class ConfigService {
         if (!isDone) console.log("get config error")
         else {
             // console.log("get config done")
-            // console.log(data)
-
             ConfigStorage.instance.configRecipient(data['objects'])
         }
     }

@@ -53,12 +53,10 @@ export class ConfigStorage extends Component {
         this.initRadarBacicRate()
         this.initRadarConfig()
         this.initRadarProgressNumber()
-        this.initExpirienceRadar()
+        // this.initExpirienceRadar()
     }
 
     configRecipient(objects: object[]) {
-
-
         if (objects == null) throw 'Пришел пустой обьект';
 
         for (let i = 0; i < objects.length; i++) {
@@ -106,6 +104,12 @@ export class ConfigStorage extends Component {
             else if (key == 'mergeMining') {
                 for (let l = 0; l < value.length; l++) {
                     this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_GOLD_MINE, value[l].ru, value[l].pu, value[l].m))
+                }
+            }
+            else if (key == 'radarExpirience') {
+                this.expirienceRadar.push(1)
+                for (let l = 0; l < value.length; l++) {
+                    this.expirienceRadar.push(value.e)
                 }
             }
         }
