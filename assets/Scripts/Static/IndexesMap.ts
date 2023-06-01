@@ -18,7 +18,7 @@ class Coord {
 
 export class IndexesMap {
 
-    static indexesAllMap: Array<Coord> = [
+    static indexesMap: Array<Coord> = [
         new Coord(0, "earth", true, false, false, false),
         new Coord(1, "earth", true, false, false, false),
         new Coord(2, "earth", true, false, false, false),

@@ -8,6 +8,17 @@ export class HighlightHomeMap {
 
     public static indexesActiveCooord: number[] = [];
 
+    static testMap() {
+        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
+            if (IndexesMap.indexesMap[i].typeCoord == "earth") {
+                HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordSelect");
+            }
+            else {
+                HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordBlock");
+            }
+        }
+    }
+
     static openCell(type: string, location: string, level: number, pos: Vec3) {
         let minDistance = 1000000;
         let indexObject = 0;
@@ -27,7 +38,7 @@ export class HighlightHomeMap {
 
         for (let i = 0; i < arrayRegionObject.length; i++) {
             try {
-                if (IndexesMap.indexesAllMap[indexObject - arrayRegionObject[i]].typeCoord == location) {
+                if (IndexesMap.indexesMap[indexObject - arrayRegionObject[i]].typeCoord == location) {
                     this.renderCoordFree(indexObject - arrayRegionObject[i]);
                 }
             }
@@ -52,7 +63,7 @@ export class HighlightHomeMap {
         for (let i = 0; i < arrayObject.length; i++) {
             let tempIndex = indexObject - arrayObject[i];
             if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
-                if (IndexesMap.indexesAllMap[tempIndex].typeCoord == location) {
+                if (IndexesMap.indexesMap[tempIndex].typeCoord == location) {
                     this.renderCoordSelect(tempIndex);
                 }
                 else {
@@ -61,7 +72,7 @@ export class HighlightHomeMap {
             }
             else {
                 if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
-                    if (IndexesMap.indexesAllMap[tempIndex].typeCoord == location) {
+                    if (IndexesMap.indexesMap[tempIndex].typeCoord == location) {
                         this.renderCoordSelect(tempIndex);
                     }
                     else {

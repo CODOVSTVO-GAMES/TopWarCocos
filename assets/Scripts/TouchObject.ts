@@ -151,7 +151,7 @@ export class TouchObject extends Component {
         }
         else {
 
-            if (IndexesMap.indexesAllMap[indexObject].typeCoord != this.objectParameters.location) {
+            if (IndexesMap.indexesMap[indexObject].typeCoord != this.objectParameters.location) {
                 this.putAnObject(this.initialIndex);
             }
             else {
@@ -174,7 +174,7 @@ export class TouchObject extends Component {
                     this.objectParameters.type == TypesObjects.WALL ||
                     this.objectParameters.type == TypesObjects.BATTLE
                 ) {
-                    if (IndexesMap.indexesAllMap[indexObject].availableObject2x2 == false) {
+                    if (IndexesMap.indexesMap[indexObject].availableObject2x2 == false) {
                         this.putAnObject(this.initialIndex);
                     }
                     else {
@@ -182,7 +182,7 @@ export class TouchObject extends Component {
                     }
                 }
                 else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                    if (IndexesMap.indexesAllMap[indexObject].availableObject2x2 == false) {
+                    if (IndexesMap.indexesMap[indexObject].availableObject2x2 == false) {
                         this.putAnObject(this.initialIndex);
                     }
                     else {
@@ -190,7 +190,7 @@ export class TouchObject extends Component {
                     }
                 }
                 else if (this.objectParameters.type == TypesObjects.COMMAND_POST) {
-                    if (IndexesMap.indexesAllMap[indexObject].availableObject3x3 == false) {
+                    if (IndexesMap.indexesMap[indexObject].availableObject3x3 == false) {
                         this.putAnObject(this.initialIndex);
                     }
                     else {
