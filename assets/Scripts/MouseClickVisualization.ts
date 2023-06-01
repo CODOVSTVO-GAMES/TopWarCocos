@@ -1,8 +1,10 @@
-import { _decorator, Component, Input, Touch, Node, Vec3 } from 'cc';
+import { _decorator, Component, Input, Touch, Node, Vec3, v3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('MouseClickVisualization')
 export class MouseClickVisualization extends Component {
+
+    public static instance: MouseClickVisualization;
 
     @property({ type: Node })
     public click: Node;
@@ -10,30 +12,54 @@ export class MouseClickVisualization extends Component {
     @property({ type: Node })
     public canvas: Node;
 
+    @property({ type: Node })
+    public containerVisualization: Node;
+
+    private screenSize: Vec3;
+    private animScale: number;
+    private animator: any;
+    private invoke: any;
+
     onLoad() {
-        this.canvas.on(Input.EventType.TOUCH_START, this.touchStart, this);
-        this.canvas.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        this.canvas.on(Input.EventType.TOUCH_END, this.touchEnd, this);
-        this.canvas.on(Input.EventType.TOUCH_CANCEL, this.touchEnd, this);
+        MouseClickVisualization.instance = this;
+
+        this.canvas.on(Input.EventType.MOUSE_DOWN, this.touchStart, this);
+        this.screenSize = new Vec3(screen.height, screen.width, 0);
     }
 
     onDestroy() {
-        this.canvas.off(Input.EventType.TOUCH_START, this.touchStart, this);
-        this.canvas.off(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        this.canvas.off(Input.EventType.TOUCH_END, this.touchEnd, this);
-        this.canvas.off(Input.EventType.TOUCH_CANCEL, this.touchEnd, this);
+        this.canvas.off(Input.EventType.MOUSE_DOWN, this.touchStart, this);
+    }
+
+    resizeSecondaryInterface(raito = 1) {
+        this.containerVisualization.setScale(v3(raito, raito, this.containerVisualization.scale.z));
     }
 
     touchStart(e: Touch) {
-        // let pos = e.getUILocation();
-        // this.click.position = new Vec3(pos.x, pos.y, 0);
+        clearTimeout(this.invoke);
+        clearInterval(this.animator);
+        this.click.active = false;
+        let pos = e.getUILocation();
+        this.click.setPosition(new Vec3(pos.x - (this.screenSize.x / 2), pos.y - (this.screenSize.y / 2), 0));
+        this.click.active = true;
+        this.animScale = 0.5;
+        this.click.setScale(this.animScale, this.animScale);
+        this.animator = setInterval(this.animation, 17);
+        this.invoke = setTimeout(() => this.click.active = false, 200);
     }
 
-    touchMove() {
-
+    startAnimation() {
+        this.animScale = 0.5;
+        this.click.setScale(this.animScale, this.animScale);
+        this.animator = setInterval(this.animation, 17);
     }
 
-    touchEnd() {
-
+    animation() {
+        let thiiis = MouseClickVisualization.instance;
+        thiiis.animScale += 0.05;
+        thiiis.click.setScale(thiiis.animScale, thiiis.animScale);
+        if (thiiis.animScale >= 1) {
+            clearInterval(thiiis.animator);
+        }
     }
 }

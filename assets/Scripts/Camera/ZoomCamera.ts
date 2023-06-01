@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, EventMouse, Camera } from 'cc';
 import { MainInterface } from '../UI/MainInterface';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
+import { MouseClickVisualization } from '../MouseClickVisualization';
 const { ccclass, property } = _decorator;
 
 @ccclass('ZoomCamera')
@@ -33,7 +34,7 @@ export class ZoomCamera extends Component {
         let scroll = e.getScrollY();
         if (scroll > 0) {
             if (this.camera.orthoHeight > 300) {
-                scroll = -50;
+                scroll = -50 * this.zoomRaito;
             }
             else {
                 scroll = 0;
@@ -41,7 +42,7 @@ export class ZoomCamera extends Component {
         }
         else if (scroll < 0) {
             if (this.camera.orthoHeight < 5000) {
-                scroll = 50;
+                scroll = 50 * this.zoomRaito;
             }
             else {
                 scroll = 0;
@@ -58,5 +59,6 @@ export class ZoomCamera extends Component {
         this.zoomRaito = ortoHeight / 960;
         MainInterface.instance.resizeMainInterface(this.zoomRaito)
         SecondaryInterface.instance.resizeSecondaryInterface(this.zoomRaito)
+        MouseClickVisualization.instance.resizeSecondaryInterface(this.zoomRaito);
     }
 }
