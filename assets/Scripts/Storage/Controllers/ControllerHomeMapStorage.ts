@@ -65,7 +65,7 @@ export class ControllerHomeMapStorage {
         return HomeMapStorage.instance.selectedObject;
     }
 
-    static upgradeLevel(index: number) {
+    static upgradeLevelObject(index: number) {
         HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
         HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
         this.updateHomeMapStorage();

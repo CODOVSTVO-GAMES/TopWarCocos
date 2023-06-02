@@ -67,9 +67,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceRepairShop() {
         let levelObject = ControllerCommandPostStorage.getLevelRepairShop();
         this.mainTitle.string = "Ремонтный цех";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpMainBuildingByLevel(levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -84,9 +84,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeGoldMine() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeGoldMine();
         this.mainTitle.string = "Обьединение золотого рудника";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -101,9 +101,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeTroopAir() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeTroopAir();
         this.mainTitle.string = "Юнит ВВС";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -118,9 +118,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeTroopMarine() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeTroopMarine();
         this.mainTitle.string = "Юнит ВМФ";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -135,9 +135,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeTroopOverland() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeTroopOverland();
         this.mainTitle.string = "Юнит СВ";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -152,9 +152,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeBarracksAir() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeBarracksAir();
         this.mainTitle.string = "Обьядинить базу ВВС";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -169,9 +169,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeBarracksMarine() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeBarracksMarine();
         this.mainTitle.string = "Синтезировать верфь";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -186,9 +186,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceMergeBarracksOverland() {
         let levelObject = ControllerCommandPostStorage.getLevelMergeBarracksOverland();
         this.mainTitle.string = "Синтезировать казарму";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -203,9 +203,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceBuildGoldMine() {
         let levelObject = ControllerCommandPostStorage.getLevelBuildGoldMine();
         this.mainTitle.string = "Строительство золотого рудника";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -220,9 +220,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceBuildBarracksAir() {
         let levelObject = ControllerCommandPostStorage.getLevelBuildBarracksAir();
         this.mainTitle.string = "Построить базу ВВС";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -237,9 +237,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceBuildBarracksMarine() {
         let levelObject = ControllerCommandPostStorage.getLevelBuildBarracksMarine();
         this.mainTitle.string = "Построить верфь";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
@@ -254,9 +254,9 @@ export class UpgradeOtherInterface extends Component {
     updateInterfaceBuildBarracksOverland() {
         let levelObject = ControllerCommandPostStorage.getLevelBuildBarracksOverland();
         this.mainTitle.string = "Построить казарму";
-        this.actualLevelObject_0.string = levelObject.toString();
+        this.actualLevelObject_0.string = "Ур. " + levelObject.toString();
         this.actualLevelObject_1.string = levelObject.toString();
-        this.nextLevelObject.string = (levelObject + 1).toString();
+        this.nextLevelObject.string = "Ур. " + (levelObject + 1).toString();
         this.level.string = ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, levelObject + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();

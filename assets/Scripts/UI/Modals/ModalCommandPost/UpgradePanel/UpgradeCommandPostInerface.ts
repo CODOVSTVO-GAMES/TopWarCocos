@@ -81,9 +81,9 @@ export class UpgradeCommandPostInerface extends Component {
 
     updateInterface() {
         this.mainTitle.string = "Простой командный пункт";
-        this.actualLevelObject.string = ControllerCommandPostStorage.getLevelCommandPost().toString();
-        this.nextLevelObject.string = (ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
-        this.level.string = "Ур." + ControllerGameStorage.getLevel().toString();
+        this.actualLevelObject.string = "Ур. " + ControllerCommandPostStorage.getLevelCommandPost().toString();
+        this.nextLevelObject.string = "Ур. " + (ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
+        this.level.string = "Ур. " + ControllerGameStorage.getLevel().toString();
         this.receivedExperience.string = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1));
         this.actualPower.string = ControllerGameStorage.getPower().toString();
         this.receivedPower.string = "+" + ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
@@ -97,8 +97,8 @@ export class UpgradeCommandPostInerface extends Component {
         this.requirementCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/0";
         this.requirementItems.string = ControllerInventoryStorage.getQuantityByType(TypesItems.PLAN_MAX_MAINBUILDING) + "/1";
 
-        this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, 1);
-        this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, 1);
+        this.actualSpriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, ControllerCommandPostStorage.getLevelCommandPost());
+        this.nextSpriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, (ControllerCommandPostStorage.getLevelCommandPost() + 1));
     }
 
     openUpgrade() {

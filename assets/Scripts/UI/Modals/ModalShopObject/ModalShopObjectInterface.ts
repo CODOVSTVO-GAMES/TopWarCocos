@@ -4,6 +4,7 @@ import { TypesObjects } from '../../../Static/TypesObjects';
 import { ControllerCommandPostStorage } from '../../../Storage/Controllers/ControllerCommandPostStorage';
 import { ControllerConfigStorage } from '../../../Storage/Controllers/ControllerConfigStorage';
 import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
+import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalShopObjectInterface')
@@ -69,10 +70,10 @@ export class ModalShopObjectInterface extends Component {
         this.levelBarrackOverland.string = ControllerCommandPostStorage.getLevelBuildBarracksOverland().toString();
         this.levelGoldMine.string = ControllerCommandPostStorage.getLevelBuildGoldMine().toString();
 
-        this.costBuyBarrackAir.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()).toString();
-        this.costBuyBarrackMarine.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()).toString();
-        this.costBuyBarrackOverland.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()).toString();
-        this.costBuyGoldMine.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()).toString();
+        this.costBuyBarrackAir.string = ConvertLargeNumber.convert(ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()));
+        this.costBuyBarrackMarine.string = ConvertLargeNumber.convert(ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()));
+        this.costBuyBarrackOverland.string = ConvertLargeNumber.convert(ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()));
+        this.costBuyGoldMine.string = ConvertLargeNumber.convert(ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()));
 
         this.iconBarrackAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir());
         this.iconBarrackMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine());

@@ -209,7 +209,7 @@ export class TouchObject extends Component {
     }
 
     mergeObject(index: number) {
-        ControllerHomeMapStorage.upgradeLevel(index);
+        ControllerHomeMapStorage.upgradeLevelObject(index);
         this.mainObject.destroy();
     }
 

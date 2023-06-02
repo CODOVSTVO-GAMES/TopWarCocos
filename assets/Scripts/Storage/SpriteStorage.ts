@@ -94,7 +94,12 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.BARRACKS_AIR) return this.barracksAir[level - 1];
         else if (type == TypesObjects.BARRACKS_MARINE) return this.barracksMarine[level - 1];
         else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracksOverland[level - 1];
-        else if (type == TypesObjects.COMMAND_POST) return this.commandPost[level - 1];
+        else if (type == TypesObjects.COMMAND_POST) {
+            if (level < 5) return this.commandPost[0];
+            else if (level >= 5 && level < 10) return this.commandPost[1];
+            else if (level >= 10 && level < 15) return this.commandPost[2];
+            else if (level >= 15) return this.commandPost[3];
+        }
         else if (type == TypesObjects.GOLD_MINE) return this.goldMine[level - 1];
         else if (type == TypesObjects.BANK) return this.bank[level - 1];
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine[level - 1];
