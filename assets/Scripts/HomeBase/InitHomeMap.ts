@@ -18,7 +18,6 @@ export class InitHomeMap extends Component {
     public coord: Prefab;
 
     onLoad() {
-        console.log("InitHomeMap OnLoad");
         this.fillParentObject();
         this.fillArrayCoords();
         SpawnObjects.spawnObjectsFromStorage();
@@ -55,7 +54,6 @@ export class InitHomeMap extends Component {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             ControllerHomeMapStorage.setSpriteCoord(ControllerHomeMapStorage.getCoord(i).getComponent(Sprite), i);
         }
-        // HighlightHomeMap.testMap();
     }
 }
 

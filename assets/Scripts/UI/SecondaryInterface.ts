@@ -17,6 +17,7 @@ import { ModalRadarLogic } from './Modals/ModalRadar/ModalRadarLogic';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
 import { QuestionLogic } from './Modals/Question/QuestionLogic';
 import { SwitchLogic } from './Modals/Switch/SwitchLogic';
+import { ModalShopObjectInterface } from './Modals/ModalShopObject/ModalShopObjectInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -38,6 +39,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public shopGems: Node;
+
+    @property({ type: Node })
+    public shopObject: Node;
 
     @property({ type: Node })
     public experience: Node;
@@ -135,6 +139,11 @@ export class SecondaryInterface extends Component {
             this.backgraund.active = true;
             this.shopGems.active = true;
         }
+        else if (item.modalName == TypesModals.SHOP_OBJECT) {
+            ModalShopObjectInterface.instance.updateInterface();
+            this.backgraund.active = true;
+            this.shopObject.active = true;
+        }
         else if (item.modalName == TypesModals.EXPERIENCE) {
             ModalExperienceInerface.instance.updateInterface();
             this.backgraund.active = true;
@@ -215,6 +224,8 @@ export class SecondaryInterface extends Component {
 
     openShopGems() { this.openModal(TypesModals.SHOP_GEMS); }
 
+    openShopObject() { this.openModal(TypesModals.SHOP_OBJECT); }
+
     openExperience() { this.openModal(TypesModals.EXPERIENCE); }
 
     openPower() { this.openModal(TypesModals.POWER); }
@@ -266,6 +277,7 @@ export class SecondaryInterface extends Component {
         this.profile.active = false;
         this.shopCoins.active = false;
         this.shopGems.active = false;
+        this.shopObject.active = false;
         this.experience.active = false;
         this.powar.active = false;
         this.characters.active = false;

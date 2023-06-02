@@ -8,17 +8,6 @@ export class HighlightHomeMap {
 
     public static indexesActiveCooord: number[] = [];
 
-    static testMap() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (IndexesMap.indexesMap[i].typeCoord == "earth") {
-                HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordSelect");
-            }
-            else {
-                HomeMapStorage.instance.spriteCoords[i].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordBlock");
-            }
-        }
-    }
-
     static openCell(type: string, location: string, level: number, pos: Vec3) {
         let minDistance = 1000000;
         let indexObject = 0;

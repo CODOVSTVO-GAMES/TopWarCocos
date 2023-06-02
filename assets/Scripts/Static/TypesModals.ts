@@ -2,6 +2,7 @@ export class TypesModals {
     public static PROFILE: string = "profile";
     public static SHOP_COINS: string = "shopCoins";
     public static SHOP_GEMS: string = "shopGems";
+    public static SHOP_OBJECT: string = "shopObject";
     public static EXPERIENCE: string = "experience";
     public static POWER: string = "power";
     public static CHARACTERS: string = "сharacters";
