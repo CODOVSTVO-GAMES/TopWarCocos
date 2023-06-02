@@ -30,7 +30,8 @@ export class ModalRadarRewardLogic extends Component {
     }
 
     closeModalReward() {
-        this.modalRadarReward.active = false;
+        ModalRadarRewardInterface.instance.anomationCloseModal();
+        setTimeout(() => this.modalRadarReward.active = false, 85);
         for (let i = 0; i < this.task.rewards.length; i++) {
             if (this.task.rewards[i].type != TypesItems.EXPERIENCE) {
                 ControllerInventoryStorage.addItem(this.task.rewards[i].type, this.task.rewards[i].quantity);

@@ -23,13 +23,13 @@ export class ModalRadarTaskLogic extends Component {
         if (this.task.type == TypesRadar.TASK_SALVATION) {
             if (this.task.status < 1) {
                 BuferTasks.instance.addTaskSalvation(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task);
+                ModalRadarTaskInterface.instance.updateInterface(this.task, 1);
             }
         }
         else if (this.task.type == TypesRadar.TASK_DARK_LEGION) {
             if (this.task.status < 1) {
                 BuferTasks.instance.addTaskDarkLegion(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task);
+                ModalRadarTaskInterface.instance.updateInterface(this.task, 1);
             }
         }
         else if (this.task.type == TypesRadar.TASK_PERSONAL) {

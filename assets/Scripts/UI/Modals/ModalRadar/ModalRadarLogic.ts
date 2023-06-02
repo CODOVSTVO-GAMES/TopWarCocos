@@ -84,12 +84,13 @@ export class ModalRadarLogic extends Component {
     }
 
     openRadarTask(task: RadarTask) {
-        ModalRadarTaskInterface.instance.updateInterface(task);
+        ModalRadarTaskInterface.instance.updateInterface(task, 0);
         this.modalRadarTask.active = true;
     }
 
     closeRadarTask() {
-        this.modalRadarTask.active = false;
+        ModalRadarTaskInterface.instance.animationCloseModal();
+        setTimeout(() => this.modalRadarTask.active = false, 85);
     }
 
     timeZero() {

@@ -4,6 +4,7 @@ import { TypesRadar } from '../../../Static/TypesRadar';
 import { TypesItems } from '../../../Static/TypesItems';
 import { ModalRadarTaskLogic } from './ModalRadarTaskLogic';
 import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
+import { TypesAnimation } from '../../../Static/TypesAnimation';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskInterface')
@@ -12,7 +13,7 @@ export class ModalRadarTaskInterface extends Component {
     public static instance: ModalRadarTaskInterface;
 
     @property({ type: Animation })
-    public animationModal: Animation;
+    public animationOpenClose: Animation;
 
     @property({ type: Label })
     public title: Label;
@@ -48,7 +49,7 @@ export class ModalRadarTaskInterface extends Component {
         ModalRadarTaskInterface.instance = this;
     }
 
-    updateInterface(task: RadarTask) {
+    updateInterface(task: RadarTask, updateIndex: number) {
         ModalRadarTaskLogic.instance.task = task;
         this.title.string = "Задание завершится через " + task.time;
         if (task.status == 0) {
@@ -77,12 +78,14 @@ export class ModalRadarTaskInterface extends Component {
                     break;
             }
         }
-        this.animationModal.play();
+        if (updateIndex < 1) {
+            this.animationOpenClose.play(TypesAnimation.OPEN_MODAL);
+        }
         this.startTimer();
     }
 
     animationCloseModal() {
-        this.animationModal.stop();
+        this.animationOpenClose.play(TypesAnimation.CLOSE_MODAL);
     }
 
     getSpriteTask(type: string): Color {
