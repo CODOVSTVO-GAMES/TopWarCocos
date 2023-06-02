@@ -53,7 +53,7 @@ export class ConfigStorage extends Component {
         this.initRadarBacicRate()
         this.initRadarConfig()
         this.initRadarProgressNumber()
-        // this.initExpirienceRadar()
+        this.initExpirienceRadar()
     }
 
     configRecipient(objects: object[]) {

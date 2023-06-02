@@ -21,7 +21,6 @@ export class InitHomeMap extends Component {
         this.fillParentObject();
         this.fillArrayCoords();
         SpawnObjects.spawnObjectsFromStorage();
-        ControllerRadarStorage.updateRadarAnimation();
     }
 
     fillParentObject() {

@@ -64,8 +64,6 @@ export class ModalRadarTaskInterface extends Component {
             this.stars[i].active = i < task.stars;
         }
         for (let i = 0; i < task.rewards.length; i++) {
-            console.log(this.quantity[i])
-            console.log(task.rewards[i])
             this.quantity[i].string = task.rewards[i].quantity.toString();
             switch (task.rewards[i].type) {
                 case TypesItems.PLAN_MAX_MAINBUILDING:
