@@ -13,9 +13,7 @@ import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCh
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
 import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
-import { LoadingGame } from '../LoadingGame/LoadingGame';
 import { PaymentsService } from './services/PaymentsService';
-import { ConfigService } from './services/ConfigService';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -24,10 +22,10 @@ export class NetworkClient extends Component {
     public static instance: NetworkClient
 
     onLoad() {
-        NetworkClient.instance = this
-        this.schedule(SessionService.updateSessionData, 60)
-        this.schedule(this.sendEvents, 5)
-        this.schedule(this.sendData, 4)
+        NetworkClient.instance = this;
+        this.schedule(SessionService.updateSessionData, 60);
+        this.schedule(this.sendEvents, 5);
+        this.schedule(this.sendData, 4);
     }
 
     private sendData() {
@@ -39,8 +37,8 @@ export class NetworkClient extends Component {
 
     private sendEvents() {
         if (ControllerBufferStorage.isEventsQueueFull()) {
-            EventService.requestToService(ControllerBufferStorage.getQueueEvents())
-            ControllerBufferStorage.clearEventsQueue()
+            EventService.requestToService(ControllerBufferStorage.getQueueEvents());
+            ControllerBufferStorage.clearEventsQueue();
         }
     }
 

@@ -168,8 +168,8 @@
     "_string": "444.4K",
     "_horizontalAlign": 2,
     "_verticalAlign": 2,
-    "_actualFontSize": 30,
-    "_fontSize": 30,
+    "_actualFontSize": 35,
+    "_fontSize": 35,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
     "_overflow": 1,
@@ -250,7 +250,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "f27515a2-283a-47a1-be4b-edd8893786b5@f9941",
+      "__uuid__": "7e0c9894-7332-491a-8dd6-02ad0f3fe983@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -318,10 +318,7 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": {
-      "__uuid__": "f27515a2-283a-47a1-be4b-edd8893786b5@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_normalSprite": null,
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,

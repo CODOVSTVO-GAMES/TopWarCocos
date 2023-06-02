@@ -11,6 +11,6 @@ export class CommandPostLogic extends Component {
     public objectParameters: ObjectParameters;
 
     public click() {
-        SecondaryInterface.instance.openModal(TypesModals.COMMAND_POST);
+        SecondaryInterface.instance.openFirstModal(TypesModals.COMMAND_POST);
     }
 }

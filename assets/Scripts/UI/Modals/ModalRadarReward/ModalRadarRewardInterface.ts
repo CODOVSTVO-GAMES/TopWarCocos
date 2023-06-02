@@ -36,7 +36,7 @@ export class ModalRadarRewardInterface extends Component {
         for (let i = 0; i < this.rewards.length; i++) {
             this.quantity[i].string = task.rewards[i].quantity.toString();
             switch (task.rewards[i].type) {
-                case TypesItems.PLAN_MAX_MAINBUILDING:
+                case TypesItems.PLAN_COMMAND_POST:
                     this.rewardsBG[i].spriteFrame = this.spritesBG[0];
                     break;
                 case TypesItems.EXPERIENCE:

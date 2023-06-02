@@ -1,23 +1,19 @@
 export class TypesItems {
-    public static PLAN_MAX_OVERLAND: string = "planMaxOverland";
-    public static PLAN_MAX_MARINE: string = "planMaxMarine";
-    public static PLAN_MAX_AIR: string = "planMaxAir";
-    public static PLAN_MAX_GOLD_MINE: string = "planMaxGoldMine";
-    public static PLAN_MAX_BARRACK_OVERLAND: string = "planMaxBarrackOverland";
-    public static PLAN_MAX_BARRACK_MARINE: string = "planMaxBarrackMarine";
-    public static PLAN_MAX_BARRACK_AIR: string = "planMaxBarrackAir";
-    public static PLAN_MAX_MAINBUILDING: string = "planMaxMainBuilding";
+    public static PLAN_COMMAND_POST: string = "planCommandPost";
 
-    public static PLAN_CREATE_BARRACK_OVERLAND: string = "planCreateBarrackOverland";
-    public static PLAN_CREATE_BARRACK_MARINE: string = "planCreateBarrackMarine";
-    public static PLAN_CREATE_BARRACK_AIR: string = "planCreateBarrackAir";
-    public static PLAN_CREATE_GOLD_MINE: string = "planCreateGoldMine";
+    public static PLAN_MERGE_TROOP_AIR: string = "planMergeTroopAir";
+    public static PLAN_MERGE_TROOP_MARINE: string = "planMergeTroopMarine";
+    public static PLAN_MERGE_TROOP_OVERLAND: string = "planMergeTroopOverland";
 
-    public static BOOK_EXP_GREEN: string = "beg";
-    public static BOOK_EXP_WHITE: string = "bew";
-    public static BOOK_EXP_BLUE: string = "beb";
-    public static BOOK_EXP_VIOLET: string = "bev";
-    public static BOOK_EXP_GOLD: string = "beo";
+    public static PLAN_MERGE_GOLD_MINE: string = "planMergeGoldMine";
+    public static PLAN_MERGE_BARRACK_AIR: string = "planMergeBarrackAir";
+    public static PLAN_MERGE_BARRACK_MARINE: string = "planMergeBarrackMarine";
+    public static PLAN_MERGE_BARRACK_OVERLAND: string = "planMergeBarrackOverland";
+
+    public static PLAN_BUILD_GOLD_MINE: string = "planBuildGoldMine";
+    public static PLAN_BUILD_BARRACK_AIR: string = "planBuildBarrackAir";
+    public static PLAN_BUILD_BARRACK_MARINE: string = "planBuildBarrackMarine";
+    public static PLAN_BUILD_BARRACK_OVERLAND: string = "planBuildBarrackOverland";
 
     public static TICKET_NORMAL: string = "tn";
     public static TICKET_PREMIUM: string = "tp";
@@ -31,21 +27,11 @@ export class TypesItems {
 
     public static GOLD: string = "g"; //обычное золото, используется для наград
 
-    // особые
-
-    public static WHITE_BOOK_EXPERIENCE: string = "wbe";
-    public static GREEN_BOOK_EXPERIENCE: string = "gbe";
-    public static BLUE_BOOK_EXPERIENCE: string = "bbe";
-    public static PURPLE_BOOK_EXPERIENCE: string = "pbe";
-    public static ORANGE_BOOK_EXPERIENCE: string = "obe";
-
-    public static BOOKS: string[] = [
-        TypesItems.WHITE_BOOK_EXPERIENCE,
-        TypesItems.GREEN_BOOK_EXPERIENCE,
-        TypesItems.BLUE_BOOK_EXPERIENCE,
-        TypesItems.PURPLE_BOOK_EXPERIENCE,
-        TypesItems.ORANGE_BOOK_EXPERIENCE
-    ];
+    public static BOOK_EXPERIENCE_WHITE: string = "bookExperienceWhite";
+    public static BOOK_EXPERIENCE_GREEN: string = "bookExperienceGreen";
+    public static BOOK_EXPERIENCE_BLUE: string = "bookExperienceBlue";
+    public static BOOK_EXPERIENCE_PURPLE: string = "bookExperiencePurple";
+    public static BOOK_EXPERIENCE_ORANGE: string = "bookExperienceOrange";
 
     // герои
 
@@ -64,6 +50,14 @@ export class TypesItems {
     public static FRAGMENT_CHARACTER_12: string = "fragmentCharacter12";
     public static FRAGMENT_CHARACTER_13: string = "fragmentCharacter13";
     public static FRAGMENT_CHARACTER_14: string = "fragmentCharacter14";
+
+    public static BOOKS: string[] = [
+        TypesItems.BOOK_EXPERIENCE_WHITE,
+        TypesItems.BOOK_EXPERIENCE_GREEN,
+        TypesItems.BOOK_EXPERIENCE_BLUE,
+        TypesItems.BOOK_EXPERIENCE_PURPLE,
+        TypesItems.BOOK_EXPERIENCE_ORANGE
+    ];
 
     public static FRAGMENTS: string[] = [
         TypesItems.FRAGMENT_BLACK_WIDOW,

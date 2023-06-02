@@ -7,6 +7,6 @@ const { ccclass, property } = _decorator;
 export class BankLogic extends Component {
 
     clickBank() {
-        SecondaryInterface.instance.openModal(TypesModals.BANK);
+        SecondaryInterface.instance.openFirstModal(TypesModals.BANK);
     }
 }

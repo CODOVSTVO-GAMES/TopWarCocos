@@ -83,6 +83,60 @@ export class SpriteStorage extends Component {
 
     // =================================================================
 
+    @property({ type: SpriteFrame })
+    public planCommandPost: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeTroopAir: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeTroopMarine: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeTroopOverland: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeGoldMine: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeBarrackAir: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeBarrackMarine: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planMergeBarrackOverland: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planBuildGoldMine: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planBuildBarrackAir: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planBuildBarrackMarine: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public planBuildBarrackOverland: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public bookExperienceWhite: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public bookExperienceGreen: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public bookExperienceBlue: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public bookExperiencePurple: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public bookExperienceOrange: SpriteFrame;
+
+    @property({ type: SpriteFrame })
+    public test: SpriteFrame;
+
     onLoad() {
         SpriteStorage.instance = this;
     }
@@ -126,37 +180,29 @@ export class SpriteStorage extends Component {
     }
 
     getItemBackpack(type: string): SpriteFrame {
-        if (type == TypesItems.PLAN_MAX_OVERLAND) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_MARINE) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_OVERLAND) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_AIR) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_GOLD_MINE) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_BARRACK_OVERLAND) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_BARRACK_MARINE) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_BARRACK_AIR) return this.coordFree;
-        else if (type == TypesItems.PLAN_MAX_MAINBUILDING) return this.coordFree;
-        else if (type == TypesItems.PLAN_CREATE_BARRACK_OVERLAND) return this.coordFree;
-        else if (type == TypesItems.PLAN_CREATE_BARRACK_MARINE) return this.coordFree;
-        else if (type == TypesItems.PLAN_CREATE_BARRACK_AIR) return this.coordFree;
-        else if (type == TypesItems.PLAN_CREATE_GOLD_MINE) return this.coordFree;
-        else if (type == TypesItems.BOOK_EXP_GREEN) return this.coordFree;
-        else if (type == TypesItems.BOOK_EXP_WHITE) return this.coordFree;
-        else if (type == TypesItems.BOOK_EXP_BLUE) return this.coordFree;
-        else if (type == TypesItems.BOOK_EXP_VIOLET) return this.coordFree;
-        else if (type == TypesItems.BOOK_EXP_GOLD) return this.coordFree;
-        else if (type == TypesItems.TICKET_NORMAL) return this.coordFree;
-        else if (type == TypesItems.TICKET_PREMIUM) return this.coordFree;
-        else if (type == TypesItems.TICKET_OWERLAND) return this.coordFree;
-        else if (type == TypesItems.TICKET_MARINE) return this.coordFree;
-        else if (type == TypesItems.TICKET_AIR) return this.coordFree;
-        else if (type == TypesItems.TICKET_SKILLS) return this.coordFree;
-        else if (type == TypesItems.GOLD_CHEST) return this.coordFree;
-        else if (type == TypesItems.EXPERIENCE) return this.coordFree;
-        else if (type == TypesItems.WHITE_BOOK_EXPERIENCE) return this.coordFree;
-        else if (type == TypesItems.GREEN_BOOK_EXPERIENCE) return this.coordFree;
-        else if (type == TypesItems.BLUE_BOOK_EXPERIENCE) return this.coordFree;
-        else if (type == TypesItems.PURPLE_BOOK_EXPERIENCE) return this.coordFree;
-        else if (type == TypesItems.ORANGE_BOOK_EXPERIENCE) return this.coordFree;
+        if (type == TypesItems.PLAN_COMMAND_POST) return this.planCommandPost;
+
+        else if (type == TypesItems.PLAN_MERGE_TROOP_AIR) return this.planMergeTroopAir;
+        else if (type == TypesItems.PLAN_MERGE_TROOP_MARINE) return this.planMergeTroopMarine;
+        else if (type == TypesItems.PLAN_MERGE_TROOP_OVERLAND) return this.planMergeTroopOverland;
+
+        else if (type == TypesItems.PLAN_MERGE_GOLD_MINE) return this.planMergeGoldMine;
+        else if (type == TypesItems.PLAN_MERGE_BARRACK_AIR) return this.planMergeBarrackAir;
+        else if (type == TypesItems.PLAN_MERGE_BARRACK_MARINE) return this.planMergeBarrackMarine;
+        else if (type == TypesItems.PLAN_MERGE_BARRACK_OVERLAND) return this.planMergeBarrackOverland;
+
+        else if (type == TypesItems.PLAN_BUILD_GOLD_MINE) return this.planBuildGoldMine;
+        else if (type == TypesItems.PLAN_BUILD_BARRACK_AIR) return this.planBuildBarrackAir;
+        else if (type == TypesItems.PLAN_BUILD_BARRACK_MARINE) return this.planBuildBarrackMarine;
+        else if (type == TypesItems.PLAN_BUILD_BARRACK_OVERLAND) return this.planBuildBarrackOverland;
+
+        else if (type == TypesItems.BOOK_EXPERIENCE_WHITE) return this.bookExperienceWhite;
+        else if (type == TypesItems.BOOK_EXPERIENCE_GREEN) return this.bookExperienceGreen;
+        else if (type == TypesItems.BOOK_EXPERIENCE_BLUE) return this.bookExperienceBlue;
+        else if (type == TypesItems.BOOK_EXPERIENCE_PURPLE) return this.bookExperiencePurple;
+        else if (type == TypesItems.BOOK_EXPERIENCE_ORANGE) return this.bookExperienceOrange;
+
+        else return this.test;
     }
 
     getSpriteCoord(type: string): SpriteFrame {

@@ -1,8 +1,9 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { UpgradeCommandPostInerface } from './UpgradePanel/UpgradeCommandPostInerface';
 import { UpgradeOtherInterface } from './UpgradePanel/UpgradeOtherInterface';
 import { UpgradeCommandPostLogic } from './UpgradePanel/UpgradeCommandPostLogic';
-import { UpgradeOtherLogic } from './UpgradePanel/UpgradeOtherLogic';
+import { SecondaryInterface } from '../../SecondaryInterface';
+import { TypesModals } from '../../../Static/TypesModals';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCommandPostLogic')
@@ -10,116 +11,88 @@ export class ModalCommandPostLogic extends Component {
 
     public static instance: ModalCommandPostLogic;
 
-    @property({ type: Node })
-    public backgraund: Node;
-
-    @property({ type: Node })
-    public upgrateCommandPost: Node;
-
-    @property({ type: Node })
-    public upgrateOther: Node;
-
     private typeActiveModal: string;
 
     onLoad() {
         ModalCommandPostLogic.instance = this;
     }
 
-    start() {
-        this.closeAll();
-    }
-
     openUpgradeCommandPost() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_0);
         UpgradeCommandPostInerface.instance.updateInterface();
-        UpgradeCommandPostLogic.checkBtnModal();
-        this.backgraund.active = true;
-        this.upgrateCommandPost.active = true;
         this.typeActiveModal = "upgradeCommandPost";
     }
 
     openRepairShop() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceRepairShop();
         this.typeActiveModal = "repairShop";
-        this.openUpgradeOther();
     }
 
     openMergeGoldMine() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine();
         this.typeActiveModal = "mergeGoldMine";
-        this.openUpgradeOther();
     }
 
     openMergeTroopAir() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir();
         this.typeActiveModal = "mergeTroopAir";
-        this.openUpgradeOther();
     }
 
     openMergeTroopMarine() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine();
         this.typeActiveModal = "mergeTroopMarine";
-        this.openUpgradeOther();
     }
 
     openMergeTroopOverland() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeTroopOverland();
         this.typeActiveModal = "mergeTroopOverland";
-        this.openUpgradeOther();
     }
 
     openMergeBarracksAir() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir();
         this.typeActiveModal = "mergeBarracksAir";
-        this.openUpgradeOther();
     }
 
     openMergeBarracksMarine() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine();
         this.typeActiveModal = "mergeBarracksMarine";
-        this.openUpgradeOther();
     }
 
     openMergeBarracksOverland() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
         this.typeActiveModal = "mergeBarracksOverland";
-        this.openUpgradeOther();
     }
 
     openBuildGoldMine() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine();
         this.typeActiveModal = "buildGoldMine";
-        this.openUpgradeOther();
     }
 
     openBuildBarracksAir() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir();
         this.typeActiveModal = "buildBarracksAir";
-        this.openUpgradeOther();
     }
 
     openBuildBarracksMarine() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine();
         this.typeActiveModal = "buildBarracksMarine";
-        this.openUpgradeOther();
     }
 
     openBuildBarracksOverland() {
+        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
         UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland();
         this.typeActiveModal = "buildBarracksOverland";
-        this.openUpgradeOther();
-    }
-
-    openUpgradeOther() {
-        UpgradeOtherLogic.checkBtnModal();
-        this.backgraund.active = true;
-        this.upgrateOther.active = true;
-    }
-
-    closeAll() {
-        this.backgraund.active = false;
-        this.upgrateCommandPost.active = false;
-        this.upgrateOther.active = false;
-        this.typeActiveModal = "";
     }
 
     getTypeActiveModal(): string {

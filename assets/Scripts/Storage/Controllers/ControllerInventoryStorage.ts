@@ -8,22 +8,22 @@ import { TypesItems } from '../../Static/TypesItems';
 export class ControllerInventoryStorage {
 
     static assignStartingValues() {
-        this.addItem(TypesItems.PLAN_MAX_MAINBUILDING, 100);
+        this.addItem(TypesItems.PLAN_COMMAND_POST, 100);
 
-        this.addItem(TypesItems.PLAN_MAX_GOLD_MINE, 100);
-        this.addItem(TypesItems.PLAN_CREATE_GOLD_MINE, 100);
+        this.addItem(TypesItems.PLAN_MERGE_GOLD_MINE, 100);
+        this.addItem(TypesItems.PLAN_BUILD_GOLD_MINE, 100);
 
-        this.addItem(TypesItems.PLAN_MAX_AIR, 100);
-        this.addItem(TypesItems.PLAN_MAX_MARINE, 100);
-        this.addItem(TypesItems.PLAN_MAX_OVERLAND, 100);
+        this.addItem(TypesItems.PLAN_MERGE_TROOP_AIR, 100);
+        this.addItem(TypesItems.PLAN_MERGE_TROOP_MARINE, 100);
+        this.addItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, 100);
 
-        this.addItem(TypesItems.PLAN_MAX_BARRACK_AIR, 100);
-        this.addItem(TypesItems.PLAN_MAX_BARRACK_MARINE, 100);
-        this.addItem(TypesItems.PLAN_MAX_BARRACK_OVERLAND, 100);
+        this.addItem(TypesItems.PLAN_MERGE_BARRACK_AIR, 100);
+        this.addItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, 100);
+        this.addItem(TypesItems.PLAN_MERGE_BARRACK_OVERLAND, 100);
 
-        this.addItem(TypesItems.PLAN_CREATE_BARRACK_AIR, 100);
-        this.addItem(TypesItems.PLAN_CREATE_BARRACK_MARINE, 100);
-        this.addItem(TypesItems.PLAN_CREATE_BARRACK_OVERLAND, 100);
+        this.addItem(TypesItems.PLAN_BUILD_BARRACK_AIR, 100);
+        this.addItem(TypesItems.PLAN_BUILD_BARRACK_MARINE, 100);
+        this.addItem(TypesItems.PLAN_BUILD_BARRACK_OVERLAND, 100);
 
         for (let i = 0; i < TypesItems.BOOKS.length; i++) {
             ControllerInventoryStorage.addItem(TypesItems.BOOKS[i], 12)

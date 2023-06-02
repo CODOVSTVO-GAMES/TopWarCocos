@@ -12,16 +12,10 @@ const { ccclass, property } = _decorator;
 @ccclass('UpgradeCommandPostLogic')
 export class UpgradeCommandPostLogic extends Component {
 
-    static checkBtnModal() {
-        // if () {
-
-        // }
-    }
-
     upgrateObject() {
         ControllerCommandPostStorage.addLevelCommandPost();
         ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MAX_MAINBUILDING, ControllerConfigStorage.getImprivementResourceNumberMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
+        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_COMMAND_POST, ControllerConfigStorage.getImprivementResourceNumberMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerGameStorage.addExperience(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
         ControllerHomeMapStorage.upgradeLevelObject(ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.COMMAND_POST).index);

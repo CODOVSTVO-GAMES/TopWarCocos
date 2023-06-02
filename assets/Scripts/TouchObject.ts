@@ -157,7 +157,6 @@ export class TouchObject extends Component {
             }
         }
         else {
-
             if (IndexesMap.indexesMap[indexObject].typeCoord != this.objectParameters.location) {
                 this.putAnObject(this.initialIndex);
             }

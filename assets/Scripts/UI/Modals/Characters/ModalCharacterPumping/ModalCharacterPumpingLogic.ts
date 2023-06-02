@@ -24,33 +24,33 @@ export class ModalCharacterPumpingLogic extends Component {
         let exp = 0;
         switch (customEventData) {
             case "0":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.WHITE_BOOK_EXPERIENCE) > 0) {
+                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
                     exp = 300;
-                    ControllerInventoryStorage.reduceItem(TypesItems.WHITE_BOOK_EXPERIENCE, 1);
+                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
                 }
                 break;
             case "1":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.GREEN_BOOK_EXPERIENCE) > 0) {
+                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
                     exp = 1000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.GREEN_BOOK_EXPERIENCE, 1);
+                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
                 }
                 break;
             case "2":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BLUE_BOOK_EXPERIENCE) > 0) {
+                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
                     exp = 3000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.BLUE_BOOK_EXPERIENCE, 1);
+                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
                 }
                 break;
             case "3":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.PURPLE_BOOK_EXPERIENCE) > 0) {
+                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
                     exp = 10000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.PURPLE_BOOK_EXPERIENCE, 1);
+                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
                 }
                 break;
             case "4":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.ORANGE_BOOK_EXPERIENCE) > 0) {
+                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
                     exp = 30000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.ORANGE_BOOK_EXPERIENCE, 1);
+                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
                 }
                 break;
         }

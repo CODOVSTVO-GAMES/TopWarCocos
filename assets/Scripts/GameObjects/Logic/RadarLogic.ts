@@ -12,6 +12,6 @@ export class RadarLogic extends Component {
     }
 
     clickRadar() {
-        SecondaryInterface.instance.openModal(TypesModals.RADAR);
+        SecondaryInterface.instance.openFirstModal(TypesModals.RADAR);
     }
 }

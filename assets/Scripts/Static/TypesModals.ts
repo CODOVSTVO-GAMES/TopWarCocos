@@ -7,6 +7,8 @@ export class TypesModals {
     public static POWER: string = "power";
     public static CHARACTERS: string = "сharacters";
     public static COMMAND_POST: string = "commandPost";
+    public static UPGRATE_COMMAND_POST_0: string = "upgrateCommandPost0";
+    public static UPGRATE_COMMAND_POST_1: string = "upgrateCommandPost1";
     public static AUTOCOMBINE: string = "autocombine";
     public static BACKPACK: string = "backpack";
     public static REPAIR_SHOP: string = "repairShop";

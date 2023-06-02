@@ -71,39 +71,39 @@ export class ConfigStorage extends Component {
             }
             else if (key == 'mainBuildings') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.COMMAND_POST, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_MAINBUILDING, value[l].ru, value[l].pu, value[l].ba / 10))
+                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.COMMAND_POST, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_COMMAND_POST, value[l].ru, value[l].pu, value[l].ba / 10))
                 }
             }
             else if (key == 'repairBuildings') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.REPAIR_SHOP, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_MAINBUILDING, value[l].ru, value[l].pu, 0))
+                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.REPAIR_SHOP, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_COMMAND_POST, value[l].ru, value[l].pu, 0))
                 }
             }
             else if (key == 'units') {
                 for (let l = 0; l < value.length; l++) {
-                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_OVERLAND, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_OVERLAND, value[l].ru, 0, 5, 1, value[l].ta, value[l].pu, value[l].pc, value[l].es))
-                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_MARINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_MARINE, value[l].ru, 0, 5, 1, TypesAttack.HORIZON, value[l].pu, value[l].pc, value[l].es))
-                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_AIR, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_AIR, value[l].ru, 0, 5, 1, TypesAttack.VERTICAL, value[l].pu, value[l].pc, value[l].es))
+                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_OVERLAND, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].ru, 0, 5, 1, value[l].ta, value[l].pu, value[l].pc, value[l].es))
+                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_MARINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, 0, 5, 1, TypesAttack.HORIZON, value[l].pu, value[l].pc, value[l].es))
+                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_AIR, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_TROOP_AIR, value[l].ru, 0, 5, 1, TypesAttack.VERTICAL, value[l].pu, value[l].pc, value[l].es))
                 }
             }
             else if (key == 'createBuildings') {
                 for (let l = 0; l < value.length; l++) {
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.GOLD_MINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_CREATE_GOLD_MINE, value[l].ru, value[l].pu, value[l].pc, value[l].es))
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_OVERLAND, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_CREATE_BARRACK_OVERLAND, value[l].ru, value[l].pu, value[l].pc, value[l].es))
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_MARINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_MARINE, value[l].ru, value[l].pu, value[l].pc, value[l].es))
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_AIR, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_BARRACK_AIR, value[l].ru, value[l].pu, value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.GOLD_MINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_BUILD_GOLD_MINE, value[l].ru, value[l].pu, value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_OVERLAND, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_BUILD_BARRACK_OVERLAND, value[l].ru, value[l].pu, value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_MARINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, value[l].pu, value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_AIR, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].ru, value[l].pu, value[l].pc, value[l].es))
                 }
             }
             else if (key == 'mergeBarracks') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_OVERLAND, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_BARRACK_OVERLAND, value[l].ru, value[l].pu, 0))
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_MARINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_MARINE, value[l].ru, value[l].pu, 0))
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_AIR, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_AIR, value[l].ru, value[l].pu, 0))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_OVERLAND, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_BARRACK_OVERLAND, value[l].ru, value[l].pu, 0))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_MARINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, value[l].pu, 0))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_AIR, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_TROOP_AIR, value[l].ru, value[l].pu, 0))
                 }
             }
             else if (key == 'mergeMining') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MAX_GOLD_MINE, value[l].ru, value[l].pu, value[l].m))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_GOLD_MINE, value[l].ru, value[l].pu, value[l].m))
                 }
             }
             else if (key == 'radarExpirience') {

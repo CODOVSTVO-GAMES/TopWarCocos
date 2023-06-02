@@ -2,6 +2,7 @@ import { _decorator, Component, Input, Vec3, Touch, Node, Camera } from 'cc';
 import { TouchStatus } from '../TouchStatus';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { ZoomCamera } from './ZoomCamera';
+import { SecondaryInterface } from '../UI/SecondaryInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
@@ -9,7 +10,7 @@ export class MovingCamera extends Component {
 
     @property({ type: Node })
     public object: Node;
-    
+
     @property({ type: Node })
     public canvas: Node;
 
@@ -38,6 +39,7 @@ export class MovingCamera extends Component {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
         ControllerHomeMapStorage.closeObjectInterface();
+        SecondaryInterface.instance.closeFirstLayoutModal();
 
         this.isMove = true;
         this.xPos = this.object.position.x;

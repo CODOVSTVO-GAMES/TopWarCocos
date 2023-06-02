@@ -1,8 +1,9 @@
-import { _decorator, Component, instantiate, Node, Label } from 'cc';
+import { _decorator, Component, instantiate, Node, Label, Sprite } from 'cc';
 import { ControllerInventoryStorage } from '../../../Storage/Controllers/ControllerInventoryStorage';
 import { PrefabsStorage } from '../../../Storage/PrefabsStorage';
 import { ModalBackpackLogic } from './ModalBackpackLogic';
 import { ItemBackpack } from './ItemBackpack';
+import { SpriteStorage } from '../../../Storage/SpriteStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalBackpackInterface')
@@ -26,7 +27,7 @@ export class ModalBackpackInterface extends Component {
         ModalBackpackInterface.instance = this;
     }
 
-    updateInterface() {
+    spawnBackpack() {
         for (let i = 0; i < this.items.length; i++) {
             this.items[i].destroy();
         }
@@ -36,8 +37,12 @@ export class ModalBackpackInterface extends Component {
             object.parent = this.parentContent;
             object.getComponent(ItemBackpack).typeItem = ControllerInventoryStorage.getTypeByIndex(i);
             object.getComponent(ItemBackpack).updateLabelQuantity(ControllerInventoryStorage.getQuantityByIndex(i));
+            object.getComponent(Sprite).spriteFrame = SpriteStorage.instance.getItemBackpack(ControllerInventoryStorage.getTypeByIndex(i));
             this.items.push(object);
         }
+    }
+
+    updateInterface() {
         this.titleSelectItem.string = ModalBackpackLogic.instance.typeSelectItem;
         this.usageQuantitySelectItem.string = ModalBackpackLogic.instance.usageQuantitySelectItem.toString();
     }
