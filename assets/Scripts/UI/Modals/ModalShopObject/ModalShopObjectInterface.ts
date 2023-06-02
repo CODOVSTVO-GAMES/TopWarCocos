@@ -1,4 +1,9 @@
-import { _decorator, Component, Node, Label, Sprite } from 'cc';
+import { _decorator, Button, Component, Label, Sprite } from 'cc';
+import { SpriteStorage } from '../../../Storage/SpriteStorage';
+import { TypesObjects } from '../../../Static/TypesObjects';
+import { ControllerCommandPostStorage } from '../../../Storage/Controllers/ControllerCommandPostStorage';
+import { ControllerConfigStorage } from '../../../Storage/Controllers/ControllerConfigStorage';
+import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalShopObjectInterface')
@@ -42,12 +47,64 @@ export class ModalShopObjectInterface extends Component {
     @property({ type: Sprite })
     private iconGoldMine: Sprite;
 
+    @property({ type: Button })
+    private buttonBarrackAir: Button;
+
+    @property({ type: Button })
+    private buttonBarrackMarine: Button;
+
+    @property({ type: Button })
+    private buttonBarrackOverland: Button;
+
+    @property({ type: Button })
+    private buttonGoldMine: Button;
+
     onLoad() {
         ModalShopObjectInterface.instance = this;
     }
 
     updateInterface() {
+        this.levelBarrackAir.string = ControllerCommandPostStorage.getLevelBuildBarracksAir().toString();
+        this.levelBarrackMarine.string = ControllerCommandPostStorage.getLevelBuildBarracksMarine().toString();
+        this.levelBarrackOverland.string = ControllerCommandPostStorage.getLevelBuildBarracksOverland().toString();
+        this.levelGoldMine.string = ControllerCommandPostStorage.getLevelBuildGoldMine().toString();
 
+        this.costBuyBarrackAir.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()).toString();
+        this.costBuyBarrackMarine.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()).toString();
+        this.costBuyBarrackOverland.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()).toString();
+        this.costBuyGoldMine.string = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()).toString();
+
+        this.iconBarrackAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir());
+        this.iconBarrackMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine());
+        this.iconBarrackOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland());
+        this.iconGoldMine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine());
+
+        if (ControllerGameStorage.getCoins() >= ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir())) {
+            this.buttonBarrackAir.interactable = true;
+        }
+        else {
+            this.buttonBarrackAir.interactable = false;
+        }
+
+        if (ControllerGameStorage.getCoins() >= ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine())) {
+            this.buttonBarrackMarine.interactable = true;
+        }
+        else {
+            this.buttonBarrackMarine.interactable = false;
+        }
+
+        if (ControllerGameStorage.getCoins() >= ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland())) {
+            this.buttonBarrackOverland.interactable = true;
+        }
+        else {
+            this.buttonBarrackOverland.interactable = false;
+        }
+
+        if (ControllerGameStorage.getCoins() >= ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine())) {
+            this.buttonGoldMine.interactable = true;
+        }
+        else {
+            this.buttonGoldMine.interactable = false;
+        }
     }
-}
-
+}   

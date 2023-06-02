@@ -10,7 +10,7 @@ export class ControllerGameStorage {
     // =================================================================
 
     static assignStartingValues() {
-        GameStorage.instance.coins = 1000;
+        GameStorage.instance.coins = 100000;
         GameStorage.instance.coinsInTime = 0;
         GameStorage.instance.gems = 70;
         GameStorage.instance.energy = 75;
