@@ -7,10 +7,15 @@ import { RadarReward } from '../../Structures/RadarReward';
 import { ControllerConfigStorage } from './ControllerConfigStorage';
 import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
 import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
+import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
+import { ControllerHomeMapStorage } from './ControllerHomeMapStorage';
+import { TypesObjects } from '../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('ControllerRadarStorage')
 export class ControllerRadarStorage {
+
+    private static messageAnimation: MessageAnimation;
 
     static assignStartingValues() {
         RadarStorage.instance.radarLevel = 1;
@@ -60,6 +65,12 @@ export class ControllerRadarStorage {
         if (value == 0) return;
         RadarStorage.instance.availableMissions += value;
         this.updateRadarStorage();
+        this.updateRadarAnimation();
+    }
+
+    static addRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
+        RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, 0, reward));
+        this.updateRadarAnimation();
     }
 
     static addRadarSignalQuantity(value: number) {
@@ -96,6 +107,7 @@ export class ControllerRadarStorage {
             }
         }
         this.updateRadarStorage();
+        this.updateRadarAnimation();
     }
 
     static reduceRadarAvailableMissions(value: number) {
@@ -117,10 +129,6 @@ export class ControllerRadarStorage {
     static equateRadarAvailableMissions(value: number) {
         RadarStorage.instance.availableMissions = value;
         this.updateRadarStorage();
-    }
-
-    static equateRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
-        RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, 0, reward));
     }
 
     static equateRadarExperience(value: number) {
@@ -149,5 +157,36 @@ export class ControllerRadarStorage {
             tasks: tasks
         };
         ControllerBufferStorage.addItem(TypesStorages.RADAR_STORAGE, obj);
+    }
+
+    static updateRadarAnimation() {
+        let status = 0;
+        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+            if (RadarStorage.instance.tasks[i].status < 2) {
+                if (status < 1) {
+                    status = 1;
+                }
+            }
+            else {
+                status = 2;
+            }
+        }
+        this.getMessageAnimation();
+        if (status == 1) {
+            if (this.messageAnimation != null) {
+                this.messageAnimation.startAnimation();
+            }
+        }
+        else {
+            if (this.messageAnimation != null) {
+                this.messageAnimation.stopAnimation();
+            }
+        }
+    }
+
+    static getMessageAnimation(): void {
+        if (this.messageAnimation == null) {
+            this.messageAnimation = ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+        }
     }
 }

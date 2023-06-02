@@ -7,19 +7,11 @@ export class MessageAnimation extends Component {
     @property({ type: Animation })
     public anim: Animation;
 
-    start() {
-
-    }
-
     startAnimation() {
-
-    }
-
-    animation() {
-
+        this.anim.play();
     }
 
     stopAnimation() {
-
+        this.anim.stop();
     }
 }

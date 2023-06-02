@@ -54,7 +54,7 @@ export class ModalRadarLogic extends Component {
         let radarTasks = ControllerRadarStorage.getRadarTasks();
         if (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             let stars = this.randomStars();
-            ControllerRadarStorage.equateRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
+            ControllerRadarStorage.addRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
             ControllerRadarStorage.reduceRadarAvailableMissions(1); // вычитаем одну миссию из счетчика доступных
         }
     }

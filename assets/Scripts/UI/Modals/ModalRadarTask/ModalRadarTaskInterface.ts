@@ -1,4 +1,4 @@
-import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame, Animation } from 'cc';
 import { RadarTask } from '../../../Structures/RadarTask';
 import { TypesRadar } from '../../../Static/TypesRadar';
 import { TypesItems } from '../../../Static/TypesItems';
@@ -10,6 +10,9 @@ const { ccclass, property } = _decorator;
 export class ModalRadarTaskInterface extends Component {
 
     public static instance: ModalRadarTaskInterface;
+
+    @property({ type: Animation })
+    public animationModal: Animation;
 
     @property({ type: Label })
     public title: Label;
@@ -61,6 +64,8 @@ export class ModalRadarTaskInterface extends Component {
             this.stars[i].active = i < task.stars;
         }
         for (let i = 0; i < task.rewards.length; i++) {
+            console.log(this.quantity[i])
+            console.log(task.rewards[i])
             this.quantity[i].string = task.rewards[i].quantity.toString();
             switch (task.rewards[i].type) {
                 case TypesItems.PLAN_MAX_MAINBUILDING:
@@ -74,7 +79,12 @@ export class ModalRadarTaskInterface extends Component {
                     break;
             }
         }
+        this.animationModal.play();
         this.startTimer();
+    }
+
+    animationCloseModal() {
+        this.animationModal.stop();
     }
 
     getSpriteTask(type: string): Color {

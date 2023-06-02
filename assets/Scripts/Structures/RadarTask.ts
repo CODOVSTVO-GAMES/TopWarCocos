@@ -4,7 +4,7 @@ export class RadarTask {
     type: string;
     stars: number;
     time: number;
-    status: number;
+    status: number; // 0 - задача доступна для выполнения, 1 - задача выполняется, 2 - задача выполнена доступен сбор награды, 3 - награда собрана
     rewards: RadarReward[];
 
     constructor(type: string, stars: number, time: number, status: number, rewards: RadarReward[]) {

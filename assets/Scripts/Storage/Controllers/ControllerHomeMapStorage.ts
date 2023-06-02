@@ -186,6 +186,25 @@ export class ControllerHomeMapStorage {
         return quantity;
     }
 
+    static getObjectParametersByType(type: string): ObjectParameters {
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
+            return HomeMapStorage.instance.arrayObjectParameters[i];
+        }
+    }
+
+    static getObjectParametersByTypeAndLevel(type: string, level: number): ObjectParameters {
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue; 
+            return HomeMapStorage.instance.arrayObjectParameters[i];
+        }
+    }
+
     static closeObjectInterface() {
         if (HomeMapStorage.instance.selectedObject) {
             if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {

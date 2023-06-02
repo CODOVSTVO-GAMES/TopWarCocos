@@ -87,4 +87,10 @@ export class ObjectParameters extends Component {
         catch { console.log("error: goldMineLogic not received"); }
         return this.goldMineLogic;
     }
+
+    getMessageAnimation(): MessageAnimation {
+        try { this.messageAnimation = this.getComponent(MessageAnimation); }
+        catch { console.log("error: messageAnimation not received"); }
+        return this.messageAnimation;
+    }
 }
