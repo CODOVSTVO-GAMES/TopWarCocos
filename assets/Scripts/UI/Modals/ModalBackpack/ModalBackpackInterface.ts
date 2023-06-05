@@ -37,7 +37,6 @@ export class ModalBackpackInterface extends Component {
             object.parent = this.parentContent;
             object.getComponent(ItemBackpack).typeItem = ControllerInventoryStorage.getTypeByIndex(i);
             object.getComponent(ItemBackpack).updateLabelQuantity(ControllerInventoryStorage.getQuantityByIndex(i));
-            object.getComponent(Sprite).spriteFrame = SpriteStorage.instance.getItemBackpack(ControllerInventoryStorage.getTypeByIndex(i));
             this.items.push(object);
         }
     }

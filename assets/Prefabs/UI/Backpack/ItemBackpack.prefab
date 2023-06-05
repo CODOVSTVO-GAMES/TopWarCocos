@@ -289,7 +289,7 @@
       }
     ],
     "_interactable": true,
-    "_transition": 1,
+    "_transition": 0,
     "_normalColor": {
       "__type__": "cc.Color",
       "r": 255,
@@ -318,7 +318,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "7e0c9894-7332-491a-8dd6-02ad0f3fe983@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -354,6 +357,9 @@
     },
     "quantityItem": {
       "__id__": 5
+    },
+    "spriteItem": {
+      "__id__": 10
     },
     "_id": ""
   },
