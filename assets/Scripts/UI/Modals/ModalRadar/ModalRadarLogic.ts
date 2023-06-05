@@ -104,7 +104,7 @@ export class ModalRadarLogic extends Component {
     timer() {
         if (ControllerRadarStorage.getRadarTime() > 0) {
             ControllerRadarStorage.reduceRadarTime(1);
-            ControllerRadarStorage.updateRadarStorage();
+            ControllerRadarStorage.saveStorage();
             if (SecondaryInterface.instance.getTypeActiveFirstLayoutModal() == TypesModals.RADAR) {
                 ModalRadarInterface.instance.updateInterface();
             }

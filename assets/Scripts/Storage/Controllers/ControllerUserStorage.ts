@@ -33,7 +33,7 @@ export class ControllerUserStorage {
     }
 
     static setAccountId() {
-        UserStorage.instance.accountId = this.getUserId() + "-" + this.getAccountsId()[0]
+        UserStorage.instance.accountId = this.getUserId() + "-" + this.getAccountsId()[0];
     }
 
     static setAccountsId(accountsId: Array<string>) {
@@ -61,19 +61,18 @@ export class ControllerUserStorage {
     }
 
     static setServerTime(serverTime: number) {
-        UserStorage.instance.serverTime = serverTime
+        UserStorage.instance.serverTime = serverTime;
     }
 
     static getServerTime() {
-        return UserStorage.instance.serverTime
+        return UserStorage.instance.serverTime;
     }
 
     static setProducts(products: Array<Product>) {
-        UserStorage.instance.products = products
+        UserStorage.instance.products = products;
     }
 
     static getProducts() : Array<Product>{
-        return UserStorage.instance.products
+        return UserStorage.instance.products;
     }
-
 }

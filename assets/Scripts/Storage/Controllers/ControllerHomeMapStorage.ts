@@ -25,7 +25,7 @@ export class ControllerHomeMapStorage {
         }, 2000);
     }
 
-    static assigningSaveValues(obj: Object[]) {
+    static assigningSaveValuesServer(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]));
             let objParam = new ObjectParameters;
@@ -34,6 +34,13 @@ export class ControllerHomeMapStorage {
             objParam.index = json.index;
             this.setObjectParameter(objParam, objParam.type, objParam.index);
         }
+    }
+
+    static assigningSaveValuesLocal(obj: Object[]) {
+        for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
+            this.setObjectParameter(HomeMapStorage.instance.temporaryLocalStorage[i], HomeMapStorage.instance.temporaryLocalStorage[i].type, HomeMapStorage.instance.temporaryLocalStorage[i].index);
+        }
+        HomeMapStorage.instance.temporaryLocalStorage = new Array<ObjectParameters>;
     }
 
     static setParent(object: Node, index: number) {
@@ -45,7 +52,7 @@ export class ControllerHomeMapStorage {
         for (let i = 0; i < arrayIndexes.length; i++) {
             HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexes[i]] = objectParameters;
         }
-        this.updateHomeMapStorage();
+        this.saveStorageServer();
     }
 
     static setCoord(coord: Node, index: number, pos: Vec3) {
@@ -68,7 +75,7 @@ export class ControllerHomeMapStorage {
     static upgradeLevelObject(index: number) {
         HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
         HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
-        this.updateHomeMapStorage();
+        this.saveStorageServer();
     }
 
     static onTransparencyObjects() {
@@ -200,7 +207,7 @@ export class ControllerHomeMapStorage {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
-            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue; 
+            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue;
             return HomeMapStorage.instance.arrayObjectParameters[i];
         }
     }
@@ -213,7 +220,7 @@ export class ControllerHomeMapStorage {
         }
     }
 
-    static updateHomeMapStorage() {
+    static saveStorageServer() {
         console.log("update home map storage");
         let obj: Object[] = [];
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
@@ -226,5 +233,20 @@ export class ControllerHomeMapStorage {
             });
         }
         ControllerBufferStorage.addItem(TypesStorages.HOME_MAP_STORAGE, obj);
+    }
+
+    static saveStorageLocal() {
+        console.log("update home map storage");
+        let objectParameters: ObjectParameters[] = [];
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            let objParam: ObjectParameters = new ObjectParameters;
+            objParam.type = HomeMapStorage.instance.arrayObjectParameters[i].type;
+            objParam.level = HomeMapStorage.instance.arrayObjectParameters[i].level;
+            objParam.index = HomeMapStorage.instance.arrayObjectParameters[i].index;
+            objectParameters.push(objParam);
+            HomeMapStorage.instance.temporaryLocalStorage.push(objParam);
+        }
     }
 }

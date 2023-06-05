@@ -26,7 +26,7 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeBarracksOverland = 5;
         CommandPostStorage.instance.levelBuildBarracksOverland = 1;
         
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object) {
@@ -54,7 +54,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelCommandPost() {
         CommandPostStorage.instance.levelCommandPost += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelCommandPost(): number {
@@ -63,7 +63,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelRepairShop() {
         CommandPostStorage.instance.levelRepairShop += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelRepairShop(): number {
@@ -74,7 +74,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelMergeGoldMine() {
         CommandPostStorage.instance.levelMergeGoldMine += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeGoldMine(): number {
@@ -83,7 +83,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelBuildGoldMine() {
         CommandPostStorage.instance.levelBuildGoldMine += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelBuildGoldMine(): number {
@@ -94,7 +94,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelMergeTroopAir() {
         CommandPostStorage.instance.levelMergeTroopAir += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeTroopAir(): number {
@@ -103,7 +103,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelMergeBarracksAir() {
         CommandPostStorage.instance.levelMergeBarracksAir += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeBarracksAir(): number {
@@ -112,7 +112,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelBuildBarracksAir() {
         CommandPostStorage.instance.levelBuildBarracksAir += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelBuildBarracksAir(): number {
@@ -123,7 +123,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelMergeTroopMarine() {
         CommandPostStorage.instance.levelMergeTroopMarine += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeTroopMarine(): number {
@@ -132,7 +132,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelMergeBarracksMarine() {
         CommandPostStorage.instance.levelMergeBarracksMarine += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeBarracksMarine(): number {
@@ -141,7 +141,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelBuildBarracksMarine() {
         CommandPostStorage.instance.levelBuildBarracksMarine += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelBuildBarracksMarine(): number {
@@ -152,7 +152,7 @@ export class ControllerCommandPostStorage {
     
     static addLevelMergeTroopOverland() {
         CommandPostStorage.instance.levelMergeTroopOverland += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeTroopOverland(): number {
@@ -161,7 +161,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelMergeBarracksOverland() {
         CommandPostStorage.instance.levelMergeBarracksOverland += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelMergeBarracksOverland(): number {
@@ -170,7 +170,7 @@ export class ControllerCommandPostStorage {
 
     static addLevelBuildBarracksOverland() {
         CommandPostStorage.instance.levelBuildBarracksOverland += 1;
-        this.updateCommandPostStorage();
+        this.saveStorage();
     }
 
     static getLevelBuildBarracksOverland(): number {
@@ -179,7 +179,7 @@ export class ControllerCommandPostStorage {
 
     // =================================================================
 
-    static updateCommandPostStorage() {
+    static saveStorage() {
         let obj = {
             levelCommandPost: CommandPostStorage.instance.levelCommandPost,
             levelRepairShop: CommandPostStorage.instance.levelRepairShop,

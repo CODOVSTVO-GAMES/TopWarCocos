@@ -63,7 +63,7 @@ export class NetworkClient extends Component {
                 ControllerGameStorage.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
-                ControllerHomeMapStorage.assigningSaveValues(jsonValue);
+                ControllerHomeMapStorage.assigningSaveValuesServer(jsonValue);
             }
             else if (json['key'] == TypesStorages.INVENTORY_STORAGE) {
                 ControllerInventoryStorage.assigningSaveValues(jsonValue);

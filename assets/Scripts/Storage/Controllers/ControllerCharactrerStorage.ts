@@ -21,7 +21,7 @@ export class ControllerCharactrerStorage {
             let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
             CharactersStorage.instance.characters.push(new CharacterInfo(heroLevel, 0, 5, config.startDamage + (config.coefDamage * heroLevel + 5), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
         }
-        this.updateCharactrerStorage();
+        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object[]) {
@@ -63,7 +63,7 @@ export class ControllerCharactrerStorage {
         CharactersStorage.instance.recalculationCharacter(index);
         ModalCharacterInfoIntarface.instance.renderCharacter(index);
         ModalCharacterPumpingInterface.instance.renderModalPumpingLevel();
-        this.updateCharactrerStorage();
+        this.saveStorage();
     }
 
     static getExperience(index: number): number {
@@ -78,7 +78,7 @@ export class ControllerCharactrerStorage {
 
     // =================================================================
 
-    static updateCharactrerStorage() {
+    static saveStorage() {
         let obj: Object[] = [];
         for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
             obj.push({

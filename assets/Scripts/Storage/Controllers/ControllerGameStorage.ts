@@ -24,7 +24,7 @@ export class ControllerGameStorage {
         GameStorage.instance.arsenalPower = 0;
         GameStorage.instance.professionPower = 0;
         GameStorage.instance.formationPower = 0;
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object) {
@@ -51,14 +51,14 @@ export class ControllerGameStorage {
         if (value == 0) return;
         GameStorage.instance.coins += value;
         MainInterface.instance.updateAmountCoins();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static reduceCoins(value: number) {
         if (value == 0) return;
         GameStorage.instance.coins -= value;
         MainInterface.instance.updateAmountCoins();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static getCoins(): number {
@@ -71,14 +71,14 @@ export class ControllerGameStorage {
         if (value == 0) return;
         GameStorage.instance.gems += value;
         MainInterface.instance.updateAmountGems();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static reduceGems(value: number) {
         if (value == 0) return;
         GameStorage.instance.gems -= value;
         MainInterface.instance.updateAmountGems();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static getGems(): number {
@@ -90,13 +90,13 @@ export class ControllerGameStorage {
     static addEnergy(value: number) {
         if (value == 0) return;
         GameStorage.instance.energy += value;
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static reduceEnergy(value: number) {
         if (value == 0) return;
         GameStorage.instance.energy -= value;
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static getEnergy(): number {
@@ -106,7 +106,7 @@ export class ControllerGameStorage {
     static addMaxEnergy(value: number) {
         if (value == 0) return;
         GameStorage.instance.maxEnergy += value;
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static getMaxEnergy(): number {
@@ -122,7 +122,7 @@ export class ControllerGameStorage {
             GameStorage.instance.level = ControllerConfigStorage.getLevelByExpirience(this.getExperience());
             MainInterface.instance.updateCountLevel();
         }
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static getExperience(): number {
@@ -142,7 +142,7 @@ export class ControllerGameStorage {
     static addLevel() {
         GameStorage.instance.level += 1;
         MainInterface.instance.updateCountLevel();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static getLevel(): number {
@@ -194,7 +194,7 @@ export class ControllerGameStorage {
         GameStorage.instance.territoryPower += value;
         MainInterface.instance.updateCountPower();
         this.updateMaxPower();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static addTechnoPower(value: number) {
@@ -202,7 +202,7 @@ export class ControllerGameStorage {
         GameStorage.instance.technoPower += value;
         MainInterface.instance.updateCountPower();
         this.updateMaxPower();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static addHeroPower(value: number) {
@@ -210,7 +210,7 @@ export class ControllerGameStorage {
         GameStorage.instance.heroPower += value;
         MainInterface.instance.updateCountPower();
         this.updateMaxPower();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static addArsenalPower(value: number) {
@@ -218,7 +218,7 @@ export class ControllerGameStorage {
         GameStorage.instance.arsenalPower += value;
         MainInterface.instance.updateCountPower();
         this.updateMaxPower();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static addProfessionPower(value: number) {
@@ -226,7 +226,7 @@ export class ControllerGameStorage {
         GameStorage.instance.professionPower += value;
         MainInterface.instance.updateCountPower();
         this.updateMaxPower();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static addFormationPower(value: number) {
@@ -234,19 +234,19 @@ export class ControllerGameStorage {
         GameStorage.instance.formationPower += value;
         MainInterface.instance.updateCountPower();
         this.updateMaxPower();
-        this.updateGameStorage();
+        this.saveStorage();
     }
 
     static updateMaxPower() {
         if (this.getPower() > this.getMaxPower()) {
             GameStorage.instance.maxPower = this.getPower();
-            this.updateGameStorage();
+            this.saveStorage();
         }
     }
 
     // =================================================================
 
-    static updateGameStorage() {
+    static saveStorage() {
         let obj = {
             coins: GameStorage.instance.coins,
             coinsInTime: GameStorage.instance.coinsInTime,

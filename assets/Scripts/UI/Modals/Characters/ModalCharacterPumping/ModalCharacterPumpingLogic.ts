@@ -70,7 +70,7 @@ export class ModalCharacterPumpingLogic extends Component {
             CharactersStorage.instance.recalculationCharacter(this.characterIndex);
             ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
             ModalCharacterPumpingInterface.instance.renderModalPumpingStars();
-            ControllerCharactrerStorage.updateCharactrerStorage();
+            ControllerCharactrerStorage.saveStorage();
         }
     }
 

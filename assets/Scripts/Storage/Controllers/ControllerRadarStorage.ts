@@ -24,7 +24,7 @@ export class ControllerRadarStorage {
         RadarStorage.instance.timeToUpdate = config.time;
         RadarStorage.instance.signalQuality = 1;
         RadarStorage.instance.radarExperience = 0;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object) {
@@ -64,7 +64,7 @@ export class ControllerRadarStorage {
     static addRadarAvailableMissions(value: number) {
         if (value == 0) return;
         RadarStorage.instance.availableMissions += value;
-        this.updateRadarStorage();
+        this.saveStorage();
         this.updateRadarAnimation();
     }
 
@@ -76,7 +76,7 @@ export class ControllerRadarStorage {
     static addRadarSignalQuantity(value: number) {
         if (value == 0) return;
         RadarStorage.instance.signalQuality += value;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static addRadarExperience(value: number) {
@@ -90,13 +90,13 @@ export class ControllerRadarStorage {
             ModalRadarLogic.instance.calculationRadar();
         }
         ModalRadarInterface.instance.updateInterface();
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static reduceRadarTime(value: number) {
         if (value == 0) return;
         RadarStorage.instance.timeToUpdate -= value;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static reduceRadarTask(task: RadarTask) {
@@ -106,57 +106,34 @@ export class ControllerRadarStorage {
                 RadarStorage.instance.tasks.splice(i, 1);
             }
         }
-        this.updateRadarStorage();
+        this.saveStorage();
         this.updateRadarAnimation();
     }
 
     static reduceRadarAvailableMissions(value: number) {
         if (value == 0) return;
         RadarStorage.instance.availableMissions -= value;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static equateRadarTime(value: number) {
         RadarStorage.instance.timeToUpdate = value;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static equateRadarSignalQuantity(value: number) {
         RadarStorage.instance.signalQuality = value;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static equateRadarAvailableMissions(value: number) {
         RadarStorage.instance.availableMissions = value;
-        this.updateRadarStorage();
+        this.saveStorage();
     }
 
     static equateRadarExperience(value: number) {
         RadarStorage.instance.radarExperience = value;
-        this.updateRadarStorage();
-    }
-
-    static updateRadarStorage() {
-        let tasks = [];
-        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
-            tasks.push({
-                type: RadarStorage.instance.tasks[i].type,
-                stars: RadarStorage.instance.tasks[i].stars,
-                time: RadarStorage.instance.tasks[i].time,
-                status: RadarStorage.instance.tasks[i].status,
-                rewards: RadarStorage.instance.tasks[i].rewards
-            });
-        }
-
-        let obj = {
-            radarLevel: RadarStorage.instance.radarLevel,
-            availableMissions: RadarStorage.instance.availableMissions,
-            timeToUpdate: RadarStorage.instance.timeToUpdate,
-            signalQuality: RadarStorage.instance.signalQuality,
-            radarExperience: RadarStorage.instance.radarExperience,
-            tasks: tasks
-        };
-        ControllerBufferStorage.addItem(TypesStorages.RADAR_STORAGE, obj);
+        this.saveStorage();
     }
 
     static updateRadarAnimation() {
@@ -188,5 +165,27 @@ export class ControllerRadarStorage {
         if (this.messageAnimation == null) {
             this.messageAnimation = ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
         }
+    }
+    
+    static saveStorage() {
+        let tasks = [];
+        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+            tasks.push({
+                type: RadarStorage.instance.tasks[i].type,
+                stars: RadarStorage.instance.tasks[i].stars,
+                time: RadarStorage.instance.tasks[i].time,
+                status: RadarStorage.instance.tasks[i].status,
+                rewards: RadarStorage.instance.tasks[i].rewards
+            });
+        }
+        let obj = {
+            radarLevel: RadarStorage.instance.radarLevel,
+            availableMissions: RadarStorage.instance.availableMissions,
+            timeToUpdate: RadarStorage.instance.timeToUpdate,
+            signalQuality: RadarStorage.instance.signalQuality,
+            radarExperience: RadarStorage.instance.radarExperience,
+            tasks: tasks
+        };
+        ControllerBufferStorage.addItem(TypesStorages.RADAR_STORAGE, obj);
     }
 }

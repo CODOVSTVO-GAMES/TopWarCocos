@@ -17,6 +17,9 @@ export class HomeMapStorage extends Component {
     @property({ type: ObjectParameters })
     public arrayObjectParameters: ObjectParameters[] = [];
 
+    @property({ type: ObjectParameters })
+    public temporaryLocalStorage: ObjectParameters[] = [];
+
     public coords: Node[] = [];
     public spriteCoords: Sprite[] = [];
 
