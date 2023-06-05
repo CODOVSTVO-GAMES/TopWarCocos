@@ -11,12 +11,16 @@ export class ModalAutocombineInterface extends Component {
     @property({ type: Label })
     public quantityWorkGoldMine: Label;
 
+    @property({ type: Label })
+    public la: Label;
+
     onLoad() {
         ModalAutocombineInterface.instance = this;
     }
 
     updateInterface() {
         this.quantityWorkGoldMine.string = ControllerHomeMapStorage.getQuantityObjectsByType(TypesObjects.GOLD_MINE).toString() + "/10";
+        // this.la.string = ":dadadadada";
     }
 }
 

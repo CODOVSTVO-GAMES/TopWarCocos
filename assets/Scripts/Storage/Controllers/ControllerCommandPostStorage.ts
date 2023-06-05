@@ -198,7 +198,7 @@ export class ControllerCommandPostStorage {
             levelMergeTroopOverland: CommandPostStorage.instance.levelMergeTroopOverland,
             levelMergeBarracksOverland: CommandPostStorage.instance.levelMergeBarracksOverland,
             levelBuildBarracksOverland: CommandPostStorage.instance.levelBuildBarracksOverland,
-        };
+        }
         ControllerBufferStorage.addItem(TypesStorages.COMMAND_POST_STORAGE, obj);
     }
 }
