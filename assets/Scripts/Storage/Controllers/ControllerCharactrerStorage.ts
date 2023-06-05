@@ -28,7 +28,7 @@ export class ControllerCharactrerStorage {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]));
             let config = ControllerConfigStorage.getHeroConfigByCodeName(json.codeName);
-            CharactersStorage.instance.characters.push(new CharacterInfo(json.level, json.experience, json.stars, config.startDamage + (config.coefDamage * json.level + 5), config.startDefense + (config.coefDefense * json.level + 5 * 1), config.startLeader, config.type, config.codeName, json.type));
+            CharactersStorage.instance.characters.push(new CharacterInfo(json.level, json.exp, json.stars, config.startDamage + (config.coefDamage * json.level + 5), config.startDefense + (config.coefDefense * json.level + 5 * 1), config.startLeader, config.type, config.codeName, json.type));
         }
     }
 
