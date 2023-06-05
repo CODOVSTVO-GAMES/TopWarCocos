@@ -156,7 +156,7 @@ export class UpgradeOtherLogic extends Component {
     }
 
     upgradeRepairShop() {
-        ControllerCommandPostStorage.addLevelRepairShop();//Точно этот метод??
+        ControllerCommandPostStorage.addLevelRepairShop();
         ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateRepairBuilding(ControllerCommandPostStorage.getLevelRepairShop()));
         ControllerInventoryStorage.reduceItem(TypesItems.PLAN_COMMAND_POST, ControllerConfigStorage.getImprivementResourceNumberRepairBuilding(ControllerCommandPostStorage.getLevelRepairShop()));
         ControllerGameStorage.addExperience(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelRepairShop()));

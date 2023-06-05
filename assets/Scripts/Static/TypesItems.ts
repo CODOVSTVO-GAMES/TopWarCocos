@@ -17,9 +17,9 @@ export class TypesItems {
 
     public static TICKET_NORMAL: string = "tn";
     public static TICKET_PREMIUM: string = "tp";
-    public static TICKET_OWERLAND: string = "to";
-    public static TICKET_MARINE: string = "tm";
     public static TICKET_AIR: string = "ta";
+    public static TICKET_MARINE: string = "tm";
+    public static TICKET_OVERLAND: string = "to";
     public static TICKET_SKILLS: string = "ts";
 
     public static GOLD_CHEST: string = "gc";

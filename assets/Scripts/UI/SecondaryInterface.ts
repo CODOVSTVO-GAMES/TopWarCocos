@@ -316,6 +316,12 @@ export class SecondaryInterface extends Component {
         else if (this.activeFirstLayoutModal == TypesModals.COMMAND_POST) {
             this.commandPost.active = false;
         }
+        else if (this.activeFirstLayoutModal == TypesModals.BANK) {
+            this.bank.active = false;
+        }
+        else if (this.activeFirstLayoutModal == TypesModals.AUTOCOMBINE) {
+            this.autocombine.active = false;
+        }
         else if (this.activeFirstLayoutModal == TypesModals.RADAR) {
             this.radar.active = false;
         }
@@ -341,6 +347,7 @@ export class SecondaryInterface extends Component {
 
     closeAllModals() {
         this.firstBackgraund.active = false;
+        this.secondBackgraund.active = false;
         this.profile.active = false;
         this.shopCoins.active = false;
         this.shopGems.active = false;
