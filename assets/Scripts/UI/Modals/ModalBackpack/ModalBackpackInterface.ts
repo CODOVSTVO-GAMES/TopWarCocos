@@ -3,7 +3,6 @@ import { ControllerInventoryStorage } from '../../../Storage/Controllers/Control
 import { PrefabsStorage } from '../../../Storage/PrefabsStorage';
 import { ModalBackpackLogic } from './ModalBackpackLogic';
 import { ItemBackpack } from './ItemBackpack';
-import { SpriteStorage } from '../../../Storage/SpriteStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalBackpackInterface')

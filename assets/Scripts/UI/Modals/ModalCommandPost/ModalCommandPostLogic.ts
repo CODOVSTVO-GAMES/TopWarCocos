@@ -11,7 +11,7 @@ export class ModalCommandPostLogic extends Component {
 
     public static instance: ModalCommandPostLogic;
 
-    private typeActiveModal: string;
+    public typeActiveModal: string;
 
     onLoad() {
         ModalCommandPostLogic.instance = this;
