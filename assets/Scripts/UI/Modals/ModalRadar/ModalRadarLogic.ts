@@ -9,17 +9,12 @@ import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGa
 import { ModalRadarInterface } from './ModalRadarInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
-import { RadarTask } from '../../../Structures/RadarTask';
-import { ModalRadarTaskInterface } from '../ModalRadarTask/ModalRadarTaskInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
 export class ModalRadarLogic extends Component {
 
     public static instance: ModalRadarLogic;
-
-    @property({ type: Node })
-    public modalRadarTask: Node;
 
     public maxEnergy: number;
     public maxDisplayedTasks: number;
@@ -81,24 +76,6 @@ export class ModalRadarLogic extends Component {
         while (radarTasks.length < this.maxDisplayedTasks && ControllerRadarStorage.getRadarAvailableMissions() > 0) {
             this.spawnTasks();
         }
-    }
-
-    openRadarTask(task: RadarTask) {
-        ModalRadarTaskInterface.instance.updateInterface(task, 0);
-        this.modalRadarTask.active = true;
-    }
-
-    closeRadarTask() {
-        ModalRadarTaskInterface.instance.animationCloseModal();
-        setTimeout(() => this.modalRadarTask.active = false, 85);
-    }
-
-    timeZero() {
-        ControllerRadarStorage.equateRadarTime(1);
-    }
-
-    sbros() {
-        ControllerRadarStorage.assignStartingValues();
     }
 
     timer() {

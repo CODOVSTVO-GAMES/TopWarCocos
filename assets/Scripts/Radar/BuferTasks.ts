@@ -2,6 +2,7 @@ import { _decorator, Component, Node } from 'cc';
 import { RadarTask } from '../Structures/RadarTask';
 import { ModalRadarRewardLogic } from '../UI/Modals/ModalRadarReward/ModalRadarRewardLogic';
 import { ModalRadarLogic } from '../UI/Modals/ModalRadar/ModalRadarLogic';
+import { SecondaryInterface } from '../UI/SecondaryInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('BuferTasks')
@@ -37,7 +38,7 @@ export class BuferTasks extends Component {
         this.ongoingSalvationTasks[0].status = 2;
         this.ongoingSalvationTasks.splice(0, 1);
         if (ModalRadarRewardLogic.instance.task == this.ongoingSalvationTasks[0]) {
-            ModalRadarLogic.instance.closeRadarTask();
+            SecondaryInterface.instance.closeSecondLayoutModal();
         }
     }
 

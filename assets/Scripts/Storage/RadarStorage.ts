@@ -24,6 +24,8 @@ export class RadarStorage extends Component {
     
     public tasks: RadarTask[] = [];
 
+    public task: any;
+
     onLoad() {
         RadarStorage.instance = this;
     }

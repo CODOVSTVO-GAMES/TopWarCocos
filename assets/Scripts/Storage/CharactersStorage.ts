@@ -10,6 +10,8 @@ export class CharactersStorage extends Component {
 
     public characters: Array<CharacterInfo> = [];
 
+    public characterIndex: number;
+
     onLoad() {
         CharactersStorage.instance = this;
     }

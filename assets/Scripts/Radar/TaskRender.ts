@@ -1,10 +1,9 @@
 import { _decorator, Color, Component, Node, Sprite } from 'cc';
 import { TypesRadar } from '../Static/TypesRadar';
 import { RadarTask } from '../Structures/RadarTask';
-import { RedirectionToScene } from '../Other/RedirectionToScene';
-import { SceneNames } from '../Static/SceneNames';
-import { ModalRadarLogic } from '../UI/Modals/ModalRadar/ModalRadarLogic';
 import { ModalRadarRewardLogic } from '../UI/Modals/ModalRadarReward/ModalRadarRewardLogic';
+import { SecondaryInterface } from '../UI/SecondaryInterface';
+import { TypesModals } from '../Static/TypesModals';
 const { ccclass, property } = _decorator;
 
 @ccclass('TaskRender')
@@ -53,11 +52,11 @@ export class TaskRender extends Component {
 
     pushTask() {
         if (this.radarTask.status < 2) {
-            ModalRadarLogic.instance.openRadarTask(this.radarTask);
+            SecondaryInterface.instance.openRadarTaskInfo({ task: this.radarTask });
         }
         else {
             this.radarTask.status = 3;
-            ModalRadarRewardLogic.instance.openModalReward(this.radarTask);
+            SecondaryInterface.instance.openRadarReward(this.radarTask);
             this.obj.destroy();
         }
     }

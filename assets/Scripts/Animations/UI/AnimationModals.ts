@@ -6,17 +6,6 @@ export class AnimationModals extends Component {
 
     public static instance: AnimationModals;
 
-    // @property({ type: Animation })
-    // public modalCharacterPumping: Animation;
-
-    // @property({ type: Animation })
-    // public modalRadarTaskInfo: Animation;
-
-    // @property({ type: Animation })
-    // public modalRadarReward: Animation;
-
-    // public modalUpgradeComandPost: Animation;
-
     onLoad() {
         AnimationModals.instance = this;
     }
