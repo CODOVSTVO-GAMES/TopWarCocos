@@ -6,6 +6,8 @@ export class TypesModals {
     public static EXPERIENCE: string = "experience";
     public static POWER: string = "power";
     public static CHARACTERS: string = "сharacters";
+    public static CHARACTER_INFO: string = "characterInfo";
+    public static CHARACTER_PUMPING: string = "characterPumping";
     public static COMMAND_POST: string = "commandPost";
     public static UPGRATE_COMMAND_POST_0: string = "upgrateCommandPost0";
     public static UPGRATE_COMMAND_POST_1: string = "upgrateCommandPost1";
@@ -13,6 +15,8 @@ export class TypesModals {
     public static BACKPACK: string = "backpack";
     public static REPAIR_SHOP: string = "repairShop";
     public static RADAR: string = "radar";
+    public static RADAR_TASK_INFO: string = "radarTaskInfo";
+    public static RADAR_REWARD: string = "radarReward";
     public static BANK: string = "bank";
     public static WIRE_CUT: string = "wireCut";
     public static BOMB_DISPOSAL: string = "bombDisposal";

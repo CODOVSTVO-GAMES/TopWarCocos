@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Label, Sprite } from 'cc';
+import { _decorator, Component, Node, Label, Sprite, Animation } from 'cc';
 import { SpriteStorage } from '../../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../../Static/TypesObjects';
 import { ControllerCommandPostStorage } from '../../../../Storage/Controllers/ControllerCommandPostStorage';
@@ -74,6 +74,10 @@ export class UpgradeCommandPostInerface extends Component {
 
     @property({ type: Node })
     public btnGetItems: Node;
+
+
+    @property({ type: Animation })
+    public modalUpgradeAnimation: Animation;
 
     onLoad() {
         UpgradeCommandPostInerface.instance = this;
