@@ -6,7 +6,7 @@ const { ccclass } = _decorator;
 @ccclass('BattleStorage')
 export class BattleStorage extends Component {
 
-    public static instance: BattleStorage
+    public static instance: BattleStorage;
 
     public arrayOwn: Unit[] = [];
     public arrayEnemy: Unit[] = [];

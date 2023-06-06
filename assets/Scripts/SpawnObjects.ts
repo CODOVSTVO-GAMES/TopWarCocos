@@ -5,6 +5,7 @@ import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMa
 import { IndexesMap } from './Static/IndexesMap';
 import { TypesObjects } from './Static/TypesObjects';
 import { TypesLocation } from './Static/TypesLocation';
+import { ControllerGameStorage } from './Storage/Controllers/ControllerGameStorage';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')

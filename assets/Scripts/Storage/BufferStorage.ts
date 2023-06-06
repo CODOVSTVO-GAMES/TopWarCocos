@@ -5,7 +5,7 @@ const { ccclass } = _decorator;
 @ccclass('BufferStorage')
 export class BufferStorage extends Component {
 
-    public static instance: BufferStorage
+    public static instance: BufferStorage;
 
     public arrayBuffer: Array<Buffer> = [];
 

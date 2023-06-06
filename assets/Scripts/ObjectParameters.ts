@@ -5,6 +5,7 @@ import { BarracksLogic } from './GameObjects/Logic/BarracksLogic';
 import { GoldMineLogic } from './GameObjects/Logic/GoldMineLogic';
 import { GoldMineInterface } from './GameObjects/Interface/GoldMineInterface';
 import { MessageAnimation } from './Animations/Message/MessageAnimation';
+import { ArrowGameObject } from './ArrowGameObject';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -45,6 +46,8 @@ export class ObjectParameters extends Component {
     public goldMineLogic: GoldMineLogic;
 
     public messageAnimation: MessageAnimation;
+
+    public arrowGameObject: ArrowGameObject;
 
     start() {
         this.updateSprite();
@@ -92,5 +95,11 @@ export class ObjectParameters extends Component {
         try { this.messageAnimation = this.getComponent(MessageAnimation); }
         catch { console.log("error: messageAnimation not received"); }
         return this.messageAnimation;
+    }
+
+    getArrowGameObject(): ArrowGameObject {
+        try { this.arrowGameObject = this.getComponent(ArrowGameObject); }
+        catch { console.log("error: arrowGameObject not received"); }
+        return this.arrowGameObject;
     }
 }

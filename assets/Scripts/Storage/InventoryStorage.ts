@@ -5,11 +5,11 @@ const { ccclass } = _decorator;
 @ccclass('InventoryStorage')
 export class InventoryStorage extends Component {
 
-    public static instance: InventoryStorage
+    public static instance: InventoryStorage;
 
-    public inventory: Array<Item> = []
+    public inventory: Array<Item> = [];
 
     onLoad() {
-        InventoryStorage.instance = this
+        InventoryStorage.instance = this;
     }
 }

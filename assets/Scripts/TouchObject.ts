@@ -58,6 +58,8 @@ export class TouchObject extends Component {
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
 
+        this.objectParameters.getArrowGameObject().activeArrow();
+
         this.startPos = new Vec3(this.mainObject.position);
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
@@ -84,6 +86,8 @@ export class TouchObject extends Component {
 
     touchEnd() {
         if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
+
+        this.objectParameters.getArrowGameObject().deactiveArrow();
 
         this.processing();
         this.isMove = false;
