@@ -137,7 +137,7 @@ export class Battle extends Component {
         for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
             if (BattleStorage.instance.arrayCards[i] != null) {
                 this.cards[i].active = true;
-                this.texts[i].string = "Lvl. " + BattleStorage.instance.arrayCards[i].level;
+                this.texts[i].string = "Ур. " + BattleStorage.instance.arrayCards[i].level;
                 this.quantity[i].string = BattleStorage.instance.arrayCards[i].quantity.toString();
                 this.sprites[i].spriteFrame = SpriteStorage.instance.getObjectSprite(BattleStorage.instance.arrayCards[i].type, BattleStorage.instance.arrayCards[i].level);
             }

@@ -286,8 +286,4 @@ export class UpgradeOtherLogic extends Component {
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
-
-    getItems() {
-
-    }
 }

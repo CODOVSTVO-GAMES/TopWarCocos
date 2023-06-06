@@ -1,10 +1,9 @@
 import { _decorator, Component } from 'cc';
 import { UpgradeCommandPostInerface } from './UpgradePanel/UpgradeCommandPostInerface';
 import { UpgradeOtherInterface } from './UpgradePanel/UpgradeOtherInterface';
-import { UpgradeCommandPostLogic } from './UpgradePanel/UpgradeCommandPostLogic';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
-const { ccclass, property } = _decorator;
+const { ccclass  } = _decorator;
 
 @ccclass('ModalCommandPostLogic')
 export class ModalCommandPostLogic extends Component {

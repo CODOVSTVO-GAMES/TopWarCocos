@@ -103,7 +103,7 @@ export class ConfigStorage extends Component {
             }
             else if (key == 'mergeMining') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, value[l].l, value[l].e, value[l].p, TypesItems.PLAN_MERGE_GOLD_MINE, value[l].ru, value[l].pu, value[l].m))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_GOLD_MINE, value[l].ru, parseFloat(value[l].pu), parseFloat(value[l].m)))
                 }
             }
             else if (key == 'radarExpirience') {
@@ -113,7 +113,6 @@ export class ConfigStorage extends Component {
                 }
             }
         }
-
     }
 
     initHeroLevel() {

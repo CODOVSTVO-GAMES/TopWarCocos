@@ -9,7 +9,7 @@ export class ConvertLargeNumber {
             return value.toString();
         }
         let count = 1000;
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 8; i++) {
             if (value >= count * 1000) {
                 count *= 1000;
             }
