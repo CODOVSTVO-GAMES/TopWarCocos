@@ -214,6 +214,9 @@ export class ControllerHomeMapStorage {
 
     static closeObjectInterface() {
         if (HomeMapStorage.instance.selectedObject) {
+            if (HomeMapStorage.instance.selectedObject.getArrowGameObject()) {
+                HomeMapStorage.instance.selectedObject.getArrowGameObject().deactiveArrow();
+            }
             if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
                 HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
             }

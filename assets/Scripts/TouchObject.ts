@@ -87,8 +87,6 @@ export class TouchObject extends Component {
     touchEnd() {
         if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
 
-        this.objectParameters.getArrowGameObject().deactiveArrow();
-
         this.processing();
         this.isMove = false;
         HighlightHomeMap.hideAllCoord();

@@ -159,11 +159,11 @@ export class SecondaryInterface extends Component {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
             // try {
-                if (this.listOpeningFirstLayoutModals.length > 0) {
-                    this.openModal(this.listOpeningFirstLayoutModals[0]);
-                    this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
-                    this.listOpeningFirstLayoutModals.splice(0, 1);
-                }
+            if (this.listOpeningFirstLayoutModals.length > 0) {
+                this.openModal(this.listOpeningFirstLayoutModals[0]);
+                this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
+                this.listOpeningFirstLayoutModals.splice(0, 1);
+            }
             // }
             // catch { console.error("Ащибка в очереди"); clearInterval(interval); }
         }, 50);
@@ -234,9 +234,9 @@ export class SecondaryInterface extends Component {
         else if (item.modalName == TypesModals.CHARACTER_PUMPING) {
             ModalCharacterPumpingLogic.instance.characterIndex = CharactersStorage.instance.characterIndex;
             ModalCharacterPumpingInterface.instance.renderModalPumping(item.data["type"]);
-            AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.OPEN_MODAL_CHARACTER);
             this.secondBackgraund.active = true;
             this.characterPumping.active = true;
+            AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.OPEN_MODAL_CHARACTER);
         }
         else if (item.modalName == TypesModals.COMMAND_POST) {
             ModalCommandPostInterface.instance.updateInterface();
@@ -246,10 +246,12 @@ export class SecondaryInterface extends Component {
         else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST_0) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost0.active = true;
+            AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
         else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST_1) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost1.active = true;
+            AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
         else if (item.modalName == TypesModals.BANK) {
             ModalBankInterface.instance.updateInterface();
@@ -269,16 +271,16 @@ export class SecondaryInterface extends Component {
         }
         else if (item.modalName == TypesModals.RADAR_TASK_INFO) {
             ModalRadarTaskInterface.instance.updateInterface(item.data["task"], 0);
-            AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
             this.secondBackgraund.active = true;
             this.radarTaskInfo.active = true;
+            AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
         }
         else if (item.modalName == TypesModals.RADAR_REWARD) {
             RadarStorage.instance.task = item.data;
             ModalRadarRewardInterface.instance.updateInterface(RadarStorage.instance.task);
-            AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
             this.secondBackgraund.active = true;
             this.radarReward.active = true;
+            AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
         }
         else if (item.modalName == TypesModals.REPAIR_SHOP) {
             ModalRepairShopInterface.instance.updateInterface();
@@ -413,12 +415,14 @@ export class SecondaryInterface extends Component {
     }
 
     closeSecondLayoutModal() {
-        this.secondBackgraund.active = false;
+        setTimeout(() => this.secondBackgraund.active = false, 85);
         if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST_0) {
-            this.upgrateCommandPost0.active = false;
+            AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
+            setTimeout(() => this.upgrateCommandPost0.active = false, 85);
         }
         else if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST_1) {
-            this.upgrateCommandPost1.active = false;
+            AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
+            setTimeout(() => this.upgrateCommandPost1.active = false, 85);
         }
         else if (this.activeSecondLayoutModal == TypesModals.CHARACTER_PUMPING) {
             AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.CLOSE_MODAL_CHARACTER);
