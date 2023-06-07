@@ -8,6 +8,7 @@ import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCo
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
+import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -212,9 +213,7 @@ export class TouchObject extends Component {
     }
 
     mergeObject(index: number) {
-        ControllerHomeMapStorage.upgradeLevelObject(index);
-        HomeMapStorage.instance.selectedObject = null;
-        this.mainObject.destroy();
+        FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
     putAnObject(index: number) {
