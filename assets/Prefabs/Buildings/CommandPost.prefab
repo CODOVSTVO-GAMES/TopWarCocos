@@ -1414,7 +1414,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 52,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -1453,7 +1453,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 400,
       "height": 30
     },
     "_anchorPoint": {
@@ -1547,7 +1547,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 20,
+      "y": -30,
       "z": 0
     },
     "_lrot": {
@@ -1587,7 +1587,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 160,
-      "height": 20
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1621,11 +1621,11 @@
       "b": 0,
       "a": 255
     },
-    "_string": "lvl. 1",
+    "_string": "Ур. 444",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
-    "_fontSize": 20,
+    "_fontSize": 25,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
     "_overflow": 1,
