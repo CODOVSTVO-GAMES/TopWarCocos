@@ -2,6 +2,7 @@ import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserS
 import { ClientService } from "../other/ClientService"
 import { UserDTO } from "../DTO/UserDTO"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
+import { ControllerGlobalMap } from "../../Storage/Controllers/ControllerGlobalMap"
 
 export class UserService {
 
@@ -15,18 +16,7 @@ export class UserService {
         ControllerUserStorage.setAccountId()
         ControllerUserStorage.setPermission(data.permission)
         ControllerUserStorage.setIsNewUser(data.isNewUser)
-        ControllerUserStorage.setZoneId(UserService.parseZone(data.coordinates))
-        let chunk = UserService.parseChunk(data.coordinates)
-        ControllerUserStorage.setChunk(chunk.substring(0, chunk.length - 1))//переписать так же как аккаунтс айди на массивы
+        ControllerGlobalMap.setCoordsChunk(data.coordinates)
         LoadingGame.getSession()
     }
-    static parseZone(str: string): string {
-        return str.split(':')[0]
-    }
-
-    static parseChunk(str: string): string {
-        return str.split(':')[1]
-    }
-
-
 }
