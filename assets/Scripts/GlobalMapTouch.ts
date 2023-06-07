@@ -7,6 +7,12 @@ export class GlobalMapTouch extends Component {
 
     private screenSize: Vec3;
 
+    //карта 512 х 512 клеток
+    //карта 8 х 8 чанков
+    //чанк 64 х 64 клетки
+
+    private objFromServer = [{ "id": "112", "zoneId": "testzone", "chunk": "2,0", "coords": "49,19", "type": "base", "accountId": "egfsdsdffdfddffdssedddfffddrmed78dddster-1" }, { "id": "1132", "zoneId": "testzone", "chunk": "2,0", "coords": "49,22", "type": "base", "accountId": "egfsdsdffdfddffdssedddfffddrmed78dddster-1" }]
+
     private widthCell = 100
     private lengthCell = 100
 
@@ -23,10 +29,42 @@ export class GlobalMapTouch extends Component {
     public cam: Camera;
 
     start() {
-        this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this);
-        this.touchObject.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
-        this.touchObject.on(Input.EventType.TOUCH_END, this.touchEnd, this);
+        // this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this);
+        // this.touchObject.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
+        // this.touchObject.on(Input.EventType.TOUCH_END, this.touchEnd, this);
         this.screenSize = new Vec3(screen.height, screen.width, 0);
+
+
+
+        for (let l = 0; l < this.objFromServer.length; l++) {
+            // console.log(this.objFromServer[l])
+            let objCoords = this.parceCoord(this.objFromServer[l]['coords'])
+            let objChunk = this.parceCoord(this.objFromServer[l]['chunk'])
+            let x = this.getZeroCoordChunk(objChunk).x + this.getCoordBuilding(objCoords).x
+            let y = this.getZeroCoordChunk(objChunk).y + this.getCoordBuilding(objCoords).y
+
+            let node = instantiate(this.image)
+            node.setParent(this.touchObject)
+            node.setPosition(new Vec3(x, y, 0))
+            console.log('заспавнен обьект в координатах: ' + x + '   ' + y)
+        }
+    }
+
+    private parceCoord(str: string): Vec2 {
+        let arr = str.split(',', 2)
+        return new Vec2(parseInt(arr[0]), parseInt(arr[1]))
+    }
+
+    private getZeroCoordChunk(chunkCoord: Vec2): Vec2 {
+        let x = chunkCoord.x * this.widthCell * 64
+        let y = chunkCoord.y * this.lengthCell * 64
+        return new Vec2(x, y)
+    }
+
+    private getCoordBuilding(buildingCoord: Vec2): Vec2 {
+        let x = buildingCoord.x * this.widthCell
+        let y = buildingCoord.y * this.lengthCell
+        return new Vec2(x, y)
     }
 
     touchStart(e: Touch) {
