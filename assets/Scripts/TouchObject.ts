@@ -7,6 +7,7 @@ import { TypesObjects } from './Static/TypesObjects';
 import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
+import { HomeMapStorage } from './Storage/HomeMapStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -128,6 +129,9 @@ export class TouchObject extends Component {
                     return this.putAnObject(this.initialIndex);
                 }
             }
+            if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].typeCoord != this.objectParameters.location) {
+                return this.putAnObject(this.initialIndex);
+            }
         }
 
         if (count > 0) {
@@ -209,6 +213,7 @@ export class TouchObject extends Component {
 
     mergeObject(index: number) {
         ControllerHomeMapStorage.upgradeLevelObject(index);
+        HomeMapStorage.instance.selectedObject = null;
         this.mainObject.destroy();
     }
 
