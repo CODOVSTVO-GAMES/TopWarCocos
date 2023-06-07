@@ -21,14 +21,14 @@ export class ControllerCharactrerStorage {
             let config = ControllerConfigStorage.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
             CharactersStorage.instance.characters.push(new CharacterInfo(heroLevel, 0, 5, config.startDamage + (config.coefDamage * heroLevel + 5), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
         }
-        this.updateCharactrerStorage();
+        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]));
             let config = ControllerConfigStorage.getHeroConfigByCodeName(json.codeName);
-            CharactersStorage.instance.characters.push(new CharacterInfo(json.level, json.experience, json.stars, config.startDamage + (config.coefDamage * json.level + 5), config.startDefense + (config.coefDefense * json.level + 5 * 1), config.startLeader, config.type, config.codeName, json.type));
+            CharactersStorage.instance.characters.push(new CharacterInfo(json.level, json.exp, json.stars, config.startDamage + (config.coefDamage * json.level + 5), config.startDefense + (config.coefDefense * json.level + 5 * 1), config.startLeader, config.type, config.codeName, json.type));
         }
     }
 
@@ -63,7 +63,7 @@ export class ControllerCharactrerStorage {
         CharactersStorage.instance.recalculationCharacter(index);
         ModalCharacterInfoIntarface.instance.renderCharacter(index);
         ModalCharacterPumpingInterface.instance.renderModalPumpingLevel();
-        this.updateCharactrerStorage();
+        this.saveStorage();
     }
 
     static getExperience(index: number): number {
@@ -78,7 +78,7 @@ export class ControllerCharactrerStorage {
 
     // =================================================================
 
-    static updateCharactrerStorage() {
+    static saveStorage() {
         let obj: Object[] = [];
         for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
             obj.push({

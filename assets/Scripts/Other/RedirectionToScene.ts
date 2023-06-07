@@ -1,7 +1,7 @@
 import { _decorator, director } from 'cc';
 import { SceneNames } from '../Static/SceneNames';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
-import { DataStorageService } from '../Network/services/DataStorageService';
+import { HomeMapStorage } from '../Storage/HomeMapStorage';
 
 export class RedirectionToScene {
 
@@ -10,15 +10,15 @@ export class RedirectionToScene {
             director.loadScene("LoadingGame");
         }
         else if (name == SceneNames.HOME_MAP) {
-            // DataStorageService.getData(new String["homeMapStorage"]);
+            ControllerHomeMapStorage.assigningSaveValuesLocal(HomeMapStorage.instance.temporaryLocalStorage);
             director.loadScene("HomeMap");
         }
         else if (name == SceneNames.GLOBAL_MAP) {
-            // ControllerHomeMapStorage.updateHomeMapStorage();
+            ControllerHomeMapStorage.saveStorageLocal();
             director.loadScene("GlobalMap");
         }
         else if (name == SceneNames.BATTLE) {
-            // ControllerHomeMapStorage.updateHomeMapStorage();
+            ControllerHomeMapStorage.saveStorageLocal();
             director.loadScene("Battle");
         }
     }

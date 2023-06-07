@@ -9,8 +9,10 @@ import { SceneNames } from '../Static/SceneNames';
 import { TypesTeam } from '../Static/TypesTeam';
 import { ControllerConfigStorage } from '../Storage/Controllers/ControllerConfigStorage';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { CharactersStorage } from '../Storage/CharactersStorage';
 import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
+import { FreeUnit } from '../Structures/FreeUnit';
+import { Unit } from '../Structures/Unit';
+import { BattleStorage } from '../Storage/BattleStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -45,25 +47,16 @@ export class Battle extends Component {
     @property({ type: Label })
     public mapQuantity: Label[] = [];
 
-    public arrayOwn: Unit[] = [];
-    public arrayEnemy: Unit[] = [];
-    public arrayCards: FreeUnit[] = [];
-    public quantityPlaces: number[] = [];
-    public isBattle: boolean = false;
-    public level: number = 2;
-    public attackingTeam: number = 0;
-    public attackNumber: number = 0;
-
     onLoad() {
         Battle.instance = this;
-        this.arrayOwn = new Array(6);
-        this.quantityPlaces = new Array(6).fill(1);
-        this.quantityPlaces[5] = 0;
+        BattleStorage.instance.arrayOwn = new Array(6);
+        BattleStorage.instance.quantityPlaces = new Array(6).fill(1);
+        BattleStorage.instance.quantityPlaces[5] = 0;
     }
 
     start() {
-        this.arrayEnemy = this.genEnemyUnits();
-        this.arrayCards = this.getFreeUnits();
+        BattleStorage.instance.arrayEnemy = this.genEnemyUnits();
+        BattleStorage.instance.arrayCards = this.getFreeUnits();
         this.characterSelection();
         this.enemyRender();
         this.cardsRender();
@@ -88,28 +81,28 @@ export class Battle extends Component {
     }
 
     ownRender() {
-        for (let i = 0; i < this.arrayOwn.length; i++) {
-            if (this.arrayOwn[i] != null) {
-                if (this.arrayOwn[i].link == null) {
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            if (BattleStorage.instance.arrayOwn[i] != null) {
+                if (BattleStorage.instance.arrayOwn[i].link == null) {
                     this.spawnTroop(i, TypesTeam.TEAM_OWN);
                 }
                 else {
-                    let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
+                    let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(BattleStorage.instance.arrayOwn[i].type, BattleStorage.instance.arrayOwn[i].level);
                     let sum = this.characterSum();
-                    this.arrayOwn[i].hp = config.hp + sum.defense;
-                    this.arrayOwn[i].availableHp = config.hp + sum.defense;
-                    this.arrayOwn[i].damage = config.damage + sum.damage;
-                    this.arrayOwn[i].link.renderInfo();
+                    BattleStorage.instance.arrayOwn[i].hp = config.hp + sum.defense;
+                    BattleStorage.instance.arrayOwn[i].availableHp = config.hp + sum.defense;
+                    BattleStorage.instance.arrayOwn[i].damage = config.damage + sum.damage;
+                    BattleStorage.instance.arrayOwn[i].link.renderInfo();
                 }
-                if (this.arrayOwn[i].hp <= 0) {
-                    if (this.arrayOwn[i].quantity > 1) {
-                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(this.arrayOwn[i].type, this.arrayOwn[i].level);
-                        this.arrayOwn[i].quantity--;
-                        this.arrayOwn[i].hp = config.hp + this.arrayOwn[i].hp;
+                if (BattleStorage.instance.arrayOwn[i].hp <= 0) {
+                    if (BattleStorage.instance.arrayOwn[i].quantity > 1) {
+                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(BattleStorage.instance.arrayOwn[i].type, BattleStorage.instance.arrayOwn[i].level);
+                        BattleStorage.instance.arrayOwn[i].quantity--;
+                        BattleStorage.instance.arrayOwn[i].hp = config.hp + BattleStorage.instance.arrayOwn[i].hp;
                     }
                     else {
-                        this.arrayOwn[i].link.nodeObject.destroy();
-                        this.arrayOwn[i] = null;
+                        BattleStorage.instance.arrayOwn[i].link.nodeObject.destroy();
+                        BattleStorage.instance.arrayOwn[i] = null;
                     }
                 }
             }
@@ -117,23 +110,23 @@ export class Battle extends Component {
     }
 
     enemyRender() {
-        for (let i = 0; i < this.arrayEnemy.length; i++) {
-            if (this.arrayEnemy[i] != null) {
-                if (this.arrayEnemy[i].link == null) {
+        for (let i = 0; i < BattleStorage.instance.arrayEnemy.length; i++) {
+            if (BattleStorage.instance.arrayEnemy[i] != null) {
+                if (BattleStorage.instance.arrayEnemy[i].link == null) {
                     this.spawnTroop(i, TypesTeam.TEAM_ENEMY);
                 }
                 else {
-                    this.arrayEnemy[i].link.renderInfo();
+                    BattleStorage.instance.arrayEnemy[i].link.renderInfo();
                 }
-                if (this.arrayEnemy[i].hp <= 0) {
-                    if (this.arrayEnemy[i].quantity > 1) {
-                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(this.arrayEnemy[i].type, this.arrayEnemy[i].level);
-                        this.arrayEnemy[i].quantity--;
-                        this.arrayEnemy[i].hp = config.hp + this.arrayEnemy[i].hp;
+                if (BattleStorage.instance.arrayEnemy[i].hp <= 0) {
+                    if (BattleStorage.instance.arrayEnemy[i].quantity > 1) {
+                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(BattleStorage.instance.arrayEnemy[i].type, BattleStorage.instance.arrayEnemy[i].level);
+                        BattleStorage.instance.arrayEnemy[i].quantity--;
+                        BattleStorage.instance.arrayEnemy[i].hp = config.hp + BattleStorage.instance.arrayEnemy[i].hp;
                     }
                     else {
-                        this.arrayEnemy[i].link.nodeObject.destroy();
-                        this.arrayEnemy[i] = null;
+                        BattleStorage.instance.arrayEnemy[i].link.nodeObject.destroy();
+                        BattleStorage.instance.arrayEnemy[i] = null;
                     }
                 }
             }
@@ -141,12 +134,12 @@ export class Battle extends Component {
     }
 
     cardsRender() {
-        for (let i = 0; i < this.arrayCards.length; i++) {
-            if (this.arrayCards[i] != null) {
+        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
+            if (BattleStorage.instance.arrayCards[i] != null) {
                 this.cards[i].active = true;
-                this.texts[i].string = "Lvl. " + this.arrayCards[i].level;
-                this.quantity[i].string = this.arrayCards[i].quantity.toString();
-                this.sprites[i].spriteFrame = SpriteStorage.instance.getObjectSprite(this.arrayCards[i].type, this.arrayCards[i].level);
+                this.texts[i].string = "Ур. " + BattleStorage.instance.arrayCards[i].level;
+                this.quantity[i].string = BattleStorage.instance.arrayCards[i].quantity.toString();
+                this.sprites[i].spriteFrame = SpriteStorage.instance.getObjectSprite(BattleStorage.instance.arrayCards[i].type, BattleStorage.instance.arrayCards[i].level);
             }
             else {
                 this.cards[i].active = false;
@@ -155,14 +148,14 @@ export class Battle extends Component {
     }
 
     quantityRender() {
-        for (let i = 0; i < this.quantityPlaces.length; i++) {
-            let available = 0; // доступно
+        for (let i = 0; i < BattleStorage.instance.quantityPlaces.length; i++) {
+            let available = 0;
             let result: string;
-            if (this.arrayOwn[i] != null) {
-                available = this.arrayOwn[i].quantity;
+            if (BattleStorage.instance.arrayOwn[i] != null) {
+                available = BattleStorage.instance.arrayOwn[i].quantity;
             }
-            if (this.quantityPlaces[i] > 0) {
-                result = available + "/" + this.quantityPlaces[i];
+            if (BattleStorage.instance.quantityPlaces[i] > 0) {
+                result = available + "/" + BattleStorage.instance.quantityPlaces[i];
             }
             else {
                 result = "";
@@ -173,12 +166,12 @@ export class Battle extends Component {
 
     characterSelection() {
         let count: number = this.characterSum().leadership / 100;
-        this.quantityPlaces = new Array(6).fill(1);
-        this.quantityPlaces[5] = 0;
+        BattleStorage.instance.quantityPlaces = new Array(6).fill(1);
+        BattleStorage.instance.quantityPlaces[5] = 0;
         while (count > 0) {
-            for (let i = 0; i < this.quantityPlaces.length; i++) {
-                if (this.quantityPlaces[i] > 0 && count > 0) {
-                    this.quantityPlaces[i]++;
+            for (let i = 0; i < BattleStorage.instance.quantityPlaces.length; i++) {
+                if (BattleStorage.instance.quantityPlaces[i] > 0 && count > 0) {
+                    BattleStorage.instance.quantityPlaces[i]++;
                     count--;
                 }
             }
@@ -187,25 +180,25 @@ export class Battle extends Component {
     }
 
     clickCard(event, customEventData) {
-        for (let i = 0; i < this.arrayOwn.length; i++) {
-            if (this.arrayOwn[i] == null && this.quantityPlaces[i] > 0) {
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            if (BattleStorage.instance.arrayOwn[i] == null && BattleStorage.instance.quantityPlaces[i] > 0) {
                 let quantity = 0;
-                let unit = this.arrayCards[customEventData];
+                let unit = BattleStorage.instance.arrayCards[customEventData];
                 let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
-                if (this.quantityPlaces[i] > unit.quantity) {
+                if (BattleStorage.instance.quantityPlaces[i] > unit.quantity) {
                     quantity = unit.quantity;
                 }
                 else {
-                    quantity = this.quantityPlaces[i];
+                    quantity = BattleStorage.instance.quantityPlaces[i];
                 }
                 let sum = this.characterSum();
-                this.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                BattleStorage.instance.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
                 else {
-                    this.arrayCards.splice(customEventData, 1);
-                    this.arrayCards.push(null);
+                    BattleStorage.instance.arrayCards.splice(customEventData, 1);
+                    BattleStorage.instance.arrayCards.push(null);
                 }
                 this.ownRender();
                 this.cardsRender();
@@ -221,12 +214,12 @@ export class Battle extends Component {
         let troop;
         if (team == TypesTeam.TEAM_OWN) {
             coords = BattleMap.instance.coordsOwn;
-            units = this.arrayOwn;
+            units = BattleStorage.instance.arrayOwn;
             troop = this.troopOwn;
         }
         else if (team == TypesTeam.TEAM_ENEMY) {
             coords = BattleMap.instance.coordsEnemy;
-            units = this.arrayEnemy;
+            units = BattleStorage.instance.arrayEnemy;
             troop = this.troopEnemy;
         }
         let gameObject = instantiate(troop);
@@ -237,26 +230,26 @@ export class Battle extends Component {
     }
 
     clickTroop(index: number) {
-        let unit = this.arrayOwn[index];
+        let unit = BattleStorage.instance.arrayOwn[index];
         this.returnUnitInFreeArray(unit);
-        this.arrayOwn[index] = null;
+        BattleStorage.instance.arrayOwn[index] = null;
         this.ownRender();
         this.quantityRender();
     }
 
     returnUnitInFreeArray(unit: Unit) {
-        for (let i = 0; i < this.arrayCards.length; i++) {
-            if (this.arrayCards[i] != null) {
-                if (this.arrayCards[i].type == unit.type && this.arrayCards[i].level == unit.level) {
-                    this.arrayCards[i].quantity += unit.quantity;
+        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
+            if (BattleStorage.instance.arrayCards[i] != null) {
+                if (BattleStorage.instance.arrayCards[i].type == unit.type && BattleStorage.instance.arrayCards[i].level == unit.level) {
+                    BattleStorage.instance.arrayCards[i].quantity += unit.quantity;
                     this.sortedArrayCards();
                     return;
                 }
             }
         }
-        for (let i = 0; i < this.arrayCards.length; i++) {
-            if (this.arrayCards[i] == null) {
-                this.arrayCards[i] = new FreeUnit(unit.type, unit.level, unit.quantity, unit.hp);
+        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
+            if (BattleStorage.instance.arrayCards[i] == null) {
+                BattleStorage.instance.arrayCards[i] = new FreeUnit(unit.type, unit.level, unit.quantity, unit.hp);
                 this.sortedArrayCards();
                 return;
             }
@@ -264,25 +257,25 @@ export class Battle extends Component {
     }
 
     sortedArrayCards() {
-        this.arrayCards.sort((a, b) => {
+        BattleStorage.instance.arrayCards.sort((a, b) => {
             if (a != null && b != null) {
                 if (a.level < b.level) {
-                    return 1
+                    return 1;
                 }
                 if (a.level > b.level) {
-                    return -1
+                    return -1;
                 }
             }
-            return 0
+            return 0;
         })//может сортировать в другую сторону
         this.cardsRender();
     }
 
     inBattle() {
-        if (this.isBattle == false) {
-            for (let i = 0; i < this.arrayOwn.length; i++) {
-                if (this.arrayOwn[i] != null) {
-                    this.isBattle = true;
+        if (BattleStorage.instance.isBattle == false) {
+            for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+                if (BattleStorage.instance.arrayOwn[i] != null) {
+                    BattleStorage.instance.isBattle = true;
                     this.inBattleBtn.active = false;
                     this.quickPlacementBtn.active = false;
                     for (let i = 0; i < this.cards.length; i++) {
@@ -298,38 +291,36 @@ export class Battle extends Component {
     attack() {
         let units_1;
         let units_2;
-        let delay = 0;// зочем делей?
         let countBullet = 0;
-        if (this.attackingTeam == 0) {
-            units_1 = this.arrayEnemy.slice(0);
-            units_2 = this.arrayOwn.slice(0);
+        if (BattleStorage.instance.attackingTeam == 0) {
+            units_1 = BattleStorage.instance.arrayEnemy.slice(0);
+            units_2 = BattleStorage.instance.arrayOwn.slice(0);
         }
-        else if (this.attackingTeam == 1) {
-            units_1 = this.arrayOwn.slice(0);
-            units_2 = this.arrayEnemy.slice(0);
+        else if (BattleStorage.instance.attackingTeam == 1) {
+            units_1 = BattleStorage.instance.arrayOwn.slice(0);
+            units_2 = BattleStorage.instance.arrayEnemy.slice(0);
         }
         for (let i = 0; i < units_1.length; i++) {
-            if (i == 0 && this.attackingTeam == 0) {
-                this.attackNumber++;
+            if (i == 0 && BattleStorage.instance.attackingTeam == 0) {
+                BattleStorage.instance.attackNumber++;
             }
             if (units_1[i] != null) {
-                if (units_1[i].attackNumber < this.attackNumber) {
+                if (units_1[i].attackNumber < BattleStorage.instance.attackNumber) {
                     let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(units_1[i].type, units_1[i].level);
                     let units = this.goalSelection(units_1[i].link.team, units_1[i].type, TypesAttack.HORIZON, config.attackType);
                     for (let j = 0; j < units.length; j++) {
                         countBullet++;
                         this.troopAttackInvoke(i, j, units, units_1, units_2, countBullet);
                     }
-                    units_1[i].attackNumber = this.attackNumber;
+                    units_1[i].attackNumber = BattleStorage.instance.attackNumber;
                 }
             }
-            delay++;
             if (i == units_1.length - 1) {
-                if (this.attackingTeam == 0) {
-                    this.attackingTeam = 1;
+                if (BattleStorage.instance.attackingTeam == 0) {
+                    BattleStorage.instance.attackingTeam = 1;
                 }
-                else if (this.attackingTeam == 1) {
-                    this.attackingTeam = 0;
+                else if (BattleStorage.instance.attackingTeam == 1) {
+                    BattleStorage.instance.attackingTeam = 0;
                 }
 
                 setTimeout(() => {
@@ -365,9 +356,9 @@ export class Battle extends Component {
 
     howManyAliveOwn(): number {
         let quantityAlive = 0;
-        for (let i = 0; i < this.arrayOwn.length; i++) {
-            if (this.arrayOwn[i] != null) {
-                if (this.arrayOwn[i].hp > 0) {
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            if (BattleStorage.instance.arrayOwn[i] != null) {
+                if (BattleStorage.instance.arrayOwn[i].hp > 0) {
                     quantityAlive++;
                 }
             }
@@ -377,9 +368,9 @@ export class Battle extends Component {
 
     howManyAliveEnemy(): number {
         let quantityAlive = 0;
-        for (let i = 0; i < this.arrayEnemy.length; i++) {
-            if (this.arrayEnemy[i] != null) {
-                if (this.arrayEnemy[i].hp > 0) {
+        for (let i = 0; i < BattleStorage.instance.arrayEnemy.length; i++) {
+            if (BattleStorage.instance.arrayEnemy[i] != null) {
+                if (BattleStorage.instance.arrayEnemy[i].hp > 0) {
                     quantityAlive++;
                 }
             }
@@ -392,21 +383,19 @@ export class Battle extends Component {
         let quantity;
         let arrayUnits = [];
         if (team == TypesTeam.TEAM_ENEMY) {
-            units = this.arrayOwn.slice(0);
+            units = BattleStorage.instance.arrayOwn.slice(0);
         }
         else if (team == TypesTeam.TEAM_OWN) {
-            units = this.arrayEnemy.slice(0);
+            units = BattleStorage.instance.arrayEnemy.slice(0);
         }
-        switch (typeShot) {
-            case TypesAttack.ONE:
-                quantity = 1;
-                break;
-            case TypesAttack.TWO:
-                quantity = 2;
-                break;
-            case TypesAttack.THREE:
-                quantity = 3;
-                break;
+        if (typeShot == TypesAttack.ONE) {
+            quantity = 1;
+        }
+        else if (typeShot == TypesAttack.TWO) {
+            quantity = 2;
+        }
+        else if (typeShot == TypesAttack.THREE) {
+            quantity = 3;
         }
         for (let i = 0; i < units.length; i++) {
             if (units[i] != null) {
@@ -432,35 +421,35 @@ export class Battle extends Component {
     }
 
     quickPlacement() {
-        for (let i = 0; i < this.arrayOwn.length; i++) {
-            let unit = this.arrayOwn[i];
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            let unit = BattleStorage.instance.arrayOwn[i];
             if (unit != null) {
                 this.returnUnitInFreeArray(unit);
-                this.arrayOwn[i].link.nodeObject.destroy();
-                this.arrayOwn[i] = null;
+                BattleStorage.instance.arrayOwn[i].link.nodeObject.destroy();
+                BattleStorage.instance.arrayOwn[i] = null;
                 this.ownRender();
                 this.quantityRender();
             }
         }
-        for (let i = 0; i < this.arrayOwn.length; i++) {
-            let unit = this.arrayCards[0];
-            if (unit != null && this.quantityPlaces[i] > 0) {
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            let unit = BattleStorage.instance.arrayCards[0];
+            if (unit != null && BattleStorage.instance.quantityPlaces[i] > 0) {
                 let quantity = 0;
                 let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
-                if (this.quantityPlaces[i] > unit.quantity) {
+                if (BattleStorage.instance.quantityPlaces[i] > unit.quantity) {
                     quantity = unit.quantity;
                 }
                 else {
-                    quantity = this.quantityPlaces[i];
+                    quantity = BattleStorage.instance.quantityPlaces[i];
                 }
                 let sum = this.characterSum();
-                this.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
+                BattleStorage.instance.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
                 if (unit.quantity > quantity) {
                     unit.quantity -= quantity;
                 }
                 else {
-                    this.arrayCards.splice(0, 1);
-                    this.arrayCards.push(null);
+                    BattleStorage.instance.arrayCards.splice(0, 1);
+                    BattleStorage.instance.arrayCards.push(null);
                 }
             }
         }
@@ -486,49 +475,3 @@ export class Battle extends Component {
         return new CharacterInfo(0, exp, stars, attack, protection, leadership, "sum", "sum", "sum");
     }
 }
-
-export class Unit {
-    hp: number;
-    availableHp: number;
-    damage: number;
-    index: number;
-    level: number;
-    quantity: number;
-    attackNumber: number = 0;
-    typeAttack: string;
-    typeShot: string;
-    type: string;
-    link: TroopRender;
-
-    constructor(hp: number, availableHp: number, damage: number, index: number, level: number, quantity: number, typeAttack: string, typeShot: string, type: string) {
-        this.hp = hp
-        this.availableHp = availableHp;
-        this.damage = damage;
-        this.index = index;
-        this.level = level;
-        this.quantity = quantity;
-        this.typeAttack = typeAttack;
-        this.typeShot = typeShot;
-        this.type = type;
-    }
-}
-
-class FreeUnit {
-    type: string;
-    level: number;
-    quantity: number;
-    hp: number;
-
-    constructor(type: string, level: number, quantity: number, hp: number) {
-        this.type = type;
-        this.level = level;
-        this.quantity = quantity;
-        this.hp = hp;
-    }
-}
-// бафы персонажей +
-// количество воинов на ячейке +
-// выстрелы +
-// быстрая расстановка +
-// hp +
-// задержки между выстрелами

@@ -111,6 +111,3 @@ export class UpgradeCommandPostInerface extends Component {
         this.btnGetItems.active = true;
     }
 }
-
-
-

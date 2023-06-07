@@ -1,7 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite, SpriteFrame, Animation } from 'cc';
 import { RadarTask } from '../../../Structures/RadarTask';
 import { TypesItems } from '../../../Static/TypesItems';
-import { TypesAnimation } from '../../../Static/TypesAnimation';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarRewardInterface')
@@ -47,10 +46,5 @@ export class ModalRadarRewardInterface extends Component {
                     break;
             }
         }
-        this.animationOpenClose.play(TypesAnimation.OPEN_MODAL);
-    }
-
-    anomationCloseModal() {
-        this.animationOpenClose.play(TypesAnimation.CLOSE_MODAL);
     }
 }

@@ -21,8 +21,4 @@ export class UpgradeCommandPostLogic extends Component {
         ControllerHomeMapStorage.upgradeLevelObject(ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.COMMAND_POST).index);
         UpgradeCommandPostInerface.instance.updateInterface();
     }
-
-    getItems() {
-
-    }
 }

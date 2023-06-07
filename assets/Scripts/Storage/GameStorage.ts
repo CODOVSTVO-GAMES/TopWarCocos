@@ -4,7 +4,7 @@ const { ccclass, property } = _decorator;
 @ccclass('GameStorage')
 export class GameStorage extends Component {
 
-    public static instance: GameStorage
+    public static instance: GameStorage;
 
     @property({ type: CCInteger })
     public coins: number;

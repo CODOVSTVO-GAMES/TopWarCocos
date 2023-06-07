@@ -1,8 +1,9 @@
-import { _decorator, Component, Label, Node, Sprite } from 'cc';
+import { _decorator, Component, Label, Sprite } from 'cc';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { Battle } from './Battle';
 import { CharactersStorage } from '../Storage/CharactersStorage';
 import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
+import { BattleStorage } from '../Storage/BattleStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('CharacterSelection')
@@ -26,7 +27,7 @@ export class CharacterSelection extends Component {
     }
 
     randomCharacter(event, customEventData) {
-        if (Battle.instance.isBattle == false) {
+        if (BattleStorage.instance.isBattle == false) {
             this.saveRenderCharacter(customEventData);
             Battle.instance.ownRender();
         }

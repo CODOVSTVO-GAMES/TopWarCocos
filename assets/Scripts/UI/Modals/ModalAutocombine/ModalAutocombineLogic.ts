@@ -1,14 +1,22 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
+import { SecondaryInterface } from '../../SecondaryInterface';
+import { TypesModals } from '../../../Static/TypesModals';
+import { ControllerAutocombineStorage } from '../../../Storage/Controllers/ControllerAutocombineStorage';
+import { ModalAutocombineInterface } from './ModalAutocombineInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalAutocombineLogic')
 export class ModalAutocombineLogic extends Component {
-    start() {
 
+    goOverGoldMine() {
+        SecondaryInterface.instance.closeFirstLayoutModal();
+        SecondaryInterface.instance.openFirstModal(TypesModals.SHOP_OBJECT);
     }
 
-    update(deltaTime: number) {
-        
+    collectCoins() {
+        ControllerAutocombineStorage.addQuantityCollect();
+        ModalAutocombineInterface.instance.updateInterface();
+        SecondaryInterface.instance.closeFirstLayoutModal();
     }
 }
 

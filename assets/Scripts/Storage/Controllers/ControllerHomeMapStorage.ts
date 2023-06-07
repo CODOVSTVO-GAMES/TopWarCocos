@@ -25,7 +25,7 @@ export class ControllerHomeMapStorage {
         }, 2000);
     }
 
-    static assigningSaveValues(obj: Object[]) {
+    static assigningSaveValuesServer(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]));
             let objParam = new ObjectParameters;
@@ -34,6 +34,13 @@ export class ControllerHomeMapStorage {
             objParam.index = json.index;
             this.setObjectParameter(objParam, objParam.type, objParam.index);
         }
+    }
+
+    static assigningSaveValuesLocal(obj: Object[]) {
+        for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
+            this.setObjectParameter(HomeMapStorage.instance.temporaryLocalStorage[i], HomeMapStorage.instance.temporaryLocalStorage[i].type, HomeMapStorage.instance.temporaryLocalStorage[i].index);
+        }
+        HomeMapStorage.instance.temporaryLocalStorage = new Array<ObjectParameters>;
     }
 
     static setParent(object: Node, index: number) {
@@ -45,7 +52,7 @@ export class ControllerHomeMapStorage {
         for (let i = 0; i < arrayIndexes.length; i++) {
             HomeMapStorage.instance.arrayObjectParameters[index - arrayIndexes[i]] = objectParameters;
         }
-        this.updateHomeMapStorage();
+        this.saveStorageServer();
     }
 
     static setCoord(coord: Node, index: number, pos: Vec3) {
@@ -65,15 +72,33 @@ export class ControllerHomeMapStorage {
         return HomeMapStorage.instance.selectedObject;
     }
 
+    static putSelectObject() {
+        if (HomeMapStorage.instance.selectedObject) {
+            if (HomeMapStorage.instance.selectedObject.getArrowGameObject()) {
+                HomeMapStorage.instance.selectedObject.getArrowGameObject().deactiveArrow();
+            }
+            if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
+                HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
+            }
+            if (HomeMapStorage.instance.selectedObject.getBarracksLogic()) {
+                HomeMapStorage.instance.selectedObject.getBarracksLogic().closeMessage();
+            }
+            HomeMapStorage.instance.selectedObject.nodeObject.setParent(HomeMapStorage.instance.coords[HomeMapStorage.instance.selectedObject.index]);
+            HomeMapStorage.instance.selectedObject.nodeObject.position = Vec3.ZERO;
+            HomeMapStorage.instance.selectedObject = null;
+        }
+    }
+
     static upgradeLevelObject(index: number) {
         HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
         HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
-        this.updateHomeMapStorage();
+        this.saveStorageServer();
     }
 
-    static onTransparencyObjects() {
+    static onTransparencyObjects(type: string, level: number) {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].type == type && HomeMapStorage.instance.arrayObjectParameters[i].level == level) continue;
             HomeMapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
         }
     }
@@ -180,7 +205,7 @@ export class ControllerHomeMapStorage {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
-            if (HomeMapStorage.instance.arrayObjectParameters[i].level == level) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue;
             quantity += 1;
         }
         return quantity;
@@ -200,20 +225,12 @@ export class ControllerHomeMapStorage {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
-            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue; 
+            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue;
             return HomeMapStorage.instance.arrayObjectParameters[i];
         }
     }
 
-    static closeObjectInterface() {
-        if (HomeMapStorage.instance.selectedObject) {
-            if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
-                HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
-            }
-        }
-    }
-
-    static updateHomeMapStorage() {
+    static saveStorageServer() {
         console.log("update home map storage");
         let obj: Object[] = [];
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
@@ -226,5 +243,20 @@ export class ControllerHomeMapStorage {
             });
         }
         ControllerBufferStorage.addItem(TypesStorages.HOME_MAP_STORAGE, obj);
+    }
+
+    static saveStorageLocal() {
+        console.log("update home map storage");
+        let objectParameters: ObjectParameters[] = [];
+        for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
+            if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
+            let objParam: ObjectParameters = new ObjectParameters;
+            objParam.type = HomeMapStorage.instance.arrayObjectParameters[i].type;
+            objParam.level = HomeMapStorage.instance.arrayObjectParameters[i].level;
+            objParam.index = HomeMapStorage.instance.arrayObjectParameters[i].index;
+            objectParameters.push(objParam);
+            HomeMapStorage.instance.temporaryLocalStorage.push(objParam);
+        }
     }
 }

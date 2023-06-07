@@ -3,8 +3,8 @@ import { RadarTask } from '../../../Structures/RadarTask';
 import { TypesRadar } from '../../../Static/TypesRadar';
 import { TypesItems } from '../../../Static/TypesItems';
 import { ModalRadarTaskLogic } from './ModalRadarTaskLogic';
-import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
-import { TypesAnimation } from '../../../Static/TypesAnimation';
+import { SecondaryInterface } from '../../SecondaryInterface';
+import { TypesModals } from '../../../Static/TypesModals';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskInterface')
@@ -78,14 +78,7 @@ export class ModalRadarTaskInterface extends Component {
                     break;
             }
         }
-        if (updateIndex < 1) {
-            this.animationOpenClose.play(TypesAnimation.OPEN_MODAL);
-        }
         this.startTimer();
-    }
-
-    animationCloseModal() {
-        this.animationOpenClose.play(TypesAnimation.CLOSE_MODAL);
     }
 
     getSpriteTask(type: string): Color {
@@ -103,7 +96,7 @@ export class ModalRadarTaskInterface extends Component {
         let timer = setInterval(() => {
             if (ModalRadarTaskLogic.instance.task != null) {
                 let time = ModalRadarTaskLogic.instance.task.time;
-                if (ModalRadarLogic.instance.modalRadarTask.active && time > 0) {
+                if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && time > 0) {
                     ModalRadarTaskLogic.instance.task.time--;
                     this.title.string = "Задание завершится через " + time;
                 }

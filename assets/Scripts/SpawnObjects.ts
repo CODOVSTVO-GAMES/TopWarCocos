@@ -5,6 +5,7 @@ import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMa
 import { IndexesMap } from './Static/IndexesMap';
 import { TypesObjects } from './Static/TypesObjects';
 import { TypesLocation } from './Static/TypesLocation';
+import { ControllerGameStorage } from './Storage/Controllers/ControllerGameStorage';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
@@ -55,12 +56,50 @@ export class SpawnObjects {
                         check = true;
                         break;
                     }
-                    if (i >= 50) {
+                    try {
                         if (IndexesMap.indexesMap[i - arrayIndexes[j]].typeCoord != location) {
                             check = true;
                             break;
                         }
+                        if (
+                            type == TypesObjects.TROOP_AIR ||
+                            type == TypesObjects.BARRACKS_AIR ||
+                            type == TypesObjects.BARRACKS_MARINE ||
+                            type == TypesObjects.BARRACKS_OVERLAND ||
+                            type == TypesObjects.GOLD_MINE ||
+                            type == TypesObjects.BANK ||
+                            type == TypesObjects.AUTOCOMBINE ||
+                            type == TypesObjects.RADAR ||
+                            type == TypesObjects.TREASURES ||
+                            type == TypesObjects.MANIPULATOR ||
+                            type == TypesObjects.REPAIR_SHOP ||
+                            type == TypesObjects.LOBBY_WARS ||
+                            type == TypesObjects.WALL ||
+                            type == TypesObjects.BATTLE
+                        ) {
+                            if (IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject2x2 == false) {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else if (type == TypesObjects.TROOP_MARINE) {
+                            if (IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject2x2 == false) {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else if (type == TypesObjects.COMMAND_POST) {
+                            if (IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject3x3 == false) {
+                                check = true;
+                                break;
+                            }
+                        }
+                        if (!IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject2x2) {
+                            check = true;
+                            break;
+                        }
                     }
+                    catch  { }
                 }
                 if (check == false) {
                     minDistance = currentDistance;

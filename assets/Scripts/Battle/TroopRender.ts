@@ -1,7 +1,9 @@
 import { _decorator, Animation, Component, Label, Node, Sprite } from 'cc';
 import { SpriteStorage } from '../Storage/SpriteStorage';
-import { Battle, Unit } from './Battle';
+import { Battle } from './Battle';
 import { TypesTeam } from '../Static/TypesTeam';
+import { Unit } from '../Structures/Unit';
+import { BattleStorage } from '../Storage/BattleStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopRender')
@@ -35,12 +37,12 @@ export class TroopRender extends Component {
         let type;
         let level;
         if (this.team == TypesTeam.TEAM_OWN) {
-            this.unitInfo = Battle.instance.arrayOwn[this.index];
+            this.unitInfo = BattleStorage.instance.arrayOwn[this.index];
             type = this.unitInfo.type;
             level = this.unitInfo.level;
         }
         else if (this.team == TypesTeam.TEAM_ENEMY) {
-            this.unitInfo = Battle.instance.arrayEnemy[this.index];
+            this.unitInfo = BattleStorage.instance.arrayEnemy[this.index];
             type = this.unitInfo.type;
             level = this.unitInfo.level;
         }
@@ -61,26 +63,10 @@ export class TroopRender extends Component {
 
     shotRender() {
         this.anim.play();
-        setInterval(() => this.startCoroutine(), 1);
-    }
-
-    startCoroutine() {
-        // if (this.team == TypesTeam.TEAM_ENEMY) {
-        //     let pos = this.bullet.getWorldPosition();
-        //     if (pos.x < 960 || pos.y < 540) {
-        //         this.anim.stop();
-        //     }
-        // }
-        // else if (this.team == TypesTeam.TEAM_OWN) {
-        //     let pos = this.bullet.getWorldPosition();
-        //     if (pos.x > 960 || pos.y > 540) {
-        //         this.anim.stop();
-        //     }
-        // }
     }
 
     log() {
-        if (this.team == TypesTeam.TEAM_OWN && Battle.instance.isBattle == false) {
+        if (this.team == TypesTeam.TEAM_OWN && BattleStorage.instance.isBattle == false) {
             Battle.instance.clickTroop(this.index);
             this.nodeObject.destroy();
         }

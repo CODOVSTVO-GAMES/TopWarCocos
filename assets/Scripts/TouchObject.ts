@@ -45,18 +45,18 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true;
 
-        if (ControllerHomeMapStorage.getSelectObject()) {
-            if (ControllerHomeMapStorage.getSelectObject().getObjectInterface()) {
-                ControllerHomeMapStorage.getSelectObject().getObjectInterface().closeInterface();
-            }
-        }
-
-        ControllerHomeMapStorage.onTransparencyObjects();
+        ControllerHomeMapStorage.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level);
         ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+        ControllerHomeMapStorage.putSelectObject();
         ControllerHomeMapStorage.setSelectObject(this.objectParameters);
 
         this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
+        this.objectParameters.getArrowGameObject().activeArrow();
+
+        if (this.objectParameters.getBarracksLogic()) {
+            this.objectParameters.getBarracksLogic().openMessage();
+        }
 
         this.startPos = new Vec3(this.mainObject.position);
         this.xPos = this.mainObject.position.x;
@@ -216,12 +216,8 @@ export class TouchObject extends Component {
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
-            if (this.objectParameters.type == TypesObjects.BARRACKS_AIR || this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                this.objectParameters.getBarracksLogic().openMessage();
-            }
         }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
-        this.mainObject.setParent(ControllerHomeMapStorage.getCoord(index));
-        this.mainObject.position = Vec3.ZERO;
+        this.mainObject.position = ControllerHomeMapStorage.getCoord(index).position;
     }
 }
