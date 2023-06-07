@@ -75,22 +75,4 @@ export class ControllerUserStorage {
     static getProducts(): Array<Product> {
         return UserStorage.instance.products;
     }
-
-    static setZoneId(zoneId: string) {
-        UserStorage.instance.zoneId = zoneId;
-    }
-
-    static getZoneId(): string {
-        console.log('zone ' + UserStorage.instance.zoneId)
-        return UserStorage.instance.zoneId
-    }
-
-    static setChunk(chunk: string) {
-        UserStorage.instance.chunk = chunk
-    }
-
-    static getChunk(): string {
-        console.log('chunk ' + UserStorage.instance.chunk)
-        return UserStorage.instance.chunk
-    }
 }
