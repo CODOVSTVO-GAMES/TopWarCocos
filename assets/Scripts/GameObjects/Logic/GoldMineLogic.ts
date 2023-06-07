@@ -20,7 +20,9 @@ export class GoldMineLogic extends Component {
         if (this.node) {
             setTimeout(() => {
                 this.time -= 0.0002;
-                this.objectParameters.getGoldMineInterface().render(this.time);
+                if (this.objectParameters.getGoldMineInterface()) {
+                    this.objectParameters.getGoldMineInterface().render(this.time);
+                }
                 if (this.time <= -1) {
                     return;
                 }
