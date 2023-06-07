@@ -45,13 +45,9 @@ export class BarracksLogic extends Component {
 
     openMessage() {
         this.message.active = true;
-
-        console.log("open message");
     }
 
     closeMessage() {
         this.message.active = false;
-
-        console.log("close message");
     }
 }

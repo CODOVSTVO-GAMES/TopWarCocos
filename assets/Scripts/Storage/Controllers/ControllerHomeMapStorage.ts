@@ -72,15 +72,33 @@ export class ControllerHomeMapStorage {
         return HomeMapStorage.instance.selectedObject;
     }
 
+    static putSelectObject() {
+        if (HomeMapStorage.instance.selectedObject) {
+            if (HomeMapStorage.instance.selectedObject.getArrowGameObject()) {
+                HomeMapStorage.instance.selectedObject.getArrowGameObject().deactiveArrow();
+            }
+            if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
+                HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
+            }
+            if (HomeMapStorage.instance.selectedObject.getBarracksLogic()) {
+                HomeMapStorage.instance.selectedObject.getBarracksLogic().closeMessage();
+            }
+            HomeMapStorage.instance.selectedObject.nodeObject.setParent(HomeMapStorage.instance.coords[HomeMapStorage.instance.selectedObject.index]);
+            HomeMapStorage.instance.selectedObject.nodeObject.position = Vec3.ZERO;
+            HomeMapStorage.instance.selectedObject = null;
+        }
+    }
+
     static upgradeLevelObject(index: number) {
         HomeMapStorage.instance.arrayObjectParameters[index].level += 1;
         HomeMapStorage.instance.arrayObjectParameters[index].updateSprite();
         this.saveStorageServer();
     }
 
-    static onTransparencyObjects() {
+    static onTransparencyObjects(type: string, level: number) {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].type == type && HomeMapStorage.instance.arrayObjectParameters[i].level == level) continue;
             HomeMapStorage.instance.arrayObjectParameters[i].onTransparencyObject();
         }
     }
@@ -187,7 +205,7 @@ export class ControllerHomeMapStorage {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
-            if (HomeMapStorage.instance.arrayObjectParameters[i].level == level) continue;
+            if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue;
             quantity += 1;
         }
         return quantity;
@@ -209,17 +227,6 @@ export class ControllerHomeMapStorage {
             if (HomeMapStorage.instance.arrayObjectParameters[i].type != type) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].level != level) continue;
             return HomeMapStorage.instance.arrayObjectParameters[i];
-        }
-    }
-
-    static closeObjectInterface() {
-        if (HomeMapStorage.instance.selectedObject) {
-            if (HomeMapStorage.instance.selectedObject.getArrowGameObject()) {
-                HomeMapStorage.instance.selectedObject.getArrowGameObject().deactiveArrow();
-            }
-            if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
-                HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
-            }
         }
     }
 
