@@ -22,6 +22,7 @@ export class TypesModals {
     public static BOMB_DISPOSAL: string = "bombDisposal";
     public static QUESTION: string = "question";
     public static SWITCH: string = "switch";
+    public static SPATIAL_MINE: string = "spatialMine";
 
     public static DIALOG: string = "dialog";
 }

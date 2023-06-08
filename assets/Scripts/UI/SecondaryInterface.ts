@@ -28,7 +28,6 @@ import { ModalRadarTaskInterface } from './Modals/ModalRadarTask/ModalRadarTaskI
 import { RadarStorage } from '../Storage/RadarStorage';
 import { ModalRadarRewardInterface } from './Modals/ModalRadarReward/ModalRadarRewardInterface';
 import { ModalRadarRewardLogic } from './Modals/ModalRadarReward/ModalRadarRewardLogic';
-import { RadarTask } from '../Structures/RadarTask';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -116,6 +115,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public switch: Node;
+
+    @property({ type: Node })
+    public spatialMine: Node;
 
     public listOpeningFirstLayoutModals: Array<QueueItem> = [];
 
@@ -319,6 +321,11 @@ export class SecondaryInterface extends Component {
             this.firstBackgraund.active = true;
             this.switch.active = true;
         }
+        else if (item.modalName == TypesModals.SPATIAL_MINE) {
+
+            this.firstBackgraund.active = true;
+            this.spatialMine.active = true;
+        }
     }
 
     openProfile() { this.openFirstModal(TypesModals.PROFILE); }
@@ -362,6 +369,8 @@ export class SecondaryInterface extends Component {
     openQuestion() { this.openFirstModal(TypesModals.QUESTION); }
 
     openSwith() { this.openFirstModal(TypesModals.SWITCH); }
+
+    openSpatialMine() { this.openFirstModal(TypesModals.SPATIAL_MINE); }
 
     closeFirstLayoutModal() {
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
@@ -408,6 +417,9 @@ export class SecondaryInterface extends Component {
         }
         else if (this.activeFirstLayoutModal == TypesModals.BACKPACK) {
             this.backpack.active = false;
+        }
+        else if (this.activeFirstLayoutModal == TypesModals.SPATIAL_MINE) {
+            this.spatialMine.active = false;
         }
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
             this.activeFirstLayoutModal = "";
@@ -467,6 +479,7 @@ export class SecondaryInterface extends Component {
         this.bombDisposal.active = false;
         this.question.active = false;
         this.switch.active = false;
+        this.spatialMine.active = false;
         this.activeFirstLayoutModal = "";
         this.activeSecondLayoutModal = "";
     }
