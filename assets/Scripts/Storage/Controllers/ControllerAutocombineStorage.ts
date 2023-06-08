@@ -1,4 +1,4 @@
-import { _decorator, js } from 'cc';
+import { _decorator } from 'cc';
 import { AutocombineStorage } from '../AutocombineStorage';
 import { ControllerHomeMapStorage } from './ControllerHomeMapStorage';
 import { TypesObjects } from '../../Static/TypesObjects';
@@ -29,9 +29,8 @@ export class ControllerAutocombineStorage {
                 AutocombineStorage.instance.isActiveAutocombine = json.isActiveAutocombine;
             }
             else {
-                AutocombineStorage.instance.indexes.push(new Aut(json.level, json.index, 0));
+                AutocombineStorage.instance.indexes.push(new Aut(json.level, json.index, json.time));
             }
-
         }
     }
 
@@ -53,15 +52,19 @@ export class ControllerAutocombineStorage {
         }, 1000)
     }
 
-    static Ayf(index: number, newIndex: number) {
+    static updateIndexGoldMine(oldIndex: number, newIndex: number) {
         for (let i = 0; i < AutocombineStorage.instance.indexes.length; i++) {
-            if (AutocombineStorage.instance.indexes[i].index == index) {
+            if (AutocombineStorage.instance.indexes[i].index == oldIndex) {
                 AutocombineStorage.instance.indexes[i].index = newIndex;
             }
         }
     }
 
-    static Ale(index: number): number {
+    static deleteGoldMine(index: number) {
+        AutocombineStorage.instance.indexes.slice(index, 1);
+    }
+
+    static getTimeGoldMine(index: number): number {
         for (let i = 0; i < AutocombineStorage.instance.indexes.length; i++) {
             if (AutocombineStorage.instance.indexes[i].index == index) {
                 return AutocombineStorage.instance.indexes[i].time;
@@ -84,7 +87,10 @@ export class ControllerAutocombineStorage {
                     new Aut(objectParameters.level, objectParameters.index, 60)
                 );
             }
-
+            AutocombineStorage.instance.quantityProfit = 0;
+            for (let i = 0; i < AutocombineStorage.instance.indexes.length; i++) {
+                AutocombineStorage.instance.quantityProfit += ControllerConfigStorage.getProdictionInTimeGoldMineByLevel(AutocombineStorage.instance.indexes[i].level);
+            }
         }
         else {
             for (let i = 0; i < AutocombineStorage.instance.indexes.length; i++) {
@@ -108,12 +114,8 @@ export class ControllerAutocombineStorage {
         }
     }
 
-    static initQuantityProfit() {
-        AutocombineStorage.instance.quantityProfit = 0;
-    }
-
-    static addQuantityCollect() {
-        AutocombineStorage.instance.quantityCollect += 1;
+    static clearAllProfit() {
+        AutocombineStorage.instance.allProfit = 0;
     }
 
     static getAllProfit(): number {
@@ -130,6 +132,10 @@ export class ControllerAutocombineStorage {
 
     static getQuantityCollect(): number {
         return AutocombineStorage.instance.quantityCollect;
+    }
+
+    static getIsActiveAutocombine(): boolean {
+        return AutocombineStorage.instance.isActiveAutocombine;
     }
 
     static saveStorage() {

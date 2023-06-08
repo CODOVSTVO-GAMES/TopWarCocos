@@ -12,7 +12,7 @@ export class GoldMineLogic extends Component {
     public objectParameters: ObjectParameters;
 
     collect() {
-        if (ControllerAutocombineStorage.Ale(this.objectParameters.index) == 0) {
+        if (ControllerAutocombineStorage.getTimeGoldMine(this.objectParameters.index) == 0) {
             ControllerGameStorage.addCoins(ControllerConfigStorage.getProdictionInTimeGoldMineByLevel(this.objectParameters.level));
         }
     }

@@ -51,6 +51,7 @@ export class NetworkClient extends Component {
             ControllerCharactrerStorage.assignStartingValues();
             ControllerCommandPostStorage.assignStartingValues();
             ControllerRadarStorage.assignStartingValues();
+            ControllerAutocombineStorage.assignStartingValues();
             RedirectionToScene.redirect(SceneNames.HOME_MAP);
             return;
         }

@@ -10,8 +10,6 @@ export class ControllerConfigStorage {
     static getProdictionInTimeGoldMineByLevel(level: number): number {
         for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
             if (ConfigStorage.instance.mergeBuildingsConfig[i].type == TypesObjects.GOLD_MINE && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                console.log(typeof ConfigStorage.instance.mergeBuildingsConfig[i].productionInTime);
-                console.log(ConfigStorage.instance.mergeBuildingsConfig[i]);
                 return ConfigStorage.instance.mergeBuildingsConfig[i].productionInTime;
             }
         }

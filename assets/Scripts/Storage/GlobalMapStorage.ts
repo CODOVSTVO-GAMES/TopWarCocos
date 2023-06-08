@@ -1,4 +1,6 @@
-import { _decorator, CCFloat, CCString, Component, Node, Vec2 } from 'cc';
+import { _decorator, CCFloat, CCString, Component, Node } from 'cc';
+import { SceneNames } from '../Static/SceneNames';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
 const { ccclass, property } = _decorator;
 
 @ccclass('GlobalMapStorage')
@@ -19,7 +21,7 @@ export class GlobalMapStorage extends Component {
 
     protected start(): void {
         GlobalMapStorage.instance = this
-        this.zone = 'testzone'
+        // this.zone = 'testzone'
         this.xBaceCoord = 0
         this.yBaceCoord = 0
     }

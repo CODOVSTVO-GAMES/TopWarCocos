@@ -215,12 +215,13 @@ export class TouchObject extends Component {
 
     mergeObject(index: number) {
         HomeMapStorage.instance.selectedObject = null;
+        ControllerAutocombineStorage.deleteGoldMine(this.objectParameters.index);
         FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
     putAnObject(index: number) {
         if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-            ControllerAutocombineStorage.Ayf(this.objectParameters.index, index);
+            ControllerAutocombineStorage.updateIndexGoldMine(this.objectParameters.index, index);
         }
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
