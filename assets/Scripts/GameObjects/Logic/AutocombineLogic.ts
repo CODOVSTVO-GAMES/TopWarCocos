@@ -11,7 +11,7 @@ export class AutocombineLogic extends Component {
     clickAutocombine() {
         if (ControllerAutocombineStorage.getAllProfit() > 0) {
             ControllerGameStorage.addCoins(ControllerAutocombineStorage.getAllProfit());
-            ControllerAutocombineStorage.initAllProfit();
+            ControllerAutocombineStorage.clearAllProfit();
         }
         else {
             SecondaryInterface.instance.openFirstModal(TypesModals.AUTOCOMBINE);
