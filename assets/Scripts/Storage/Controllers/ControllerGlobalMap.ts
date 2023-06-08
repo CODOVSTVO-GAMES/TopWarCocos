@@ -3,36 +3,39 @@ import { Building, GlobalMapStorage } from "../GlobalMapStorage";
 
 export class ControllerGlobalMap {
 
-    static getChunkString(): string {
-        return this.vectorToString(GlobalMapStorage.instance.chunk)
-    }
+    private static widthCell = 100
+    private static lengthCell = 100
 
-    static getChunk(): Vec2 {
-        return GlobalMapStorage.instance.chunk
+    static setZone(zone: string) {
+        GlobalMapStorage.instance.zone = zone
     }
 
     static getZone() {
         return GlobalMapStorage.instance.zone
     }
 
-    static getCoordsChunk(): string {
-        return GlobalMapStorage.instance.zone + ':' + GlobalMapStorage.instance.chunk.x + ',' + GlobalMapStorage.instance.chunk.y
+    static getXBace(): number {
+        return GlobalMapStorage.instance.xBaceCoord
     }
 
-    static setCoordsChunk(str: string) {
-        str = str.substring(0, str.length - 1)
-        GlobalMapStorage.instance.zone = this.parseZone(str)
-        GlobalMapStorage.instance.chunk = this.stringToVector2(this.parseChunk(str))
-        //переписать так же как аккаунтс айди на массивы
+    static getYBace(): number {
+        return GlobalMapStorage.instance.yBaceCoord
+    }
+
+    static getCoordinatesByChunkAndCoords(chunk: Vec2, coords: Vec2): Vec2 {
+        let x = this.getZeroCoordChunk(chunk).x + this.getCoordBuilding(coords).x
+        let y = this.getZeroCoordChunk(chunk).y + this.getCoordBuilding(coords).y
+        return new Vec2(x, y)
     }
 
     static buildingsHandler(buildings: object[]) {
         for (let i = 0; i < buildings.length; i++) {
             const id = buildings[i]['id']
             const type = buildings[i]['type']
-            const chunk = this.stringToVector2(buildings[i]['chunk'])
-            const coords = this.stringToVector2(buildings[i]['coords'])
-            this.addBuildings([new Building(id, type, coords, chunk)])
+            const x = buildings[i]['x']
+            const y = buildings[i]['y']
+            const accountId = buildings[i]['accountId']
+            this.addBuildings([new Building(id, type, x, y, accountId)])
         }
         console.log('проверено обьектов: ' + GlobalMapStorage.instance.buildings.length)
     }
@@ -49,20 +52,15 @@ export class ControllerGlobalMap {
         }
     }
 
-    private static stringToVector2(str: string): Vec2 {
-        let arr = str.split(',', 2)
-        return new Vec2(parseInt(arr[0]), parseInt(arr[1]))
+    private static getZeroCoordChunk(chunkCoord: Vec2): Vec2 {
+        let x = chunkCoord.x * this.widthCell * 64
+        let y = chunkCoord.y * this.lengthCell * 64
+        return new Vec2(x, y)
     }
 
-    private static vectorToString(vector: Vec2): string {
-        return vector[0] + ',' + vector[1]
-    }
-
-    private static parseZone(str: string): string {
-        return str.split(':')[0]
-    }
-
-    private static parseChunk(str: string): string {
-        return str.split(':')[1]
+    private static getCoordBuilding(buildingCoord: Vec2): Vec2 {
+        let x = buildingCoord.x * this.widthCell
+        let y = buildingCoord.y * this.lengthCell
+        return new Vec2(x, y)
     }
 }

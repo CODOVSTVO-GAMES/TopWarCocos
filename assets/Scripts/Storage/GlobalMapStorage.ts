@@ -1,4 +1,4 @@
-import { _decorator, CCString, Component, Node, Vec2 } from 'cc';
+import { _decorator, CCFloat, CCString, Component, Node, Vec2 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('GlobalMapStorage')
@@ -9,13 +9,19 @@ export class GlobalMapStorage extends Component {
     @property({ type: CCString })
     public zone: string
 
-    @property({ type: Vec2 })
-    public chunk: Vec2
+    @property({ type: CCFloat })
+    public xBaceCoord: number
+
+    @property({ type: CCFloat })
+    public yBaceCoord: number
 
     public buildings = new Array<Building>
 
     protected start(): void {
         GlobalMapStorage.instance = this
+        this.zone = 'testzone'
+        this.xBaceCoord = 0
+        this.yBaceCoord = 0
     }
 }
 
@@ -23,15 +29,17 @@ export class Building {
     id: number
     type: string
     node: Node
-    coords: Vec2
-    chunk: Vec2
+    x: number
+    y: number
+    accountId: string
 
-    constructor(id: number, type: string, coords: Vec2, chunk: Vec2, node = null) {
+    constructor(id: number, type: string, x: number, y: number, accountId: string, node = null) {
         this.id = id
         this.type = type
-        this.coords = coords
-        this.chunk = chunk
         this.node = node
+        this.accountId = accountId
+        this.x = x
+        this.y = y
     }
 }
 

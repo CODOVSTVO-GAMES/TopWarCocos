@@ -5,11 +5,21 @@ const { ccclass, property } = _decorator;
 @ccclass('GlobalMapTouch')
 export class GlobalMapTouch extends Component {
 
-    private screenSize: Vec3;
+    /**
+     * карта 512 х 512 клеток
+     * арта 8 х 8 чанков
+     * чанк 64 х 64 клетки
+     * 
+     * Логика работы карты:
+     * При старте игры запрашивается чанк игрока
+     * При входе на карту центр камеры игрока равен координатам его базы
+     * При входе на карту спавнятся все обьекты в радиусе 20 клеток
+     * 
+     * При перемещении камеры новые обьекты доспавниваются в радиусе 20 клеток
+     * 
+     */
 
-    //карта 512 х 512 клеток
-    //карта 8 х 8 чанков
-    //чанк 64 х 64 клетки
+    private screenSize: Vec3;    
 
     private objFromServer = [{ "id": "112", "zoneId": "testzone", "chunk": "2,0", "coords": "49,19", "type": "base", "accountId": "egfsdsdffdfddffdssedddfffddrmed78dddster-1" }, { "id": "1132", "zoneId": "testzone", "chunk": "2,0", "coords": "49,22", "type": "base", "accountId": "egfsdsdffdfddffdssedddfffddrmed78dddster-1" }]
 
@@ -37,7 +47,6 @@ export class GlobalMapTouch extends Component {
 
 
         for (let l = 0; l < this.objFromServer.length; l++) {
-            // console.log(this.objFromServer[l])
             let objCoords = this.parceCoord(this.objFromServer[l]['coords'])
             let objChunk = this.parceCoord(this.objFromServer[l]['chunk'])
             let x = this.getZeroCoordChunk(objChunk).x + this.getCoordBuilding(objCoords).x

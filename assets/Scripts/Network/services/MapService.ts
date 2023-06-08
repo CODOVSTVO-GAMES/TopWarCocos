@@ -4,9 +4,8 @@ import { MapDTO } from "../DTO/MapDTO"
 import { ControllerGlobalMap } from "../../Storage/Controllers/ControllerGlobalMap";
 
 export class MapService {
-
     static getMap() {
-        ClientService.get('map', new MapDTO(ControllerUserStorage.getAccountId(), ControllerGlobalMap.getCoordsChunk()), MapService.parseDataStorageGetResponce);
+        ClientService.get('map', new MapDTO(ControllerUserStorage.getAccountId(), ControllerGlobalMap.getZone(), ControllerGlobalMap.getXBace(), ControllerGlobalMap.getYBace()), MapService.parseDataStorageGetResponce);
     }
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {

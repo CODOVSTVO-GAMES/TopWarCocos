@@ -14,9 +14,9 @@ export class UserService {
         if (!isDone) console.log("get user error")
         ControllerUserStorage.setAccountsId(data.accountsId)
         ControllerUserStorage.setAccountId()
+        ControllerGlobalMap.setZone(data.zone)
         ControllerUserStorage.setPermission(data.permission)
         ControllerUserStorage.setIsNewUser(data.isNewUser)
-        ControllerGlobalMap.setCoordsChunk(data.coordinates)
         LoadingGame.getSession()
     }
 }
