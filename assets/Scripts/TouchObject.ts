@@ -213,6 +213,7 @@ export class TouchObject extends Component {
     }
 
     mergeObject(index: number) {
+        HomeMapStorage.instance.selectedObject = null;
         FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
@@ -222,6 +223,7 @@ export class TouchObject extends Component {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
-        this.mainObject.position = ControllerHomeMapStorage.getCoord(index).position;
+        FlightGameObjects.instance.moveToCell(this.mainObject, index);
+        // this.mainObject.position = ControllerHomeMapStorage.getCoord(index).position;
     }
 }
