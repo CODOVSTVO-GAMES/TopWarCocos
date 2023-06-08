@@ -9,6 +9,7 @@ import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
+import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -218,6 +219,9 @@ export class TouchObject extends Component {
     }
 
     putAnObject(index: number) {
+        if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+            ControllerAutocombineStorage.Ayf(this.objectParameters.index, index);
+        }
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
