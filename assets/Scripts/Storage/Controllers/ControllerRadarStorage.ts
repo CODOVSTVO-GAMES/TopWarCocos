@@ -161,12 +161,12 @@ export class ControllerRadarStorage {
         }
     }
 
-    static getMessageAnimation(): void {
+    static getMessageAnimation() {
         if (this.messageAnimation == null) {
             this.messageAnimation = ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
         }
     }
-    
+
     static saveStorage() {
         let tasks = [];
         for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {

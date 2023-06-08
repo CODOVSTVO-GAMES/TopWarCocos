@@ -22,7 +22,7 @@ export class HighlightHomeMap {
                 if (minDistance < 42) break;
             }
         }
-
+        
         this.hideAllCoord();
 
         for (let i = 0; i < arrayRegionObject.length; i++) {

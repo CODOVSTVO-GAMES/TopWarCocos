@@ -14,6 +14,7 @@ import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeM
 import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
 import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
 import { PaymentsService } from './services/PaymentsService';
+import { ControllerAutocombineStorage } from '../Storage/Controllers/ControllerAutocombineStorage';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -76,6 +77,9 @@ export class NetworkClient extends Component {
             }
             else if (json['key'] == TypesStorages.RADAR_STORAGE) {
                 ControllerRadarStorage.assigningSaveValues(jsonValue);
+            }
+            else if (json['key'] == TypesStorages.AUTOCOMBINE_STORAGE) {
+                ControllerAutocombineStorage.assigningSaveValues(jsonValue);
             }
         }
         PaymentsService.getProducts();

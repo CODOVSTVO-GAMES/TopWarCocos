@@ -9,6 +9,7 @@ import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
+import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -134,7 +135,7 @@ export class TouchObject extends Component {
                 return this.putAnObject(this.initialIndex);
             }
         }
-
+        
         if (count > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
@@ -213,15 +214,20 @@ export class TouchObject extends Component {
     }
 
     mergeObject(index: number) {
+        HomeMapStorage.instance.selectedObject = null;
         FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
     putAnObject(index: number) {
+        if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+            ControllerAutocombineStorage.Ayf(this.objectParameters.index, index);
+        }
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
-        this.mainObject.position = ControllerHomeMapStorage.getCoord(index).position;
+        FlightGameObjects.instance.moveToCell(this.mainObject, index);
+        // this.mainObject.position = ControllerHomeMapStorage.getCoord(index).position;
     }
 }

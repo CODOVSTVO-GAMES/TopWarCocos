@@ -25,37 +25,31 @@ export class FlightGameObjects extends Component {
     moveToCell(object: Node, index: number) {
         this.index = index;
         this.object_1 = object;
-        this.toPos = ControllerHomeMapStorage.getCoordPosition(index);
+        this.toPos = ControllerHomeMapStorage.getCoordWorldPosition(index);
         this.trigger = true;
-        console.log(object.position + " " + this.toPos);
     }
 
     moveMerge(object_1: Node, index: number) {
-        this.index = index;
         this.object_1 = object_1;
-        this.object_2 = ControllerHomeMapStorage.getObjectParameter(index).nodeObject;
+        let objectParameters = ControllerHomeMapStorage.getObjectParameter(index);
+        console.log(objectParameters);
+        this.object_2 = objectParameters.nodeObject;
+        this.index = objectParameters.index;
         this.toPos = ControllerHomeMapStorage.getCoordWorldPosition(index);
         this.triggerMerge = true;
         this.triggerSeparate = false;
-        console.log(index + " " + object_1.getWorldPosition() + " " + this.object_2.getWorldPosition() + " " + this.toPos);
+        console.log("Merge " + index);
     }
 
     update(dt: number) {
         if (this.trigger == true) {
-            console.log("MOOOOOOVEToCell");
             this.object_1.setWorldPosition(
                 this.getLerp(this.object_1.getWorldPosition().x, this.toPos.x, dt * this.speed),
                 this.getLerp(this.object_1.getWorldPosition().y, this.toPos.y, dt * this.speed),
                 0);
-            if (Vec3.distance(this.object_1.getWorldPosition(), this.toPos) < 0.5) {
-                this.trigger = false;
-                ControllerHomeMapStorage.upgradeLevelObject(this.index);
-                HomeMapStorage.instance.selectedObject = null;
-                this.object_1.destroy();
-            }
+            if (Vec3.distance(this.object_1.getWorldPosition(), this.toPos) < 0.5) { this.trigger = false; }
         }
         if (this.triggerMerge == true) {
-            console.log("moveMerge");
             if (this.triggerSeparate == false) {
                 this.object_1.setWorldPosition(
                     this.getLerp(this.object_1.getWorldPosition().x, this.toPos.x + 150, dt * this.speed),
@@ -65,7 +59,6 @@ export class FlightGameObjects extends Component {
                     this.getLerp(this.object_2.getWorldPosition().x, this.toPos.x - 150, dt * this.speed),
                     this.getLerp(this.object_2.getWorldPosition().y, this.toPos.y, dt * this.speed),
                     0);
-                console.log(Math.abs(this.object_1.getWorldPosition().x - (this.toPos.x + 150)) + " " + Math.abs(this.object_2.getWorldPosition().x - (this.toPos.x - 150)))
                 if (Math.abs(this.object_1.getWorldPosition().x - (this.toPos.x + 150)) < 0.5 && Math.abs(this.object_1.getWorldPosition().y - this.toPos.y) < 0.5 && Math.abs(this.object_2.getWorldPosition().x - (this.toPos.x - 150)) < 0.5 && Math.abs(this.object_2.getWorldPosition().y - this.toPos.y) < 0.5) { this.triggerSeparate = true; }
             }
             else if (this.triggerSeparate == true) {
@@ -77,8 +70,7 @@ export class FlightGameObjects extends Component {
                     this.getLerp(this.object_2.getWorldPosition().x, this.toPos.x, dt * this.speed),
                     this.getLerp(this.object_2.getWorldPosition().y, this.toPos.y, dt * this.speed),
                     0);
-                console.log(Vec3.distance(this.object_1.getWorldPosition(), this.toPos) + " " + Math.abs(this.object_2.getWorldPosition().x - this.toPos.x))
-                if (Math.abs(this.object_1.getWorldPosition().x - this.toPos.x) < 0.5 && Math.abs(this.object_1.getWorldPosition().y - this.toPos.y) < 0.5 && Math.abs(this.object_2.getWorldPosition().x - this.toPos.x) < 0.5 && Math.abs(this.object_2.getWorldPosition().y - this.toPos.y) < 0.5) {
+                if (Vec3.distance(this.object_1.getWorldPosition(), this.toPos) < 0.5 && Vec3.distance(this.object_2.getWorldPosition(), this.toPos) < 0.5) {
                     this.triggerMerge = false;
                     ControllerHomeMapStorage.upgradeLevelObject(this.index);
                     this.object_1.destroy();
