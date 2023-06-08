@@ -134,7 +134,7 @@ export class TouchObject extends Component {
                 return this.putAnObject(this.initialIndex);
             }
         }
-
+        
         if (count > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);

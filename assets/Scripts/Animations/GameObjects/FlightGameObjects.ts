@@ -30,12 +30,15 @@ export class FlightGameObjects extends Component {
     }
 
     moveMerge(object_1: Node, index: number) {
-        this.index = index;
         this.object_1 = object_1;
-        this.object_2 = ControllerHomeMapStorage.getObjectParameter(index).nodeObject;
+        let objectParameters = ControllerHomeMapStorage.getObjectParameter(index);
+        console.log(objectParameters);
+        this.object_2 = objectParameters.nodeObject;
+        this.index = objectParameters.index;
         this.toPos = ControllerHomeMapStorage.getCoordWorldPosition(index);
         this.triggerMerge = true;
         this.triggerSeparate = false;
+        console.log("Merge " + index);
     }
 
     update(dt: number) {
