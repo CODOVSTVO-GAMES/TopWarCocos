@@ -1,10 +1,11 @@
 import { Vec2 } from "cc";
 import { Building, GlobalMapStorage } from "../GlobalMapStorage";
+import { ControllerUserStorage } from "./ControllerUserStorage";
 
 export class ControllerGlobalMap {
 
-    private static widthCell = 100
-    private static lengthCell = 100
+    public static widthCell = 100
+    public static lengthCell = 100
 
     static setZone(zone: string) {
         GlobalMapStorage.instance.zone = zone
@@ -22,12 +23,6 @@ export class ControllerGlobalMap {
         return GlobalMapStorage.instance.yBaceCoord
     }
 
-    static getCoordinatesByChunkAndCoords(chunk: Vec2, coords: Vec2): Vec2 {
-        let x = this.getZeroCoordChunk(chunk).x + this.getCoordBuilding(coords).x
-        let y = this.getZeroCoordChunk(chunk).y + this.getCoordBuilding(coords).y
-        return new Vec2(x, y)
-    }
-
     static buildingsHandler(buildings: object[]) {
         for (let i = 0; i < buildings.length; i++) {
             const id = buildings[i]['id']
@@ -36,8 +31,16 @@ export class ControllerGlobalMap {
             const y = buildings[i]['y']
             const accountId = buildings[i]['accountId']
             this.addBuildings([new Building(id, type, x, y, accountId)])
+            if (accountId == ControllerUserStorage.getAccountId()) {
+                GlobalMapStorage.instance.xBaceCoord = x
+                GlobalMapStorage.instance.yBaceCoord = y
+            }
         }
         console.log('проверено обьектов: ' + GlobalMapStorage.instance.buildings.length)
+    }
+
+    static getBuildings(): Building[] {
+        return GlobalMapStorage.instance.buildings
     }
 
     static addBuildings(arr: Building[]) {
@@ -50,17 +53,5 @@ export class ControllerGlobalMap {
             }
             GlobalMapStorage.instance.buildings.push(arr[a])
         }
-    }
-
-    private static getZeroCoordChunk(chunkCoord: Vec2): Vec2 {
-        let x = chunkCoord.x * this.widthCell * 64
-        let y = chunkCoord.y * this.lengthCell * 64
-        return new Vec2(x, y)
-    }
-
-    private static getCoordBuilding(buildingCoord: Vec2): Vec2 {
-        let x = buildingCoord.x * this.widthCell
-        let y = buildingCoord.y * this.lengthCell
-        return new Vec2(x, y)
     }
 }
