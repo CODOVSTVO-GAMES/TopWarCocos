@@ -2,6 +2,7 @@ import { _decorator, Component, Node, Prefab, Sprite, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { SpawnObjects } from '../SpawnObjects';
+import { ControllerAutocombineStorage } from '../Storage/Controllers/ControllerAutocombineStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('InitHomeMap')

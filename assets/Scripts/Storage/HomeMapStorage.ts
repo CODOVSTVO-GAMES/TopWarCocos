@@ -15,13 +15,13 @@ export class HomeMapStorage extends Component {
     public selectedObject: ObjectParameters;
 
     @property({ type: ObjectParameters })
-    public arrayObjectParameters: ObjectParameters[] = [];
+    public arrayObjectParameters: Array<ObjectParameters>;
 
     @property({ type: ObjectParameters })
-    public temporaryLocalStorage: ObjectParameters[] = [];
+    public temporaryLocalStorage: Array<ObjectParameters>;
 
-    public coords: Node[] = [];
-    public spriteCoords: Sprite[] = [];
+    public coords: Array<Node>;
+    public spriteCoords: Array<Sprite>;
 
     onLoad() {
         HomeMapStorage.instance = this;

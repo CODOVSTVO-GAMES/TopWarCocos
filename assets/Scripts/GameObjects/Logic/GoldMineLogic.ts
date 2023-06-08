@@ -2,6 +2,7 @@ import { _decorator, Component } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
 import { ControllerGameStorage } from '../../Storage/Controllers/ControllerGameStorage';
 import { ControllerConfigStorage } from '../../Storage/Controllers/ControllerConfigStorage';
+import { ControllerAutocombineStorage } from '../../Storage/Controllers/ControllerAutocombineStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('GoldMineLogic')
@@ -10,32 +11,9 @@ export class GoldMineLogic extends Component {
     @property({ type: ObjectParameters })
     public objectParameters: ObjectParameters;
 
-    public time: number = 0;
-
-    start() {
-        this.work();
-    }
-
-    work() {
-        setTimeout(() => {
-            if (this.node) {
-                this.time -= 0.0002;
-                this.objectParameters.getGoldMineInterface().render(this.time);
-                if (this.time <= -1) {
-                    return;
-                }
-                this.work();
-            }
-            else return;
-        }, 10);
-    }
-
     collect() {
-        if (this.time <= -1) {
-            this.time = 0;
+        if (ControllerAutocombineStorage.Ale(this.objectParameters.index) == 0) {
             ControllerGameStorage.addCoins(ControllerConfigStorage.getProdictionInTimeGoldMineByLevel(this.objectParameters.level));
-            this.work();
         }
     }
 }
-
