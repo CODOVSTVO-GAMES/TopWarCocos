@@ -1,6 +1,4 @@
 import { TaskTypes } from "../../Static/TaskTypes";
-import { TypesItems } from "../../Static/TypesItems";
-import { TaskReward } from "../../Structures/TaskReward";
 import { TaskStorage } from "../TaskStorage";
 
 /**
@@ -13,51 +11,51 @@ import { TaskStorage } from "../TaskStorage";
 export class ControllerTaskStorage {
 
     static setActiveTaskTypes(array: Array<string>) {
-        TaskStorage.instance.activeTaskTypes = array
+        TaskStorage.instance.activeTaskTypes = array;
     }
 
     static addActiveTaskTypes(taskType: string) {
         for (let l = 0; l < TaskStorage.instance.activeTaskTypes.length; l++) {
             if (TaskStorage.instance.activeTaskTypes[l] == taskType) {
-                return
+                return;
             }
         }
-        TaskStorage.instance.activeTaskTypes.push(taskType)
+        TaskStorage.instance.activeTaskTypes.push(taskType);
     }
 
     static getActiveTaskTypes() {
-        return TaskStorage.instance.activeTaskTypes
+        return TaskStorage.instance.activeTaskTypes;
     }
 
     static setMapTasks(array: Array<number>) {
-        TaskStorage.instance.mapTasks = array
+        TaskStorage.instance.mapTasks = array;
     }
 
     static getMapTasks() {
-        return TaskStorage.instance.mapTasks
+        return TaskStorage.instance.mapTasks;
     }
 
     static getArrayByType(taskType: string): Array<number> {
-        let array
+        let array;
         if (taskType == TaskTypes.OPEN_MAP) {
-            array = TaskStorage.instance.mapTasks
+            array = TaskStorage.instance.mapTasks;
         } else {
-            throw "не существует такого типа квестов"
+            throw "не существует такого типа квестов";
         }
-        return array
+        return array;
     }
 
     static showNearestTasks(array: Array<number>): Array<number> {
         //открывает 2 ближайшие задачи
-        let bufferNumber = 0
+        let bufferNumber = 0;
         for (let l = 0; l <= array.length; l++) {
             if (array[l] == 0 || array[l] == 1) {
-                array[l] = 1
-                bufferNumber++
+                array[l] = 1;
+                bufferNumber++;
             }
-            if (bufferNumber >= 2) { break }
+            if (bufferNumber >= 2) { break; }
         }
-        return array
+        return array;
     }
 
     static completeTaskWithLevelLessAndThisLevel(array: Array<number>, level: number): Array<number> {
@@ -65,18 +63,18 @@ export class ControllerTaskStorage {
         for (let l = 0; l < array.length; l++) {
             if (l <= level) {
                 if (array[l] == 0 || array[l] == 1) {
-                    array[l] = 2
+                    array[l] = 2;
                 }
             }
         }
-        return array
+        return array;
     }
 
     static saveArrayByType(taskType: string, array: Array<number>) {
         if (taskType == TaskTypes.OPEN_MAP) {
-            this.setMapTasks(array)
+            this.setMapTasks(array);
         } else {
-            throw "не существует такого типа квестов"
+            throw "не существует такого типа квестов";
         }
     }
 }

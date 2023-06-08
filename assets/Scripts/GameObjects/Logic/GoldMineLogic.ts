@@ -17,18 +17,17 @@ export class GoldMineLogic extends Component {
     }
 
     work() {
-        if (this.node) {
-            setTimeout(() => {
+        setTimeout(() => {
+            if (this.node) {
                 this.time -= 0.0002;
-                if (this.objectParameters.getGoldMineInterface()) {
-                    this.objectParameters.getGoldMineInterface().render(this.time);
-                }
+                this.objectParameters.getGoldMineInterface().render(this.time);
                 if (this.time <= -1) {
                     return;
                 }
                 this.work();
-            }, 10);
-        }
+            }
+            else return;
+        }, 10);
     }
 
     collect() {
