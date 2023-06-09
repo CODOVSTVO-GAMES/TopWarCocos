@@ -20,12 +20,6 @@ export class GlobalMapTouch extends Component {
      * 
      */
 
-    private screenSize: Vec3;
-    private widthCell = 100
-    private lengthCell = 100
-
-    private buildings: Array<Building> = []
-    private activeBuilding: Building = null
 
     @property({ type: Node })
     public touchObject: Node;
@@ -37,8 +31,6 @@ export class GlobalMapTouch extends Component {
     public cam: Camera;
 
     start() {
-        this.screenSize = new Vec3(screen.height, screen.width, 0);
-
         for (let l = 0; l < ControllerGlobalMap.getBuildings().length; l++) {
 
             let x = ControllerGlobalMap.getBuildings()[l].x * ControllerGlobalMap.widthCell
@@ -49,15 +41,6 @@ export class GlobalMapTouch extends Component {
             node.setPosition(new Vec3(x, y, 0))
             console.log('заспавнен обьект в координатах: ' + x + '   ' + y)
         }
-    }
-}
-
-class Building {
-    coords: Vec2
-    node: Node
-
-    constructor(coords: Vec2, node: Node) {
-        this.coords = coords
-        this.node = node
+        this.cam.node.setPosition(ControllerGlobalMap.getXBace() * ControllerGlobalMap.widthCell, ControllerGlobalMap.getYBace() * ControllerGlobalMap.lengthCell, this.cam.node.position.z)
     }
 }

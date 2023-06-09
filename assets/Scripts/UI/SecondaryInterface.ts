@@ -28,6 +28,8 @@ import { ModalRadarTaskInterface } from './Modals/ModalRadarTask/ModalRadarTaskI
 import { RadarStorage } from '../Storage/RadarStorage';
 import { ModalRadarRewardInterface } from './Modals/ModalRadarReward/ModalRadarRewardInterface';
 import { ModalRadarRewardLogic } from './Modals/ModalRadarReward/ModalRadarRewardLogic';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { SceneNames } from '../Static/SceneNames';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -137,6 +139,10 @@ export class SecondaryInterface extends Component {
 
     start() {
         this.closeAllModals();
+    }
+
+    redirectToGlobalMap() {
+        RedirectionToScene.redirect(SceneNames.GLOBAL_MAP);
     }
 
     openFirstModal(type: string, data?: {}) {
