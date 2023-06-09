@@ -1,4 +1,4 @@
-import { Vec2 } from "cc";
+import { Camera, Vec2, Vec3 } from "cc";
 import { Building, GlobalMapStorage } from "../GlobalMapStorage";
 import { ControllerUserStorage } from "./ControllerUserStorage";
 
@@ -22,6 +22,19 @@ export class ControllerGlobalMap {
     static getYBace(): number {
         return GlobalMapStorage.instance.yBaceCoord
     }
+
+    static getCoordinatesBuilding(building: Building): Vec2 {
+        let xCoord = building.x * this.widthCell
+        let yCoord = building.y * this.lengthCell
+        return new Vec2(xCoord, yCoord)
+    }
+
+    static getBaseCoordinates(): Vec2 {
+        let x = GlobalMapStorage.instance.xBaceCoord * this.widthCell
+        let y = GlobalMapStorage.instance.yBaceCoord * this.lengthCell
+        return new Vec2(x, y)
+    }
+
 
     static buildingsHandler(buildings: object[]) {
         for (let i = 0; i < buildings.length; i++) {

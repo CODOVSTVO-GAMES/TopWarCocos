@@ -1,6 +1,9 @@
 import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { ControllerGlobalMap } from './Storage/Controllers/ControllerGlobalMap';
+import { Building } from './Storage/GlobalMapStorage';
+import { MovingCamera } from './Camera/MovingCamera';
+import { RedirectionToScene } from './Other/RedirectionToScene';
 const { ccclass, property } = _decorator;
 
 @ccclass('GlobalMapTouch')
@@ -8,7 +11,7 @@ export class GlobalMapTouch extends Component {
 
     /**
      * карта 512 х 512 клеток
-     * арта 8 х 8 чанков
+     * карта 8 х 8 чанков
      * чанк 64 х 64 клетки
      * 
      * Логика работы карты:
@@ -20,27 +23,30 @@ export class GlobalMapTouch extends Component {
      * 
      */
 
-
     @property({ type: Node })
     public touchObject: Node;
 
     @property({ type: Node })
     public image: Node;
 
-    @property({ type: Camera })
-    public cam: Camera;
-
     start() {
         for (let l = 0; l < ControllerGlobalMap.getBuildings().length; l++) {
-
-            let x = ControllerGlobalMap.getBuildings()[l].x * ControllerGlobalMap.widthCell
-            let y = ControllerGlobalMap.getBuildings()[l].y * ControllerGlobalMap.lengthCell
-
-            let node = instantiate(this.image)
-            node.setParent(this.touchObject)
-            node.setPosition(new Vec3(x, y, 0))
-            console.log('заспавнен обьект в координатах: ' + x + '   ' + y)
+            this.spawnObject(ControllerGlobalMap.getBuildings()[l])
         }
-        this.cam.node.setPosition(ControllerGlobalMap.getXBace() * ControllerGlobalMap.widthCell, ControllerGlobalMap.getYBace() * ControllerGlobalMap.lengthCell, this.cam.node.position.z)
+        this.setStartCameraPosition()
+    }
+
+    private spawnObject(building: Building) {
+        let coordinates = ControllerGlobalMap.getCoordinatesBuilding(building)
+
+        let node = instantiate(this.image)
+        node.setParent(this.touchObject)
+        node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
+        console.log('заспавнен обьект в координатах: ' + coordinates.x + '   ' + coordinates.y)
+    }
+
+    private setStartCameraPosition() {
+        MovingCamera.instance.movie(ControllerGlobalMap.getBaseCoordinates())
+        RedirectionToScene.getSceneName()
     }
 }

@@ -1,4 +1,4 @@
-import { _decorator, Component, Input, Vec3, Touch, Node, Camera } from 'cc';
+import { _decorator, Component, Input, Vec3, Touch, Node, Camera, Vec2 } from 'cc';
 import { TouchStatus } from '../TouchStatus';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { ZoomCamera } from './ZoomCamera';
@@ -7,6 +7,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
 export class MovingCamera extends Component {
+
+    public static instance: MovingCamera
 
     @property({ type: Node })
     public object: Node;
@@ -20,6 +22,10 @@ export class MovingCamera extends Component {
     public xPos: number;
     public yPos: number;
     public isMove: boolean;
+
+    protected onLoad(): void {
+        MovingCamera.instance = this
+    }
 
     onEnable() {
         this.canvas.on(Input.EventType.TOUCH_START, this.touchStart, this);
@@ -39,7 +45,7 @@ export class MovingCamera extends Component {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
         ControllerHomeMapStorage.putSelectObject();
-        SecondaryInterface.instance.closeFirstLayoutModal();
+        // SecondaryInterface.instance.closeFirstLayoutModal();
 
         this.isMove = true;
         this.xPos = this.object.position.x;
@@ -52,18 +58,18 @@ export class MovingCamera extends Component {
         this.xPos -= e.getUIDelta().x * ZoomCamera.instance.zoomRaito;
         this.yPos -= e.getUIDelta().y * ZoomCamera.instance.zoomRaito;
 
-        if (this.xPos > 1000) {
-            this.xPos = 1000;
-        }
-        else if (this.xPos < -1000) {
-            this.xPos = -1000;
-        }
-        if (this.yPos > 1000) {
-            this.yPos = 1000;
-        }
-        else if (this.yPos < -1000) {
-            this.yPos = -1000;
-        }
+        // if (this.xPos > 1000) {
+        //     this.xPos = 1000;
+        // }
+        // else if (this.xPos < -1000) {
+        //     this.xPos = -1000;
+        // }
+        // if (this.yPos > 1000) {
+        //     this.yPos = 1000;
+        // }
+        // else if (this.yPos < -1000) {
+        //     this.yPos = -1000;
+        // }
     }
 
     touchCancel() {
@@ -82,5 +88,10 @@ export class MovingCamera extends Component {
         if (this.isMove == false) return;
 
         this.object.position = new Vec3(this.xPos, this.yPos, 0)
+    }
+
+    movie(position: Vec2) {
+        this.xPos = position.x
+        this.yPos = position.y
     }
 }
