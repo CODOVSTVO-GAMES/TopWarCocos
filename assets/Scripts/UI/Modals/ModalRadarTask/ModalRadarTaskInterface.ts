@@ -49,7 +49,7 @@ export class ModalRadarTaskInterface extends Component {
         ModalRadarTaskInterface.instance = this;
     }
 
-    updateInterface(task: RadarTask, updateIndex: number) {
+    updateInterface(task: RadarTask) {
         ModalRadarTaskLogic.instance.task = task;
         this.title.string = "Задание завершится через " + task.time;
         if (task.status == 0) {
@@ -94,10 +94,12 @@ export class ModalRadarTaskInterface extends Component {
 
     startTimer() {
         let timer = setInterval(() => {
-            if (ModalRadarTaskLogic.instance.task != null) {
-                let time = ModalRadarTaskLogic.instance.task.time;
+            let task = ModalRadarTaskLogic.instance.task;
+            
+            if (task != null) {
+                let time = task.time;
                 if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && time > 0) {
-                    ModalRadarTaskLogic.instance.task.time--;
+                    task.time--;
                     this.title.string = "Задание завершится через " + time;
                 }
                 else {

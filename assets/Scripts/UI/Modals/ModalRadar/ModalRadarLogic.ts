@@ -79,7 +79,8 @@ export class ModalRadarLogic extends Component {
     }
 
     timer() {
-        if (ControllerRadarStorage.getRadarTime() > 0) {
+        let radarTime = ControllerRadarStorage.getRadarTime();
+        if (radarTime > 0) {
             ControllerRadarStorage.reduceRadarTime(1);
             ControllerRadarStorage.saveStorage();
             if (SecondaryInterface.instance.getTypeActiveFirstLayoutModal() == TypesModals.RADAR) {
@@ -123,10 +124,13 @@ export class ModalRadarLogic extends Component {
     randomReward(stars: number): RadarReward[] {
         let rewards = [];
         let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
+        let level = ControllerGameStorage.getLevel();
         for (let i = 0; i < rewardTypes.length; i++) {
-            rewards.push(new RadarReward(rewardTypes[i], ControllerConfigStorage.getRadarBasicRateByLevel(ControllerGameStorage.getLevel()) * (1 + (0.25 * (stars - 1)))));
+            let quantity = ControllerConfigStorage.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
+            rewards.push(new RadarReward(rewardTypes[i], quantity));
         }
-        rewards.push(new RadarReward(TypesItems.EXPERIENCE, ControllerConfigStorage.getExpirienceRadarByLevel(ControllerGameStorage.getLevel()) * (1 + (0.25 * (stars - 1)))))
+        let quantityExp = ControllerConfigStorage.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
+        rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
         return rewards;
     }
 

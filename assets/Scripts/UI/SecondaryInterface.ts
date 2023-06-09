@@ -291,7 +291,7 @@ export class SecondaryInterface extends Component {
             this.radar.active = true;
         }
         else if (item.modalName == TypesModals.RADAR_TASK_INFO) {
-            ModalRadarTaskInterface.instance.updateInterface(item.data["task"], 0);
+            ModalRadarTaskInterface.instance.updateInterface(item.data["task"]);
             this.secondBackgraund.active = true;
             this.radarTaskInfo.active = true;
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);

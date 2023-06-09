@@ -64,7 +64,8 @@ export class ModalCharacterPumpingLogic extends Component {
     upgradeStars() {
         let character = CharactersStorage.instance.characters[this.characterIndex];
         let typeFragment = this.getTypeFragment(character);
-        if (ControllerInventoryStorage.getQuantityByType(typeFragment) > 4) {
+        let inventoryQuantity = ControllerInventoryStorage.getQuantityByType(typeFragment);
+        if (inventoryQuantity > 4) {
             character.stars++;
             ControllerInventoryStorage.reduceItem(typeFragment, 4);
             CharactersStorage.instance.recalculationCharacter(this.characterIndex);

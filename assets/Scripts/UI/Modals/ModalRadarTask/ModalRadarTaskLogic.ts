@@ -22,19 +22,20 @@ export class ModalRadarTaskLogic extends Component {
         if (this.task.type == TypesRadar.TASK_SALVATION) {
             if (this.task.status < 1) {
                 BuferTasks.instance.addTaskSalvation(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task, 1);
+                ModalRadarTaskInterface.instance.updateInterface(this.task);
             }
         }
         else if (this.task.type == TypesRadar.TASK_DARK_LEGION) {
             if (this.task.status < 1) {
                 BuferTasks.instance.addTaskDarkLegion(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task, 1);
+                ModalRadarTaskInterface.instance.updateInterface(this.task);
             }
         }
         else if (this.task.type == TypesRadar.TASK_PERSONAL) {
             BuferTasks.instance.addTaskPersonal(this.task);
             SecondaryInterface.instance.closeSecondLayoutModal();
             SecondaryInterface.instance.closeAllModals();
+
             let random = Math.floor(Math.random() * 100);
             if (random < 25) {
                 SecondaryInterface.instance.openWireCut();

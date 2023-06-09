@@ -43,34 +43,39 @@ export class FlightGameObjects extends Component {
 
     update(dt: number) {
         if (this.trigger == true) {
+            let pos1 = this.object_1.getWorldPosition()
             this.object_1.setWorldPosition(
-                this.getLerp(this.object_1.getWorldPosition().x, this.toPos.x, dt * this.speed),
-                this.getLerp(this.object_1.getWorldPosition().y, this.toPos.y, dt * this.speed),
+                this.getLerp(pos1.x, this.toPos.x, dt * this.speed),
+                this.getLerp(pos1.y, this.toPos.y, dt * this.speed),
                 0);
-            if (Vec3.distance(this.object_1.getWorldPosition(), this.toPos) < 0.5) { this.trigger = false; }
+            if (Vec3.distance(pos1, this.toPos) < 0.5) { this.trigger = false; }
         }
         if (this.triggerMerge == true) {
             if (this.triggerSeparate == false) {
+                let pos1 = this.object_1.getWorldPosition();
+                let pos2 = this.object_2.getWorldPosition();
                 this.object_1.setWorldPosition(
-                    this.getLerp(this.object_1.getWorldPosition().x, this.toPos.x + 150, dt * this.speed),
-                    this.getLerp(this.object_1.getWorldPosition().y, this.toPos.y, dt * this.speed),
+                    this.getLerp(pos1.x, this.toPos.x + 150, dt * this.speed),
+                    this.getLerp(pos1.y, this.toPos.y, dt * this.speed),
                     0);
                 this.object_2.setWorldPosition(
-                    this.getLerp(this.object_2.getWorldPosition().x, this.toPos.x - 150, dt * this.speed),
-                    this.getLerp(this.object_2.getWorldPosition().y, this.toPos.y, dt * this.speed),
+                    this.getLerp(pos2.x, this.toPos.x - 150, dt * this.speed),
+                    this.getLerp(pos2.y, this.toPos.y, dt * this.speed),
                     0);
-                if (Math.abs(this.object_1.getWorldPosition().x - (this.toPos.x + 150)) < 0.5 && Math.abs(this.object_1.getWorldPosition().y - this.toPos.y) < 0.5 && Math.abs(this.object_2.getWorldPosition().x - (this.toPos.x - 150)) < 0.5 && Math.abs(this.object_2.getWorldPosition().y - this.toPos.y) < 0.5) { this.triggerSeparate = true; }
+                if (Math.abs(pos1.x - (this.toPos.x + 150)) < 0.5 && Math.abs(pos1.y - this.toPos.y) < 0.5 && Math.abs(pos2.x - (this.toPos.x - 150)) < 0.5 && Math.abs(pos2.y - this.toPos.y) < 0.5) { this.triggerSeparate = true; }
             }
             else if (this.triggerSeparate == true) {
+                let pos1 = this.object_1.getWorldPosition();
+                let pos2 = this.object_2.getWorldPosition();
                 this.object_1.setWorldPosition(
-                    this.getLerp(this.object_1.getWorldPosition().x, this.toPos.x, dt * this.speed),
-                    this.getLerp(this.object_1.getWorldPosition().y, this.toPos.y, dt * this.speed),
+                    this.getLerp(pos1.x, this.toPos.x, dt * this.speed),
+                    this.getLerp(pos1.y, this.toPos.y, dt * this.speed),
                     0);
                 this.object_2.setWorldPosition(
-                    this.getLerp(this.object_2.getWorldPosition().x, this.toPos.x, dt * this.speed),
-                    this.getLerp(this.object_2.getWorldPosition().y, this.toPos.y, dt * this.speed),
+                    this.getLerp(pos2.x, this.toPos.x, dt * this.speed),
+                    this.getLerp(pos2.y, this.toPos.y, dt * this.speed),
                     0);
-                if (Vec3.distance(this.object_1.getWorldPosition(), this.toPos) < 0.5 && Vec3.distance(this.object_2.getWorldPosition(), this.toPos) < 0.5) {
+                if (Vec3.distance(pos1, this.toPos) < 0.5 && Vec3.distance(pos2, this.toPos) < 0.5) {
                     this.triggerMerge = false;
                     ControllerHomeMapStorage.upgradeLevelObject(this.index);
                     this.object_1.destroy();
