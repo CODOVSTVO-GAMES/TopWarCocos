@@ -251,12 +251,25 @@ export class SecondaryInterface extends Component {
             this.firstBackgraund.active = true;
             this.commandPost.active = true;
         }
-        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST_0) {
+        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost0.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
-        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST_1) {
+        else if (
+            item.modalName == TypesModals.UPGRATE_REPAIR_SHOP ||
+            item.modalName == TypesModals.UPGRATE_MERGE_GOLD_MINE ||
+            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_AIR ||
+            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_MARINE ||
+            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND ||
+            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_AIR ||
+            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_MARINE ||
+            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND ||
+            item.modalName == TypesModals.UPGRATE_BUILD_GOLD_MINE ||
+            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_AIR ||
+            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_MARINE ||
+            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+        ) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost1.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
@@ -434,11 +447,24 @@ export class SecondaryInterface extends Component {
 
     closeSecondLayoutModal() {
         setTimeout(() => this.secondBackgraund.active = false, 85);
-        if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST_0) {
+        if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST) {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost0.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST_1) {
+        else if (
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_REPAIR_SHOP ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_GOLD_MINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_AIR ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_MARINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_AIR ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_MARINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_GOLD_MINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_AIR ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_MARINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+        ) {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost1.active = false, 85);
         }

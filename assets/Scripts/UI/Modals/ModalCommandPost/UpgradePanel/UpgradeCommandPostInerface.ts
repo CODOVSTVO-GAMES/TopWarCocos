@@ -53,15 +53,11 @@ export class UpgradeCommandPostInerface extends Component {
     @property({ type: Label })
     public nextMarchingCampaign: Label;
 
-
-
     @property({ type: Label })
     public requirementCoins: Label;
 
     @property({ type: Label })
     public requirementItems: Label;
-
-
 
     @property({ type: Sprite })
     public actualSpriteObject: Sprite;

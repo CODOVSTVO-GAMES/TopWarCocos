@@ -8,14 +8,16 @@ import { ControllerConfigStorage } from '../../../../Storage/Controllers/Control
 import { TypesObjects } from '../../../../Static/TypesObjects';
 import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
 import { TypesItems } from '../../../../Static/TypesItems';
+import { SecondaryInterface } from '../../../SecondaryInterface';
+import { TypesModals } from '../../../../Static/TypesModals';
 const { ccclass } = _decorator;
 
 @ccclass('UpgradeOtherLogic')
 export class UpgradeOtherLogic extends Component {
 
     static checkBtnModal() {
-        switch (ModalCommandPostLogic.instance.getTypeActiveModal()) {
-            case "repairShop":
+        switch (SecondaryInterface.instance.getTypeActiveSecondLayoutModal()) {
+            case TypesModals.UPGRATE_REPAIR_SHOP:
                 if (ControllerCommandPostStorage.getLevelRepairShop() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -23,7 +25,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeGoldMine":
+            case TypesModals.UPGRATE_MERGE_GOLD_MINE:
                 if (ControllerCommandPostStorage.getLevelMergeGoldMine() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -31,7 +33,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeTroopAir":
+            case TypesModals.UPGRATE_MERGE_TROOP_AIR:
                 if (ControllerCommandPostStorage.getLevelMergeTroopAir() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -39,7 +41,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeTroopMarine":
+            case TypesModals.UPGRATE_MERGE_TROOP_MARINE:
                 if (ControllerCommandPostStorage.getLevelMergeTroopMarine() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -47,7 +49,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeTroopOverland":
+            case TypesModals.UPGRATE_MERGE_TROOP_OVERLAND:
                 if (ControllerCommandPostStorage.getLevelMergeTroopOverland() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -55,7 +57,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeBarracksAir":
+            case TypesModals.UPGRATE_MERGE_BARRACK_AIR:
                 if (ControllerCommandPostStorage.getLevelMergeBarracksAir() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -63,7 +65,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeBarracksMarine":
+            case TypesModals.UPGRATE_MERGE_BARRACK_MARINE:
                 if (ControllerCommandPostStorage.getLevelMergeBarracksMarine() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -71,7 +73,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "mergeBarracksOverland":
+            case TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND:
                 if (ControllerCommandPostStorage.getLevelMergeBarracksOverland() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -79,7 +81,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "buildGoldMine":
+            case TypesModals.UPGRATE_BUILD_GOLD_MINE:
                 if (ControllerCommandPostStorage.getLevelBuildGoldMine() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -87,7 +89,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "buildBarracksAir":
+            case TypesModals.UPGRATE_BUILD_BARRACK_AIR:
                 if (ControllerCommandPostStorage.getLevelBuildBarracksAir() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -95,7 +97,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "buildBarracksMarine":
+            case TypesModals.UPGRATE_BUILD_BARRACK_MARINE:
                 if (ControllerCommandPostStorage.getLevelBuildBarracksMarine() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -103,7 +105,7 @@ export class UpgradeOtherLogic extends Component {
                     UpgradeOtherInterface.instance.openUpgrade(false);
                 }
                 break;
-            case "buildBarracksOverland":
+            case TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND:
                 if (ControllerCommandPostStorage.getLevelBuildBarracksOverland() < ControllerCommandPostStorage.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
@@ -115,7 +117,7 @@ export class UpgradeOtherLogic extends Component {
     }
 
     clickUpgrade() {
-        switch (ModalCommandPostLogic.instance.getTypeActiveModal()) {
+        switch (SecondaryInterface.instance.getTypeActiveSecondLayoutModal()) {
             case "repairShop":
                 this.upgradeRepairShop();
                 break;
