@@ -32,17 +32,15 @@ export class FlightGameObjects extends Component {
     moveMerge(object_1: Node, index: number) {
         this.object_1 = object_1;
         let objectParameters = ControllerHomeMapStorage.getObjectParameter(index);
-        console.log(objectParameters);
         this.object_2 = objectParameters.nodeObject;
         this.index = objectParameters.index;
         this.toPos = ControllerHomeMapStorage.getCoordWorldPosition(index);
         this.triggerMerge = true;
         this.triggerSeparate = false;
-        console.log("Merge " + index);
     }
 
     update(dt: number) {
-        if (this.trigger == true) {
+        if (this.trigger) {
             let pos1 = this.object_1.getWorldPosition()
             this.object_1.setWorldPosition(
                 this.getLerp(pos1.x, this.toPos.x, dt * this.speed),
@@ -50,10 +48,11 @@ export class FlightGameObjects extends Component {
                 0);
             if (Vec3.distance(pos1, this.toPos) < 0.5) { this.trigger = false; }
         }
-        if (this.triggerMerge == true) {
-            if (this.triggerSeparate == false) {
-                let pos1 = this.object_1.getWorldPosition();
-                let pos2 = this.object_2.getWorldPosition();
+        if (this.triggerMerge) {
+            let pos1 = this.object_1.getWorldPosition();
+            let pos2 = this.object_2.getWorldPosition();
+            if (!this.triggerSeparate) {
+
                 this.object_1.setWorldPosition(
                     this.getLerp(pos1.x, this.toPos.x + 150, dt * this.speed),
                     this.getLerp(pos1.y, this.toPos.y, dt * this.speed),
@@ -64,9 +63,7 @@ export class FlightGameObjects extends Component {
                     0);
                 if (Math.abs(pos1.x - (this.toPos.x + 150)) < 0.5 && Math.abs(pos1.y - this.toPos.y) < 0.5 && Math.abs(pos2.x - (this.toPos.x - 150)) < 0.5 && Math.abs(pos2.y - this.toPos.y) < 0.5) { this.triggerSeparate = true; }
             }
-            else if (this.triggerSeparate == true) {
-                let pos1 = this.object_1.getWorldPosition();
-                let pos2 = this.object_2.getWorldPosition();
+            else {
                 this.object_1.setWorldPosition(
                     this.getLerp(pos1.x, this.toPos.x, dt * this.speed),
                     this.getLerp(pos1.y, this.toPos.y, dt * this.speed),

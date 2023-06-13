@@ -63,11 +63,18 @@ export class MouseClickVisualization extends Component {
     }
 
     animation() {
-        let thiiis = MouseClickVisualization.instance;
-        thiiis.animScale += 0.05;
-        thiiis.click.setScale(thiiis.animScale, thiiis.animScale);
-        if (thiiis.animScale >= 1) {
-            clearInterval(thiiis.animator);
+        try {
+            let thiiis = MouseClickVisualization.instance;
+            thiiis.animScale += 0.05;
+            thiiis.click.setScale(thiiis.animScale, thiiis.animScale);
+            if (thiiis.animScale >= 1) {
+                clearInterval(thiiis.animator);
+            }
         }
+        catch (e) {
+            clearInterval(MouseClickVisualization.instance.animator)
+            console.log('костыль. ООбьект анимации не найден. Дописать метод остановки setInterval при редиректе сцен     ' + e)
+        }
+
     }
 }

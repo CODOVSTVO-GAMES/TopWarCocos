@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Animation } from 'cc';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('AnimationModals')
 export class AnimationModals extends Component {
@@ -11,7 +11,11 @@ export class AnimationModals extends Component {
     }
 
     modalAnimation(modal: Node, typeAnimation: string) {
-        try { modal.getComponent(Animation).play(typeAnimation); }
-        catch { console.log("error: cc.Animation not received"); }
+        try {
+            modal.getComponent(Animation).play(typeAnimation);
+        }
+        catch {
+            console.log("error: cc.Animation not received");
+        }
     }
 }
