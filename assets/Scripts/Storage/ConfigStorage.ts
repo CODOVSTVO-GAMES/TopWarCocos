@@ -112,6 +112,13 @@ export class ConfigStorage extends Component {
                     this.expirienceRadar.push(value.e);
                 }
             }
+            else if (key == 'enemyTeams') {
+                console.log('1')
+                for (let l = 0; l < value.length; l++) {
+                    console.log(value[l])
+                }
+
+            }
         }
     }
 
