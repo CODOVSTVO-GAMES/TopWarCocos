@@ -56,7 +56,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 65
+      "__id__": 67
     },
     "_id": "744fc833-9456-4b30-a2f3-125339ab5e26"
   },
@@ -840,16 +840,16 @@
         "__id__": 25
       },
       {
-        "__id__": 58
+        "__id__": 60
       },
       {
-        "__id__": 61
+        "__id__": 63
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 64
+        "__id__": 66
       }
     ],
     "_prefab": null,
@@ -937,6 +937,9 @@
       },
       {
         "__id__": 56
+      },
+      {
+        "__id__": 58
       }
     ],
     "_active": true,
@@ -2574,6 +2577,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "indexes": [],
     "_id": "32rWsXtxtKQ5f05UrmM7h2"
   },
   {
@@ -2633,6 +2637,61 @@
   },
   {
     "__type__": "cc.Node",
+    "_name": "MapEnemyStorage",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 25
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 59
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "33tElDDjdElYvksV8UvNi6"
+  },
+  {
+    "__type__": "31357/XhIdMb7f76gra3uwK",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 58
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_id": "8afIvNhbxOAbbBe3ArHOIn"
+  },
+  {
+    "__type__": "cc.Node",
     "_name": "Network",
     "_objFlags": 0,
     "_parent": {
@@ -2640,7 +2699,7 @@
     },
     "_children": [
       {
-        "__id__": 59
+        "__id__": 61
       }
     ],
     "_active": true,
@@ -2680,13 +2739,13 @@
     "_name": "NetworkClient",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 58
+      "__id__": 60
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 60
+        "__id__": 62
       }
     ],
     "_prefab": null,
@@ -2724,7 +2783,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 59
+      "__id__": 61
     },
     "_enabled": true,
     "__prefab": null,
@@ -2739,7 +2798,7 @@
     },
     "_children": [
       {
-        "__id__": 62
+        "__id__": 64
       }
     ],
     "_active": true,
@@ -2779,13 +2838,13 @@
     "_name": "BuferTasks",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 61
+      "__id__": 63
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 63
+        "__id__": 65
       }
     ],
     "_prefab": null,
@@ -2823,7 +2882,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 62
+      "__id__": 64
     },
     "_enabled": true,
     "__prefab": null,
@@ -2843,22 +2902,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 66
-    },
-    "shadows": {
-      "__id__": 67
-    },
-    "_skybox": {
       "__id__": 68
     },
-    "fog": {
+    "shadows": {
       "__id__": 69
     },
-    "octree": {
+    "_skybox": {
       "__id__": 70
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 71
+    },
+    "octree": {
+      "__id__": 72
+    },
+    "lightProbeInfo": {
+      "__id__": 73
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
