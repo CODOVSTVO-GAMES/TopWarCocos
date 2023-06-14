@@ -24,7 +24,22 @@ export class MouseClickVisualization extends Component {
         MouseClickVisualization.instance = this;
 
         this.canvas.on(Input.EventType.MOUSE_DOWN, this.touchStart, this);
-        this.screenSize = new Vec3(screen.height, screen.width, 0);
+
+        // this.screenSize = new Vec3(screen.height, screen.width, 0);
+        this.setScreenSize()
+    }
+
+    private setScreenSize() {
+        const baseHeight = 1080
+        const baseWidth = 1920
+
+        const heightRaito = baseHeight / screen.height
+        const widthRaito = baseWidth / screen.width
+
+        //Походу размер всегда равен 1080-1920 после этой операции
+
+        this.screenSize = new Vec3(screen.height * heightRaito, screen.width * widthRaito, 0)
+
     }
 
     onDestroy() {
@@ -40,6 +55,9 @@ export class MouseClickVisualization extends Component {
         clearInterval(this.animator);
         this.click.active = false;
         let pos = e.getUILocation();
+        console.log(pos)
+        console.log(this.screenSize.x)
+        console.log(this.screenSize.y)
         this.click.setPosition(new Vec3(pos.x - (this.screenSize.x / 2), pos.y - (this.screenSize.y / 2), 0));
         this.click.active = true;
         this.animScale = 0.5;
