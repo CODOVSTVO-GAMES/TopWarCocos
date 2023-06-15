@@ -1,4 +1,4 @@
-import { MapEnemyUnits } from "../../Structures/MapEnemyUnits";
+import { MapEnemyBattle } from "../../Structures/MapEnemyUnits";
 import { MapEnemyStorage } from "../MapEnemyStorage";
 
 export class MapEnemyController {
@@ -12,7 +12,7 @@ export class MapEnemyController {
         console.log('Не найдена такая команда. Запросите с сервера')
     }
 
-    static addEnemyCommand(mapEnemyUnits: MapEnemyUnits) {
+    static addEnemyCommand(mapEnemyUnits: MapEnemyBattle) {
         for (let l = 0; l < MapEnemyStorage.instance.mapEnemyArr.length; l++) {
             if (mapEnemyUnits.mapNumber == MapEnemyStorage.instance.mapEnemyArr[l].mapNumber) {
                 console.log('такой новер команы уже существует')

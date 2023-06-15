@@ -17,15 +17,16 @@ export class TypesItems {
 
     public static TICKET_NORMAL: string = "tn";
     public static TICKET_PREMIUM: string = "tp";
-    public static TICKET_AIR: string = "ta";
-    public static TICKET_MARINE: string = "tm";
-    public static TICKET_OVERLAND: string = "to";
+    public static TICKET_ELITE: string = "te";
     public static TICKET_SKILLS: string = "ts";
 
     public static GOLD_CHEST: string = "gc";
+    public static TECHNICAL_CHEST: string = "tc";
+    public static COMPONENTS_CHEST: string = "cc";
     public static EXPERIENCE: string = "e";
 
-    public static GOLD: string = "g"; //обычное золото, используется для наград
+    public static GOLD: string = "gold"; //обычное золото, используется для наград
+    public static GEMS: string = "gems";
 
     public static BOOK_EXPERIENCE_WHITE: string = "bookExperienceWhite";
     public static BOOK_EXPERIENCE_GREEN: string = "bookExperienceGreen";
@@ -35,6 +36,7 @@ export class TypesItems {
 
     // герои
 
+    public static FRAGMENT_BLUE: string = "fragmentBlue";//в массив не добавлял
     public static FRAGMENT_BLACK_WIDOW: string = "fragmentBlackWidow";
     public static FRAGMENT_CHARACTER_1: string = "fragmentCharacter1";
     public static FRAGMENT_CHARACTER_2: string = "fragmentCharacter2";
@@ -50,6 +52,12 @@ export class TypesItems {
     public static FRAGMENT_CHARACTER_12: string = "fragmentCharacter12";
     public static FRAGMENT_CHARACTER_13: string = "fragmentCharacter13";
     public static FRAGMENT_CHARACTER_14: string = "fragmentCharacter14";
+
+
+    public static BUNKER: string = "bunker";
+    public static TREASURE: string = "treasure";
+    public static TRASH: string = "trash";
+    public static MANIPULATOR: string = "manipulator";
 
     public static BOOKS: string[] = [
         TypesItems.BOOK_EXPERIENCE_WHITE,
