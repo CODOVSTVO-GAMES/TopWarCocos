@@ -15,6 +15,8 @@ export class GoldMineInterface extends Component {
 
     public render(value: number) {
         this.fill.fillRange = -(1 - (((value * 100) / 60) * 0.01));
+        this.fill.fillRange = value;
+
     }
 
     public openMessage() {

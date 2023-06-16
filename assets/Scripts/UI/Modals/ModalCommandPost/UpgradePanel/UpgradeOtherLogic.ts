@@ -2,7 +2,6 @@ import { _decorator, Component } from 'cc';
 import { ControllerCommandPostStorage } from '../../../../Storage/Controllers/ControllerCommandPostStorage';
 import { UpgradeOtherInterface } from './UpgradeOtherInterface';
 import { ControllerGameStorage } from '../../../../Storage/Controllers/ControllerGameStorage';
-import { ModalCommandPostLogic } from '../ModalCommandPostLogic';
 import { ModalCommandPostInterface } from '../ModalCommandPostInterface';
 import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
 import { TypesObjects } from '../../../../Static/TypesObjects';
@@ -117,44 +116,20 @@ export class UpgradeOtherLogic extends Component {
     }
 
     clickUpgrade() {
-        switch (SecondaryInterface.instance.getTypeActiveSecondLayoutModal()) {
-            case "repairShop":
-                this.upgradeRepairShop();
-                break;
-            case "mergeGoldMine":
-                this.upgradeMergeGoldMine();
-                break;
-            case "mergeTroopAir":
-                this.upgradeMergeTroopAir();
-                break;
-            case "mergeTroopMarine":
-                this.upgradeMergeTroopMarine();
-                break;
-            case "mergeTroopOverland":
-                this.upgradeMergeBarracksOverland();
-                break;
-            case "mergeBarracksAir":
-                this.upgradeMergeBarracksAir();
-                break;
-            case "mergeBarracksMarine":
-                this.upgradeMergeBarracksMarine();
-                break;
-            case "mergeBarracksOverland":
-                this.upgradeMergeBarracksOverland();
-                break;
-            case "buildGoldMine":
-                this.upgradeBuildGoldMine();
-                break;
-            case "buildBarracksAir":
-                this.upgradeBuildBarracksAir();
-                break;
-            case "buildBarracksMarine":
-                this.upgradeBuildBarracksMarine();
-                break;
-            case "buildBarracksOverland":
-                this.upgradeBuildBarracksOverland();
-                break;
-        }
+        let type = SecondaryInterface.instance.getTypeActiveSecondLayoutModal();
+
+        if (type == TypesModals.UPGRATE_REPAIR_SHOP) this.upgradeRepairShop();
+        else if (type == TypesModals.UPGRATE_MERGE_GOLD_MINE) this.upgradeMergeGoldMine();
+        else if (type == TypesModals.UPGRATE_MERGE_TROOP_AIR) this.upgradeMergeTroopAir();
+        else if (type == TypesModals.UPGRATE_MERGE_TROOP_MARINE) this.upgradeMergeTroopMarine();
+        else if (type == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND) this.upgradeMergeBarracksOverland();
+        else if (type == TypesModals.UPGRATE_MERGE_BARRACK_AIR) this.upgradeMergeBarracksAir();
+        else if (type == TypesModals.UPGRATE_MERGE_BARRACK_MARINE) this.upgradeMergeBarracksMarine();
+        else if (type == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND) this.upgradeMergeBarracksOverland();
+        else if (type == TypesModals.UPGRATE_BUILD_GOLD_MINE) this.upgradeBuildGoldMine();
+        else if (type == TypesModals.UPGRATE_BUILD_BARRACK_AIR) this.upgradeBuildBarracksAir();
+        else if (type == TypesModals.UPGRATE_BUILD_BARRACK_MARINE) this.upgradeBuildBarracksMarine();
+        else if (type == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND) this.upgradeBuildBarracksOverland();
     }
 
     upgradeRepairShop() {

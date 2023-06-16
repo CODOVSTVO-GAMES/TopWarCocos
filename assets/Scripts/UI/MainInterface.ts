@@ -23,12 +23,8 @@ export class MainInterface extends Component {
     @property({ type: Node })
     public mainNode: Node
 
-
     onLoad() {
         MainInterface.instance = this;
-    }
-
-    start() {
         this.updateAmountCoins();
         this.updateAmountGems();
         this.updateCountLevel();
@@ -36,22 +32,30 @@ export class MainInterface extends Component {
     }
 
     resizeMainInterface(raito = 1) {
-        this.mainNode.setScale(v3(raito, raito, this.mainNode.scale.z))
+        this.mainNode.setScale(v3(raito, raito, this.mainNode.scale.z));
     }
 
     updateAmountCoins() {
-        this.amountCoins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins());
+        let coins = ConvertLargeNumber.convert(ControllerGameStorage.getCoins());
+
+        this.amountCoins.string = coins;
     }
 
     updateAmountGems() {
-        this.amountGems.string = ConvertLargeNumber.convert(ControllerGameStorage.getGems());
+        let gems = ConvertLargeNumber.convert(ControllerGameStorage.getGems());
+
+        this.amountGems.string = gems;
     }
 
     updateCountLevel() {
-        this.countLevel.string = "Ур. " + ControllerGameStorage.getLevel().toString();
+        let level = "Ур. " + ControllerGameStorage.getLevel().toString();
+
+        this.countLevel.string = level;
     }
 
     updateCountPower() {
+        let power = ControllerGameStorage.getPower().toString();
+
         this.countPower.string = ControllerGameStorage.getPower().toString();
     }
 }
