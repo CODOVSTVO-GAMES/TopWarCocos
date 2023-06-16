@@ -17,6 +17,9 @@ export class ObjectParameters extends Component {
     @property({ type: CCString })
     public location: string;
 
+    @property({ type: CCString })
+    public sizes: string;
+
     @property({ type: CCFloat })
     public level: number;
 

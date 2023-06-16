@@ -162,7 +162,7 @@ export class ControllerHomeMapStorage {
             type == TypesObjects.WALL ||
             type == TypesObjects.BATTLE
         ) return IndexesObject.object2x2;
-        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.object2x3;
+        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.object3x2;
         else if (type == TypesObjects.COMMAND_POST) return IndexesObject.object3x3;
     }
 
@@ -184,7 +184,7 @@ export class ControllerHomeMapStorage {
             type == TypesObjects.WALL ||
             type == TypesObjects.BATTLE
         ) return IndexesObject.regionObject2x2;
-        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.regionObject2x3;
+        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.regionObject3x2;
         else if (type == TypesObjects.COMMAND_POST) return IndexesObject.regionObject3x3;
     }
 

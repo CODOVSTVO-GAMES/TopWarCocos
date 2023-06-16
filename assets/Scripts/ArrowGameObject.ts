@@ -19,5 +19,3 @@ export class ArrowGameObject extends Component {
         }
     }
 }
-
-

@@ -121,7 +121,7 @@ export class TouchObject extends Component {
                 if (this.objectParameters.type == tempObjParam.type) {
                     if (this.objectParameters.level == tempObjParam.level) {
                         count += 1;
-                        indexMerge = i;
+                        indexMerge = tempObjParam.index;
                     }
                     else {
                         return this.putAnObject(this.initialIndex);
@@ -131,84 +131,94 @@ export class TouchObject extends Component {
                     return this.putAnObject(this.initialIndex);
                 }
             }
-            if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].typeCoord != this.objectParameters.location) {
-                return this.putAnObject(this.initialIndex);
-            }
         }
 
         if (count > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) this.mergeObject(indexObject - arrayIndexes[indexMerge]);
+                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) {
+                    return this.mergeObject(indexMerge);
+                }
             }
             else {
-                this.putAnObject(this.initialIndex);
+                return this.putAnObject(this.initialIndex);
             }
         }
-        else {
-            if (IndexesMap.indexesMap[indexObject].typeCoord != this.objectParameters.location) {
+
+        if (this.objectParameters.sizes == "1x1") {
+            if (IndexesMap.indexesMap[indexObject].location != this.objectParameters.location) {
                 this.putAnObject(this.initialIndex);
             }
             else {
-                if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                    this.putAnObject(indexObject);
-                }
-                else if (
-                    this.objectParameters.type == TypesObjects.TROOP_AIR ||
-                    this.objectParameters.type == TypesObjects.BARRACKS_AIR ||
-                    this.objectParameters.type == TypesObjects.BARRACKS_MARINE ||
-                    this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND ||
-                    this.objectParameters.type == TypesObjects.GOLD_MINE ||
-                    this.objectParameters.type == TypesObjects.BANK ||
-                    this.objectParameters.type == TypesObjects.AUTOCOMBINE ||
-                    this.objectParameters.type == TypesObjects.RADAR ||
-                    this.objectParameters.type == TypesObjects.TREASURES ||
-                    this.objectParameters.type == TypesObjects.MANIPULATOR ||
-                    this.objectParameters.type == TypesObjects.REPAIR_SHOP ||
-                    this.objectParameters.type == TypesObjects.LOBBY_WARS ||
-                    this.objectParameters.type == TypesObjects.WALL ||
-                    this.objectParameters.type == TypesObjects.BATTLE
-                ) {
-                    if (IndexesMap.indexesMap[indexObject].availableObject2x2 == false) {
-                        this.putAnObject(this.initialIndex);
-                    }
-                    else {
-                        this.putAnObject(indexObject);
+                this.putAnObject(indexObject);
+            }
+        }
+        else if (this.objectParameters.sizes == "2x2") {
+            if (indexObject % 50 == 0 || indexObject < 50) {
+                this.putAnObject(this.initialIndex);
+            }
+            else {
+                for (let i = 0; i < arrayIndexes.length; i++) {
+                    if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
+                        return this.putAnObject(this.initialIndex);
                     }
                 }
-                else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                    if (IndexesMap.indexesMap[indexObject].availableObject2x2 == false) {
-                        this.putAnObject(this.initialIndex);
-                    }
-                    else {
-                        this.putAnObject(indexObject);
-                    }
-                }
-                else if (this.objectParameters.type == TypesObjects.COMMAND_POST) {
-                    if (IndexesMap.indexesMap[indexObject].availableObject3x3 == false) {
-                        this.putAnObject(this.initialIndex);
-                    }
-                    else {
-                        this.putAnObject(indexObject);
+                this.putAnObject(indexObject);
+            }
+        }
+        else if (this.objectParameters.sizes == "3x2") {
+            if (indexObject % 50 == 0 || indexObject < 100) {
+                this.putAnObject(this.initialIndex);
+            }
+            else {
+                for (let i = 0; i < arrayIndexes.length; i++) {
+                    if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
+                        return this.putAnObject(this.initialIndex);
                     }
                 }
+                this.putAnObject(indexObject);
+            }
+        }
+        else if (this.objectParameters.sizes == "3x3") {
+            if ((indexObject % 50 == 0 || (indexObject - 1) % 50 == 0) || indexObject < 100) {
+                this.putAnObject(this.initialIndex);
+            }
+            else {
+                for (let i = 0; i < arrayIndexes.length; i++) {
+                    if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+                this.putAnObject(indexObject);
             }
         }
     }
@@ -229,6 +239,5 @@ export class TouchObject extends Component {
         }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         FlightGameObjects.instance.moveToCell(this.mainObject, index);
-        // this.mainObject.position = ControllerHomeMapStorage.getCoord(index).position;
     }
 }
