@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "299f0bbc-e68c-4918-ae2b-33c98cf6ec37",
+  "uuid": "5e398608-3729-4897-bfea-36b7890acbcd",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "TroopOwn"
+    "syncNodeName": "CardTroop"
   }
 }

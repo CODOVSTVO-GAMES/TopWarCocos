@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "b4c7f764-2725-49db-86bf-1f240e73cbb7",
+  "uuid": "299f0bbc-e68c-4918-ae2b-33c98cf6ec37",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "TroopEnemy"
+    "syncNodeName": "Troop"
   }
 }

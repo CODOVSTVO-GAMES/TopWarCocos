@@ -166,14 +166,14 @@ export class SecondaryInterface extends Component {
     queueFirstModals() {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
-            // try {
+            try {
             if (this.listOpeningFirstLayoutModals.length > 0) {
                 this.openModal(this.listOpeningFirstLayoutModals[0]);
                 this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
                 this.listOpeningFirstLayoutModals.splice(0, 1);
             }
-            // }
-            // catch { console.error("Ащибка в очереди"); clearInterval(interval); }
+            }
+            catch { console.error("Ащибка в очереди"); clearInterval(interval); }
         }, 50);
         this.workQueueFirstLayout = false;
     }
