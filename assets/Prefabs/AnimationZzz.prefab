@@ -40,7 +40,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 1000
+      "z": 0
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -67,7 +67,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Sprite ZZZ(1)",
+    "_name": "Sprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -90,8 +90,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -249.9999999999999,
-      "y": 280.9000000000001,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -130,8 +130,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 38,
-      "height": 49
+      "width": 20,
+      "height": 31
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -171,7 +171,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -231,7 +231,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Sprite ZZZ(2)",
+    "_name": "Sprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -254,8 +254,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -254.9999999999999,
-      "y": 285,
+      "x": -5,
+      "y": 5,
       "z": 0
     },
     "_lrot": {
@@ -294,8 +294,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 38,
-      "height": 49
+      "width": 20,
+      "height": 31
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -335,7 +335,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -395,7 +395,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Sprite ZZZ(3)",
+    "_name": "Sprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -418,8 +418,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -254,
-      "y": 273,
+      "x": -4,
+      "y": -7,
       "z": 0
     },
     "_lrot": {
@@ -431,8 +431,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0,
+      "y": 0,
       "z": 1
     },
     "_mobility": 0,
@@ -458,8 +458,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 38,
-      "height": 49
+      "width": 20,
+      "height": 31
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -499,7 +499,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,

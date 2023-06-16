@@ -4,7 +4,6 @@ import { BuferTasks } from '../../../Radar/BuferTasks';
 import { ModalRadarTaskInterface } from './ModalRadarTaskInterface';
 import { TypesRadar } from '../../../Static/TypesRadar';
 import { SecondaryInterface } from '../../SecondaryInterface';
-import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskLogic')
@@ -17,6 +16,10 @@ export class ModalRadarTaskLogic extends Component {
     onLoad() {
         ModalRadarTaskLogic.instance = this;
     }
+
+    /**
+     * обработка нажатия на единственную кнопку в модалке, открытие 
+     */
 
     pushButton() {
         if (this.task.type == TypesRadar.TASK_SALVATION) {

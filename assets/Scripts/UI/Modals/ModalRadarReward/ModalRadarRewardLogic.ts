@@ -16,6 +16,10 @@ export class ModalRadarRewardLogic extends Component {
         ModalRadarRewardLogic.instance = this;
     }
 
+    /**
+     * при закрытии модалки выдачи награды, начисляются награды
+     */
+
     giveReward() {
         for (let i = 0; i < RadarStorage.instance.task.rewards.length; i++) {
             if (RadarStorage.instance.task.rewards[i].type != TypesItems.EXPERIENCE) {
