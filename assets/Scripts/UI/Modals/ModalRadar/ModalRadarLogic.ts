@@ -31,6 +31,16 @@ export class ModalRadarLogic extends Component {
     onLoad() {
         ModalRadarLogic.instance = this;
     }
+
+    /**
+     * в старте:
+     *    получаем конфиг радара по уровню
+     *    добавляем задачи в конфиг (если есть доступные && если на локаторе есть место)
+     *    запускаем таймер
+     * 
+     * 
+     */
+
     start() {
         this.calculationRadar();
         this.spawnNewTasks();
@@ -65,7 +75,7 @@ export class ModalRadarLogic extends Component {
             ControllerRadarStorage.addRadarAvailableMissions(5); // по истечению таймера начисляется 5 миссий
         }
         else if (availableMissions < this.maxTasks) {
-            ControllerRadarStorage.addRadarAvailableMissions(this.maxTasks - availableMissions);
+            ControllerRadarStorage.addRadarAvailableMissions(this.maxTasks - availableMissions); // по истечению таймера начисляется максимальное кол-во миссий
         }
         ControllerRadarStorage.equateRadarTime(this.configTime);
         this.startTimer();
@@ -125,10 +135,12 @@ export class ModalRadarLogic extends Component {
         let rewards = [];
         let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
         let level = ControllerGameStorage.getLevel();
+        
+        let quantity = ControllerConfigStorage.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
         for (let i = 0; i < rewardTypes.length; i++) {
-            let quantity = ControllerConfigStorage.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
             rewards.push(new RadarReward(rewardTypes[i], quantity));
         }
+
         let quantityExp = ControllerConfigStorage.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
         rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
         return rewards;

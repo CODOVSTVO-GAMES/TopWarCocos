@@ -49,6 +49,12 @@ export class ModalRadarInterface extends Component {
         ModalRadarInterface.instance = this;
     }
 
+    /**
+     * при открытии радара, отрисовка текстовых и картиночных полей в радаре
+     * 
+     * ререндер и спавн задач на локаторе
+     */
+
     updateInterface() {
         let energy = ControllerGameStorage.getEnergy();
         let gems = ControllerGameStorage.getGems();

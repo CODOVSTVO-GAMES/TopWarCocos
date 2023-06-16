@@ -31,6 +31,10 @@ export class ModalRadarRewardInterface extends Component {
         ModalRadarRewardInterface.instance = this;
     }
 
+    /**
+     * при нажатии на задачу если она выполнена, отрисовка модалки выдачи наград
+     */
+
     updateInterface(task: RadarTask) {
         for (let i = 0; i < this.rewards.length; i++) {
             this.quantity[i].string = task.rewards[i].quantity.toString();

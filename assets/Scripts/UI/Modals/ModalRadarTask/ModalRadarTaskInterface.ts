@@ -49,6 +49,11 @@ export class ModalRadarTaskInterface extends Component {
         ModalRadarTaskInterface.instance = this;
     }
 
+    /**
+     * при нажатии на задачу рендерится модалка информации о задаче
+     * рендер таймера оставшегося времени доступности задачи
+     */
+
     updateInterface(task: RadarTask) {
         ModalRadarTaskLogic.instance.task = task;
         this.title.string = "Задание завершится через " + task.time;
@@ -82,20 +87,19 @@ export class ModalRadarTaskInterface extends Component {
     }
 
     getSpriteTask(type: string): Color {
-        switch (type) {
-            case TypesRadar.TASK_SALVATION:
-                return new Color(255, 0, 0, 255);
-            case TypesRadar.TASK_DARK_LEGION:
-                return new Color(0, 255, 0, 255);
-            case TypesRadar.TASK_PERSONAL:
-                return new Color(0, 0, 255, 255);
+        if (type == TypesRadar.TASK_SALVATION) {
+            return new Color(255, 0, 0, 255);
+        } else if (type == TypesRadar.TASK_DARK_LEGION) {
+            return new Color(0, 255, 0, 255);
+        } else if (type == TypesRadar.TASK_PERSONAL) {
+            return new Color(0, 0, 255, 255);
         }
     }
 
     startTimer() {
         let timer = setInterval(() => {
             let task = ModalRadarTaskLogic.instance.task;
-            
+
             if (task != null) {
                 let time = task.time;
                 if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && time > 0) {
