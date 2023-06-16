@@ -8,6 +8,19 @@ export class HighlightHomeMap {
 
     public static indexesActiveCooord: number[] = [];
 
+    // static Test(){
+    //     for(let i = 0; i < IndexesMap.indexesMap.length; i++) {
+    //         if(IndexesMap.indexesMap[i].typeCoord == "earth")
+    //         {
+    //              this.renderCoordFree(i);
+    //         }
+    //         else
+    //         {
+    //             this.renderCoordBlock(i);
+    //         }
+    //     }
+    // }
+
     static openCell(type: string, location: string, level: number, pos: Vec3) {
         let minDistance = 1000000;
         let indexObject = 0;
@@ -22,7 +35,7 @@ export class HighlightHomeMap {
                 if (minDistance < 42) break;
             }
         }
-
+        
         this.hideAllCoord();
 
         for (let i = 0; i < arrayRegionObject.length; i++) {

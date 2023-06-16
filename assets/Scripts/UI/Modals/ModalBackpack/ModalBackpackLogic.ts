@@ -80,62 +80,62 @@ export class ModalBackpackLogic extends Component {
 
     applyItem() {
         if (this.typeSelectItem == TypesItems.PLAN_COMMAND_POST) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_0);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST);
             ModalCommandPostLogic.instance.typeActiveModal = "repairShop";
             UpgradeCommandPostInerface.instance.updateInterface();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_TROOP_AIR) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeTroopAir";
             UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_TROOP_MARINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeTroopMarine";
             UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_TROOP_OVERLAND) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeTroopOverland";
             UpgradeOtherInterface.instance.updateInterfaceMergeTroopOverland();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_GOLD_MINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeGoldMine";
             UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_AIR) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeBarracksAir";
             UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_MARINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeBarracksMarine";
             UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_OVERLAND) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "mergeBarracksOverland";
             UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_GOLD_MINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "buildGoldMine";
             UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_AIR) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "buildBarracksAir";
             UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_MARINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "buildBarracksMarine";
             UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_OVERLAND) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST_1);
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
             ModalCommandPostLogic.instance.typeActiveModal = "buildBarracksOverland";
             UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland();
         }

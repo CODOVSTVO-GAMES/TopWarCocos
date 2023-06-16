@@ -22,10 +22,8 @@ export class ModalAutocombineInterface extends Component {
     }
 
     updateInterface() {
-        ControllerAutocombineStorage.initQuantityWorkGoldMine();
-        ControllerAutocombineStorage.initQuantityProfit();
         this.quantityWorkGoldMine.string = "Рабочий золотой рудник " + ControllerAutocombineStorage.getQuantityWorkGoldMine() + "/10";
-        this.quantityProfit.string = "Можете сразу получить 6 часов дохода золота: " + ConvertLargeNumber.convert(ControllerAutocombineStorage.getQuantityProfit());
+        this.quantityProfit.string = "Можете сразу получить 6 часов дохода золота: " + ConvertLargeNumber.convert(ControllerAutocombineStorage.getQuantityProfit() * 360);
         this.quantityCollect.string = "Сегодня собрано: " + ControllerAutocombineStorage.getQuantityCollect() + "/6";
     }
 }

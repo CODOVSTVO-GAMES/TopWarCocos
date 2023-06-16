@@ -38,8 +38,10 @@ export class ModalCharacterGridInterface extends Component {
         this.sortedCharacters();
         for (let i = 0; i < this.charactersRendered.length; i++) {
             if (this.images[i] != null && this.names[i] != null && this.levels[i] != null && this.charactersRendered[i] != null) {
-                this.images[i].spriteFrame = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
-                this.typeTroop[i].spriteFrame = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].typeTroop, 0);
+                let spriteImage = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
+                let spriteTypeTroop = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].typeTroop, 0);
+                this.images[i].spriteFrame = spriteImage;
+                this.typeTroop[i].spriteFrame = spriteTypeTroop;
                 this.names[i].string = this.charactersRendered[i].codeName;
                 this.levels[i].string = "Ур. " + this.charactersRendered[i].level;
                 switch (this.charactersRendered[i].type) {
@@ -58,8 +60,6 @@ export class ModalCharacterGridInterface extends Component {
     }
 
     sortedCharacters() {
-        // this.charactersRendered = CharactersStorage.instance.characters;
-
         let str = ''
         for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
             str = str + CharactersStorage.instance.characters[i].type + ','

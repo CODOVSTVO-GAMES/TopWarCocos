@@ -4,7 +4,7 @@ import { Cryptor } from "./Cryptor";
 import { RequestDTO } from "../DTO/RequestDTO";
 import { ResponseDTO } from "../DTO/ResponseDTO";
 import { ControllerUserStorage } from '../../Storage/Controllers/ControllerUserStorage';
-import { LoadingGame } from '../../LoadingGame/LoadingGame';
+import { ModalShopObjectLogic } from '../../UI/Modals/ModalShopObject/ModalShopObjectLogic';
 
 export class ClientService {
 

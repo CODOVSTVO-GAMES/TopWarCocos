@@ -1,11 +1,8 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab, Sprite } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TroopRender } from './TroopRender';
-import { SpriteStorage } from '../Storage/SpriteStorage';
 import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
-import { RedirectionToScene } from '../Other/RedirectionToScene';
-import { SceneNames } from '../Static/SceneNames';
 import { TypesTeam } from '../Static/TypesTeam';
 import { ControllerConfigStorage } from '../Storage/Controllers/ControllerConfigStorage';
 import { CharacterInfo } from '../Structures/CharacterInfo';
@@ -13,18 +10,63 @@ import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCh
 import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
 import { BattleStorage } from '../Storage/BattleStorage';
+import { ControllerTroopStorage } from '../Storage/Controllers/ControllerTroopStorage';
+import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { CardTroopRender } from './CardTroopRender';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { SceneNames } from '../Static/SceneNames';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
 export class Battle extends Component {
 
+    /**
+     * +++ получить союзные свободные войска
+     * +++ получить вражеские свободные войска
+     * 
+     * +++ получить доступное количество ячеек союзных войск[1,1,6,10,16,30,40,50,70]
+     * +++ получить сколько юнитов встанет в одну ячейку
+     * 
+     * +++ отрисовать доступные по ЛВЛу ячейки + одну не доступную
+     * +++ создать массив для своих войск по кол-ву доступных ячеек по лвлу
+     * 
+     * +++ при старте игры записать вражеских юнитов в массив и отрисовать их на карте
+     * +++ при атаке на вражеские войска рендер их параметров
+     * 
+     * +++ при нажатии на корточку, поставить одного воина
+     * +++ при нажатии на кнопку автматическая расстановка, возврат выставленных своих войск в карточки, расставить свои войска автоматически
+     * 
+     * при смене героев возврат выставленных своих войск в карточки, перерасчитывается количество мест на ячейках, ихменяется ХП юнитов в карточках
+     * 
+     * +++ при нажатии на юнита возврат его в карточку
+     * 
+     * -------------------------------------------------------
+     * 
+     * +++ получить тип атакующей команды
+     * 
+     * +++при каждой атаке юнита выплнять это {
+        * +++ получение параметров атакующего юнита
+        * +++ получить атакуемых юнитов
+        * +++ включить анимацию выстрела, списать ХП
+        * +++ после анимации запустить анимацию списания ХП и перерендерить воина
+     * }
+     * 
+     *                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        после окончания атаки первой команды проверить жива ли вторая
+     * 
+     * если одна из команд померла то открываем модалку конца боя
+     * 
+     */
+
     public static instance: Battle;
 
     @property({ type: Prefab })
-    public troopOwn: Prefab;
+    public troop: Prefab;
 
     @property({ type: Prefab })
-    public troopEnemy: Prefab;
+    public cardTroop: Prefab;
+
+    @property({ type: Node })
+    public parentCards: Node;
 
     @property({ type: Node })
     public inBattleBtn: Node;
@@ -33,321 +75,395 @@ export class Battle extends Component {
     public quickPlacementBtn: Node;
 
     @property({ type: Node })
-    public cards: Node[] = [];
-
-    @property({ type: Sprite })
-    public sprites: Sprite[] = [];
+    public endModal: Node;
 
     @property({ type: Label })
-    public texts: Label[] = [];
-
-    @property({ type: Label })
-    public quantity: Label[] = [];
+    public endText: Label;
 
     @property({ type: Label })
     public mapQuantity: Label[] = [];
 
+    private waves: number;
+    private currentWave: number;
+
     onLoad() {
         Battle.instance = this;
-        BattleStorage.instance.arrayOwn = new Array(6);
-        BattleStorage.instance.quantityPlaces = new Array(6).fill(1);
-        BattleStorage.instance.quantityPlaces[5] = 0;
+
+        this.getTroopOwn();
+        this.getTroopEnemy();
+        this.getQuantityAvailableFreeCoords();
     }
 
-    start() {
-        BattleStorage.instance.arrayEnemy = this.genEnemyUnits();
-        BattleStorage.instance.arrayCards = this.getFreeUnits();
-        this.characterSelection();
-        this.enemyRender();
-        this.cardsRender();
-        this.sortedArrayCards();
-    }
-
-    getFreeUnits(): FreeUnit[] {
-        let array = new Array(13);
-        for (let i = 0; i < 5; i++) {
-            array[i] = new FreeUnit(TypesObjects.TROOP_OVERLAND, i + 1, i + 1, 10);
+    getTroopOwn() {
+        let sizeTroopAir = ControllerTroopStorage.getSizeTroopAir();
+        let sizeTroopMarine = ControllerTroopStorage.getSizeTroopMarine();
+        let sizeTroopOverland = ControllerTroopStorage.getSizeTroopOverland();
+        for (let i = 0; i < sizeTroopAir.length; i++) {
+            if (sizeTroopAir[i] == 0) continue;
+            BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_AIR, i + 1, sizeTroopAir[i], 10));
         }
-        return array;
+        for (let i = 0; i < sizeTroopMarine.length; i++) {
+            if (sizeTroopMarine[i] == 0) continue;
+            BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_MARINE, i + 1, sizeTroopMarine[i], 10));
+        }
+        for (let i = 0; i < sizeTroopOverland.length; i++) {
+            if (sizeTroopOverland[i] == 0) continue;
+            BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_OVERLAND, i + 1, sizeTroopOverland[i], 10));
+        }
+        this.spawnCards();
     }
 
-    genEnemyUnits(): Unit[] {
-        let array = new Array(6);
+    getTroopEnemy() {
         for (let i = 0; i < 5; i++) {
             let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, i + 1);
-            array[i] = new Unit(config.hp, config.hp, config.damage, i, config.level, 1, TypesAttack.HORIZON, config.attackType, config.type);
-        }
-        return array;
-    }
-
-    ownRender() {
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            if (BattleStorage.instance.arrayOwn[i] != null) {
-                if (BattleStorage.instance.arrayOwn[i].link == null) {
-                    this.spawnTroop(i, TypesTeam.TEAM_OWN);
-                }
-                else {
-                    let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(BattleStorage.instance.arrayOwn[i].type, BattleStorage.instance.arrayOwn[i].level);
-                    let sum = this.characterSum();
-                    BattleStorage.instance.arrayOwn[i].hp = config.hp + sum.defense;
-                    BattleStorage.instance.arrayOwn[i].availableHp = config.hp + sum.defense;
-                    BattleStorage.instance.arrayOwn[i].damage = config.damage + sum.damage;
-                    BattleStorage.instance.arrayOwn[i].link.renderInfo();
-                }
-                if (BattleStorage.instance.arrayOwn[i].hp <= 0) {
-                    if (BattleStorage.instance.arrayOwn[i].quantity > 1) {
-                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(BattleStorage.instance.arrayOwn[i].type, BattleStorage.instance.arrayOwn[i].level);
-                        BattleStorage.instance.arrayOwn[i].quantity--;
-                        BattleStorage.instance.arrayOwn[i].hp = config.hp + BattleStorage.instance.arrayOwn[i].hp;
-                    }
-                    else {
-                        BattleStorage.instance.arrayOwn[i].link.nodeObject.destroy();
-                        BattleStorage.instance.arrayOwn[i] = null;
-                    }
-                }
-            }
+            BattleStorage.instance.arrayEnemy.push(new Unit(config.hp, config.hp, config.damage, i, config.level, 1, TypesAttack.HORIZON, config.attackType, config.type));
+            this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleStorage.instance.arrayEnemy[BattleStorage.instance.arrayEnemy.length - 1]);
         }
     }
 
-    enemyRender() {
-        for (let i = 0; i < BattleStorage.instance.arrayEnemy.length; i++) {
-            if (BattleStorage.instance.arrayEnemy[i] != null) {
-                if (BattleStorage.instance.arrayEnemy[i].link == null) {
-                    this.spawnTroop(i, TypesTeam.TEAM_ENEMY);
-                }
-                else {
-                    BattleStorage.instance.arrayEnemy[i].link.renderInfo();
-                }
-                if (BattleStorage.instance.arrayEnemy[i].hp <= 0) {
-                    if (BattleStorage.instance.arrayEnemy[i].quantity > 1) {
-                        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(BattleStorage.instance.arrayEnemy[i].type, BattleStorage.instance.arrayEnemy[i].level);
-                        BattleStorage.instance.arrayEnemy[i].quantity--;
-                        BattleStorage.instance.arrayEnemy[i].hp = config.hp + BattleStorage.instance.arrayEnemy[i].hp;
-                    }
-                    else {
-                        BattleStorage.instance.arrayEnemy[i].link.nodeObject.destroy();
-                        BattleStorage.instance.arrayEnemy[i] = null;
-                    }
-                }
-            }
-        }
-    }
-
-    cardsRender() {
-        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
-            if (BattleStorage.instance.arrayCards[i] != null) {
-                this.cards[i].active = true;
-                this.texts[i].string = "Ур. " + BattleStorage.instance.arrayCards[i].level;
-                this.quantity[i].string = BattleStorage.instance.arrayCards[i].quantity.toString();
-                this.sprites[i].spriteFrame = SpriteStorage.instance.getObjectSprite(BattleStorage.instance.arrayCards[i].type, BattleStorage.instance.arrayCards[i].level);
+    getQuantityAvailableFreeCoords() {
+        let a = [1, 1, 6, 10, 16, 30, 40, 50, 70];
+        for (let i = 0; i < a.length; i++) {
+            if (ControllerGameStorage.getLevel() >= a[i]) {
+                BattleStorage.instance.quantityAvailableFreeCoords += 1;
             }
             else {
-                this.cards[i].active = false;
-            }
-        }
-    }
-
-    quantityRender() {
-        for (let i = 0; i < BattleStorage.instance.quantityPlaces.length; i++) {
-            let available = 0;
-            let result: string;
-            if (BattleStorage.instance.arrayOwn[i] != null) {
-                available = BattleStorage.instance.arrayOwn[i].quantity;
-            }
-            if (BattleStorage.instance.quantityPlaces[i] > 0) {
-                result = available + "/" + BattleStorage.instance.quantityPlaces[i];
-            }
-            else {
-                result = "";
-            }
-            this.mapQuantity[i].string = result;
-        }
-    }
-
-    characterSelection() {
-        let count: number = this.characterSum().leadership / 100;
-        BattleStorage.instance.quantityPlaces = new Array(6).fill(1);
-        BattleStorage.instance.quantityPlaces[5] = 0;
-        while (count > 0) {
-            for (let i = 0; i < BattleStorage.instance.quantityPlaces.length; i++) {
-                if (BattleStorage.instance.quantityPlaces[i] > 0 && count > 0) {
-                    BattleStorage.instance.quantityPlaces[i]++;
-                    count--;
-                }
-            }
-        }
-        this.quantityRender();
-    }
-
-    clickCard(event, customEventData) {
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            if (BattleStorage.instance.arrayOwn[i] == null && BattleStorage.instance.quantityPlaces[i] > 0) {
-                let quantity = 0;
-                let unit = BattleStorage.instance.arrayCards[customEventData];
-                let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
-                if (BattleStorage.instance.quantityPlaces[i] > unit.quantity) {
-                    quantity = unit.quantity;
-                }
-                else {
-                    quantity = BattleStorage.instance.quantityPlaces[i];
-                }
-                let sum = this.characterSum();
-                BattleStorage.instance.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
-                if (unit.quantity > quantity) {
-                    unit.quantity -= quantity;
-                }
-                else {
-                    BattleStorage.instance.arrayCards.splice(customEventData, 1);
-                    BattleStorage.instance.arrayCards.push(null);
-                }
-                this.ownRender();
-                this.cardsRender();
-                this.quantityRender();
                 break;
             }
         }
+        this.addArrays();
+        this.renderAvailableCoords();
     }
 
-    spawnTroop(i: number, team: string) {
+    getQuantityTroopsOfCoord() {
+        for (let i = 0; i < BattleStorage.instance.quantityAvailableFreeCoords; i++) {
+            BattleStorage.instance.quantityPlaces[i] += 1;
+        }
+    }
+
+    renderAvailableCoords() {
+        let index = 0;
+        for (let i = 0; i < BattleMap.instance.coordsOwn.length; i++) {
+            BattleMap.instance.coordsOwn[i].active = false;
+        }
+        for (let i = 0; i < BattleStorage.instance.quantityAvailableFreeCoords; i++) {
+            BattleMap.instance.coordsOwn[i].active = true;
+            this.mapQuantity[index + 1].string = "1/1";
+            index = i;
+        }
+        if (index < 9) {
+            BattleMap.instance.coordsOwn[index + 1].active = true;
+            this.mapQuantity[index + 1].string = "-";
+        }
+    }
+
+    spawnTroop(team: string, unit: Unit) {
         let coords;
-        let units;
-        let troop;
+        let gameObject;
+
         if (team == TypesTeam.TEAM_OWN) {
             coords = BattleMap.instance.coordsOwn;
-            units = BattleStorage.instance.arrayOwn;
-            troop = this.troopOwn;
-        }
-        else if (team == TypesTeam.TEAM_ENEMY) {
+        } else if (team == TypesTeam.TEAM_ENEMY) {
             coords = BattleMap.instance.coordsEnemy;
-            units = BattleStorage.instance.arrayEnemy;
-            troop = this.troopEnemy;
         }
-        let gameObject = instantiate(troop);
-        gameObject.setParent(coords[i]);
-        units[i].link = gameObject.getComponent(TroopRender);
-        units[i].link.index = units[i].index;
-        units[i].link.team = team;
+
+        gameObject = instantiate(this.troop);
+        gameObject.setParent(coords[unit.index]);
+
+        unit.link = gameObject.getComponent(TroopRender);
+        unit.link.index = unit.index;
+        unit.link.team = team;
     }
 
-    clickTroop(index: number) {
-        let unit = BattleStorage.instance.arrayOwn[index];
-        this.returnUnitInFreeArray(unit);
-        BattleStorage.instance.arrayOwn[index] = null;
-        this.ownRender();
-        this.quantityRender();
+    processingOneShot(unit: Unit, damage: number) {
+        if (unit == null) return;
+        unit.hp -= damage;
+        this.renderTroopsParametrs(unit);
     }
 
-    returnUnitInFreeArray(unit: Unit) {
+    renderTroopsParametrs(unit: Unit) {
+        if (unit.link == null) return;
+        unit.link.renderInfo();
+    }
+
+    addArrays() {
+        BattleStorage.instance.arrayOwn = new Array(BattleStorage.instance.quantityAvailableFreeCoords);
+    }
+
+    spawnCards() {
         for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
-            if (BattleStorage.instance.arrayCards[i] != null) {
-                if (BattleStorage.instance.arrayCards[i].type == unit.type && BattleStorage.instance.arrayCards[i].level == unit.level) {
-                    BattleStorage.instance.arrayCards[i].quantity += unit.quantity;
-                    this.sortedArrayCards();
-                    return;
+            if (BattleStorage.instance.arrayCards[i].quantity <= 0) {
+                if (BattleStorage.instance.arrayCards[i].linkToCardTroopRender != null) {
+                    BattleStorage.instance.arrayCards[i].linkToCardTroopRender.nodeObject.destroy();
                 }
+                BattleStorage.instance.arrayCards.splice(i, 1);
+            }
+            if (BattleStorage.instance.arrayCards[i].linkToCardTroopRender != null) {
+                BattleStorage.instance.arrayCards[i].linkToCardTroopRender.nodeObject.destroy();
             }
         }
+        this.sortedArrayCards();
         for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
-            if (BattleStorage.instance.arrayCards[i] == null) {
-                BattleStorage.instance.arrayCards[i] = new FreeUnit(unit.type, unit.level, unit.quantity, unit.hp);
-                this.sortedArrayCards();
-                return;
-            }
+            let arrayCard = BattleStorage.instance.arrayCards[i];
+            let card = instantiate(this.cardTroop);
+            let cardTroopRender = card.getComponent(CardTroopRender);
+            cardTroopRender.level = arrayCard.level;
+            cardTroopRender.quantity = arrayCard.quantity;
+            cardTroopRender.type = arrayCard.type;
+            cardTroopRender.index = i;
+            arrayCard.linkToCardTroopRender = cardTroopRender;
+            card.setParent(this.parentCards);
+        }
+    }
+
+    clickOnCard(index: number) {
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            if (BattleStorage.instance.arrayOwn[i] != null || BattleStorage.instance.quantityAvailableFreeCoords <= i) continue;
+
+            let unit = BattleStorage.instance.arrayCards[index];
+            let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
+            BattleStorage.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
+            unit.quantity--;
+
+            this.spawnTroop(TypesTeam.TEAM_OWN, BattleStorage.instance.arrayOwn[i]);
+
+            this.spawnCards();
+            this.renderAvailableCoords();
+            break;
+        }
+    }
+
+    retutnUnitOnCard(index: number) {
+        if (this.addQuantityTroops(index)) {
+            BattleStorage.instance.arrayCards.push(new FreeUnit(BattleStorage.instance.arrayOwn[index].type, BattleStorage.instance.arrayOwn[index].level, BattleStorage.instance.arrayOwn[index].quantity, BattleStorage.instance.arrayOwn[index].hp));
+            this.spawnCards();
+        }
+
+        if (BattleStorage.instance.arrayOwn[index].link != null) {
+            BattleStorage.instance.arrayOwn[index].link.nodeObject.destroy();
+        }
+        BattleStorage.instance.arrayOwn[index] = null;
+
+        this.renderAvailableCoords();
+    }
+
+    addQuantityTroops(index: number): boolean {
+        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
+            if (BattleStorage.instance.arrayCards[i] == null) continue;
+            if (BattleStorage.instance.arrayCards[i].type != BattleStorage.instance.arrayOwn[index].type || BattleStorage.instance.arrayCards[i].level != BattleStorage.instance.arrayOwn[index].level) continue;
+
+            BattleStorage.instance.arrayCards[i].quantity += BattleStorage.instance.arrayOwn[index].quantity;
+            this.spawnCards();
+            return false;
+        }
+        return true;
+    }
+
+    quickPlacement() {
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            if (BattleStorage.instance.arrayOwn[i] == null) continue;
+
+            this.retutnUnitOnCard(i);
+            this.renderAvailableCoords();
+        }
+
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            let unit = BattleStorage.instance.arrayCards[0];
+            if (unit == null || BattleStorage.instance.quantityAvailableFreeCoords <= i) continue;
+
+            let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
+            BattleStorage.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
+            unit.quantity--;
+            this.spawnTroop(TypesTeam.TEAM_OWN, BattleStorage.instance.arrayOwn[i]);
+            this.spawnCards();
         }
     }
 
     sortedArrayCards() {
+        // сортировка карточек
         BattleStorage.instance.arrayCards.sort((a, b) => {
-            if (a != null && b != null) {
-                if (a.level < b.level) {
-                    return 1;
-                }
-                if (a.level > b.level) {
-                    return -1;
-                }
+            if (a == null || b == null) return 0
+
+            if (a.level < b.level) {
+                return 1;
             }
-            return 0;
-        })//может сортировать в другую сторону
-        this.cardsRender();
+            else if (a.level > b.level) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        })
     }
 
     inBattle() {
-        if (BattleStorage.instance.isBattle == false) {
-            for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-                if (BattleStorage.instance.arrayOwn[i] != null) {
-                    BattleStorage.instance.isBattle = true;
-                    this.inBattleBtn.active = false;
-                    this.quickPlacementBtn.active = false;
-                    for (let i = 0; i < this.cards.length; i++) {
-                        this.cards[i].active = false;
-                    }
-                    this.attack();
-                    return;
+        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
+            if (BattleStorage.instance.arrayOwn[i] == null) continue;
+            BattleStorage.instance.isBattle = true;
+            BattleStorage.instance.attackingTeam = 0;
+            this.inBattleBtn.active = false;
+            this.quickPlacementBtn.active = false;
+
+            for (let j = 0; j < BattleStorage.instance.arrayCards.length; j++) {
+                if (BattleStorage.instance.arrayCards[j] != null) {
+                    BattleStorage.instance.arrayCards[j].linkToCardTroopRender.nodeObject.destroy();
                 }
             }
+            this.attackController();
+            return;
         }
     }
 
-    attack() {
-        let units_1;
-        let units_2;
-        let countBullet = 0;
+    redirectionToHome() {
+        RedirectionToScene.redirect(SceneNames.HOME_MAP);
+    }
+
+    private getAttackUnits(): Unit[] {
         if (BattleStorage.instance.attackingTeam == 0) {
-            units_1 = BattleStorage.instance.arrayEnemy.slice(0);
-            units_2 = BattleStorage.instance.arrayOwn.slice(0);
+            return BattleStorage.instance.arrayOwn.slice(0);
         }
         else if (BattleStorage.instance.attackingTeam == 1) {
-            units_1 = BattleStorage.instance.arrayOwn.slice(0);
-            units_2 = BattleStorage.instance.arrayEnemy.slice(0);
-        }
-        for (let i = 0; i < units_1.length; i++) {
-            if (i == 0 && BattleStorage.instance.attackingTeam == 0) {
-                BattleStorage.instance.attackNumber++;
-            }
-            if (units_1[i] != null) {
-                if (units_1[i].attackNumber < BattleStorage.instance.attackNumber) {
-                    let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(units_1[i].type, units_1[i].level);
-                    let units = this.goalSelection(units_1[i].link.team, units_1[i].type, TypesAttack.HORIZON, config.attackType);
-                    for (let j = 0; j < units.length; j++) {
-                        countBullet++;
-                        this.troopAttackInvoke(i, j, units, units_1, units_2, countBullet);
-                    }
-                    units_1[i].attackNumber = BattleStorage.instance.attackNumber;
-                }
-            }
-            if (i == units_1.length - 1) {
-                if (BattleStorage.instance.attackingTeam == 0) {
-                    BattleStorage.instance.attackingTeam = 1;
-                }
-                else if (BattleStorage.instance.attackingTeam == 1) {
-                    BattleStorage.instance.attackingTeam = 0;
-                }
-
-                setTimeout(() => {
-                    this.enemyRender();
-                    this.ownRender();
-                    this.quantityRender();
-                    if (this.troopAlive()) {
-                        this.attack();
-                    }
-                    else {
-                        RedirectionToScene.redirect(SceneNames.HOME_MAP);
-                    }
-                }, countBullet * 1000 + 1000);
-            }
+            return BattleStorage.instance.arrayEnemy.slice(0);
         }
     }
 
-    troopAttackInvoke(i: number, j: number, units: number[], units_1: Unit[], units_2: Unit[], countBullet: number) {
-        setTimeout(() => units_1[i].link.shotRender(), countBullet * 1000 - 1000);
-        setTimeout(() => this.troopAttack(i, j, units, units_1, units_2), countBullet * 1000);
+    private getDefendingUnits(): Unit[] {
+        if (BattleStorage.instance.attackingTeam == 0) {
+            return BattleStorage.instance.arrayEnemy.slice(0);
+        }
+        else if (BattleStorage.instance.attackingTeam == 1) {
+            return BattleStorage.instance.arrayOwn.slice(0);
+        }
     }
 
-    troopAttack(i: number, j: number, units: number[], units_1: Unit[], units_2: Unit[]) {
-        units_2[units[j]].hp -= units_1[i].damage;
-        this.enemyRender();
-        this.ownRender();
-        this.quantityRender();
+    attackController() {
+
+        if (this.troopAlive() || (this.currentWave < this.waves && this.howManyAliveOwn() > 0)) {
+            if (this.howManyAliveEnemy() <= 0) {
+                this.currentWave++;
+            }
+
+            let time = this.attack();
+            setTimeout(() => {
+                BattleStorage.instance.attackingTeam = BattleStorage.instance.attackingTeam == 0 ? 1 : 0;
+                this.attackController();
+            }, time * 750);
+        }
+        else {
+            if (this.howManyAliveOwn() <= 0) {
+                this.endText.string = "ПАРАЖЕНЕ";
+            } else if (this.howManyAliveEnemy() <= 0) {
+                this.endText.string = "ВЫИГРЫШ";
+            }
+            this.endModal.active = true;
+        }
+    }
+
+    attack(): number {
+        let attackUnits = this.getAttackUnits();
+        let defendingUnits = this.getDefendingUnits();
+
+        let delay = 0;
+        for (let i = 0; i < attackUnits.length; i++) {
+            if (attackUnits[i] != null) {
+                let targetUnits = this.goalSelection(attackUnits[i], defendingUnits);
+
+                for (let j = 0; j < targetUnits.length; j++) {
+                    delay++;
+                    this.initPromise((i + delay) * 750, () => {
+                        attackUnits[i].link.renderShot();
+                    });
+                    this.initPromise((i + delay) * 750 + 750, () => {
+                        targetUnits[j].hp -= attackUnits[i].damage;
+                        if (targetUnits[j].hp > 0) {
+                            targetUnits[j].link.renderInfo();
+                        } else {
+                            targetUnits[j].link.renderDead();
+                            defendingUnits[targetUnits[j].index] = null;
+                        }
+                    });
+                }
+            }
+        }
+        return delay + attackUnits.length;
+    }
+
+    async initPromise(delay: number, code: any) {
+        const x = await this.delay(delay);
+        code();
+    }
+
+    delay(time: number): Promise<string> {
+        return new Promise<string>((resolve) => {
+            setTimeout(() => {
+                resolve("return");
+            }, time)
+        })
+    }
+
+    goalSelection(attackUnit: Unit, defendingUnits: Unit[]): Unit[] {
+        console.log(attackUnit);
+        if (attackUnit.typeAttack == TypesAttack.HORIZON || attackUnit.typeAttack == TypesAttack.VERTICAL) {
+            return this.lineGoalSelection(attackUnit, defendingUnits);
+        }
+        else {
+            return this.randomGoalSelection(attackUnit, defendingUnits);
+        }
+    }
+
+    randomGoalSelection(attackUnit: Unit, defendingUnits: Unit[]): Unit[] {
+        let copyDefendingUnits;
+        let selectionUnits;
+        let quantityAttacks;
+
+        if (attackUnit.typeAttack == TypesAttack.ONE) {
+            quantityAttacks = 1;
+        }
+        else if (attackUnit.typeAttack == TypesAttack.TWO) {
+            quantityAttacks = 2;
+        }
+        else if (attackUnit.typeAttack == TypesAttack.THREE) {
+            quantityAttacks = 3;
+        }
+
+        for (let i = 0; i < defendingUnits.length; i++) {
+            if (defendingUnits[i] != null) {
+                copyDefendingUnits.push(defendingUnits[i]);
+            }
+        }
+
+        for (let i = 0; i < quantityAttacks; i++) {
+            selectionUnits.push(copyDefendingUnits[Math.floor(Math.random() * copyDefendingUnits.length)]);
+        }
+
+        return selectionUnits;
+    }
+
+    lineGoalSelection(attackUnit: Unit, defendingUnits: Unit[]): Unit[] {
+        let horizon = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+        let vertical = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
+
+        let selectionUnits;
+        let indexes = [];
+
+        while (true) {
+            selectionUnits = [];
+
+            if (attackUnit.typeAttack == TypesAttack.HORIZON) {
+                indexes = horizon[Math.floor(Math.random() * horizon.length)];
+            } else if (attackUnit.typeAttack == TypesAttack.VERTICAL) {
+                indexes = vertical[Math.floor(Math.random() * vertical.length)];
+            }
+            for (let i = 0; i < indexes.length; i++) {
+                if (defendingUnits[indexes[i]] == null) continue;
+                selectionUnits.push(defendingUnits[indexes[i]]);
+            }
+
+            if (selectionUnits.length != 0) {
+                break;
+            }
+        }
+        return selectionUnits;
     }
 
     troopAlive(): boolean {
@@ -357,8 +473,9 @@ export class Battle extends Component {
     howManyAliveOwn(): number {
         let quantityAlive = 0;
         for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            if (BattleStorage.instance.arrayOwn[i] != null) {
-                if (BattleStorage.instance.arrayOwn[i].hp > 0) {
+            let own = BattleStorage.instance.arrayOwn[i];
+            if (own != null) {
+                if (own.hp > 0) {
                     quantityAlive++;
                 }
             }
@@ -369,93 +486,14 @@ export class Battle extends Component {
     howManyAliveEnemy(): number {
         let quantityAlive = 0;
         for (let i = 0; i < BattleStorage.instance.arrayEnemy.length; i++) {
-            if (BattleStorage.instance.arrayEnemy[i] != null) {
-                if (BattleStorage.instance.arrayEnemy[i].hp > 0) {
+            let enemy = BattleStorage.instance.arrayEnemy[i];
+            if (enemy != null) {
+                if (enemy.hp > 0) {
                     quantityAlive++;
                 }
             }
         }
         return quantityAlive;
-    }
-
-    goalSelection(team: string, type: string, typeAttack: string, typeShot: string): number[] {
-        let units;
-        let quantity;
-        let arrayUnits = [];
-        if (team == TypesTeam.TEAM_ENEMY) {
-            units = BattleStorage.instance.arrayOwn.slice(0);
-        }
-        else if (team == TypesTeam.TEAM_OWN) {
-            units = BattleStorage.instance.arrayEnemy.slice(0);
-        }
-        if (typeShot == TypesAttack.ONE) {
-            quantity = 1;
-        }
-        else if (typeShot == TypesAttack.TWO) {
-            quantity = 2;
-        }
-        else if (typeShot == TypesAttack.THREE) {
-            quantity = 3;
-        }
-        for (let i = 0; i < units.length; i++) {
-            if (units[i] != null) {
-                if (typeAttack == TypesAttack.HORIZON) {
-                    if (units[i].type == type) {
-                        arrayUnits.push(i);
-                    }
-                }
-                else if (typeAttack == TypesAttack.VERTICAL) {
-                    arrayUnits.push(i);
-                }
-            }
-        }
-        let conclusion = [];
-        for (let i = 0; i < quantity; i++) {
-            if (arrayUnits.length > 0) {
-                let index = Math.floor(Math.random() * arrayUnits.length);
-                conclusion.push(arrayUnits[index]);
-                arrayUnits.splice(index, 1)
-            }
-        }
-        return conclusion;
-    }
-
-    quickPlacement() {
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            let unit = BattleStorage.instance.arrayOwn[i];
-            if (unit != null) {
-                this.returnUnitInFreeArray(unit);
-                BattleStorage.instance.arrayOwn[i].link.nodeObject.destroy();
-                BattleStorage.instance.arrayOwn[i] = null;
-                this.ownRender();
-                this.quantityRender();
-            }
-        }
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            let unit = BattleStorage.instance.arrayCards[0];
-            if (unit != null && BattleStorage.instance.quantityPlaces[i] > 0) {
-                let quantity = 0;
-                let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
-                if (BattleStorage.instance.quantityPlaces[i] > unit.quantity) {
-                    quantity = unit.quantity;
-                }
-                else {
-                    quantity = BattleStorage.instance.quantityPlaces[i];
-                }
-                let sum = this.characterSum();
-                BattleStorage.instance.arrayOwn[i] = new Unit(config.hp + sum.defense, config.hp + sum.defense, config.damage + sum.damage, i, unit.level, quantity, TypesAttack.HORIZON, config.attackType, unit.type);
-                if (unit.quantity > quantity) {
-                    unit.quantity -= quantity;
-                }
-                else {
-                    BattleStorage.instance.arrayCards.splice(0, 1);
-                    BattleStorage.instance.arrayCards.push(null);
-                }
-            }
-        }
-        this.ownRender();
-        this.cardsRender();
-        this.quantityRender();
     }
 
     characterSum(): CharacterInfo {
@@ -465,12 +503,15 @@ export class Battle extends Component {
         let protection = 0;
         let leadership = 0;
         let characters = ControllerCharactrerStorage.getCharacters();
+
         for (let i = 0; i < characters.length; i++) {
-            if (characters[i] != null) {
-                attack += characters[i].damage;
-                protection += characters[i].defense;
-                leadership += characters[i].leadership;
-            }
+            let character = characters[i]
+            if (character == null) continue
+
+            attack += character.damage;
+            protection += character.defense;
+            leadership += character.leadership;
+
         }
         return new CharacterInfo(0, exp, stars, attack, protection, leadership, "sum", "sum", "sum");
     }

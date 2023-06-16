@@ -5,7 +5,7 @@ import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMa
 import { IndexesMap } from './Static/IndexesMap';
 import { TypesObjects } from './Static/TypesObjects';
 import { TypesLocation } from './Static/TypesLocation';
-import { ControllerGameStorage } from './Storage/Controllers/ControllerGameStorage';
+import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
@@ -33,13 +33,17 @@ export class SpawnObjects {
 
     static spawnObjectsPos(type: string, location: string, level: number, index: number): ObjectParameters {
         let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type));
+        let objectParameter = object.getComponent(ObjectParameters);
         ControllerHomeMapStorage.setParent(object, index);
-        object.getComponent(ObjectParameters).type = type;
-        object.getComponent(ObjectParameters).location = location;
-        object.getComponent(ObjectParameters).level = level;
-        object.getComponent(ObjectParameters).index = index;
-        ControllerHomeMapStorage.setObjectParameter(object.getComponent(ObjectParameters), type, index);
-        return object.getComponent(ObjectParameters);
+        objectParameter.type = type;
+        objectParameter.location = location;
+        objectParameter.level = level;
+        objectParameter.index = index;
+        ControllerHomeMapStorage.setObjectParameter(objectParameter, type, index);
+        if (type == TypesObjects.GOLD_MINE) {
+            ControllerAutocombineStorage.alo(objectParameter);
+        }
+        return objectParameter;
     }
 
     static spawnObjectsNearby(type: string, location: string, level: number, index: number) {
@@ -99,7 +103,7 @@ export class SpawnObjects {
                             break;
                         }
                     }
-                    catch  { }
+                    catch { }
                 }
                 if (check == false) {
                     minDistance = currentDistance;

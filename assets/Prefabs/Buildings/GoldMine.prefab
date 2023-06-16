@@ -1058,7 +1058,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Proggres",
+    "_name": "Progress",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -1118,8 +1118,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 60
+      "width": 70,
+      "height": 70
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1166,7 +1166,7 @@
       "y": 0.5
     },
     "_fillStart": 0.25,
-    "_fillRange": 1,
+    "_fillRange": -1,
     "_isTrimmedMode": true,
     "_useGrayscale": false,
     "_atlas": null,
@@ -2056,6 +2056,12 @@
     "_enabled": true,
     "__prefab": {
       "__id__": 92
+    },
+    "message": {
+      "__id__": 52
+    },
+    "progress": {
+      "__id__": 46
     },
     "fill": {
       "__id__": 49

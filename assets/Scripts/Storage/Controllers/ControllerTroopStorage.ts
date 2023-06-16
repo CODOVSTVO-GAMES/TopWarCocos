@@ -6,9 +6,9 @@ import { ControllerHomeMapStorage } from './ControllerHomeMapStorage';
 export class ControllerTroopStorage {
 
     static setTroopStorage() {
-        TroopStorage.instance.sizeTroopAir = new Array(TroopStorage.instance.sizeTroopStorage);
-        TroopStorage.instance.sizeTroopMarine = new Array(TroopStorage.instance.sizeTroopStorage);
-        TroopStorage.instance.sizeTroopOverland = new Array(TroopStorage.instance.sizeTroopStorage);
+        TroopStorage.instance.sizeTroopAir = new Array(TroopStorage.instance.sizeTroopStorage).fill(0);
+        TroopStorage.instance.sizeTroopMarine = new Array(TroopStorage.instance.sizeTroopStorage).fill(0);
+        TroopStorage.instance.sizeTroopOverland = new Array(TroopStorage.instance.sizeTroopStorage).fill(0);
 
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;

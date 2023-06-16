@@ -35,7 +35,8 @@ export class LoadingGame extends Component {
             TypesStorages.INVENTORY_STORAGE,
             TypesStorages.CHARACTER_STORAGE,
             TypesStorages.COMMAND_POST_STORAGE,
-            TypesStorages.RADAR_STORAGE
+            TypesStorages.RADAR_STORAGE,
+            TypesStorages.AUTOCOMBINE_STORAGE
         ];
         DataStorageService.getData(arrayActiveStorage)//redirectToHomeMap вызывается после получения данных в колбеке
         ConfigService.getStartConfig()

@@ -91,7 +91,8 @@ export class ModalCharacterPumpingInterface extends Component {
             this.experience.string = character.experience + "/" + targetExp;
             this.slider.fillRange = character.experience / targetExp;
             for (let i = 0; i < this.quantity.length; i++) {
-                this.quantity[i].string = "x" + ControllerInventoryStorage.getQuantityByType(TypesItems.BOOKS[i]);
+                let inventoryQuantity = ControllerInventoryStorage.getQuantityByType(TypesItems.BOOKS[i])
+                this.quantity[i].string = "x" + inventoryQuantity;
             }
         }
     }
@@ -99,10 +100,12 @@ export class ModalCharacterPumpingInterface extends Component {
     renderModalPumpingStars() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            this.starTitle.string = "Фрагменты для след. этапа: " + ControllerInventoryStorage.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character)) + "/4";
+            let inventoryQuantity = ControllerInventoryStorage.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
+            this.starTitle.string = "Фрагменты для след. этапа: " + inventoryQuantity + "/4";
             this.sliderStars.fillRange = character.stars % 5 / 5;
             for (let i = 0; i < this.stars.length; i++) {
-                this.stars[i].active = character.stars / 5 >= i ? true : false;
+                let starActive = character.stars / 5 >= i;
+                this.stars[i].active = starActive;
             }
         }
     }

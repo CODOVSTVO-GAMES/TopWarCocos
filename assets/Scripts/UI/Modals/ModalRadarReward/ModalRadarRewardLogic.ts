@@ -1,6 +1,4 @@
 import { _decorator, Component, Node } from 'cc';
-import { ModalRadarRewardInterface } from './ModalRadarRewardInterface';
-import { RadarTask } from '../../../Structures/RadarTask';
 import { ControllerInventoryStorage } from '../../../Storage/Controllers/ControllerInventoryStorage';
 import { TypesItems } from '../../../Static/TypesItems';
 import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';

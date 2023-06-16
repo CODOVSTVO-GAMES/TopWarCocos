@@ -231,7 +231,6 @@ export class ControllerHomeMapStorage {
     }
 
     static saveStorageServer() {
-        console.log("update home map storage");
         let obj: Object[] = [];
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
@@ -246,8 +245,6 @@ export class ControllerHomeMapStorage {
     }
 
     static saveStorageLocal() {
-        console.log("update home map storage");
-        let objectParameters: ObjectParameters[] = [];
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue;
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue;
@@ -255,7 +252,6 @@ export class ControllerHomeMapStorage {
             objParam.type = HomeMapStorage.instance.arrayObjectParameters[i].type;
             objParam.level = HomeMapStorage.instance.arrayObjectParameters[i].level;
             objParam.index = HomeMapStorage.instance.arrayObjectParameters[i].index;
-            objectParameters.push(objParam);
             HomeMapStorage.instance.temporaryLocalStorage.push(objParam);
         }
     }

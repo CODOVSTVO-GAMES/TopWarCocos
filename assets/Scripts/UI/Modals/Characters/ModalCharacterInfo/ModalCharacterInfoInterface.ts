@@ -47,6 +47,7 @@ export class ModalCharacterInfoIntarface extends Component {
 
     renderCharacter(index: number): boolean {
         let character = CharactersStorage.instance.characters[index];
+        let chatacterLvlExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
         if (character != null) {
             this.heroName.string = character.codeName;
             this.heroType.string = character.type;
@@ -56,7 +57,7 @@ export class ModalCharacterInfoIntarface extends Component {
             this.leadership.string = character.leadership.toString();
             this.experience.string = character.experience.toString();
             this.combatPower.string = "210";
-            this.sliderLevel.fillRange = character.experience / ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+            this.sliderLevel.fillRange = character.experience / chatacterLvlExp;
             this.sliderStars.fillRange = character.stars % 5 / 5;
             for (let i = 0; i < this.stars.length; i++) {
                 this.stars[i].active = character.stars / 5 > i ? true : false;

@@ -24,7 +24,18 @@ export class MouseClickVisualization extends Component {
         MouseClickVisualization.instance = this;
 
         this.canvas.on(Input.EventType.MOUSE_DOWN, this.touchStart, this);
-        this.screenSize = new Vec3(screen.height, screen.width, 0);
+        this.setScreenSize()
+    }
+
+    private setScreenSize() {
+        const baseHeight = 1080
+        const baseWidth = 1920
+
+        const heightRaito = baseHeight / screen.height
+        const widthRaito = baseWidth / screen.width
+
+        this.screenSize = new Vec3(screen.height * heightRaito, screen.width * widthRaito, 0)
+        //Походу размер всегда равен 1080-1920 после этой операции
     }
 
     onDestroy() {
@@ -45,7 +56,15 @@ export class MouseClickVisualization extends Component {
         this.animScale = 0.5;
         this.click.setScale(this.animScale, this.animScale);
         this.animator = setInterval(this.animation, 17);
-        this.invoke = setTimeout(() => this.click.active = false, 200);
+        this.invoke = setTimeout(() => {
+            try {
+                this.click.active = false
+            } catch (e) {
+                console.log('костыль. ООбьект анимации не найден. Дописать метод остановки SEtTimeout при редиректе сцен     ' + e)
+            }
+
+        }, 200);
+
     }
 
     startAnimation() {
@@ -55,11 +74,18 @@ export class MouseClickVisualization extends Component {
     }
 
     animation() {
-        let thiiis = MouseClickVisualization.instance;
-        thiiis.animScale += 0.05;
-        thiiis.click.setScale(thiiis.animScale, thiiis.animScale);
-        if (thiiis.animScale >= 1) {
-            clearInterval(thiiis.animator);
+        try {
+            let thiiis = MouseClickVisualization.instance;
+            thiiis.animScale += 0.05;
+            thiiis.click.setScale(thiiis.animScale, thiiis.animScale);
+            if (thiiis.animScale >= 1) {
+                clearInterval(thiiis.animator);
+            }
         }
+        catch (e) {
+            clearInterval(MouseClickVisualization.instance.animator)
+            console.log('костыль. ООбьект анимации не найден. Дописать метод остановки setInterval при редиректе сцен     ' + e)
+        }
+
     }
 }

@@ -4,6 +4,7 @@ import { Battle } from './Battle';
 import { TypesTeam } from '../Static/TypesTeam';
 import { Unit } from '../Structures/Unit';
 import { BattleStorage } from '../Storage/BattleStorage';
+import { TypesAnimation } from '../Static/TypesAnimation';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopRender')
@@ -53,7 +54,14 @@ export class TroopRender extends Component {
         }
     }
 
+    shotRenderInfo(time: number) {
+        setTimeout(() => this.renderInfo(), (time * 750) + 750);
+    }
+
     renderInfo() {
+        if (this.unitInfo == null) {
+            return this.destroy();
+        }
         if (this.unitInfo.hp < 0) {
             this.unitInfo.hp = 0;
         }
@@ -61,13 +69,24 @@ export class TroopRender extends Component {
         this.sliderObject.fillRange = this.unitInfo.hp / this.unitInfo.availableHp;
     }
 
-    shotRender() {
-        this.anim.play();
+    renderShot() {
+        let typeAnimation;
+        if (this.team == TypesTeam.TEAM_OWN) {
+            typeAnimation = TypesAnimation.BULLET_SHOT_OWN;
+        }
+        else if (this.team == TypesTeam.TEAM_ENEMY) {
+            typeAnimation = TypesAnimation.BULLET_SHOT_ENEMY;
+        }
+        this.anim.play(typeAnimation);
     }
 
-    log() {
+    renderDead() {
+        this.nodeObject.destroy();
+    }
+
+    clickTroop() {
         if (this.team == TypesTeam.TEAM_OWN && BattleStorage.instance.isBattle == false) {
-            Battle.instance.clickTroop(this.index);
+            Battle.instance.retutnUnitOnCard(this.index);
             this.nodeObject.destroy();
         }
     }

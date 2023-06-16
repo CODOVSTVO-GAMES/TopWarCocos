@@ -36,14 +36,23 @@ export class ModalPowerInterface extends Component {
     }
 
     updateInterface() {
-        this.power.string = ControllerGameStorage.getPower().toString();
-        this.maxPower.string = ControllerGameStorage.getMaxPower().toString();
-        this.territoryPower.string = ControllerGameStorage.getTerritoryPower().toString();
-        this.technoPower.string = ControllerGameStorage.getTechnoPower().toString();
-        this.heroPower.string = ControllerGameStorage.getHeroPower().toString();
-        this.arsenalPower.string = ControllerGameStorage.getArsenalPower().toString();
-        this.professionPower.string = ControllerGameStorage.getProfessionPower().toString();
-        this.formationPower.string = ControllerGameStorage.getFormationPower().toString();
+        let power = ControllerGameStorage.getPower().toString();
+        let maxPower = ControllerGameStorage.getMaxPower().toString();
+        let territoryPower = ControllerGameStorage.getTerritoryPower().toString();
+        let technoPower = ControllerGameStorage.getTechnoPower().toString();
+        let heroPower = ControllerGameStorage.getHeroPower().toString();
+        let arsenalPower = ControllerGameStorage.getArsenalPower().toString();
+        let professionPower = ControllerGameStorage.getProfessionPower().toString();
+        let formationPower = ControllerGameStorage.getFormationPower().toString();
+
+        this.power.string = power;
+        this.maxPower.string = maxPower;
+        this.territoryPower.string = territoryPower;
+        this.technoPower.string = technoPower;
+        this.heroPower.string = heroPower;
+        this.arsenalPower.string = arsenalPower;
+        this.professionPower.string = professionPower;
+        this.formationPower.string = formationPower;
     }
 }
 

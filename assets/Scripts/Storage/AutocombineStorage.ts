@@ -1,4 +1,6 @@
-import { _decorator, Component, CCInteger } from 'cc';
+import { _decorator, Component, CCInteger, CCBoolean } from 'cc';
+import { ControllerAutocombineStorage } from './Controllers/ControllerAutocombineStorage';
+import { Aut } from '../Structures/Aut';
 const { ccclass, property } = _decorator;
 
 @ccclass('AutocombineStorage')
@@ -18,11 +20,15 @@ export class AutocombineStorage extends Component {
     @property({ type: CCInteger })
     public quantityCollect: number;
 
+    @property({ type: Aut })
+    public indexes: Array<Aut> = new Array<Aut>();
+
+    @property({ type: CCBoolean })
+    public isActiveAutocombine: boolean;
+
     onLoad() {
         AutocombineStorage.instance = this;
-
-        this.allProfit = 0;
-        this.quantityCollect = 0;
+        ControllerAutocombineStorage.TEST();
     }
 }
 

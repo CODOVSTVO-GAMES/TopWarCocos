@@ -50,24 +50,31 @@ export class ModalRadarInterface extends Component {
     }
 
     updateInterface() {
+        let energy = ControllerGameStorage.getEnergy();
+        let gems = ControllerGameStorage.getGems();
         let radarLevel = ControllerRadarStorage.getRadarLevel();
-        let config = ControllerConfigStorage.getRadarConfigByLevel(radarLevel);
+        let radarSignal = ControllerRadarStorage.getRadarSignal();
+        let radarExperience = ControllerRadarStorage.getRadarExperience();
+        let radarAvailableMissions = ControllerRadarStorage.getRadarAvailableMissions();
+        let radarTime = ControllerRadarStorage.getRadarTime();
+        let radarProgressNumber = ControllerConfigStorage.getRadarProgressNumberByLevel(radarLevel);
+        let configRadar = ControllerConfigStorage.getRadarConfigByLevel(radarLevel);
         let cost;
-        if (ControllerRadarStorage.getRadarSignal() <= 1) {
+        if (radarSignal <= 1) {
             cost = 0;
         }
         else {
             cost = 10;
         }
 
-        this.sliderLevel.fillRange = ControllerRadarStorage.getRadarExperience() / ControllerConfigStorage.getRadarProgressNumberByLevel(ControllerRadarStorage.getRadarLevel());
-        this.sliderEnergy.fillRange = ControllerGameStorage.getEnergy() / config.maxEnergy;
-        this.gemsText.string = ControllerGameStorage.getGems().toString();
-        this.levelText.string = "Ур. " + ControllerRadarStorage.getRadarLevel();
-        this.energyText.string = ControllerGameStorage.getEnergy() + "/" + config.maxEnergy;
-        this.tasksText.string = "Хранилище миссий " + ControllerRadarStorage.getRadarAvailableMissions() + "/" + config.maxTasks;
-        this.timeText.string = "Миссии доступны в: " + ControllerRadarStorage.getRadarTime();
-        this.signalText.string = ControllerRadarStorage.getRadarSignal() + "/5";
+        this.sliderLevel.fillRange = radarExperience / radarProgressNumber;
+        this.sliderEnergy.fillRange = energy / configRadar.maxEnergy;
+        this.gemsText.string = gems.toString();
+        this.levelText.string = "Ур. " + radarLevel;
+        this.energyText.string = energy + "/" + configRadar.maxEnergy;
+        this.tasksText.string = "Хранилище миссий " + radarAvailableMissions + "/" + configRadar.maxTasks;
+        this.timeText.string = "Миссии доступны в: " + radarTime;
+        this.signalText.string = radarSignal + "/5";
         this.costText.string = cost > 0 ? cost.toString() : "Бесплатно";
         this.renderLocator();
     }

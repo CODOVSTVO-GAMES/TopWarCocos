@@ -9,8 +9,21 @@ export class TypesModals {
     public static CHARACTER_INFO: string = "characterInfo";
     public static CHARACTER_PUMPING: string = "characterPumping";
     public static COMMAND_POST: string = "commandPost";
-    public static UPGRATE_COMMAND_POST_0: string = "upgrateCommandPost0";
-    public static UPGRATE_COMMAND_POST_1: string = "upgrateCommandPost1";
+
+    public static UPGRATE_COMMAND_POST: string = "upgrateCommandPost";
+    public static UPGRATE_REPAIR_SHOP: string = "upgrateRepairShop";
+    public static UPGRATE_MERGE_GOLD_MINE: string = "upgrateMergeGoldMine";
+    public static UPGRATE_MERGE_TROOP_AIR: string = "upgrateMergeTroopAir";
+    public static UPGRATE_MERGE_TROOP_MARINE: string = "upgrateMergeTroopMarine";
+    public static UPGRATE_MERGE_TROOP_OVERLAND: string = "upgrateMergeTroopOverland";
+    public static UPGRATE_MERGE_BARRACK_AIR: string = "upgrateMergeBarrackAir";
+    public static UPGRATE_MERGE_BARRACK_MARINE: string = "upgrateMergeBarracMarine";
+    public static UPGRATE_MERGE_BARRACK_OVERLAND: string = "upgrateMergeBarracMarine";
+    public static UPGRATE_BUILD_GOLD_MINE: string = "upgrateBuildGoldMine";
+    public static UPGRATE_BUILD_BARRACK_AIR: string = "upgrateBuildBarrackAir";
+    public static UPGRATE_BUILD_BARRACK_MARINE: string = "upgrateBuildBarrackMarine";
+    public static UPGRATE_BUILD_BARRACK_OVERLAND: string = "upgrateBuildBarrackOverland";
+
     public static AUTOCOMBINE: string = "autocombine";
     public static BACKPACK: string = "backpack";
     public static REPAIR_SHOP: string = "repairShop";
@@ -22,6 +35,7 @@ export class TypesModals {
     public static BOMB_DISPOSAL: string = "bombDisposal";
     public static QUESTION: string = "question";
     public static SWITCH: string = "switch";
+    public static SPATIAL_MINE: string = "spatialMine";
 
     public static DIALOG: string = "dialog";
 }

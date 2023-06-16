@@ -14,7 +14,7 @@ export class ZoomCamera extends Component {
 
     @property({ type: Camera })
     public camera: Camera;
-    
+
     public zoomRaito: number;
 
     onLoad() {

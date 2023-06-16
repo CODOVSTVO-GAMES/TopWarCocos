@@ -22,5 +22,9 @@ export class RedirectionToScene {
             director.loadScene("Battle");
         }
     }
+
+    static getSceneName() {
+        console.log(director.getScene().name)
+    }
 }
 

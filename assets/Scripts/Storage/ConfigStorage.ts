@@ -11,6 +11,11 @@ import { UnitsCongig } from '../Structures/ConfigUnits';
 import { ConfigMergeBuildings } from '../Structures/ConfigMergeBuildings';
 import { ConfigSpawnBuildings } from '../Structures/ConfigSpawnBuildings';
 import { RadarConfig } from '../Structures/RadarConfig';
+import { Unit } from '../Structures/Unit';
+import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
+import { MapEnemyController } from './Controllers/MapEnemyController';
+import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
+import { TaskReward } from '../Structures/TaskReward';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -112,7 +117,248 @@ export class ConfigStorage extends Component {
                     this.expirienceRadar.push(value.e);
                 }
             }
+            else if (key == 'enemyTeams') {
+                for (let l = 0; l < value.length; l++) {
+                    if (!this.isNotNullOrNotUndefined(value[l].n)) continue
+
+                    //волны юнитов
+
+                    let units1: Unit[] = []
+                    let units2: Unit[] = []
+                    let units3: Unit[] = []
+
+                    if (this.isNotNullOrNotUndefined(value[l].l1) && this.isNotNullOrNotUndefined(value[l].n1)) {
+                        units1.push(this.createEnemyUnit(value[l].l1, value[l].n1))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l2) && this.isNotNullOrNotUndefined(value[l].n2)) {
+                        units1.push(this.createEnemyUnit(value[l].l2, value[l].n2))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l3) && this.isNotNullOrNotUndefined(value[l].n3)) {
+                        units1.push(this.createEnemyUnit(value[l].l3, value[l].n3))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l4) && this.isNotNullOrNotUndefined(value[l].n4)) {
+                        units1.push(this.createEnemyUnit(value[l].l4, value[l].n4))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l5) && this.isNotNullOrNotUndefined(value[l].n5)) {
+                        units1.push(this.createEnemyUnit(value[l].l5, value[l].n5))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l6) && this.isNotNullOrNotUndefined(value[l].n6)) {
+                        units1.push(this.createEnemyUnit(value[l].l6, value[l].n6))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l7) && this.isNotNullOrNotUndefined(value[l].n7)) {
+                        units1.push(this.createEnemyUnit(value[l].l7, value[l].n7))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l8) && this.isNotNullOrNotUndefined(value[l].n8)) {
+                        units1.push(this.createEnemyUnit(value[l].l8, value[l].n8))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l9) && this.isNotNullOrNotUndefined(value[l].n9)) {
+                        units1.push(this.createEnemyUnit(value[l].l9, value[l].n9))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].l10) && this.isNotNullOrNotUndefined(value[l].n10)) {
+                        units2.push(this.createEnemyUnit(value[l].l10, value[l].n10))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l11) && this.isNotNullOrNotUndefined(value[l].n11)) {
+                        units2.push(this.createEnemyUnit(value[l].l11, value[l].n11))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l12) && this.isNotNullOrNotUndefined(value[l].n12)) {
+                        units2.push(this.createEnemyUnit(value[l].l12, value[l].n12))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l13) && this.isNotNullOrNotUndefined(value[l].n13)) {
+                        units2.push(this.createEnemyUnit(value[l].l13, value[l].n13))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l14) && this.isNotNullOrNotUndefined(value[l].n14)) {
+                        units2.push(this.createEnemyUnit(value[l].l14, value[l].n14))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l15) && this.isNotNullOrNotUndefined(value[l].n15)) {
+                        units2.push(this.createEnemyUnit(value[l].l15, value[l].n15))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l16) && this.isNotNullOrNotUndefined(value[l].n16)) {
+                        units2.push(this.createEnemyUnit(value[l].l16, value[l].n16))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l17) && this.isNotNullOrNotUndefined(value[l].n17)) {
+                        units2.push(this.createEnemyUnit(value[l].l17, value[l].n17))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l18) && this.isNotNullOrNotUndefined(value[l].n18)) {
+                        units2.push(this.createEnemyUnit(value[l].l18, value[l].n18))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].l19) && this.isNotNullOrNotUndefined(value[l].n19)) {
+                        units3.push(this.createEnemyUnit(value[l].l19, value[l].n19))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l20) && this.isNotNullOrNotUndefined(value[l].n20)) {
+                        units3.push(this.createEnemyUnit(value[l].l20, value[l].n20))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l21) && this.isNotNullOrNotUndefined(value[l].n21)) {
+                        units3.push(this.createEnemyUnit(value[l].l21, value[l].n21))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l22) && this.isNotNullOrNotUndefined(value[l].n22)) {
+                        units3.push(this.createEnemyUnit(value[l].l22, value[l].n22))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l23) && this.isNotNullOrNotUndefined(value[l].n23)) {
+                        units3.push(this.createEnemyUnit(value[l].l23, value[l].n23))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l24) && this.isNotNullOrNotUndefined(value[l].n24)) {
+                        units3.push(this.createEnemyUnit(value[l].l24, value[l].n24))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l25) && this.isNotNullOrNotUndefined(value[l].n25)) {
+                        units3.push(this.createEnemyUnit(value[l].l25, value[l].n25))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l26) && this.isNotNullOrNotUndefined(value[l].n26)) {
+                        units3.push(this.createEnemyUnit(value[l].l26, value[l].n26))
+                    }
+                    if (this.isNotNullOrNotUndefined(value[l].l27) && this.isNotNullOrNotUndefined(value[l].n27)) {
+                        units3.push(this.createEnemyUnit(value[l].l27, value[l].n27))
+                    }
+
+                    //награды
+
+                    let reward: TaskReward[] = []
+
+                    if (this.isNotNullOrNotUndefined(value[l].b)) {
+                        reward.push(new TaskReward(TypesItems.BUNKER, value[l].b))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].t)) {
+                        reward.push(new TaskReward(TypesItems.TREASURE, value[l].t))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].tr)) {
+                        reward.push(new TaskReward(TypesItems.TRASH, value[l].tr))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].mani)) {
+                        reward.push(new TaskReward(TypesItems.MANIPULATOR, value[l].mani))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].main)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_COMMAND_POST, value[l].main))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].msv)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].msv))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].mvmf)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_MARINE, value[l].mvmf))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].mvvs)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].mvvs))
+                    }
+
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].cob)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_BARRACK_AIR, value[l].cob))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].cvb)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_BARRACK_MARINE, value[l].cvb))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].cab)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_BARRACK_AIR, value[l].cab))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].cm)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_GOLD_MINE, value[l].cm))
+                    }
+
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].mob)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].mob))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].mvb)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_MARINE, value[l].mvb))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].mab)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].mab))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].mm)) {
+                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_GOLD_MINE, value[l].mm))
+                    }
+
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].bw)) {
+                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_WHITE, value[l].bw))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].bg)) {
+                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_GREEN, value[l].bg))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].bv)) {
+                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_PURPLE, value[l].bv))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].bb)) {
+                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_BLUE, value[l].bb))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].fb)) {
+                        reward.push(new TaskReward(TypesItems.FRAGMENT_BLUE, value[l].fb))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].ph)) {
+                        reward.push(new TaskReward(TypesItems.TICKET_PREMIUM, value[l].ph))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].pe)) {
+                        reward.push(new TaskReward(TypesItems.TICKET_ELITE, value[l].pe))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].rh)) {
+                        reward.push(new TaskReward(TypesItems.TICKET_NORMAL, value[l].rh))
+                    }
+
+
+                    if (this.isNotNullOrNotUndefined(value[l].ct)) {
+                        reward.push(new TaskReward(TypesItems.TECHNICAL_CHEST, value[l].ct))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].cc)) {
+                        reward.push(new TaskReward(TypesItems.COMPONENTS_CHEST, value[l].cc))
+                    }
+
+                    if (this.isNotNullOrNotUndefined(value[l].g)) {
+                        reward.push(new TaskReward(TypesItems.GEMS, value[l].g))
+                    }
+
+                    MapEnemyController.addEnemyCommand(new MapEnemyBattle(value[l].n, units1, units2, units3, value[l].p, reward))
+                }
+
+            }
         }
+    }
+
+    isNotNullOrNotUndefined(value: any) {
+        if (value == undefined) return false
+        if (value == null) return false
+        return true
+    }
+
+    private createEnemyUnit(level: number, quantity: number): Unit {
+        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, level)
+
+        return new Unit(config.hp, config.hp, config.damage, 6666, config.level, quantity, config.attackType, 'Это была ловушка', config.type)
     }
 
     initHeroLevel() {

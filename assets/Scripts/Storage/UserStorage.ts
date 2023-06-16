@@ -31,12 +31,6 @@ export class UserStorage extends Component {
     public permission: string;
 
     @property({ type: CCString })
-    public zoneId: string;
-
-    @property({ type: CCString })
-    public chunk: string;
-
-    @property({ type: CCString })
     public serverTime: number; //временно в этом сторадже
 
     @property({ type: CCObject })

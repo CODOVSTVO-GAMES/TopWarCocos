@@ -28,7 +28,8 @@ import { ModalRadarTaskInterface } from './Modals/ModalRadarTask/ModalRadarTaskI
 import { RadarStorage } from '../Storage/RadarStorage';
 import { ModalRadarRewardInterface } from './Modals/ModalRadarReward/ModalRadarRewardInterface';
 import { ModalRadarRewardLogic } from './Modals/ModalRadarReward/ModalRadarRewardLogic';
-import { RadarTask } from '../Structures/RadarTask';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { SceneNames } from '../Static/SceneNames';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -117,6 +118,9 @@ export class SecondaryInterface extends Component {
     @property({ type: Node })
     public switch: Node;
 
+    @property({ type: Node })
+    public spatialMine: Node;
+
     public listOpeningFirstLayoutModals: Array<QueueItem> = [];
 
     public listOpeningSeconLayoutdModals: Array<QueueItem> = [];
@@ -135,6 +139,10 @@ export class SecondaryInterface extends Component {
 
     start() {
         this.closeAllModals();
+    }
+
+    redirectToGlobalMap() {
+        RedirectionToScene.redirect(SceneNames.GLOBAL_MAP);
     }
 
     openFirstModal(type: string, data?: {}) {
@@ -158,14 +166,14 @@ export class SecondaryInterface extends Component {
     queueFirstModals() {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
-            // try {
+            try {
             if (this.listOpeningFirstLayoutModals.length > 0) {
                 this.openModal(this.listOpeningFirstLayoutModals[0]);
                 this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
                 this.listOpeningFirstLayoutModals.splice(0, 1);
             }
-            // }
-            // catch { console.error("Ащибка в очереди"); clearInterval(interval); }
+            }
+            catch { console.error("Ащибка в очереди"); clearInterval(interval); }
         }, 50);
         this.workQueueFirstLayout = false;
     }
@@ -243,12 +251,25 @@ export class SecondaryInterface extends Component {
             this.firstBackgraund.active = true;
             this.commandPost.active = true;
         }
-        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST_0) {
+        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost0.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
-        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST_1) {
+        else if (
+            item.modalName == TypesModals.UPGRATE_REPAIR_SHOP ||
+            item.modalName == TypesModals.UPGRATE_MERGE_GOLD_MINE ||
+            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_AIR ||
+            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_MARINE ||
+            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND ||
+            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_AIR ||
+            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_MARINE ||
+            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND ||
+            item.modalName == TypesModals.UPGRATE_BUILD_GOLD_MINE ||
+            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_AIR ||
+            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_MARINE ||
+            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+        ) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost1.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
@@ -270,7 +291,7 @@ export class SecondaryInterface extends Component {
             this.radar.active = true;
         }
         else if (item.modalName == TypesModals.RADAR_TASK_INFO) {
-            ModalRadarTaskInterface.instance.updateInterface(item.data["task"], 0);
+            ModalRadarTaskInterface.instance.updateInterface(item.data["task"]);
             this.secondBackgraund.active = true;
             this.radarTaskInfo.active = true;
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
@@ -319,6 +340,11 @@ export class SecondaryInterface extends Component {
             this.firstBackgraund.active = true;
             this.switch.active = true;
         }
+        else if (item.modalName == TypesModals.SPATIAL_MINE) {
+
+            this.firstBackgraund.active = true;
+            this.spatialMine.active = true;
+        }
     }
 
     openProfile() { this.openFirstModal(TypesModals.PROFILE); }
@@ -362,6 +388,8 @@ export class SecondaryInterface extends Component {
     openQuestion() { this.openFirstModal(TypesModals.QUESTION); }
 
     openSwith() { this.openFirstModal(TypesModals.SWITCH); }
+
+    openSpatialMine() { this.openFirstModal(TypesModals.SPATIAL_MINE); }
 
     closeFirstLayoutModal() {
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
@@ -409,6 +437,9 @@ export class SecondaryInterface extends Component {
         else if (this.activeFirstLayoutModal == TypesModals.BACKPACK) {
             this.backpack.active = false;
         }
+        else if (this.activeFirstLayoutModal == TypesModals.SPATIAL_MINE) {
+            this.spatialMine.active = false;
+        }
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
             this.activeFirstLayoutModal = "";
         }
@@ -416,11 +447,24 @@ export class SecondaryInterface extends Component {
 
     closeSecondLayoutModal() {
         setTimeout(() => this.secondBackgraund.active = false, 85);
-        if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST_0) {
+        if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST) {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost0.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST_1) {
+        else if (
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_REPAIR_SHOP ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_GOLD_MINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_AIR ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_MARINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_AIR ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_MARINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_GOLD_MINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_AIR ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_MARINE ||
+            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+        ) {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost1.active = false, 85);
         }
@@ -467,6 +511,7 @@ export class SecondaryInterface extends Component {
         this.bombDisposal.active = false;
         this.question.active = false;
         this.switch.active = false;
+        this.spatialMine.active = false;
         this.activeFirstLayoutModal = "";
         this.activeSecondLayoutModal = "";
     }

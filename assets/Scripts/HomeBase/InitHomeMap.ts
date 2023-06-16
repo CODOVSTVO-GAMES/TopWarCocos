@@ -2,6 +2,8 @@ import { _decorator, Component, Node, Prefab, Sprite, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { SpawnObjects } from '../SpawnObjects';
+import { ControllerAutocombineStorage } from '../Storage/Controllers/ControllerAutocombineStorage';
+import { HighlightHomeMap } from './HighlightHomeMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('InitHomeMap')
@@ -52,6 +54,7 @@ export class InitHomeMap extends Component {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             ControllerHomeMapStorage.setSpriteCoord(ControllerHomeMapStorage.getCoord(i).getComponent(Sprite), i);
         }
+        // HighlightHomeMap.Test();
     }
 }
 
