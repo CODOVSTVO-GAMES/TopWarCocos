@@ -40,7 +40,7 @@ export class HighlightHomeMap {
 
         for (let i = 0; i < arrayRegionObject.length; i++) {
             if (indexObject - arrayRegionObject[i] < 0 || indexObject - arrayRegionObject[i] > 1999) continue;
-            if (IndexesMap.indexesMap[indexObject - arrayRegionObject[i]].typeCoord == location) {
+            if (IndexesMap.indexesMap[indexObject - arrayRegionObject[i]].location == location) {
                 if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayRegionObject[i]) == null) {
                     this.renderCoordFree(indexObject - arrayRegionObject[i]);
                 }
@@ -63,7 +63,7 @@ export class HighlightHomeMap {
             let tempIndex = indexObject - arrayObject[i];
             if (tempIndex < 0) continue;
             if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
-                if (IndexesMap.indexesMap[tempIndex].typeCoord == location) {
+                if (IndexesMap.indexesMap[tempIndex].location == location) {
                     this.renderCoordSelect(tempIndex);
                 }
                 else {
@@ -72,7 +72,7 @@ export class HighlightHomeMap {
             }
             else {
                 if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
-                    if (IndexesMap.indexesMap[tempIndex].typeCoord == location) {
+                    if (IndexesMap.indexesMap[tempIndex].location == location) {
                         this.renderCoordSelect(tempIndex);
                     }
                     else {

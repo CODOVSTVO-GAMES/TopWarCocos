@@ -2,7 +2,6 @@ import { _decorator, instantiate, Vec3 } from 'cc';
 import { PrefabsStorage } from './Storage/PrefabsStorage';
 import { ObjectParameters } from './ObjectParameters';
 import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
-import { IndexesMap } from './Static/IndexesMap';
 import { TypesObjects } from './Static/TypesObjects';
 import { TypesLocation } from './Static/TypesLocation';
 import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
@@ -15,13 +14,16 @@ export class SpawnObjects {
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
             if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;
+
             let location: string;
+
             if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.BARRACKS_MARINE || ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
                 location = TypesLocation.WATER;
             }
             else {
                 location = TypesLocation.EARTH;
             }
+
             this.spawnObjectsPos(
                 ControllerHomeMapStorage.getObjectParameter(i).type,
                 location,
@@ -37,6 +39,20 @@ export class SpawnObjects {
         ControllerHomeMapStorage.setParent(object, index);
         objectParameter.type = type;
         objectParameter.location = location;
+
+        if (type == TypesObjects.TROOP_OVERLAND) {
+            objectParameter.sizes = "1x1";
+        }
+        else if (type == TypesObjects.TROOP_MARINE) {
+            objectParameter.sizes = "3x2";
+        }
+        else if (type == TypesObjects.COMMAND_POST) {
+            objectParameter.sizes = "3x3";
+        }
+        else {
+            objectParameter.sizes = "2x2";
+        }
+
         objectParameter.level = level;
         objectParameter.index = index;
         ControllerHomeMapStorage.setObjectParameter(objectParameter, type, index);
@@ -60,50 +76,6 @@ export class SpawnObjects {
                         check = true;
                         break;
                     }
-                    try {
-                        if (IndexesMap.indexesMap[i - arrayIndexes[j]].typeCoord != location) {
-                            check = true;
-                            break;
-                        }
-                        if (
-                            type == TypesObjects.TROOP_AIR ||
-                            type == TypesObjects.BARRACKS_AIR ||
-                            type == TypesObjects.BARRACKS_MARINE ||
-                            type == TypesObjects.BARRACKS_OVERLAND ||
-                            type == TypesObjects.GOLD_MINE ||
-                            type == TypesObjects.BANK ||
-                            type == TypesObjects.AUTOCOMBINE ||
-                            type == TypesObjects.RADAR ||
-                            type == TypesObjects.TREASURES ||
-                            type == TypesObjects.MANIPULATOR ||
-                            type == TypesObjects.REPAIR_SHOP ||
-                            type == TypesObjects.LOBBY_WARS ||
-                            type == TypesObjects.WALL ||
-                            type == TypesObjects.BATTLE
-                        ) {
-                            if (IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject2x2 == false) {
-                                check = true;
-                                break;
-                            }
-                        }
-                        else if (type == TypesObjects.TROOP_MARINE) {
-                            if (IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject2x2 == false) {
-                                check = true;
-                                break;
-                            }
-                        }
-                        else if (type == TypesObjects.COMMAND_POST) {
-                            if (IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject3x3 == false) {
-                                check = true;
-                                break;
-                            }
-                        }
-                        if (!IndexesMap.indexesMap[i - arrayIndexes[j]].availableObject2x2) {
-                            check = true;
-                            break;
-                        }
-                    }
-                    catch { }
                 }
                 if (check == false) {
                     minDistance = currentDistance;

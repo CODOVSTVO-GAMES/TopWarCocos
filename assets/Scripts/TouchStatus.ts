@@ -10,5 +10,6 @@ export class TouchStatus extends Component {
 
     onEnable() {
         TouchStatus.instance = this;
+        console.log(151 / 51);
     }
 }
