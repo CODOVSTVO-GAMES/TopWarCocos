@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "TroopOwn",
+    "_name": "Troop",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "TroopOwn",
+    "_name": "Troop",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -573,6 +573,10 @@
       {
         "__uuid__": "7d803f72-f95e-43d0-9c6a-08004ed866f9",
         "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "e7de0046-2c07-4ad6-a8a3-486804268716",
+        "__expectedType__": "cc.AnimationClip"
       }
     ],
     "_defaultClip": {
@@ -784,7 +788,7 @@
     },
     "component": "",
     "_componentId": "0e44966PatEdZ7QY+/5RTw7",
-    "handler": "log",
+    "handler": "clickTroop",
     "customEventData": ""
   },
   {

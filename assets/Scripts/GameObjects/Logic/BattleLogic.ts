@@ -15,7 +15,7 @@ export class BattleLogic extends Component {
     public click() {
         ControllerTroopStorage.setTroopStorage();
         RedirectionToScene.redirect(SceneNames.BATTLE);
-        ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
-        this.node.destroy();
+        // ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+        // this.node.destroy();
     }
 }

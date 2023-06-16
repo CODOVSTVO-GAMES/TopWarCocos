@@ -22,8 +22,8 @@ export class CharacterSelection extends Component {
     }
 
     start() {
-        this.saveRenderCharacter(0);
-        this.saveRenderCharacter(1);
+        // this.saveRenderCharacter(0);
+        // this.saveRenderCharacter(1);
     }
 
     randomCharacter(event, customEventData) {
