@@ -3,6 +3,7 @@ import { TouchStatus } from '../TouchStatus';
 import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
 import { ZoomCamera } from './ZoomCamera';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
@@ -44,8 +45,12 @@ export class MovingCamera extends Component {
     touchStart() {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
-        ControllerHomeMapStorage.putSelectObject();
-        SecondaryInterface.instance.closeFirstLayoutModal();
+        ControllerHomeMapStorage.putSelectObject()
+        if (RedirectionToScene.getSceneName() != 'GlobalMap') {
+            SecondaryInterface.instance.closeFirstLayoutModal();
+        }
+
+
 
         this.isMove = true;
         this.xPos = this.object.position.x;

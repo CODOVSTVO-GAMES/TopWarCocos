@@ -24,7 +24,7 @@ export class RedirectionToScene {
     }
 
     static getSceneName() {
-        console.log(director.getScene().name)
+        return director.getScene().name
     }
 }
 

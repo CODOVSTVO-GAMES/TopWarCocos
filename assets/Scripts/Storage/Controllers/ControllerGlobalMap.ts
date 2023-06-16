@@ -38,6 +38,7 @@ export class ControllerGlobalMap {
 
     static buildingsHandler(buildings: object[]) {
         for (let i = 0; i < buildings.length; i++) {
+            console.log(buildings[i])
             const id = buildings[i]['id']
             const type = buildings[i]['type']
             const x = buildings[i]['x']
@@ -49,7 +50,7 @@ export class ControllerGlobalMap {
                 GlobalMapStorage.instance.yBaceCoord = y
             }
         }
-        console.log('проверено обьектов: ' + GlobalMapStorage.instance.buildings.length)
+        console.log('Обьектов в массиве карты: ' + GlobalMapStorage.instance.buildings.length)
     }
 
     static getBuildings(): Building[] {
@@ -58,13 +59,21 @@ export class ControllerGlobalMap {
 
     static addBuildings(arr: Building[]) {
         for (let a = 0; a < arr.length; a++) {
-            for (let l = 0; l < GlobalMapStorage.instance.buildings.length; l++) {
-                if (arr[a].id == GlobalMapStorage.instance.buildings[l].id) {
-                    //абдейтнуть обьект
-                    continue
-                }
+            if (this.isObjectExists(arr[a])) {
+                //обновляем обьект
+            } else {
+                //добавляем обьект
+                GlobalMapStorage.instance.buildings.push(arr[a])
             }
-            GlobalMapStorage.instance.buildings.push(arr[a])
         }
+    }
+
+    static isObjectExists(obj: Building) {
+        for (let l = 0; l < GlobalMapStorage.instance.buildings.length; l++) {
+            if (obj.id == GlobalMapStorage.instance.buildings[l].id) {
+                return true
+            }
+        }
+        return false
     }
 }

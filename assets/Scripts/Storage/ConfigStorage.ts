@@ -349,7 +349,7 @@ export class ConfigStorage extends Component {
         }
     }
 
-    isNotNullOrNotUndefined(value: any) {
+    private isNotNullOrNotUndefined(value: any) {
         if (value == undefined) return false
         if (value == null) return false
         return true

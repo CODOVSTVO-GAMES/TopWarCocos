@@ -15,6 +15,7 @@ import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInv
 import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
 import { PaymentsService } from './services/PaymentsService';
 import { ControllerAutocombineStorage } from '../Storage/Controllers/ControllerAutocombineStorage';
+import { MapService } from './services/MapService';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -27,6 +28,8 @@ export class NetworkClient extends Component {
         this.schedule(SessionService.updateSessionData, 60);
         this.schedule(this.sendEvents, 5);
         this.schedule(this.sendData, 4);
+
+        setTimeout(MapService.getEnemy, 7000)
     }
 
     private sendData() {

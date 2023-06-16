@@ -40,6 +40,9 @@ export class GlobalMapTouch extends Component {
         let coordinates = ControllerGlobalMap.getCoordinatesBuilding(building)
 
         let node = instantiate(this.image)
+        if (building.type == 'base') {
+            node.setScale(new Vec3(2, 2))
+        }
         node.setParent(this.touchObject)
         node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
         console.log('заспавнен обьект в координатах: ' + coordinates.x + '   ' + coordinates.y)
