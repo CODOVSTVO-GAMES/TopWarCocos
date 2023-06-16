@@ -16,6 +16,10 @@ export class WireCutInterface extends Component {
         WireCutInterface.instance = this;
     }
 
+    /**
+     * резка проводов
+     */
+
     renderWire() {
         this.wire.spriteFrame = this.wireSprites[0];
     }

@@ -34,6 +34,10 @@ export class ModalCharacterGridInterface extends Component {
         ModalCharacterGridInterface.instance = this;
     }
 
+    /**
+     * при открытии модалки со всеми персонажами рендерятся персонажи из СharacterStorage
+     */
+
     renderCharacters() {
         this.sortedCharacters();
         for (let i = 0; i < this.charactersRendered.length; i++) {

@@ -6,6 +6,10 @@ const { ccclass, property } = _decorator;
 @ccclass('ModalCharacterInfoLogic')
 export class ModalCharacterInfoLogic extends Component {
 
+    /**
+     * открытие вкладки нажатием кнопки
+     */
+
     modalParametersOpen() {
         SecondaryInterface.instance.openCharacterPumping({ type: TypesModalPumping.PARAMETERS });
     }

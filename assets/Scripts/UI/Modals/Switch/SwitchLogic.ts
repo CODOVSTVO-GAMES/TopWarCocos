@@ -31,6 +31,15 @@ export class SwitchLogic extends Component {
         this.handle.off(Input.EventType.TOUCH_END, this.touchEnd, this);
         this.handle.off(Input.EventType.TOUCH_CANCEL, this.touchEnd, this);
     }
+    /**
+     * рычаг мини игра
+     */
+
+    /**
+     * при открытии модалки значения приводятся к стартовым занчениям
+     * 
+     * 
+     */
 
     renderModal() {
         this.handle.position = new Vec3(150, 125, 0);

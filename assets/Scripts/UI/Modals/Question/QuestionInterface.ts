@@ -15,6 +15,9 @@ export class QuestionInterface extends Component {
     onLoad() {
         QuestionInterface.instance = this;
     }
+    /**
+     * выбор ответа мини игра
+     */
 
     updateInterface(text: string, textButtons: string[]) {
         this.text.string = text;

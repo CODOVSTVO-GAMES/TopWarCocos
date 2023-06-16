@@ -497,6 +497,9 @@ export class Battle extends Component {
     }
 
     characterSum(): CharacterInfo {
+        /**
+         * эта функция суммирует все характеристики двух персонажей в одного для простоты дальнейшего буста юнитов
+         */
         let exp = 0;
         let stars = 0;
         let attack = 0;

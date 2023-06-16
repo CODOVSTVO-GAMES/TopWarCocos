@@ -45,6 +45,10 @@ export class ModalCharacterInfoIntarface extends Component {
         ModalCharacterInfoIntarface.instance = this;
     }
 
+    /**
+     * рендер полей в модалке
+     */
+
     renderCharacter(index: number): boolean {
         let character = CharactersStorage.instance.characters[index];
         let chatacterLvlExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
