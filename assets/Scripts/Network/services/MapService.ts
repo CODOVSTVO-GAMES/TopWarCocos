@@ -24,7 +24,7 @@ export class MapService {
         let config = ControllerConfigStorage.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
 
-        ClientService.get('map/enemy', new MapDTO(ControllerUserStorage.getAccountId(), ControllerGlobalMap.getZone(), ControllerGlobalMap.getXBace(), ControllerGlobalMap.getYBace(), ControllerGameStorage.getLevel(), 100), MapService.parseDataStorageGetResponce);
+        ClientService.get('map/enemy', new MapDTO(ControllerUserStorage.getAccountId(), ControllerGlobalMap.getZone(), ControllerGlobalMap.getXBace(), ControllerGlobalMap.getYBace(), ControllerGameStorage.getLevel(), battlesNumber), MapService.parseDataStorageGetResponce);
     }
 
 }
