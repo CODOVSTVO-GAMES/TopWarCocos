@@ -1,8 +1,8 @@
 import { _decorator, Component } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
-import { GameStorageController } from '../../Controllers/GameStorageController';
-import { ConfigStorageController } from '../../Controllers/ConfigStorageController';
-import { AutocombineStorageController } from '../../Controllers/AutocombineStorageController';
+import { GameStorageController } from '../../Controllers/StorageControllers/GameStorageController';
+import { ConfigStorageController } from '../../Controllers/StorageControllers/ConfigStorageController';
+import { AutocombineStorageController } from '../../Controllers/StorageControllers/AutocombineStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('GoldMineLogic')

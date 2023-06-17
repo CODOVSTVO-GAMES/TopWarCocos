@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
-import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
+import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterInfoIntarface')

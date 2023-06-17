@@ -1,5 +1,5 @@
 import { _decorator, Component, Label } from 'cc';
-import { GameStorageController } from '../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalPowerInterface')

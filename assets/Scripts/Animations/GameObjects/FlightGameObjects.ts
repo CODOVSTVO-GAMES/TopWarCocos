@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Vec3 } from 'cc';
-import { HomeMapStorageController } from '../../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../../Controllers/StorageControllers/HomeMapStorageController';
 import { HomeMapStorage } from '../../Storage/HomeMapStorage';
 const { ccclass, property } = _decorator;
 

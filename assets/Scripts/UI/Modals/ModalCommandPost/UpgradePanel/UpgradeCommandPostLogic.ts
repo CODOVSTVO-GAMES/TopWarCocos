@@ -1,11 +1,11 @@
 import { _decorator, Component } from 'cc';
-import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
+import { CommandPostStorageController } from '../../../../Controllers/StorageControllers/CommandPostStorageController';
 import { UpgradeCommandPostInerface } from './UpgradeCommandPostInerface';
-import { GameStorageController } from '../../../../Controllers/GameStorageController';
-import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
-import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
+import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
+import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
+import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
-import { HomeMapStorageController } from '../../../../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../../../../Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from '../../../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 

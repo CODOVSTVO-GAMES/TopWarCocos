@@ -1,6 +1,6 @@
 import { _decorator, director } from 'cc';
 import { SceneNames } from '../Static/SceneNames';
-import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 
 export class RedirectionToScene {

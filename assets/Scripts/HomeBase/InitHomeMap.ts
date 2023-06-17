@@ -1,7 +1,7 @@
 import { _decorator, Component, Node, Prefab, Sprite, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
-import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
-import { SpawnObjects } from '../SpawnObjects';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
+import { SpawnObjectsOnHomeMap } from '../Logic/SpawnObjectsOnHomeMap';
 const { ccclass, property } = _decorator;
 
 @ccclass('InitHomeMap')
@@ -19,7 +19,7 @@ export class InitHomeMap extends Component {
     onLoad() {
         this.fillParentObject();
         this.fillArrayCoords();
-        SpawnObjects.spawnObjectsFromStorage();
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapFromStorage();
     }
 
     fillParentObject() {

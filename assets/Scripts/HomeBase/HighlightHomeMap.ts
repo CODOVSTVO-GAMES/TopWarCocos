@@ -1,6 +1,6 @@
 import { _decorator, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
-import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { IndexesMap } from '../Static/IndexesMap';
 

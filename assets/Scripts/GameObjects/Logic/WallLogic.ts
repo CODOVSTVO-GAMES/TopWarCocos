@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { SpawnObjects } from '../../SpawnObjects';
+import { SpawnObjectsOnHomeMap } from '../../Logic/SpawnObjectsOnHomeMap';
 import { ObjectParameters } from '../../ObjectParameters';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { TypesLocation } from '../../Static/TypesLocation';
@@ -12,7 +12,7 @@ export class WallLogic extends Component {
     public objectParameters: ObjectParameters;
 
     public click() {
-        SpawnObjects.spawnObjectsPos(TypesObjects.BATTLE, TypesLocation.EARTH, 1, this.objectParameters.index);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(TypesObjects.BATTLE, TypesLocation.EARTH, 1, this.objectParameters.index);
         this.node.destroy();
     }
 }

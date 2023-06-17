@@ -2,14 +2,14 @@ import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
 import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
-import { HomeMapStorageController } from './Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from './Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
-import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
-import { CommandPostStorageController } from './Controllers/CommandPostStorageController';
+import { AutocombineStorageController } from './Controllers/StorageControllers/AutocombineStorageController';
+import { CommandPostStorageController } from './Controllers/StorageControllers/CommandPostStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -166,7 +166,7 @@ export class TouchObject extends Component {
                 }
             }
         }
- 
+
         if (quantityMatches > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
                 if (this.objectParameters.level < CommandPostStorageController.getLevelMergeGoldMine()) {

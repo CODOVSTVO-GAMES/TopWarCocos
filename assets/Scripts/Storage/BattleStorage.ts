@@ -1,7 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { Unit } from '../Structures/Unit';
 import { FreeUnit } from '../Structures/FreeUnit';
-import { CardTroopRender } from '../Battle/CardTroopRender';
 const { ccclass } = _decorator;
 
 @ccclass('BattleStorage')

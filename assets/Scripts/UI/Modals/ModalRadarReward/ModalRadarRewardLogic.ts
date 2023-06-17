@@ -1,8 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
-import { InventoryStorageController } from '../../../Controllers/InventoryStorageController';
+import { InventoryStorageController } from '../../../Controllers/StorageControllers/InventoryStorageController';
 import { TypesItems } from '../../../Static/TypesItems';
-import { GameStorageController } from '../../../Controllers/GameStorageController';
-import { RadarStorageController } from '../../../Controllers/RadarStorageController';
+import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
+import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
 import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
 import { RadarStorage } from '../../../Storage/RadarStorage';
 const { ccclass, property } = _decorator;

@@ -2,8 +2,8 @@ import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
-import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
-import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
+import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
+import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 

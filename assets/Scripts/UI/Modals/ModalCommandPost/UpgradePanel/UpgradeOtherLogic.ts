@@ -1,11 +1,11 @@
 import { _decorator, Component } from 'cc';
-import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
+import { CommandPostStorageController } from '../../../../Controllers/StorageControllers/CommandPostStorageController';
 import { UpgradeOtherInterface } from './UpgradeOtherInterface';
-import { GameStorageController } from '../../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
 import { ModalCommandPostInterface } from '../ModalCommandPostInterface';
-import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
+import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
 import { TypesObjects } from '../../../../Static/TypesObjects';
-import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
+import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 import { SecondaryInterface } from '../../../SecondaryInterface';
 import { TypesModals } from '../../../../Static/TypesModals';

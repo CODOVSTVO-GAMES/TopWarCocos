@@ -1,5 +1,5 @@
 import { _decorator, Component, Label, Node, v3 } from 'cc';
-import { GameStorageController } from '../Controllers/GameStorageController';
+import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;
 

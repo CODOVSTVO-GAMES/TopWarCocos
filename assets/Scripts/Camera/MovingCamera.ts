@@ -1,6 +1,6 @@
 import { _decorator, Component, Input, Vec3, Touch, Node, Camera, Vec2 } from 'cc';
 import { TouchStatus } from '../TouchStatus';
-import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { ZoomCamera } from './ZoomCamera';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { RedirectionToScene } from '../Other/RedirectionToScene';

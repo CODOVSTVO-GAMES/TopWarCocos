@@ -1,6 +1,6 @@
 import { _decorator, Component, Label } from 'cc';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
-import { AutocombineStorageController } from '../../../Controllers/AutocombineStorageController';
+import { AutocombineStorageController } from '../../../Controllers/StorageControllers/AutocombineStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalAutocombineInterface')

@@ -1,10 +1,10 @@
 import { _decorator, Component } from 'cc';
-import { SpawnObjects } from '../../../SpawnObjects';
+import { SpawnObjectsOnHomeMap } from '../../../Logic/SpawnObjectsOnHomeMap';
 import { TypesObjects } from '../../../Static/TypesObjects';
 import { TypesLocation } from '../../../Static/TypesLocation';
-import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
-import { GameStorageController } from '../../../Controllers/GameStorageController';
-import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
+import { CommandPostStorageController } from '../../../Controllers/StorageControllers/CommandPostStorageController';
+import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
+import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('ModalShopObjectLogic')
@@ -32,7 +32,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.EARTH;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjects.spawnObjectsNearby(typeObject, typeLocation, barrackLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 720);
     }
 
     private buyBarrackMarine() {
@@ -42,7 +42,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.WATER;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjects.spawnObjectsNearby(typeObject, typeLocation, barrackLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 720);
     }
 
     private buyBarrackAir() {
@@ -52,7 +52,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.EARTH;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjects.spawnObjectsNearby(typeObject, typeLocation, barrackLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 720);
     }
 
     private buyGoldMine() {
@@ -62,7 +62,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.EARTH;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjects.spawnObjectsNearby(TypesObjects.GOLD_MINE, typeLocation, mineLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.GOLD_MINE, typeLocation, mineLevel, 720);
     }
 
 }

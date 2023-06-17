@@ -1,4 +1,4 @@
-import { DialogueStorageController } from "../../../Controllers/DialogueStorageController";
+import { DialogueStorageController } from "../../../Controllers/StorageControllers/DialogueStorageController";
 import { RenderDIalog } from "./RenderDIalog";
 
 export class DIalogueLogic {

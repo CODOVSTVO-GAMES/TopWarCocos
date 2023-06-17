@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Node, Label, Sprite } from 'cc';
-import { InventoryStorageController } from '../../../Controllers/InventoryStorageController';
+import { InventoryStorageController } from '../../../Controllers/StorageControllers/InventoryStorageController';
 import { PrefabsStorage } from '../../../Storage/PrefabsStorage';
 import { ModalBackpackLogic } from './ModalBackpackLogic';
 import { ItemBackpack } from './ItemBackpack';

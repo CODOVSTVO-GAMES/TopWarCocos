@@ -1,8 +1,8 @@
 import { _decorator, Component } from 'cc';
 import { SecondaryInterface } from '../../UI/SecondaryInterface';
 import { TypesModals } from '../../Static/TypesModals';
-import { AutocombineStorageController } from '../../Controllers/AutocombineStorageController';
-import { GameStorageController } from '../../Controllers/GameStorageController';
+import { AutocombineStorageController } from '../../Controllers/StorageControllers/AutocombineStorageController';
+import { GameStorageController } from '../../Controllers/StorageControllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('AutocombineLogic')

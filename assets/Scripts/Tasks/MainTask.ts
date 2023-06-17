@@ -1,6 +1,6 @@
 import { TaskTypes } from "../Static/TaskTypes"
 import { TypesItems } from "../Static/TypesItems"
-import { TaskStorageController } from "../Controllers/TaskStorageController"
+import { TaskStorageController } from "../Controllers/StorageControllers/TaskStorageController"
 import { TaskReward } from "../Structures/TaskReward"
 
 export class MainTask {

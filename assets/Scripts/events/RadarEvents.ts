@@ -9,6 +9,11 @@ export class RadarEvents extends Component {
 
     }
 
+    public eventClickTask() {
+        // нажатие на задачу на карте
+
+    }
+
     public eventScanMap() {
         // сканировать карту
 
