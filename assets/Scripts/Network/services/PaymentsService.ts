@@ -1,10 +1,10 @@
 import { UserStorageController } from "../../Controllers/UserStorageController";
 import { Product } from "../../Structures/Product";
-import { ClientService } from "../other/ClientService";
+import { ServerApi } from "../other/ServerApi";
 
 export class PaymentsService {
     static getProducts() {
-        ClientService.get('payments/products', {}, this.parseProductsGetResponce)
+        ServerApi.get('payments/products', {}, this.parseProductsGetResponce)
     }
 
     static parseProductsGetResponce(data: any, isDone: boolean) {

@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController"
-import { ClientService } from "../other/ClientService"
+import { ServerApi } from "../other/ServerApi"
 import { DataStorageDTO } from "../DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../DTO/DataStorageResponseDTO"
 import { NetworkClient } from "../NetworkClient"
@@ -7,12 +7,12 @@ import { NetworkClient } from "../NetworkClient"
 export class DataStorageService {
 
     static saveData(data: object[]) {
-        ClientService.post('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), data), DataStorageService.parseDataStoragePostResponce);
+        ServerApi.post('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), data), DataStorageService.parseDataStoragePostResponce);
     }
 
     static getData(keys: Array<string>) {
         const strKeys = JSON.parse(JSON.stringify(keys));
-        ClientService.get('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce);
+        ServerApi.get('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce);
     }
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {

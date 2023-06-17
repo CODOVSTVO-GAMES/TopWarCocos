@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController"
-import { ClientService } from "../other/ClientService"
+import { ServerApi } from "../other/ServerApi"
 import { UserDTO } from "../DTO/UserDTO"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
 import { GlobalMapController } from "../../Controllers/GlobalMapController"
@@ -7,7 +7,7 @@ import { GlobalMapController } from "../../Controllers/GlobalMapController"
 export class UserService {
 
     static getUser(userId: string) {
-        ClientService.post('user', new UserDTO(UserStorageController.getUserId()), UserService.parseGetUserResponce)
+        ServerApi.post('user', new UserDTO(UserStorageController.getUserId()), UserService.parseGetUserResponce)
     }
 
     static parseGetUserResponce(data: any, isDone: boolean) {

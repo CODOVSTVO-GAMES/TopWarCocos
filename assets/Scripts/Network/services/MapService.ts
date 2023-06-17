@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController"
-import { ClientService } from "../other/ClientService"
+import { ServerApi } from "../other/ServerApi"
 import { MapDTO } from "../DTO/MapDTO"
 import { GlobalMapController } from "../../Controllers/GlobalMapController";
 import { GameStorageController } from "../../Controllers/GameStorageController";
@@ -9,7 +9,7 @@ import { ConfigStorageController } from "../../Controllers/ConfigStorageControll
 export class MapService {
 
     static getMap() {
-        ClientService.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapController.getZone(), GlobalMapController.getXBace(), GlobalMapController.getYBace(), GameStorageController.getLevel()), MapService.parseDataStorageGetResponce);
+        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapController.getZone(), GlobalMapController.getXBace(), GlobalMapController.getYBace(), GameStorageController.getLevel()), MapService.parseDataStorageGetResponce);
     }
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {
@@ -24,7 +24,7 @@ export class MapService {
         let config = ConfigStorageController.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
 
-        ClientService.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapController.getZone(), GlobalMapController.getXBace(), GlobalMapController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseDataStorageGetResponce);
+        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapController.getZone(), GlobalMapController.getXBace(), GlobalMapController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseDataStorageGetResponce);
     }
 
 }

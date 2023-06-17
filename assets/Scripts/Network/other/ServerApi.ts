@@ -6,7 +6,7 @@ import { ResponseDTO } from "../DTO/ResponseDTO";
 import { UserStorageController } from '../../Controllers/UserStorageController';
 import { ModalShopObjectLogic } from '../../UI/Modals/ModalShopObject/ModalShopObjectLogic';
 
-export class ClientService {
+export class ServerApi {
 
     static post(endpoint: string, data: object, func: Function) {
         const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), UserStorageController.getSessionHash(), UserStorageController.getSessionId())

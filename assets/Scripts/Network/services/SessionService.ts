@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController";
-import { ClientService } from "../other/ClientService";
+import { ServerApi } from "../other/ServerApi";
 import { SessionDataDTO } from "../DTO/SessionDataDTO";
 import { LoadingGame } from "../../LoadingGame/LoadingGame";
 
@@ -7,12 +7,12 @@ export class SessionService {
 
     static getStartSessionData() {
         const sessionDataDTO = new SessionDataDTO(UserStorageController.getAccountId(), UserStorageController.getSessionHash(), UserStorageController.getSessionId())
-        ClientService.post('session', sessionDataDTO, SessionService.parseGetSessionResponce);
+        ServerApi.post('session', sessionDataDTO, SessionService.parseGetSessionResponce);
     }
 
     static updateSessionData() {
         const sessionDataDTO = new SessionDataDTO(UserStorageController.getAccountId(), UserStorageController.getSessionHash(), UserStorageController.getSessionId())
-        ClientService.post('session', sessionDataDTO, SessionService.parseUpdateSessionResponce);
+        ServerApi.post('session', sessionDataDTO, SessionService.parseUpdateSessionResponce);
     }
 
     static parseUpdateSessionResponce(data: any, isDone: boolean) {
