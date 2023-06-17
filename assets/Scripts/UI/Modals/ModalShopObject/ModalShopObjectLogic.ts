@@ -2,9 +2,9 @@ import { _decorator, Component } from 'cc';
 import { SpawnObjects } from '../../../SpawnObjects';
 import { TypesObjects } from '../../../Static/TypesObjects';
 import { TypesLocation } from '../../../Static/TypesLocation';
-import { ControllerCommandPostStorage } from '../../../Storage/Controllers/ControllerCommandPostStorage';
-import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
-import { ControllerConfigStorage } from '../../../Storage/Controllers/ControllerConfigStorage';
+import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
+import { GameStorageController } from '../../../Controllers/GameStorageController';
+import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('ModalShopObjectLogic')
@@ -26,42 +26,42 @@ export class ModalShopObjectLogic extends Component {
     }
 
     private buyBarrackOverland() {
-        let barrackLevel = ControllerCommandPostStorage.getLevelBuildBarracksOverland();
+        let barrackLevel = CommandPostStorageController.getLevelBuildBarracksOverland();
         let typeObject = TypesObjects.BARRACKS_OVERLAND;
-        let price = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, barrackLevel);
+        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, barrackLevel);
         let typeLocation = TypesLocation.EARTH;
 
-        ControllerGameStorage.reduceCoins(price);
+        GameStorageController.reduceCoins(price);
         SpawnObjects.spawnObjectsNearby(typeObject, typeLocation, barrackLevel, 720);
     }
 
     private buyBarrackMarine() {
-        let barrackLevel = ControllerCommandPostStorage.getLevelBuildBarracksMarine();
+        let barrackLevel = CommandPostStorageController.getLevelBuildBarracksMarine();
         let typeObject = TypesObjects.BARRACKS_MARINE;
-        let price = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, barrackLevel);
+        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, barrackLevel);
         let typeLocation = TypesLocation.WATER;
 
-        ControllerGameStorage.reduceCoins(price);
+        GameStorageController.reduceCoins(price);
         SpawnObjects.spawnObjectsNearby(typeObject, typeLocation, barrackLevel, 720);
     }
 
     private buyBarrackAir() {
-        let barrackLevel = ControllerCommandPostStorage.getLevelBuildBarracksAir();
+        let barrackLevel = CommandPostStorageController.getLevelBuildBarracksAir();
         let typeObject = TypesObjects.BARRACKS_AIR;
-        let price = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, barrackLevel);
+        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, barrackLevel);
         let typeLocation = TypesLocation.EARTH;
 
-        ControllerGameStorage.reduceCoins(price);
+        GameStorageController.reduceCoins(price);
         SpawnObjects.spawnObjectsNearby(typeObject, typeLocation, barrackLevel, 720);
     }
 
     private buyGoldMine() {
-        let mineLevel = ControllerCommandPostStorage.getLevelBuildGoldMine();
+        let mineLevel = CommandPostStorageController.getLevelBuildGoldMine();
         let typeObject = TypesObjects.GOLD_MINE;
-        let price = ControllerConfigStorage.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, mineLevel);
+        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, mineLevel);
         let typeLocation = TypesLocation.EARTH;
 
-        ControllerGameStorage.reduceCoins(price);
+        GameStorageController.reduceCoins(price);
         SpawnObjects.spawnObjectsNearby(TypesObjects.GOLD_MINE, typeLocation, mineLevel, 720);
     }
 

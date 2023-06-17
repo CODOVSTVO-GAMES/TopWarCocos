@@ -1,6 +1,6 @@
 import { _decorator, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
-import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { IndexesMap } from '../Static/IndexesMap';
 
@@ -24,24 +24,24 @@ export class HighlightHomeMap {
     static openCell(type: string, location: string, level: number, pos: Vec3) {
         let minDistance = 1000000;
         let indexObject = 0;
-        let arrayObject = ControllerHomeMapStorage.getArrayObject(type);
-        let arrayRegionObject = ControllerHomeMapStorage.getArratRegionObject(type);
+        let arrayObject = HomeMapStorageController.getArrayObject(type);
+        let arrayRegionObject = HomeMapStorageController.getArratRegionObject(type);
 
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            let currentDistance = Vec3.distance(ControllerHomeMapStorage.getCoordWorldPosition(i), pos);
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            let currentDistance = Vec3.distance(HomeMapStorageController.getCoordWorldPosition(i), pos);
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = i;
                 if (minDistance < 42) break;
             }
         }
-        
+
         this.hideAllCoord();
 
         for (let i = 0; i < arrayRegionObject.length; i++) {
             if (indexObject - arrayRegionObject[i] < 0 || indexObject - arrayRegionObject[i] > 1999) continue;
             if (IndexesMap.indexesMap[indexObject - arrayRegionObject[i]].location == location) {
-                if (ControllerHomeMapStorage.getObjectParameter(indexObject - arrayRegionObject[i]) == null) {
+                if (HomeMapStorageController.getObjectParameter(indexObject - arrayRegionObject[i]) == null) {
                     this.renderCoordFree(indexObject - arrayRegionObject[i]);
                 }
                 else {
@@ -50,10 +50,10 @@ export class HighlightHomeMap {
             }
         }
 
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
-            if (ControllerHomeMapStorage.getObjectParameter(i).type == type) {
-                if (ControllerHomeMapStorage.getObjectParameter(i).level == level) {
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            if (HomeMapStorageController.getObjectParameter(i) == null) continue;
+            if (HomeMapStorageController.getObjectParameter(i).type == type) {
+                if (HomeMapStorageController.getObjectParameter(i).level == level) {
                     this.renderCoordHint(i);
                 }
             }
@@ -62,7 +62,7 @@ export class HighlightHomeMap {
         for (let i = 0; i < arrayObject.length; i++) {
             let tempIndex = indexObject - arrayObject[i];
             if (tempIndex < 0) continue;
-            if (ControllerHomeMapStorage.getObjectParameter(tempIndex) == null) {
+            if (HomeMapStorageController.getObjectParameter(tempIndex) == null) {
                 if (IndexesMap.indexesMap[tempIndex].location == location) {
                     this.renderCoordSelect(tempIndex);
                 }
@@ -71,7 +71,7 @@ export class HighlightHomeMap {
                 }
             }
             else {
-                if (ControllerHomeMapStorage.getObjectParameter(tempIndex).type == type) {
+                if (HomeMapStorageController.getObjectParameter(tempIndex).type == type) {
                     if (IndexesMap.indexesMap[tempIndex].location == location) {
                         this.renderCoordSelect(tempIndex);
                     }
@@ -94,34 +94,34 @@ export class HighlightHomeMap {
     }
 
     static hideCoord(index: number) {
-        if (ControllerHomeMapStorage.getMapSize() > index) {
+        if (HomeMapStorageController.getMapSize() > index) {
             HomeMapStorage.instance.spriteCoords[index].spriteFrame = null;
         }
     }
 
     static renderCoordFree(index: number) {
-        if (ControllerHomeMapStorage.getMapSize() > index) {
+        if (HomeMapStorageController.getMapSize() > index) {
             HomeMapStorage.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordFree");
             this.indexesActiveCooord.push(index);
         }
     }
 
     static renderCoordSelect(index: number) {
-        if (ControllerHomeMapStorage.getMapSize() > index) {
+        if (HomeMapStorageController.getMapSize() > index) {
             HomeMapStorage.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordSelect");
             this.indexesActiveCooord.push(index);
         }
     }
 
     static renderCoordBlock(index: number) {
-        if (ControllerHomeMapStorage.getMapSize() > index) {
+        if (HomeMapStorageController.getMapSize() > index) {
             HomeMapStorage.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordBlock");
             this.indexesActiveCooord.push(index);
         }
     }
 
     static renderCoordHint(index: number) {
-        if (ControllerHomeMapStorage.getMapSize() > index) {
+        if (HomeMapStorageController.getMapSize() > index) {
             HomeMapStorage.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordHint");
             this.indexesActiveCooord.push(index);
         }

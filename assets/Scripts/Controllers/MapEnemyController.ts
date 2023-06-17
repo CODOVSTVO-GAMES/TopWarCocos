@@ -1,5 +1,5 @@
-import { MapEnemyBattle } from "../../Structures/MapEnemyUnits";
-import { MapEnemyStorage } from "../MapEnemyStorage";
+import { MapEnemyBattle } from "../Structures/MapEnemyUnits";
+import { MapEnemyStorage } from "../Storage/MapEnemyStorage";
 
 export class MapEnemyController {
 

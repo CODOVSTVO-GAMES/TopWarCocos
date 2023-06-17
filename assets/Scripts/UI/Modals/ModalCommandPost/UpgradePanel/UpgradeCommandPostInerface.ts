@@ -1,11 +1,11 @@
 import { _decorator, Component, Node, Label, Sprite } from 'cc';
 import { SpriteStorage } from '../../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../../Static/TypesObjects';
-import { ControllerCommandPostStorage } from '../../../../Storage/Controllers/ControllerCommandPostStorage';
-import { ControllerGameStorage } from '../../../../Storage/Controllers/ControllerGameStorage';
-import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
+import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
+import { GameStorageController } from '../../../../Controllers/GameStorageController';
+import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
 import { ConvertLargeNumber } from '../../../../Other/ConvertLargeNumber';
-import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
@@ -77,18 +77,18 @@ export class UpgradeCommandPostInerface extends Component {
 
     updateInterface() {
         let mainTitle = "Простой командный пункт";
-        let actualLevel = "Ур. " + ControllerCommandPostStorage.getLevelCommandPost();
-        let nextLevelObject = "Ур. " + (ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
-        let level = ControllerGameStorage.getLevel().toString();
-        let receivedExperience = "+" + ConvertLargeNumber.convert(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1));
-        let actualPower = ControllerGameStorage.getPower().toString();
-        let receivedPower = "+" + ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1).toString();
-        let actualAttactBonus = ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()).toString();
-        let receivedAttactBonus = "+" + (ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1) - ControllerConfigStorage.getAttackBonusMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost())).toString();
-        let requirementCoins = ConvertLargeNumber.convert(ControllerGameStorage.getCoins()) + "/" + ConvertLargeNumber.convert(ControllerConfigStorage.getPriceUpdateMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1));
-        let requirementItems = ControllerInventoryStorage.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ControllerConfigStorage.getImprivementResourceNumberMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost() + 1));
-        let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, ControllerCommandPostStorage.getLevelCommandPost());
-        let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, (ControllerCommandPostStorage.getLevelCommandPost() + 1));
+        let actualLevel = "Ур. " + CommandPostStorageController.getLevelCommandPost();
+        let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelCommandPost() + 1).toString();
+        let level = GameStorageController.getLevel().toString();
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
+        let actualPower = GameStorageController.getPower().toString();
+        let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1).toString();
+        let actualAttactBonus = ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()).toString();
+        let receivedAttactBonus = "+" + (ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1) - ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost())).toString();
+        let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
+        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
+        let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, CommandPostStorageController.getLevelCommandPost());
+        let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, (CommandPostStorageController.getLevelCommandPost() + 1));
 
 
         this.mainTitle.string = mainTitle;

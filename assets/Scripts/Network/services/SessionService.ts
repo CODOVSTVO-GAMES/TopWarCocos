@@ -1,4 +1,4 @@
-import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserStorage";
+import { UserStorageController } from "../../Controllers/UserStorageController";
 import { ClientService } from "../other/ClientService";
 import { SessionDataDTO } from "../DTO/SessionDataDTO";
 import { LoadingGame } from "../../LoadingGame/LoadingGame";
@@ -6,34 +6,34 @@ import { LoadingGame } from "../../LoadingGame/LoadingGame";
 export class SessionService {
 
     static getStartSessionData() {
-        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getAccountId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
+        const sessionDataDTO = new SessionDataDTO(UserStorageController.getAccountId(), UserStorageController.getSessionHash(), UserStorageController.getSessionId())
         ClientService.post('session', sessionDataDTO, SessionService.parseGetSessionResponce);
     }
 
     static updateSessionData() {
-        const sessionDataDTO = new SessionDataDTO(ControllerUserStorage.getAccountId(), ControllerUserStorage.getSessionHash(), ControllerUserStorage.getSessionId())
+        const sessionDataDTO = new SessionDataDTO(UserStorageController.getAccountId(), UserStorageController.getSessionHash(), UserStorageController.getSessionId())
         ClientService.post('session', sessionDataDTO, SessionService.parseUpdateSessionResponce);
     }
 
     static parseUpdateSessionResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("update session error")
         const sessionDataDTO = SessionService.parseResponse(data)
-        ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
-        ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
-        ControllerUserStorage.setServerTime(sessionDataDTO.serverTime)
+        UserStorageController.setSessionHash(sessionDataDTO.sessionHash)
+        UserStorageController.setSessionId(sessionDataDTO.sessionId)
+        UserStorageController.setServerTime(sessionDataDTO.serverTime)
 
-        // console.log("update session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + ControllerUserStorage.getAccountId())
+        // console.log("update session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + UserStorageController.getAccountId())
     }
 
     static parseGetSessionResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get session error")
         else {
             const sessionDataDTO = SessionService.parseResponse(data)
-            ControllerUserStorage.setSessionHash(sessionDataDTO.sessionHash)
-            ControllerUserStorage.setSessionId(sessionDataDTO.sessionId)
-            ControllerUserStorage.setServerTime(sessionDataDTO.serverTime)
+            UserStorageController.setSessionHash(sessionDataDTO.sessionHash)
+            UserStorageController.setSessionId(sessionDataDTO.sessionId)
+            UserStorageController.setServerTime(sessionDataDTO.serverTime)
 
-            console.log("get session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + ControllerUserStorage.getAccountId())
+            console.log("get session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + UserStorageController.getAccountId())
             LoadingGame.getStorages()
         }
 

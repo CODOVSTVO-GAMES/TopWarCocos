@@ -1,11 +1,11 @@
 import { _decorator } from 'cc';
-import { GameStorage } from '../GameStorage';
-import { MainInterface } from '../../UI/MainInterface';
-import { ControllerConfigStorage } from './ControllerConfigStorage';
-import { ControllerBufferStorage } from './ControllerBufferStorage';
-import { TypesStorages } from '../../Static/TypesStorages';
+import { GameStorage } from '../Storage/GameStorage';
+import { MainInterface } from '../UI/MainInterface';
+import { ConfigStorageController } from './ConfigStorageController';
+import { BufferStorageController } from './BufferStorageController';
+import { TypesStorages } from '../Static/TypesStorages';
 
-export class ControllerGameStorage {
+export class GameStorageController {
 
     // =================================================================
 
@@ -118,8 +118,8 @@ export class ControllerGameStorage {
     static addExperience(value: number) {
         if (value == 0) return;
         GameStorage.instance.experience += value;
-        if (this.getExperience() > ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel())) {
-            GameStorage.instance.level = ControllerConfigStorage.getLevelByExpirience(this.getExperience());
+        if (this.getExperience() > ConfigStorageController.getLevelExpirienceByLevel(this.getLevel())) {
+            GameStorage.instance.level = ConfigStorageController.getLevelByExpirience(this.getExperience());
             MainInterface.instance.updateCountLevel();
         }
         this.saveStorage();
@@ -130,11 +130,11 @@ export class ControllerGameStorage {
     }
 
     static getExpirienceForNextLevel() {
-        return ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel() + 1);
+        return ConfigStorageController.getLevelExpirienceByLevel(this.getLevel() + 1);
     }
 
     static getRemainingExpirienceForNextLevel() {
-        return ControllerConfigStorage.getLevelExpirienceByLevel(this.getLevel() + 1) - this.getExperience();
+        return ConfigStorageController.getLevelExpirienceByLevel(this.getLevel() + 1) - this.getExperience();
     }
 
     // =================================================================
@@ -263,6 +263,6 @@ export class ControllerGameStorage {
             professionPower: GameStorage.instance.professionPower,
             formationPower: GameStorage.instance.formationPower
         };
-        ControllerBufferStorage.addItem(TypesStorages.GAME_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.GAME_STORAGE, obj);
     }
 }

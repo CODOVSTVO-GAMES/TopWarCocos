@@ -1,6 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
+import { ConfigStorageController } from '../Controllers/ConfigStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('CharactersStorage')
@@ -21,7 +21,7 @@ export class CharactersStorage extends Component {
     }
 
     recalculationCharacter(index: number) {
-        let config = ControllerConfigStorage.getHeroConfigByCodeName(this.characters[index].codeName);
+        let config = ConfigStorageController.getHeroConfigByCodeName(this.characters[index].codeName);
         this.characters[index].damage = config.startDamage + (config.coefDamage * this.characters[index].level + this.characters[index].stars);
         this.characters[index].defense = config.startDefense + (config.coefDefense * this.characters[index].level + this.characters[index].stars);
     }

@@ -1,7 +1,7 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
-import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
+import { GameStorageController } from '../../../Controllers/GameStorageController';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
-import { ControllerCommandPostStorage } from '../../../Storage/Controllers/ControllerCommandPostStorage';
+import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
 import { SpriteStorage } from '../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
@@ -116,45 +116,45 @@ export class ModalCommandPostInterface extends Component {
     }
 
     updateInterface() {
-        this.level.string = "Ур. " + ControllerGameStorage.getLevel().toString();
-        this.coins.string = ConvertLargeNumber.convert(ControllerGameStorage.getCoins());
-        this.gems.string = ConvertLargeNumber.convert(ControllerGameStorage.getGems());
+        this.level.string = "Ур. " + GameStorageController.getLevel().toString();
+        this.coins.string = ConvertLargeNumber.convert(GameStorageController.getCoins());
+        this.gems.string = ConvertLargeNumber.convert(GameStorageController.getGems());
 
-        this.levelCommandPost.string = "Ур. " + ControllerCommandPostStorage.getLevelCommandPost().toString();
-        this.levelRepairShop.string = "Ур. " + ControllerCommandPostStorage.getLevelRepairShop().toString();
+        this.levelCommandPost.string = "Ур. " + CommandPostStorageController.getLevelCommandPost().toString();
+        this.levelRepairShop.string = "Ур. " + CommandPostStorageController.getLevelRepairShop().toString();
 
-        this.levelMergeGoldMine.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeGoldMine().toString();
-        this.levelBuildGoldMine.string = "Ур. " + ControllerCommandPostStorage.getLevelBuildGoldMine().toString();
+        this.levelMergeGoldMine.string = "Ур. " + CommandPostStorageController.getLevelMergeGoldMine().toString();
+        this.levelBuildGoldMine.string = "Ур. " + CommandPostStorageController.getLevelBuildGoldMine().toString();
 
-        this.levelMergeTroopAir.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeTroopAir().toString();
-        this.levelMergeBarracksAir.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeBarracksAir().toString();
-        this.levelBuildBarracksAir.string = ControllerCommandPostStorage.getLevelBuildBarracksAir().toString();
+        this.levelMergeTroopAir.string = "Ур. " + CommandPostStorageController.getLevelMergeTroopAir().toString();
+        this.levelMergeBarracksAir.string = "Ур. " + CommandPostStorageController.getLevelMergeBarracksAir().toString();
+        this.levelBuildBarracksAir.string = CommandPostStorageController.getLevelBuildBarracksAir().toString();
 
-        this.levelMergeTroopMarine.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeTroopMarine().toString();
-        this.levelMergeBarracksMarine.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeBarracksMarine().toString();
-        this.levelBuildBarracksMarine.string = "Ур. " + ControllerCommandPostStorage.getLevelBuildBarracksMarine().toString();
+        this.levelMergeTroopMarine.string = "Ур. " + CommandPostStorageController.getLevelMergeTroopMarine().toString();
+        this.levelMergeBarracksMarine.string = "Ур. " + CommandPostStorageController.getLevelMergeBarracksMarine().toString();
+        this.levelBuildBarracksMarine.string = "Ур. " + CommandPostStorageController.getLevelBuildBarracksMarine().toString();
 
-        this.levelMergeTroopOverland.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeTroopOverland().toString();
-        this.levelMergeBarracksOverland.string = "Ур. " + ControllerCommandPostStorage.getLevelMergeBarracksOverland().toString();
-        this.levelBuildBarracksOverland.string = "Ур. " + ControllerCommandPostStorage.getLevelBuildBarracksOverland().toString();
+        this.levelMergeTroopOverland.string = "Ур. " + CommandPostStorageController.getLevelMergeTroopOverland().toString();
+        this.levelMergeBarracksOverland.string = "Ур. " + CommandPostStorageController.getLevelMergeBarracksOverland().toString();
+        this.levelBuildBarracksOverland.string = "Ур. " + CommandPostStorageController.getLevelBuildBarracksOverland().toString();
 
-        this.spriteCommandPost.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, ControllerCommandPostStorage.getLevelCommandPost());
-        this.spriteRepairShop.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, ControllerCommandPostStorage.getLevelRepairShop());
+        this.spriteCommandPost.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, CommandPostStorageController.getLevelCommandPost());
+        this.spriteRepairShop.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostStorageController.getLevelRepairShop());
 
-        this.spriteMergeGoldMine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelMergeGoldMine());
-        this.spriteBuildGoldMine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine());
+        this.spriteMergeGoldMine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine());
+        this.spriteBuildGoldMine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine());
 
-        this.spriteMergeTroopAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, ControllerCommandPostStorage.getLevelMergeTroopAir());
-        this.spriteMergeBarracksAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelMergeBarracksAir());
-        this.spriteBuildBarracksAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir());
+        this.spriteMergeTroopAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir());
+        this.spriteMergeBarracksAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir());
+        this.spriteBuildBarracksAir.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir());
 
-        this.spriteMergeTroopMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, ControllerCommandPostStorage.getLevelMergeTroopMarine());
-        this.spriteMergeBarracksMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelMergeBarracksMarine());
-        this.spriteBuildBarracksMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine());
+        this.spriteMergeTroopMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine());
+        this.spriteMergeBarracksMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine());
+        this.spriteBuildBarracksMarine.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine());
 
-        this.spriteMergeTroopOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, ControllerCommandPostStorage.getLevelMergeTroopOverland());
-        this.spriteMergeBarracksOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelMergeBarracksOverland());
-        this.spriteBuildBarracksOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland());
+        this.spriteMergeTroopOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland());
+        this.spriteMergeBarracksOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland());
+        this.spriteBuildBarracksOverland.spriteFrame = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland());
     }
 }
 

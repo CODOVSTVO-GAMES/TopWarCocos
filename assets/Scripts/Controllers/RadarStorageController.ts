@@ -1,25 +1,25 @@
 import { _decorator, Component, Node } from 'cc';
-import { ControllerBufferStorage } from './ControllerBufferStorage';
-import { TypesStorages } from '../../Static/TypesStorages';
-import { RadarStorage } from '../RadarStorage';
-import { RadarTask } from '../../Structures/RadarTask';
-import { RadarReward } from '../../Structures/RadarReward';
-import { ControllerConfigStorage } from './ControllerConfigStorage';
-import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
-import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
-import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
-import { ControllerHomeMapStorage } from './ControllerHomeMapStorage';
-import { TypesObjects } from '../../Static/TypesObjects';
+import { BufferStorageController } from './BufferStorageController';
+import { TypesStorages } from '../Static/TypesStorages';
+import { RadarStorage } from '../Storage/RadarStorage';
+import { RadarTask } from '../Structures/RadarTask';
+import { RadarReward } from '../Structures/RadarReward';
+import { ConfigStorageController } from './ConfigStorageController';
+import { ModalRadarInterface } from '../UI/Modals/ModalRadar/ModalRadarInterface';
+import { ModalRadarLogic } from '../UI/Modals/ModalRadar/ModalRadarLogic';
+import { MessageAnimation } from '../Animations/Message/MessageAnimation';
+import { HomeMapStorageController } from './HomeMapStorageController';
+import { TypesObjects } from '../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
-@ccclass('ControllerRadarStorage')
-export class ControllerRadarStorage {
+@ccclass('RadarStorageController')
+export class RadarStorageController {
 
     private static messageAnimation: MessageAnimation;
 
     static assignStartingValues() {
         RadarStorage.instance.radarLevel = 1;
-        let config = ControllerConfigStorage.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
+        let config = ConfigStorageController.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
         RadarStorage.instance.availableMissions = 30;
         RadarStorage.instance.timeToUpdate = config.time;
         RadarStorage.instance.signalQuality = 1;
@@ -82,11 +82,11 @@ export class ControllerRadarStorage {
     static addRadarExperience(value: number) {
         if (value == 0) return;
         RadarStorage.instance.radarExperience += value;
-        let targetExperience = ControllerConfigStorage.getRadarProgressNumberByLevel(this.getRadarLevel());
+        let targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
         while (this.getRadarExperience() > targetExperience) {
             RadarStorage.instance.radarLevel++;
             RadarStorage.instance.radarExperience -= targetExperience;
-            targetExperience = ControllerConfigStorage.getRadarProgressNumberByLevel(this.getRadarLevel());
+            targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
             ModalRadarLogic.instance.calculationRadar();
         }
         ModalRadarInterface.instance.updateInterface();
@@ -163,7 +163,7 @@ export class ControllerRadarStorage {
 
     static getMessageAnimation() {
         if (this.messageAnimation == null) {
-            this.messageAnimation = ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+            this.messageAnimation = HomeMapStorageController.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
         }
     }
 
@@ -186,6 +186,6 @@ export class ControllerRadarStorage {
             radarExperience: RadarStorage.instance.radarExperience,
             tasks: tasks
         };
-        ControllerBufferStorage.addItem(TypesStorages.RADAR_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.RADAR_STORAGE, obj);
     }
 }

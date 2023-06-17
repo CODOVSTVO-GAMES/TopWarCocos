@@ -1,20 +1,20 @@
 import { _decorator, Component } from 'cc';
-import { ControllerBufferStorage } from '../Storage/Controllers/ControllerBufferStorage';
+import { BufferStorageController } from '../Controllers/BufferStorageController';
 import { DataStorageService } from './services/DataStorageService';
 import { EventService } from './services/EventService';
-import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { GameStorageController } from '../Controllers/GameStorageController';
 import { TypesStorages } from '../Static/TypesStorages';
 import { SessionService } from './services/SessionService';
-import { ControllerCommandPostStorage } from '../Storage/Controllers/ControllerCommandPostStorage';
-import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { CommandPostStorageController } from '../Controllers/CommandPostStorageController';
+import { UserStorageController } from '../Controllers/UserStorageController';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
-import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
-import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
-import { ControllerInventoryStorage } from '../Storage/Controllers/ControllerInventoryStorage';
-import { ControllerRadarStorage } from '../Storage/Controllers/ControllerRadarStorage';
+import { CharactrerStorageController } from '../Controllers/CharactrerStorageController';
+import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { InventoryStorageController } from '../Controllers/InventoryStorageController';
+import { RadarStorageController } from '../Controllers/RadarStorageController';
 import { PaymentsService } from './services/PaymentsService';
-import { ControllerAutocombineStorage } from '../Storage/Controllers/ControllerAutocombineStorage';
+import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
 import { MapService } from './services/MapService';
 const { ccclass } = _decorator;
 
@@ -33,28 +33,28 @@ export class NetworkClient extends Component {
     }
 
     private sendData() {
-        if (ControllerBufferStorage.isBufferFull()) {
-            DataStorageService.saveData(ControllerBufferStorage.getBuffer());
-            ControllerBufferStorage.clearBufferStorage();
+        if (BufferStorageController.isBufferFull()) {
+            DataStorageService.saveData(BufferStorageController.getBuffer());
+            BufferStorageController.clearBufferStorage();
         }
     }
 
     private sendEvents() {
-        if (ControllerBufferStorage.isEventsQueueFull()) {
-            EventService.requestToService(ControllerBufferStorage.getQueueEvents());
-            ControllerBufferStorage.clearEventsQueue();
+        if (BufferStorageController.isEventsQueueFull()) {
+            EventService.requestToService(BufferStorageController.getQueueEvents());
+            BufferStorageController.clearEventsQueue();
         }
     }
 
     dataRecipient(objects: object[]) {
-        if (ControllerUserStorage.getIsNewUser()) {
-            ControllerGameStorage.assignStartingValues();
-            ControllerHomeMapStorage.assignStartingValues();
-            ControllerInventoryStorage.assignStartingValues();
-            ControllerCharactrerStorage.assignStartingValues();
-            ControllerCommandPostStorage.assignStartingValues();
-            ControllerRadarStorage.assignStartingValues();
-            ControllerAutocombineStorage.assignStartingValues();
+        if (UserStorageController.getIsNewUser()) {
+            GameStorageController.assignStartingValues();
+            HomeMapStorageController.assignStartingValues();
+            InventoryStorageController.assignStartingValues();
+            CharactrerStorageController.assignStartingValues();
+            CommandPostStorageController.assignStartingValues();
+            RadarStorageController.assignStartingValues();
+            AutocombineStorageController.assignStartingValues();
             RedirectionToScene.redirect(SceneNames.HOME_MAP);
             return;
         }
@@ -65,25 +65,25 @@ export class NetworkClient extends Component {
             const json = objects[i];
             let jsonValue = json['value'];
             if (json['key'] == TypesStorages.GAME_STORAGE) {
-                ControllerGameStorage.assigningSaveValues(jsonValue);
+                GameStorageController.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
-                ControllerHomeMapStorage.assigningSaveValuesServer(jsonValue);
+                HomeMapStorageController.assigningSaveValuesServer(jsonValue);
             }
             else if (json['key'] == TypesStorages.INVENTORY_STORAGE) {
-                ControllerInventoryStorage.assigningSaveValues(jsonValue);
+                InventoryStorageController.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
-                ControllerCharactrerStorage.assigningSaveValues(jsonValue);
+                CharactrerStorageController.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
-                ControllerCommandPostStorage.assigningSaveValues(jsonValue);
+                CommandPostStorageController.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.RADAR_STORAGE) {
-                ControllerRadarStorage.assigningSaveValues(jsonValue);
+                RadarStorageController.assigningSaveValues(jsonValue);
             }
             else if (json['key'] == TypesStorages.AUTOCOMBINE_STORAGE) {
-                ControllerAutocombineStorage.assigningSaveValues(jsonValue);
+                AutocombineStorageController.assigningSaveValues(jsonValue);
             }
         }
         PaymentsService.getProducts();

@@ -4,7 +4,7 @@ import { SessionService } from '../Network/services/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/services/DataStorageService';
 import { UserService } from '../Network/services/UserService';
-import { ControllerUserStorage } from '../Storage/Controllers/ControllerUserStorage';
+import { UserStorageController } from '../Controllers/UserStorageController';
 import { ConfigService } from '../Network/services/ConfigService';
 import { MapService } from '../Network/services/MapService';
 const { ccclass } = _decorator;
@@ -21,7 +21,7 @@ export class LoadingGame extends Component {
     }
 
     static getUser() {
-        UserService.getUser(ControllerUserStorage.getUserId())
+        UserService.getUser(UserStorageController.getUserId())
     }
 
     static getSession() {

@@ -2,7 +2,7 @@ import { _decorator, Component, Label, Sprite } from 'cc';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { Battle } from './Battle';
 import { CharactersStorage } from '../Storage/CharactersStorage';
-import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
+import { CharactrerStorageController } from '../Controllers/CharactrerStorageController';
 import { BattleStorage } from '../Storage/BattleStorage';
 const { ccclass, property } = _decorator;
 
@@ -34,7 +34,7 @@ export class CharacterSelection extends Component {
     }
 
     saveRenderCharacter(index: number) {
-        let characters = ControllerCharactrerStorage.getCharacters();
+        let characters = CharactrerStorageController.getCharacters();
         let spriteCharacter = SpriteStorage.instance.getObjectSprite(characters[index].codeName, characters[index].level);
         characters[index] = CharactersStorage.instance.getRandomCharacter();
         this.images[index].spriteFrame = spriteCharacter;

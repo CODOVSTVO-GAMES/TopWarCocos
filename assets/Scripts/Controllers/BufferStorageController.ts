@@ -1,11 +1,11 @@
 import { _decorator } from 'cc';
-import { BufferStorage } from '../BufferStorage';
-import { Buffer } from '../../Structures/Buffer';
+import { BufferStorage } from '../Storage/BufferStorage';
+import { Buffer } from '../Structures/Buffer';
 
-export class ControllerBufferStorage {
+export class BufferStorageController {
 
     static addItem(type: string, obj: Object) {
-        if(obj == null) return;
+        if (obj == null) return;
         for (let i = 0; i < BufferStorage.instance.arrayBuffer.length; i++) {
             if (BufferStorage.instance.arrayBuffer[i].name == type) {
                 BufferStorage.instance.arrayBuffer.splice(i, 1);

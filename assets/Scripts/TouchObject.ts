@@ -2,14 +2,14 @@ import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
 import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
-import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from './Controllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
-import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
+import { CommandPostStorageController } from './Controllers/CommandPostStorageController';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
-import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
+import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -48,12 +48,12 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true;
 
-        ControllerHomeMapStorage.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level);
-        ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
-        ControllerHomeMapStorage.putSelectObject();
-        ControllerHomeMapStorage.setSelectObject(this.objectParameters);
+        HomeMapStorageController.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level);
+        HomeMapStorageController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+        HomeMapStorageController.putSelectObject();
+        HomeMapStorageController.setSelectObject(this.objectParameters);
 
-        this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
+        this.mainObject.setParent(HomeMapStorageController.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         this.objectParameters.getArrowGameObject().activeArrow();
 
@@ -91,7 +91,7 @@ export class TouchObject extends Component {
         this.processing();
         this.isMove = false;
         HighlightHomeMap.hideAllCoord();
-        ControllerHomeMapStorage.offTransparencyObjects();
+        HomeMapStorageController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 
@@ -99,8 +99,8 @@ export class TouchObject extends Component {
         let minDistance = 100000;
         let indexObject = 0;
 
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            let currentDistance = Vec3.distance(this.mainObject.position, ControllerHomeMapStorage.getCoordPosition(i));
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            let currentDistance = Vec3.distance(this.mainObject.position, HomeMapStorageController.getCoordPosition(i));
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = i;
@@ -112,11 +112,11 @@ export class TouchObject extends Component {
             return this.putAnObject(indexObject);
         }
 
-        let arrayIndexes = ControllerHomeMapStorage.getArrayObject(this.objectParameters.type);
+        let arrayIndexes = HomeMapStorageController.getArrayObject(this.objectParameters.type);
         let count = 0;
         let indexMerge = 0;
         for (let i = 0; i < arrayIndexes.length; i++) {
-            let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexes[i])
+            let tempObjParam = HomeMapStorageController.getObjectParameter(indexObject - arrayIndexes[i])
             if (tempObjParam != null) {
                 if (this.objectParameters.type == tempObjParam.type) {
                     if (this.objectParameters.level == tempObjParam.level) {
@@ -135,37 +135,37 @@ export class TouchObject extends Component {
 
         if (count > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeGoldMine()) {
                     return this.mergeObject(indexMerge);
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopAir()) {
                     return this.mergeObject(indexMerge);
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopMarine()) {
                     return this.mergeObject(indexMerge);
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopOverland()) {
                     return this.mergeObject(indexMerge);
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksAir()) {
                     return this.mergeObject(indexMerge);
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksMarine()) {
                     return this.mergeObject(indexMerge);
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksOverland()) {
                     return this.mergeObject(indexMerge);
                 }
             }
@@ -225,19 +225,19 @@ export class TouchObject extends Component {
 
     mergeObject(index: number) {
         HomeMapStorage.instance.selectedObject = null;
-        ControllerAutocombineStorage.deleteGoldMine(this.objectParameters.index);
+        AutocombineStorageController.deleteGoldMine(this.objectParameters.index);
         FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
     putAnObject(index: number) {
         if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-            ControllerAutocombineStorage.updateIndexGoldMine(this.objectParameters.index, index);
+            AutocombineStorageController.updateIndexGoldMine(this.objectParameters.index, index);
         }
         this.objectParameters.index = index;
         if (this.initialIndex == index) {
             this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         }
-        ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
+        HomeMapStorageController.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         FlightGameObjects.instance.moveToCell(this.mainObject, index);
     }
 }

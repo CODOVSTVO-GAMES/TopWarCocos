@@ -12,8 +12,8 @@ import { ConfigMergeBuildings } from '../Structures/ConfigMergeBuildings';
 import { ConfigSpawnBuildings } from '../Structures/ConfigSpawnBuildings';
 import { RadarConfig } from '../Structures/RadarConfig';
 import { Unit } from '../Structures/Unit';
-import { ControllerConfigStorage } from './Controllers/ControllerConfigStorage';
-import { MapEnemyController } from './Controllers/MapEnemyController';
+import { ConfigStorageController } from '../Controllers/ConfigStorageController';
+import { MapEnemyController } from '../Controllers/MapEnemyController';
 import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
 import { TaskReward } from '../Structures/TaskReward';
 const { ccclass } = _decorator;
@@ -356,7 +356,7 @@ export class ConfigStorage extends Component {
     }
 
     private createEnemyUnit(level: number, quantity: number): Unit {
-        let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, level)
+        let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, level)
 
         return new Unit(config.hp, config.hp, config.damage, 6666, config.level, quantity, config.attackType, 'Это была ловушка', config.type)
     }

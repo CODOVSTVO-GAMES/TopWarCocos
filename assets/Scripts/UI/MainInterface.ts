@@ -1,5 +1,5 @@
 import { _decorator, Component, Label, Node, v3 } from 'cc';
-import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { GameStorageController } from '../Controllers/GameStorageController';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;
 
@@ -36,27 +36,27 @@ export class MainInterface extends Component {
     }
 
     updateAmountCoins() {
-        let coins = ConvertLargeNumber.convert(ControllerGameStorage.getCoins());
+        let coins = ConvertLargeNumber.convert(GameStorageController.getCoins());
 
         this.amountCoins.string = coins;
     }
 
     updateAmountGems() {
-        let gems = ConvertLargeNumber.convert(ControllerGameStorage.getGems());
+        let gems = ConvertLargeNumber.convert(GameStorageController.getGems());
 
         this.amountGems.string = gems;
     }
 
     updateCountLevel() {
-        let level = "Ур. " + ControllerGameStorage.getLevel().toString();
+        let level = "Ур. " + GameStorageController.getLevel().toString();
 
         this.countLevel.string = level;
     }
 
     updateCountPower() {
-        let power = ControllerGameStorage.getPower().toString();
+        let power = GameStorageController.getPower().toString();
 
-        this.countPower.string = ControllerGameStorage.getPower().toString();
+        this.countPower.string = GameStorageController.getPower().toString();
     }
 }
 

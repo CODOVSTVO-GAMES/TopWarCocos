@@ -1,8 +1,8 @@
 import { Camera, Vec2, Vec3 } from "cc";
-import { Building, GlobalMapStorage } from "../GlobalMapStorage";
-import { ControllerUserStorage } from "./ControllerUserStorage";
+import { Building, GlobalMapStorage } from "../Storage/GlobalMapStorage";
+import { UserStorageController } from "./UserStorageController";
 
-export class ControllerGlobalMap {
+export class GlobalMapController {
 
     public static widthCell = 100
     public static lengthCell = 100
@@ -45,7 +45,7 @@ export class ControllerGlobalMap {
             const y = buildings[i]['y']
             const accountId = buildings[i]['accountId']
             this.addBuildings([new Building(id, type, x, y, accountId)])
-            if (accountId == ControllerUserStorage.getAccountId()) {
+            if (accountId == UserStorageController.getAccountId()) {
                 GlobalMapStorage.instance.xBaceCoord = x
                 GlobalMapStorage.instance.yBaceCoord = y
             }

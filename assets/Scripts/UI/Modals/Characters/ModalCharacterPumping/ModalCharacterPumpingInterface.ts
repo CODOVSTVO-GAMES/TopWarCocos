@@ -2,8 +2,8 @@ import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
-import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
-import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
+import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
@@ -91,12 +91,12 @@ export class ModalCharacterPumpingInterface extends Component {
     renderModalPumpingLevel() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            let targetExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+            let targetExp = ConfigStorageController.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
             this.level.string = "Ур. " + character.level;
             this.experience.string = character.experience + "/" + targetExp;
             this.slider.fillRange = character.experience / targetExp;
             for (let i = 0; i < this.quantity.length; i++) {
-                let inventoryQuantity = ControllerInventoryStorage.getQuantityByType(TypesItems.BOOKS[i])
+                let inventoryQuantity = InventoryStorageController.getQuantityByType(TypesItems.BOOKS[i])
                 this.quantity[i].string = "x" + inventoryQuantity;
             }
         }
@@ -105,7 +105,7 @@ export class ModalCharacterPumpingInterface extends Component {
     renderModalPumpingStars() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            let inventoryQuantity = ControllerInventoryStorage.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
+            let inventoryQuantity = InventoryStorageController.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
             this.starTitle.string = "Фрагменты для след. этапа: " + inventoryQuantity + "/4";
             this.sliderStars.fillRange = character.stars % 5 / 5;
             for (let i = 0; i < this.stars.length; i++) {

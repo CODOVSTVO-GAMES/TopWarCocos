@@ -1,6 +1,6 @@
 import { _decorator, Component, Input, Vec3, Touch, Node, Camera, Vec2 } from 'cc';
 import { TouchStatus } from '../TouchStatus';
-import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
 import { ZoomCamera } from './ZoomCamera';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
@@ -45,7 +45,7 @@ export class MovingCamera extends Component {
     touchStart() {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
-        ControllerHomeMapStorage.putSelectObject()
+        HomeMapStorageController.putSelectObject()
         if (RedirectionToScene.getSceneName() != 'GlobalMap') {
             SecondaryInterface.instance.closeFirstLayoutModal();
         }

@@ -1,6 +1,6 @@
 import { _decorator, Component, Label } from 'cc';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
-import { ControllerAutocombineStorage } from '../../../Storage/Controllers/ControllerAutocombineStorage';
+import { AutocombineStorageController } from '../../../Controllers/AutocombineStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalAutocombineInterface')
@@ -22,9 +22,9 @@ export class ModalAutocombineInterface extends Component {
     }
 
     updateInterface() {
-        this.quantityWorkGoldMine.string = "Рабочий золотой рудник " + ControllerAutocombineStorage.getQuantityWorkGoldMine() + "/10";
-        this.quantityProfit.string = "Можете сразу получить 6 часов дохода золота: " + ConvertLargeNumber.convert(ControllerAutocombineStorage.getQuantityProfit() * 360);
-        this.quantityCollect.string = "Сегодня собрано: " + ControllerAutocombineStorage.getQuantityCollect() + "/6";
+        this.quantityWorkGoldMine.string = "Рабочий золотой рудник " + AutocombineStorageController.getQuantityWorkGoldMine() + "/10";
+        this.quantityProfit.string = "Можете сразу получить 6 часов дохода золота: " + ConvertLargeNumber.convert(AutocombineStorageController.getQuantityProfit() * 360);
+        this.quantityCollect.string = "Сегодня собрано: " + AutocombineStorageController.getQuantityCollect() + "/6";
     }
 }
 

@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { ControllerInventoryStorage } from '../../../Storage/Controllers/ControllerInventoryStorage';
+import { InventoryStorageController } from '../../../Controllers/InventoryStorageController';
 import { ModalBackpackInterface } from './ModalBackpackInterface';
 import { TypesItems } from '../../../Static/TypesItems';
 import { SecondaryInterface } from '../../SecondaryInterface';
@@ -25,20 +25,20 @@ export class ModalBackpackLogic extends Component {
     }
 
     openModalBackpack() {
-        if (ControllerInventoryStorage.getInvenoryLength() > 0) {
-            this.typeSelectItem = ControllerInventoryStorage.getTypeByIndex(0);
-            this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
-            this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        if (InventoryStorageController.getInvenoryLength() > 0) {
+            this.typeSelectItem = InventoryStorageController.getTypeByIndex(0);
+            this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+            this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
         }
     }
 
     deleteItem() {
-        if (ControllerInventoryStorage.getQuantityByType(this.typeSelectItem) == this.usageQuantitySelectItem) {
-            ControllerInventoryStorage.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
-            if (ControllerInventoryStorage.getInvenoryLength() > 0) {
-                this.typeSelectItem = ControllerInventoryStorage.getTypeByIndex(0);
-                this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
-                this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        if (InventoryStorageController.getQuantityByType(this.typeSelectItem) == this.usageQuantitySelectItem) {
+            InventoryStorageController.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
+            if (InventoryStorageController.getInvenoryLength() > 0) {
+                this.typeSelectItem = InventoryStorageController.getTypeByIndex(0);
+                this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+                this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
                 ModalBackpackInterface.instance.updateInterface();
             }
             else {
@@ -50,9 +50,9 @@ export class ModalBackpackLogic extends Component {
             }
         }
         else {
-            ControllerInventoryStorage.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
-            this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
-            this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+            InventoryStorageController.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
+            this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+            this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
             ModalBackpackInterface.instance.updateInterface();
         }
     }
@@ -73,8 +73,8 @@ export class ModalBackpackLogic extends Component {
 
     selectItem(type: string) {
         this.typeSelectItem = type;
-        this.quantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
-        this.usageQuantitySelectItem = ControllerInventoryStorage.getQuantityByType(this.typeSelectItem);
+        this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+        this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
         ModalBackpackInterface.instance.updateInterface();
     }
 

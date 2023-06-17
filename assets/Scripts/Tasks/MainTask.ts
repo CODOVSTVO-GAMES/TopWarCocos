@@ -1,12 +1,12 @@
 import { TaskTypes } from "../Static/TaskTypes"
 import { TypesItems } from "../Static/TypesItems"
-import { ControllerTaskStorage } from "../Storage/Controllers/ControllerTaskStorage"
+import { TaskStorageController } from "../Controllers/TaskStorageController"
 import { TaskReward } from "../Structures/TaskReward"
 
 export class MainTask {
 
     static mergeUnitSV(quantity = 1) {
-        
+
     }
 
     static openMap(level: number) {
@@ -16,23 +16,23 @@ export class MainTask {
     private static completeTask(taskType: string, level: number) {
         this.activateTaskType(taskType)
 
-        let array = ControllerTaskStorage.getArrayByType(taskType)
+        let array = TaskStorageController.getArrayByType(taskType)
 
-        array = ControllerTaskStorage.completeTaskWithLevelLessAndThisLevel(array, level)
+        array = TaskStorageController.completeTaskWithLevelLessAndThisLevel(array, level)
 
-        array = ControllerTaskStorage.showNearestTasks(array)
+        array = TaskStorageController.showNearestTasks(array)
 
-        ControllerTaskStorage.saveArrayByType(taskType, array)
+        TaskStorageController.saveArrayByType(taskType, array)
     }
 
     static activateTaskType(taskType: string) {
         //активирует цепочку квестов по типу
-        ControllerTaskStorage.addActiveTaskTypes(taskType)
-        ControllerTaskStorage.saveArrayByType(taskType, ControllerTaskStorage.showNearestTasks(ControllerTaskStorage.getArrayByType(taskType)))
+        TaskStorageController.addActiveTaskTypes(taskType)
+        TaskStorageController.saveArrayByType(taskType, TaskStorageController.showNearestTasks(TaskStorageController.getArrayByType(taskType)))
     }
 
     static collectReward(taskType: string, level: number) {
-        let array: Array<number> = ControllerTaskStorage.getArrayByType(taskType)
+        let array: Array<number> = TaskStorageController.getArrayByType(taskType)
 
         let reward = new TaskReward(TypesItems.GOLD, 500)//получить из стораджа
 
@@ -44,9 +44,9 @@ export class MainTask {
         array[level] = 3
 
         //активировать следующие задачи
-        array = ControllerTaskStorage.showNearestTasks(array)
+        array = TaskStorageController.showNearestTasks(array)
 
-        ControllerTaskStorage.saveArrayByType(taskType, array)
+        TaskStorageController.saveArrayByType(taskType, array)
     }
 
 }

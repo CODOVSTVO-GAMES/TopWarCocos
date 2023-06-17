@@ -1,14 +1,14 @@
 import { _decorator, Node, Sprite, Vec3 } from 'cc';
-import { HomeMapStorage } from '../HomeMapStorage';
-import { ObjectParameters } from '../../ObjectParameters';
-import { TypesObjects } from '../../Static/TypesObjects';
-import { IndexesObject } from '../../Static/IndexesObject';
-import { ControllerBufferStorage } from './ControllerBufferStorage';
-import { TypesStorages } from '../../Static/TypesStorages';
-import { SpawnObjects } from '../../SpawnObjects';
-import { TypesLocation } from '../../Static/TypesLocation';
+import { HomeMapStorage } from '../Storage/HomeMapStorage';
+import { ObjectParameters } from '../ObjectParameters';
+import { TypesObjects } from '../Static/TypesObjects';
+import { IndexesObject } from '../Static/IndexesObject';
+import { BufferStorageController } from './BufferStorageController';
+import { TypesStorages } from '../Static/TypesStorages';
+import { SpawnObjects } from '../SpawnObjects';
+import { TypesLocation } from '../Static/TypesLocation';
 
-export class ControllerHomeMapStorage {
+export class HomeMapStorageController {
 
     static assignStartingValues() {
         setTimeout(() => {
@@ -241,7 +241,7 @@ export class ControllerHomeMapStorage {
                 index: HomeMapStorage.instance.arrayObjectParameters[i].index
             });
         }
-        ControllerBufferStorage.addItem(TypesStorages.HOME_MAP_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.HOME_MAP_STORAGE, obj);
     }
 
     static saveStorageLocal() {

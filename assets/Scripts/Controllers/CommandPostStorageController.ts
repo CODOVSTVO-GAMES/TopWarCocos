@@ -1,9 +1,9 @@
 import { _decorator } from 'cc';
-import { CommandPostStorage } from '../CommandPostStorage';
-import { ControllerBufferStorage } from './ControllerBufferStorage';
-import { TypesStorages } from '../../Static/TypesStorages';
+import { CommandPostStorage } from '../Storage/CommandPostStorage';
+import { BufferStorageController } from './BufferStorageController';
+import { TypesStorages } from '../Static/TypesStorages';
 
-export class ControllerCommandPostStorage {
+export class CommandPostStorageController {
 
     // =================================================================
 
@@ -25,7 +25,7 @@ export class ControllerCommandPostStorage {
         CommandPostStorage.instance.levelMergeTroopOverland = 5;
         CommandPostStorage.instance.levelMergeBarracksOverland = 5;
         CommandPostStorage.instance.levelBuildBarracksOverland = 1;
-        
+
         this.saveStorage();
     }
 
@@ -149,7 +149,7 @@ export class ControllerCommandPostStorage {
     }
 
     // =================================================================
-    
+
     static addLevelMergeTroopOverland() {
         CommandPostStorage.instance.levelMergeTroopOverland += 1;
         this.saveStorage();
@@ -199,6 +199,6 @@ export class ControllerCommandPostStorage {
             levelMergeBarracksOverland: CommandPostStorage.instance.levelMergeBarracksOverland,
             levelBuildBarracksOverland: CommandPostStorage.instance.levelBuildBarracksOverland,
         }
-        ControllerBufferStorage.addItem(TypesStorages.COMMAND_POST_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.COMMAND_POST_STORAGE, obj);
     }
 }

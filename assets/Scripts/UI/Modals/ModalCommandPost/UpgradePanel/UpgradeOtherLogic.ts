@@ -1,11 +1,11 @@
 import { _decorator, Component } from 'cc';
-import { ControllerCommandPostStorage } from '../../../../Storage/Controllers/ControllerCommandPostStorage';
+import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
 import { UpgradeOtherInterface } from './UpgradeOtherInterface';
-import { ControllerGameStorage } from '../../../../Storage/Controllers/ControllerGameStorage';
+import { GameStorageController } from '../../../../Controllers/GameStorageController';
 import { ModalCommandPostInterface } from '../ModalCommandPostInterface';
-import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
+import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
 import { TypesObjects } from '../../../../Static/TypesObjects';
-import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 import { SecondaryInterface } from '../../../SecondaryInterface';
 import { TypesModals } from '../../../../Static/TypesModals';
@@ -17,7 +17,7 @@ export class UpgradeOtherLogic extends Component {
     static checkBtnModal() {
         switch (SecondaryInterface.instance.getTypeActiveSecondLayoutModal()) {
             case TypesModals.UPGRATE_REPAIR_SHOP:
-                if (ControllerCommandPostStorage.getLevelRepairShop() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelRepairShop() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -25,7 +25,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_GOLD_MINE:
-                if (ControllerCommandPostStorage.getLevelMergeGoldMine() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeGoldMine() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -33,7 +33,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_TROOP_AIR:
-                if (ControllerCommandPostStorage.getLevelMergeTroopAir() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeTroopAir() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -41,7 +41,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_TROOP_MARINE:
-                if (ControllerCommandPostStorage.getLevelMergeTroopMarine() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeTroopMarine() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -49,7 +49,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_TROOP_OVERLAND:
-                if (ControllerCommandPostStorage.getLevelMergeTroopOverland() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeTroopOverland() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -57,7 +57,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_BARRACK_AIR:
-                if (ControllerCommandPostStorage.getLevelMergeBarracksAir() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeBarracksAir() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -65,7 +65,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_BARRACK_MARINE:
-                if (ControllerCommandPostStorage.getLevelMergeBarracksMarine() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeBarracksMarine() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -73,7 +73,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND:
-                if (ControllerCommandPostStorage.getLevelMergeBarracksOverland() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelMergeBarracksOverland() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -81,7 +81,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_BUILD_GOLD_MINE:
-                if (ControllerCommandPostStorage.getLevelBuildGoldMine() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelBuildGoldMine() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -89,7 +89,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_BUILD_BARRACK_AIR:
-                if (ControllerCommandPostStorage.getLevelBuildBarracksAir() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelBuildBarracksAir() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -97,7 +97,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_BUILD_BARRACK_MARINE:
-                if (ControllerCommandPostStorage.getLevelBuildBarracksMarine() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelBuildBarracksMarine() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -105,7 +105,7 @@ export class UpgradeOtherLogic extends Component {
                 }
                 break;
             case TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND:
-                if (ControllerCommandPostStorage.getLevelBuildBarracksOverland() < ControllerCommandPostStorage.getLevelCommandPost()) {
+                if (CommandPostStorageController.getLevelBuildBarracksOverland() < CommandPostStorageController.getLevelCommandPost()) {
                     UpgradeOtherInterface.instance.openUpgrade(true);
                 }
                 else {
@@ -133,132 +133,132 @@ export class UpgradeOtherLogic extends Component {
     }
 
     upgradeRepairShop() {
-        ControllerCommandPostStorage.addLevelRepairShop();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateRepairBuilding(ControllerCommandPostStorage.getLevelRepairShop()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_COMMAND_POST, ControllerConfigStorage.getImprivementResourceNumberRepairBuilding(ControllerCommandPostStorage.getLevelRepairShop()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelRepairShop()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelRepairShop()));
+        CommandPostStorageController.addLevelRepairShop();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateRepairBuilding(CommandPostStorageController.getLevelRepairShop()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_COMMAND_POST, ConfigStorageController.getImprivementResourceNumberRepairBuilding(CommandPostStorageController.getLevelRepairShop()));
+        GameStorageController.addExperience(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop()));
         UpgradeOtherInterface.instance.updateInterfaceRepairShop();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeGoldMine() {
-        ControllerCommandPostStorage.addLevelMergeGoldMine();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelMergeGoldMine()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_GOLD_MINE, ControllerConfigStorage.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelMergeGoldMine()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelMergeGoldMine()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelMergeGoldMine()));
+        CommandPostStorageController.addLevelMergeGoldMine();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_GOLD_MINE, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
         UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeTroopAir() {
-        ControllerCommandPostStorage.addLevelMergeTroopAir();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, ControllerCommandPostStorage.getLevelMergeTroopAir()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_TROOP_AIR, ControllerConfigStorage.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, ControllerCommandPostStorage.getLevelMergeTroopAir()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, ControllerCommandPostStorage.getLevelMergeTroopAir()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, ControllerCommandPostStorage.getLevelMergeTroopAir()));
+        CommandPostStorageController.addLevelMergeTroopAir();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_TROOP_AIR, ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
         UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeTroopMarine() {
-        ControllerCommandPostStorage.addLevelMergeTroopMarine();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, ControllerCommandPostStorage.getLevelMergeTroopMarine()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_TROOP_MARINE, ControllerConfigStorage.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, ControllerCommandPostStorage.getLevelMergeTroopMarine()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, ControllerCommandPostStorage.getLevelMergeTroopMarine()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, ControllerCommandPostStorage.getLevelMergeTroopMarine()));
+        CommandPostStorageController.addLevelMergeTroopMarine();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_TROOP_MARINE, ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
         UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeTroopOverland() {
-        ControllerCommandPostStorage.addLevelMergeTroopOverland();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, ControllerCommandPostStorage.getLevelMergeTroopOverland()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, ControllerConfigStorage.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, ControllerCommandPostStorage.getLevelMergeTroopOverland()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, ControllerCommandPostStorage.getLevelMergeTroopOverland()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, ControllerCommandPostStorage.getLevelMergeTroopOverland()));
+        CommandPostStorageController.addLevelMergeTroopOverland();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
         UpgradeOtherInterface.instance.updateInterfaceMergeTroopOverland();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeBarracksAir() {
-        ControllerCommandPostStorage.addLevelMergeBarracksAir();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelMergeBarracksAir()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_BARRACK_AIR, ControllerConfigStorage.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelMergeBarracksAir()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelMergeBarracksAir()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelMergeBarracksAir()));
+        CommandPostStorageController.addLevelMergeBarracksAir();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_BARRACK_AIR, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
         UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeBarracksMarine() {
-        ControllerCommandPostStorage.addLevelMergeBarracksMarine();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelMergeBarracksMarine()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, ControllerConfigStorage.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelMergeBarracksMarine()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelMergeBarracksMarine()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelMergeBarracksMarine()));
+        CommandPostStorageController.addLevelMergeBarracksMarine();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
         UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeMergeBarracksOverland() {
-        ControllerCommandPostStorage.addLevelMergeBarracksOverland();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelMergeBarracksOverland()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_BARRACK_OVERLAND, ControllerConfigStorage.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelMergeBarracksOverland()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelMergeBarracksOverland()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelMergeBarracksOverland()));
+        CommandPostStorageController.addLevelMergeBarracksOverland();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_BARRACK_OVERLAND, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
         UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeBuildGoldMine() {
-        ControllerCommandPostStorage.addLevelBuildGoldMine();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_MERGE_GOLD_MINE, ControllerConfigStorage.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, ControllerCommandPostStorage.getLevelBuildGoldMine()));
+        CommandPostStorageController.addLevelBuildGoldMine();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_MERGE_GOLD_MINE, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
         UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeBuildBarracksAir() {
-        ControllerCommandPostStorage.addLevelBuildBarracksAir();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_BUILD_BARRACK_AIR, ControllerConfigStorage.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, ControllerCommandPostStorage.getLevelBuildBarracksAir()));
+        CommandPostStorageController.addLevelBuildBarracksAir();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_BUILD_BARRACK_AIR, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
         UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeBuildBarracksMarine() {
-        ControllerCommandPostStorage.addLevelBuildBarracksMarine();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_BUILD_BARRACK_MARINE, ControllerConfigStorage.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, ControllerCommandPostStorage.getLevelBuildBarracksMarine()));
+        CommandPostStorageController.addLevelBuildBarracksMarine();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_BUILD_BARRACK_MARINE, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
         UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
     }
 
     upgradeBuildBarracksOverland() {
-        ControllerCommandPostStorage.addLevelBuildBarracksOverland();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_BUILD_BARRACK_OVERLAND, ControllerConfigStorage.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, ControllerCommandPostStorage.getLevelBuildBarracksOverland()));
+        CommandPostStorageController.addLevelBuildBarracksOverland();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_BUILD_BARRACK_OVERLAND, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
+        GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
         UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland();
         ModalCommandPostInterface.instance.updateInterface();
         UpgradeOtherLogic.checkBtnModal();
