@@ -8,9 +8,9 @@ export class MapEnemyStorage extends Component {
 
     public static instance: MapEnemyStorage
 
-    start() {
+    public mapEnemyArr: MapEnemyBattle[] = []
+
+    public start() {
         MapEnemyStorage.instance = this
     }
-
-    public mapEnemyArr: MapEnemyBattle[] = []
 }

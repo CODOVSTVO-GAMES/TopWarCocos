@@ -1,8 +1,8 @@
-import { Camera, Vec2, Vec3 } from "cc";
+import { Vec2 } from "cc";
 import { Building, GlobalMapStorage } from "../../Storage/GlobalMapStorage";
 import { UserStorageController } from "./UserStorageController";
 
-export class GlobalMapController {
+export class GlobalMapStorageController {
 
     public static widthCell = 100
     public static lengthCell = 100
@@ -38,7 +38,7 @@ export class GlobalMapController {
 
     static buildingsHandler(buildings: object[]) {
         for (let i = 0; i < buildings.length; i++) {
-            console.log(buildings[i])
+            // console.log(buildings[i])
             const id = buildings[i]['id']
             const type = buildings[i]['type']
             const x = buildings[i]['x']

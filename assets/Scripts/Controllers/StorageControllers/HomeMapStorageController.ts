@@ -80,9 +80,6 @@ export class HomeMapStorageController {
             if (HomeMapStorage.instance.selectedObject.getObjectInterface()) {
                 HomeMapStorage.instance.selectedObject.getObjectInterface().closeInterface();
             }
-            if (HomeMapStorage.instance.selectedObject.getBarracksLogic()) {
-                HomeMapStorage.instance.selectedObject.getBarracksLogic().closeMessage();
-            }
             HomeMapStorage.instance.selectedObject.nodeObject.setParent(HomeMapStorage.instance.coords[HomeMapStorage.instance.selectedObject.index]);
             HomeMapStorage.instance.selectedObject.nodeObject.position = Vec3.ZERO;
             HomeMapStorage.instance.selectedObject = null;

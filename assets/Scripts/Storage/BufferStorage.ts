@@ -5,14 +5,14 @@ const { ccclass } = _decorator;
 @ccclass('BufferStorage')
 export class BufferStorage extends Component {
 
-    public static instance: BufferStorage;
+    public static instance: BufferStorage
 
-    public arrayBuffer: Array<Buffer> = [];
+    public arrayBuffer: Array<Buffer> = []
 
-    public eventsQueue: string[] = [];
+    public eventsQueue: string[] = []
 
-    onLoad() {
-        BufferStorage.instance = this;
+    public onLoad() {
+        BufferStorage.instance = this
     }
 }
 

@@ -4,18 +4,16 @@ const { ccclass } = _decorator;
 @ccclass('TaskStorage')
 export class TaskStorage extends Component {
 
-    public static instance: TaskStorage;
+    public static instance: TaskStorage
 
-    public activeTaskTypes: Array<string> = [];
+    public activeTaskTypes: Array<string> = []
 
-    public bufferTasksInfo = new Map<string, number>();
+    public bufferTasksInfo = new Map<string, number>()
 
-    public mapTasks: Array<number> = new Array(100);
+    public mapTasks: Array<number> = new Array(100)
 
-    onLoad() {
-        TaskStorage.instance = this;
-        this.mapTasks = this.mapTasks.fill(0);
+    public onLoad() {
+        TaskStorage.instance = this
+        this.mapTasks = this.mapTasks.fill(0)
     }
-
 }
-

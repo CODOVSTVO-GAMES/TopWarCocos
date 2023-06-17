@@ -402,7 +402,6 @@ export class Battle extends Component {
     }
 
     goalSelection(attackUnit: Unit, defendingUnits: Unit[]): Unit[] {
-        console.log(attackUnit);
         if (attackUnit.typeAttack == TypesAttack.HORIZON || attackUnit.typeAttack == TypesAttack.VERTICAL) {
             return this.lineGoalSelection(attackUnit, defendingUnits);
         }

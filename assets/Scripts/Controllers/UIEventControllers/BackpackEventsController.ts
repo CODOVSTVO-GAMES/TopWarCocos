@@ -2,7 +2,7 @@ export class BackpackEventsController {
 
     public prepSelectItem() {
         // подготовка выбора обьекта
-        
+
     }
 
     public prepDeleteItem() {

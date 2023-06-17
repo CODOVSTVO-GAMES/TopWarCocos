@@ -5,28 +5,26 @@ const { ccclass, property } = _decorator;
 export class GoldMineInterface extends Component {
 
     @property({ type: Node })
-    public message: Node;
+    public message: Node
 
     @property({ type: Node })
-    public progress: Node;
+    public progress: Node
 
     @property({ type: Sprite })
-    public fill: Sprite;
+    public fill: Sprite
 
     public render(value: number) {
-        this.fill.fillRange = -(1 - (((value * 100) / 60) * 0.01));
-        this.fill.fillRange = value;
-
+        this.fill.fillRange = value
     }
 
     public openMessage() {
-        this.message.active = true;
-        this.progress.active = true;
+        this.message.active = true
+        this.progress.active = true
     }
 
     public closeMessage() {
-        this.message.active = false;
-        this.progress.active = false;
+        this.message.active = false
+        this.progress.active = false
     }
 }
 

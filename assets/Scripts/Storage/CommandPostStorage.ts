@@ -7,38 +7,38 @@ export class CommandPostStorage extends Component {
     public static instance: CommandPostStorage;
 
     @property({ type: CCInteger })
-    public levelCommandPost: number;
+    public levelCommandPost: number
     @property({ type: CCInteger })
-    public levelRepairShop: number;
+    public levelRepairShop: number
 
     @property({ type: CCInteger })
-    public levelMergeGoldMine: number;
+    public levelMergeGoldMine: number
     @property({ type: CCInteger })
-    public levelBuildGoldMine: number;
+    public levelBuildGoldMine: number
 
     @property({ type: CCInteger })
-    public levelMergeTroopAir: number;
+    public levelMergeTroopAir: number
     @property({ type: CCInteger })
-    public levelMergeBarracksAir: number;
+    public levelMergeBarracksAir: number
     @property({ type: CCInteger })
-    public levelBuildBarracksAir: number;
+    public levelBuildBarracksAir: number
 
     @property({ type: CCInteger })
-    public levelMergeTroopMarine: number;
+    public levelMergeTroopMarine: number
     @property({ type: CCInteger })
-    public levelMergeBarracksMarine: number;
+    public levelMergeBarracksMarine: number
     @property({ type: CCInteger })
-    public levelBuildBarracksMarine: number;
+    public levelBuildBarracksMarine: number
 
     @property({ type: CCInteger })
-    public levelMergeTroopOverland: number;
+    public levelMergeTroopOverland: number
     @property({ type: CCInteger })
-    public levelMergeBarracksOverland: number;
+    public levelMergeBarracksOverland: number
     @property({ type: CCInteger })
-    public levelBuildBarracksOverland: number;
+    public levelBuildBarracksOverland: number
 
-    onLoad() {
-        CommandPostStorage.instance = this;
+    public onLoad() {
+        CommandPostStorage.instance = this
     }
 }
 

@@ -19,7 +19,7 @@ export class GlobalMapStorage extends Component {
 
     public buildings = new Array<Building>
 
-    protected start(): void {
+    public start() {
         GlobalMapStorage.instance = this
         // this.zone = 'testzone'
         this.xBaceCoord = 0

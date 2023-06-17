@@ -5,28 +5,28 @@ const { ccclass, property } = _decorator;
 @ccclass('RadarStorage')
 export class RadarStorage extends Component {
 
-    public static instance: RadarStorage;
+    public static instance: RadarStorage
 
     @property({ type: CCInteger })
-    public radarLevel: number;
+    public radarLevel: number
 
     @property({ type: CCInteger })
-    public availableMissions: number;
+    public availableMissions: number
 
     @property({ type: CCInteger })
-    public timeToUpdate: number;
+    public timeToUpdate: number
 
     @property({ type: CCInteger })
-    public signalQuality: number;
+    public signalQuality: number
 
     @property({ type: CCInteger })
-    public radarExperience: number;
-    
-    public tasks: RadarTask[] = [];
+    public radarExperience: number
 
-    public task: any;
+    public tasks: RadarTask[] = []
 
-    onLoad() {
-        RadarStorage.instance = this;
+    public task: any
+
+    public onLoad() {
+        RadarStorage.instance = this
     }
 }

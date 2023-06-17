@@ -5,17 +5,17 @@ const { ccclass, property } = _decorator;
 export class ArrowGameObject extends Component {
 
     @property({ type: Node })
-    public arrows: Node[] = [];
+    public arrows: Node[] = []
 
     activeArrow() {
         for (let i = 0; i < this.arrows.length; i++) {
-            this.arrows[i].active = true;
+            this.arrows[i].active = true
         }
     }
 
     deactiveArrow() {
         for (let i = 0; i < this.arrows.length; i++) {
-            this.arrows[i].active = false;
+            this.arrows[i].active = false
         }
     }
 }

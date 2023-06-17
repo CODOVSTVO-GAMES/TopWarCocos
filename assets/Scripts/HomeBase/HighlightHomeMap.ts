@@ -2,7 +2,7 @@ import { _decorator, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { SpriteStorage } from '../Storage/SpriteStorage';
-import { IndexesMap } from '../Static/IndexesMap';
+import { HomeMapStructure } from '../Static/HomeMapStructure';
 
 export class HighlightHomeMap {
 
@@ -40,7 +40,7 @@ export class HighlightHomeMap {
 
         for (let i = 0; i < arrayRegionObject.length; i++) {
             if (indexObject - arrayRegionObject[i] < 0 || indexObject - arrayRegionObject[i] > 1999) continue;
-            if (IndexesMap.indexesMap[indexObject - arrayRegionObject[i]].location == location) {
+            if (HomeMapStructure.structure[indexObject - arrayRegionObject[i]].location == location) {
                 if (HomeMapStorageController.getObjectParameter(indexObject - arrayRegionObject[i]) == null) {
                     this.renderCoordFree(indexObject - arrayRegionObject[i]);
                 }
@@ -63,7 +63,7 @@ export class HighlightHomeMap {
             let tempIndex = indexObject - arrayObject[i];
             if (tempIndex < 0) continue;
             if (HomeMapStorageController.getObjectParameter(tempIndex) == null) {
-                if (IndexesMap.indexesMap[tempIndex].location == location) {
+                if (HomeMapStructure.structure[tempIndex].location == location) {
                     this.renderCoordSelect(tempIndex);
                 }
                 else {
@@ -72,7 +72,7 @@ export class HighlightHomeMap {
             }
             else {
                 if (HomeMapStorageController.getObjectParameter(tempIndex).type == type) {
-                    if (IndexesMap.indexesMap[tempIndex].location == location) {
+                    if (HomeMapStructure.structure[tempIndex].location == location) {
                         this.renderCoordSelect(tempIndex);
                     }
                     else {

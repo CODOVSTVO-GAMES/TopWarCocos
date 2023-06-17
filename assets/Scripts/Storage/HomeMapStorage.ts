@@ -7,26 +7,26 @@ export class HomeMapStorage extends Component {
 
     public static instance: HomeMapStorage;
 
-    public mapSize = 2000;
+    public mapSize = 2000
 
-    public parentSelectObject: Node;
-
-    @property({ type: ObjectParameters })
-    public selectedObject: ObjectParameters;
+    public parentSelectObject: Node
 
     @property({ type: ObjectParameters })
-    public arrayObjectParameters: Array<ObjectParameters>;
+    public selectedObject: ObjectParameters
 
     @property({ type: ObjectParameters })
-    public temporaryLocalStorage: Array<ObjectParameters>;
+    public arrayObjectParameters: Array<ObjectParameters>
 
-    public coords: Array<Node>;
-    public spriteCoords: Array<Sprite>;
+    @property({ type: ObjectParameters })
+    public temporaryLocalStorage: Array<ObjectParameters>
+
+    public coords: Array<Node>
+    public spriteCoords: Array<Sprite>
 
     onLoad() {
-        HomeMapStorage.instance = this;
-        this.coords = new Array(this.mapSize);
-        this.arrayObjectParameters = new Array(this.mapSize);
-        this.spriteCoords = new Array(this.mapSize);
+        HomeMapStorage.instance = this
+        this.coords = new Array(this.mapSize)
+        this.arrayObjectParameters = new Array(this.mapSize)
+        this.spriteCoords = new Array(this.mapSize)
     }
 }

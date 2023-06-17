@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Node, Label, Sprite } from 'cc';
-import { InventoryStorageController } from '../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../Controllers/StorageControllers/BackpackStorageController';
 import { PrefabsStorage } from '../../../Storage/PrefabsStorage';
 import { ModalBackpackLogic } from './ModalBackpackLogic';
 import { ItemBackpack } from './ItemBackpack';
@@ -31,11 +31,11 @@ export class ModalBackpackInterface extends Component {
             this.items[i].destroy();
         }
         this.items = new Array();
-        for (let i = 0; i < InventoryStorageController.getInvenoryLength(); i++) {
+        for (let i = 0; i < BackpackStorageController.getInvenoryLength(); i++) {
             let object = instantiate(PrefabsStorage.instance.getItemBackpack());
             object.parent = this.parentContent;
-            object.getComponent(ItemBackpack).typeItem = InventoryStorageController.getTypeByIndex(i);
-            object.getComponent(ItemBackpack).updateLabelQuantity(InventoryStorageController.getQuantityByIndex(i));
+            object.getComponent(ItemBackpack).typeItem = BackpackStorageController.getTypeByIndex(i);
+            object.getComponent(ItemBackpack).updateLabelQuantity(BackpackStorageController.getQuantityByIndex(i));
             this.items.push(object);
         }
     }

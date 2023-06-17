@@ -3,13 +3,13 @@ import { Item } from '../Structures/Item';
 const { ccclass } = _decorator;
 
 @ccclass('InventoryStorage')
-export class InventoryStorage extends Component {
+export class BackpackStorage extends Component {
 
-    public static instance: InventoryStorage;
+    public static instance: BackpackStorage
 
-    public inventory: Array<Item> = [];
+    public inventory: Array<Item> = []
 
     onLoad() {
-        InventoryStorage.instance = this;
+        BackpackStorage.instance = this
     }
 }

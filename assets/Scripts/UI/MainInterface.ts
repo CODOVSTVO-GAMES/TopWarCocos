@@ -6,58 +6,56 @@ const { ccclass, property } = _decorator;
 @ccclass('MainInterface')
 export class MainInterface extends Component {
 
-    public static instance: MainInterface;
+    public static instance: MainInterface
 
     @property({ type: Label })
-    public amountCoins: Label;
+    public amountCoins: Label
 
     @property({ type: Label })
-    public amountGems: Label;
+    public amountGems: Label
 
     @property({ type: Label })
-    public countLevel: Label;
+    public countLevel: Label
 
     @property({ type: Label })
-    public countPower: Label;
+    public countPower: Label
 
     @property({ type: Node })
     public mainNode: Node
 
-    onLoad() {
-        MainInterface.instance = this;
-        this.updateAmountCoins();
-        this.updateAmountGems();
-        this.updateCountLevel();
-        this.updateCountPower();
+    public onLoad() {
+        MainInterface.instance = this
+        this.updateAmountCoins()
+        this.updateAmountGems()
+        this.updateCountLevel()
+        this.updateCountPower()
     }
 
     resizeMainInterface(raito = 1) {
-        this.mainNode.setScale(v3(raito, raito, this.mainNode.scale.z));
+        this.mainNode.setScale(v3(raito, raito, this.mainNode.scale.z))
     }
 
     updateAmountCoins() {
-        let coins = ConvertLargeNumber.convert(GameStorageController.getCoins());
+        let coins = ConvertLargeNumber.convert(GameStorageController.getCoins())
 
-        this.amountCoins.string = coins;
+        this.amountCoins.string = coins
     }
 
     updateAmountGems() {
-        let gems = ConvertLargeNumber.convert(GameStorageController.getGems());
+        let gems = ConvertLargeNumber.convert(GameStorageController.getGems())
 
-        this.amountGems.string = gems;
+        this.amountGems.string = gems
     }
 
     updateCountLevel() {
-        let level = "Ур. " + GameStorageController.getLevel().toString();
+        let level = "Ур. " + GameStorageController.getLevel().toString()
 
-        this.countLevel.string = level;
+        this.countLevel.string = level
     }
 
     updateCountPower() {
-        let power = GameStorageController.getPower().toString();
+        let power = GameStorageController.getPower().toString()
 
-        this.countPower.string = GameStorageController.getPower().toString();
+        this.countPower.string = GameStorageController.getPower().toString()
     }
 }
-
-

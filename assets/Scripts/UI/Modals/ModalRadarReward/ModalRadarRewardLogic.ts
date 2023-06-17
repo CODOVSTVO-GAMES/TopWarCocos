@@ -1,5 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
-import { InventoryStorageController } from '../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../Controllers/StorageControllers/BackpackStorageController';
 import { TypesItems } from '../../../Static/TypesItems';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
@@ -23,7 +23,7 @@ export class ModalRadarRewardLogic extends Component {
     giveReward() {
         for (let i = 0; i < RadarStorage.instance.task.rewards.length; i++) {
             if (RadarStorage.instance.task.rewards[i].type != TypesItems.EXPERIENCE) {
-                InventoryStorageController.addItem(RadarStorage.instance.task.rewards[i].type, RadarStorage.instance.task.rewards[i].quantity);
+                BackpackStorageController.addItem(RadarStorage.instance.task.rewards[i].type, RadarStorage.instance.task.rewards[i].quantity);
             }
             else {
                 GameStorageController.addExperience(RadarStorage.instance.task.rewards[i].quantity);

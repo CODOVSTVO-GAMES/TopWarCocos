@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { OkConnector } from '../Librarys/OkConnector';
+import { OkConnector } from '../Library/OkConnector';
 import { SessionService } from '../Controllers/NetworkControllers/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Controllers/NetworkControllers/DataStorageService';

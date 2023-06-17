@@ -5,7 +5,7 @@ import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
 import { HomeMapStorageController } from './Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
 import { ZoomCamera } from './Camera/ZoomCamera';
-import { IndexesMap } from './Static/IndexesMap';
+import { HomeMapStructure } from './Static/HomeMapStructure';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
 import { AutocombineStorageController } from './Controllers/StorageControllers/AutocombineStorageController';
@@ -56,10 +56,6 @@ export class TouchObject extends Component {
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         this.objectParameters.getArrowGameObject().activeArrow();
 
-        if (this.objectParameters.getBarracksLogic()) {
-            this.objectParameters.getBarracksLogic().openMessage();
-        }
-
         this.startPos = new Vec3(this.mainObject.position);
         this.xPos = this.mainObject.position.x;
         this.yPos = this.mainObject.position.y;
@@ -106,7 +102,7 @@ export class TouchObject extends Component {
         }
 
         for (let i = 0; i < arrayIndexes.length; i++) {
-            if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
+            if (HomeMapStructure.structure[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
                 return this.putAnObject(this.initialIndex);
             }
             else {
@@ -168,44 +164,9 @@ export class TouchObject extends Component {
         }
 
         if (quantityMatches > 0) {
-            if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeGoldMine()) {
-                    this.mergeObject(indexMerge);
-                    return true;
-                }
-            }
-            else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopAir()) {
-                    this.mergeObject(indexMerge);
-                    return true;
-                }
-            }
-            else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopMarine()) {
-                    this.mergeObject(indexMerge);
-                    return true;
-                }
-            }
-            else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopOverland()) {
-                    this.mergeObject(indexMerge);
-                    return true;
-                }
-            }
-            else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksAir()) {
-                    this.mergeObject(indexMerge);
-                    return true;
-                }
-            }
-            else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksMarine()) {
-                    this.mergeObject(indexMerge);
-                    return true;
-                }
-            }
-            else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksOverland()) {
+
+            if (CommandPostStorageController.getLevelAllMerge(this.objectParameters.type) > 0) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelAllMerge(this.objectParameters.type)) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
@@ -214,6 +175,53 @@ export class TouchObject extends Component {
                 this.putAnObject(this.initialIndex);
                 return false;
             }
+
+            // if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeGoldMine()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopAir()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopMarine()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopOverland()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksAir()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksMarine()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
+            //     if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksOverland()) {
+            //         this.mergeObject(indexMerge);
+            //         return true;
+            //     }
+            // }
+            // else {
+            //     this.putAnObject(this.initialIndex);
+            //     return false;
+            // }
         }
     }
 

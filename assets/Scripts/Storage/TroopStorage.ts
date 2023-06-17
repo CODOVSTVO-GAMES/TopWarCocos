@@ -6,13 +6,13 @@ export class TroopStorage extends Component {
 
     public static instance: TroopStorage;
 
-    public sizeTroopStorage: number = 80;
+    public sizeTroopStorage: number = 80
 
-    public sizeTroopAir: number[] = [];
-    public sizeTroopMarine: number[] = [];
-    public sizeTroopOverland: number[] = [];
+    public sizeTroopAir: number[] = []
+    public sizeTroopMarine: number[] = []
+    public sizeTroopOverland: number[] = []
 
-    onLoad() {
-        TroopStorage.instance = this;
+    public onLoad() {
+        TroopStorage.instance = this
     }
 }

@@ -1,15 +1,15 @@
-class Coord {
-    index: number;
-    location: string;
+export class Coord {
+    index: number
+    location: string
 
     constructor(index: number, location: string) {
-        this.index = index;
-        this.location = location;
+        this.index = index
+        this.location = location
     }
 }
 
-export class IndexesMap {
-    static indexesMap: Array<Coord> = [
+export class HomeMapStructure {
+    static structure: Array<Coord> = [
         new Coord(0, "earth"),
         new Coord(1, "earth"),
         new Coord(2, "earth"),
@@ -2049,5 +2049,5 @@ export class IndexesMap {
         new Coord(1997, "water"),
         new Coord(1998, "water"),
         new Coord(1999, "water")
-    ];
+    ]
 }

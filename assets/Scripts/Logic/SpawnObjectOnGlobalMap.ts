@@ -1,6 +1,6 @@
 import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
 import { ZoomCamera } from '../Camera/ZoomCamera';
-import { GlobalMapController } from '../Controllers/StorageControllers/GlobalMapController';
+import { GlobalMapStorageController } from '../Controllers/StorageControllers/GlobalMapStorageController';
 import { Building } from '../Storage/GlobalMapStorage';
 import { MovingCamera } from '../Camera/MovingCamera';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
@@ -30,14 +30,14 @@ export class SpawnObjectsOnGlobalMap extends Component {
     public image: Node;
 
     start() {
-        for (let l = 0; l < GlobalMapController.getBuildings().length; l++) {
-            this.spawnObject(GlobalMapController.getBuildings()[l])
+        for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
+            this.spawnObject(GlobalMapStorageController.getBuildings()[l])
         }
         this.setStartCameraPosition()
     }
 
     private spawnObject(building: Building) {
-        let coordinates = GlobalMapController.getCoordinatesBuilding(building)
+        let coordinates = GlobalMapStorageController.getCoordinatesBuilding(building)
 
         let node = instantiate(this.image)
         if (building.type == 'base') {
@@ -49,7 +49,7 @@ export class SpawnObjectsOnGlobalMap extends Component {
     }
 
     private setStartCameraPosition() {
-        MovingCamera.instance.movie(GlobalMapController.getBaseCoordinates())
+        MovingCamera.instance.movie(GlobalMapStorageController.getBaseCoordinates())
         RedirectionToScene.getSceneName()
     }
 }
