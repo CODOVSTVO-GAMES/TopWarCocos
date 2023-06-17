@@ -1,6 +1,6 @@
 import { _decorator, CCBoolean, CCObject, CCString, Component } from 'cc';
 import { TechnicalConfig } from '../Static/TechnicalConfig';
-import { Cryptor } from '../Network/Other/Cryptor';
+import { Cryptor } from '../Other/Cryptor';
 import { Product } from '../Structures/Product';
 const { ccclass, property } = _decorator;
 
