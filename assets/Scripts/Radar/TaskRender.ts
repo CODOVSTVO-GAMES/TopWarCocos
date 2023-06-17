@@ -23,6 +23,12 @@ export class TaskRender extends Component {
 
     public radarTask: RadarTask;
 
+    /**
+     * рендер задачи: картинка, звезды, точка выполненности
+     * 
+     * при нажатии на задачу открывается модалка информации о задаче, либо модалка награды
+     */
+
     render(radarTask: RadarTask) {
         this.radarTask = radarTask;
         if (radarTask != null) {

@@ -46,7 +46,12 @@ export class ModalCharacterPumpingInterface extends Component {
         }
     }
 
-    pushButtonTab(event, customEventData) {
+    /**
+     * рендер вкладок в модалке
+     * далее рендер полей в самой вкладке
+     */
+
+    pushButtonTab(event, customEventData) {// по идее это должно быть в ModalCharacterPumpingLogic эта штука переключает вкладки в модалке
         switch (customEventData) {
             case "0":
                 this.renderModalPumping(TypesModalPumping.PARAMETERS);

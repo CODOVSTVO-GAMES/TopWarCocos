@@ -16,6 +16,15 @@ export class QuestionLogic extends Component {
     onLoad() {
         QuestionLogic.instance = this;
     }
+    /**
+     * выбор ответа мини игра
+     */
+
+    /**
+     * при открытии этого задания, расчитывается логическая часть модалки
+     * 
+     * при нажатии на вариант ответа через секунду модалка закрывается, задание считается выполненым
+     */
 
     renderModal() {
         this.trigger = false;

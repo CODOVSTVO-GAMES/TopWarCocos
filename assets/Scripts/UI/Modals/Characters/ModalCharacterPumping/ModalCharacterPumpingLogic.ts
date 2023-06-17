@@ -20,6 +20,11 @@ export class ModalCharacterPumpingLogic extends Component {
         ModalCharacterPumpingLogic.instance = this;
     }
 
+    /**
+     * при нажатии на книжку к персонажу добавляется опыт
+     * при нажатии на поднять зв. если фрагментов достаточно то прокачается звездность персонажа
+     */
+
     pushBook(event, customEventData) {
         let exp = 0;
         switch (customEventData) {
