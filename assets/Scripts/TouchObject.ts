@@ -29,22 +29,21 @@ export class TouchObject extends Component {
     private yPos: number;
     private distanceChanges: number;
     private initialIndex: number;
-    private isMove: boolean;
 
-    onLoad() {
+    public onLoad() {
         this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this);
         this.touchObject.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);
         this.touchObject.on(Input.EventType.TOUCH_END, this.touchEnd, this);
     }
 
-    onDestroy() {
+    public onDestroy() {
         this.touchObject.off(Input.EventType.TOUCH_START, this.touchStart);
         this.touchObject.off(Input.EventType.TOUCH_MOVE, this.touchMove);
         this.touchObject.off(Input.EventType.TOUCH_END, this.touchEnd);
     }
 
-    touchStart(e: Touch) {
-        if (TouchStatus.instance.activeTouch == true && this.isMove) return;
+    private touchStart() {
+        if (TouchStatus.instance.activeTouch == true) return;
 
         TouchStatus.instance.activeTouch = true;
 
@@ -66,11 +65,10 @@ export class TouchObject extends Component {
         this.yPos = this.mainObject.position.y;
         this.distanceChanges = 0;
         this.initialIndex = this.objectParameters.index;
-        this.isMove = true;
     }
 
-    touchMove(e: Touch) {
-        if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
+    private touchMove(e: Touch) {
+        if (TouchStatus.instance.activeTouch == false) return;
 
         this.xPos += (e.getUIDelta().x * ZoomCamera.instance.zoomRaito);
         this.yPos += (e.getUIDelta().y * ZoomCamera.instance.zoomRaito);
@@ -85,20 +83,56 @@ export class TouchObject extends Component {
         }
     }
 
-    touchEnd() {
-        if (TouchStatus.instance.activeTouch == false && this.isMove == false) return;
+    private touchEnd() {
+        if (TouchStatus.instance.activeTouch == false) return;
 
         this.processing();
-        this.isMove = false;
         HighlightHomeMap.hideAllCoord();
         ControllerHomeMapStorage.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 
-    processing() {
+    private processing() {
+        let indexObject = this.searchNearestCoord();
+
+        if (this.initialIndex == indexObject) {
+            return this.putAnObject(indexObject);
+        }
+
+        let arrayIndexes = ControllerHomeMapStorage.getArrayObject(this.objectParameters.type);
+
+        if (this.searchAvailableMerge(indexObject, arrayIndexes)) {
+            return;
+        }
+
+        for (let i = 0; i < arrayIndexes.length; i++) {
+            if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
+                return this.putAnObject(this.initialIndex);
+            }
+            else {
+                if (this.objectParameters.sizes == "2x2") {
+                    if (indexObject % 50 == 0 || indexObject < 50) {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+                else if (this.objectParameters.sizes == "3x2") {
+                    if (indexObject % 50 == 0 || indexObject < 50) {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+                else if (this.objectParameters.sizes == "3x3") {
+                    if ((indexObject % 50 == 0 || (indexObject - 1) % 50 == 0) || indexObject < 100) {
+                        return this.putAnObject(this.initialIndex);
+                    }
+                }
+            }
+        }
+        this.putAnObject(indexObject);
+    }
+
+    private searchNearestCoord(): number {
         let minDistance = 100000;
         let indexObject = 0;
-
         for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
             let currentDistance = Vec3.distance(this.mainObject.position, ControllerHomeMapStorage.getCoordPosition(i));
             if (currentDistance < minDistance) {
@@ -107,136 +141,99 @@ export class TouchObject extends Component {
                 if (minDistance < 42) break;
             }
         }
+        return indexObject;
+    }
 
-        if (this.initialIndex == indexObject) {
-            return this.putAnObject(indexObject);
-        }
-
-        let arrayIndexes = ControllerHomeMapStorage.getArrayObject(this.objectParameters.type);
-        let count = 0;
+    private searchAvailableMerge(indexObject: number, arrayIndexes: number[]): boolean {
+        let quantityMatches = 0;
         let indexMerge = 0;
         for (let i = 0; i < arrayIndexes.length; i++) {
-            let tempObjParam = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexes[i])
-            if (tempObjParam != null) {
-                if (this.objectParameters.type == tempObjParam.type) {
-                    if (this.objectParameters.level == tempObjParam.level) {
-                        count += 1;
-                        indexMerge = tempObjParam.index;
+            let nearbyObjectParameters = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexes[i])
+            if (nearbyObjectParameters != null) {
+                if (this.objectParameters.type == nearbyObjectParameters.type) {
+                    if (this.objectParameters.level == nearbyObjectParameters.level) {
+                        quantityMatches += 1;
+                        indexMerge = nearbyObjectParameters.index;
                     }
                     else {
-                        return this.putAnObject(this.initialIndex);
+                        this.putAnObject(this.initialIndex);
+                        return false;
                     }
                 }
                 else {
-                    return this.putAnObject(this.initialIndex);
+                    this.putAnObject(this.initialIndex);
+                    return false;
                 }
             }
         }
-
-        if (count > 0) {
+ 
+        if (quantityMatches > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
                 if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) {
-                    return this.mergeObject(indexMerge);
+                    this.mergeObject(indexMerge);
+                    return true;
                 }
             }
             else {
-                return this.putAnObject(this.initialIndex);
-            }
-        }
-
-        if (this.objectParameters.sizes == "1x1") {
-            if (IndexesMap.indexesMap[indexObject].location != this.objectParameters.location) {
                 this.putAnObject(this.initialIndex);
-            }
-            else {
-                this.putAnObject(indexObject);
-            }
-        }
-        else if (this.objectParameters.sizes == "2x2") {
-            if (indexObject % 50 == 0 || indexObject < 50) {
-                this.putAnObject(this.initialIndex);
-            }
-            else {
-                for (let i = 0; i < arrayIndexes.length; i++) {
-                    if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
-                        return this.putAnObject(this.initialIndex);
-                    }
-                }
-                this.putAnObject(indexObject);
-            }
-        }
-        else if (this.objectParameters.sizes == "3x2") {
-            if (indexObject % 50 == 0 || indexObject < 100) {
-                this.putAnObject(this.initialIndex);
-            }
-            else {
-                for (let i = 0; i < arrayIndexes.length; i++) {
-                    if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
-                        return this.putAnObject(this.initialIndex);
-                    }
-                }
-                this.putAnObject(indexObject);
-            }
-        }
-        else if (this.objectParameters.sizes == "3x3") {
-            if ((indexObject % 50 == 0 || (indexObject - 1) % 50 == 0) || indexObject < 100) {
-                this.putAnObject(this.initialIndex);
-            }
-            else {
-                for (let i = 0; i < arrayIndexes.length; i++) {
-                    if (IndexesMap.indexesMap[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
-                        return this.putAnObject(this.initialIndex);
-                    }
-                }
-                this.putAnObject(indexObject);
+                return false;
             }
         }
     }
 
-    mergeObject(index: number) {
+
+    private alo(indexMerge: number): boolean {
+        this.mergeObject(indexMerge);
+        return true;
+    }
+
+    private mergeObject(index: number) {
         HomeMapStorage.instance.selectedObject = null;
         ControllerAutocombineStorage.deleteGoldMine(this.objectParameters.index);
         FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
-    putAnObject(index: number) {
+    private putAnObject(index: number) {
         if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
             ControllerAutocombineStorage.updateIndexGoldMine(this.objectParameters.index, index);
         }
         this.objectParameters.index = index;
-        if (this.initialIndex == index) {
-            this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
-        }
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         FlightGameObjects.instance.moveToCell(this.mainObject, index);
     }
