@@ -1,5 +1,5 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
-import { GameStorageController } from '../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
 import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
 import { SpriteStorage } from '../../../Storage/SpriteStorage';

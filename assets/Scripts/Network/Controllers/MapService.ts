@@ -2,7 +2,7 @@ import { UserStorageController } from "../../Controllers/UserStorageController"
 import { ServerApi } from "../Other/ServerApi"
 import { MapDTO } from "../DTO/MapDTO"
 import { GlobalMapController } from "../../Controllers/GlobalMapController";
-import { GameStorageController } from "../../Controllers/GameStorageController";
+import { GameStorageController } from "../../Controllers/StorageControllers/GameStorageController";
 import { RadarStorageController } from "../../Controllers/RadarStorageController";
 import { ConfigStorageController } from "../../Controllers/ConfigStorageController";
 

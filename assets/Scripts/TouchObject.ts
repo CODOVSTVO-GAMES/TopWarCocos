@@ -8,7 +8,7 @@ import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
-import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
+import { AutocombineStorageController } from './Controllers/StorageControllers/AutocombineStorageController';
 import { CommandPostStorageController } from './Controllers/CommandPostStorageController';
 const { ccclass, property } = _decorator;
 
@@ -166,7 +166,7 @@ export class TouchObject extends Component {
                 }
             }
         }
- 
+
         if (quantityMatches > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
                 if (this.objectParameters.level < CommandPostStorageController.getLevelMergeGoldMine()) {

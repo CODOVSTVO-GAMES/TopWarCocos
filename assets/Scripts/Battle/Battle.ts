@@ -11,7 +11,7 @@ import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
 import { BattleStorage } from '../Storage/BattleStorage';
 import { TroopStorageController } from '../Controllers/TroopStorageController';
-import { GameStorageController } from '../Controllers/GameStorageController';
+import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
 import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';

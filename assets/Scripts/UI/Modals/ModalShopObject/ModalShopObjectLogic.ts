@@ -3,7 +3,7 @@ import { SpawnObjectsOnHomeMap } from '../../../Logic/SpawnObjectsOnHomeMap';
 import { TypesObjects } from '../../../Static/TypesObjects';
 import { TypesLocation } from '../../../Static/TypesLocation';
 import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
-import { GameStorageController } from '../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
 const { ccclass } = _decorator;
 

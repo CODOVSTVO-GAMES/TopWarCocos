@@ -4,7 +4,7 @@ import { ObjectParameters } from '../ObjectParameters';
 import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesLocation } from '../Static/TypesLocation';
-import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
+import { AutocombineStorageController } from '../Controllers/StorageControllers/AutocombineStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjectsOnHomeMap')

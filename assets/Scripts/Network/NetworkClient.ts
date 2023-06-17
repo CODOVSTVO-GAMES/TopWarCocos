@@ -2,7 +2,7 @@ import { _decorator, Component } from 'cc';
 import { BufferStorageController } from '../Controllers/BufferStorageController';
 import { DataStorageService } from './Controllers/DataStorageService';
 import { EventService } from './Controllers/EventService';
-import { GameStorageController } from '../Controllers/GameStorageController';
+import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
 import { TypesStorages } from '../Static/TypesStorages';
 import { SessionService } from './Controllers/SessionService';
 import { CommandPostStorageController } from '../Controllers/CommandPostStorageController';
@@ -14,7 +14,7 @@ import { HomeMapStorageController } from '../Controllers/HomeMapStorageControlle
 import { InventoryStorageController } from '../Controllers/InventoryStorageController';
 import { RadarStorageController } from '../Controllers/RadarStorageController';
 import { PaymentsService } from './Controllers/PaymentsService';
-import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
+import { AutocombineStorageController } from '../Controllers/StorageControllers/AutocombineStorageController';
 import { MapService } from './Controllers/MapService';
 const { ccclass } = _decorator;
 

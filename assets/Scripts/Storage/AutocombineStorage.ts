@@ -1,5 +1,5 @@
 import { _decorator, Component, CCInteger, CCBoolean } from 'cc';
-import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
+import { AutocombineStorageController } from '../Controllers/StorageControllers/AutocombineStorageController';
 import { Aut } from '../Structures/Aut';
 const { ccclass, property } = _decorator;
 

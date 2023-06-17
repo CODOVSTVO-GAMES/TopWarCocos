@@ -1,7 +1,7 @@
 import { _decorator, Component } from 'cc';
 import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
 import { UpgradeCommandPostInerface } from './UpgradeCommandPostInerface';
-import { GameStorageController } from '../../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
 import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
 import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';

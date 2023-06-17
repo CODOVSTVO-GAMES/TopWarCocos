@@ -2,7 +2,7 @@ import { _decorator, Component, Node, Label, Sprite, Button, SpriteFrame } from 
 import { SpriteStorage } from '../../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../../Static/TypesObjects';
 import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
-import { GameStorageController } from '../../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
 import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
 import { ConvertLargeNumber } from '../../../../Other/ConvertLargeNumber';
 import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';

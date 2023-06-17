@@ -3,7 +3,7 @@ import { SpriteStorage } from '../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../Static/TypesObjects';
 import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
 import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
-import { GameStorageController } from '../../../Controllers/GameStorageController';
+import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;
 
