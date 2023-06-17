@@ -1,12 +1,12 @@
 import { _decorator } from 'cc';
 import { AutocombineStorage } from '../../Storage/AutocombineStorage';
-import { HomeMapStorageController } from '../HomeMapStorageController';
+import { HomeMapStorageController } from './HomeMapStorageController';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { ObjectParameters } from '../../ObjectParameters';
 import { Aut } from '../../Structures/Aut';
-import { BufferStorageController } from '../BufferStorageController';
+import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
-import { ConfigStorageController } from '../ConfigStorageController';
+import { ConfigStorageController } from './ConfigStorageController';
 
 export class AutocombineStorageController {
 

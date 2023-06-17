@@ -1,12 +1,12 @@
 import { _decorator, Node, Sprite, Vec3 } from 'cc';
-import { HomeMapStorage } from '../Storage/HomeMapStorage';
-import { ObjectParameters } from '../ObjectParameters';
-import { TypesObjects } from '../Static/TypesObjects';
-import { IndexesObject } from '../Static/IndexesObject';
+import { HomeMapStorage } from '../../Storage/HomeMapStorage';
+import { ObjectParameters } from '../../ObjectParameters';
+import { TypesObjects } from '../../Static/TypesObjects';
+import { IndexesObject } from '../../Static/IndexesObject';
 import { BufferStorageController } from './BufferStorageController';
-import { TypesStorages } from '../Static/TypesStorages';
-import { SpawnObjectsOnHomeMap } from '../Logic/SpawnObjectsOnHomeMap';
-import { TypesLocation } from '../Static/TypesLocation';
+import { TypesStorages } from '../../Static/TypesStorages';
+import { SpawnObjectsOnHomeMap } from '../../Logic/SpawnObjectsOnHomeMap';
+import { TypesLocation } from '../../Static/TypesLocation';
 
 export class HomeMapStorageController {
 

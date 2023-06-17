@@ -1,5 +1,5 @@
-import { TaskTypes } from "../Static/TaskTypes";
-import { TaskStorage } from "../Storage/TaskStorage";
+import { TaskTypes } from "../../Static/TaskTypes";
+import { TaskStorage } from "../../Storage/TaskStorage";
 
 /**
  * 0-закрыт

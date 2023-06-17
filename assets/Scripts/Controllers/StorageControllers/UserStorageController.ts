@@ -1,6 +1,6 @@
 import { _decorator } from 'cc';
-import { UserStorage } from '../Storage/UserStorage';
-import { Product } from '../Structures/Product';
+import { UserStorage } from '../../Storage/UserStorage';
+import { Product } from '../../Structures/Product';
 
 export class UserStorageController {
 

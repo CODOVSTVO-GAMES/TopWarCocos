@@ -4,7 +4,7 @@ import { SessionService } from '../Network/Controllers/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Network/Controllers/DataStorageService';
 import { UserService } from '../Network/Controllers/UserService';
-import { UserStorageController } from '../Controllers/UserStorageController';
+import { UserStorageController } from '../Controllers/StorageControllers/UserStorageController';
 import { ConfigService } from '../Network/Controllers/ConfigService';
 import { MapService } from '../Network/Controllers/MapService';
 const { ccclass } = _decorator;

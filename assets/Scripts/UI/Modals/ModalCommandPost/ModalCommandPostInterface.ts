@@ -1,7 +1,7 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
-import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
+import { CommandPostStorageController } from '../../../Controllers/StorageControllers/CommandPostStorageController';
 import { SpriteStorage } from '../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../Static/TypesObjects';
 const { ccclass, property } = _decorator;

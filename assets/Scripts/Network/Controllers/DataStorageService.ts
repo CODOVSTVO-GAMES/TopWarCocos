@@ -1,4 +1,4 @@
-import { UserStorageController } from "../../Controllers/UserStorageController"
+import { UserStorageController } from "../../Controllers/StorageControllers/UserStorageController"
 import { ServerApi } from "../Other/ServerApi"
 import { DataStorageDTO } from "../DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../DTO/DataStorageResponseDTO"

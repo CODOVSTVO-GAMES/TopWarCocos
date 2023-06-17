@@ -1,11 +1,11 @@
 import { _decorator, Component, Node, Label, Sprite } from 'cc';
 import { SpriteStorage } from '../../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../../Static/TypesObjects';
-import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
+import { CommandPostStorageController } from '../../../../Controllers/StorageControllers/CommandPostStorageController';
 import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
-import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
+import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
 import { ConvertLargeNumber } from '../../../../Other/ConvertLargeNumber';
-import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
+import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 

@@ -1,7 +1,7 @@
 import { _decorator } from 'cc';
-import { CommandPostStorage } from '../Storage/CommandPostStorage';
+import { CommandPostStorage } from '../../Storage/CommandPostStorage';
 import { BufferStorageController } from './BufferStorageController';
-import { TypesStorages } from '../Static/TypesStorages';
+import { TypesStorages } from '../../Static/TypesStorages';
 
 export class CommandPostStorageController {
 

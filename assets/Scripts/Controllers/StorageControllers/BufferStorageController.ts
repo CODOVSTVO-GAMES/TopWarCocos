@@ -1,6 +1,6 @@
 import { _decorator } from 'cc';
-import { BufferStorage } from '../Storage/BufferStorage';
-import { Buffer } from '../Structures/Buffer';
+import { BufferStorage } from '../../Storage/BufferStorage';
+import { Buffer } from '../../Structures/Buffer';
 
 export class BufferStorageController {
 

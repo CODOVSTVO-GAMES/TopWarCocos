@@ -1,10 +1,10 @@
-import { UserStorageController } from "../../Controllers/UserStorageController"
+import { UserStorageController } from "../../Controllers/StorageControllers/UserStorageController"
 import { ServerApi } from "../Other/ServerApi"
 import { MapDTO } from "../DTO/MapDTO"
-import { GlobalMapController } from "../../Controllers/GlobalMapController";
+import { GlobalMapController } from "../../Controllers/StorageControllers/GlobalMapController";
 import { GameStorageController } from "../../Controllers/StorageControllers/GameStorageController";
-import { RadarStorageController } from "../../Controllers/RadarStorageController";
-import { ConfigStorageController } from "../../Controllers/ConfigStorageController";
+import { RadarStorageController } from "../../Controllers/StorageControllers/RadarStorageController";
+import { ConfigStorageController } from "../../Controllers/StorageControllers/ConfigStorageController";
 
 export class MapService {
 

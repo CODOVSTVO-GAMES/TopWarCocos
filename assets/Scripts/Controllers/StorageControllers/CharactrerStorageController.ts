@@ -1,13 +1,13 @@
 import { _decorator } from 'cc';
-import { CharactersStorage } from '../Storage/CharactersStorage';
+import { CharactersStorage } from '../../Storage/CharactersStorage';
 import { BufferStorageController } from './BufferStorageController';
-import { TypesStorages } from '../Static/TypesStorages';
-import { CharacterInfo } from '../Structures/CharacterInfo';
+import { TypesStorages } from '../../Static/TypesStorages';
+import { CharacterInfo } from '../../Structures/CharacterInfo';
 import { ConfigStorageController } from './ConfigStorageController';
-import { ModalCharacterInfoIntarface } from '../UI/Modals/Characters/ModalCharacterInfo/ModalCharacterInfoInterface';
-import { ModalCharacterPumpingInterface } from '../UI/Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
-import { TypesCharacters } from '../Static/TypesCharacters';
-import { TypesObjects } from '../Static/TypesObjects';
+import { ModalCharacterInfoIntarface } from '../../UI/Modals/Characters/ModalCharacterInfo/ModalCharacterInfoInterface';
+import { ModalCharacterPumpingInterface } from '../../UI/Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
+import { TypesCharacters } from '../../Static/TypesCharacters';
+import { TypesObjects } from '../../Static/TypesObjects';
 
 export class CharactrerStorageController {
 

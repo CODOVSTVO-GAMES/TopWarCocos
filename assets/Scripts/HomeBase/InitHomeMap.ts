@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Prefab, Sprite, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
-import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { SpawnObjectsOnHomeMap } from '../Logic/SpawnObjectsOnHomeMap';
 const { ccclass, property } = _decorator;
 

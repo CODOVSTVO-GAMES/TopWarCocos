@@ -1,4 +1,4 @@
-import { UserStorageController } from "../../Controllers/UserStorageController";
+import { UserStorageController } from "../../Controllers/StorageControllers/UserStorageController";
 import { Product } from "../../Structures/Product";
 import { ServerApi } from "../Other/ServerApi";
 

@@ -1,6 +1,6 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab, Sprite, Vec3 } from 'cc';
-import { RadarStorageController } from '../../../Controllers/RadarStorageController';
-import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
+import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
+import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { TaskRender } from '../../../Radar/TaskRender';
 const { ccclass, property } = _decorator;

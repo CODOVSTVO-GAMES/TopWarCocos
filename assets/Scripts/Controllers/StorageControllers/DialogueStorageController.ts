@@ -1,4 +1,4 @@
-import { DialogueStorage } from "../Storage/DialogueStorage";
+import { DialogueStorage } from "../../Storage/DialogueStorage";
 
 export class DialogueStorageController {
 

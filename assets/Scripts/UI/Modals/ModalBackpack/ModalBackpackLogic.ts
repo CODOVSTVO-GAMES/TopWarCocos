@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { InventoryStorageController } from '../../../Controllers/InventoryStorageController';
+import { InventoryStorageController } from '../../../Controllers/StorageControllers/InventoryStorageController';
 import { ModalBackpackInterface } from './ModalBackpackInterface';
 import { TypesItems } from '../../../Static/TypesItems';
 import { SecondaryInterface } from '../../SecondaryInterface';

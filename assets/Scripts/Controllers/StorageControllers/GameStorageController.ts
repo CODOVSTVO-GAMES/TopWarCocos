@@ -1,8 +1,8 @@
 import { _decorator } from 'cc';
 import { GameStorage } from '../../Storage/GameStorage';
 import { MainInterface } from '../../UI/MainInterface';
-import { ConfigStorageController } from '../ConfigStorageController';
-import { BufferStorageController } from '../BufferStorageController';
+import { ConfigStorageController } from './ConfigStorageController';
+import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
 
 export class GameStorageController {

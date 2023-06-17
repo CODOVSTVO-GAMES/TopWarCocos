@@ -1,7 +1,7 @@
 import { _decorator, instantiate, Vec3 } from 'cc';
 import { PrefabsStorage } from '../Storage/PrefabsStorage';
 import { ObjectParameters } from '../ObjectParameters';
-import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesLocation } from '../Static/TypesLocation';
 import { AutocombineStorageController } from '../Controllers/StorageControllers/AutocombineStorageController';

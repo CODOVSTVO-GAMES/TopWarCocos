@@ -1,6 +1,6 @@
 import { _decorator } from 'cc';
-import { TroopStorage } from '../Storage/TroopStorage';
-import { TypesObjects } from '../Static/TypesObjects';
+import { TroopStorage } from '../../Storage/TroopStorage';
+import { TypesObjects } from '../../Static/TypesObjects';
 import { HomeMapStorageController } from './HomeMapStorageController';
 
 export class TroopStorageController {

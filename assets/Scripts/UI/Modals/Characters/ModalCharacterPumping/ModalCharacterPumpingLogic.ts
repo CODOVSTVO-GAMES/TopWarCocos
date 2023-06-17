@@ -1,6 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
-import { CharactrerStorageController } from '../../../../Controllers/CharactrerStorageController';
-import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
+import { CharactrerStorageController } from '../../../../Controllers/StorageControllers/CharactrerStorageController';
+import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { TypesCharacters } from '../../../../Static/TypesCharacters';
 import { ModalCharacterPumpingInterface } from './ModalCharacterPumpingInterface';

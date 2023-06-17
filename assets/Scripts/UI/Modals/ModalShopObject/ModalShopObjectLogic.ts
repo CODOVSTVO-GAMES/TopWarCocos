@@ -2,9 +2,9 @@ import { _decorator, Component } from 'cc';
 import { SpawnObjectsOnHomeMap } from '../../../Logic/SpawnObjectsOnHomeMap';
 import { TypesObjects } from '../../../Static/TypesObjects';
 import { TypesLocation } from '../../../Static/TypesLocation';
-import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
+import { CommandPostStorageController } from '../../../Controllers/StorageControllers/CommandPostStorageController';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
-import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
+import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('ModalShopObjectLogic')

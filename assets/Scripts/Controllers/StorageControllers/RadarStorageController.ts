@@ -1,15 +1,15 @@
 import { _decorator, Component, Node } from 'cc';
 import { BufferStorageController } from './BufferStorageController';
-import { TypesStorages } from '../Static/TypesStorages';
-import { RadarStorage } from '../Storage/RadarStorage';
-import { RadarTask } from '../Structures/RadarTask';
-import { RadarReward } from '../Structures/RadarReward';
+import { TypesStorages } from '../../Static/TypesStorages';
+import { RadarStorage } from '../../Storage/RadarStorage';
+import { RadarTask } from '../../Structures/RadarTask';
+import { RadarReward } from '../../Structures/RadarReward';
 import { ConfigStorageController } from './ConfigStorageController';
-import { ModalRadarInterface } from '../UI/Modals/ModalRadar/ModalRadarInterface';
-import { ModalRadarLogic } from '../UI/Modals/ModalRadar/ModalRadarLogic';
-import { MessageAnimation } from '../Animations/Message/MessageAnimation';
+import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
+import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
+import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
 import { HomeMapStorageController } from './HomeMapStorageController';
-import { TypesObjects } from '../Static/TypesObjects';
+import { TypesObjects } from '../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarStorageController')

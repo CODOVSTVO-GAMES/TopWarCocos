@@ -1,7 +1,7 @@
-import { UserStorageController } from "../../Controllers/UserStorageController"
+import { UserStorageController } from "../../Controllers/StorageControllers/UserStorageController"
 import { ServerApi } from "../Other/ServerApi"
 import { EventsDTO } from "../DTO/EventsDTO"
-import { BufferStorageController } from "../../Controllers/BufferStorageController"
+import { BufferStorageController } from "../../Controllers/StorageControllers/BufferStorageController"
 
 export class EventService {
 

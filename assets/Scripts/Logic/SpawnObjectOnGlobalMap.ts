@@ -1,6 +1,6 @@
 import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
 import { ZoomCamera } from '../Camera/ZoomCamera';
-import { GlobalMapController } from '../Controllers/GlobalMapController';
+import { GlobalMapController } from '../Controllers/StorageControllers/GlobalMapController';
 import { Building } from '../Storage/GlobalMapStorage';
 import { MovingCamera } from '../Camera/MovingCamera';
 import { RedirectionToScene } from '../Other/RedirectionToScene';

@@ -1,4 +1,4 @@
-import { UserStorageController } from "../../Controllers/UserStorageController";
+import { UserStorageController } from "../../Controllers/StorageControllers/UserStorageController";
 import { ServerApi } from "../Other/ServerApi";
 import { SessionDataDTO } from "../DTO/SessionDataDTO";
 import { LoadingGame } from "../../LoadingGame/LoadingGame";

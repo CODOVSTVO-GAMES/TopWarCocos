@@ -1,9 +1,9 @@
 import { _decorator } from 'cc';
-import { ConfigStorage } from '../Storage/ConfigStorage';
-import { TypesObjects } from '../Static/TypesObjects';
-import { HeroConfig } from '../Structures/HeroConfig';
-import { UnitsCongig } from '../Structures/ConfigUnits';
-import { RadarConfig } from '../Structures/RadarConfig';
+import { ConfigStorage } from '../../Storage/ConfigStorage';
+import { TypesObjects } from '../../Static/TypesObjects';
+import { HeroConfig } from '../../Structures/HeroConfig';
+import { UnitsCongig } from '../../Structures/ConfigUnits';
+import { RadarConfig } from '../../Structures/RadarConfig';
 
 export class ConfigStorageController {
 

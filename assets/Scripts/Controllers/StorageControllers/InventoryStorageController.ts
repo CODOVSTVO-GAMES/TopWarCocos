@@ -1,9 +1,9 @@
 import { _decorator } from 'cc';
-import { InventoryStorage } from '../Storage/InventoryStorage';
-import { Item } from '../Structures/Item';
+import { InventoryStorage } from '../../Storage/InventoryStorage';
+import { Item } from '../../Structures/Item';
 import { BufferStorageController } from './BufferStorageController';
-import { TypesStorages } from '../Static/TypesStorages';
-import { TypesItems } from '../Static/TypesItems';
+import { TypesStorages } from '../../Static/TypesStorages';
+import { TypesItems } from '../../Static/TypesItems';
 
 export class InventoryStorageController {
 

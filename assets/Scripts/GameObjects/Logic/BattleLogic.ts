@@ -2,8 +2,8 @@ import { _decorator, Component } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
 import { RedirectionToScene } from '../../Other/RedirectionToScene';
 import { SceneNames } from '../../Static/SceneNames';
-import { TroopStorageController } from '../../Controllers/TroopStorageController';
-import { HomeMapStorageController } from '../../Controllers/HomeMapStorageController';
+import { TroopStorageController } from '../../Controllers/StorageControllers/TroopStorageController';
+import { HomeMapStorageController } from '../../Controllers/StorageControllers/HomeMapStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('BattleLogic')

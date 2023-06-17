@@ -1,8 +1,8 @@
-import { UserStorageController } from "../../Controllers/UserStorageController"
+import { UserStorageController } from "../../Controllers/StorageControllers/UserStorageController"
 import { ServerApi } from "../Other/ServerApi"
 import { UserDTO } from "../DTO/UserDTO"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
-import { GlobalMapController } from "../../Controllers/GlobalMapController"
+import { GlobalMapController } from "../../Controllers/StorageControllers/GlobalMapController"
 
 export class UserService {
 

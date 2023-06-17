@@ -2,7 +2,7 @@ import { _decorator, Component, Label, Sprite } from 'cc';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { Battle } from './Battle';
 import { CharactersStorage } from '../Storage/CharactersStorage';
-import { CharactrerStorageController } from '../Controllers/CharactrerStorageController';
+import { CharactrerStorageController } from '../Controllers/StorageControllers/CharactrerStorageController';
 import { BattleStorage } from '../Storage/BattleStorage';
 const { ccclass, property } = _decorator;
 

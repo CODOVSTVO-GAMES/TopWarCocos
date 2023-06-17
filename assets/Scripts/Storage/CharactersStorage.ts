@@ -1,6 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { ConfigStorageController } from '../Controllers/ConfigStorageController';
+import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('CharactersStorage')

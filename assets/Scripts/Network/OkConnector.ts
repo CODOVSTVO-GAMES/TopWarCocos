@@ -1,6 +1,6 @@
 import { LoadingGame } from "../LoadingGame/LoadingGame";
 import { TechnicalConfig } from "../Static/TechnicalConfig";
-import { UserStorageController } from "../Controllers/UserStorageController";
+import { UserStorageController } from "../Controllers/StorageControllers/UserStorageController";
 
 export class OkConnector {
 

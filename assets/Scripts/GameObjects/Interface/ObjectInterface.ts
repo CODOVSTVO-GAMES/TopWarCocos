@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Label } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
-import { HomeMapStorageController } from '../../Controllers/HomeMapStorageController';
+import { HomeMapStorageController } from '../../Controllers/StorageControllers/HomeMapStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectInterface')

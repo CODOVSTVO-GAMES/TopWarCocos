@@ -1,7 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
-import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
+import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 import { RadarStorage } from '../../../Storage/RadarStorage';
-import { RadarStorageController } from '../../../Controllers/RadarStorageController';
+import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
 import { TypesRadar } from '../../../Static/TypesRadar';
 import { RadarReward } from '../../../Structures/RadarReward';
 import { TypesItems } from '../../../Static/TypesItems';

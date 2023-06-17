@@ -1,8 +1,8 @@
 import { _decorator, Button, Component, Label, Sprite } from 'cc';
 import { SpriteStorage } from '../../../Storage/SpriteStorage';
 import { TypesObjects } from '../../../Static/TypesObjects';
-import { CommandPostStorageController } from '../../../Controllers/CommandPostStorageController';
-import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
+import { CommandPostStorageController } from '../../../Controllers/StorageControllers/CommandPostStorageController';
+import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
 const { ccclass, property } = _decorator;

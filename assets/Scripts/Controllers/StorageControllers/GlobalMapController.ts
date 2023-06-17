@@ -1,5 +1,5 @@
 import { Camera, Vec2, Vec3 } from "cc";
-import { Building, GlobalMapStorage } from "../Storage/GlobalMapStorage";
+import { Building, GlobalMapStorage } from "../../Storage/GlobalMapStorage";
 import { UserStorageController } from "./UserStorageController";
 
 export class GlobalMapController {
