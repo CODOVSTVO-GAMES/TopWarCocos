@@ -1,8 +1,12 @@
-
-
 export class AutocombineEventsController {
 
-    static x() {
+    static prepGoToGoldMines() {
+        // подготовка перехода к золотым шахтам на карте
+
+    }
+
+    static prepCollectProfit() {
+        // подготовка сбора накопленного дохода
 
     }
 } 
