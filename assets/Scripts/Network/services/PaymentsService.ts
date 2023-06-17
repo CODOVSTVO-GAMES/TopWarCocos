@@ -1,4 +1,4 @@
-import { ControllerUserStorage } from "../../Storage/Controllers/ControllerUserStorage";
+import { UserStorageController } from "../../Controllers/UserStorageController";
 import { Product } from "../../Structures/Product";
 import { ClientService } from "../other/ClientService";
 
@@ -18,7 +18,7 @@ export class PaymentsService {
                 let obj = array[l]
                 productArray.push(new Product(obj['id'], obj['title'], obj['description'], obj['price']))
             }
-            ControllerUserStorage.setProducts(productArray)
+            UserStorageController.setProducts(productArray)
         }
     }
 }

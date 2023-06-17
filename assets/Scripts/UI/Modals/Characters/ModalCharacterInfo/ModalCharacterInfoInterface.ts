@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
-import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
+import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterInfoIntarface')
@@ -45,9 +45,13 @@ export class ModalCharacterInfoIntarface extends Component {
         ModalCharacterInfoIntarface.instance = this;
     }
 
+    /**
+     * рендер полей в модалке
+     */
+
     renderCharacter(index: number): boolean {
         let character = CharactersStorage.instance.characters[index];
-        let chatacterLvlExp = ControllerConfigStorage.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+        let chatacterLvlExp = ConfigStorageController.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
         if (character != null) {
             this.heroName.string = character.codeName;
             this.heroType.string = character.type;

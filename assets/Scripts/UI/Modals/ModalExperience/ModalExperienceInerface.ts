@@ -1,6 +1,6 @@
 import { _decorator, Component, Label } from 'cc';
 import { ConvertLargeNumber } from '../../../Other/ConvertLargeNumber';
-import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
+import { GameStorageController } from '../../../Controllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalExperienceInerface')
@@ -19,8 +19,8 @@ export class ModalExperienceInerface extends Component {
     }
 
     updateInterface() {
-        let experience = "Опыт " + ConvertLargeNumber.convert(ControllerGameStorage.getExperience()) + "/" + ConvertLargeNumber.convert(ControllerGameStorage.getExpirienceForNextLevel());
-        let requiredExperience = "До " + (ControllerGameStorage.getLevel() + 1).toString() + " уровня еще требуется " + ConvertLargeNumber.convert(ControllerGameStorage.getRemainingExpirienceForNextLevel());
+        let experience = "Опыт " + ConvertLargeNumber.convert(GameStorageController.getExperience()) + "/" + ConvertLargeNumber.convert(GameStorageController.getExpirienceForNextLevel());
+        let requiredExperience = "До " + (GameStorageController.getLevel() + 1).toString() + " уровня еще требуется " + ConvertLargeNumber.convert(GameStorageController.getRemainingExpirienceForNextLevel());
 
         this.experience.string = experience;
         this.requiredExperience.string = requiredExperience;

@@ -1,5 +1,5 @@
-import { TaskTypes } from "../../Static/TaskTypes";
-import { TaskStorage } from "../TaskStorage";
+import { TaskTypes } from "../Static/TaskTypes";
+import { TaskStorage } from "../Storage/TaskStorage";
 
 /**
  * 0-закрыт
@@ -8,7 +8,7 @@ import { TaskStorage } from "../TaskStorage";
  * 3-получен
  */
 
-export class ControllerTaskStorage {
+export class TaskStorageController {
 
     static setActiveTaskTypes(array: Array<string>) {
         TaskStorage.instance.activeTaskTypes = array;

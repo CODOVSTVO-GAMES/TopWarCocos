@@ -1,11 +1,11 @@
 import { _decorator, Component } from 'cc';
-import { ControllerCommandPostStorage } from '../../../../Storage/Controllers/ControllerCommandPostStorage';
+import { CommandPostStorageController } from '../../../../Controllers/CommandPostStorageController';
 import { UpgradeCommandPostInerface } from './UpgradeCommandPostInerface';
-import { ControllerGameStorage } from '../../../../Storage/Controllers/ControllerGameStorage';
-import { ControllerConfigStorage } from '../../../../Storage/Controllers/ControllerConfigStorage';
-import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { GameStorageController } from '../../../../Controllers/GameStorageController';
+import { ConfigStorageController } from '../../../../Controllers/ConfigStorageController';
+import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
-import { ControllerHomeMapStorage } from '../../../../Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from '../../../../Controllers/HomeMapStorageController';
 import { TypesObjects } from '../../../../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
@@ -13,12 +13,12 @@ const { ccclass, property } = _decorator;
 export class UpgradeCommandPostLogic extends Component {
 
     upgrateObject() {
-        ControllerCommandPostStorage.addLevelCommandPost();
-        ControllerGameStorage.reduceCoins(ControllerConfigStorage.getPriceUpdateMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
-        ControllerInventoryStorage.reduceItem(TypesItems.PLAN_COMMAND_POST, ControllerConfigStorage.getImprivementResourceNumberMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
-        ControllerGameStorage.addExperience(ControllerConfigStorage.getExpMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
-        ControllerGameStorage.addTechnoPower(ControllerConfigStorage.getPowerMainBuildingByLevel(ControllerCommandPostStorage.getLevelCommandPost()));
-        ControllerHomeMapStorage.upgradeLevelObject(ControllerHomeMapStorage.getObjectParametersByType(TypesObjects.COMMAND_POST).index);
+        CommandPostStorageController.addLevelCommandPost();
+        GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
+        InventoryStorageController.reduceItem(TypesItems.PLAN_COMMAND_POST, ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
+        GameStorageController.addExperience(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
+        GameStorageController.addTechnoPower(ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
+        HomeMapStorageController.upgradeLevelObject(HomeMapStorageController.getObjectParametersByType(TypesObjects.COMMAND_POST).index);
         UpgradeCommandPostInerface.instance.updateInterface();
     }
 }

@@ -1,23 +1,23 @@
 import { _decorator, instantiate, Vec3 } from 'cc';
 import { PrefabsStorage } from './Storage/PrefabsStorage';
 import { ObjectParameters } from './ObjectParameters';
-import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from './Controllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
 import { TypesLocation } from './Static/TypesLocation';
-import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
+import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjects')
 export class SpawnObjects {
 
     static spawnObjectsFromStorage() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
-            if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            if (HomeMapStorageController.getObjectParameter(i) == null) continue;
+            if (HomeMapStorageController.getObjectParameter(i).index != i) continue;
 
             let location: string;
 
-            if (ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.BARRACKS_MARINE || ControllerHomeMapStorage.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
+            if (HomeMapStorageController.getObjectParameter(i).type == TypesObjects.BARRACKS_MARINE || HomeMapStorageController.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
                 location = TypesLocation.WATER;
             }
             else {
@@ -25,10 +25,10 @@ export class SpawnObjects {
             }
 
             this.spawnObjectsPos(
-                ControllerHomeMapStorage.getObjectParameter(i).type,
+                HomeMapStorageController.getObjectParameter(i).type,
                 location,
-                ControllerHomeMapStorage.getObjectParameter(i).level,
-                ControllerHomeMapStorage.getObjectParameter(i).index
+                HomeMapStorageController.getObjectParameter(i).level,
+                HomeMapStorageController.getObjectParameter(i).index
             );
         }
     }
@@ -36,7 +36,7 @@ export class SpawnObjects {
     static spawnObjectsPos(type: string, location: string, level: number, index: number): ObjectParameters {
         let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type));
         let objectParameter = object.getComponent(ObjectParameters);
-        ControllerHomeMapStorage.setParent(object, index);
+        HomeMapStorageController.setParent(object, index);
         objectParameter.type = type;
         objectParameter.location = location;
 
@@ -55,9 +55,9 @@ export class SpawnObjects {
 
         objectParameter.level = level;
         objectParameter.index = index;
-        ControllerHomeMapStorage.setObjectParameter(objectParameter, type, index);
+        HomeMapStorageController.setObjectParameter(objectParameter, type, index);
         if (type == TypesObjects.GOLD_MINE) {
-            ControllerAutocombineStorage.alo(objectParameter);
+            AutocombineStorageController.alo(objectParameter);
         }
         return objectParameter;
     }
@@ -66,13 +66,13 @@ export class SpawnObjects {
         let minDistance = 100000;
         let indexeSpawnObject = 0;
         let isSpawnObject = false;
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            let currentDistance: number = Vec3.distance(ControllerHomeMapStorage.getCoordPosition(index), ControllerHomeMapStorage.getCoordPosition(i));
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            let currentDistance: number = Vec3.distance(HomeMapStorageController.getCoordPosition(index), HomeMapStorageController.getCoordPosition(i));
             if (currentDistance < minDistance) {
-                let arrayIndexes = ControllerHomeMapStorage.getArrayObject(type);
+                let arrayIndexes = HomeMapStorageController.getArrayObject(type);
                 let check = false;
                 for (let j = 0; j < arrayIndexes.length; j++) {
-                    if (ControllerHomeMapStorage.getObjectParameter(i - arrayIndexes[j]) != null) {
+                    if (HomeMapStorageController.getObjectParameter(i - arrayIndexes[j]) != null) {
                         check = true;
                         break;
                     }

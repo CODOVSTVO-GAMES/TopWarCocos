@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Label } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
-import { ControllerHomeMapStorage } from '../../Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from '../../Controllers/HomeMapStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectInterface')
@@ -53,7 +53,7 @@ export class ObjectInterface extends Component {
         this.titleText.string = this.objectParameters.type;
         this.levelText.string = "Ур. " + this.objectParameters.level.toString();
         if (this.quantityObject && this.subtitleObject) {
-            this.quantityText.string = (ControllerHomeMapStorage.getQuantityObjectsByTypeAndLevel(this.objectParameters.type, this.objectParameters.level) + 1).toString();
+            this.quantityText.string = (HomeMapStorageController.getQuantityObjectsByTypeAndLevel(this.objectParameters.type, this.objectParameters.level) + 1).toString();
         }
     }
 }

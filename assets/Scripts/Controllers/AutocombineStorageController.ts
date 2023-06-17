@@ -1,14 +1,14 @@
 import { _decorator } from 'cc';
-import { AutocombineStorage } from '../AutocombineStorage';
-import { ControllerHomeMapStorage } from './ControllerHomeMapStorage';
-import { TypesObjects } from '../../Static/TypesObjects';
-import { ObjectParameters } from '../../ObjectParameters';
-import { Aut } from '../../Structures/Aut';
-import { ControllerBufferStorage } from './ControllerBufferStorage';
-import { TypesStorages } from '../../Static/TypesStorages';
-import { ControllerConfigStorage } from './ControllerConfigStorage';
+import { AutocombineStorage } from '../Storage/AutocombineStorage';
+import { HomeMapStorageController } from './HomeMapStorageController';
+import { TypesObjects } from '../Static/TypesObjects';
+import { ObjectParameters } from '../ObjectParameters';
+import { Aut } from '../Structures/Aut';
+import { BufferStorageController } from './BufferStorageController';
+import { TypesStorages } from '../Static/TypesStorages';
+import { ConfigStorageController } from './ConfigStorageController';
 
-export class ControllerAutocombineStorage {
+export class AutocombineStorageController {
 
     static assignStartingValues() {
         AutocombineStorage.instance.allProfit = 0;
@@ -38,15 +38,15 @@ export class ControllerAutocombineStorage {
         setTimeout(() => {
             for (let i = 0; i < AutocombineStorage.instance.indexes.length; i++) {
                 AutocombineStorage.instance.indexes[i].time -= 1;
-                if (ControllerHomeMapStorage.getObjectParameter(AutocombineStorage.instance.indexes[i].index)) {
-                    if (ControllerHomeMapStorage.getObjectParameter(AutocombineStorage.instance.indexes[i].index).getGoldMineInterface()) {
+                if (HomeMapStorageController.getObjectParameter(AutocombineStorage.instance.indexes[i].index)) {
+                    if (HomeMapStorageController.getObjectParameter(AutocombineStorage.instance.indexes[i].index).getGoldMineInterface()) {
                         let time = -(1 - (((AutocombineStorage.instance.indexes[i].time * 100) / 60) * 0.01));;
-                        ControllerHomeMapStorage.getObjectParameter(AutocombineStorage.instance.indexes[i].index).getGoldMineInterface().render(time);
+                        HomeMapStorageController.getObjectParameter(AutocombineStorage.instance.indexes[i].index).getGoldMineInterface().render(time);
                     }
                 }
                 if (AutocombineStorage.instance.indexes[i].time <= 0) {
                     AutocombineStorage.instance.indexes[i].time = 60;
-                    AutocombineStorage.instance.allProfit += ControllerConfigStorage.getProdictionInTimeGoldMineByLevel(AutocombineStorage.instance.indexes[i].level);
+                    AutocombineStorage.instance.allProfit += ConfigStorageController.getProdictionInTimeGoldMineByLevel(AutocombineStorage.instance.indexes[i].level);
                 }
             }
             this.TEST();
@@ -90,7 +90,7 @@ export class ControllerAutocombineStorage {
             }
             AutocombineStorage.instance.quantityProfit = 0;
             for (let i = 0; i < AutocombineStorage.instance.indexes.length; i++) {
-                AutocombineStorage.instance.quantityProfit += ControllerConfigStorage.getProdictionInTimeGoldMineByLevel(AutocombineStorage.instance.indexes[i].level);
+                AutocombineStorage.instance.quantityProfit += ConfigStorageController.getProdictionInTimeGoldMineByLevel(AutocombineStorage.instance.indexes[i].level);
             }
         }
         else {
@@ -107,10 +107,10 @@ export class ControllerAutocombineStorage {
 
     static initQuantityWorkGoldMine() {
         AutocombineStorage.instance.quantityWorkGoldMine = 0;
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            if (ControllerHomeMapStorage.getObjectParameter(i) == null) continue;
-            if (ControllerHomeMapStorage.getObjectParameter(i).index != i) continue;
-            if (ControllerHomeMapStorage.getObjectParameter(i).type != TypesObjects.GOLD_MINE) continue;
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            if (HomeMapStorageController.getObjectParameter(i) == null) continue;
+            if (HomeMapStorageController.getObjectParameter(i).index != i) continue;
+            if (HomeMapStorageController.getObjectParameter(i).type != TypesObjects.GOLD_MINE) continue;
             AutocombineStorage.instance.quantityWorkGoldMine += 1;
         }
     }
@@ -156,6 +156,6 @@ export class ControllerAutocombineStorage {
                 time: AutocombineStorage.instance.indexes[i].time
             });
         }
-        ControllerBufferStorage.addItem(TypesStorages.AUTOCOMBINE_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.AUTOCOMBINE_STORAGE, obj);
     }
 }       

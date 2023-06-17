@@ -2,8 +2,8 @@ import { _decorator, Component } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
 import { RedirectionToScene } from '../../Other/RedirectionToScene';
 import { SceneNames } from '../../Static/SceneNames';
-import { ControllerTroopStorage } from '../../Storage/Controllers/ControllerTroopStorage';
-import { ControllerHomeMapStorage } from '../../Storage/Controllers/ControllerHomeMapStorage';
+import { TroopStorageController } from '../../Controllers/TroopStorageController';
+import { HomeMapStorageController } from '../../Controllers/HomeMapStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('BattleLogic')
@@ -13,9 +13,9 @@ export class BattleLogic extends Component {
     public objectParameters: ObjectParameters;
 
     public click() {
-        ControllerTroopStorage.setTroopStorage();
+        TroopStorageController.setTroopStorage();
         RedirectionToScene.redirect(SceneNames.BATTLE);
-        // ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+        // HomeMapStorageController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
         // this.node.destroy();
     }
 }

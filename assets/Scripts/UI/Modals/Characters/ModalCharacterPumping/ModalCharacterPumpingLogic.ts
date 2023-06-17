@@ -1,6 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
-import { ControllerCharactrerStorage } from '../../../../Storage/Controllers/ControllerCharactrerStorage';
-import { ControllerInventoryStorage } from '../../../../Storage/Controllers/ControllerInventoryStorage';
+import { CharactrerStorageController } from '../../../../Controllers/CharactrerStorageController';
+import { InventoryStorageController } from '../../../../Controllers/InventoryStorageController';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { TypesCharacters } from '../../../../Static/TypesCharacters';
 import { ModalCharacterPumpingInterface } from './ModalCharacterPumpingInterface';
@@ -20,37 +20,42 @@ export class ModalCharacterPumpingLogic extends Component {
         ModalCharacterPumpingLogic.instance = this;
     }
 
+    /**
+     * при нажатии на книжку к персонажу добавляется опыт
+     * при нажатии на поднять зв. если фрагментов достаточно то прокачается звездность персонажа
+     */
+
     pushBook(event, customEventData) {
         let exp = 0;
         switch (customEventData) {
             case "0":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
+                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
                     exp = 300;
-                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
+                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
                 }
                 break;
             case "1":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
+                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
                     exp = 1000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
+                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
                 }
                 break;
             case "2":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
+                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
                     exp = 3000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
+                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
                 }
                 break;
             case "3":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
+                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
                     exp = 10000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
+                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
                 }
                 break;
             case "4":
-                if (ControllerInventoryStorage.getQuantityByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
+                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
                     exp = 30000;
-                    ControllerInventoryStorage.reduceItem(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
+                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
                 }
                 break;
         }
@@ -58,20 +63,20 @@ export class ModalCharacterPumpingLogic extends Component {
     }
 
     spendBooks(quantity: number) {
-        ControllerCharactrerStorage.addExperience(quantity, this.characterIndex);
+        CharactrerStorageController.addExperience(quantity, this.characterIndex);
     }
 
     upgradeStars() {
         let character = CharactersStorage.instance.characters[this.characterIndex];
         let typeFragment = this.getTypeFragment(character);
-        let inventoryQuantity = ControllerInventoryStorage.getQuantityByType(typeFragment);
+        let inventoryQuantity = InventoryStorageController.getQuantityByType(typeFragment);
         if (inventoryQuantity > 4) {
             character.stars++;
-            ControllerInventoryStorage.reduceItem(typeFragment, 4);
+            InventoryStorageController.reduceItem(typeFragment, 4);
             CharactersStorage.instance.recalculationCharacter(this.characterIndex);
             ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
             ModalCharacterPumpingInterface.instance.renderModalPumpingStars();
-            ControllerCharactrerStorage.saveStorage();
+            CharactrerStorageController.saveStorage();
         }
     }
 

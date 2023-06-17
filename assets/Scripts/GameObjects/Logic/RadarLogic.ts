@@ -1,14 +1,14 @@
 import { _decorator, Component, Node } from 'cc';
 import { SecondaryInterface } from '../../UI/SecondaryInterface';
 import { TypesModals } from '../../Static/TypesModals';
-import { ControllerRadarStorage } from '../../Storage/Controllers/ControllerRadarStorage';
+import { RadarStorageController } from '../../Controllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarLogic')
 export class RadarLogic extends Component {
 
     start() {
-        ControllerRadarStorage.updateRadarAnimation();
+        RadarStorageController.updateRadarAnimation();
     }
 
     clickRadar() {

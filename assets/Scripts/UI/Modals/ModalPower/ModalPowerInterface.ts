@@ -1,5 +1,5 @@
 import { _decorator, Component, Label } from 'cc';
-import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
+import { GameStorageController } from '../../../Controllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalPowerInterface')
@@ -36,14 +36,14 @@ export class ModalPowerInterface extends Component {
     }
 
     updateInterface() {
-        let power = ControllerGameStorage.getPower().toString();
-        let maxPower = ControllerGameStorage.getMaxPower().toString();
-        let territoryPower = ControllerGameStorage.getTerritoryPower().toString();
-        let technoPower = ControllerGameStorage.getTechnoPower().toString();
-        let heroPower = ControllerGameStorage.getHeroPower().toString();
-        let arsenalPower = ControllerGameStorage.getArsenalPower().toString();
-        let professionPower = ControllerGameStorage.getProfessionPower().toString();
-        let formationPower = ControllerGameStorage.getFormationPower().toString();
+        let power = GameStorageController.getPower().toString();
+        let maxPower = GameStorageController.getMaxPower().toString();
+        let territoryPower = GameStorageController.getTerritoryPower().toString();
+        let technoPower = GameStorageController.getTechnoPower().toString();
+        let heroPower = GameStorageController.getHeroPower().toString();
+        let arsenalPower = GameStorageController.getArsenalPower().toString();
+        let professionPower = GameStorageController.getProfessionPower().toString();
+        let formationPower = GameStorageController.getFormationPower().toString();
 
         this.power.string = power;
         this.maxPower.string = maxPower;

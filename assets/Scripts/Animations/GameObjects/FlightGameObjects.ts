@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Vec3 } from 'cc';
-import { ControllerHomeMapStorage } from '../../Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from '../../Controllers/HomeMapStorageController';
 import { HomeMapStorage } from '../../Storage/HomeMapStorage';
 const { ccclass, property } = _decorator;
 
@@ -25,16 +25,16 @@ export class FlightGameObjects extends Component {
     moveToCell(object: Node, index: number) {
         this.index = index;
         this.object_1 = object;
-        this.toPos = ControllerHomeMapStorage.getCoordWorldPosition(index);
+        this.toPos = HomeMapStorageController.getCoordWorldPosition(index);
         this.trigger = true;
     }
 
     moveMerge(object_1: Node, index: number) {
         this.object_1 = object_1;
-        let objectParameters = ControllerHomeMapStorage.getObjectParameter(index);
+        let objectParameters = HomeMapStorageController.getObjectParameter(index);
         this.object_2 = objectParameters.nodeObject;
         this.index = objectParameters.index;
-        this.toPos = ControllerHomeMapStorage.getCoordWorldPosition(index);
+        this.toPos = HomeMapStorageController.getCoordWorldPosition(index);
         this.triggerMerge = true;
         this.triggerSeparate = false;
     }
@@ -74,7 +74,7 @@ export class FlightGameObjects extends Component {
                     0);
                 if (Vec3.distance(pos1, this.toPos) < 0.5 && Vec3.distance(pos2, this.toPos) < 0.5) {
                     this.triggerMerge = false;
-                    ControllerHomeMapStorage.upgradeLevelObject(this.index);
+                    HomeMapStorageController.upgradeLevelObject(this.index);
                     this.object_1.destroy();
                 }
             }

@@ -4,14 +4,14 @@ import { TroopRender } from './TroopRender';
 import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
 import { TypesTeam } from '../Static/TypesTeam';
-import { ControllerConfigStorage } from '../Storage/Controllers/ControllerConfigStorage';
+import { ConfigStorageController } from '../Controllers/ConfigStorageController';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { ControllerCharactrerStorage } from '../Storage/Controllers/ControllerCharactrerStorage';
+import { CharactrerStorageController } from '../Controllers/CharactrerStorageController';
 import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
 import { BattleStorage } from '../Storage/BattleStorage';
-import { ControllerTroopStorage } from '../Storage/Controllers/ControllerTroopStorage';
-import { ControllerGameStorage } from '../Storage/Controllers/ControllerGameStorage';
+import { TroopStorageController } from '../Controllers/TroopStorageController';
+import { GameStorageController } from '../Controllers/GameStorageController';
 import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
@@ -95,9 +95,9 @@ export class Battle extends Component {
     }
 
     getTroopOwn() {
-        let sizeTroopAir = ControllerTroopStorage.getSizeTroopAir();
-        let sizeTroopMarine = ControllerTroopStorage.getSizeTroopMarine();
-        let sizeTroopOverland = ControllerTroopStorage.getSizeTroopOverland();
+        let sizeTroopAir = TroopStorageController.getSizeTroopAir();
+        let sizeTroopMarine = TroopStorageController.getSizeTroopMarine();
+        let sizeTroopOverland = TroopStorageController.getSizeTroopOverland();
         for (let i = 0; i < sizeTroopAir.length; i++) {
             if (sizeTroopAir[i] == 0) continue;
             BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_AIR, i + 1, sizeTroopAir[i], 10));
@@ -115,7 +115,7 @@ export class Battle extends Component {
 
     getTroopEnemy() {
         for (let i = 0; i < 5; i++) {
-            let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, i + 1);
+            let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, i + 1);
             BattleStorage.instance.arrayEnemy.push(new Unit(config.hp, config.hp, config.damage, i, config.level, 1, TypesAttack.HORIZON, config.attackType, config.type));
             this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleStorage.instance.arrayEnemy[BattleStorage.instance.arrayEnemy.length - 1]);
         }
@@ -124,7 +124,7 @@ export class Battle extends Component {
     getQuantityAvailableFreeCoords() {
         let a = [1, 1, 6, 10, 16, 30, 40, 50, 70];
         for (let i = 0; i < a.length; i++) {
-            if (ControllerGameStorage.getLevel() >= a[i]) {
+            if (GameStorageController.getLevel() >= a[i]) {
                 BattleStorage.instance.quantityAvailableFreeCoords += 1;
             }
             else {
@@ -221,7 +221,7 @@ export class Battle extends Component {
             if (BattleStorage.instance.arrayOwn[i] != null || BattleStorage.instance.quantityAvailableFreeCoords <= i) continue;
 
             let unit = BattleStorage.instance.arrayCards[index];
-            let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
+            let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
             BattleStorage.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
             unit.quantity--;
 
@@ -271,7 +271,7 @@ export class Battle extends Component {
             let unit = BattleStorage.instance.arrayCards[0];
             if (unit == null || BattleStorage.instance.quantityAvailableFreeCoords <= i) continue;
 
-            let config = ControllerConfigStorage.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
+            let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
             BattleStorage.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
             unit.quantity--;
             this.spawnTroop(TypesTeam.TEAM_OWN, BattleStorage.instance.arrayOwn[i]);
@@ -497,12 +497,15 @@ export class Battle extends Component {
     }
 
     characterSum(): CharacterInfo {
+        /**
+         * эта функция суммирует все характеристики двух персонажей в одного для простоты дальнейшего буста юнитов
+         */
         let exp = 0;
         let stars = 0;
         let attack = 0;
         let protection = 0;
         let leadership = 0;
-        let characters = ControllerCharactrerStorage.getCharacters();
+        let characters = CharactrerStorageController.getCharacters();
 
         for (let i = 0; i < characters.length; i++) {
             let character = characters[i]

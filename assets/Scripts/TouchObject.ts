@@ -2,14 +2,14 @@ import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
 import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
-import { ControllerHomeMapStorage } from './Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from './Controllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
-import { ControllerCommandPostStorage } from './Storage/Controllers/ControllerCommandPostStorage';
+import { CommandPostStorageController } from './Controllers/CommandPostStorageController';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
-import { ControllerAutocombineStorage } from './Storage/Controllers/ControllerAutocombineStorage';
+import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -47,12 +47,12 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true;
 
-        ControllerHomeMapStorage.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level);
-        ControllerHomeMapStorage.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
-        ControllerHomeMapStorage.putSelectObject();
-        ControllerHomeMapStorage.setSelectObject(this.objectParameters);
+        HomeMapStorageController.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level);
+        HomeMapStorageController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index);
+        HomeMapStorageController.putSelectObject();
+        HomeMapStorageController.setSelectObject(this.objectParameters);
 
-        this.mainObject.setParent(ControllerHomeMapStorage.getParentObject(), true);
+        this.mainObject.setParent(HomeMapStorageController.getParentObject(), true);
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters);
         this.objectParameters.getArrowGameObject().activeArrow();
 
@@ -88,7 +88,7 @@ export class TouchObject extends Component {
 
         this.processing();
         HighlightHomeMap.hideAllCoord();
-        ControllerHomeMapStorage.offTransparencyObjects();
+        HomeMapStorageController.offTransparencyObjects();
         TouchStatus.instance.activeTouch = false;
     }
 
@@ -225,13 +225,13 @@ export class TouchObject extends Component {
 
     private mergeObject(index: number) {
         HomeMapStorage.instance.selectedObject = null;
-        ControllerAutocombineStorage.deleteGoldMine(this.objectParameters.index);
+        AutocombineStorageController.deleteGoldMine(this.objectParameters.index);
         FlightGameObjects.instance.moveMerge(this.mainObject, index);
     }
 
     private putAnObject(index: number) {
         if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-            ControllerAutocombineStorage.updateIndexGoldMine(this.objectParameters.index, index);
+            AutocombineStorageController.updateIndexGoldMine(this.objectParameters.index, index);
         }
         this.objectParameters.index = index;
         ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);

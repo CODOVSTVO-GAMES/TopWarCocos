@@ -1,11 +1,11 @@
 import { _decorator } from 'cc';
-import { InventoryStorage } from '../InventoryStorage';
-import { Item } from '../../Structures/Item';
-import { ControllerBufferStorage } from './ControllerBufferStorage';
-import { TypesStorages } from '../../Static/TypesStorages';
-import { TypesItems } from '../../Static/TypesItems';
+import { InventoryStorage } from '../Storage/InventoryStorage';
+import { Item } from '../Structures/Item';
+import { BufferStorageController } from './BufferStorageController';
+import { TypesStorages } from '../Static/TypesStorages';
+import { TypesItems } from '../Static/TypesItems';
 
-export class ControllerInventoryStorage {
+export class InventoryStorageController {
 
     static assignStartingValues() {
         this.addItem(TypesItems.PLAN_COMMAND_POST, 100);
@@ -26,10 +26,10 @@ export class ControllerInventoryStorage {
         this.addItem(TypesItems.PLAN_BUILD_BARRACK_OVERLAND, 100);
 
         for (let i = 0; i < TypesItems.BOOKS.length; i++) {
-            ControllerInventoryStorage.addItem(TypesItems.BOOKS[i], 12)
+            InventoryStorageController.addItem(TypesItems.BOOKS[i], 12)
         }
         for (let i = 0; i < TypesItems.FRAGMENTS.length; i++) {
-            ControllerInventoryStorage.addItem(TypesItems.FRAGMENTS[i], 50);
+            InventoryStorageController.addItem(TypesItems.FRAGMENTS[i], 50);
         }
 
         this.saveStorage();
@@ -101,6 +101,6 @@ export class ControllerInventoryStorage {
                 quantity: InventoryStorage.instance.inventory[i].quantity
             });
         }
-        ControllerBufferStorage.addItem(TypesStorages.INVENTORY_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.INVENTORY_STORAGE, obj);
     }
 }

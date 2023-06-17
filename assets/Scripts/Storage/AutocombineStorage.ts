@@ -1,5 +1,5 @@
 import { _decorator, Component, CCInteger, CCBoolean } from 'cc';
-import { ControllerAutocombineStorage } from './Controllers/ControllerAutocombineStorage';
+import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
 import { Aut } from '../Structures/Aut';
 const { ccclass, property } = _decorator;
 
@@ -28,7 +28,7 @@ export class AutocombineStorage extends Component {
 
     onLoad() {
         AutocombineStorage.instance = this;
-        ControllerAutocombineStorage.TEST();
+        AutocombineStorageController.TEST();
     }
 }
 

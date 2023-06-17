@@ -16,6 +16,10 @@ export class WireCutLogic extends Component {
 
     private triggerPush: boolean;
 
+    /**
+     * резка проводов
+     */
+
     onLoad() {
         this.wire.on(NodeEventType.MOUSE_ENTER, this.mouseEnder, this);
 

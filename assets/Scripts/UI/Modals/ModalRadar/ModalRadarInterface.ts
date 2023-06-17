@@ -1,7 +1,7 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab, Sprite, Vec3 } from 'cc';
-import { ControllerRadarStorage } from '../../../Storage/Controllers/ControllerRadarStorage';
-import { ControllerConfigStorage } from '../../../Storage/Controllers/ControllerConfigStorage';
-import { ControllerGameStorage } from '../../../Storage/Controllers/ControllerGameStorage';
+import { RadarStorageController } from '../../../Controllers/RadarStorageController';
+import { ConfigStorageController } from '../../../Controllers/ConfigStorageController';
+import { GameStorageController } from '../../../Controllers/GameStorageController';
 import { TaskRender } from '../../../Radar/TaskRender';
 const { ccclass, property } = _decorator;
 
@@ -49,6 +49,26 @@ export class ModalRadarInterface extends Component {
         ModalRadarInterface.instance = this;
     }
 
+
+    /**
+     * при нажатии на Message радара открывается модалка радара; 
+     * в ней получаются из конфигов и стореджей все значения далее они рендерятся;
+     * запускается цикл, который рандомно докидывает недостающие задачи;
+     * после этого спавнятся задачи из RaadrStorage;
+     * 
+     * при нажатии на задачу открывается модалка информации о задаче;
+     * рендерится модалка
+     * при нажатии на кнопку ПЕРЕЙТИ, задача добавляется в буфер и изменяется статус задания, открывыется задание либо создаётся поход
+     * после того как задание выполнено меняется статус задачи
+     * 
+     * при нажатии на задачу открывается модалка награды;
+     * рендерится модалка
+     * при нажатии на любое место в модалке начисляется награда и она закрывается
+     * запускается цикл, который рандомно докидывает недостающие задачи;
+     * 
+     */
+
+
     /**
      * при открытии радара, отрисовка текстовых и картиночных полей в радаре
      * 
@@ -56,15 +76,15 @@ export class ModalRadarInterface extends Component {
      */
 
     updateInterface() {
-        let energy = ControllerGameStorage.getEnergy();
-        let gems = ControllerGameStorage.getGems();
-        let radarLevel = ControllerRadarStorage.getRadarLevel();
-        let radarSignal = ControllerRadarStorage.getRadarSignal();
-        let radarExperience = ControllerRadarStorage.getRadarExperience();
-        let radarAvailableMissions = ControllerRadarStorage.getRadarAvailableMissions();
-        let radarTime = ControllerRadarStorage.getRadarTime();
-        let radarProgressNumber = ControllerConfigStorage.getRadarProgressNumberByLevel(radarLevel);
-        let configRadar = ControllerConfigStorage.getRadarConfigByLevel(radarLevel);
+        let energy = GameStorageController.getEnergy();
+        let gems = GameStorageController.getGems();
+        let radarLevel = RadarStorageController.getRadarLevel();
+        let radarSignal = RadarStorageController.getRadarSignal();
+        let radarExperience = RadarStorageController.getRadarExperience();
+        let radarAvailableMissions = RadarStorageController.getRadarAvailableMissions();
+        let radarTime = RadarStorageController.getRadarTime();
+        let radarProgressNumber = ConfigStorageController.getRadarProgressNumberByLevel(radarLevel);
+        let configRadar = ConfigStorageController.getRadarConfigByLevel(radarLevel);
         let cost;
         if (radarSignal <= 1) {
             cost = 0;
@@ -86,7 +106,7 @@ export class ModalRadarInterface extends Component {
     }
 
     renderLocator() {
-        let radarTasks = ControllerRadarStorage.getRadarTasks();
+        let radarTasks = RadarStorageController.getRadarTasks();
         for (let i = 0; i < radarTasks.length; i++) {
             let result = false;
             for (let j = 0; j < this.tasks.length; j++) {

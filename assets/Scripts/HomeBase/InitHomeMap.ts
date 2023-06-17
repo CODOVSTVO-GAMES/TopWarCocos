@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Prefab, Sprite, Vec3 } from 'cc';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
-import { ControllerHomeMapStorage } from '../Storage/Controllers/ControllerHomeMapStorage';
+import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
 import { SpawnObjects } from '../SpawnObjects';
 const { ccclass, property } = _decorator;
 
@@ -32,8 +32,8 @@ export class InitHomeMap extends Component {
         let x = -100;
         let y = 2000;
         let count = 0;
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            ControllerHomeMapStorage.setCoord(this.backgraund.getChildByName(name.toString()), i, pos);
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            HomeMapStorageController.setCoord(this.backgraund.getChildByName(name.toString()), i, pos);
             name += 1;
             pos.x += 70;
             pos.y -= 50;
@@ -49,8 +49,8 @@ export class InitHomeMap extends Component {
     }
 
     fillArraySpriteCoords() {
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            ControllerHomeMapStorage.setSpriteCoord(ControllerHomeMapStorage.getCoord(i).getComponent(Sprite), i);
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            HomeMapStorageController.setSpriteCoord(HomeMapStorageController.getCoord(i).getComponent(Sprite), i);
         }
     }
 }

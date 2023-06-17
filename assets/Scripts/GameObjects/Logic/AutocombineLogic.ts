@@ -1,17 +1,17 @@
 import { _decorator, Component } from 'cc';
 import { SecondaryInterface } from '../../UI/SecondaryInterface';
 import { TypesModals } from '../../Static/TypesModals';
-import { ControllerAutocombineStorage } from '../../Storage/Controllers/ControllerAutocombineStorage';
-import { ControllerGameStorage } from '../../Storage/Controllers/ControllerGameStorage';
+import { AutocombineStorageController } from '../../Controllers/AutocombineStorageController';
+import { GameStorageController } from '../../Controllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('AutocombineLogic')
 export class AutocombineLogic extends Component {
 
     clickAutocombine() {
-        if (ControllerAutocombineStorage.getAllProfit() > 0) {
-            ControllerGameStorage.addCoins(ControllerAutocombineStorage.getAllProfit());
-            ControllerAutocombineStorage.clearAllProfit();
+        if (AutocombineStorageController.getAllProfit() > 0) {
+            GameStorageController.addCoins(AutocombineStorageController.getAllProfit());
+            AutocombineStorageController.clearAllProfit();
         }
         else {
             SecondaryInterface.instance.openFirstModal(TypesModals.AUTOCOMBINE);
