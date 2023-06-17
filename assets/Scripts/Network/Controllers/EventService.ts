@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController"
-import { ServerApi } from "../other/ServerApi"
+import { ServerApi } from "../Other/ServerApi"
 import { EventsDTO } from "../DTO/EventsDTO"
 import { BufferStorageController } from "../../Controllers/BufferStorageController"
 

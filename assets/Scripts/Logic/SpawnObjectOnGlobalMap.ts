@@ -1,13 +1,13 @@
 import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
-import { ZoomCamera } from './Camera/ZoomCamera';
-import { GlobalMapController } from './Controllers/GlobalMapController';
-import { Building } from './Storage/GlobalMapStorage';
-import { MovingCamera } from './Camera/MovingCamera';
-import { RedirectionToScene } from './Other/RedirectionToScene';
+import { ZoomCamera } from '../Camera/ZoomCamera';
+import { GlobalMapController } from '../Controllers/GlobalMapController';
+import { Building } from '../Storage/GlobalMapStorage';
+import { MovingCamera } from '../Camera/MovingCamera';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
 const { ccclass, property } = _decorator;
 
-@ccclass('GlobalMapTouch')
-export class GlobalMapTouch extends Component {
+@ccclass('SpawnObjectsOnGlobalMap')
+export class SpawnObjectsOnGlobalMap extends Component {
 
     /**
      * карта 512 х 512 клеток

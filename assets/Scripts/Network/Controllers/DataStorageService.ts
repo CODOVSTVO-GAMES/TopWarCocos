@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController"
-import { ServerApi } from "../other/ServerApi"
+import { ServerApi } from "../Other/ServerApi"
 import { DataStorageDTO } from "../DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../DTO/DataStorageResponseDTO"
 import { NetworkClient } from "../NetworkClient"

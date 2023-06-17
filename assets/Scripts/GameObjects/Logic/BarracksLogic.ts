@@ -1,5 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
-import { SpawnObjects } from '../../SpawnObjects';
+import { SpawnObjectsOnHomeMap } from '../../Logic/SpawnObjectsOnHomeMap';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { ObjectParameters } from '../../ObjectParameters';
 import { TypesLocation } from '../../Static/TypesLocation';
@@ -29,13 +29,13 @@ export class BarracksLogic extends Component {
 
     public createTroop() {
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.TROOP_AIR, TypesLocation.EARTH, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.TROOP_AIR, TypesLocation.EARTH, this.objectParameters.level, this.getComponent(ObjectParameters).index);
         }
         else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.TROOP_MARINE, TypesLocation.WATER, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.TROOP_MARINE, TypesLocation.WATER, this.objectParameters.level, this.getComponent(ObjectParameters).index);
         }
         else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-            SpawnObjects.spawnObjectsNearby(TypesObjects.TROOP_OVERLAND, TypesLocation.EARTH, this.objectParameters.level, this.getComponent(ObjectParameters).index);
+            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.TROOP_OVERLAND, TypesLocation.EARTH, this.objectParameters.level, this.getComponent(ObjectParameters).index);
         }
     }
 

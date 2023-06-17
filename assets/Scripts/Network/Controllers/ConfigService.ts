@@ -1,6 +1,6 @@
 import { ConfigStorage } from "../../Storage/ConfigStorage"
 import { ConfigDTO } from "../DTO/ConfigDTO"
-import { ServerApi } from "../other/ServerApi"
+import { ServerApi } from "../Other/ServerApi"
 
 export class ConfigService {
 

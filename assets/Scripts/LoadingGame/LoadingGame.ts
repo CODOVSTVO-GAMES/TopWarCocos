@@ -1,12 +1,12 @@
 import { _decorator, Component } from 'cc';
 import { OkConnector } from '../Network/OkConnector';
-import { SessionService } from '../Network/services/SessionService';
+import { SessionService } from '../Network/Controllers/SessionService';
 import { TypesStorages } from '../Static/TypesStorages';
-import { DataStorageService } from '../Network/services/DataStorageService';
-import { UserService } from '../Network/services/UserService';
+import { DataStorageService } from '../Network/Controllers/DataStorageService';
+import { UserService } from '../Network/Controllers/UserService';
 import { UserStorageController } from '../Controllers/UserStorageController';
-import { ConfigService } from '../Network/services/ConfigService';
-import { MapService } from '../Network/services/MapService';
+import { ConfigService } from '../Network/Controllers/ConfigService';
+import { MapService } from '../Network/Controllers/MapService';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')

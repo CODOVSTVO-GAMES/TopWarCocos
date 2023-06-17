@@ -1,10 +1,10 @@
 import { _decorator, Component } from 'cc';
 import { BufferStorageController } from '../Controllers/BufferStorageController';
-import { DataStorageService } from './services/DataStorageService';
-import { EventService } from './services/EventService';
+import { DataStorageService } from './Controllers/DataStorageService';
+import { EventService } from './Controllers/EventService';
 import { GameStorageController } from '../Controllers/GameStorageController';
 import { TypesStorages } from '../Static/TypesStorages';
-import { SessionService } from './services/SessionService';
+import { SessionService } from './Controllers/SessionService';
 import { CommandPostStorageController } from '../Controllers/CommandPostStorageController';
 import { UserStorageController } from '../Controllers/UserStorageController';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
@@ -13,9 +13,9 @@ import { CharactrerStorageController } from '../Controllers/CharactrerStorageCon
 import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
 import { InventoryStorageController } from '../Controllers/InventoryStorageController';
 import { RadarStorageController } from '../Controllers/RadarStorageController';
-import { PaymentsService } from './services/PaymentsService';
+import { PaymentsService } from './Controllers/PaymentsService';
 import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
-import { MapService } from './services/MapService';
+import { MapService } from './Controllers/MapService';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')

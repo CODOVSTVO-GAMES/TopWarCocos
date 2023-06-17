@@ -1,6 +1,6 @@
 import { UserStorageController } from "../../Controllers/UserStorageController";
 import { Product } from "../../Structures/Product";
-import { ServerApi } from "../other/ServerApi";
+import { ServerApi } from "../Other/ServerApi";
 
 export class PaymentsService {
     static getProducts() {

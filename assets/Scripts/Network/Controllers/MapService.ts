@@ -1,5 +1,5 @@
 import { UserStorageController } from "../../Controllers/UserStorageController"
-import { ServerApi } from "../other/ServerApi"
+import { ServerApi } from "../Other/ServerApi"
 import { MapDTO } from "../DTO/MapDTO"
 import { GlobalMapController } from "../../Controllers/GlobalMapController";
 import { GameStorageController } from "../../Controllers/GameStorageController";

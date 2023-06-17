@@ -1,16 +1,16 @@
 import { _decorator, instantiate, Vec3 } from 'cc';
-import { PrefabsStorage } from './Storage/PrefabsStorage';
-import { ObjectParameters } from './ObjectParameters';
-import { HomeMapStorageController } from './Controllers/HomeMapStorageController';
-import { TypesObjects } from './Static/TypesObjects';
-import { TypesLocation } from './Static/TypesLocation';
-import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
+import { PrefabsStorage } from '../Storage/PrefabsStorage';
+import { ObjectParameters } from '../ObjectParameters';
+import { HomeMapStorageController } from '../Controllers/HomeMapStorageController';
+import { TypesObjects } from '../Static/TypesObjects';
+import { TypesLocation } from '../Static/TypesLocation';
+import { AutocombineStorageController } from '../Controllers/AutocombineStorageController';
 const { ccclass } = _decorator;
 
-@ccclass('SpawnObjects')
-export class SpawnObjects {
+@ccclass('SpawnObjectsOnHomeMap')
+export class SpawnObjectsOnHomeMap {
 
-    static spawnObjectsFromStorage() {
+    static SpawnObjectsOnHomeMapFromStorage() {
         for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
             if (HomeMapStorageController.getObjectParameter(i) == null) continue;
             if (HomeMapStorageController.getObjectParameter(i).index != i) continue;
@@ -24,7 +24,7 @@ export class SpawnObjects {
                 location = TypesLocation.EARTH;
             }
 
-            this.spawnObjectsPos(
+            this.SpawnObjectsOnHomeMapPos(
                 HomeMapStorageController.getObjectParameter(i).type,
                 location,
                 HomeMapStorageController.getObjectParameter(i).level,
@@ -33,7 +33,7 @@ export class SpawnObjects {
         }
     }
 
-    static spawnObjectsPos(type: string, location: string, level: number, index: number): ObjectParameters {
+    static SpawnObjectsOnHomeMapPos(type: string, location: string, level: number, index: number): ObjectParameters {
         let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type));
         let objectParameter = object.getComponent(ObjectParameters);
         HomeMapStorageController.setParent(object, index);
@@ -62,7 +62,7 @@ export class SpawnObjects {
         return objectParameter;
     }
 
-    static spawnObjectsNearby(type: string, location: string, level: number, index: number) {
+    static SpawnObjectsOnHomeMapNearby(type: string, location: string, level: number, index: number) {
         let minDistance = 100000;
         let indexeSpawnObject = 0;
         let isSpawnObject = false;
@@ -85,14 +85,14 @@ export class SpawnObjects {
             }
         }
         if (isSpawnObject) {
-            return this.spawnObjectsPos(type, location, level, indexeSpawnObject);
+            return this.SpawnObjectsOnHomeMapPos(type, location, level, indexeSpawnObject);
         }
         else {
             console.log("error: there is no free space.");
         }
     }
 
-    static spawnObjectsMerge(type: string, location: string, level: number, index: number) {
-        this.spawnObjectsPos(type, location, level + 1, index);
+    static SpawnObjectsOnHomeMapMerge(type: string, location: string, level: number, index: number) {
+        this.SpawnObjectsOnHomeMapPos(type, location, level + 1, index);
     }
 }
