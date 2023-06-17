@@ -4,12 +4,12 @@ import { TouchStatus } from './TouchStatus';
 import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
 import { HomeMapStorageController } from './Controllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
-import { CommandPostStorageController } from './Controllers/CommandPostStorageController';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { IndexesMap } from './Static/IndexesMap';
 import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
 import { AutocombineStorageController } from './Controllers/AutocombineStorageController';
+import { CommandPostStorageController } from './Controllers/CommandPostStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -99,7 +99,7 @@ export class TouchObject extends Component {
             return this.putAnObject(indexObject);
         }
 
-        let arrayIndexes = ControllerHomeMapStorage.getArrayObject(this.objectParameters.type);
+        let arrayIndexes = HomeMapStorageController.getArrayObject(this.objectParameters.type);
 
         if (this.searchAvailableMerge(indexObject, arrayIndexes)) {
             return;
@@ -133,8 +133,8 @@ export class TouchObject extends Component {
     private searchNearestCoord(): number {
         let minDistance = 100000;
         let indexObject = 0;
-        for (let i = 0; i < ControllerHomeMapStorage.getMapSize(); i++) {
-            let currentDistance = Vec3.distance(this.mainObject.position, ControllerHomeMapStorage.getCoordPosition(i));
+        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
+            let currentDistance = Vec3.distance(this.mainObject.position, HomeMapStorageController.getCoordPosition(i));
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
                 indexObject = i;
@@ -148,7 +148,7 @@ export class TouchObject extends Component {
         let quantityMatches = 0;
         let indexMerge = 0;
         for (let i = 0; i < arrayIndexes.length; i++) {
-            let nearbyObjectParameters = ControllerHomeMapStorage.getObjectParameter(indexObject - arrayIndexes[i])
+            let nearbyObjectParameters = HomeMapStorageController.getObjectParameter(indexObject - arrayIndexes[i])
             if (nearbyObjectParameters != null) {
                 if (this.objectParameters.type == nearbyObjectParameters.type) {
                     if (this.objectParameters.level == nearbyObjectParameters.level) {
@@ -169,43 +169,43 @@ export class TouchObject extends Component {
  
         if (quantityMatches > 0) {
             if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeGoldMine()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeGoldMine()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopAir()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopAir()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopMarine()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopMarine()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.TROOP_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeTroopOverland()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeTroopOverland()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksAir()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksAir()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksMarine()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksMarine()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
             }
             else if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-                if (this.objectParameters.level < ControllerCommandPostStorage.getLevelMergeBarracksOverland()) {
+                if (this.objectParameters.level < CommandPostStorageController.getLevelMergeBarracksOverland()) {
                     this.mergeObject(indexMerge);
                     return true;
                 }
@@ -234,7 +234,7 @@ export class TouchObject extends Component {
             AutocombineStorageController.updateIndexGoldMine(this.objectParameters.index, index);
         }
         this.objectParameters.index = index;
-        ControllerHomeMapStorage.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
+        HomeMapStorageController.setObjectParameter(this.objectParameters, this.objectParameters.type, index);
         FlightGameObjects.instance.moveToCell(this.mainObject, index);
     }
 }
