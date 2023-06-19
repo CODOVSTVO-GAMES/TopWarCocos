@@ -27,32 +27,32 @@
         "__id__": 14
       },
       {
-        "__id__": 24
+        "__id__": 23
       },
       {
-        "__id__": 30
+        "__id__": 29
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 36
+        "__id__": 35
       },
       {
-        "__id__": 38
+        "__id__": 37
       },
       {
-        "__id__": 40
+        "__id__": 39
       },
       {
-        "__id__": 42
+        "__id__": 41
       },
       {
-        "__id__": 44
+        "__id__": 43
       }
     ],
     "_prefab": {
-      "__id__": 46
+      "__id__": 45
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -370,7 +370,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 23
+      "__id__": 22
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -486,9 +486,6 @@
     "clickEvents": [
       {
         "__id__": 21
-      },
-      {
-        "__id__": 22
       }
     ],
     "_interactable": true,
@@ -554,16 +551,6 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "ae63cc0sKVPBqnvbYyOZZuv",
-    "handler": "click",
-    "customEventData": ""
-  },
-  {
-    "__type__": "cc.ClickEvent",
-    "target": {
-      "__id__": 1
-    },
-    "component": "",
     "_componentId": "fce2e7R0Y9FlLSrUuhjoc6t",
     "handler": "eventClickOnMessage",
     "customEventData": ""
@@ -592,14 +579,14 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 25
+        "__id__": 24
       },
       {
-        "__id__": 27
+        "__id__": 26
       }
     ],
     "_prefab": {
-      "__id__": 29
+      "__id__": 28
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -635,11 +622,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 24
+      "__id__": 23
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 26
+      "__id__": 25
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -662,11 +649,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 24
+      "__id__": 23
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 28
+      "__id__": 27
     },
     "_customMaterial": null,
     "_srcBlendFactor": 2,
@@ -725,14 +712,14 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 31
+        "__id__": 30
       },
       {
-        "__id__": 33
+        "__id__": 32
       }
     ],
     "_prefab": {
-      "__id__": 35
+      "__id__": 34
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -768,11 +755,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 30
+      "__id__": 29
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 32
+      "__id__": 31
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -795,11 +782,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 30
+      "__id__": 29
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 34
+      "__id__": 33
     },
     "_customMaterial": null,
     "_srcBlendFactor": 2,
@@ -856,7 +843,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 37
+      "__id__": 36
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -883,7 +870,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 39
+      "__id__": 38
     },
     "_customMaterial": null,
     "_srcBlendFactor": 2,
@@ -924,7 +911,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 41
+      "__id__": 40
     },
     "type": "undefined",
     "level": 0,
@@ -954,19 +941,19 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 43
+      "__id__": 42
     },
     "titleObject": {
-      "__id__": 24
+      "__id__": 23
     },
     "levelObject": {
-      "__id__": 30
+      "__id__": 29
     },
     "titleObjectText": {
-      "__id__": 27
+      "__id__": 26
     },
     "levelObjectText": {
-      "__id__": 33
+      "__id__": 32
     },
     "_id": ""
   },
@@ -983,10 +970,10 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 45
+      "__id__": 44
     },
     "objectParameters": {
-      "__id__": 40
+      "__id__": 39
     },
     "_id": ""
   },

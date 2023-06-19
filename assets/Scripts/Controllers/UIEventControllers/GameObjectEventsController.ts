@@ -5,10 +5,12 @@ import { SceneNames } from "../../Static/SceneNames";
 import { TypesLocation } from "../../Static/TypesLocation";
 import { TypesModals } from "../../Static/TypesModals";
 import { TypesObjects } from "../../Static/TypesObjects";
+import { HomeMapStorage } from "../../Storage/HomeMapStorage";
 import { SecondaryInterface } from "../../UI/SecondaryInterface";
 import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
 import { GameStorageController } from "../StorageControllers/GameStorageController";
+import { HomeMapStorageController } from "../StorageControllers/HomeMapStorageController";
 import { TroopStorageController } from "../StorageControllers/TroopStorageController";
 
 export class GameObjectEventsController {
@@ -62,6 +64,10 @@ export class GameObjectEventsController {
         }
         else if (objectParameters.type == TypesObjects.BATTLE) {
             TroopStorageController.setTroopStorage()
+            // HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
+            // objectParameters.node.destroy()
+            // HomeMapStorage.instance.numberOpenZones += 1
+            // HomeMapStorageController.saveStorageServer()
             RedirectionToScene.redirect(SceneNames.BATTLE)
         }
     }

@@ -41,8 +41,13 @@ export class HighlightHomeMap {
         for (let i = 0; i < arrayRegionObject.length; i++) {
             if (indexObject - arrayRegionObject[i] < 0 || indexObject - arrayRegionObject[i] > 1999) continue;
             if (HomeMapStructure.structure[indexObject - arrayRegionObject[i]].location == location) {
-                if (HomeMapStorageController.getObjectParameter(indexObject - arrayRegionObject[i]) == null) {
-                    this.renderCoordFree(indexObject - arrayRegionObject[i]);
+                if (HomeMapStructure.structure[indexObject - arrayRegionObject[i]].numberZone <= HomeMapStorage.instance.numberOpenZones) {
+                    if (HomeMapStorageController.getObjectParameter(indexObject - arrayRegionObject[i]) == null) {
+                        this.renderCoordFree(indexObject - arrayRegionObject[i]);
+                    }
+                    else {
+                        this.hideCoord(indexObject - arrayRegionObject[i]);
+                    }
                 }
                 else {
                     this.hideCoord(indexObject - arrayRegionObject[i]);
@@ -64,7 +69,12 @@ export class HighlightHomeMap {
             if (tempIndex < 0) continue;
             if (HomeMapStorageController.getObjectParameter(tempIndex) == null) {
                 if (HomeMapStructure.structure[tempIndex].location == location) {
-                    this.renderCoordSelect(tempIndex);
+                    if (HomeMapStructure.structure[tempIndex].numberZone <= HomeMapStorage.instance.numberOpenZones) {
+                        this.renderCoordSelect(tempIndex);
+                    }
+                    else {
+                        this.renderCoordBlock(tempIndex);
+                    }
                 }
                 else {
                     this.renderCoordBlock(tempIndex);
@@ -73,7 +83,12 @@ export class HighlightHomeMap {
             else {
                 if (HomeMapStorageController.getObjectParameter(tempIndex).type == type) {
                     if (HomeMapStructure.structure[tempIndex].location == location) {
-                        this.renderCoordSelect(tempIndex);
+                        if (HomeMapStructure.structure[tempIndex].numberZone <= HomeMapStorage.instance.numberOpenZones) {
+                            this.renderCoordSelect(tempIndex);
+                        }
+                        else {
+                            this.renderCoordBlock(tempIndex);
+                        }
                     }
                     else {
                         this.renderCoordBlock(tempIndex);

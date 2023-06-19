@@ -43,12 +43,13 @@ export class ModalRadarLogic extends Component {
      */
 
     start() {
-        this.calculationRadar();
-        this.spawnNewTasks();
-        this.startTimer();
+        // this.calculationRadar();
+        // this.spawnNewTasks();
+        // this.startTimer();
     }
 
     calculationRadar() {
+        console.log(4)
         let config = ConfigStorageController.getRadarConfigByLevel(RadarStorageController.getRadarLevel()); // получаем конфиг радара по уровню
         this.maxEnergy = config.maxEnergy;
         this.maxTasks = config.maxTasks;

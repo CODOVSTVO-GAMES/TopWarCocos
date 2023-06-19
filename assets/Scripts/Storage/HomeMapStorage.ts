@@ -7,7 +7,9 @@ export class HomeMapStorage extends Component {
 
     public static instance: HomeMapStorage;
 
-    public mapSize = 2000
+    public mapSize: number = 2000
+
+    public numberOpenZones: number = 0
 
     public parentSelectObject: Node
 
@@ -23,7 +25,7 @@ export class HomeMapStorage extends Component {
     public coords: Array<Node>
     public spriteCoords: Array<Sprite>
 
-    onLoad() {
+    public onLoad() {
         HomeMapStorage.instance = this
         this.coords = new Array(this.mapSize)
         this.arrayObjectParameters = new Array(this.mapSize)

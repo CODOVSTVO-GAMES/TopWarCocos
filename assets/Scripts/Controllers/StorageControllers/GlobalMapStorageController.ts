@@ -38,7 +38,6 @@ export class GlobalMapStorageController {
 
     static buildingsHandler(buildings: object[]) {
         for (let i = 0; i < buildings.length; i++) {
-            // console.log(buildings[i])
             const id = buildings[i]['id']
             const type = buildings[i]['type']
             const x = buildings[i]['x']

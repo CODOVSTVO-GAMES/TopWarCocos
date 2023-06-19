@@ -4,6 +4,7 @@ import { DataStorageService } from '../Controllers/NetworkControllers/DataStorag
 import { EventService } from '../Controllers/NetworkControllers/EventService';
 import { SessionService } from '../Controllers/NetworkControllers/SessionService';
 import { MapService } from '../Controllers/NetworkControllers/MapService';
+import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -17,7 +18,7 @@ export class NetworkClient extends Component {
         this.schedule(this.sendEvents, 5);
         this.schedule(this.sendData, 4);
 
-        setTimeout(MapService.getEnemy, 4000)
+        // setTimeout(MapService.getEnemy, 4000)
     }
 
     private sendData() {

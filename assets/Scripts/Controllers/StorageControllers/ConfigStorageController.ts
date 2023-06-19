@@ -610,13 +610,12 @@ export class ConfigStorageController {
                 return ConfigStorage.instance.radarConfig[i]
             }
         }
-        throw "Радар такого уровня не найден";
+        console.log("Радар такого уровня не найден")
     }
 
     getHeroConfig(): HeroConfig[] {
-        return ConfigStorage.instance.heroConfig;
+        return ConfigStorage.instance.heroConfig
     }
-
 
     //---------------------------------------------------------------------------------------------------
     //expirienceRadar

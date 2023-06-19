@@ -49,7 +49,7 @@ export class ObjectParameters extends Component {
     public start() {
         this.updateSprite();
         if (this.type == TypesObjects.BARRACKS_MARINE) {
-
+            this.backgraundObject.color = new Color(255, 255, 255, 0)
         }
     }
 
@@ -59,12 +59,16 @@ export class ObjectParameters extends Component {
 
     public onTransparencyObject() {
         this.spriteObject.color = new Color(255, 255, 255, 140)
-        this.backgraundObject.color = new Color(255, 255, 255, 140)
+        if (this.type != TypesObjects.BARRACKS_MARINE) {
+            this.backgraundObject.color = new Color(255, 255, 255, 140)
+        }
     }
 
     public offTransparencyObject() {
         this.spriteObject.color = new Color(255, 255, 255, 255)
-        this.backgraundObject.color = new Color(255, 255, 255, 255)
+        if (this.type != TypesObjects.BARRACKS_MARINE) {
+            this.backgraundObject.color = new Color(255, 255, 255, 255)
+        }
     }
 
     public getObjectInterface(): GameObjectInterface {
