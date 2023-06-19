@@ -1,4 +1,4 @@
-import { md5 } from '../Library/md5';
+import { md5 } from '../Librarys/md5';
 
 export class Cryptor {
 
