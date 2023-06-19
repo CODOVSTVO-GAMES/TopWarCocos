@@ -12,70 +12,40 @@ export class HomeMapStorageController {
         HomeMapStorage.instance.numberOpenZones = 0
 
         let wall_1 = new ObjectParameters
-        wall_1.type = TypesObjects.WALL
+        wall_1.type = TypesObjects.MANIPULATOR
         wall_1.level = 1
         wall_1.index = 1381
         this.setObjectParameter(wall_1, wall_1.type, wall_1.index)
 
-        let wall_2 = new ObjectParameters
-        wall_2.type = TypesObjects.WALL
-        wall_2.level = 1
-        wall_2.index = 1383
-        this.setObjectParameter(wall_2, wall_2.type, wall_2.index)
+        let troop_1 = new ObjectParameters
+        troop_1.type = TypesObjects.TROOP_OVERLAND
+        troop_1.level = 1
+        troop_1.index = 1481
+        this.setObjectParameter(troop_1, troop_1.type, troop_1.index)
 
-        let wall_3 = new ObjectParameters
-        wall_3.type = TypesObjects.WALL
-        wall_3.level = 1
-        wall_3.index = 1283
-        this.setObjectParameter(wall_3, wall_3.type, wall_3.index)
+        let troop_2 = new ObjectParameters
+        troop_2.type = TypesObjects.TROOP_OVERLAND
+        troop_2.level = 1
+        troop_2.index = 1482
+        this.setObjectParameter(troop_2, troop_2.type, troop_2.index)
 
-        let wall_4 = new ObjectParameters
-        wall_4.type = TypesObjects.WALL
-        wall_4.level = 1
-        wall_4.index = 1379
-        this.setObjectParameter(wall_4, wall_4.type, wall_4.index)
+        let troop_3 = new ObjectParameters
+        troop_3.type = TypesObjects.TROOP_OVERLAND
+        troop_3.level = 1
+        troop_3.index = 1531
+        this.setObjectParameter(troop_3, troop_3.type, troop_3.index)
 
-        let wall_5 = new ObjectParameters
-        wall_5.type = TypesObjects.WALL
-        wall_5.level = 1
-        wall_5.index = 1277
-        this.setObjectParameter(wall_5, wall_5.type, wall_5.index)
+        let troop_4 = new ObjectParameters
+        troop_4.type = TypesObjects.TROOP_OVERLAND
+        troop_4.level = 1
+        troop_4.index = 1532
+        this.setObjectParameter(troop_4, troop_4.type, troop_4.index)
 
-        let wall_6 = new ObjectParameters
-        wall_6.type = TypesObjects.WALL
-        wall_6.level = 1
-        wall_6.index = 1385
-        this.setObjectParameter(wall_6, wall_6.type, wall_6.index)
-
-        let wall_7 = new ObjectParameters
-        wall_7.type = TypesObjects.WALL
-        wall_7.level = 1
-        wall_7.index = 1285
-        this.setObjectParameter(wall_7, wall_7.type, wall_7.index)
-
-        let wall_8 = new ObjectParameters
-        wall_8.type = TypesObjects.WALL
-        wall_8.level = 1
-        wall_8.index = 1185
-        this.setObjectParameter(wall_8, wall_8.type, wall_8.index)
-
-        let wall_9 = new ObjectParameters
-        wall_9.type = TypesObjects.WALL
-        wall_9.level = 1
-        wall_9.index = 1081
-        this.setObjectParameter(wall_9, wall_9.type, wall_9.index)
-
-        let wall_10 = new ObjectParameters
-        wall_10.type = TypesObjects.WALL
-        wall_10.level = 1
-        wall_10.index = 1083
-        this.setObjectParameter(wall_10, wall_10.type, wall_10.index)
-
-        let wall_11 = new ObjectParameters
-        wall_11.type = TypesObjects.WALL
-        wall_11.level = 1
-        wall_11.index = 1085
-        this.setObjectParameter(wall_11, wall_11.type, wall_11.index)
+        let troop_5 = new ObjectParameters
+        troop_5.type = TypesObjects.TROOP_OVERLAND
+        troop_5.level = 1
+        troop_5.index = 1582
+        this.setObjectParameter(troop_5, troop_5.type, troop_5.index)
     }
 
     public static assigningSaveValuesServer(obj: Object[]) {
@@ -201,47 +171,33 @@ export class HomeMapStorageController {
     }
 
     public static getArrayObject(type: string): number[] {
-        if (type == TypesObjects.TROOP_OVERLAND) return IndexesObject.object1x1
-        else if (
-            type == TypesObjects.TROOP_AIR ||
-            type == TypesObjects.BARRACKS_AIR ||
-            type == TypesObjects.BARRACKS_MARINE ||
-            type == TypesObjects.BARRACKS_OVERLAND ||
-            type == TypesObjects.GOLD_MINE ||
-            type == TypesObjects.BANK ||
-            type == TypesObjects.AUTOCOMBINE ||
-            type == TypesObjects.RADAR ||
-            type == TypesObjects.TREASURES ||
-            type == TypesObjects.MANIPULATOR ||
-            type == TypesObjects.REPAIR_SHOP ||
-            type == TypesObjects.LOBBY_WARS ||
-            type == TypesObjects.WALL ||
-            type == TypesObjects.BATTLE
-        ) return IndexesObject.object2x2
-        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.object3x2
-        else if (type == TypesObjects.COMMAND_POST) return IndexesObject.object3x3
+        if (type == TypesObjects.TROOP_OVERLAND) {
+            return IndexesObject.object1x1
+        }
+        else if (type == TypesObjects.TROOP_MARINE) {
+            return IndexesObject.object3x2
+        }
+        else if (type == TypesObjects.COMMAND_POST) {
+            return IndexesObject.object3x3
+        }
+        else {
+            return IndexesObject.object2x2
+        }
     }
 
     public static getArratRegionObject(type: string): number[] {
-        if (type == TypesObjects.TROOP_OVERLAND) return IndexesObject.regionObject1x1
-        else if (
-            type == TypesObjects.TROOP_AIR ||
-            type == TypesObjects.BARRACKS_AIR ||
-            type == TypesObjects.BARRACKS_MARINE ||
-            type == TypesObjects.BARRACKS_OVERLAND ||
-            type == TypesObjects.GOLD_MINE ||
-            type == TypesObjects.BANK ||
-            type == TypesObjects.AUTOCOMBINE ||
-            type == TypesObjects.RADAR ||
-            type == TypesObjects.TREASURES ||
-            type == TypesObjects.MANIPULATOR ||
-            type == TypesObjects.REPAIR_SHOP ||
-            type == TypesObjects.LOBBY_WARS ||
-            type == TypesObjects.WALL ||
-            type == TypesObjects.BATTLE
-        ) return IndexesObject.regionObject2x2
-        else if (type == TypesObjects.TROOP_MARINE) return IndexesObject.regionObject3x2
-        else if (type == TypesObjects.COMMAND_POST) return IndexesObject.regionObject3x3
+        if (type == TypesObjects.TROOP_OVERLAND) {
+            return IndexesObject.regionObject1x1
+        }
+        else if (type == TypesObjects.TROOP_MARINE) {
+            return IndexesObject.regionObject3x2
+        }
+        else if (type == TypesObjects.COMMAND_POST) {
+            return IndexesObject.regionObject3x3
+        }
+        else {
+            return IndexesObject.regionObject2x2
+        }
     }
 
     public static getQuantityObjectsByType(type: string): number {

@@ -13,6 +13,8 @@ export class BattleStorage extends Component {
     public arrayCards: FreeUnit[] = []
     public quantityPlaces: number[] = []
     public isBattle: boolean = false
+    public numberBattle: number = 0;
+    public indexObjectBattle: number = 0;
     public quantityAvailableFreeCoords: number = 0
     public attackingTeam: number = 0
     public attackNumber: number = 0
