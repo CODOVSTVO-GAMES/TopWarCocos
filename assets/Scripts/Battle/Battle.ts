@@ -16,7 +16,7 @@ import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
-import { HomeMapStorage } from '../Storage/HomeMapStorage';
+import { InitRewardAfterBattle } from '../Logic/InitRewardAfterBattle';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -59,41 +59,41 @@ export class Battle extends Component {
      * 
      */
 
-    public static instance: Battle;
+    public static instance: Battle
 
     @property({ type: Prefab })
-    public troop: Prefab;
+    public troop: Prefab
 
     @property({ type: Prefab })
-    public cardTroop: Prefab;
+    public cardTroop: Prefab
 
     @property({ type: Node })
-    public parentCards: Node;
+    public parentCards: Node
 
     @property({ type: Node })
-    public inBattleBtn: Node;
+    public inBattleBtn: Node
 
     @property({ type: Node })
-    public quickPlacementBtn: Node;
+    public quickPlacementBtn: Node
 
     @property({ type: Node })
-    public endModal: Node;
+    public endModal: Node
 
     @property({ type: Label })
-    public endText: Label;
+    public endText: Label
 
     @property({ type: Label })
-    public mapQuantity: Label[] = [];
+    public mapQuantity: Label[] = []
 
-    private waves: number;
-    private currentWave: number;
+    private waves: number
+    private currentWave: number
 
     onLoad() {
-        Battle.instance = this;
+        Battle.instance = this
 
-        this.getTroopOwn();
-        this.getTroopEnemy();
-        this.getQuantityAvailableFreeCoords();
+        this.getTroopOwn()
+        this.getTroopEnemy()
+        this.getQuantityAvailableFreeCoords()
     }
 
     redirectToHomeMap() {
@@ -354,7 +354,6 @@ export class Battle extends Component {
     }
 
     attackController() {
-
         if (this.troopAlive() || (this.currentWave < this.waves && this.howManyAliveOwn() > 0)) {
             if (this.howManyAliveEnemy() <= 0) {
                 this.currentWave++;
@@ -368,16 +367,12 @@ export class Battle extends Component {
         }
         else {
             if (this.howManyAliveOwn() <= 0) {
-                this.endText.string = "ПАРАЖЕНЕ";
-            } 
+                this.endText.string = "ПАРАЖЕНЕ"
+            }
             else if (this.howManyAliveEnemy() <= 0) {
-                this.endText.string = "ВЫИГРЫШ";
-                BattleStorage
-                for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
-                    if (HomeMapStorage.instance.temporaryLocalStorage[i].index == BattleStorage.instance.indexObjectBattle) {
-                        HomeMapStorage.instance.temporaryLocalStorage[i].type = TypesObjects.RADAR;
-                    }
-                }
+                this.endText.string = "ВЫИГРЫШ"
+
+                InitRewardAfterBattle.victory()
             }
             this.endModal.active = true;
         }

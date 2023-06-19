@@ -1464,6 +1464,10 @@
       "__uuid__": "5d865065-439b-4e10-b185-b0e35e82d83e",
       "__expectedType__": "cc.Prefab"
     },
+    "treasures": {
+      "__uuid__": "17adcccc-7009-49e4-b518-6a8f1b8bfb00",
+      "__expectedType__": "cc.Prefab"
+    },
     "manipulator": {
       "__uuid__": "d04ad12e-6396-4ebb-ba3b-c3697b13df23",
       "__expectedType__": "cc.Prefab"
