@@ -16,8 +16,6 @@ export class NetworkClient extends Component {
         this.schedule(SessionService.updateSessionData, 60);
         this.schedule(this.sendEvents, 5);
         this.schedule(this.sendData, 4);
-
-        setTimeout(MapService.getEnemy, 4000)
     }
 
     private sendData() {

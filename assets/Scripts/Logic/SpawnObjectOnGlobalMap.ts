@@ -1,9 +1,10 @@
-import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
+import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Prefab, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
 import { ZoomCamera } from '../Camera/ZoomCamera';
 import { GlobalMapStorageController } from '../Controllers/StorageControllers/GlobalMapStorageController';
 import { Building } from '../Storage/GlobalMapStorage';
 import { MovingCamera } from '../Camera/MovingCamera';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { BuildingGlobalMapParameters } from '../BuildingGlobalMapParameters';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjectsOnGlobalMap')
@@ -26,8 +27,12 @@ export class SpawnObjectsOnGlobalMap extends Component {
     @property({ type: Node })
     public touchObject: Node;
 
-    @property({ type: Node })
-    public image: Node;
+    @property({ type: Prefab })
+    public basePrefab: Prefab;
+
+    @property({ type: Prefab })
+    public enemyPrefab: Prefab;
+
 
     start() {
         for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
@@ -39,17 +44,30 @@ export class SpawnObjectsOnGlobalMap extends Component {
     private spawnObject(building: Building) {
         let coordinates = GlobalMapStorageController.getCoordinatesBuilding(building)
 
-        let node = instantiate(this.image)
         if (building.type == 'base') {
-            node.setScale(new Vec3(2, 2))
+            const node = instantiate(this.basePrefab)
+            let buildingParabeters = node.getComponent(BuildingGlobalMapParameters)
+            buildingParabeters.setAccountId(building.accountId)
+            buildingParabeters.setLevel('Уровень: ' + building.level)
+            buildingParabeters.setType(building.type)
+            node.setScale(new Vec3(1.2, 1.2))
+            node.setParent(this.touchObject)
+            node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
+            building.node = node
         }
-        node.setParent(this.touchObject)
-        node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
-        console.log('заспавнен обьект в координатах: ' + coordinates.x + '   ' + coordinates.y)
+        else if (building.type == 'taskPersonal' || building.type == 'taskSalvation') {
+            const node = instantiate(this.enemyPrefab)
+            let buildingParabeters = node.getComponent(BuildingGlobalMapParameters)
+            buildingParabeters.setLevel('Уровень: ' + building.level)
+            buildingParabeters.setType(building.type)
+            node.setScale(new Vec3(1, 1))
+            node.setParent(this.touchObject)
+            node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
+            building.node = node
+        }
     }
 
     private setStartCameraPosition() {
         MovingCamera.instance.movie(GlobalMapStorageController.getBaseCoordinates())
-        RedirectionToScene.getSceneName()
     }
 }

@@ -44,7 +44,8 @@ export class GlobalMapStorageController {
             const x = buildings[i]['x']
             const y = buildings[i]['y']
             const accountId = buildings[i]['accountId']
-            this.addBuildings([new Building(id, type, x, y, accountId)])
+            const level = buildings[i]['level']
+            this.addBuildings([new Building(id, type, x, y, accountId, level)])
             if (accountId == UserStorageController.getAccountId()) {
                 GlobalMapStorage.instance.xBaceCoord = x
                 GlobalMapStorage.instance.yBaceCoord = y

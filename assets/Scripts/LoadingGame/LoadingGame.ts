@@ -7,6 +7,9 @@ import { UserService } from '../Controllers/NetworkControllers/UserService';
 import { UserStorageController } from '../Controllers/StorageControllers/UserStorageController';
 import { ConfigService } from '../Controllers/NetworkControllers/ConfigService';
 import { MapService } from '../Controllers/NetworkControllers/MapService';
+import { PaymentsService } from '../Controllers/NetworkControllers/PaymentsService';
+import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { SceneNames } from '../Static/SceneNames';
 const { ccclass } = _decorator;
 
 @ccclass('LoadingGame')
@@ -39,8 +42,17 @@ export class LoadingGame extends Component {
             TypesStorages.AUTOCOMBINE_STORAGE
         ];
         DataStorageService.getData(arrayActiveStorage)//redirectToHomeMap вызывается после получения данных в колбеке
+    }
+
+    static getPostData() {
         ConfigService.getStartConfig()
         MapService.getMap()
+        PaymentsService.getProducts()
+        // setTimeout(MapService.getEnemy, 4000)
+    }
+
+    static redirectToHomeMap() {
+        RedirectionToScene.redirect(SceneNames.HOME_MAP)
     }
 }
 

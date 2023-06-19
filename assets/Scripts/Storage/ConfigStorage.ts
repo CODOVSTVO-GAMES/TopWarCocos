@@ -16,6 +16,7 @@ import { ConfigStorageController } from '../Controllers/StorageControllers/Confi
 import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
 import { TaskReward } from '../Structures/TaskReward';
+import { LoadingGame } from '../LoadingGame/LoadingGame';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -347,6 +348,7 @@ export class ConfigStorage extends Component {
 
             }
         }
+        LoadingGame.redirectToHomeMap()
     }
 
     private isNotNullOrNotUndefined(value: any) {

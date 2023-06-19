@@ -145,6 +145,10 @@ export class SecondaryInterface extends Component {
         RedirectionToScene.redirect(SceneNames.GLOBAL_MAP);
     }
 
+    redirectToHomeMap() {
+        RedirectionToScene.redirect(SceneNames.HOME_MAP);
+    }
+
     openFirstModal(type: string, data?: {}) {
         if (this.listOpeningFirstLayoutModals.find((i) => i.modalName == type) == null) {
             this.listOpeningFirstLayoutModals.push(new QueueItem(type, data));
