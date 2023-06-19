@@ -215,6 +215,87 @@
     "secondaryNode": {
       "__id__": 6
     },
+    "firstBackgraund": {
+      "__id__": 133
+    },
+    "secondBackgraund": {
+      "__id__": 1502
+    },
+    "profile": {
+      "__id__": 139
+    },
+    "shopCoins": {
+      "__id__": 148
+    },
+    "shopGems": {
+      "__id__": 157
+    },
+    "shopObject": {
+      "__id__": 167
+    },
+    "experience": {
+      "__id__": 248
+    },
+    "powar": {
+      "__id__": 291
+    },
+    "characters": {
+      "__id__": 410
+    },
+    "characterInfo": {
+      "__id__": 650
+    },
+    "characterPumping": {
+      "__id__": 1699
+    },
+    "commandPost": {
+      "__id__": 761
+    },
+    "upgrateCommandPost0": {
+      "__id__": 1508
+    },
+    "upgrateCommandPost1": {
+      "__id__": 1614
+    },
+    "bank": {
+      "__id__": 1017
+    },
+    "autocombine": {
+      "__id__": 1027
+    },
+    "radar": {
+      "__id__": 1070
+    },
+    "radarTaskInfo": {
+      "__id__": 1920
+    },
+    "radarReward": {
+      "__id__": 2012
+    },
+    "repairShop": {
+      "__id__": 1157
+    },
+    "backpack": {
+      "__id__": 1167
+    },
+    "dialog": {
+      "__id__": 1234
+    },
+    "wireCut": {
+      "__id__": 1249
+    },
+    "bombDisposal": {
+      "__id__": 1262
+    },
+    "question": {
+      "__id__": 1370
+    },
+    "switch": {
+      "__id__": 1423
+    },
+    "spatialMine": {
+      "__id__": 1436
+    },
     "_id": "0fzW53dWtA3YR92BhogMGR"
   },
   {
@@ -68442,7 +68523,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "GlobalMapTouch",
+    "_name": "SpawnObjectOnGlobalMap",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -68457,8 +68538,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 540,
-      "y": 960,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -68475,17 +68556,17 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 33554432,
+    "_layer": 1073741824,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
       "z": 0
     },
-    "_id": "d0PDLpZV1EQaCKFlkrpOvT"
+    "_id": "a8Ng80UspHlIIO1kypNAIv"
   },
   {
-    "__type__": "656a6sBdNFE2J30soNvfTg+",
+    "__type__": "65ed8P+eQ9Pf5CqsBLTD9Ut",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -68499,7 +68580,7 @@
     "image": {
       "__id__": 10
     },
-    "_id": "beHYCiaXJMFJvrVhpB7D4R"
+    "_id": "117UEY51JE64p3Q1wP9oIf"
   },
   {
     "__type__": "cc.PrefabInfo",
