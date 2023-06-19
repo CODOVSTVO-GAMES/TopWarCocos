@@ -8,8 +8,8 @@ import { ConfigStorageController } from "../StorageControllers/ConfigStorageCont
 
 export class MapService {
 
-    static getMap() {
-        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel()), MapService.parseDataStorageGetResponce);
+    static getMap(x = GlobalMapStorageController.getXBace(), y = GlobalMapStorageController.getYBace()) {
+        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), x, y, GameStorageController.getLevel()), MapService.parseDataStorageGetResponce);
     }
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {

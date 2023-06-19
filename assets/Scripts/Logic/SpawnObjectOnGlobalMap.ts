@@ -10,6 +10,8 @@ const { ccclass, property } = _decorator;
 @ccclass('SpawnObjectsOnGlobalMap')
 export class SpawnObjectsOnGlobalMap extends Component {
 
+    public static instance: SpawnObjectsOnGlobalMap
+
     /**
      * карта 512 х 512 клеток
      * карта 8 х 8 чанков
@@ -34,14 +36,23 @@ export class SpawnObjectsOnGlobalMap extends Component {
     public enemyPrefab: Prefab;
 
 
-    start() {
-        for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
-            this.spawnObject(GlobalMapStorageController.getBuildings()[l])
-        }
+    protected onLoad(): void {
+        SpawnObjectsOnGlobalMap.instance = this
         this.setStartCameraPosition()
+        this.massSpawn()
+        console.log('onLoad globalmap')
     }
 
-    private spawnObject(building: Building) {
+    public massSpawn() {
+        for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
+            if (GlobalMapStorageController.getBuildings()[l].node == null) {
+                this.spawnObject(l)
+            }
+        }
+    }
+
+    private spawnObject(index: number) {
+        let building = GlobalMapStorageController.getBuildings()[index]
         let coordinates = GlobalMapStorageController.getCoordinatesBuilding(building)
 
         if (building.type == 'base') {
@@ -65,6 +76,7 @@ export class SpawnObjectsOnGlobalMap extends Component {
             node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
             building.node = node
         }
+        GlobalMapStorageController.getBuildings()[index] = building
     }
 
     private setStartCameraPosition() {

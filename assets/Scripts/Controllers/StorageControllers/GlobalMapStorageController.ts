@@ -1,11 +1,24 @@
 import { Vec2 } from "cc";
 import { Building, GlobalMapStorage } from "../../Storage/GlobalMapStorage";
 import { UserStorageController } from "./UserStorageController";
+import { SpawnObjectsOnGlobalMap } from "../../Logic/SpawnObjectOnGlobalMap";
+import { RedirectionToScene } from "../../Other/RedirectionToScene";
 
 export class GlobalMapStorageController {
 
     public static widthCell = 100
     public static lengthCell = 100
+
+    public static mapSize = 512
+    public static chunksInMap = 32
+
+    static getChunksPixels() {
+        return this.mapSize / this.chunksInMap * this.widthCell
+    }
+
+    static getCellsInChunk() {
+        return this.mapSize / this.chunksInMap
+    }
 
     static setZone(zone: string) {
         GlobalMapStorage.instance.zone = zone
@@ -50,7 +63,12 @@ export class GlobalMapStorageController {
                 GlobalMapStorage.instance.yBaceCoord = y
             }
         }
+
         console.log('Обьектов в массиве карты: ' + GlobalMapStorage.instance.buildings.length)
+
+        if (RedirectionToScene.getSceneName() == "GlobalMap") {
+            SpawnObjectsOnGlobalMap.instance.massSpawn()
+        }
     }
 
     static getBuildings(): Building[] {
