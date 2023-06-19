@@ -81,7 +81,13 @@ export class TroopRender extends Component {
     }
 
     renderDead() {
-        this.nodeObject.destroy();
+        try {
+            this.nodeObject.destroy();
+        }
+        catch
+        {
+            console.log("пиздец чего Даня тут понаписал, не работает :(")
+        }
     }
 
     clickTroop() {

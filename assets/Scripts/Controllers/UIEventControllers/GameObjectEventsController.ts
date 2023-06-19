@@ -1,10 +1,12 @@
 import { SpawnObjectsOnHomeMap } from "../../Logic/SpawnObjectsOnHomeMap";
 import { ObjectParameters } from "../../ObjectParameters";
 import { RedirectionToScene } from "../../Other/RedirectionToScene";
+import { HomeMapStructure } from "../../Static/HomeMapStructure";
 import { SceneNames } from "../../Static/SceneNames";
 import { TypesLocation } from "../../Static/TypesLocation";
 import { TypesModals } from "../../Static/TypesModals";
 import { TypesObjects } from "../../Static/TypesObjects";
+import { BattleStorage } from "../../Storage/BattleStorage";
 import { HomeMapStorage } from "../../Storage/HomeMapStorage";
 import { SecondaryInterface } from "../../UI/SecondaryInterface";
 import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController";
@@ -55,6 +57,16 @@ export class GameObjectEventsController {
         else if (objectParameters.type == TypesObjects.RADAR) {
             SecondaryInterface.instance.openFirstModal(TypesModals.RADAR)
         }
+        else if (objectParameters.type == TypesObjects.MANIPULATOR) {
+
+
+            BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+            BattleStorage.instance.indexObjectBattle = objectParameters.index
+            TroopStorageController.setTroopStorage()
+            RedirectionToScene.redirect(SceneNames.BATTLE)
+
+
+        }
         else if (objectParameters.type == TypesObjects.REPAIR_SHOP) {
             SecondaryInterface.instance.openFirstModal(TypesModals.REPAIR_SHOP)
         }
@@ -63,12 +75,16 @@ export class GameObjectEventsController {
             objectParameters.node.destroy()
         }
         else if (objectParameters.type == TypesObjects.BATTLE) {
+
+
             TroopStorageController.setTroopStorage()
-            // HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
-            // objectParameters.node.destroy()
-            // HomeMapStorage.instance.numberOpenZones += 1
-            // HomeMapStorageController.saveStorageServer()
+            HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
+            objectParameters.node.destroy()
+            HomeMapStorage.instance.numberOpenZones += 1
+            HomeMapStorageController.saveStorageServer()
             RedirectionToScene.redirect(SceneNames.BATTLE)
+
+
         }
     }
 
