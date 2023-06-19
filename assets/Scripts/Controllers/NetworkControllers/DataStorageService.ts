@@ -14,6 +14,7 @@ import { RedirectionToScene } from "../../Other/RedirectionToScene"
 import { SceneNames } from "../../Static/SceneNames"
 import { TypesStorages } from "../../Static/TypesStorages"
 import { PaymentsService } from "./PaymentsService"
+import { LoadingGame } from "../../LoadingGame/LoadingGame"
 
 export class DataStorageService {
 
@@ -44,7 +45,7 @@ export class DataStorageService {
             CommandPostStorageController.assignStartingValues()
             RadarStorageController.assignStartingValues()
             AutocombineStorageController.assignStartingValues()
-            RedirectionToScene.redirect(SceneNames.HOME_MAP)
+            LoadingGame.getPostData()
             return;
         }
 
@@ -77,8 +78,7 @@ export class DataStorageService {
                 AutocombineStorageController.assigningSaveValues(jsonValue)
             }
         }
-        PaymentsService.getProducts()
-        RedirectionToScene.redirect(SceneNames.HOME_MAP)
+        LoadingGame.getPostData()
     }
 
     static parseDataStoragePostResponce(data: any, isDone: boolean) {

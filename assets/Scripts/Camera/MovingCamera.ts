@@ -45,12 +45,10 @@ export class MovingCamera extends Component {
     touchStart() {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
-        HomeMapStorageController.putSelectObject()
         if (RedirectionToScene.getSceneName() != 'GlobalMap') {
+            HomeMapStorageController.putSelectObject()
             SecondaryInterface.instance.closeFirstLayoutModal();
         }
-
-
 
         this.isMove = true;
         this.xPos = this.object.position.x;
