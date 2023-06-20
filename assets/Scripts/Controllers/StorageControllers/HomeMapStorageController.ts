@@ -12,7 +12,7 @@ export class HomeMapStorageController {
         HomeMapStorage.instance.numberOpenZones = 0
 
         let wall_1 = new ObjectParameters
-        wall_1.type = TypesObjects.MANIPULATOR
+        wall_1.type = TypesObjects.WHOLE_MANIPULATOR
         wall_1.level = 1
         wall_1.index = 1381
         this.setObjectParameter(wall_1, wall_1.type, wall_1.index)

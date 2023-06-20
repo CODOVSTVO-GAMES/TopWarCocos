@@ -374,6 +374,17 @@ export class Battle extends Component {
 
                 InitRewardAfterBattle.victory()
             }
+            BattleStorage.instance.arrayOwn = new Array
+            BattleStorage.instance.arrayEnemy = new Array
+            BattleStorage.instance.arrayCards = new Array
+            BattleStorage.instance.quantityPlaces = new Array
+            BattleStorage.instance.isBattle = false
+            BattleStorage.instance.numberBattle = 0
+            BattleStorage.instance.indexObjectBattle = 0
+            BattleStorage.instance.quantityAvailableFreeCoords = 0
+            BattleStorage.instance.attackingTeam = 0
+            BattleStorage.instance.attackNumber = 0
+
             this.endModal.active = true;
         }
     }
