@@ -7,7 +7,6 @@ import { TypesLocation } from "../../Static/TypesLocation";
 import { TypesModals } from "../../Static/TypesModals";
 import { TypesObjects } from "../../Static/TypesObjects";
 import { BattleStorage } from "../../Storage/BattleStorage";
-import { HomeMapStorage } from "../../Storage/HomeMapStorage";
 import { SecondaryInterface } from "../../UI/SecondaryInterface";
 import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
@@ -24,67 +23,45 @@ export class GameObjectEventsController {
             return console.log("object Parameters not found")
         }
 
-        // подумать как переписать (возможно раскидать на несколько методов)
         if (objectParameters.type == TypesObjects.BARRACKS_AIR) {
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.TROOP_AIR, TypesLocation.EARTH, objectParameters.level, objectParameters.index);
+            this.processingBarrackAir(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.TROOP_MARINE, TypesLocation.EARTH, objectParameters.level, objectParameters.index);
+            this.processingBarrackMarine(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.TROOP_OVERLAND, TypesLocation.EARTH, objectParameters.level, objectParameters.index);
+            this.processingBarrackOverland(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.COMMAND_POST) {
-            SecondaryInterface.instance.openFirstModal(TypesModals.COMMAND_POST);
+            this.processingCommandPost()
         }
         else if (objectParameters.type == TypesObjects.GOLD_MINE) {
-            if (AutocombineStorageController.getTimeGoldMine(objectParameters.index) == 0) {
-                GameStorageController.addCoins(ConfigStorageController.getProdictionInTimeGoldMineByLevel(objectParameters.level))
-            }
+            this.processingGoldMine(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.BANK) {
-            SecondaryInterface.instance.openFirstModal(TypesModals.BANK);
+            this.processingBank()
         }
         else if (objectParameters.type == TypesObjects.AUTOCOMBINE) {
-            if (AutocombineStorageController.getAllProfit() > 0) {
-                GameStorageController.addCoins(AutocombineStorageController.getAllProfit())
-                AutocombineStorageController.clearAllProfit()
-            }
-            else {
-                SecondaryInterface.instance.openFirstModal(TypesModals.AUTOCOMBINE);
-            }
+            this.processingAutocombine()
         }
         else if (objectParameters.type == TypesObjects.RADAR) {
-            SecondaryInterface.instance.openFirstModal(TypesModals.RADAR)
+            this.processingRadar(objectParameters)
         }
-        else if (objectParameters.type == TypesObjects.MANIPULATOR) {
-
-
-            BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
-            BattleStorage.instance.indexObjectBattle = objectParameters.index
-            TroopStorageController.setTroopStorage()
-            RedirectionToScene.redirect(SceneNames.BATTLE)
-
-
+        else if (objectParameters.type == TypesObjects.WHOLE_MANIPULATOR) {
+            this.processingWholeManipulator(objectParameters)
+        }
+        else if (objectParameters.type == TypesObjects.PADDED_MANIPULATOR) {
+            this.processingPaddedManipulator(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.REPAIR_SHOP) {
+            this.processingRepairShop()
             SecondaryInterface.instance.openFirstModal(TypesModals.REPAIR_SHOP)
         }
         else if (objectParameters.type == TypesObjects.WALL) {
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(TypesObjects.BATTLE, TypesLocation.EARTH, 1, objectParameters.index)
-            objectParameters.node.destroy()
+            this.processingWall(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.BATTLE) {
-
-
-            TroopStorageController.setTroopStorage()
-            HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
-            objectParameters.node.destroy()
-            HomeMapStorage.instance.numberOpenZones += 1
-            HomeMapStorageController.saveStorageServer()
-            RedirectionToScene.redirect(SceneNames.BATTLE)
-
-
+            this.processingBattle(objectParameters)
         }
     }
 
@@ -95,6 +72,112 @@ export class GameObjectEventsController {
             return console.log("object Parameters not found")
         }
 
-        console.log(objectParameters.type)
+        if (objectParameters.type == TypesObjects.TREASURES) {
+            this.processingTreasures(objectParameters)
+        }
+    }
+
+    // ===============================================================================
+
+    private static processingBarrackAir(objectParameters: ObjectParameters) {
+        let typeObject = TypesObjects.TROOP_AIR
+        let typeLocation = TypesLocation.EARTH
+        let levelObject = objectParameters.level
+        let indexObject = objectParameters.index
+
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, indexObject)
+    }
+
+    private static processingBarrackMarine(objectParameters: ObjectParameters) {
+        let typeObject = TypesObjects.TROOP_MARINE
+        let typeLocation = TypesLocation.WATER
+        let levelObject = objectParameters.level
+        let indexObject = objectParameters.index
+
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, indexObject)
+    }
+
+    private static processingBarrackOverland(objectParameters: ObjectParameters) {
+        let typeObject = TypesObjects.TROOP_OVERLAND
+        let typeLocation = TypesLocation.EARTH
+        let levelObject = objectParameters.level
+        let indexObject = objectParameters.index
+
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, indexObject)
+    }
+
+    private static processingCommandPost() {
+        let typeModal = TypesModals.COMMAND_POST
+
+        SecondaryInterface.instance.openFirstModal(typeModal)
+    }
+
+    private static processingGoldMine(objectParameters: ObjectParameters) {
+        if (AutocombineStorageController.getTimeGoldMine(objectParameters.index) == 0) {
+            GameStorageController.addCoins(ConfigStorageController.getProdictionInTimeGoldMineByLevel(objectParameters.level))
+        }
+    }
+
+    private static processingBank() {
+        let typeModal = TypesModals.BANK
+
+        SecondaryInterface.instance.openFirstModal(typeModal)
+    }
+
+    private static processingAutocombine() {
+        if (AutocombineStorageController.getAllProfit() > 0) {
+            GameStorageController.addCoins(AutocombineStorageController.getAllProfit())
+            AutocombineStorageController.clearAllProfit()
+        }
+        else {
+            let typeModal = TypesModals.AUTOCOMBINE
+
+            SecondaryInterface.instance.openFirstModal(typeModal)
+        }
+    }
+
+    private static processingTreasures(objectParameters: ObjectParameters) {
+        HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
+        objectParameters.nodeObject.destroy()
+    }
+
+    private static processingRadar(objectParameters: ObjectParameters) {
+        let typeModal = TypesModals.RADAR
+
+        SecondaryInterface.instance.openFirstModal(typeModal)
+    }
+
+    private static processingWholeManipulator(objectParameters: ObjectParameters) {
+        BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+        BattleStorage.instance.indexObjectBattle = objectParameters.index
+
+        TroopStorageController.setTroopStorage()
+        HomeMapStorageController.saveStorageServer()
+        RedirectionToScene.redirect(SceneNames.BATTLE)
+    }
+
+    private static processingPaddedManipulator(objectParameters: ObjectParameters) {
+        HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
+        objectParameters.nodeObject.destroy()
+    }
+
+    private static processingRepairShop() {
+        let typeModal = TypesModals.REPAIR_SHOP
+
+        SecondaryInterface.instance.openFirstModal(typeModal)
+    }
+
+    private static processingWall(objectParameters: ObjectParameters) {
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(TypesObjects.BATTLE, TypesLocation.EARTH, 1, objectParameters.index)
+        objectParameters.node.destroy()
+    }
+
+    private static processingBattle(objectParameters: ObjectParameters) {
+        BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+        BattleStorage.instance.indexObjectBattle = objectParameters.index
+
+        TroopStorageController.setTroopStorage()
+        HomeMapStorageController.saveStorageServer()
+        RedirectionToScene.redirect(SceneNames.BATTLE)
     }
 } 

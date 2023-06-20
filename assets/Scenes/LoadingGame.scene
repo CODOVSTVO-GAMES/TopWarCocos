@@ -2043,64 +2043,50 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "bank": [
-      {
-        "__uuid__": "dd89a4a9-d987-47a7-b550-f383ccadf1a7@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "autocombine": [
-      {
-        "__uuid__": "c840e4f0-4333-41ad-81d1-75fe96b1c424@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "radar": [
-      {
-        "__uuid__": "47242bda-1f89-463e-9018-e0f603fb8e1a@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "manipulator": [
-      {
-        "__uuid__": "6c00b08d-25f0-4452-907b-eb7c24324f72@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "0e7bd165-3c04-4f00-a910-a020b3033fb7@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "repairShop": [
-      {
-        "__uuid__": "79b90f34-493b-40a0-babd-2289caf76ce4@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "lobbyWar": [
-      {
-        "__uuid__": "0fb68112-5dc3-4e68-9d8b-76fc1d738728@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "expedition": [
-      {
-        "__uuid__": "c741688c-a309-49fa-8174-5fd1b11b9abb@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "wall": [
-      {
-        "__uuid__": "048551ca-78ec-478d-8f55-d33aca157dbf@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "battle": [
-      {
-        "__uuid__": "9fafec30-150e-4649-89d7-a43674e86f5d@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
+    "bank": {
+      "__uuid__": "dd89a4a9-d987-47a7-b550-f383ccadf1a7@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "autocombine": {
+      "__uuid__": "c840e4f0-4333-41ad-81d1-75fe96b1c424@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "radar": {
+      "__uuid__": "47242bda-1f89-463e-9018-e0f603fb8e1a@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "treasures": {
+      "__uuid__": "e764b868-29af-4e11-9dda-f7762f3c58cd@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "wholeManipulator": {
+      "__uuid__": "6c00b08d-25f0-4452-907b-eb7c24324f72@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "paddedManipulator": {
+      "__uuid__": "0e7bd165-3c04-4f00-a910-a020b3033fb7@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "repairShop": {
+      "__uuid__": "79b90f34-493b-40a0-babd-2289caf76ce4@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "lobbyWar": {
+      "__uuid__": "0fb68112-5dc3-4e68-9d8b-76fc1d738728@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "expedition": {
+      "__uuid__": "c741688c-a309-49fa-8174-5fd1b11b9abb@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "wall": {
+      "__uuid__": "048551ca-78ec-478d-8f55-d33aca157dbf@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "battle": {
+      "__uuid__": "9fafec30-150e-4649-89d7-a43674e86f5d@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "characters": [
       {
         "__uuid__": "bc50771a-6cab-4f9d-ae06-8b6c0dd391d3@f9941",

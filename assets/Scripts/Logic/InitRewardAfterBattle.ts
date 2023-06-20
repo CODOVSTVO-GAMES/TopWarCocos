@@ -3,17 +3,21 @@ import { BattleStorage } from '../Storage/BattleStorage';
 import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { ObjectParameters } from '../ObjectParameters';
 import { TypesObjects } from '../Static/TypesObjects';
+import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 const { ccclass } = _decorator;
 
 @ccclass('InitRewardAfterBattle')
 export class InitRewardAfterBattle {
 
     public static victory() {
+        let indexObjectBattle: number;
+
         HomeMapStorage.instance.numberOpenZones += 1
 
         for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
             if (HomeMapStorage.instance.temporaryLocalStorage[i].index == BattleStorage.instance.indexObjectBattle) {
-                HomeMapStorage.instance.temporaryLocalStorage[i].type = TypesObjects.TREASURES
+                indexObjectBattle = i
+                break
             }
         }
 
@@ -22,6 +26,7 @@ export class InitRewardAfterBattle {
             objectParameters.type = TypesObjects.WALL
             objectParameters.level = 1
             objectParameters.index = 1383
+            HomeMapStorage.instance.temporaryLocalStorage[indexObjectBattle].type = TypesObjects.PADDED_MANIPULATOR
             HomeMapStorage.instance.temporaryLocalStorage.push(objectParameters)
         }
         else if (BattleStorage.instance.numberBattle == 2) {
@@ -29,6 +34,7 @@ export class InitRewardAfterBattle {
             objectParameters.type = TypesObjects.WALL
             objectParameters.level = 1
             objectParameters.index = 1283
+            HomeMapStorage.instance.temporaryLocalStorage[indexObjectBattle].type = TypesObjects.TREASURES
             HomeMapStorage.instance.temporaryLocalStorage.push(objectParameters)
         }
         else if (BattleStorage.instance.numberBattle == 3) {
@@ -36,6 +42,7 @@ export class InitRewardAfterBattle {
             objectParameters.type = TypesObjects.WALL
             objectParameters.level = 1
             objectParameters.index = 1379
+            HomeMapStorage.instance.temporaryLocalStorage[indexObjectBattle].type = TypesObjects.TREASURES
             HomeMapStorage.instance.temporaryLocalStorage.push(objectParameters)
         }
         else if (BattleStorage.instance.numberBattle == 4) {
@@ -43,6 +50,7 @@ export class InitRewardAfterBattle {
             objectParameters.type = TypesObjects.WALL
             objectParameters.level = 1
             objectParameters.index = 1277
+            HomeMapStorage.instance.temporaryLocalStorage[indexObjectBattle].type = TypesObjects.TREASURES
             HomeMapStorage.instance.temporaryLocalStorage.push(objectParameters)
         }
         else if (BattleStorage.instance.numberBattle == 5) {
@@ -50,6 +58,7 @@ export class InitRewardAfterBattle {
             objectParameters.type = TypesObjects.WALL
             objectParameters.level = 1
             objectParameters.index = 1385
+            HomeMapStorage.instance.temporaryLocalStorage[indexObjectBattle].type = TypesObjects.TREASURES
             HomeMapStorage.instance.temporaryLocalStorage.push(objectParameters)
         }
         else if (BattleStorage.instance.numberBattle == 6) {
@@ -57,6 +66,7 @@ export class InitRewardAfterBattle {
             objectParameters.type = TypesObjects.WALL
             objectParameters.level = 1
             objectParameters.index = 1285
+            HomeMapStorage.instance.temporaryLocalStorage[indexObjectBattle].type = TypesObjects.TREASURES
             HomeMapStorage.instance.temporaryLocalStorage.push(objectParameters)
         }
     }

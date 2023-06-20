@@ -9,6 +9,7 @@ export class MapEnemyController {
                 return MapEnemyStorage.instance.mapEnemyArr[l]
             }
         }
+        console.log(mapNumber);
         console.log('Не найдена такая команда. Запросите с сервера')
     }
 

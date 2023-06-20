@@ -78,7 +78,8 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.AUTOCOMBINE) return this.autocombine
         else if (type == TypesObjects.RADAR) return this.radar
         else if (type == TypesObjects.TREASURES) return this.treasures
-        else if (type == TypesObjects.MANIPULATOR) return this.manipulator
+        else if (type == TypesObjects.WHOLE_MANIPULATOR) return this.manipulator
+        else if (type == TypesObjects.PADDED_MANIPULATOR) return this.manipulator
         else if (type == TypesObjects.REPAIR_SHOP) return this.repairShop
         else if (type == TypesObjects.LOBBY_WARS) return this.lobbyWar
         else if (type == TypesObjects.EXPEDITION) return this.expedition
