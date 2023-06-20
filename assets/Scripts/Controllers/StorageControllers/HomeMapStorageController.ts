@@ -11,6 +11,12 @@ export class HomeMapStorageController {
     public static assignStartingValues() {
         HomeMapStorage.instance.numberOpenZones = 0
 
+        let radar = new ObjectParameters
+        radar.type = TypesObjects.RADAR
+        radar.level = 1
+        radar.index = 1580
+        this.setObjectParameter(radar, radar.type, radar.index)
+
         let wall_1 = new ObjectParameters
         wall_1.type = TypesObjects.WHOLE_MANIPULATOR
         wall_1.level = 1

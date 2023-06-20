@@ -26,7 +26,8 @@ export class BuferTasks extends Component {
     addTaskSalvation(task: RadarTask) {
         this.ongoingSalvationTasks.push(task);
         task.status = 1;
-        setTimeout(() => this.awardingSalvation(), Math.floor(Math.random() * 5000) + 5000); // тут задаётся рандомное время для похода (это не должно тут быть)
+        const x = 5
+        setTimeout(() => this.awardingSalvation(), x); // тут задаётся рандомное время для похода (это не должно тут быть)
     }
 
     addTaskDarkLegion(task: RadarTask) {
