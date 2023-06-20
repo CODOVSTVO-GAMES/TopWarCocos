@@ -1496,8 +1496,16 @@
       "__uuid__": "9484ad14-b310-4f38-afbb-e0f407e781ad",
       "__expectedType__": "cc.Prefab"
     },
-    "battle": {
+    "battle2x2": {
       "__uuid__": "ea3d388b-b52c-4157-98c0-689660449dbc",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle4x4": {
+      "__uuid__": "7ba6531c-c736-4190-9cb6-57c3b926b45f",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle8x8": {
+      "__uuid__": "5a1eb555-4433-49e6-9774-c868aeef2cff",
       "__expectedType__": "cc.Prefab"
     },
     "itemBackpack": {

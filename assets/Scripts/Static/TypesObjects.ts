@@ -22,5 +22,7 @@ export class TypesObjects {
     public static WALL_2X2: string = "wall2x2"
     public static WALL_4X4: string = "wall4x4"
     public static WALL_8X8: string = "wall8x8"
-    public static BATTLE: string = "battle"
+    public static BATTLE_2X2: string = "battle2x2"
+    public static BATTLE_4X4: string = "battle4x4"
+    public static BATTLE_8X8: string = "battle8x8"
 }

@@ -23,7 +23,7 @@ export class SpawnObjectsOnHomeMap {
             else {
                 location = TypesLocation.EARTH
             }
-
+            console.log("TYPE: " + HomeMapStorageController.getObjectParameter(i).type + " INDEX: " + HomeMapStorageController.getObjectParameter(i).index)
             this.SpawnObjectsOnHomeMapPos(
                 HomeMapStorageController.getObjectParameter(i).type,
                 location,
@@ -34,6 +34,7 @@ export class SpawnObjectsOnHomeMap {
     }
 
     public static SpawnObjectsOnHomeMapPos(type: string, location: string, level: number, index: number): ObjectParameters {
+
         let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type))
         let objectParameter = object.getComponent(ObjectParameters)
 
