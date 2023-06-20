@@ -99,10 +99,10 @@ export class ModalRadarTaskInterface extends Component {
     startTimer() {
         let timer = setInterval(() => {
             let task = ModalRadarTaskLogic.instance.task;
-
             if (task != null) {
                 let time = task.time;
                 if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && time > 0) {
+
                     task.time--;
                     this.title.string = "Задание завершится через " + time;
                 }

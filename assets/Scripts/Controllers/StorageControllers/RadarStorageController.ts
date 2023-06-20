@@ -78,7 +78,7 @@ export class RadarStorageController {
     }
 
     static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
-        RadarStorage.instance.tasks.push(new RadarTask(id, type, stars, time, 0, reward, battleTime));
+        RadarStorage.instance.tasks.push(new RadarTask(id, type, stars, time / 1000, 0, reward, battleTime));
         this.updateRadarAnimation();
     }
 
