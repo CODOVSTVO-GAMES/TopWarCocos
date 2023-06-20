@@ -47,7 +47,8 @@ export class ModalRadarLogic extends Component {
                     const type = arr[l]['type']
                     const stars = arr[l]['stars']
                     const expiration = arr[l]['expiration']
-                    RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars))
+                    const battleTime = arr[l]['battleTime']
+                    RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
                     console.log('создана задача')
                 }
             }
@@ -63,7 +64,7 @@ export class ModalRadarLogic extends Component {
 
     start() {
         this.calculationRadar();
-        this.spawnNewTasks();
+        // this.spawnNewTasks();
         this.startTimer();
     }
 
