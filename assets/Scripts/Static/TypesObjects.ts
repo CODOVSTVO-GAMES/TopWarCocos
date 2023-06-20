@@ -19,6 +19,8 @@ export class TypesObjects {
     public static LOBBY_WARS: string = "lobbyWar"
     public static EXPEDITION: string = "expedition"
 
-    public static WALL: string = "wall"
+    public static WALL_2X2: string = "wall2x2"
+    public static WALL_4X4: string = "wall4x4"
+    public static WALL_8X8: string = "wall8x8"
     public static BATTLE: string = "battle"
 }

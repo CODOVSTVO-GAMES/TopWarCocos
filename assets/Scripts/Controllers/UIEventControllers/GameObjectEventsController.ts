@@ -45,7 +45,7 @@ export class GameObjectEventsController {
             this.processingAutocombine()
         }
         else if (objectParameters.type == TypesObjects.RADAR) {
-            this.processingRadar(objectParameters)
+            this.processingRadar()
         }
         else if (objectParameters.type == TypesObjects.WHOLE_MANIPULATOR) {
             this.processingWholeManipulator(objectParameters)
@@ -57,8 +57,14 @@ export class GameObjectEventsController {
             this.processingRepairShop()
             SecondaryInterface.instance.openFirstModal(TypesModals.REPAIR_SHOP)
         }
-        else if (objectParameters.type == TypesObjects.WALL) {
-            this.processingWall(objectParameters)
+        else if (objectParameters.type == TypesObjects.WALL_2X2) {
+            this.processingWall2x2(objectParameters)
+        }
+        else if (objectParameters.type == TypesObjects.WALL_4X4) {
+            this.processingWall4x4(objectParameters)
+        }
+        else if (objectParameters.type == TypesObjects.WALL_8X8) {
+            this.processingWall8x8(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.BATTLE) {
             this.processingBattle(objectParameters)
@@ -137,11 +143,15 @@ export class GameObjectEventsController {
     }
 
     private static processingTreasures(objectParameters: ObjectParameters) {
-        HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
-        objectParameters.nodeObject.destroy()
+        let typeObject = objectParameters.type
+        let indexObject = objectParameters.index
+        let nodeObject = objectParameters.nodeObject
+
+        HomeMapStorageController.setObjectParameter(null, typeObject, indexObject)
+        nodeObject.destroy()
     }
 
-    private static processingRadar(objectParameters: ObjectParameters) {
+    private static processingRadar() {
         let typeModal = TypesModals.RADAR
 
         SecondaryInterface.instance.openFirstModal(typeModal)
@@ -167,8 +177,33 @@ export class GameObjectEventsController {
         SecondaryInterface.instance.openFirstModal(typeModal)
     }
 
-    private static processingWall(objectParameters: ObjectParameters) {
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(TypesObjects.BATTLE, TypesLocation.EARTH, 1, objectParameters.index)
+    private static processingWall2x2(objectParameters: ObjectParameters) {
+        let typeObject = TypesObjects.BATTLE
+        let typeLocation = TypesLocation.EARTH
+        let levelObject = 1
+        let indexObject = objectParameters.index
+
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+        objectParameters.node.destroy()
+    }
+
+    private static processingWall4x4(objectParameters: ObjectParameters) {
+        let typeObject = TypesObjects.BATTLE
+        let typeLocation = TypesLocation.EARTH
+        let levelObject = 1
+        let indexObject = objectParameters.index
+
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+        objectParameters.node.destroy()
+    }
+
+    private static processingWall8x8(objectParameters: ObjectParameters) {
+        let typeObject = TypesObjects.BATTLE
+        let typeLocation = TypesLocation.EARTH
+        let levelObject = 1
+        let indexObject = objectParameters.index
+
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
         objectParameters.node.destroy()
     }
 

@@ -180,6 +180,12 @@ export class HomeMapStorageController {
         else if (type == TypesObjects.COMMAND_POST) {
             return IndexesObject.object3x3
         }
+        else if (type == TypesObjects.WALL_4X4) {
+            return IndexesObject.object4x4
+        }
+        else if (type == TypesObjects.WALL_8X8) {
+            return IndexesObject.object8x8
+        }
         else {
             return IndexesObject.object2x2
         }
