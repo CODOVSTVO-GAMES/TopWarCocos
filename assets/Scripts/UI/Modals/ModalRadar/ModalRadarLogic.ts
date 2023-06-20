@@ -9,6 +9,7 @@ import { GameStorageController } from '../../../Controllers/StorageControllers/G
 import { ModalRadarInterface } from './ModalRadarInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
+import { MapService } from '../../../Controllers/NetworkControllers/MapService';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
@@ -33,19 +34,34 @@ export class ModalRadarLogic extends Component {
         ModalRadarLogic.instance = this;
     }
 
+    taskResponcer(arr: object[]) {
+        for (let l = 0; l < arr.length; l++) {
+            if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
+                if (RadarStorageController.isTaskExists(arr[l]['id'])) {
+                    continue
+                }
+
+                const id = arr[l]['id']
+                const type = arr[l]['type']
+                const stars = arr[l]['stars']
+                const expiration = arr[l]['expiration']
+                RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars))
+                console.log('создана задача')
+            }
+        }
+    }
+
     /**
      * в старте:
      *    получаем конфиг радара по уровню
      *    добавляем задачи в конфиг (если есть доступные && если на локаторе есть место)
      *    запускаем таймер
-     * 
-     * 
      */
 
     start() {
-        // this.calculationRadar();
-        // this.spawnNewTasks();
-        // this.startTimer();
+        this.calculationRadar();
+        this.spawnNewTasks();
+        this.startTimer();
     }
 
     calculationRadar() {
@@ -55,15 +71,6 @@ export class ModalRadarLogic extends Component {
         this.maxTasks = config.maxTasks;
         this.maxDisplayedTasks = config.displayedTasks;
         this.configTime = config.time;
-    }
-
-    spawnTasks() {
-        let radarTasks = RadarStorageController.getRadarTasks();
-        if (radarTasks.length < this.maxDisplayedTasks && RadarStorageController.getRadarAvailableMissions() > 0) {
-            let stars = this.randomStars();
-            RadarStorageController.addRadarTasks(this.randomType(), stars, 28800, this.randomReward(stars));
-            RadarStorageController.reduceRadarAvailableMissions(1); // вычитаем одну миссию из счетчика доступных
-        }
     }
 
     startTimer() {
@@ -84,10 +91,7 @@ export class ModalRadarLogic extends Component {
     }
 
     spawnNewTasks() {
-        let radarTasks = RadarStorageController.getRadarTasks();
-        while (radarTasks.length < this.maxDisplayedTasks && RadarStorageController.getRadarAvailableMissions() > 0) {
-            this.spawnTasks();
-        }
+        MapService.getEnemy()
     }
 
     timer() {
@@ -101,35 +105,6 @@ export class ModalRadarLogic extends Component {
         }
         else {
             this.stopTimer();
-        }
-    }
-
-    randomType(): string {
-        let random = Math.floor(Math.random() * 100);
-        if (random < 60) {
-            return TypesRadar.TASK_SALVATION;
-        }
-        // else if (random < 95) {
-        //     return TypesRadar.TASK_DARK_LEGION; // этих заданий ещё не существует
-        // }
-        else {
-            return TypesRadar.TASK_PERSONAL
-        }
-    }
-
-    randomStars(): number {
-        let random = Math.floor(Math.random() * 100);
-        if (random < 50) {
-            return 1;
-        }
-        else if (random < 75) {
-            return 2;
-        }
-        else if (random < 95) {
-            return 3;
-        }
-        else {
-            return 4;
         }
     }
 

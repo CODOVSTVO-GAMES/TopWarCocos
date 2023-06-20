@@ -32,5 +32,6 @@ export class ModalRadarRewardLogic extends Component {
         RadarStorageController.addRadarExperience(1);
         RadarStorageController.reduceRadarTask(RadarStorage.instance.task);
         ModalRadarLogic.instance.spawnNewTasks();
+        RadarStorageController.reduceRadarAvailableMissions(1); //добавить при победе в миссии
     }
 }

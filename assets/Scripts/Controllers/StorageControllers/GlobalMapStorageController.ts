@@ -16,6 +16,10 @@ export class GlobalMapStorageController {
         return this.mapSize / this.chunksInMap * this.widthCell
     }
 
+    static getChunksCells() {
+        return this.mapSize / this.chunksInMap
+    }
+
     static getCellsInChunk() {
         return this.mapSize / this.chunksInMap
     }
@@ -64,7 +68,7 @@ export class GlobalMapStorageController {
             }
         }
 
-        console.log('Обьектов в массиве карты: ' + GlobalMapStorage.instance.buildings.length)
+        // console.log('Обьектов в массиве карты: ' + (GlobalMapStorage.instance.buildings.length + 1))
 
         if (RedirectionToScene.getSceneName() == "GlobalMap") {
             SpawnObjectsOnGlobalMap.instance.massSpawn()

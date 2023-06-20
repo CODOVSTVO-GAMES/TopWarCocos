@@ -5,14 +5,15 @@ import { GlobalMapStorageController } from "../StorageControllers/GlobalMapStora
 import { GameStorageController } from "../StorageControllers/GameStorageController";
 import { RadarStorageController } from "../StorageControllers/RadarStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
+import { ModalRadarLogic } from "../../UI/Modals/ModalRadar/ModalRadarLogic";
 
 export class MapService {
 
     static getMap(x = GlobalMapStorageController.getXBace(), y = GlobalMapStorageController.getYBace()) {
-        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), x, y, GameStorageController.getLevel()), MapService.parseDataStorageGetResponce);
+        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), x, y, GameStorageController.getLevel()), MapService.parseMapGetResponce);
     }
 
-    static parseDataStorageGetResponce(data: any, isDone: boolean) {
+    static parseMapGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get map error")
         else {
             GlobalMapStorageController.buildingsHandler(data)
@@ -23,8 +24,20 @@ export class MapService {
         let level = RadarStorageController.getRadarLevel()
         let config = ConfigStorageController.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
+        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseEnemyGetResponce);
+    }
 
-        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseDataStorageGetResponce);
+    static parseEnemyGetResponce(data: any, isDone: boolean) {
+        if (!isDone) console.log("get enemy error")
+        else {
+            // console.log(data)
+            GlobalMapStorageController.buildingsHandler(data)
+            // console.log('---')
+            ModalRadarLogic.instance.taskResponcer(data)
+        }
+    }
+
+    static attackEnemy() {
     }
 
 }

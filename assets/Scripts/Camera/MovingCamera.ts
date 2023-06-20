@@ -84,8 +84,13 @@ export class MovingCamera extends Component {
         if (RedirectionToScene.getSceneName() == 'GlobalMap') {
             //доспавниваем карту
 
-            const chunkX = Math.floor(this.camera.node.position.x / GlobalMapStorageController.getCellsInChunk() * GlobalMapStorageController.widthCell)// сделать вызов реже
-            const chunkY = Math.floor(this.camera.node.position.y / GlobalMapStorageController.getCellsInChunk() * GlobalMapStorageController.lengthCell)
+            const cellNumberX = Math.floor(this.camera.node.position.x / GlobalMapStorageController.widthCell)
+            const chunkX = Math.floor(cellNumberX / GlobalMapStorageController.getChunksCells())
+
+            const cellNumberY = Math.floor(this.camera.node.position.y / GlobalMapStorageController.lengthCell)
+            const chunkY = Math.floor(cellNumberY / GlobalMapStorageController.getChunksCells())
+            //номер клетки = координата камеры / размер клетки  
+            //номер чанка = без остатка(номер клетки / размер чанка)
 
             const chunkId: string = chunkX.toString() + chunkY.toString()
 
