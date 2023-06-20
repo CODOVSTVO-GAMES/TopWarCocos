@@ -30,6 +30,9 @@ export class MovingCamera extends Component {
 
     protected onLoad(): void {
         MovingCamera.instance = this
+        if (RedirectionToScene.getSceneName() == 'HomeMap') {
+            this.movie(new Vec2(100, -1000))
+        }
     }
 
     onEnable() {

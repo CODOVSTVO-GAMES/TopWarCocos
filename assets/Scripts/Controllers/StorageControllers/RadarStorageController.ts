@@ -171,9 +171,14 @@ export class RadarStorageController {
     }
 
     static getMessageAnimation() {
-        if (this.messageAnimation == null) {
-            this.messageAnimation = HomeMapStorageController.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+        try {
+            if (this.messageAnimation == null) {
+                this.messageAnimation = HomeMapStorageController.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+            }
+        } catch (e) {
+            console.log('ошибка ' + e)
         }
+
     }
 
     static saveStorage() {
