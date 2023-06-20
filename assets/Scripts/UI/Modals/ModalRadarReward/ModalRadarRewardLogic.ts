@@ -5,6 +5,7 @@ import { GameStorageController } from '../../../Controllers/StorageControllers/G
 import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
 import { ModalRadarLogic } from '../ModalRadar/ModalRadarLogic';
 import { RadarStorage } from '../../../Storage/RadarStorage';
+import { MapService } from '../../../Controllers/NetworkControllers/MapService';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarRewardLogic')
@@ -29,9 +30,12 @@ export class ModalRadarRewardLogic extends Component {
                 GameStorageController.addExperience(RadarStorage.instance.task.rewards[i].quantity);
             }
         }
+        MapService.attackWin(RadarStorage.instance.task.id)
+
         RadarStorageController.addRadarExperience(1);
         RadarStorageController.reduceRadarTask(RadarStorage.instance.task);
-        ModalRadarLogic.instance.spawnNewTasks();
+
+        setTimeout(ModalRadarLogic.instance.spawnNewTasks, 500)
         RadarStorageController.reduceRadarAvailableMissions(1); //добавить при победе в миссии
     }
 }

@@ -10,6 +10,7 @@ import { ModalRadarInterface } from './ModalRadarInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
 import { MapService } from '../../../Controllers/NetworkControllers/MapService';
+import { UserStorageController } from '../../../Controllers/StorageControllers/UserStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarLogic')
@@ -36,17 +37,19 @@ export class ModalRadarLogic extends Component {
 
     taskResponcer(arr: object[]) {
         for (let l = 0; l < arr.length; l++) {
+            console.log()
             if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
-                if (RadarStorageController.isTaskExists(arr[l]['id'])) {
-                    continue
+                if (arr[l]['owner'] == UserStorageController.getAccountId()) {
+                    if (RadarStorageController.isTaskExists(arr[l]['id'])) {
+                        continue
+                    }
+                    const id = arr[l]['id']
+                    const type = arr[l]['type']
+                    const stars = arr[l]['stars']
+                    const expiration = arr[l]['expiration']
+                    RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars))
+                    console.log('создана задача')
                 }
-
-                const id = arr[l]['id']
-                const type = arr[l]['type']
-                const stars = arr[l]['stars']
-                const expiration = arr[l]['expiration']
-                RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars))
-                console.log('создана задача')
             }
         }
     }
@@ -65,7 +68,6 @@ export class ModalRadarLogic extends Component {
     }
 
     calculationRadar() {
-        console.log(4)
         let config = ConfigStorageController.getRadarConfigByLevel(RadarStorageController.getRadarLevel()); // получаем конфиг радара по уровню
         this.maxEnergy = config.maxEnergy;
         this.maxTasks = config.maxTasks;
@@ -91,6 +93,7 @@ export class ModalRadarLogic extends Component {
     }
 
     spawnNewTasks() {
+        console.log('ззапрос задач')
         MapService.getEnemy()
     }
 

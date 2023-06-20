@@ -183,15 +183,15 @@ export class RadarStorageController {
 
     static saveStorage() {
         let tasks = [];
-        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
-            tasks.push({
-                type: RadarStorage.instance.tasks[i].type,
-                stars: RadarStorage.instance.tasks[i].stars,
-                time: RadarStorage.instance.tasks[i].time,
-                status: RadarStorage.instance.tasks[i].status,
-                rewards: RadarStorage.instance.tasks[i].rewards
-            });
-        }
+        // for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+        //     tasks.push({
+        //         type: RadarStorage.instance.tasks[i].type,
+        //         stars: RadarStorage.instance.tasks[i].stars,
+        //         time: RadarStorage.instance.tasks[i].time,
+        //         status: RadarStorage.instance.tasks[i].status,
+        //         rewards: RadarStorage.instance.tasks[i].rewards
+        //     });
+        // }
         let obj = {
             radarLevel: RadarStorage.instance.radarLevel,
             availableMissions: RadarStorage.instance.availableMissions,
