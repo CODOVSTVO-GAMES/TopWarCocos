@@ -121,15 +121,13 @@ export class Battle extends Component {
     }
 
     getTroopEnemy() {
-        let a = MapEnemyController.getCommands(BattleStorage.instance.numberBattle)
-        console.log(a)
+        let troopsEnemy = MapEnemyController.getCommands(BattleStorage.instance.numberBattle)
 
-        for (let i = 0; i < a.units1.length; i++) {
-            BattleStorage.instance.arrayEnemy.push(a.units1[i])
+        for (let i = 0; i < troopsEnemy.units1.length; i++) {
+            BattleStorage.instance.arrayEnemy.push(troopsEnemy.units1[i])
             BattleStorage.instance.arrayEnemy[i].index = i
             this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleStorage.instance.arrayEnemy[BattleStorage.instance.arrayEnemy.length - 1])
         }
-        console.log(BattleStorage.instance.arrayEnemy)
     }
 
     getQuantityAvailableFreeCoords() {
@@ -379,8 +377,6 @@ export class Battle extends Component {
             BattleStorage.instance.arrayCards = new Array
             BattleStorage.instance.quantityPlaces = new Array
             BattleStorage.instance.isBattle = false
-            BattleStorage.instance.numberBattle = 0
-            BattleStorage.instance.indexObjectBattle = 0
             BattleStorage.instance.quantityAvailableFreeCoords = 0
             BattleStorage.instance.attackingTeam = 0
             BattleStorage.instance.attackNumber = 0

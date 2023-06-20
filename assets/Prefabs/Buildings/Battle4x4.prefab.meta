@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "ea3d388b-b52c-4157-98c0-689660449dbc",
+  "uuid": "7ba6531c-c736-4190-9cb6-57c3b926b45f",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "Battle"
+    "syncNodeName": "Battle4x4"
   }
 }

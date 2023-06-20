@@ -55,7 +55,6 @@ export class GameObjectEventsController {
         }
         else if (objectParameters.type == TypesObjects.REPAIR_SHOP) {
             this.processingRepairShop()
-            SecondaryInterface.instance.openFirstModal(TypesModals.REPAIR_SHOP)
         }
         else if (objectParameters.type == TypesObjects.WALL_2X2) {
             this.processingWall2x2(objectParameters)
@@ -66,7 +65,13 @@ export class GameObjectEventsController {
         else if (objectParameters.type == TypesObjects.WALL_8X8) {
             this.processingWall8x8(objectParameters)
         }
-        else if (objectParameters.type == TypesObjects.BATTLE) {
+        else if (objectParameters.type == TypesObjects.BATTLE_2X2) {
+            this.processingBattle(objectParameters)
+        }
+        else if (objectParameters.type == TypesObjects.BATTLE_4X4) {
+            this.processingBattle(objectParameters)
+        }
+        else if (objectParameters.type == TypesObjects.BATTLE_8X8) {
             this.processingBattle(objectParameters)
         }
     }
@@ -158,6 +163,7 @@ export class GameObjectEventsController {
     }
 
     private static processingWholeManipulator(objectParameters: ObjectParameters) {
+        console.log("NUMBER_BATTLE:" + HomeMapStructure.structure[objectParameters.index].numberBattle)
         BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
         BattleStorage.instance.indexObjectBattle = objectParameters.index
 
@@ -178,7 +184,7 @@ export class GameObjectEventsController {
     }
 
     private static processingWall2x2(objectParameters: ObjectParameters) {
-        let typeObject = TypesObjects.BATTLE
+        let typeObject = TypesObjects.BATTLE_2X2
         let typeLocation = TypesLocation.EARTH
         let levelObject = 1
         let indexObject = objectParameters.index
@@ -188,7 +194,7 @@ export class GameObjectEventsController {
     }
 
     private static processingWall4x4(objectParameters: ObjectParameters) {
-        let typeObject = TypesObjects.BATTLE
+        let typeObject = TypesObjects.BATTLE_4X4
         let typeLocation = TypesLocation.EARTH
         let levelObject = 1
         let indexObject = objectParameters.index
@@ -198,7 +204,7 @@ export class GameObjectEventsController {
     }
 
     private static processingWall8x8(objectParameters: ObjectParameters) {
-        let typeObject = TypesObjects.BATTLE
+        let typeObject = TypesObjects.BATTLE_8X8
         let typeLocation = TypesLocation.EARTH
         let levelObject = 1
         let indexObject = objectParameters.index
@@ -208,6 +214,7 @@ export class GameObjectEventsController {
     }
 
     private static processingBattle(objectParameters: ObjectParameters) {
+        console.log("NUMBER_BATTLE:" + HomeMapStructure.structure[objectParameters.index].numberBattle)
         BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
         BattleStorage.instance.indexObjectBattle = objectParameters.index
 

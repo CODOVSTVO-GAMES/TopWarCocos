@@ -73,6 +73,7 @@ export class HomeMapStorageController {
 
     public static assigningSaveValuesLocal() {
         for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
+            console.log("TYPE " + HomeMapStorage.instance.temporaryLocalStorage[i].type)
             this.setObjectParameter(HomeMapStorage.instance.temporaryLocalStorage[i], HomeMapStorage.instance.temporaryLocalStorage[i].type, HomeMapStorage.instance.temporaryLocalStorage[i].index)
         }
         HomeMapStorage.instance.temporaryLocalStorage = new Array<ObjectParameters>
@@ -186,10 +187,10 @@ export class HomeMapStorageController {
         else if (type == TypesObjects.COMMAND_POST) {
             return IndexesObject.object3x3
         }
-        else if (type == TypesObjects.WALL_4X4) {
+        else if (type == TypesObjects.WALL_4X4 || type == TypesObjects.BATTLE_4X4) {
             return IndexesObject.object4x4
         }
-        else if (type == TypesObjects.WALL_8X8) {
+        else if (type == TypesObjects.WALL_8X8 || type == TypesObjects.WALL_8X8) {
             return IndexesObject.object8x8
         }
         else {

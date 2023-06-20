@@ -174,7 +174,9 @@ export class SpriteStorage extends Component {
         else if (type == TypesObjects.WALL_2X2) return this.wall
         else if (type == TypesObjects.WALL_4X4) return this.wall
         else if (type == TypesObjects.WALL_8X8) return this.wall
-        else if (type == TypesObjects.BATTLE) return this.battle
+        else if (type == TypesObjects.BATTLE_2X2) return this.battle
+        else if (type == TypesObjects.BATTLE_4X4) return this.battle
+        else if (type == TypesObjects.BATTLE_8X8) return this.battle
     }
 
     public getCharacterSprite(type: string): SpriteFrame {

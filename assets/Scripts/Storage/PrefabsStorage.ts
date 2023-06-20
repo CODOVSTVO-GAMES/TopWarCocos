@@ -59,7 +59,13 @@ export class PrefabsStorage extends Component {
     private wall8x8: Prefab
 
     @property({ type: Prefab })
-    private battle: Prefab
+    private battle2x2: Prefab
+
+    @property({ type: Prefab })
+    private battle4x4: Prefab
+
+    @property({ type: Prefab })
+    private battle8x8: Prefab
 
     // =================================================================
 
@@ -92,7 +98,9 @@ export class PrefabsStorage extends Component {
         else if (type == TypesObjects.WALL_2X2) return this.wall2x2
         else if (type == TypesObjects.WALL_4X4) return this.wall4x4
         else if (type == TypesObjects.WALL_8X8) return this.wall8x8
-        else if (type == TypesObjects.BATTLE) return this.battle
+        else if (type == TypesObjects.BATTLE_2X2) return this.battle2x2
+        else if (type == TypesObjects.BATTLE_4X4) return this.battle4x4
+        else if (type == TypesObjects.BATTLE_8X8) return this.battle8x8
         else return null
     }
 
