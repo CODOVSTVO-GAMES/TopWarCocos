@@ -1484,8 +1484,16 @@
       "__uuid__": "418d0fd3-bb21-45a8-9bce-36e78274c231",
       "__expectedType__": "cc.Prefab"
     },
-    "wall": {
+    "wall2x2": {
       "__uuid__": "edac3a10-47e2-4625-9dc9-f079be53f1c7",
+      "__expectedType__": "cc.Prefab"
+    },
+    "wall4x4": {
+      "__uuid__": "2ab83b73-5523-4253-b12b-42bd703ddfbf",
+      "__expectedType__": "cc.Prefab"
+    },
+    "wall8x8": {
+      "__uuid__": "9484ad14-b310-4f38-afbb-e0f407e781ad",
       "__expectedType__": "cc.Prefab"
     },
     "battle": {

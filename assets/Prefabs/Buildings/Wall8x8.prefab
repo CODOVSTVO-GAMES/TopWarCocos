@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "Wall",
+    "_name": "Wall8x8",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Wall",
+    "_name": "Wall8x8",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -106,7 +106,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 50,
+      "y": 150,
       "z": 0
     },
     "_lrot": {
@@ -145,8 +145,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 260,
-      "height": 180
+      "width": 520,
+      "height": 360
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
