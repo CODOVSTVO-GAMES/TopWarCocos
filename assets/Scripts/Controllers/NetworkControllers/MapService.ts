@@ -1,30 +1,59 @@
 import { UserStorageController } from "../StorageControllers/UserStorageController"
 import { ServerApi } from "./ServerApi"
 import { MapDTO } from "../../Structures/DTO/MapDTO"
-import { GlobalMapController } from "../StorageControllers/GlobalMapController";
+import { GlobalMapStorageController } from "../StorageControllers/GlobalMapStorageController";
 import { GameStorageController } from "../StorageControllers/GameStorageController";
 import { RadarStorageController } from "../StorageControllers/RadarStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
+import { ModalRadarLogic } from "../../UI/Modals/ModalRadar/ModalRadarLogic";
 
 export class MapService {
 
-    static getMap() {
-        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapController.getZone(), GlobalMapController.getXBace(), GlobalMapController.getYBace(), GameStorageController.getLevel()), MapService.parseDataStorageGetResponce);
+    static getMap(x = GlobalMapStorageController.getXBace(), y = GlobalMapStorageController.getYBace()) {
+        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), x, y, GameStorageController.getLevel()), MapService.parseMapGetResponce);
     }
 
-    static parseDataStorageGetResponce(data: any, isDone: boolean) {
+    static parseMapGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get map error")
         else {
-            GlobalMapController.buildingsHandler(data)
+            GlobalMapStorageController.buildingsHandler(data)
         }
     }
 
     static getEnemy() {
         let level = RadarStorageController.getRadarLevel()
+        console.log('запрошен дарад левел ' + level)
         let config = ConfigStorageController.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
+        console.log(battlesNumber)
+        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseEnemyGetResponce);
+    }
 
-        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapController.getZone(), GlobalMapController.getXBace(), GlobalMapController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseDataStorageGetResponce);
+    static parseEnemyGetResponce(data: any, isDone: boolean) {
+        if (!isDone) console.log("get enemy error")
+        else {
+            console.log(data)
+            GlobalMapStorageController.buildingsHandler(data)
+            // console.log('---')
+            ModalRadarLogic.instance.taskResponcer(data)
+        }
+    }
+
+    static attackEnemy(taskId: number) {
+        ServerApi.post('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, taskId), MapService.parseAttackResponse)
+    }
+
+    static attackWin(taskId: number) {
+        console.log(taskId)
+        ServerApi.post('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, taskId, true), MapService.parseAttackResponse)
+    }
+
+    static parseAttackResponse(data: any, isDone: boolean) {
+        if (!isDone) console.log("attack error")
+        // console.log("----------")
+        // console.log("--" + JSON.stringify(data))
+        GlobalMapStorageController.buildingsHandler(data)
+        ModalRadarLogic.instance.taskResponcer(data)
     }
 
 }

@@ -145,6 +145,10 @@ export class SecondaryInterface extends Component {
         RedirectionToScene.redirect(SceneNames.GLOBAL_MAP);
     }
 
+    redirectToHomeMap() {
+        RedirectionToScene.redirect(SceneNames.HOME_MAP);
+    }
+
     openFirstModal(type: string, data?: {}) {
         if (this.listOpeningFirstLayoutModals.find((i) => i.modalName == type) == null) {
             this.listOpeningFirstLayoutModals.push(new QueueItem(type, data));
@@ -167,11 +171,11 @@ export class SecondaryInterface extends Component {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
             try {
-            if (this.listOpeningFirstLayoutModals.length > 0) {
-                this.openModal(this.listOpeningFirstLayoutModals[0]);
-                this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
-                this.listOpeningFirstLayoutModals.splice(0, 1);
-            }
+                if (this.listOpeningFirstLayoutModals.length > 0) {
+                    this.openModal(this.listOpeningFirstLayoutModals[0]);
+                    this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
+                    this.listOpeningFirstLayoutModals.splice(0, 1);
+                }
             }
             catch { console.error("Ащибка в очереди"); clearInterval(interval); }
         }, 50);

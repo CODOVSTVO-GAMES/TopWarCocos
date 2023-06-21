@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { InventoryStorageController } from '../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../Controllers/StorageControllers/BackpackStorageController';
 import { ModalBackpackInterface } from './ModalBackpackInterface';
 import { TypesItems } from '../../../Static/TypesItems';
 import { SecondaryInterface } from '../../SecondaryInterface';
@@ -25,20 +25,20 @@ export class ModalBackpackLogic extends Component {
     }
 
     openModalBackpack() {
-        if (InventoryStorageController.getInvenoryLength() > 0) {
-            this.typeSelectItem = InventoryStorageController.getTypeByIndex(0);
-            this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
-            this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+        if (BackpackStorageController.getInvenoryLength() > 0) {
+            this.typeSelectItem = BackpackStorageController.getTypeByIndex(0);
+            this.quantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
+            this.usageQuantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
         }
     }
 
     deleteItem() {
-        if (InventoryStorageController.getQuantityByType(this.typeSelectItem) == this.usageQuantitySelectItem) {
-            InventoryStorageController.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
-            if (InventoryStorageController.getInvenoryLength() > 0) {
-                this.typeSelectItem = InventoryStorageController.getTypeByIndex(0);
-                this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
-                this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+        if (BackpackStorageController.getQuantityByType(this.typeSelectItem) == this.usageQuantitySelectItem) {
+            BackpackStorageController.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
+            if (BackpackStorageController.getInvenoryLength() > 0) {
+                this.typeSelectItem = BackpackStorageController.getTypeByIndex(0);
+                this.quantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
+                this.usageQuantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
                 ModalBackpackInterface.instance.updateInterface();
             }
             else {
@@ -50,9 +50,9 @@ export class ModalBackpackLogic extends Component {
             }
         }
         else {
-            InventoryStorageController.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
-            this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
-            this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+            BackpackStorageController.reduceItem(this.typeSelectItem, this.usageQuantitySelectItem);
+            this.quantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
+            this.usageQuantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
             ModalBackpackInterface.instance.updateInterface();
         }
     }
@@ -73,8 +73,8 @@ export class ModalBackpackLogic extends Component {
 
     selectItem(type: string) {
         this.typeSelectItem = type;
-        this.quantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
-        this.usageQuantitySelectItem = InventoryStorageController.getQuantityByType(this.typeSelectItem);
+        this.quantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
+        this.usageQuantitySelectItem = BackpackStorageController.getQuantityByType(this.typeSelectItem);
         ModalBackpackInterface.instance.updateInterface();
     }
 

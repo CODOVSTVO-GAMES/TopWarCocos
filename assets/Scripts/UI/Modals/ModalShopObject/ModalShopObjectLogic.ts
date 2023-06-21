@@ -32,7 +32,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.EARTH;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 1532);
     }
 
     private buyBarrackMarine() {
@@ -42,7 +42,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.WATER;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 1532);
     }
 
     private buyBarrackAir() {
@@ -52,7 +52,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.EARTH;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, barrackLevel, 1532);
     }
 
     private buyGoldMine() {
@@ -62,7 +62,7 @@ export class ModalShopObjectLogic extends Component {
         let typeLocation = TypesLocation.EARTH;
 
         GameStorageController.reduceCoins(price);
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.GOLD_MINE, typeLocation, mineLevel, 720);
+        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.GOLD_MINE, typeLocation, mineLevel, 1532);
     }
 
 }

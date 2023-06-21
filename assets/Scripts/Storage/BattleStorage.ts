@@ -8,17 +8,19 @@ export class BattleStorage extends Component {
 
     public static instance: BattleStorage;
 
-    public arrayOwn: Unit[] = [];
-    public arrayEnemy: Unit[] = [];
-    public arrayCards: FreeUnit[] = [];
-    public quantityPlaces: number[] = [];
-    public isBattle: boolean = false;
-    public quantityAvailableFreeCoords: number = 0;
-    public attackingTeam: number = 0;
-    public attackNumber: number = 0;
+    public arrayOwn: Unit[] = []
+    public arrayEnemy: Unit[] = []
+    public arrayCards: FreeUnit[] = []
+    public quantityPlaces: number[] = []
+    public isBattle: boolean = false
+    public numberBattle: number = 0;
+    public indexObjectBattle: number = 0;
+    public quantityAvailableFreeCoords: number = 0
+    public attackingTeam: number = 0
+    public attackNumber: number = 0
 
-    onLoad() {
-        BattleStorage.instance = this;
+    public onLoad() {
+        BattleStorage.instance = this
     }
 }
 

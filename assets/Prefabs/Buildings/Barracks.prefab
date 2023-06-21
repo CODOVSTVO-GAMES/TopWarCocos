@@ -73,13 +73,10 @@
       },
       {
         "__id__": 87
-      },
-      {
-        "__id__": 89
       }
     ],
     "_prefab": {
-      "__id__": 91
+      "__id__": 89
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -1061,7 +1058,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 47
@@ -1246,8 +1243,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "bbb76DQFClHb6bXZrcOUmXY",
-    "handler": "createTroop",
+    "_componentId": "fce2e7R0Y9FlLSrUuhjoc6t",
+    "handler": "eventClickOnMessage",
     "customEventData": ""
   },
   {
@@ -1864,7 +1861,7 @@
     "fileId": "5aIgTeSVtOQ6NkjI/808Q3"
   },
   {
-    "__type__": "3034cUklpJLmbLLNFgMLlRR",
+    "__type__": "285a5dagW9KTLuBSAAkyJJI",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1886,23 +1883,26 @@
     "subtitleObject": {
       "__id__": 73
     },
-    "titleText": {
+    "titleObjectText": {
       "__id__": 58
     },
-    "levelText": {
+    "levelObjectText": {
       "__id__": 64
     },
-    "quantityText": {
+    "quantityObjectText": {
       "__id__": 70
+    },
+    "subtitleObjectText": {
+      "__id__": 76
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "0dqvWcqm5NUa5u41qRw3G2"
+    "fileId": "889F527UlEd4bSRZk/cmbA"
   },
   {
-    "__type__": "f76829anKpJk4ytVJroCMmw",
+    "__type__": "fce2e7R0Y9FlLSrUuhjoc6t",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1912,37 +1912,14 @@
     "__prefab": {
       "__id__": 86
     },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "beBcZLIlRFRKAC94WJn18D"
-  },
-  {
-    "__type__": "bbb76DQFClHb6bXZrcOUmXY",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 88
-    },
     "objectParameters": {
       "__id__": 7
     },
-    "message": {
-      "__id__": 46
-    },
-    "backgraundObject": {
-      "__id__": 16
-    },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "18mkBor3BF3LRsMlAlNw0K"
+    "fileId": "6eX+0++HBD1YSMh03gedaC"
   },
   {
     "__type__": "c3e32PfHbBE8o6GPNo3O256",
@@ -1953,7 +1930,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 90
+      "__id__": 88
     },
     "arrows": [
       {

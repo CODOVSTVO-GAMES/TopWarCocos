@@ -1,5 +1,4 @@
 export class TypesAnimation {
-
     public static BULLET_SHOT_OWN: string = "bulletShotOwn";
     public static BULLET_SHOT_ENEMY: string = "bulletShotEnemy";
 

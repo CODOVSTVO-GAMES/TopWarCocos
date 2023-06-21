@@ -37,7 +37,6 @@ export class WireCutLogic extends Component {
     }
 
     mouseEnder() {
-        console.log(this.triggerPush)
         if (this.triggerPush) {
             WireCutInterface.instance.renderWireCut();
             setTimeout(() => {

@@ -1,6 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { CharactrerStorageController } from '../../../../Controllers/StorageControllers/CharactrerStorageController';
-import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { TypesCharacters } from '../../../../Static/TypesCharacters';
 import { ModalCharacterPumpingInterface } from './ModalCharacterPumpingInterface';
@@ -29,33 +29,33 @@ export class ModalCharacterPumpingLogic extends Component {
         let exp = 0;
         switch (customEventData) {
             case "0":
-                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
+                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
                     exp = 300;
-                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
+                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
                 }
                 break;
             case "1":
-                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
+                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
                     exp = 1000;
-                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
+                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
                 }
                 break;
             case "2":
-                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
+                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
                     exp = 3000;
-                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
+                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
                 }
                 break;
             case "3":
-                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
+                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
                     exp = 10000;
-                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
+                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
                 }
                 break;
             case "4":
-                if (InventoryStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
+                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
                     exp = 30000;
-                    InventoryStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
+                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
                 }
                 break;
         }
@@ -69,10 +69,10 @@ export class ModalCharacterPumpingLogic extends Component {
     upgradeStars() {
         let character = CharactersStorage.instance.characters[this.characterIndex];
         let typeFragment = this.getTypeFragment(character);
-        let inventoryQuantity = InventoryStorageController.getQuantityByType(typeFragment);
+        let inventoryQuantity = BackpackStorageController.getQuantityByType(typeFragment);
         if (inventoryQuantity > 4) {
             character.stars++;
-            InventoryStorageController.reduceItem(typeFragment, 4);
+            BackpackStorageController.reduceItem(typeFragment, 4);
             CharactersStorage.instance.recalculationCharacter(this.characterIndex);
             ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
             ModalCharacterPumpingInterface.instance.renderModalPumpingStars();

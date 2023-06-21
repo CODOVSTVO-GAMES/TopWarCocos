@@ -4,6 +4,8 @@ import { HomeMapStorageController } from '../Controllers/StorageControllers/Home
 import { ZoomCamera } from './ZoomCamera';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
+import { GlobalMapStorageController } from '../Controllers/StorageControllers/GlobalMapStorageController';
+import { MapService } from '../Controllers/NetworkControllers/MapService';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
@@ -20,12 +22,20 @@ export class MovingCamera extends Component {
     @property({ type: Camera })
     public camera: Camera;
 
+    private chunkId = '';
+
     public xPos: number;
     public yPos: number;
     public isMove: boolean;
 
     protected onLoad(): void {
         MovingCamera.instance = this
+        if (RedirectionToScene.getSceneName() == 'HomeMap') {
+            this.movie(new Vec2(100, -1000))
+        }
+        else if (RedirectionToScene.getSceneName() == 'GlobalMap') {
+            this.movie(GlobalMapStorageController.getBaseCoordinates())
+        }
     }
 
     onEnable() {
@@ -45,12 +55,10 @@ export class MovingCamera extends Component {
     touchStart() {
         if (this.isMove == true || TouchStatus.instance.activeTouch == true) return;
 
-        HomeMapStorageController.putSelectObject()
         if (RedirectionToScene.getSceneName() != 'GlobalMap') {
+            HomeMapStorageController.putSelectObject()
             SecondaryInterface.instance.closeFirstLayoutModal();
         }
-
-
 
         this.isMove = true;
         this.xPos = this.object.position.x;
@@ -62,6 +70,46 @@ export class MovingCamera extends Component {
 
         this.xPos -= e.getUIDelta().x * ZoomCamera.instance.zoomRaito;
         this.yPos -= e.getUIDelta().y * ZoomCamera.instance.zoomRaito;
+
+
+        if (RedirectionToScene.getSceneName() == 'GlobalMap') {
+            if (this.xPos > 30000) {
+                this.xPos = 30000;
+            }
+            else if (this.xPos < 0) {
+                this.xPos = 0;
+            }
+            if (this.yPos > 30000) {
+                this.yPos = 30000;
+            }
+            else if (this.yPos < 0) {
+                this.yPos = 0;
+            }
+        }
+
+        if (RedirectionToScene.getSceneName() == 'GlobalMap') {
+            //доспавниваем карту
+
+            const cellNumberX = Math.floor(this.camera.node.position.x / GlobalMapStorageController.widthCell)
+            const chunkX = Math.floor(cellNumberX / GlobalMapStorageController.getChunksCells())
+
+            const cellNumberY = Math.floor(this.camera.node.position.y / GlobalMapStorageController.lengthCell)
+            const chunkY = Math.floor(cellNumberY / GlobalMapStorageController.getChunksCells())
+            //номер клетки = координата камеры / размер клетки  
+            //номер чанка = без остатка(номер клетки / размер чанка)
+
+            const chunkId: string = chunkX.toString() + chunkY.toString()
+
+            if (chunkId == this.chunkId) {
+                return
+            }
+            else {
+                MapService.getMap(chunkX, chunkY)
+                this.chunkId = chunkId
+                console.log('запрос')
+            }
+        }
+
 
         // if (this.xPos > 1000) {
         //     this.xPos = 1000;

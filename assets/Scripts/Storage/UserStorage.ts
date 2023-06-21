@@ -10,36 +10,36 @@ export class UserStorage extends Component {
     public static instance: UserStorage;
 
     @property({ type: CCString })
-    public sessionHash: string;
+    public sessionHash: string
 
     @property({ type: CCString })
-    public sessionId: number;
+    public sessionId: number
 
     @property({ type: CCString })
-    public userId: string;
+    public userId: string
 
     @property({ type: CCBoolean })
-    public isNewUser: boolean;
+    public isNewUser: boolean
 
     @property({ type: CCObject })
-    public accountsId: Array<string>;
+    public accountsId: Array<string>
 
     @property({ type: CCString })
-    public accountId: string;
+    public accountId: string
 
     @property({ type: CCString })
-    public permission: string;
+    public permission: string
 
     @property({ type: CCString })
-    public serverTime: number; //временно в этом сторадже
+    public serverTime: number //временно в этом сторадже
 
     @property({ type: CCObject })
     public products: Array<Product> //временно в этом сторадже
 
-    onLoad() {
-        UserStorage.instance = this;
-        this.sessionId = 0;
-        this.userId = TechnicalConfig.NAME;
-        this.sessionHash = Cryptor.getRandomHash();
+    public onLoad() {
+        UserStorage.instance = this
+        this.sessionId = 0
+        this.userId = TechnicalConfig.NAME
+        this.sessionHash = Cryptor.getRandomHash()
     }
 }

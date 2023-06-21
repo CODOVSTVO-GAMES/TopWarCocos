@@ -1,5 +1,5 @@
 export class TypesLocation {
-    public static EARTH: string = "earth";
-    public static WATER: string = "water";
+    public static EARTH: string = "earth"
+    public static WATER: string = "water"
 }
 

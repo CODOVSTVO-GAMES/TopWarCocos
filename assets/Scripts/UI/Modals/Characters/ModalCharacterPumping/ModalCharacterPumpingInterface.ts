@@ -3,7 +3,7 @@ import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
 import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
 import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
-import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
@@ -96,7 +96,7 @@ export class ModalCharacterPumpingInterface extends Component {
             this.experience.string = character.experience + "/" + targetExp;
             this.slider.fillRange = character.experience / targetExp;
             for (let i = 0; i < this.quantity.length; i++) {
-                let inventoryQuantity = InventoryStorageController.getQuantityByType(TypesItems.BOOKS[i])
+                let inventoryQuantity = BackpackStorageController.getQuantityByType(TypesItems.BOOKS[i])
                 this.quantity[i].string = "x" + inventoryQuantity;
             }
         }
@@ -105,7 +105,7 @@ export class ModalCharacterPumpingInterface extends Component {
     renderModalPumpingStars() {
         let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            let inventoryQuantity = InventoryStorageController.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
+            let inventoryQuantity = BackpackStorageController.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
             this.starTitle.string = "Фрагменты для след. этапа: " + inventoryQuantity + "/4";
             this.sliderStars.fillRange = character.stars % 5 / 5;
             for (let i = 0; i < this.stars.length; i++) {

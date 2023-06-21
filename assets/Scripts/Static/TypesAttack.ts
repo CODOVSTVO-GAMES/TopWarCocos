@@ -1,10 +1,10 @@
 export class TypesAttack {
-    public static ONE: string = "one";
-    public static TWO: string = "two";
-    public static THREE: string = "thr";
+    public static ONE: string = "one"
+    public static TWO: string = "two"
+    public static THREE: string = "thr"
 
-    public static HORIZON: string = "hor";
-    public static VERTICAL: string = "ver";
+    public static HORIZON: string = "horizon"
+    public static VERTICAL: string = "vertical"
 
-    public static NONE: string = "none";
+    public static NONE: string = "none"
 }

@@ -1464,6 +1464,10 @@
       "__uuid__": "5d865065-439b-4e10-b185-b0e35e82d83e",
       "__expectedType__": "cc.Prefab"
     },
+    "treasures": {
+      "__uuid__": "17adcccc-7009-49e4-b518-6a8f1b8bfb00",
+      "__expectedType__": "cc.Prefab"
+    },
     "manipulator": {
       "__uuid__": "d04ad12e-6396-4ebb-ba3b-c3697b13df23",
       "__expectedType__": "cc.Prefab"
@@ -1480,12 +1484,28 @@
       "__uuid__": "418d0fd3-bb21-45a8-9bce-36e78274c231",
       "__expectedType__": "cc.Prefab"
     },
-    "wall": {
+    "wall2x2": {
       "__uuid__": "edac3a10-47e2-4625-9dc9-f079be53f1c7",
       "__expectedType__": "cc.Prefab"
     },
-    "battle": {
+    "wall4x4": {
+      "__uuid__": "2ab83b73-5523-4253-b12b-42bd703ddfbf",
+      "__expectedType__": "cc.Prefab"
+    },
+    "wall8x8": {
+      "__uuid__": "9484ad14-b310-4f38-afbb-e0f407e781ad",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle2x2": {
       "__uuid__": "ea3d388b-b52c-4157-98c0-689660449dbc",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle4x4": {
+      "__uuid__": "7ba6531c-c736-4190-9cb6-57c3b926b45f",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle8x8": {
+      "__uuid__": "5a1eb555-4433-49e6-9774-c868aeef2cff",
       "__expectedType__": "cc.Prefab"
     },
     "itemBackpack": {
@@ -2039,64 +2059,50 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "bank": [
-      {
-        "__uuid__": "dd89a4a9-d987-47a7-b550-f383ccadf1a7@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "autocombine": [
-      {
-        "__uuid__": "c840e4f0-4333-41ad-81d1-75fe96b1c424@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "radar": [
-      {
-        "__uuid__": "47242bda-1f89-463e-9018-e0f603fb8e1a@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "manipulator": [
-      {
-        "__uuid__": "6c00b08d-25f0-4452-907b-eb7c24324f72@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "0e7bd165-3c04-4f00-a910-a020b3033fb7@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "repairShop": [
-      {
-        "__uuid__": "79b90f34-493b-40a0-babd-2289caf76ce4@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "lobbyWar": [
-      {
-        "__uuid__": "0fb68112-5dc3-4e68-9d8b-76fc1d738728@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "expedition": [
-      {
-        "__uuid__": "c741688c-a309-49fa-8174-5fd1b11b9abb@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "wall": [
-      {
-        "__uuid__": "048551ca-78ec-478d-8f55-d33aca157dbf@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
-    "battle": [
-      {
-        "__uuid__": "9fafec30-150e-4649-89d7-a43674e86f5d@f9941",
-        "__expectedType__": "cc.SpriteFrame"
-      }
-    ],
+    "bank": {
+      "__uuid__": "dd89a4a9-d987-47a7-b550-f383ccadf1a7@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "autocombine": {
+      "__uuid__": "c840e4f0-4333-41ad-81d1-75fe96b1c424@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "radar": {
+      "__uuid__": "47242bda-1f89-463e-9018-e0f603fb8e1a@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "treasures": {
+      "__uuid__": "e764b868-29af-4e11-9dda-f7762f3c58cd@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "wholeManipulator": {
+      "__uuid__": "6c00b08d-25f0-4452-907b-eb7c24324f72@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "paddedManipulator": {
+      "__uuid__": "0e7bd165-3c04-4f00-a910-a020b3033fb7@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "repairShop": {
+      "__uuid__": "79b90f34-493b-40a0-babd-2289caf76ce4@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "lobbyWar": {
+      "__uuid__": "0fb68112-5dc3-4e68-9d8b-76fc1d738728@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "expedition": {
+      "__uuid__": "c741688c-a309-49fa-8174-5fd1b11b9abb@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "wall": {
+      "__uuid__": "048551ca-78ec-478d-8f55-d33aca157dbf@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "battle": {
+      "__uuid__": "9fafec30-150e-4649-89d7-a43674e86f5d@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "characters": [
       {
         "__uuid__": "bc50771a-6cab-4f9d-ae06-8b6c0dd391d3@f9941",

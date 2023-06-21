@@ -1593,7 +1593,7 @@
     "fileId": "5aIgTeSVtOQ6NkjI/808Q3"
   },
   {
-    "__type__": "3034cUklpJLmbLLNFgMLlRR",
+    "__type__": "285a5dagW9KTLuBSAAkyJJI",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1609,17 +1609,17 @@
     "levelObject": {
       "__id__": 61
     },
-    "titleText": {
+    "titleObjectText": {
       "__id__": 58
     },
-    "levelText": {
+    "levelObjectText": {
       "__id__": 64
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "6d35VPVVBJ6aXYNmsoExbn"
+    "fileId": "fd2sokEydJGIvgLg/1T/zn"
   },
   {
     "__type__": "c3e32PfHbBE8o6GPNo3O256",

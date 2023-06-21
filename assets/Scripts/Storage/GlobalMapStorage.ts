@@ -1,6 +1,4 @@
 import { _decorator, CCFloat, CCString, Component, Node } from 'cc';
-import { SceneNames } from '../Static/SceneNames';
-import { RedirectionToScene } from '../Other/RedirectionToScene';
 const { ccclass, property } = _decorator;
 
 @ccclass('GlobalMapStorage')
@@ -19,7 +17,7 @@ export class GlobalMapStorage extends Component {
 
     public buildings = new Array<Building>
 
-    protected start(): void {
+    public start() {
         GlobalMapStorage.instance = this
         // this.zone = 'testzone'
         this.xBaceCoord = 0
@@ -34,14 +32,16 @@ export class Building {
     x: number
     y: number
     accountId: string
+    level: number
 
-    constructor(id: number, type: string, x: number, y: number, accountId: string, node = null) {
+    constructor(id: number, type: string, x: number, y: number, accountId: string, level: number, node = null) {
         this.id = id
         this.type = type
         this.node = node
         this.accountId = accountId
         this.x = x
         this.y = y
+        this.level = level
     }
 }
 

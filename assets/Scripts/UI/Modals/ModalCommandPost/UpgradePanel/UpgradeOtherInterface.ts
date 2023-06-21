@@ -5,7 +5,7 @@ import { CommandPostStorageController } from '../../../../Controllers/StorageCon
 import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
 import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
 import { ConvertLargeNumber } from '../../../../Other/ConvertLargeNumber';
-import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
@@ -88,7 +88,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateRepairBuilding(CommandPostStorageController.getLevelRepairShop() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberRepairBuilding(CommandPostStorageController.getLevelRepairShop() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberRepairBuilding(CommandPostStorageController.getLevelRepairShop() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostStorageController.getLevelRepairShop());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostStorageController.getLevelRepairShop() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_COMMAND_POST);
@@ -105,7 +105,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeGoldMine() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_GOLD_MINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_GOLD_MINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_GOLD_MINE);
@@ -122,7 +122,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeTroopAir() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_AIR) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_AIR) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_AIR);
@@ -139,7 +139,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeTroopMarine() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_MARINE) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_MARINE) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_MARINE);
@@ -156,7 +156,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeTroopOverland() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_OVERLAND) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_OVERLAND) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_OVERLAND);
@@ -173,7 +173,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeBarracksAir() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_AIR) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_AIR) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_AIR);
@@ -190,7 +190,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeBarracksMarine() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_MARINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_MARINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_MARINE);
@@ -207,7 +207,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeBarracksOverland() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_OVERLAND) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_OVERLAND) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_OVERLAND);
@@ -224,7 +224,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeGoldMine() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_BUILD_GOLD_MINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_GOLD_MINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_GOLD_MINE);
@@ -241,7 +241,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelBuildBarracksAir() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_AIR) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_AIR) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_AIR);
@@ -258,7 +258,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelBuildBarracksMarine() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_MARINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_MARINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_MARINE);
@@ -275,7 +275,7 @@ export class UpgradeOtherInterface extends Component {
         let actualPower = GameStorageController.getPower().toString();
         let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelBuildBarracksOverland() + 1).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_OVERLAND) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_OVERLAND) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1);
         let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_OVERLAND);

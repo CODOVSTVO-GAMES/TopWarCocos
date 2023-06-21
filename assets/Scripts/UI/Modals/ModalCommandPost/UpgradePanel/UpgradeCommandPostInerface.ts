@@ -5,7 +5,7 @@ import { CommandPostStorageController } from '../../../../Controllers/StorageCon
 import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
 import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
 import { ConvertLargeNumber } from '../../../../Other/ConvertLargeNumber';
-import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
@@ -86,7 +86,7 @@ export class UpgradeCommandPostInerface extends Component {
         let actualAttactBonus = ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()).toString();
         let receivedAttactBonus = "+" + (ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1) - ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost())).toString();
         let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
-        let requirementItems = InventoryStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
+        let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
         let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, CommandPostStorageController.getLevelCommandPost());
         let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, (CommandPostStorageController.getLevelCommandPost() + 1));
 

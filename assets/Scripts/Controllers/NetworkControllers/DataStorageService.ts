@@ -5,7 +5,7 @@ import { DataStorageResponseDTO } from "../../Structures/DTO/DataStorageResponse
 import { NetworkClient } from "../../Network/NetworkClient"
 import { GameStorageController } from "../StorageControllers/GameStorageController"
 import { HomeMapStorageController } from "../StorageControllers/HomeMapStorageController"
-import { InventoryStorageController } from "../StorageControllers/InventoryStorageController"
+import { BackpackStorageController } from "../StorageControllers/BackpackStorageController"
 import { CharactrerStorageController } from "../StorageControllers/CharactrerStorageController"
 import { CommandPostStorageController } from "../StorageControllers/CommandPostStorageController"
 import { RadarStorageController } from "../StorageControllers/RadarStorageController"
@@ -14,73 +14,76 @@ import { RedirectionToScene } from "../../Other/RedirectionToScene"
 import { SceneNames } from "../../Static/SceneNames"
 import { TypesStorages } from "../../Static/TypesStorages"
 import { PaymentsService } from "./PaymentsService"
+import { LoadingGame } from "../../LoadingGame/LoadingGame"
 
 export class DataStorageService {
 
     static saveData(data: object[]) {
-        ServerApi.post('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), data), DataStorageService.parseDataStoragePostResponce);
+        ServerApi.post('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), data), DataStorageService.parseDataStoragePostResponce)
     }
 
     static getData(keys: Array<string>) {
-        const strKeys = JSON.parse(JSON.stringify(keys));
-        ServerApi.get('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce);
+        const strKeys = JSON.parse(JSON.stringify(keys))
+        ServerApi.get('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce)
     }
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {
-        if (!isDone) console.log("get data error");
+        if (!isDone) console.log("get data error")
         else {
-            const dataStorageJson = JSON.parse(JSON.stringify(data));
-            const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects);
-            DataStorageService.dataRecipient(dataStorageResponseDTO.dataObjects);
+            const dataStorageJson = JSON.parse(JSON.stringify(data))
+            const dataStorageResponseDTO = new DataStorageResponseDTO(dataStorageJson.objects)
+            DataStorageService.dataRecipient(dataStorageResponseDTO.dataObjects)
         }
     }
 
     static dataRecipient(objects: object[]) {
         if (UserStorageController.getIsNewUser()) {
-            GameStorageController.assignStartingValues();
-            HomeMapStorageController.assignStartingValues();
-            InventoryStorageController.assignStartingValues();
-            CharactrerStorageController.assignStartingValues();
-            CommandPostStorageController.assignStartingValues();
-            RadarStorageController.assignStartingValues();
-            AutocombineStorageController.assignStartingValues();
-            RedirectionToScene.redirect(SceneNames.HOME_MAP);
+            GameStorageController.assignStartingValues()
+            HomeMapStorageController.assignStartingValues()
+            BackpackStorageController.assignStartingValues()
+            CharactrerStorageController.assignStartingValues()
+            CommandPostStorageController.assignStartingValues()
+            RadarStorageController.assignStartingValues()
+            AutocombineStorageController.assignStartingValues()
+            LoadingGame.getPostData()
             return;
         }
 
-        if (objects == null) throw 'Пришел пустой обьект';
+        if (objects == null) {
+            throw 'Пришел пустой обьект'
+        }
 
         for (let i = 0; i < objects.length; i++) {
-            const json = objects[i];
-            let jsonValue = json['value'];
+            const json = objects[i]
+            let jsonValue = json['value']
             if (json['key'] == TypesStorages.GAME_STORAGE) {
-                GameStorageController.assigningSaveValues(jsonValue);
+                GameStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
-                HomeMapStorageController.assigningSaveValuesServer(jsonValue);
+                HomeMapStorageController.assigningSaveValuesServer(jsonValue)
             }
             else if (json['key'] == TypesStorages.INVENTORY_STORAGE) {
-                InventoryStorageController.assigningSaveValues(jsonValue);
+                BackpackStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
-                CharactrerStorageController.assigningSaveValues(jsonValue);
+                CharactrerStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
-                CommandPostStorageController.assigningSaveValues(jsonValue);
+                CommandPostStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.RADAR_STORAGE) {
-                RadarStorageController.assigningSaveValues(jsonValue);
+                RadarStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.AUTOCOMBINE_STORAGE) {
-                AutocombineStorageController.assigningSaveValues(jsonValue);
+                AutocombineStorageController.assigningSaveValues(jsonValue)
             }
         }
-        PaymentsService.getProducts();
-        RedirectionToScene.redirect(SceneNames.HOME_MAP);
+        LoadingGame.getPostData()
     }
 
     static parseDataStoragePostResponce(data: any, isDone: boolean) {
-        if (!isDone) console.log("Ошибка запроса дата сторадж пост");
-        // console.log('save data done')
+        if (!isDone) {
+            console.log("Ошибка запроса дата сторадж пост")
+        }
     }
 }

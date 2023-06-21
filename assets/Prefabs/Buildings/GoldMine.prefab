@@ -76,13 +76,10 @@
       },
       {
         "__id__": 93
-      },
-      {
-        "__id__": 95
       }
     ],
     "_prefab": {
-      "__id__": 97
+      "__id__": 95
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -1391,8 +1388,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "fb300ofrm5M7qXvmYWU5vdE",
-    "handler": "collect",
+    "_componentId": "fce2e7R0Y9FlLSrUuhjoc6t",
+    "handler": "eventClickOnMessage",
     "customEventData": ""
   },
   {
@@ -2009,7 +2006,7 @@
     "fileId": "5aIgTeSVtOQ6NkjI/808Q3"
   },
   {
-    "__type__": "3034cUklpJLmbLLNFgMLlRR",
+    "__type__": "285a5dagW9KTLuBSAAkyJJI",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2031,23 +2028,26 @@
     "subtitleObject": {
       "__id__": 79
     },
-    "titleText": {
+    "titleObjectText": {
       "__id__": 64
     },
-    "levelText": {
+    "levelObjectText": {
       "__id__": 70
     },
-    "quantityText": {
+    "quantityObjectText": {
       "__id__": 76
+    },
+    "subtitleObjectText": {
+      "__id__": 82
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "c1Ni0HuKBGeK9Ki0AV+b3o"
+    "fileId": "13U+EkZi1ArZmr8Il1R3Cg"
   },
   {
-    "__type__": "900daUPE6JNaaWLpUgt917M",
+    "__type__": "fce2e7R0Y9FlLSrUuhjoc6t",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2057,32 +2057,6 @@
     "__prefab": {
       "__id__": 92
     },
-    "message": {
-      "__id__": 52
-    },
-    "progress": {
-      "__id__": 46
-    },
-    "fill": {
-      "__id__": 49
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "2dUbnRUrlCRJeR7DIL7eVP"
-  },
-  {
-    "__type__": "fb300ofrm5M7qXvmYWU5vdE",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 94
-    },
     "objectParameters": {
       "__id__": 7
     },
@@ -2090,7 +2064,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "d0rOIuY5dK+61XXrjS8wKl"
+    "fileId": "d8dk4kL4VHnYKu/gqAmbhy"
   },
   {
     "__type__": "c3e32PfHbBE8o6GPNo3O256",
@@ -2101,7 +2075,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 96
+      "__id__": 94
     },
     "arrows": [
       {

@@ -22,11 +22,12 @@ export class BuferTasks extends Component {
      * 
      * после того как задача считается выполненой, у неё меняется статус
      */
+    
 
     addTaskSalvation(task: RadarTask) {
         this.ongoingSalvationTasks.push(task);
         task.status = 1;
-        setTimeout(() => this.awardingSalvation(), Math.floor(Math.random() * 5000) + 5000); // тут задаётся рандомное время для похода (это не должно тут быть)
+        setTimeout(() => this.awardingSalvation(), task.battleTime * 1000)
     }
 
     addTaskDarkLegion(task: RadarTask) {

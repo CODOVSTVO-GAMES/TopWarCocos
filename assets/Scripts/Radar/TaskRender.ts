@@ -33,8 +33,9 @@ export class TaskRender extends Component {
         this.radarTask = radarTask;
         if (radarTask != null) {
             this.image.color = this.getSprite(radarTask.type);
-            for (let i = 0; i < this.stars.length; i++) {
-                this.stars[i].active = i < radarTask.stars;
+            for (let i = 0; i < this.stars.length; i++) { // отрисовывает активные звезды 
+                let isStarActive = i < radarTask.stars
+                this.stars[i].active = isStarActive
             }
             if (radarTask.status < 2) {
                 this.message.active = false;
@@ -66,4 +67,5 @@ export class TaskRender extends Component {
             this.obj.destroy();
         }
     }
+
 }

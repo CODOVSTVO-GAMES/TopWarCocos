@@ -2,157 +2,158 @@ import { _decorator } from 'cc';
 import { CommandPostStorage } from '../../Storage/CommandPostStorage';
 import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
+import { TypesObjects } from '../../Static/TypesObjects';
 
 export class CommandPostStorageController {
 
     // =================================================================
 
     static assignStartingValues() {
-        CommandPostStorage.instance.levelCommandPost = 1;
-        CommandPostStorage.instance.levelRepairShop = 1;
+        CommandPostStorage.instance.levelCommandPost = 1
+        CommandPostStorage.instance.levelRepairShop = 1
 
-        CommandPostStorage.instance.levelMergeGoldMine = 5;
-        CommandPostStorage.instance.levelBuildGoldMine = 1;
+        CommandPostStorage.instance.levelMergeGoldMine = 5
+        CommandPostStorage.instance.levelBuildGoldMine = 1
 
-        CommandPostStorage.instance.levelMergeTroopAir = 5;
-        CommandPostStorage.instance.levelMergeBarracksAir = 5;
-        CommandPostStorage.instance.levelBuildBarracksAir = 1;
+        CommandPostStorage.instance.levelMergeTroopAir = 5
+        CommandPostStorage.instance.levelMergeBarracksAir = 5
+        CommandPostStorage.instance.levelBuildBarracksAir = 1
 
-        CommandPostStorage.instance.levelMergeTroopMarine = 5;
-        CommandPostStorage.instance.levelMergeBarracksMarine = 5;
-        CommandPostStorage.instance.levelBuildBarracksMarine = 1;
+        CommandPostStorage.instance.levelMergeTroopMarine = 5
+        CommandPostStorage.instance.levelMergeBarracksMarine = 5
+        CommandPostStorage.instance.levelBuildBarracksMarine = 1
 
-        CommandPostStorage.instance.levelMergeTroopOverland = 5;
-        CommandPostStorage.instance.levelMergeBarracksOverland = 5;
-        CommandPostStorage.instance.levelBuildBarracksOverland = 1;
+        CommandPostStorage.instance.levelMergeTroopOverland = 5
+        CommandPostStorage.instance.levelMergeBarracksOverland = 5
+        CommandPostStorage.instance.levelBuildBarracksOverland = 1
 
-        this.saveStorage();
+        this.saveStorage()
     }
 
     static assigningSaveValues(obj: Object) {
-        let json = JSON.parse(JSON.stringify(obj));
-        CommandPostStorage.instance.levelCommandPost = json.levelCommandPost;
-        CommandPostStorage.instance.levelRepairShop = json.levelRepairShop;
+        let json = JSON.parse(JSON.stringify(obj))
+        CommandPostStorage.instance.levelCommandPost = json.levelCommandPost
+        CommandPostStorage.instance.levelRepairShop = json.levelRepairShop
 
-        CommandPostStorage.instance.levelMergeGoldMine = json.levelMergeGoldMine;
-        CommandPostStorage.instance.levelBuildGoldMine = json.levelBuildGoldMine;
+        CommandPostStorage.instance.levelMergeGoldMine = json.levelMergeGoldMine
+        CommandPostStorage.instance.levelBuildGoldMine = json.levelBuildGoldMine
 
-        CommandPostStorage.instance.levelMergeTroopAir = json.levelMergeTroopAir;
-        CommandPostStorage.instance.levelMergeBarracksAir = json.levelMergeBarracksAir;
-        CommandPostStorage.instance.levelBuildBarracksAir = json.levelBuildBarracksAir;
+        CommandPostStorage.instance.levelMergeTroopAir = json.levelMergeTroopAir
+        CommandPostStorage.instance.levelMergeBarracksAir = json.levelMergeBarracksAir
+        CommandPostStorage.instance.levelBuildBarracksAir = json.levelBuildBarracksAir
 
         CommandPostStorage.instance.levelMergeTroopMarine = json.levelMergeTroopMarine;
-        CommandPostStorage.instance.levelMergeBarracksMarine = json.levelMergeBarracksMarine;
-        CommandPostStorage.instance.levelBuildBarracksMarine = json.levelBuildBarracksMarine;
+        CommandPostStorage.instance.levelMergeBarracksMarine = json.levelMergeBarracksMarine
+        CommandPostStorage.instance.levelBuildBarracksMarine = json.levelBuildBarracksMarine
 
-        CommandPostStorage.instance.levelMergeTroopOverland = json.levelMergeTroopOverland;
-        CommandPostStorage.instance.levelMergeBarracksOverland = json.levelMergeBarracksOverland;
-        CommandPostStorage.instance.levelBuildBarracksOverland = json.levelBuildBarracksOverland;
+        CommandPostStorage.instance.levelMergeTroopOverland = json.levelMergeTroopOverland
+        CommandPostStorage.instance.levelMergeBarracksOverland = json.levelMergeBarracksOverland
+        CommandPostStorage.instance.levelBuildBarracksOverland = json.levelBuildBarracksOverland
     }
 
     // =================================================================
 
     static addLevelCommandPost() {
-        CommandPostStorage.instance.levelCommandPost += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelCommandPost += 1
+        this.saveStorage()
     }
 
     static getLevelCommandPost(): number {
-        return CommandPostStorage.instance.levelCommandPost;
+        return CommandPostStorage.instance.levelCommandPost
     }
 
     static addLevelRepairShop() {
-        CommandPostStorage.instance.levelRepairShop += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelRepairShop += 1
+        this.saveStorage()
     }
 
     static getLevelRepairShop(): number {
-        return CommandPostStorage.instance.levelRepairShop;
+        return CommandPostStorage.instance.levelRepairShop
     }
 
     // =================================================================
 
     static addLevelMergeGoldMine() {
-        CommandPostStorage.instance.levelMergeGoldMine += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeGoldMine += 1
+        this.saveStorage()
     }
 
     static getLevelMergeGoldMine(): number {
-        return CommandPostStorage.instance.levelMergeGoldMine;
+        return CommandPostStorage.instance.levelMergeGoldMine
     }
 
     static addLevelBuildGoldMine() {
-        CommandPostStorage.instance.levelBuildGoldMine += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelBuildGoldMine += 1
+        this.saveStorage()
     }
 
     static getLevelBuildGoldMine(): number {
-        return CommandPostStorage.instance.levelBuildGoldMine;
+        return CommandPostStorage.instance.levelBuildGoldMine
     }
 
     // =================================================================
 
     static addLevelMergeTroopAir() {
-        CommandPostStorage.instance.levelMergeTroopAir += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeTroopAir += 1
+        this.saveStorage()
     }
 
     static getLevelMergeTroopAir(): number {
-        return CommandPostStorage.instance.levelMergeTroopAir;
+        return CommandPostStorage.instance.levelMergeTroopAir
     }
 
     static addLevelMergeBarracksAir() {
-        CommandPostStorage.instance.levelMergeBarracksAir += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeBarracksAir += 1
+        this.saveStorage()
     }
 
     static getLevelMergeBarracksAir(): number {
-        return CommandPostStorage.instance.levelMergeBarracksAir;
+        return CommandPostStorage.instance.levelMergeBarracksAir
     }
 
     static addLevelBuildBarracksAir() {
-        CommandPostStorage.instance.levelBuildBarracksAir += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelBuildBarracksAir += 1
+        this.saveStorage()
     }
 
     static getLevelBuildBarracksAir(): number {
-        return CommandPostStorage.instance.levelBuildBarracksAir;
+        return CommandPostStorage.instance.levelBuildBarracksAir
     }
 
     // =================================================================
 
     static addLevelMergeTroopMarine() {
-        CommandPostStorage.instance.levelMergeTroopMarine += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeTroopMarine += 1
+        this.saveStorage()
     }
 
     static getLevelMergeTroopMarine(): number {
-        return CommandPostStorage.instance.levelMergeTroopMarine;
+        return CommandPostStorage.instance.levelMergeTroopMarine
     }
 
     static addLevelMergeBarracksMarine() {
-        CommandPostStorage.instance.levelMergeBarracksMarine += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeBarracksMarine += 1
+        this.saveStorage()
     }
 
     static getLevelMergeBarracksMarine(): number {
-        return CommandPostStorage.instance.levelMergeBarracksMarine;
+        return CommandPostStorage.instance.levelMergeBarracksMarine
     }
 
     static addLevelBuildBarracksMarine() {
-        CommandPostStorage.instance.levelBuildBarracksMarine += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelBuildBarracksMarine += 1
+        this.saveStorage()
     }
 
     static getLevelBuildBarracksMarine(): number {
-        return CommandPostStorage.instance.levelBuildBarracksMarine;
+        return CommandPostStorage.instance.levelBuildBarracksMarine
     }
 
     // =================================================================
 
     static addLevelMergeTroopOverland() {
-        CommandPostStorage.instance.levelMergeTroopOverland += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeTroopOverland += 1
+        this.saveStorage()
     }
 
     static getLevelMergeTroopOverland(): number {
@@ -160,21 +161,48 @@ export class CommandPostStorageController {
     }
 
     static addLevelMergeBarracksOverland() {
-        CommandPostStorage.instance.levelMergeBarracksOverland += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelMergeBarracksOverland += 1
+        this.saveStorage()
     }
 
     static getLevelMergeBarracksOverland(): number {
-        return CommandPostStorage.instance.levelMergeBarracksOverland;
+        return CommandPostStorage.instance.levelMergeBarracksOverland
     }
 
     static addLevelBuildBarracksOverland() {
-        CommandPostStorage.instance.levelBuildBarracksOverland += 1;
-        this.saveStorage();
+        CommandPostStorage.instance.levelBuildBarracksOverland += 1
+        this.saveStorage()
     }
 
     static getLevelBuildBarracksOverland(): number {
-        return CommandPostStorage.instance.levelBuildBarracksOverland;
+        return CommandPostStorage.instance.levelBuildBarracksOverland
+    }
+
+    public static getLevelAllMerge(typeObject: string): number {
+        if (typeObject == TypesObjects.GOLD_MINE) {
+            return CommandPostStorage.instance.levelMergeGoldMine
+        }
+        else if (typeObject == TypesObjects.TROOP_AIR) {
+            return CommandPostStorage.instance.levelMergeTroopAir
+        }
+        else if (typeObject == TypesObjects.TROOP_MARINE) {
+            return CommandPostStorage.instance.levelMergeTroopMarine
+        }
+        else if (typeObject == TypesObjects.TROOP_OVERLAND) {
+            return CommandPostStorage.instance.levelMergeTroopOverland
+        }
+        else if (typeObject == TypesObjects.BARRACKS_AIR) {
+            return CommandPostStorage.instance.levelMergeBarracksAir
+        }
+        else if (typeObject == TypesObjects.BARRACKS_MARINE) {
+            return CommandPostStorage.instance.levelMergeBarracksMarine
+        }
+        else if (typeObject == TypesObjects.BARRACKS_OVERLAND) {
+            return CommandPostStorage.instance.levelMergeBarracksOverland
+        }
+        else {
+            return -1
+        }
     }
 
     // =================================================================
@@ -199,6 +227,6 @@ export class CommandPostStorageController {
             levelMergeBarracksOverland: CommandPostStorage.instance.levelMergeBarracksOverland,
             levelBuildBarracksOverland: CommandPostStorage.instance.levelBuildBarracksOverland,
         }
-        BufferStorageController.addItem(TypesStorages.COMMAND_POST_STORAGE, obj);
+        BufferStorageController.addItem(TypesStorages.COMMAND_POST_STORAGE, obj)
     }
 }

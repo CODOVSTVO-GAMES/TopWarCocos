@@ -56,12 +56,13 @@ export class ModalRadarTaskInterface extends Component {
 
     updateInterface(task: RadarTask) {
         ModalRadarTaskLogic.instance.task = task;
-        this.title.string = "Задание завершится через " + task.time;
         if (task.status == 0) {
             this.status.string = "Не началось";
             this.btnText.string = "Перейти";
+            this.title.string = "Задание завершится через " + task.expiration;
         }
         else if (task.status == 1) {
+            this.title.string = ''//"Результаты через " + task.battleTime;
             this.status.string = "В походе";
             this.btnText.string = "В походе...";
         }
@@ -99,16 +100,28 @@ export class ModalRadarTaskInterface extends Component {
     startTimer() {
         let timer = setInterval(() => {
             let task = ModalRadarTaskLogic.instance.task;
-
             if (task != null) {
-                let time = task.time;
-                if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && time > 0) {
-                    task.time--;
-                    this.title.string = "Задание завершится через " + time;
+                if (task.status == 0) {
+                    if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && task.expiration > 0) {
+                        this.status.string = "Не началось";
+                        this.btnText.string = "Перейти";
+                        this.title.string = "Задание завершится через " + task.expiration;
+                        task.expiration--;
+                    } else {
+                        clearInterval(timer);
+                    }
                 }
-                else {
-                    clearInterval(timer);
-                }
+                // else if (task.status == 1) {
+                //     if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && task.battleTime > 0) {
+                //         this.status.string = "В походе";
+                //         this.btnText.string = "В походе...";
+                //         this.title.string = "Результаты через " + task.battleTime;
+                //         task.battleTime--
+                //     }
+                //     else {
+                //         clearInterval(timer);
+                //     }
+                // }
             }
             else {
                 clearInterval(timer);

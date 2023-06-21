@@ -41,6 +41,15 @@ export class RadarStorageController {
         return RadarStorage.instance.tasks;
     }
 
+    static isTaskExists(id: number) {
+        for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
+            if (RadarStorage.instance.tasks[l].id == id) {
+                return true
+            }
+        }
+        return false
+    }
+
     static getRadarLevel(): number {
         return RadarStorage.instance.radarLevel;
     }
@@ -68,8 +77,8 @@ export class RadarStorageController {
         this.updateRadarAnimation();
     }
 
-    static addRadarTasks(type: string, stars: number, time: number, reward: RadarReward[]) {
-        RadarStorage.instance.tasks.push(new RadarTask(type, stars, time, 0, reward));
+    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
+        RadarStorage.instance.tasks.push(new RadarTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime));
         this.updateRadarAnimation();
     }
 
@@ -162,22 +171,27 @@ export class RadarStorageController {
     }
 
     static getMessageAnimation() {
-        if (this.messageAnimation == null) {
-            this.messageAnimation = HomeMapStorageController.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+        try {
+            if (this.messageAnimation == null) {
+                this.messageAnimation = HomeMapStorageController.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+            }
+        } catch (e) {
+            console.log('ошибка ' + e)
         }
+
     }
 
     static saveStorage() {
         let tasks = [];
-        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
-            tasks.push({
-                type: RadarStorage.instance.tasks[i].type,
-                stars: RadarStorage.instance.tasks[i].stars,
-                time: RadarStorage.instance.tasks[i].time,
-                status: RadarStorage.instance.tasks[i].status,
-                rewards: RadarStorage.instance.tasks[i].rewards
-            });
-        }
+        // for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+        //     tasks.push({
+        //         type: RadarStorage.instance.tasks[i].type,
+        //         stars: RadarStorage.instance.tasks[i].stars,
+        //         time: RadarStorage.instance.tasks[i].time,
+        //         status: RadarStorage.instance.tasks[i].status,
+        //         rewards: RadarStorage.instance.tasks[i].rewards
+        //     });
+        // }
         let obj = {
             radarLevel: RadarStorage.instance.radarLevel,
             availableMissions: RadarStorage.instance.availableMissions,

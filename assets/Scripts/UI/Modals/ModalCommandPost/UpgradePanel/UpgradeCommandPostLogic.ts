@@ -3,7 +3,7 @@ import { CommandPostStorageController } from '../../../../Controllers/StorageCon
 import { UpgradeCommandPostInerface } from './UpgradeCommandPostInerface';
 import { GameStorageController } from '../../../../Controllers/StorageControllers/GameStorageController';
 import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
-import { InventoryStorageController } from '../../../../Controllers/StorageControllers/InventoryStorageController';
+import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
 import { TypesItems } from '../../../../Static/TypesItems';
 import { HomeMapStorageController } from '../../../../Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from '../../../../Static/TypesObjects';
@@ -15,7 +15,7 @@ export class UpgradeCommandPostLogic extends Component {
     upgrateObject() {
         CommandPostStorageController.addLevelCommandPost();
         GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
-        InventoryStorageController.reduceItem(TypesItems.PLAN_COMMAND_POST, ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
+        BackpackStorageController.reduceItem(TypesItems.PLAN_COMMAND_POST, ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
         GameStorageController.addExperience(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
         GameStorageController.addTechnoPower(ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()));
         HomeMapStorageController.upgradeLevelObject(HomeMapStorageController.getObjectParametersByType(TypesObjects.COMMAND_POST).index);
