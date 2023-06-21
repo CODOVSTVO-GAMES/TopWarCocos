@@ -35,6 +35,23 @@ export class ModalRadarLogic extends Component {
         ModalRadarLogic.instance = this;
     }
 
+    /**
+     * в старте:
+     *    получаем конфиг радара по уровню
+     *    добавляем задачи в конфиг (если есть доступные && если на локаторе есть место)
+     *    запускаем таймер
+     */
+
+    start() {
+        this.calculationRadar();
+        this.startTimer();
+    }
+
+
+    spawnNewTasks() {
+        MapService.getEnemy()
+    }
+
     taskResponcer(arr: object[]) {
         for (let l = 0; l < arr.length; l++) {
             console.log()
@@ -46,26 +63,14 @@ export class ModalRadarLogic extends Component {
                     const id = arr[l]['id']
                     const type = arr[l]['type']
                     const stars = arr[l]['stars']
-                    const expiration = arr[l]['expiration']
                     const battleTime = arr[l]['battleTime']
+                    let expiration = arr[l]['expiration']
+                    expiration = expiration - UserStorageController.getServerTime()
                     RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
                     console.log('создана задача')
                 }
             }
         }
-    }
-
-    /**
-     * в старте:
-     *    получаем конфиг радара по уровню
-     *    добавляем задачи в конфиг (если есть доступные && если на локаторе есть место)
-     *    запускаем таймер
-     */
-
-    start() {
-        this.calculationRadar();
-        // this.spawnNewTasks();
-        this.startTimer();
     }
 
     calculationRadar() {
@@ -93,12 +98,7 @@ export class ModalRadarLogic extends Component {
         this.startTimer();
     }
 
-    spawnNewTasks() {
-        console.log('ззапрос задач')
-        MapService.getEnemy()
-    }
-
-    timer() {
+    timer() { //обновляет время до начисления задач
         let radarTime = RadarStorageController.getRadarTime();
         if (radarTime > 0) {
             RadarStorageController.reduceRadarTime(1);

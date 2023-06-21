@@ -22,6 +22,7 @@ export class MapService {
 
     static getEnemy() {
         let level = RadarStorageController.getRadarLevel()
+        console.log('запрошен дарад левел ' + level)
         let config = ConfigStorageController.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
         console.log(battlesNumber)

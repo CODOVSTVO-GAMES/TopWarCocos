@@ -67,4 +67,5 @@ export class TaskRender extends Component {
             this.obj.destroy();
         }
     }
+
 }

@@ -39,7 +39,6 @@ export class SpawnObjectsOnGlobalMap extends Component {
     protected onLoad(): void {
         SpawnObjectsOnGlobalMap.instance = this
         this.massSpawn()
-        console.log('onLoad globalmap')
     }
 
     protected onDisable(): void {
