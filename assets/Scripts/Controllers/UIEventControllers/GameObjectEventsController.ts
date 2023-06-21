@@ -48,7 +48,7 @@ export class GameObjectEventsController {
             this.processingRadar()
         }
         else if (objectParameters.type == TypesObjects.WHOLE_MANIPULATOR) {
-            this.processingWholeManipulator(objectParameters)
+            this.processingBattle(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.PADDED_MANIPULATOR) {
             this.processingPaddedManipulator(objectParameters)
@@ -162,16 +162,6 @@ export class GameObjectEventsController {
         SecondaryInterface.instance.openFirstModal(typeModal)
     }
 
-    private static processingWholeManipulator(objectParameters: ObjectParameters) {
-        console.log("NUMBER_BATTLE:" + HomeMapStructure.structure[objectParameters.index].numberBattle)
-        BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
-        BattleStorage.instance.indexObjectBattle = objectParameters.index
-
-        TroopStorageController.setTroopStorage()
-        HomeMapStorageController.saveStorageServer()
-        RedirectionToScene.redirect(SceneNames.BATTLE)
-    }
-
     private static processingPaddedManipulator(objectParameters: ObjectParameters) {
         HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
         objectParameters.nodeObject.destroy()
@@ -214,7 +204,6 @@ export class GameObjectEventsController {
     }
 
     private static processingBattle(objectParameters: ObjectParameters) {
-        console.log("NUMBER_BATTLE:" + HomeMapStructure.structure[objectParameters.index].numberBattle)
         BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
         BattleStorage.instance.indexObjectBattle = objectParameters.index
 

@@ -58,14 +58,9 @@ export class ObjectParameters extends Component {
     }
 
     public onTransparencyObject() {
-        try {
-            this.spriteObject.color = new Color(255, 255, 255, 140)
-            if (this.type != TypesObjects.BARRACKS_MARINE) {
-                this.backgraundObject.color = new Color(255, 255, 255, 140)
-            }
-        }
-        catch {
-            console.log("ERROR: " + this.type)
+        this.spriteObject.color = new Color(255, 255, 255, 140)
+        if (this.type != TypesObjects.BARRACKS_MARINE) {
+            this.backgraundObject.color = new Color(255, 255, 255, 140)
         }
     }
 

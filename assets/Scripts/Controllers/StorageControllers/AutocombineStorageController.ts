@@ -40,7 +40,7 @@ export class AutocombineStorageController {
                 AutocombineStorage.instance.indexes[i].time -= 1;
                 if (HomeMapStorageController.getObjectParameter(AutocombineStorage.instance.indexes[i].index)) {
                     if (HomeMapStorageController.getObjectParameter(AutocombineStorage.instance.indexes[i].index).getGoldMineInterface()) {
-                        let time = -(1 - (((AutocombineStorage.instance.indexes[i].time * 100) / 60) * 0.01));;
+                        let time = -(1 - (((AutocombineStorage.instance.indexes[i].time * 100) / 60) * 0.01))
                         HomeMapStorageController.getObjectParameter(AutocombineStorage.instance.indexes[i].index).getGoldMineInterface().render(time);
                     }
                 }

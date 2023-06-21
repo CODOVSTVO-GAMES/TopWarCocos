@@ -22,11 +22,11 @@ export class InitHomeMap extends Component {
         SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapFromStorage()
     }
 
-    public fillParentObject() {
+    private fillParentObject() {
         HomeMapStorage.instance.parentSelectObject = this.parentSelectObject
     }
 
-    public fillArrayCoords() {
+    private fillArrayCoords() {
         let name = 0
         let pos = new Vec3(-100, 2000, 0)
         let x = -100
@@ -48,9 +48,11 @@ export class InitHomeMap extends Component {
         this.fillArraySpriteCoords()
     }
 
-    fillArraySpriteCoords() {
+    private fillArraySpriteCoords() {
         for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
-            HomeMapStorageController.setSpriteCoord(HomeMapStorageController.getCoord(i).getComponent(Sprite), i)
+            let spriteCoord = HomeMapStorageController.getCoord(i).getComponent(Sprite)
+
+            HomeMapStorageController.setSpriteCoord(spriteCoord, i)
         }
     }
 }
