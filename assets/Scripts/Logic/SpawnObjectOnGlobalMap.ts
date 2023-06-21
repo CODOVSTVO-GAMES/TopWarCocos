@@ -38,9 +38,12 @@ export class SpawnObjectsOnGlobalMap extends Component {
 
     protected onLoad(): void {
         SpawnObjectsOnGlobalMap.instance = this
-        this.setStartCameraPosition()
         this.massSpawn()
         console.log('onLoad globalmap')
+    }
+
+    protected onDisable(): void {
+        this.massDespawn()
     }
 
     public massSpawn() {
@@ -48,6 +51,12 @@ export class SpawnObjectsOnGlobalMap extends Component {
             if (GlobalMapStorageController.getBuildings()[l].node == null) {
                 this.spawnObject(l)
             }
+        }
+    }
+
+    public massDespawn() {
+        for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
+            GlobalMapStorageController.getBuildings()[l].node = null
         }
     }
 
@@ -77,9 +86,5 @@ export class SpawnObjectsOnGlobalMap extends Component {
             building.node = node
         }
         GlobalMapStorageController.getBuildings()[index] = building
-    }
-
-    private setStartCameraPosition() {
-        MovingCamera.instance.movie(GlobalMapStorageController.getBaseCoordinates())
     }
 }

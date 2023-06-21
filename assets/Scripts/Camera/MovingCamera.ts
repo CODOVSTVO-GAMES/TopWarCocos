@@ -32,6 +32,11 @@ export class MovingCamera extends Component {
         MovingCamera.instance = this
         if (RedirectionToScene.getSceneName() == 'HomeMap') {
             this.movie(new Vec2(100, -1000))
+            console.log('хоум')
+        }
+        else if (RedirectionToScene.getSceneName() == 'GlobalMap') {
+            this.movie(GlobalMapStorageController.getBaseCoordinates())
+            console.log('глобал')
         }
     }
 
