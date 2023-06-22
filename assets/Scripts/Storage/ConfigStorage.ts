@@ -87,9 +87,9 @@ export class ConfigStorage extends Component {
             }
             else if (key == 'units') {
                 for (let l = 0; l < value.length; l++) {
-                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_OVERLAND, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].ru, 0, 5, 1, value[l].ta, parseFloat(value[l].pu), value[l].pc, value[l].es));
-                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_MARINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, 0, 5, 1, TypesAttack.HORIZON, parseFloat(value[l].pu), value[l].pc, value[l].es));
-                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_AIR, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_AIR, value[l].ru, 0, 5, 1, TypesAttack.VERTICAL, parseFloat(value[l].pu), value[l].pc, value[l].es));
+                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_OVERLAND, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].ru, parseFloat(value[l].pu), parseFloat(value[l].h), parseFloat(value[l].d), value[l].ta, parseFloat(value[l].tc), value[l].pc, value[l].es))
+                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_MARINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, parseFloat(value[l].pu), parseFloat(value[l].h), parseFloat(value[l].d), TypesAttack.HORIZON, parseFloat(value[l].tc), value[l].pc, value[l].es))
+                    this.unitsConfig.push(new UnitsCongig(TypesObjects.TROOP_AIR, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_AIR, value[l].ru, parseFloat(value[l].pu), parseFloat(value[l].h), parseFloat(value[l].d), TypesAttack.VERTICAL, parseFloat(value[l].tc), value[l].pc, value[l].es))
                 }
             }
             else if (key == 'createBuildings') {

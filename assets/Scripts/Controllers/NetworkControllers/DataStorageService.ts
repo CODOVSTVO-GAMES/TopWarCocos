@@ -15,6 +15,7 @@ import { SceneNames } from "../../Static/SceneNames"
 import { TypesStorages } from "../../Static/TypesStorages"
 import { PaymentsService } from "./PaymentsService"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
+import { BarracksStorageController } from "../StorageControllers/BarracksStorageController"
 
 export class DataStorageService {
 
@@ -45,6 +46,7 @@ export class DataStorageService {
             CommandPostStorageController.assignStartingValues()
             RadarStorageController.assignStartingValues()
             AutocombineStorageController.assignStartingValues()
+            BarracksStorageController.assignStartingValues()
             LoadingGame.getPostData()
             return;
         }
@@ -62,7 +64,7 @@ export class DataStorageService {
             else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
                 HomeMapStorageController.assigningSaveValuesServer(jsonValue)
             }
-            else if (json['key'] == TypesStorages.INVENTORY_STORAGE) {
+            else if (json['key'] == TypesStorages.BACKPACK_STORAGE) {
                 BackpackStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
@@ -76,6 +78,9 @@ export class DataStorageService {
             }
             else if (json['key'] == TypesStorages.AUTOCOMBINE_STORAGE) {
                 AutocombineStorageController.assigningSaveValues(jsonValue)
+            }
+            else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
+                BarracksStorageController.assigningSaveValues(jsonValue)
             }
         }
         LoadingGame.getPostData()

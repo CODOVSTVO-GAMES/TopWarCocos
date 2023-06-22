@@ -15,7 +15,7 @@ const { ccclass } = _decorator;
 @ccclass('LoadingGame')
 export class LoadingGame extends Component {
 
-    start() {
+    public start() {
         LoadingGame.initSDKAndGetUserInfo()
     }
 
@@ -35,12 +35,13 @@ export class LoadingGame extends Component {
         let arrayActiveStorage = [
             TypesStorages.GAME_STORAGE,
             TypesStorages.HOME_MAP_STORAGE,
-            TypesStorages.INVENTORY_STORAGE,
+            TypesStorages.BACKPACK_STORAGE,
             TypesStorages.CHARACTER_STORAGE,
             TypesStorages.COMMAND_POST_STORAGE,
             TypesStorages.RADAR_STORAGE,
-            TypesStorages.AUTOCOMBINE_STORAGE
-        ];
+            TypesStorages.AUTOCOMBINE_STORAGE,
+            TypesStorages.BARRACKS_STORAGE
+        ]
         DataStorageService.getData(arrayActiveStorage)//redirectToHomeMap вызывается после получения данных в колбеке
     }
 

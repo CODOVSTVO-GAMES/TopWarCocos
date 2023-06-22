@@ -1,3 +1,4 @@
+import { BarracksLogic } from "../../Logic/BarracksLogic";
 import { SpawnObjectsOnHomeMap } from "../../Logic/SpawnObjectsOnHomeMap";
 import { ObjectParameters } from "../../ObjectParameters";
 import { RedirectionToScene } from "../../Other/RedirectionToScene";
@@ -92,29 +93,26 @@ export class GameObjectEventsController {
 
     private static processingBarrackAir(objectParameters: ObjectParameters) {
         let typeObject = TypesObjects.TROOP_AIR
-        let typeLocation = TypesLocation.EARTH
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, indexObject)
+        BarracksLogic.addTroops(typeObject, levelObject, indexObject)
     }
 
     private static processingBarrackMarine(objectParameters: ObjectParameters) {
         let typeObject = TypesObjects.TROOP_MARINE
-        let typeLocation = TypesLocation.WATER
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, indexObject)
+        BarracksLogic.addTroops(typeObject, levelObject, indexObject)
     }
 
     private static processingBarrackOverland(objectParameters: ObjectParameters) {
         let typeObject = TypesObjects.TROOP_OVERLAND
-        let typeLocation = TypesLocation.EARTH
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, indexObject)
+        BarracksLogic.addTroops(typeObject, levelObject, indexObject)
     }
 
     private static processingCommandPost() {

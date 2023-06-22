@@ -10,6 +10,7 @@ import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
 import { AutocombineStorageController } from './Controllers/StorageControllers/AutocombineStorageController';
 import { CommandPostStorageController } from './Controllers/StorageControllers/CommandPostStorageController';
+import { BarracksLogic } from './Logic/BarracksLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -194,7 +195,10 @@ export class TouchObject extends Component {
     }
 
     private putAnObject(index: number) {
-        if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+        if (this.objectParameters.type == TypesObjects.BARRACKS_AIR || this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
+            BarracksLogic.updateIndexBarrack(this.objectParameters.index, index)
+        }
+        else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
             AutocombineStorageController.updateIndexGoldMine(this.objectParameters.index, index)
         }
         this.objectParameters.index = index
