@@ -5,7 +5,6 @@ import { GlobalMapStorageController } from "../StorageControllers/GlobalMapStora
 import { GameStorageController } from "../StorageControllers/GameStorageController";
 import { RadarStorageController } from "../StorageControllers/RadarStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
-import { ModalRadarLogic } from "../../UI/Modals/ModalRadar/ModalRadarLogic";
 
 export class MapService {
 
@@ -22,20 +21,18 @@ export class MapService {
 
     static getEnemy() {
         let level = RadarStorageController.getRadarLevel()
-        console.log('запрошен дарад левел ' + level)
         let config = ConfigStorageController.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
-        console.log(battlesNumber)
         ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseEnemyGetResponce);
     }
 
     static parseEnemyGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get enemy error")
         else {
-            console.log(data)
+            // console.log(data)
             GlobalMapStorageController.buildingsHandler(data)
             // console.log('---')
-            ModalRadarLogic.instance.taskResponcer(data)
+            RadarStorageController.taskResponcer(data)
         }
     }
 
@@ -45,7 +42,7 @@ export class MapService {
 
     static attackWin(taskId: number) {
         console.log(taskId)
-        ServerApi.post('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, taskId, true), MapService.parseAttackResponse)
+        ServerApi.post('map/win', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, taskId, true), MapService.parseAttackResponse)
     }
 
     static parseAttackResponse(data: any, isDone: boolean) {
@@ -53,7 +50,7 @@ export class MapService {
         // console.log("----------")
         // console.log("--" + JSON.stringify(data))
         GlobalMapStorageController.buildingsHandler(data)
-        ModalRadarLogic.instance.taskResponcer(data)
+        RadarStorageController.taskResponcer(data)
     }
 
 }

@@ -1,10 +1,9 @@
 import { _decorator, Component, Node } from 'cc';
 import { BattleTask } from '../../../Structures/BattleTask';
-import { BuferTasks } from '../../../Radar/BuferTasks';
-import { ModalRadarTaskInterface } from './ModalRadarTaskInterface';
 import { BattleTaskTypes } from '../../../Static/BattleTaskTypes';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { MapService } from '../../../Controllers/NetworkControllers/MapService';
+import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskLogic')
@@ -24,22 +23,11 @@ export class ModalRadarTaskLogic extends Component {
 
     pushButton() {
         if (this.task.type == BattleTaskTypes.TASK_SALVATION) {
-            if (this.task.status < 1) {
-                BuferTasks.instance.addTaskSalvation(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task);
-                MapService.attackEnemy(this.task.id)
-            }
-        }
-        else if (this.task.type == BattleTaskTypes.TASK_DARK_LEGION) {
-            if (this.task.status < 1) {
-                BuferTasks.instance.addTaskDarkLegion(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task);
-                MapService.attackEnemy(this.task.id)
-            }
+            RadarStorageController.activateTask(this.task)
         }
         else if (this.task.type == BattleTaskTypes.TASK_PERSONAL) {
             MapService.attackEnemy(this.task.id)
-            BuferTasks.instance.addTaskPersonal(this.task);
+            // BuferTasks.instance.addTaskPersonal(this.task);
             SecondaryInterface.instance.closeSecondLayoutModal();
             SecondaryInterface.instance.closeAllModals();
 

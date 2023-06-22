@@ -1,7 +1,6 @@
 import { _decorator, Component, Input, Touch, Node, Vec3 } from 'cc';
 import { ZoomCamera } from '../../../Camera/ZoomCamera';
 import { SecondaryInterface } from '../../SecondaryInterface';
-import { BuferTasks } from '../../../Radar/BuferTasks';
 const { ccclass, property } = _decorator;
 
 @ccclass('SwitchLogic')
@@ -74,7 +73,8 @@ export class SwitchLogic extends Component {
             if (this.triggerEnd == false) {
                 setTimeout(() => {
                     SecondaryInterface.instance.closeAllModals();
-                    BuferTasks.instance.awardingPersonal();
+                    // BuferTasks.instance.awardingPersonal();
+
                 }, 1000);
             }
             this.triggerEnd = true;

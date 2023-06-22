@@ -45,46 +45,59 @@ export class ModalRadarTaskInterface extends Component {
     @property({ type: SpriteFrame })
     public rewardSprites: SpriteFrame[] = [];
 
+
     onLoad() {
         ModalRadarTaskInterface.instance = this;
+        this.schedule(this.renderModalTask, 1)
     }
 
-    /**
+    /**r
      * при нажатии на задачу рендерится модалка информации о задаче
-     * рендер таймера оставшегося времени доступности задачи
      */
 
-    updateInterface(task: BattleTask) {
-        ModalRadarTaskLogic.instance.task = task;
-        if (task.status == 0) {
-            this.status.string = "Не началось";
-            this.btnText.string = "Перейти";
-            this.title.string = "Задание завершится через " + task.expiration;
-        }
-        else if (task.status == 1) {
-            this.title.string = ''//"Результаты через " + task.battleTime;
-            this.status.string = "В походе";
-            this.btnText.string = "В походе...";
-        }
-        this.image.color = this.getSpriteTask(task.type);
-        for (let i = 0; i < this.stars.length; i++) {
-            this.stars[i].active = i < task.stars;
-        }
-        for (let i = 0; i < task.rewards.length; i++) {
-            this.quantity[i].string = task.rewards[i].quantity.toString();
-            switch (task.rewards[i].type) {
-                case TypesItems.PLAN_COMMAND_POST:
-                    this.rewardsBG[i].spriteFrame = this.spritesBG[0];
-                    break;
-                case TypesItems.EXPERIENCE:
-                    this.rewardsBG[i].spriteFrame = this.spritesBG[1];
-                    break;
-                default:
-                    this.rewardsBG[i].spriteFrame = this.spritesBG[2];
-                    break;
+
+    renderModalTask() {
+        if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO) {
+            console.log('process')
+            const task = ModalRadarTaskLogic.instance.task
+            console.log('отрисовываем задачу ' + task.id)
+            if (task.status == 0) {
+                this.status.string = "Не началось";
+                this.btnText.string = "Перейти";
+                this.title.string = "Задание завершится через " + task.expiration;
+            }
+            else if (task.status == 1) {
+                this.title.string = "Результаты через " + task.battleTime;
+                this.status.string = "В походе";
+                this.btnText.string = "В походе...";
+            }
+
+
+            this.image.color = this.getSpriteTask(task.type);
+            for (let i = 0; i < this.stars.length; i++) {
+                this.stars[i].active = i < task.stars;
+            }
+            for (let i = 0; i < task.rewards.length; i++) {
+                this.quantity[i].string = task.rewards[i].quantity.toString();
+                switch (task.rewards[i].type) {
+                    case TypesItems.PLAN_COMMAND_POST:
+                        this.rewardsBG[i].spriteFrame = this.spritesBG[0];
+                        break;
+                    case TypesItems.EXPERIENCE:
+                        this.rewardsBG[i].spriteFrame = this.spritesBG[1];
+                        break;
+                    default:
+                        this.rewardsBG[i].spriteFrame = this.spritesBG[2];
+                        break;
+                }
             }
         }
-        this.startTimer();
+
+    }
+
+    updateInterface(task: BattleTask) {
+        ModalRadarTaskLogic.instance.task = task
+        this.renderModalTask()
     }
 
     getSpriteTask(type: string): Color {
@@ -95,37 +108,5 @@ export class ModalRadarTaskInterface extends Component {
         } else if (type == BattleTaskTypes.TASK_PERSONAL) {
             return new Color(0, 0, 255, 255);
         }
-    }
-
-    startTimer() {
-        let timer = setInterval(() => {
-            let task = ModalRadarTaskLogic.instance.task;
-            if (task != null) {
-                if (task.status == 0) {
-                    if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && task.expiration > 0) {
-                        this.status.string = "Не началось";
-                        this.btnText.string = "Перейти";
-                        this.title.string = "Задание завершится через " + task.expiration;
-                        task.expiration--;
-                    } else {
-                        clearInterval(timer);
-                    }
-                }
-                // else if (task.status == 1) {
-                //     if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO && task.battleTime > 0) {
-                //         this.status.string = "В походе";
-                //         this.btnText.string = "В походе...";
-                //         this.title.string = "Результаты через " + task.battleTime;
-                //         task.battleTime--
-                //     }
-                //     else {
-                //         clearInterval(timer);
-                //     }
-                // }
-            }
-            else {
-                clearInterval(timer);
-            }
-        }, 1000);
     }
 }

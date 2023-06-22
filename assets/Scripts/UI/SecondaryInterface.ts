@@ -5,7 +5,6 @@ import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalCommandPostInterface';
 import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutocombineInterface';
-import { ModalRadarInterface } from './Modals/ModalRadar/ModalRadarInterface';
 import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInterface';
 import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
 import { ModalBankInterface } from './Modals/ModalBank/ModalBankInterface';
@@ -14,7 +13,6 @@ import { ModalShopObjectInterface } from './Modals/ModalShopObject/ModalShopObje
 import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
-import { ModalRadarLogic } from './Modals/ModalRadar/ModalRadarLogic';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
 import { QuestionLogic } from './Modals/Question/QuestionLogic';
 import { SwitchLogic } from './Modals/Switch/SwitchLogic';
@@ -30,6 +28,8 @@ import { ModalRadarRewardInterface } from './Modals/ModalRadarReward/ModalRadarR
 import { ModalRadarRewardLogic } from './Modals/ModalRadarReward/ModalRadarRewardLogic';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
+import { RadarRender } from '../Logic/RadarRender';
+import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -289,8 +289,8 @@ export class SecondaryInterface extends Component {
             this.autocombine.active = true;
         }
         else if (item.modalName == TypesModals.RADAR) {
-            ModalRadarInterface.instance.updateInterface();
-            ModalRadarLogic.instance.spawnNewTasks();
+            RadarStorageController.getNewTasks()
+            RadarRender.instance.updateInterface()
             this.firstBackgraund.active = true;
             this.radar.active = true;
         }

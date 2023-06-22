@@ -110,7 +110,7 @@
       "a": 255
     },
     "duration": -1,
-    "emissionRate": 1000,
+    "emissionRate": 30,
     "life": 0.2,
     "lifeVar": 1,
     "angle": 100,
@@ -162,10 +162,10 @@
       "__expectedType__": "cc.ParticleAsset"
     },
     "_spriteFrame": {
-      "__uuid__": "dcf9a562-7a14-4c74-9116-36838402513d@f9941",
+      "__uuid__": "24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "_totalParticles": 1000,
+    "_totalParticles": 50,
     "_startColor": {
       "__type__": "cc.Color",
       "r": 255,
