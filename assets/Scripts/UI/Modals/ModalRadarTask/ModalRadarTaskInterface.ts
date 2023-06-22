@@ -1,6 +1,6 @@
 import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame, Animation } from 'cc';
-import { RadarTask } from '../../../Structures/RadarTask';
-import { TypesRadar } from '../../../Static/TypesRadar';
+import { BattleTask } from '../../../Structures/BattleTask';
+import { BattleTaskTypes } from '../../../Static/BattleTaskTypes';
 import { TypesItems } from '../../../Static/TypesItems';
 import { ModalRadarTaskLogic } from './ModalRadarTaskLogic';
 import { SecondaryInterface } from '../../SecondaryInterface';
@@ -54,7 +54,7 @@ export class ModalRadarTaskInterface extends Component {
      * рендер таймера оставшегося времени доступности задачи
      */
 
-    updateInterface(task: RadarTask) {
+    updateInterface(task: BattleTask) {
         ModalRadarTaskLogic.instance.task = task;
         if (task.status == 0) {
             this.status.string = "Не началось";
@@ -88,11 +88,11 @@ export class ModalRadarTaskInterface extends Component {
     }
 
     getSpriteTask(type: string): Color {
-        if (type == TypesRadar.TASK_SALVATION) {
+        if (type == BattleTaskTypes.TASK_SALVATION) {
             return new Color(255, 0, 0, 255);
-        } else if (type == TypesRadar.TASK_DARK_LEGION) {
+        } else if (type == BattleTaskTypes.TASK_DARK_LEGION) {
             return new Color(0, 255, 0, 255);
-        } else if (type == TypesRadar.TASK_PERSONAL) {
+        } else if (type == BattleTaskTypes.TASK_PERSONAL) {
             return new Color(0, 0, 255, 255);
         }
     }

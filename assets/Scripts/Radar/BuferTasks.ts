@@ -1,5 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
-import { RadarTask } from '../Structures/RadarTask';
+import { BattleTask } from '../Structures/BattleTask';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { RadarStorage } from '../Storage/RadarStorage';
 const { ccclass, property } = _decorator;
@@ -9,9 +9,9 @@ export class BuferTasks extends Component {
 
     public static instance: BuferTasks;
 
-    public ongoingSalvationTasks: RadarTask[] = [];
-    public ongoingDarkLegionTasks: RadarTask[] = [];
-    public ongoingPersonalTasks: RadarTask[] = [];
+    public ongoingSalvationTasks: BattleTask[] = [];
+    public ongoingDarkLegionTasks: BattleTask[] = [];
+    public ongoingPersonalTasks: BattleTask[] = [];
 
     onLoad() {
         BuferTasks.instance = this;
@@ -22,20 +22,20 @@ export class BuferTasks extends Component {
      * 
      * после того как задача считается выполненой, у неё меняется статус
      */
-    
 
-    addTaskSalvation(task: RadarTask) {
+
+    addTaskSalvation(task: BattleTask) {
         this.ongoingSalvationTasks.push(task);
         task.status = 1;
         setTimeout(() => this.awardingSalvation(), task.battleTime * 1000)
     }
 
-    addTaskDarkLegion(task: RadarTask) {
+    addTaskDarkLegion(task: BattleTask) {
         this.ongoingDarkLegionTasks.push(task);
         task.status = 1;
     }
 
-    addTaskPersonal(task: RadarTask) {
+    addTaskPersonal(task: BattleTask) {
         this.ongoingPersonalTasks.push(task);
         task.status = 1;
     }

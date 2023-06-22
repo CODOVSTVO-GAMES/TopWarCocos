@@ -1,6 +1,6 @@
 import { _decorator, Color, Component, Node, Sprite } from 'cc';
-import { TypesRadar } from '../Static/TypesRadar';
-import { RadarTask } from '../Structures/RadarTask';
+import { BattleTaskTypes } from '../Static/BattleTaskTypes';
+import { BattleTask } from '../Structures/BattleTask';
 import { ModalRadarRewardLogic } from '../UI/Modals/ModalRadarReward/ModalRadarRewardLogic';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { TypesModals } from '../Static/TypesModals';
@@ -21,7 +21,7 @@ export class TaskRender extends Component {
     @property({ type: Node })
     public stars: Node[] = [];
 
-    public radarTask: RadarTask;
+    public radarTask: BattleTask;
 
     /**
      * рендер задачи: картинка, звезды, точка выполненности
@@ -29,7 +29,7 @@ export class TaskRender extends Component {
      * при нажатии на задачу открывается модалка информации о задаче, либо модалка награды
      */
 
-    render(radarTask: RadarTask) {
+    render(radarTask: BattleTask) {
         this.radarTask = radarTask;
         if (radarTask != null) {
             this.image.color = this.getSprite(radarTask.type);
@@ -48,11 +48,11 @@ export class TaskRender extends Component {
 
     getSprite(type: string): Color {
         switch (type) {
-            case TypesRadar.TASK_SALVATION:
+            case BattleTaskTypes.TASK_SALVATION:
                 return new Color(255, 0, 0, 255);
-            case TypesRadar.TASK_DARK_LEGION:
+            case BattleTaskTypes.TASK_DARK_LEGION:
                 return new Color(0, 255, 0, 255);
-            case TypesRadar.TASK_PERSONAL:
+            case BattleTaskTypes.TASK_PERSONAL:
                 return new Color(0, 0, 255, 255);
         }
     }

@@ -2,7 +2,7 @@ import { _decorator, Component, Node } from 'cc';
 import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../../Storage/RadarStorage';
-import { RadarTask } from '../../Structures/RadarTask';
+import { BattleTask } from '../../Structures/BattleTask';
 import { RadarReward } from '../../Structures/RadarReward';
 import { ConfigStorageController } from './ConfigStorageController';
 import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
@@ -37,7 +37,7 @@ export class RadarStorageController {
         RadarStorage.instance.radarExperience = json.radarExperience;
     }
 
-    static getRadarTasks(): RadarTask[] {
+    static getRadarTasks(): BattleTask[] {
         return RadarStorage.instance.tasks;
     }
 
@@ -78,7 +78,7 @@ export class RadarStorageController {
     }
 
     static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
-        RadarStorage.instance.tasks.push(new RadarTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime));
+        RadarStorage.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime));
         this.updateRadarAnimation();
     }
 
@@ -108,7 +108,7 @@ export class RadarStorageController {
         this.saveStorage();
     }
 
-    static reduceRadarTask(task: RadarTask) {
+    static reduceRadarTask(task: BattleTask) {
         if (task == null) return;
         for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
             if (RadarStorage.instance.tasks[i] == task) {

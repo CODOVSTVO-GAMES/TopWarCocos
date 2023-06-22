@@ -1,6 +1,6 @@
 import { RadarReward } from "./RadarReward";
 
-export class RadarTask {
+export class BattleTask {
     id: number;
     type: string;
     stars: number;
@@ -8,6 +8,7 @@ export class RadarTask {
     battleTime: number;
     status: number; // 0 - задача доступна для выполнения, 1 - задача выполняется, 2 - задача выполнена доступен сбор награды, 3 - награда собрана
     rewards: RadarReward[];
+    
 
     constructor(id: number, type: string, stars: number, expiration: number, status: number, rewards: RadarReward[], battleTimme: number) {
         this.id = id

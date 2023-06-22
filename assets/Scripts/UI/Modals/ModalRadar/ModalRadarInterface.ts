@@ -3,7 +3,7 @@ import { RadarStorageController } from '../../../Controllers/StorageControllers/
 import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { TaskRender } from '../../../Radar/TaskRender';
-import { RadarTask } from '../../../Structures/RadarTask';
+import { BattleTask } from '../../../Structures/BattleTask';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarInterface')
@@ -121,20 +121,20 @@ export class ModalRadarInterface extends Component {
                 }
             }
             if (result == false && radarTasks[i].status < 3) {
-        let task = instantiate(this.taskPrefab);
-        task.setParent(this.parentNode);
-        let x = Math.floor(Math.random() * 200);
-        let y = Math.floor(Math.random() * 200);
-        if (Math.floor(Math.random() * 2) == 1) {
-            x *= -1;
-        }
-        if (Math.floor(Math.random() * 2) == 1) {
-            y *= -1;
-        }
-        task.position = new Vec3(x, y, 0);
-        let taskRender = task.getComponent(TaskRender);
+                let task = instantiate(this.taskPrefab);
+                task.setParent(this.parentNode);
+                let x = Math.floor(Math.random() * 200);
+                let y = Math.floor(Math.random() * 200);
+                if (Math.floor(Math.random() * 2) == 1) {
+                    x *= -1;
+                }
+                if (Math.floor(Math.random() * 2) == 1) {
+                    y *= -1;
+                }
+                task.position = new Vec3(x, y, 0);
+                let taskRender = task.getComponent(TaskRender);
                 taskRender.render(radarTasks[i]);
-        this.tasks.push(taskRender);
+                this.tasks.push(taskRender);
             }
         }
     }
