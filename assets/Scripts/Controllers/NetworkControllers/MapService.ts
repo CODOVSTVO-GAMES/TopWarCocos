@@ -22,20 +22,20 @@ export class MapService {
 
     static getEnemy() {
         let level = RadarStorageController.getRadarLevel()
-        console.log('запрошен дарад левел ' + level)
+        // console.log('запрошен дарад левел ' + level)
         let config = ConfigStorageController.getRadarConfigByLevel(level)
         let battlesNumber = config.displayedTasks
-        console.log(battlesNumber)
+        // console.log(battlesNumber)
         ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseEnemyGetResponce);
     }
 
     static parseEnemyGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get enemy error")
         else {
-            console.log(data)
+            // console.log(data)
             GlobalMapStorageController.buildingsHandler(data)
             // console.log('---')
-            ModalRadarLogic.instance.taskResponcer(data)
+            RadarStorageController.taskResponcer(data)
         }
     }
 
@@ -53,7 +53,7 @@ export class MapService {
         // console.log("----------")
         // console.log("--" + JSON.stringify(data))
         GlobalMapStorageController.buildingsHandler(data)
-        ModalRadarLogic.instance.taskResponcer(data)
+        RadarStorageController.taskResponcer(data)
     }
 
 }

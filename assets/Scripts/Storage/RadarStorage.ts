@@ -22,7 +22,7 @@ export class RadarStorage extends Component {
     @property({ type: CCInteger })
     public radarExperience: number
 
-    public tasks: BattleTask[] = []
+    public battleTasks: BattleTask[] = []
 
     public task: any
 
