@@ -1,6 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
 import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
 import { BattleTask } from '../Structures/BattleTask';
+import { RadarStorage } from '../Storage/RadarStorage';
+import { MapService } from '../Controllers/NetworkControllers/MapService';
 const { ccclass } = _decorator;
 
 @ccclass('RadarLogic')
@@ -14,33 +16,43 @@ export class RadarLogic extends Component {
     }
 
     taskProcessing() {
-        let tasks = RadarStorageController.getTasks()
-        // console.log(tasks)
+        let tasks = RadarStorage.instance.tasks
         for (let l = 0; l < tasks.length; l++) {
+            // console.log(l + " " + tasks[l].id)
             if (tasks[l].status == 0) {
                 this.expiration(tasks[l])
             }
             else if (tasks[l].status == 1) {
-                console.log('1')
+                // console.log('1')
                 this.battle(tasks[l])
+            }
+            else if (tasks[l].status == 3) {
+                console.log('появилась выполненая задача')
+                this.deleteFromServer(tasks[l])
             }
         }
     }
 
     expiration(task: BattleTask) {
-        task.expiration = task.expiration - 1
-        if (task.expiration <= 0) {
+        if (task.expiration >= 0) {
+            task.expiration = task.expiration - 1
+        } else {
             console.log('время задачи истекло')
+            task.status = 3
         }
-        RadarStorageController.saveTask(task)
     }
 
     battle(task: BattleTask) {
-        task.battleTime = task.battleTime - 1
-        if (task.battleTime <= 0) {
+        if (task.battleTime >= 0) {
+            task.battleTime = task.battleTime - 1
+        } else {
             console.log("задача выполнена")
+            task.status = 2
         }
-        RadarStorageController.saveTask(task)
+    }
+
+    deleteFromServer(task: BattleTask) {
+        MapService.attackWin(task.id)
     }
 
 }

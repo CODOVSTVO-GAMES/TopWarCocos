@@ -5,7 +5,6 @@ import { TypesItems } from '../../../Static/TypesItems';
 import { ModalRadarTaskLogic } from './ModalRadarTaskLogic';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
-import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskInterface')
@@ -46,21 +45,13 @@ export class ModalRadarTaskInterface extends Component {
     @property({ type: SpriteFrame })
     public rewardSprites: SpriteFrame[] = [];
 
-    private callbask: any
 
     onLoad() {
         ModalRadarTaskInterface.instance = this;
+        this.schedule(this.renderModalTask, 1)
     }
 
-    protected onEnable(): void {
-        this.callbask = this.schedule(this.renderModalTask, 1)
-    }
-
-    protected onDisable(): void {
-        this.unschedule(this.callbask)
-    }
-
-    /**
+    /**r
      * при нажатии на задачу рендерится модалка информации о задаче
      */
 
@@ -68,9 +59,8 @@ export class ModalRadarTaskInterface extends Component {
     renderModalTask() {
         if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO) {
             console.log('process')
-            let task = RadarStorageController.getTaskById(ModalRadarTaskLogic.instance.taskId)
+            const task = ModalRadarTaskLogic.instance.task
             console.log('отрисовываем задачу ' + task.id)
-            console.log(task)
             if (task.status == 0) {
                 this.status.string = "Не началось";
                 this.btnText.string = "Перейти";
@@ -106,7 +96,7 @@ export class ModalRadarTaskInterface extends Component {
     }
 
     updateInterface(task: BattleTask) {
-        ModalRadarTaskLogic.instance.taskId = task.id;
+        ModalRadarTaskLogic.instance.task = task
         this.renderModalTask()
     }
 

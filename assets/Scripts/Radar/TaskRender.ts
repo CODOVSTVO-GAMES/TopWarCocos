@@ -20,7 +20,8 @@ export class TaskRender extends Component {
     @property({ type: Node })
     public stars: Node[] = [];
 
-    public taskId: number = 0
+    public task: BattleTask = null
+    private callBack = null
 
     /**
      * рендер задачи: картинка, звезды, точка выполненности
@@ -28,9 +29,19 @@ export class TaskRender extends Component {
      * при нажатии на задачу открывается модалка информации о задаче, либо модалка награды
      */
 
-    render(taskId: number) {
-        this.taskId = taskId;
-        let task = RadarStorageController.getTaskById(taskId)
+    protected onEnable(): void {
+        this.callBack = this.schedule(this.rerender, 1)
+    }
+    protected onDisable(): void {
+        this.unschedule(this.callBack)
+    }
+
+    rerender() {
+        this.render(this.task)
+    }
+
+    render(task: BattleTask) {
+        this.task = task
         this.image.color = this.getSprite(task.type);
         for (let i = 0; i < this.stars.length; i++) { // отрисовывает активные звезды 
             let isStarActive = i < task.stars
@@ -45,13 +56,12 @@ export class TaskRender extends Component {
     }
 
     pushTask() {
-        let task = RadarStorageController.getTaskById(this.taskId)
-        if (task.status < 2) {
-            SecondaryInterface.instance.openRadarTaskInfo({ task: task });
+        if (this.task.status < 2) {
+            SecondaryInterface.instance.openRadarTaskInfo({ task: this.task });
         }
         else {
-            task.status = 3;
-            SecondaryInterface.instance.openRadarReward(task);
+            this.task.status = 3;
+            SecondaryInterface.instance.openRadarReward(this.task);
             this.obj.destroy();
         }
     }

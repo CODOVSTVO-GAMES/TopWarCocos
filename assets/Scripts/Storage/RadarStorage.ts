@@ -24,9 +24,12 @@ export class RadarStorage extends Component {
 
     public battleTasks: BattleTask[] = []
 
+    public tasks: BattleTask[] = []
+
     public task: any
 
     public onLoad() {
         RadarStorage.instance = this
     }
+
 }

@@ -26,8 +26,6 @@ export class RadarStorageController {
     }
 
     static taskResponcer(arr: object[]) {
-        console.log('пришли задачи ')
-        console.log(arr)
         for (let l = 0; l < arr.length; l++) {
             if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
                 if (arr[l]['owner'] == UserStorageController.getAccountId()) {
@@ -46,56 +44,32 @@ export class RadarStorageController {
                 }
             }
         }
-        // console.log("задачи в массиве")
-        // console.log(RadarStorageController.getTasks())
+        console.log(RadarStorage.instance.tasks)
         RadarRender.instance.updateInterface()
     }
 
     static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
-        RadarStorage.instance.battleTasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
+        RadarStorage.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
         console.log('создана задача ' + id)
-        console.log("задачи в массиве")
-        console.log(JSON.stringify(RadarStorageController.getTasks()))
-        console.log(RadarStorageController.getTasks())
         this.updateRadarAnimation();
     }
 
-    static activateTask(taskId: number) {
-        let task = this.getTaskById(taskId)
-        if (task.status == 0) {
-            task.status = 1
-        }
-        this.saveTask(task)
-        console.log('активирована задача ' + task.id)
-    }
-
-    static getTaskById(id: number) {
-        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
-            if (RadarStorage.instance.battleTasks[l].id = id) {
-                return RadarStorage.instance.battleTasks[l]
-            }
-        }
+    static activateTask(task: BattleTask) {
+        task.status = 1
+        MapService.attackEnemy(task.id)
     }
 
     static doneTask() {
-
     }
 
     static getTasks(): BattleTask[] {
+        console.log('запрошен массив')
+        console.log(RadarStorage.instance.battleTasks)
+        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
+            console.log(RadarStorage.instance.battleTasks[l].id)
+        }
         return RadarStorage.instance.battleTasks
     }
-
-    static saveTask(task: BattleTask) {
-        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
-            if (task.id = RadarStorage.instance.battleTasks[l].id) {
-                RadarStorage.instance.battleTasks[l] = task
-                console.log('таск сохранен ' + task.id)
-                return
-            }
-        }
-        console.log('попытка сохранить задачу которой нет О_о')
-    }
-
 
 
 
@@ -140,8 +114,8 @@ export class RadarStorageController {
     }
 
     static isTaskExists(id: number) {
-        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
-            if (RadarStorage.instance.battleTasks[l].id == id) {
+        for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
+            if (RadarStorage.instance.tasks[l].id == id) {
                 return true
             }
         }

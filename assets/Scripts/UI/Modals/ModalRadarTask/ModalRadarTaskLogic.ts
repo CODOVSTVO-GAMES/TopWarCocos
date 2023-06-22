@@ -1,7 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
 import { BattleTask } from '../../../Structures/BattleTask';
-import { BuferTasks } from '../../../Radar/BuferTasks';
-import { ModalRadarTaskInterface } from './ModalRadarTaskInterface';
 import { BattleTaskTypes } from '../../../Static/BattleTaskTypes';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { MapService } from '../../../Controllers/NetworkControllers/MapService';
@@ -13,7 +11,7 @@ export class ModalRadarTaskLogic extends Component {
 
     public static instance: ModalRadarTaskLogic;
 
-    public taskId: number;
+    public task: BattleTask;
 
     onLoad() {
         ModalRadarTaskLogic.instance = this;
@@ -24,33 +22,28 @@ export class ModalRadarTaskLogic extends Component {
      */
 
     pushButton() {
-        RadarStorageController.activateTask(this.taskId)
-        // if (this.task.type == BattleTaskTypes.TASK_SALVATION) {
-        //     if (this.task.status < 1) {
+        if (this.task.type == BattleTaskTypes.TASK_SALVATION) {
+            RadarStorageController.activateTask(this.task)
+        }
+        else if (this.task.type == BattleTaskTypes.TASK_PERSONAL) {
+            MapService.attackEnemy(this.task.id)
+            // BuferTasks.instance.addTaskPersonal(this.task);
+            SecondaryInterface.instance.closeSecondLayoutModal();
+            SecondaryInterface.instance.closeAllModals();
 
-        //         BuferTasks.instance.addTaskSalvation(this.task);
-        //         ModalRadarTaskInterface.instance.updateInterface(this.task);
-        //     }
-        // }
-        // else if (this.task.type == BattleTaskTypes.TASK_PERSONAL) {
-        //     MapService.attackEnemy(this.task.id)
-        //     BuferTasks.instance.addTaskPersonal(this.task);
-        //     SecondaryInterface.instance.closeSecondLayoutModal();
-        //     SecondaryInterface.instance.closeAllModals();
-
-        //     let random = Math.floor(Math.random() * 100);
-        //     if (random < 25) {
-        //         SecondaryInterface.instance.openWireCut();
-        //     }
-        //     else if (random < 50) {
-        //         SecondaryInterface.instance.openBombDisposal();
-        //     }
-        //     else if (random < 75) {
-        //         SecondaryInterface.instance.openQuestion();
-        //     }
-        //     else {
-        //         SecondaryInterface.instance.openSwith();
-        //     }
-        // }
+            let random = Math.floor(Math.random() * 100);
+            if (random < 25) {
+                SecondaryInterface.instance.openWireCut();
+            }
+            else if (random < 50) {
+                SecondaryInterface.instance.openBombDisposal();
+            }
+            else if (random < 75) {
+                SecondaryInterface.instance.openQuestion();
+            }
+            else {
+                SecondaryInterface.instance.openSwith();
+            }
+        }
     }
 }
