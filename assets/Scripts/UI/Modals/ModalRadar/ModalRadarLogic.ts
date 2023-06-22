@@ -2,16 +2,16 @@ import { _decorator, Component, Node } from 'cc';
 import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 import { RadarStorage } from '../../../Storage/RadarStorage';
 import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
-import { TypesRadar } from '../../../Static/TypesRadar';
+import { BattleTaskTypes } from '../../../Static/BattleTaskTypes';
 import { RadarReward } from '../../../Structures/RadarReward';
 import { TypesItems } from '../../../Static/TypesItems';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
-import { ModalRadarInterface } from './ModalRadarInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { TypesModals } from '../../../Static/TypesModals';
 import { MapService } from '../../../Controllers/NetworkControllers/MapService';
 import { UserStorageController } from '../../../Controllers/StorageControllers/UserStorageController';
-const { ccclass, property } = _decorator;
+import { RadarRender } from '../../../Logic/RadarRender';
+const { ccclass } = _decorator;
 
 @ccclass('ModalRadarLogic')
 export class ModalRadarLogic extends Component {
@@ -24,12 +24,12 @@ export class ModalRadarLogic extends Component {
     public configTime: number;
     public timerCoroutine: any;
 
-    public radarRewardsTypes: string[][] = [
-        [TypesItems.PLAN_MERGE_TROOP_OVERLAND, TypesItems.PLAN_BUILD_BARRACK_OVERLAND, TypesItems.PLAN_MERGE_BARRACK_OVERLAND],
-        [TypesItems.PLAN_COMMAND_POST, TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE],
-        [TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE, TypesItems.GOLD_CHEST],
-        [TypesItems.PLAN_MERGE_TROOP_MARINE, TypesItems.PLAN_BUILD_BARRACK_MARINE, TypesItems.PLAN_MERGE_BARRACK_MARINE],
-        [TypesItems.PLAN_MERGE_TROOP_AIR, TypesItems.PLAN_BUILD_BARRACK_AIR, TypesItems.PLAN_MERGE_BARRACK_AIR]];
+    // public radarRewardsTypes: string[][] = [
+    //     [TypesItems.PLAN_MERGE_TROOP_OVERLAND, TypesItems.PLAN_BUILD_BARRACK_OVERLAND, TypesItems.PLAN_MERGE_BARRACK_OVERLAND],
+    //     [TypesItems.PLAN_COMMAND_POST, TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE],
+    //     [TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE, TypesItems.GOLD_CHEST],
+    //     [TypesItems.PLAN_MERGE_TROOP_MARINE, TypesItems.PLAN_BUILD_BARRACK_MARINE, TypesItems.PLAN_MERGE_BARRACK_MARINE],
+    //     [TypesItems.PLAN_MERGE_TROOP_AIR, TypesItems.PLAN_BUILD_BARRACK_AIR, TypesItems.PLAN_MERGE_BARRACK_AIR]];
 
     onLoad() {
         ModalRadarLogic.instance = this;
@@ -48,30 +48,30 @@ export class ModalRadarLogic extends Component {
     }
 
 
-    spawnNewTasks() {
-        MapService.getEnemy()
-    }
+    // spawnNewTasks() {
+    //     MapService.getEnemy()
+    // }
 
-    taskResponcer(arr: object[]) {
-        for (let l = 0; l < arr.length; l++) {
-            console.log()
-            if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
-                if (arr[l]['owner'] == UserStorageController.getAccountId()) {
-                    if (RadarStorageController.isTaskExists(arr[l]['id'])) {
-                        continue
-                    }
-                    const id = arr[l]['id']
-                    const type = arr[l]['type']
-                    const stars = arr[l]['stars']
-                    const battleTime = arr[l]['battleTime']
-                    let expiration = arr[l]['expiration']
-                    expiration = expiration - UserStorageController.getServerTime()
-                    RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
-                    console.log('создана задача')
-                }
-            }
-        }
-    }
+    // taskResponcer(arr: object[]) {
+    //     for (let l = 0; l < arr.length; l++) {
+    //         console.log()
+    //         if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
+    //             if (arr[l]['owner'] == UserStorageController.getAccountId()) {
+    //                 if (RadarStorageController.isTaskExists(arr[l]['id'])) {
+    //                     continue
+    //                 }
+    //                 const id = arr[l]['id']
+    //                 const type = arr[l]['type']
+    //                 const stars = arr[l]['stars']
+    //                 const battleTime = arr[l]['battleTime']
+    //                 let expiration = arr[l]['expiration']
+    //                 expiration = expiration - UserStorageController.getServerTime()
+    //                 RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
+    //                 console.log('создана задача')
+    //             }
+    //         }
+    //     }
+    // }
 
     calculationRadar() {
         let config = ConfigStorageController.getRadarConfigByLevel(RadarStorageController.getRadarLevel()); // получаем конфиг радара по уровню
@@ -104,7 +104,7 @@ export class ModalRadarLogic extends Component {
             RadarStorageController.reduceRadarTime(1);
             RadarStorageController.saveStorage();
             if (SecondaryInterface.instance.getTypeActiveFirstLayoutModal() == TypesModals.RADAR) {
-                ModalRadarInterface.instance.updateInterface();
+                RadarRender.instance.updateInterface()
             }
         }
         else {
@@ -112,23 +112,23 @@ export class ModalRadarLogic extends Component {
         }
     }
 
-    randomReward(stars: number): RadarReward[] {
-        let rewards = [];
-        let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
-        let level = GameStorageController.getLevel();
+    // randomReward(stars: number): RadarReward[] {
+    //     let rewards = [];
+    //     let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
+    //     let level = GameStorageController.getLevel();
 
-        let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
-        for (let i = 0; i < rewardTypes.length; i++) {
-            rewards.push(new RadarReward(rewardTypes[i], quantity));
-        }
+    //     let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
+    //     for (let i = 0; i < rewardTypes.length; i++) {
+    //         rewards.push(new RadarReward(rewardTypes[i], quantity));
+    //     }
 
-        let quantityExp = ConfigStorageController.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
-        rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
-        return rewards;
-    }
+    //     let quantityExp = ConfigStorageController.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
+    //     rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
+    //     return rewards;
+    // }
 
     signalGain() {
         RadarStorageController.addRadarSignalQuantity(1);
-        ModalRadarInterface.instance.updateInterface();
+        RadarRender.instance.updateInterface()
     }
 }

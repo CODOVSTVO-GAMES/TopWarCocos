@@ -17,6 +17,7 @@ import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 import { InitRewardAfterBattle } from '../Logic/InitRewardAfterBattle';
+import { HomeMapStorage } from '../Storage/HomeMapStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -88,7 +89,7 @@ export class Battle extends Component {
     private waves: number
     private currentWave: number
 
-    onLoad() {
+    public onLoad() {
         Battle.instance = this
 
         this.getTroopOwn()
@@ -369,7 +370,6 @@ export class Battle extends Component {
             }
             else if (this.howManyAliveEnemy() <= 0) {
                 this.endText.string = "ВЫИГРЫШ"
-
                 InitRewardAfterBattle.victory()
             }
             BattleStorage.instance.arrayOwn = new Array

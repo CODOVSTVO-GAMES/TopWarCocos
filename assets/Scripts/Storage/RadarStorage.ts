@@ -1,5 +1,5 @@
 import { _decorator, Component, CCInteger } from 'cc';
-import { RadarTask } from '../Structures/RadarTask';
+import { BattleTask } from '../Structures/BattleTask';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarStorage')
@@ -22,7 +22,7 @@ export class RadarStorage extends Component {
     @property({ type: CCInteger })
     public radarExperience: number
 
-    public tasks: RadarTask[] = []
+    public battleTasks: BattleTask[] = []
 
     public task: any
 

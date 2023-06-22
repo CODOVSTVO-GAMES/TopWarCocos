@@ -15,21 +15,19 @@ export class SpawnObjectsOnHomeMap {
             if (HomeMapStorageController.getObjectParameter(i) == null) continue
             if (HomeMapStorageController.getObjectParameter(i).index != i) continue
 
-            let location: string
+            let typeObject = HomeMapStorageController.getObjectParameter(i).type
+            let locationObject: string
+            let levelObject = HomeMapStorageController.getObjectParameter(i).level
+            let indexObject = HomeMapStorageController.getObjectParameter(i).index
 
-            if (HomeMapStorageController.getObjectParameter(i).type == TypesObjects.BARRACKS_MARINE || HomeMapStorageController.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
-                location = TypesLocation.WATER
+            if (typeObject == TypesObjects.BARRACKS_MARINE || typeObject == TypesObjects.TROOP_MARINE) {
+                locationObject = TypesLocation.WATER
             }
             else {
-                location = TypesLocation.EARTH
+                locationObject = TypesLocation.EARTH
             }
-            console.log("TYPE: " + HomeMapStorageController.getObjectParameter(i).type + " INDEX: " + HomeMapStorageController.getObjectParameter(i).index)
-            this.SpawnObjectsOnHomeMapPos(
-                HomeMapStorageController.getObjectParameter(i).type,
-                location,
-                HomeMapStorageController.getObjectParameter(i).level,
-                HomeMapStorageController.getObjectParameter(i).index
-            );
+
+            this.SpawnObjectsOnHomeMapPos(typeObject, locationObject, levelObject, indexObject)
         }
     }
 
@@ -39,6 +37,7 @@ export class SpawnObjectsOnHomeMap {
         let objectParameter = object.getComponent(ObjectParameters)
 
         HomeMapStorageController.setParent(object, index)
+
         objectParameter.type = type
         objectParameter.location = location
 
@@ -51,6 +50,12 @@ export class SpawnObjectsOnHomeMap {
         else if (type == TypesObjects.COMMAND_POST) {
             objectParameter.sizes = "3x3"
         }
+        else if (type == TypesObjects.WALL_4X4 || type == TypesObjects.BATTLE_4X4) {
+            objectParameter.sizes = "4x4"
+        }
+        else if (type == TypesObjects.WALL_8X8 || type == TypesObjects.BATTLE_8X8) {
+            objectParameter.sizes = "8x8"
+        }
         else {
             objectParameter.sizes = "2x2"
         }
@@ -62,6 +67,7 @@ export class SpawnObjectsOnHomeMap {
         if (type == TypesObjects.GOLD_MINE) {
             AutocombineStorageController.alo(objectParameter)
         }
+        
         return objectParameter
     }
 
@@ -69,6 +75,7 @@ export class SpawnObjectsOnHomeMap {
         let minDistance = 100000
         let indexeSpawnObject = 0
         let isSpawnObject = false
+
         for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
             let currentDistance: number = Vec3.distance(HomeMapStorageController.getCoordPosition(index), HomeMapStorageController.getCoordPosition(i))
             if (currentDistance < minDistance) {
@@ -87,6 +94,7 @@ export class SpawnObjectsOnHomeMap {
                 }
             }
         }
+
         if (isSpawnObject) {
             return this.SpawnObjectsOnHomeMapPos(type, location, level, indexeSpawnObject)
         }

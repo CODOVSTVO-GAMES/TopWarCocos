@@ -56,7 +56,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 67
+      "__id__": 69
     },
     "_id": "744fc833-9456-4b30-a2f3-125339ab5e26"
   },
@@ -840,16 +840,16 @@
         "__id__": 25
       },
       {
-        "__id__": 60
+        "__id__": 62
       },
       {
-        "__id__": 63
+        "__id__": 65
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 66
+        "__id__": 68
       }
     ],
     "_prefab": null,
@@ -940,6 +940,9 @@
       },
       {
         "__id__": 58
+      },
+      {
+        "__id__": 60
       }
     ],
     "_active": true,
@@ -2698,6 +2701,61 @@
   },
   {
     "__type__": "cc.Node",
+    "_name": "BarracksStorage",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 25
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 61
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "30PKqnI5dF77iArmQsi4sZ"
+  },
+  {
+    "__type__": "c178aO3Z6xMZKU2v6hphg+M",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 60
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_id": "33BVn6zTpACqh9caK3qPOr"
+  },
+  {
+    "__type__": "cc.Node",
     "_name": "Network",
     "_objFlags": 0,
     "_parent": {
@@ -2705,7 +2763,7 @@
     },
     "_children": [
       {
-        "__id__": 61
+        "__id__": 63
       }
     ],
     "_active": true,
@@ -2745,13 +2803,13 @@
     "_name": "NetworkClient",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 60
+      "__id__": 62
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 62
+        "__id__": 64
       }
     ],
     "_prefab": null,
@@ -2789,7 +2847,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 61
+      "__id__": 63
     },
     "_enabled": true,
     "__prefab": null,
@@ -2804,7 +2862,7 @@
     },
     "_children": [
       {
-        "__id__": 64
+        "__id__": 66
       }
     ],
     "_active": true,
@@ -2844,13 +2902,13 @@
     "_name": "BuferTasks",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 63
+      "__id__": 65
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 65
+        "__id__": 67
       }
     ],
     "_prefab": null,
@@ -2888,7 +2946,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 64
+      "__id__": 66
     },
     "_enabled": true,
     "__prefab": null,
@@ -2908,22 +2966,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 68
-    },
-    "shadows": {
-      "__id__": 69
-    },
-    "_skybox": {
       "__id__": 70
     },
-    "fog": {
+    "shadows": {
       "__id__": 71
     },
-    "octree": {
+    "_skybox": {
       "__id__": 72
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 73
+    },
+    "octree": {
+      "__id__": 74
+    },
+    "lightProbeInfo": {
+      "__id__": 75
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

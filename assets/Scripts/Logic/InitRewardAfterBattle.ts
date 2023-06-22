@@ -14,12 +14,9 @@ export class InitRewardAfterBattle {
     public static victory() {
         HomeMapStorage.instance.numberOpenZones += 1
 
-        console.log(HomeMapStorage.instance.temporaryLocalStorage)
-
         for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
             if (HomeMapStorage.instance.temporaryLocalStorage[i].index == BattleStorage.instance.indexObjectBattle) {
                 HomeMapStorage.instance.temporaryLocalStorage.splice(i, 1)
-                console.log(BattleStorage.instance.indexObjectBattle)
                 break
             }
         }
@@ -99,15 +96,12 @@ export class InitRewardAfterBattle {
         }
 
         for (let i = 0; i < this.arrayRewardObject.length; i++) {
-            console.log(this.arrayRewardObject[i].type)
             let objParam: ObjectParameters = new ObjectParameters
             objParam.type = this.arrayRewardObject[i].type
             objParam.level = this.arrayRewardObject[i].level
             objParam.index = this.arrayRewardObject[i].index
             HomeMapStorage.instance.temporaryLocalStorage.push(objParam)
         }
-
-        console.log(HomeMapStorage.instance.temporaryLocalStorage)
 
         this.arrayRewardObject = new Array
     }

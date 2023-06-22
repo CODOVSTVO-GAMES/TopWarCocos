@@ -1,10 +1,11 @@
 import { _decorator, Component, Node } from 'cc';
-import { RadarTask } from '../../../Structures/RadarTask';
+import { BattleTask } from '../../../Structures/BattleTask';
 import { BuferTasks } from '../../../Radar/BuferTasks';
 import { ModalRadarTaskInterface } from './ModalRadarTaskInterface';
-import { TypesRadar } from '../../../Static/TypesRadar';
+import { BattleTaskTypes } from '../../../Static/BattleTaskTypes';
 import { SecondaryInterface } from '../../SecondaryInterface';
 import { MapService } from '../../../Controllers/NetworkControllers/MapService';
+import { RadarStorageController } from '../../../Controllers/StorageControllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalRadarTaskLogic')
@@ -12,7 +13,7 @@ export class ModalRadarTaskLogic extends Component {
 
     public static instance: ModalRadarTaskLogic;
 
-    public task: RadarTask;
+    public taskId: number;
 
     onLoad() {
         ModalRadarTaskLogic.instance = this;
@@ -23,39 +24,33 @@ export class ModalRadarTaskLogic extends Component {
      */
 
     pushButton() {
-        if (this.task.type == TypesRadar.TASK_SALVATION) {
-            if (this.task.status < 1) {
-                BuferTasks.instance.addTaskSalvation(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task);
-                MapService.attackEnemy(this.task.id)
-            }
-        }
-        else if (this.task.type == TypesRadar.TASK_DARK_LEGION) {
-            if (this.task.status < 1) {
-                BuferTasks.instance.addTaskDarkLegion(this.task);
-                ModalRadarTaskInterface.instance.updateInterface(this.task);
-                MapService.attackEnemy(this.task.id)
-            }
-        }
-        else if (this.task.type == TypesRadar.TASK_PERSONAL) {
-            MapService.attackEnemy(this.task.id)
-            BuferTasks.instance.addTaskPersonal(this.task);
-            SecondaryInterface.instance.closeSecondLayoutModal();
-            SecondaryInterface.instance.closeAllModals();
+        RadarStorageController.activateTask(this.taskId)
+        // if (this.task.type == BattleTaskTypes.TASK_SALVATION) {
+        //     if (this.task.status < 1) {
 
-            let random = Math.floor(Math.random() * 100);
-            if (random < 25) {
-                SecondaryInterface.instance.openWireCut();
-            }
-            else if (random < 50) {
-                SecondaryInterface.instance.openBombDisposal();
-            }
-            else if (random < 75) {
-                SecondaryInterface.instance.openQuestion();
-            }
-            else {
-                SecondaryInterface.instance.openSwith();
-            }
-        }
+        //         BuferTasks.instance.addTaskSalvation(this.task);
+        //         ModalRadarTaskInterface.instance.updateInterface(this.task);
+        //     }
+        // }
+        // else if (this.task.type == BattleTaskTypes.TASK_PERSONAL) {
+        //     MapService.attackEnemy(this.task.id)
+        //     BuferTasks.instance.addTaskPersonal(this.task);
+        //     SecondaryInterface.instance.closeSecondLayoutModal();
+        //     SecondaryInterface.instance.closeAllModals();
+
+        //     let random = Math.floor(Math.random() * 100);
+        //     if (random < 25) {
+        //         SecondaryInterface.instance.openWireCut();
+        //     }
+        //     else if (random < 50) {
+        //         SecondaryInterface.instance.openBombDisposal();
+        //     }
+        //     else if (random < 75) {
+        //         SecondaryInterface.instance.openQuestion();
+        //     }
+        //     else {
+        //         SecondaryInterface.instance.openSwith();
+        //     }
+        // }
     }
 }

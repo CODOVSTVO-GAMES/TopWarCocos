@@ -72,11 +72,18 @@ export class HomeMapStorageController {
     }
 
     public static assigningSaveValuesLocal() {
-        for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
-            console.log("TYPE " + HomeMapStorage.instance.temporaryLocalStorage[i].type)
-            this.setObjectParameter(HomeMapStorage.instance.temporaryLocalStorage[i], HomeMapStorage.instance.temporaryLocalStorage[i].type, HomeMapStorage.instance.temporaryLocalStorage[i].index)
+        if (HomeMapStorage.instance.temporaryLocalStorage.length > 0) {
+            HomeMapStorage.instance.arrayObjectParameters = new Array(2000)
+            for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
+
+                let objectParameter = HomeMapStorage.instance.temporaryLocalStorage[i]
+                let typeObject = HomeMapStorage.instance.temporaryLocalStorage[i].type
+                let indexObject = HomeMapStorage.instance.temporaryLocalStorage[i].index
+
+                this.setObjectParameter(objectParameter, typeObject, indexObject)
+            }
+            HomeMapStorage.instance.temporaryLocalStorage = new Array
         }
-        HomeMapStorage.instance.temporaryLocalStorage = new Array<ObjectParameters>
     }
 
     public static setParent(object: Node, index: number) {
@@ -131,6 +138,7 @@ export class HomeMapStorageController {
     public static onTransparencyObjects(type: string, level: number) {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue
             if (HomeMapStorage.instance.arrayObjectParameters[i].type == type && HomeMapStorage.instance.arrayObjectParameters[i].level == level) continue
             HomeMapStorage.instance.arrayObjectParameters[i].onTransparencyObject()
         }
@@ -139,6 +147,7 @@ export class HomeMapStorageController {
     public static offTransparencyObjects() {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue
+            if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue
             HomeMapStorage.instance.arrayObjectParameters[i].offTransparencyObject()
         }
     }
@@ -267,7 +276,7 @@ export class HomeMapStorageController {
                 type: HomeMapStorage.instance.arrayObjectParameters[i].type,
                 level: HomeMapStorage.instance.arrayObjectParameters[i].level,
                 index: HomeMapStorage.instance.arrayObjectParameters[i].index
-            });
+            })
         }
         BufferStorageController.addItem(TypesStorages.HOME_MAP_STORAGE, obj)
     }
@@ -276,10 +285,13 @@ export class HomeMapStorageController {
         for (let i = 0; i < HomeMapStorage.instance.mapSize; i++) {
             if (HomeMapStorage.instance.arrayObjectParameters[i] == null) continue
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue
+
             let objParam: ObjectParameters = new ObjectParameters
+            
             objParam.type = HomeMapStorage.instance.arrayObjectParameters[i].type
             objParam.level = HomeMapStorage.instance.arrayObjectParameters[i].level
             objParam.index = HomeMapStorage.instance.arrayObjectParameters[i].index
+
             HomeMapStorage.instance.temporaryLocalStorage.push(objParam)
         }
     }

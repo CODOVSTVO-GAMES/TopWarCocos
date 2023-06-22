@@ -1,9 +1,8 @@
 import { _decorator, Color, Component, Node, Sprite } from 'cc';
-import { TypesRadar } from '../Static/TypesRadar';
-import { RadarTask } from '../Structures/RadarTask';
-import { ModalRadarRewardLogic } from '../UI/Modals/ModalRadarReward/ModalRadarRewardLogic';
+import { BattleTaskTypes } from '../Static/BattleTaskTypes';
+import { BattleTask } from '../Structures/BattleTask';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
-import { TypesModals } from '../Static/TypesModals';
+import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TaskRender')
@@ -21,7 +20,7 @@ export class TaskRender extends Component {
     @property({ type: Node })
     public stars: Node[] = [];
 
-    public radarTask: RadarTask;
+    public taskId: number = 0
 
     /**
      * рендер задачи: картинка, звезды, точка выполненности
@@ -29,43 +28,42 @@ export class TaskRender extends Component {
      * при нажатии на задачу открывается модалка информации о задаче, либо модалка награды
      */
 
-    render(radarTask: RadarTask) {
-        this.radarTask = radarTask;
-        if (radarTask != null) {
-            this.image.color = this.getSprite(radarTask.type);
-            for (let i = 0; i < this.stars.length; i++) { // отрисовывает активные звезды 
-                let isStarActive = i < radarTask.stars
-                this.stars[i].active = isStarActive
-            }
-            if (radarTask.status < 2) {
-                this.message.active = false;
-            }
-            else {
-                this.message.active = true;
-            }
+    render(taskId: number) {
+        this.taskId = taskId;
+        let task = RadarStorageController.getTaskById(taskId)
+        this.image.color = this.getSprite(task.type);
+        for (let i = 0; i < this.stars.length; i++) { // отрисовывает активные звезды 
+            let isStarActive = i < task.stars
+            this.stars[i].active = isStarActive
+        }
+        if (task.status < 2) {
+            this.message.active = false;
+        }
+        else {
+            this.message.active = true;
+        }
+    }
+
+    pushTask() {
+        let task = RadarStorageController.getTaskById(this.taskId)
+        if (task.status < 2) {
+            SecondaryInterface.instance.openRadarTaskInfo({ task: task });
+        }
+        else {
+            task.status = 3;
+            SecondaryInterface.instance.openRadarReward(task);
+            this.obj.destroy();
         }
     }
 
     getSprite(type: string): Color {
         switch (type) {
-            case TypesRadar.TASK_SALVATION:
+            case BattleTaskTypes.TASK_SALVATION:
                 return new Color(255, 0, 0, 255);
-            case TypesRadar.TASK_DARK_LEGION:
+            case BattleTaskTypes.TASK_DARK_LEGION:
                 return new Color(0, 255, 0, 255);
-            case TypesRadar.TASK_PERSONAL:
+            case BattleTaskTypes.TASK_PERSONAL:
                 return new Color(0, 0, 255, 255);
         }
     }
-
-    pushTask() {
-        if (this.radarTask.status < 2) {
-            SecondaryInterface.instance.openRadarTaskInfo({ task: this.radarTask });
-        }
-        else {
-            this.radarTask.status = 3;
-            SecondaryInterface.instance.openRadarReward(this.radarTask);
-            this.obj.destroy();
-        }
-    }
-
 }

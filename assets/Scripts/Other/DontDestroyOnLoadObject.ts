@@ -4,7 +4,7 @@ const { ccclass } = _decorator;
 @ccclass('DontDestroyOnLoadObject')
 export class DontDestroyOnLoadObject extends Component {
 
-    start() {
-        director.addPersistRootNode(this.node);
+    public start() {
+        director.addPersistRootNode(this.node)
     }
 }

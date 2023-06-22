@@ -1,5 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { Item } from '../Structures/Item';
+import { ItemBackpack } from '../Structures/ItemBackpack';
 const { ccclass } = _decorator;
 
 @ccclass('InventoryStorage')
@@ -7,7 +7,7 @@ export class BackpackStorage extends Component {
 
     public static instance: BackpackStorage
 
-    public inventory: Array<Item> = []
+    public inventory: Array<ItemBackpack> = []
 
     onLoad() {
         BackpackStorage.instance = this

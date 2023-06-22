@@ -1,21 +1,119 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, Vec2, Vec3 } from 'cc';
 import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../../Storage/RadarStorage';
-import { RadarTask } from '../../Structures/RadarTask';
+import { BattleTask } from '../../Structures/BattleTask';
 import { RadarReward } from '../../Structures/RadarReward';
 import { ConfigStorageController } from './ConfigStorageController';
-import { ModalRadarInterface } from '../../UI/Modals/ModalRadar/ModalRadarInterface';
 import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
 import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
 import { HomeMapStorageController } from './HomeMapStorageController';
 import { TypesObjects } from '../../Static/TypesObjects';
+import { MapService } from '../NetworkControllers/MapService';
+import { UserStorageController } from './UserStorageController';
+import { TypesItems } from '../../Static/TypesItems';
+import { GameStorageController } from './GameStorageController';
+import { RadarRender } from '../../Logic/RadarRender';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarStorageController')
 export class RadarStorageController {
 
     private static messageAnimation: MessageAnimation;
+
+    static getNewTasks() {
+        MapService.getEnemy()
+    }
+
+    static taskResponcer(arr: object[]) {
+        console.log('пришли задачи ')
+        console.log(arr)
+        for (let l = 0; l < arr.length; l++) {
+            if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
+                if (arr[l]['owner'] == UserStorageController.getAccountId()) {
+                    if (RadarStorageController.isTaskExists(arr[l]['id'])) {
+                        console.log('повторка')
+                        continue
+                    }
+
+                    const id = arr[l]['id']
+                    const type = arr[l]['type']
+                    const stars = arr[l]['stars']
+                    const battleTime = arr[l]['battleTime']
+                    let expiration = arr[l]['expiration']
+                    expiration = expiration - UserStorageController.getServerTime()
+                    RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
+                }
+            }
+        }
+        // console.log("задачи в массиве")
+        // console.log(RadarStorageController.getTasks())
+        RadarRender.instance.updateInterface()
+    }
+
+    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
+        RadarStorage.instance.battleTasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
+        console.log('создана задача ' + id)
+        console.log("задачи в массиве")
+        console.log(JSON.stringify(RadarStorageController.getTasks()))
+        console.log(RadarStorageController.getTasks())
+        this.updateRadarAnimation();
+    }
+
+    static activateTask(taskId: number) {
+        let task = this.getTaskById(taskId)
+        if (task.status == 0) {
+            task.status = 1
+        }
+        this.saveTask(task)
+        console.log('активирована задача ' + task.id)
+    }
+
+    static getTaskById(id: number) {
+        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
+            if (RadarStorage.instance.battleTasks[l].id = id) {
+                return RadarStorage.instance.battleTasks[l]
+            }
+        }
+    }
+
+    static doneTask() {
+
+    }
+
+    static getTasks(): BattleTask[] {
+        return RadarStorage.instance.battleTasks
+    }
+
+    static saveTask(task: BattleTask) {
+        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
+            if (task.id = RadarStorage.instance.battleTasks[l].id) {
+                RadarStorage.instance.battleTasks[l] = task
+                console.log('таск сохранен ' + task.id)
+                return
+            }
+        }
+        console.log('попытка сохранить задачу которой нет О_о')
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     static assignStartingValues() {
         RadarStorage.instance.radarLevel = 1;
@@ -33,17 +131,17 @@ export class RadarStorageController {
         RadarStorage.instance.availableMissions = json.availableMissions;
         RadarStorage.instance.timeToUpdate = json.timeToUpdate;
         RadarStorage.instance.signalQuality = json.signalQuality;
-        RadarStorage.instance.tasks = json.tasks;
+        RadarStorage.instance.battleTasks = json.tasks;
         RadarStorage.instance.radarExperience = json.radarExperience;
     }
 
-    static getRadarTasks(): RadarTask[] {
-        return RadarStorage.instance.tasks;
+    static getRadarTasks(): BattleTask[] {
+        return RadarStorage.instance.battleTasks;
     }
 
     static isTaskExists(id: number) {
-        for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
-            if (RadarStorage.instance.tasks[l].id == id) {
+        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
+            if (RadarStorage.instance.battleTasks[l].id == id) {
                 return true
             }
         }
@@ -77,11 +175,6 @@ export class RadarStorageController {
         this.updateRadarAnimation();
     }
 
-    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
-        RadarStorage.instance.tasks.push(new RadarTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime));
-        this.updateRadarAnimation();
-    }
-
     static addRadarSignalQuantity(value: number) {
         if (value == 0) return;
         RadarStorage.instance.signalQuality += value;
@@ -98,7 +191,8 @@ export class RadarStorageController {
             targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
             ModalRadarLogic.instance.calculationRadar();
         }
-        ModalRadarInterface.instance.updateInterface();
+        RadarRender.instance.updateInterface()
+
         this.saveStorage();
     }
 
@@ -108,11 +202,11 @@ export class RadarStorageController {
         this.saveStorage();
     }
 
-    static reduceRadarTask(task: RadarTask) {
+    static reduceRadarTask(task: BattleTask) {
         if (task == null) return;
-        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
-            if (RadarStorage.instance.tasks[i] == task) {
-                RadarStorage.instance.tasks.splice(i, 1);
+        for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
+            if (RadarStorage.instance.battleTasks[i] == task) {
+                RadarStorage.instance.battleTasks.splice(i, 1);
             }
         }
         this.saveStorage();
@@ -147,8 +241,8 @@ export class RadarStorageController {
 
     static updateRadarAnimation() {
         let status = 0;
-        for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
-            if (RadarStorage.instance.tasks[i].status < 2) {
+        for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
+            if (RadarStorage.instance.battleTasks[i].status < 2) {
                 if (status < 1) {
                     status = 1;
                 }
@@ -202,4 +296,41 @@ export class RadarStorageController {
         };
         BufferStorageController.addItem(TypesStorages.RADAR_STORAGE, obj);
     }
+
+
+    private static generateTaskCoords(): Vec3 {
+        let x = Math.floor(Math.random() * 200);
+        let y = Math.floor(Math.random() * 200);
+        if (Math.floor(Math.random() * 2) == 1) {
+            x *= -1;
+        }
+        if (Math.floor(Math.random() * 2) == 1) {
+            y *= -1;
+        }
+
+        return new Vec3(x, y, 0)
+    }
+
+    static randomReward(stars: number): RadarReward[] {
+        let rewards = [];
+        let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
+        let level = GameStorageController.getLevel();
+
+        let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
+        for (let i = 0; i < rewardTypes.length; i++) {
+            rewards.push(new RadarReward(rewardTypes[i], quantity));
+        }
+
+        let quantityExp = ConfigStorageController.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
+        rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
+        return rewards;
+    }
+
+    public static radarRewardsTypes: string[][] = [
+        [TypesItems.PLAN_MERGE_TROOP_OVERLAND, TypesItems.PLAN_BUILD_BARRACK_OVERLAND, TypesItems.PLAN_MERGE_BARRACK_OVERLAND],
+        [TypesItems.PLAN_COMMAND_POST, TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE],
+        [TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE, TypesItems.GOLD_CHEST],
+        [TypesItems.PLAN_MERGE_TROOP_MARINE, TypesItems.PLAN_BUILD_BARRACK_MARINE, TypesItems.PLAN_MERGE_BARRACK_MARINE],
+        [TypesItems.PLAN_MERGE_TROOP_AIR, TypesItems.PLAN_BUILD_BARRACK_AIR, TypesItems.PLAN_MERGE_BARRACK_AIR]];
+
 }

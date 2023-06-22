@@ -1,5 +1,5 @@
 import { _decorator, Component, Label, Node, Sprite, SpriteFrame, Animation } from 'cc';
-import { RadarTask } from '../../../Structures/RadarTask';
+import { BattleTask } from '../../../Structures/BattleTask';
 import { TypesItems } from '../../../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
@@ -35,7 +35,7 @@ export class ModalRadarRewardInterface extends Component {
      * при нажатии на задачу если она выполнена, отрисовка модалки выдачи наград
      */
 
-    updateInterface(task: RadarTask) {
+    updateInterface(task: BattleTask) {
         for (let i = 0; i < this.rewards.length; i++) {
             this.quantity[i].string = task.rewards[i].quantity.toString();
             switch (task.rewards[i].type) {

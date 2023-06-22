@@ -3,13 +3,12 @@ import { RadarStorageController } from '../../../Controllers/StorageControllers/
 import { ConfigStorageController } from '../../../Controllers/StorageControllers/ConfigStorageController';
 import { GameStorageController } from '../../../Controllers/StorageControllers/GameStorageController';
 import { TaskRender } from '../../../Radar/TaskRender';
-import { RadarTask } from '../../../Structures/RadarTask';
 const { ccclass, property } = _decorator;
 
-@ccclass('ModalRadarInterface')
-export class ModalRadarInterface extends Component {
+@ccclass('OLDModalRadarInterface')
+export class OLDModalRadarInterface extends Component {
 
-    public static instance: ModalRadarInterface;
+    public static instance: OLDModalRadarInterface;
 
     @property({ type: Node })
     public parentNode: Node;
@@ -47,7 +46,7 @@ export class ModalRadarInterface extends Component {
     public tasks: TaskRender[] = [];
 
     onLoad() {
-        ModalRadarInterface.instance = this;
+        // OLDModalRadarInterface.instance = this;
     }
 
 
@@ -76,66 +75,66 @@ export class ModalRadarInterface extends Component {
      * ререндер и спавн задач на локаторе
      */
 
-    updateInterface() {
-        let energy = GameStorageController.getEnergy();
-        let gems = GameStorageController.getGems();
-        let radarLevel = RadarStorageController.getRadarLevel();
-        let radarSignal = RadarStorageController.getRadarSignal();
-        let radarExperience = RadarStorageController.getRadarExperience();
-        let radarAvailableMissions = RadarStorageController.getRadarAvailableMissions();
-        let radarTime = RadarStorageController.getRadarTime();
-        let radarProgressNumber = ConfigStorageController.getRadarProgressNumberByLevel(radarLevel);
-        let configRadar = ConfigStorageController.getRadarConfigByLevel(radarLevel);
-        let cost;
-        if (radarSignal <= 1) {
-            cost = 0;
-        }
-        else {
-            cost = 10;
-        }
+    // updateInterface() {
+    //     let energy = GameStorageController.getEnergy();
+    //     let gems = GameStorageController.getGems();
+    //     let radarLevel = RadarStorageController.getRadarLevel();
+    //     let radarSignal = RadarStorageController.getRadarSignal();
+    //     let radarExperience = RadarStorageController.getRadarExperience();
+    //     let radarAvailableMissions = RadarStorageController.getRadarAvailableMissions();
+    //     let radarTime = RadarStorageController.getRadarTime();
+    //     let radarProgressNumber = ConfigStorageController.getRadarProgressNumberByLevel(radarLevel);
+    //     let configRadar = ConfigStorageController.getRadarConfigByLevel(radarLevel);
+    //     let cost;
+    //     if (radarSignal <= 1) {
+    //         cost = 0;
+    //     }
+    //     else {
+    //         cost = 10;
+    //     }
 
-        this.sliderLevel.fillRange = radarExperience / radarProgressNumber;
-        this.sliderEnergy.fillRange = energy / configRadar.maxEnergy;
-        this.gemsText.string = gems.toString();
-        this.levelText.string = "Ур. " + radarLevel;
-        this.energyText.string = energy + "/" + configRadar.maxEnergy;
-        this.tasksText.string = "Хранилище миссий " + radarAvailableMissions + "/" + configRadar.maxTasks;
-        this.timeText.string = "Миссии доступны в: " + radarTime;
-        this.signalText.string = radarSignal + "/5";
-        this.costText.string = cost > 0 ? cost.toString() : "Бесплатно";
-        this.renderLocator();
-    }
+    //     this.sliderLevel.fillRange = radarExperience / radarProgressNumber;
+    //     this.sliderEnergy.fillRange = energy / configRadar.maxEnergy;
+    //     this.gemsText.string = gems.toString();
+    //     this.levelText.string = "Ур. " + radarLevel;
+    //     this.energyText.string = energy + "/" + configRadar.maxEnergy;
+    //     this.tasksText.string = "Хранилище миссий " + radarAvailableMissions + "/" + configRadar.maxTasks;
+    //     this.timeText.string = "Миссии доступны в: " + radarTime;
+    //     this.signalText.string = radarSignal + "/5";
+    //     this.costText.string = cost > 0 ? cost.toString() : "Бесплатно";
+    //     this.renderLocator();
+    // }
 
-    renderLocator() {
-        let radarTasks = RadarStorageController.getRadarTasks();
-        for (let i = 0; i < radarTasks.length; i++) {
-            let result = false;
-            for (let j = 0; j < this.tasks.length; j++) {
-                if (radarTasks[i] == this.tasks[j].radarTask) { // если таск уже есть в массиве
-                    result = true;
-                }
-                if (i == 0) {
-                    if (this.tasks[j] != null) {
-                        this.tasks[j].render(this.tasks[j].radarTask);
-                    }
-                }
-            }
-            if (result == false && radarTasks[i].status < 3) {
-        let task = instantiate(this.taskPrefab);
-        task.setParent(this.parentNode);
-        let x = Math.floor(Math.random() * 200);
-        let y = Math.floor(Math.random() * 200);
-        if (Math.floor(Math.random() * 2) == 1) {
-            x *= -1;
-        }
-        if (Math.floor(Math.random() * 2) == 1) {
-            y *= -1;
-        }
-        task.position = new Vec3(x, y, 0);
-        let taskRender = task.getComponent(TaskRender);
-                taskRender.render(radarTasks[i]);
-        this.tasks.push(taskRender);
-            }
-        }
-    }
+    // renderLocator() {
+    //     let radarTasks = RadarStorageController.getRadarTasks();
+    //     for (let i = 0; i < radarTasks.length; i++) {
+    //         let result = false;
+    //         for (let j = 0; j < this.tasks.length; j++) {
+    //             if (radarTasks[i] == this.tasks[j].radarTask) { // если таск уже есть в массиве
+    //                 result = true;
+    //             }
+    //             if (i == 0) {
+    //                 if (this.tasks[j] != null) {
+    //                     this.tasks[j].render(this.tasks[j].radarTask);
+    //                 }
+    //             }
+    //         }
+    //         if (result == false && radarTasks[i].status < 3) {
+    //             let task = instantiate(this.taskPrefab);
+    //             task.setParent(this.parentNode);
+    //             let x = Math.floor(Math.random() * 200);
+    //             let y = Math.floor(Math.random() * 200);
+    //             if (Math.floor(Math.random() * 2) == 1) {
+    //                 x *= -1;
+    //             }
+    //             if (Math.floor(Math.random() * 2) == 1) {
+    //                 y *= -1;
+    //             }
+    //             task.position = new Vec3(x, y, 0);
+    //             let taskRender = task.getComponent(TaskRender);
+    //             taskRender.render(radarTasks[i]);
+    //             this.tasks.push(taskRender);
+    //         }
+    //     }
+    // }
 }
