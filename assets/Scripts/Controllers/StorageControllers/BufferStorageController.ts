@@ -7,7 +7,7 @@ export class BufferStorageController {
     static addItem(type: string, obj: Object) {
         if (obj == null) return;
         for (let i = 0; i < BufferStorage.instance.arrayBuffer.length; i++) {
-            if (BufferStorage.instance.arrayBuffer[i].name == type) {
+            if (BufferStorage.instance.arrayBuffer[i].nameStorage == type) {
                 BufferStorage.instance.arrayBuffer.splice(i, 1);
                 return BufferStorage.instance.arrayBuffer.push(new Buffer(type, obj));
             }

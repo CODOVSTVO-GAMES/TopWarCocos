@@ -171,7 +171,6 @@ export class TouchObject extends Component {
         }
 
         if (quantityMatches > 0) {
-
             if (CommandPostStorageController.getLevelAllMerge(this.objectParameters.type) > 0) {
                 if (this.objectParameters.level < CommandPostStorageController.getLevelAllMerge(this.objectParameters.type)) {
                     this.mergeObject(indexMerge)
@@ -190,13 +189,14 @@ export class TouchObject extends Component {
 
     private mergeObject(index: number) {
         HomeMapStorage.instance.selectedObject = null
+        BarracksLogic.instance.deleteBarrack(this.objectParameters.index)
         AutocombineStorageController.deleteGoldMine(this.objectParameters.index)
         FlightGameObjects.instance.moveMerge(this.mainObject, index)
     }
 
     private putAnObject(index: number) {
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR || this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-            BarracksLogic.updateIndexBarrack(this.objectParameters.index, index)
+            BarracksLogic.instance.updateIndexBarrack(this.objectParameters.index, index)
         }
         else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
             AutocombineStorageController.updateIndexGoldMine(this.objectParameters.index, index)

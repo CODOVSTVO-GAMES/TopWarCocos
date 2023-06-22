@@ -1,8 +1,9 @@
 import { UserStorageController } from "../StorageControllers/UserStorageController"
 import { ServerApi } from "./ServerApi"
+import { TypesStorages } from "../../Static/TypesStorages"
+import { LoadingGame } from "../../LoadingGame/LoadingGame"
 import { DataStorageDTO } from "../../Structures/DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../../Structures/DTO/DataStorageResponseDTO"
-import { NetworkClient } from "../../Network/NetworkClient"
 import { GameStorageController } from "../StorageControllers/GameStorageController"
 import { HomeMapStorageController } from "../StorageControllers/HomeMapStorageController"
 import { BackpackStorageController } from "../StorageControllers/BackpackStorageController"
@@ -10,12 +11,8 @@ import { CharactrerStorageController } from "../StorageControllers/CharactrerSto
 import { CommandPostStorageController } from "../StorageControllers/CommandPostStorageController"
 import { RadarStorageController } from "../StorageControllers/RadarStorageController"
 import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController"
-import { RedirectionToScene } from "../../Other/RedirectionToScene"
-import { SceneNames } from "../../Static/SceneNames"
-import { TypesStorages } from "../../Static/TypesStorages"
-import { PaymentsService } from "./PaymentsService"
-import { LoadingGame } from "../../LoadingGame/LoadingGame"
 import { BarracksStorageController } from "../StorageControllers/BarracksStorageController"
+import { TasksGameStorageController } from "../StorageControllers/TasksGameStorageController"
 
 export class DataStorageService {
 
@@ -47,6 +44,7 @@ export class DataStorageService {
             RadarStorageController.assignStartingValues()
             AutocombineStorageController.assignStartingValues()
             BarracksStorageController.assignStartingValues()
+            TasksGameStorageController.assignStartingValues()
             LoadingGame.getPostData()
             return;
         }
@@ -81,6 +79,12 @@ export class DataStorageService {
             }
             else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
                 BarracksStorageController.assigningSaveValues(jsonValue)
+            }
+            else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
+                BarracksStorageController.assigningSaveValues(jsonValue)
+            }
+            else if (json['key'] == TypesStorages.TASKS_GAME_STORAGE) {
+                TasksGameStorageController.assigningSaveValues(jsonValue)
             }
         }
         LoadingGame.getPostData()

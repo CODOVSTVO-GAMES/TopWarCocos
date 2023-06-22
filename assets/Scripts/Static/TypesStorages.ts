@@ -7,5 +7,6 @@ export class TypesStorages {
     public static RADAR_STORAGE: string = "radarStorage"
     public static AUTOCOMBINE_STORAGE: string = "autocombineStorage"
     public static BARRACKS_STORAGE: string = "barracksStorage"
+    public static TASKS_GAME_STORAGE: string = "tasksGameStorage"
 }
 

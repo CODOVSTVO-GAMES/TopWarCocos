@@ -3,9 +3,9 @@ export class Autocombine {
     public indexGoldMine: number
     public timeProfit: number
 
-    constructor(level: number, index: number, time: number) {
-        this.levelGoldMine = level
-        this.indexGoldMine = index
-        this.timeProfit = time
+    constructor(levelGoldMine: number, indexGoldMine: number, timeProfit: number) {
+        this.levelGoldMine = levelGoldMine
+        this.indexGoldMine = indexGoldMine
+        this.timeProfit = timeProfit
     }
 }
