@@ -19,11 +19,12 @@ export class MapService {
         }
     }
 
+
     static getEnemy() {
-        let level = RadarStorageController.getRadarLevel()
-        let config = ConfigStorageController.getRadarConfigByLevel(level)
-        let battlesNumber = config.displayedTasks
-        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), battlesNumber), MapService.parseEnemyGetResponce);
+        // let level = RadarStorageController.getRadarLevel()
+        // let config = ConfigStorageController.getRadarConfigByLevel(level)
+        // let battlesNumber = config.displayedTasks
+        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, 2), MapService.parseEnemyGetResponce);
     }
 
     static parseEnemyGetResponce(data: any, isDone: boolean) {
@@ -36,21 +37,18 @@ export class MapService {
         }
     }
 
-    static attackEnemy(taskId: number) {
-        ServerApi.post('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, taskId), MapService.parseAttackResponse)
+
+    static attackStatus(taskId: number, status: number) {
+        ServerApi.post('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), status, 0, taskId), MapService.parseAttackResponse)
     }
 
-    static attackWin(taskId: number) {
-        console.log(taskId)
-        ServerApi.post('map/win', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameStorageController.getLevel(), 0, taskId, true), MapService.parseAttackResponse)
-    }
 
     static parseAttackResponse(data: any, isDone: boolean) {
         if (!isDone) console.log("attack error")
         // console.log("----------")
         // console.log("--" + JSON.stringify(data))
-        GlobalMapStorageController.buildingsHandler(data)
-        RadarStorageController.taskResponcer(data)
+        // GlobalMapStorageController.buildingsHandler(data)
+        // RadarStorageController.taskResponcer(data)
     }
 
 }

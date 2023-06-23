@@ -10,13 +10,18 @@ export class RadarLogic extends Component {
 
     public static instance: RadarLogic
 
+    private timing = 1
+
+
     protected onLoad(): void {
         RadarLogic.instance = this
-        this.schedule(this.taskProcessing, 1)
+        this.schedule(this.taskProcessing, this.timing)
     }
 
     taskProcessing() {
         let tasks = RadarStorage.instance.tasks
+
+        let deleteTasks: BattleTask[] = []
         for (let l = 0; l < tasks.length; l++) {
             // console.log(l + " " + tasks[l].id)
             if (tasks[l].status == 0) {
@@ -27,15 +32,18 @@ export class RadarLogic extends Component {
                 this.battle(tasks[l])
             }
             else if (tasks[l].status == 3) {
-                console.log('появилась выполненая задача')
-                this.deleteFromServer(tasks[l])
+                // this.deleteTask(tasks[l])
+                deleteTasks.push(tasks[l])
             }
+        }
+        if (deleteTasks.length > 0) {
+            this.deleteTask(deleteTasks)
         }
     }
 
     expiration(task: BattleTask) {
         if (task.expiration >= 0) {
-            task.expiration = task.expiration - 1
+            task.expiration = task.expiration - this.timing
         } else {
             console.log('время задачи истекло')
             task.status = 3
@@ -44,16 +52,27 @@ export class RadarLogic extends Component {
 
     battle(task: BattleTask) {
         if (task.battleTime >= 0) {
-            task.battleTime = task.battleTime - 1
+            task.battleTime = task.battleTime - this.timing
         } else {
             console.log("задача выполнена")
             task.status = 2
         }
     }
 
-    deleteFromServer(task: BattleTask) {
-        MapService.attackWin(task.id)
-    }
+    async deleteTask(tasks: BattleTask[]) {
+        for (let l = 0; l < tasks.length; l++) {
+            for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
 
+                if (RadarStorage.instance.tasks[l].id = tasks[l].id) {
+                    MapService.attackStatus(tasks[l].id, tasks[l].status)
+                    RadarStorage.instance.tasks.splice(l, 1)
+                    break
+                }
+
+            }
+        }
+
+        MapService.getEnemy()
+    }
 }
 

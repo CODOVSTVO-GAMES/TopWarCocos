@@ -6,9 +6,9 @@ export class MapDTO {
     level: number
     battlesNumber: number
     taskId: number
-    taskStatus: boolean
+    taskStatus: number
 
-    constructor(accountId: string, zone: string, x: number, y: number, level: number, battlesNumber = 0, taskId = 0, taskStatus= false) {
+    constructor(accountId: string, zone: string, x: number, y: number, level: number, taskStatus = 0, battlesNumber = 0, taskId = 0) {
         this.accountId = accountId
         this.zone = zone
         this.x = x

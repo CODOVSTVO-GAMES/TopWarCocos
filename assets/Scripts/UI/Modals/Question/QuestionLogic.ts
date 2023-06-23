@@ -1,6 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
 import { QuestionInterface } from './QuestionInterface';
-import { BuferTasks } from '../../../Radar/BuferTasks';
 import { SecondaryInterface } from '../../SecondaryInterface';
 const { ccclass, property } = _decorator;
 
@@ -39,7 +38,7 @@ export class QuestionLogic extends Component {
             QuestionInterface.instance.updateInterface(this.textButtons[customEventData], this.textButtons);
             setTimeout(() => {
                 SecondaryInterface.instance.closeAllModals();
-                BuferTasks.instance.awardingPersonal();
+                // BuferTasks.instance.awardingPersonal();
             }, 1000);
         }
     }

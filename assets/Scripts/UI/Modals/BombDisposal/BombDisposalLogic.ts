@@ -1,7 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { BombDisposalInterface } from './BombDisposalInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
-import { BuferTasks } from '../../../Radar/BuferTasks';
 const { ccclass, property } = _decorator;
 
 @ccclass('BombDisposalLogic')
@@ -29,7 +28,7 @@ export class BombDisposalLogic extends Component {
         if (this.resultText.length >= 4) {
             if (this.resultText == this.taskText) {
                 SecondaryInterface.instance.closeAllModals();
-                BuferTasks.instance.awardingPersonal();
+                // BuferTasks.instance.awardingPersonal();
             }
             else {
                 if (this.triggerDelete == false) {
