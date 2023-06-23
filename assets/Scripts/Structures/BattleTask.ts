@@ -1,4 +1,4 @@
-import { RadarReward } from "./RadarReward";
+import { QuantityItem } from "./QuantityItem";
 import { _decorator, Node, Vec3 } from 'cc';
 
 export class BattleTask {
@@ -8,11 +8,11 @@ export class BattleTask {
     expiration: number
     battleTime: number
     status: number // 0 - задача доступна для выполнения, 1 - задача выполняется, 2 - задача выполнена доступен сбор награды, 3 - награда собрана
-    rewards: RadarReward[]
+    rewards: QuantityItem[]
     node: Node
     coords: Vec3
 
-    constructor(id: number, type: string, stars: number, expiration: number, status: number, rewards: RadarReward[], battleTimme: number, coords: Vec3, node = null) {
+    constructor(id: number, type: string, stars: number, expiration: number, status: number, rewards: QuantityItem[], battleTimme: number, coords: Vec3, node = null) {
         this.id = id
         this.type = type
         this.stars = stars
