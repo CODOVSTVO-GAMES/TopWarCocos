@@ -7,7 +7,7 @@ export class BarraksStorage extends Component {
 
     public static instance: BarraksStorage
 
-    public storage: Array<Barrack> = []
+    public arrayBarracks: Array<Barrack> = []
 
     public onLoad() {
         BarraksStorage.instance = this

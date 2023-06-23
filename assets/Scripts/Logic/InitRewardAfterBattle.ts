@@ -94,6 +94,171 @@ export class InitRewardAfterBattle {
             this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
             this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
         }
+        else if (BattleStorage.instance.numberBattle == 15) {
+            // Победа на зоне 15
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 16) {
+            // Победа на зоне 16
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 17) {
+            // Победа на зоне 17
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 18) {
+            // Победа на зоне 18
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 19) {
+            // Победа на зоне 19
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 20) {
+            // Победа на зоне 20
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 21) {
+            // Победа на зоне 21
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 22) {
+            // Победа на зоне 22
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 23) {
+            // Победа на зоне 23
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 24) {
+            // Победа на зоне 24
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 25) {
+            // Победа на зоне 25
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 26) {
+            // Победа на зоне 26
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 27) {
+            // Победа на зоне 27
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 28) {
+            // Победа на зоне 28
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 29) {
+            // Победа на зоне 29
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 30) {
+            // Победа на зоне 30
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 31) {
+            // Победа на зоне 31
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 32) {
+            // Победа на зоне 32
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 33) {
+            // Победа на зоне 33
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 34) {
+            // Победа на зоне 34
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 35) {
+            // Победа на зоне 35
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 36) {
+            // Победа на зоне 36
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 37) {
+            // Победа на зоне 37
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 38) {
+            // Победа на зоне 38
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 39) {
+            // Победа на зоне 39
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 40) {
+            // Победа на зоне 40
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 41) {
+            // Победа на зоне 41
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 42) {
+            // Победа на зоне 42
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 43) {
+            // Победа на зоне 43
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 44) {
+            // Победа на зоне 44
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 45) {
+            // Победа на зоне 45
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 46) {
+            // Победа на зоне 46
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
+        else if (BattleStorage.instance.numberBattle == 47) {
+            // Победа на зоне 47
+            this.arrayRewardObject.push(new salam(TypesObjects.TREASURES, 1, 1))
+            this.arrayRewardObject.push(new salam(TypesObjects.WALL_2X2, 1, 1))
+        }
 
         for (let i = 0; i < this.arrayRewardObject.length; i++) {
             let objParam: ObjectParameters = new ObjectParameters

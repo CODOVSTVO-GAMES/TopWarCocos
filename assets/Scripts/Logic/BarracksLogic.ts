@@ -18,63 +18,63 @@ export class BarracksLogic extends Component {
     }
 
     public timer() {
-        for (let i = 0; i < BarraksStorage.instance.storage.length; i++) {
-            for (let j = 0; j < BarraksStorage.instance.storage[i].queueSpawnObject.length; j++) {
+        for (let i = 0; i < BarraksStorage.instance.arrayBarracks.length; i++) {
+            for (let j = 0; j < BarraksStorage.instance.arrayBarracks[i].queueSpawnObject.length; j++) {
 
-                BarraksStorage.instance.storage[i].queueSpawnObject[j].timeTroop -= 1
+                BarraksStorage.instance.arrayBarracks[i].queueSpawnObject[j].timeTroop -= 1
 
-                if (BarraksStorage.instance.storage[i].queueSpawnObject[j].timeTroop <= 0) {
-                    let typeTroop = BarraksStorage.instance.storage[i].queueSpawnObject[j].typeTroop
+                if (BarraksStorage.instance.arrayBarracks[i].queueSpawnObject[j].timeTroop <= 0) {
+                    let typeTroop = BarraksStorage.instance.arrayBarracks[i].queueSpawnObject[j].typeTroop
                     let locationTroop: string
-                    let levelTroop = BarraksStorage.instance.storage[i].queueSpawnObject[j].levelTroop
-                    let indexBarrack = BarraksStorage.instance.storage[i].indexBarrack
+                    let levelTroop = BarraksStorage.instance.arrayBarracks[i].queueSpawnObject[j].levelTroop
+                    let indexBarrack = BarraksStorage.instance.arrayBarracks[i].indexBarrack
 
                     SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeTroop, locationTroop, levelTroop, indexBarrack)
-                    BarraksStorage.instance.storage[i].queueSpawnObject.splice(j, 1)
+                    BarraksStorage.instance.arrayBarracks[i].queueSpawnObject.splice(j, 1)
                 }
             }
         }
         BarracksStorageController.saveStorage()
     }
 
-    public addTroops(typeTroop: string, levelTroop: number, indexBarrack: number) {
+    public addTroop(typeTroop: string, levelTroop: number, indexBarrack: number) {
 
         let timeSpawnTroop = ConfigStorageController.getTimeCreationUnitsByTypeAndLevel(typeTroop, levelTroop)
 
-        for (let i = 0; i < BarraksStorage.instance.storage.length; i++) {
-            if (BarraksStorage.instance.storage[i].indexBarrack == indexBarrack) {
-                if (BarraksStorage.instance.storage[i].queueSpawnObject.length < 5) {
+        for (let i = 0; i < BarraksStorage.instance.arrayBarracks.length; i++) {
+            if (BarraksStorage.instance.arrayBarracks[i].indexBarrack == indexBarrack) {
+                if (BarraksStorage.instance.arrayBarracks[i].queueSpawnObject.length < 5) {
 
-                    BarraksStorage.instance.storage[i].queueSpawnObject.push(new QueueBarrack(typeTroop, levelTroop, timeSpawnTroop))
+                    BarraksStorage.instance.arrayBarracks[i].queueSpawnObject.push(new QueueBarrack(typeTroop, levelTroop, timeSpawnTroop))
                     return
                 }
                 else return
             }
         }
 
-        BarraksStorage.instance.storage.push(new Barrack(indexBarrack))
+        BarraksStorage.instance.arrayBarracks.push(new Barrack(indexBarrack))
 
-        if (BarraksStorage.instance.storage[BarraksStorage.instance.storage.length - 1].queueSpawnObject == null) {
-            BarraksStorage.instance.storage[BarraksStorage.instance.storage.length - 1].queueSpawnObject = new Array
+        if (BarraksStorage.instance.arrayBarracks[BarraksStorage.instance.arrayBarracks.length - 1].queueSpawnObject == null) {
+            BarraksStorage.instance.arrayBarracks[BarraksStorage.instance.arrayBarracks.length - 1].queueSpawnObject = new Array
         }
 
-        BarraksStorage.instance.storage[BarraksStorage.instance.storage.length - 1].queueSpawnObject.push(new QueueBarrack(typeTroop, levelTroop, timeSpawnTroop))
+        BarraksStorage.instance.arrayBarracks[BarraksStorage.instance.arrayBarracks.length - 1].queueSpawnObject.push(new QueueBarrack(typeTroop, levelTroop, timeSpawnTroop))
         BarracksStorageController.saveStorage()
     }
 
     public updateIndexBarrack(oldIndex: number, newIndex: number) {
-        for (let i = 0; i < BarraksStorage.instance.storage.length; i++) {
-            if (BarraksStorage.instance.storage[i].indexBarrack == oldIndex) {
-                BarraksStorage.instance.storage[i].indexBarrack = newIndex
+        for (let i = 0; i < BarraksStorage.instance.arrayBarracks.length; i++) {
+            if (BarraksStorage.instance.arrayBarracks[i].indexBarrack == oldIndex) {
+                BarraksStorage.instance.arrayBarracks[i].indexBarrack = newIndex
                 break
             }
         }
     }
 
     public deleteBarrack(indexBarrack: number) {
-        for (let i = 0; i < BarraksStorage.instance.storage.length; i++) {
-            if (BarraksStorage.instance.storage[i].indexBarrack == indexBarrack) {
-                BarraksStorage.instance.storage.slice(i, 1)
+        for (let i = 0; i < BarraksStorage.instance.arrayBarracks.length; i++) {
+            if (BarraksStorage.instance.arrayBarracks[i].indexBarrack == indexBarrack) {
+                BarraksStorage.instance.arrayBarracks.slice(i, 1)
             }
         }
     }
