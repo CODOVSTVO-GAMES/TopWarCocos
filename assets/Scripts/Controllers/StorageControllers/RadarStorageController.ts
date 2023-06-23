@@ -3,7 +3,7 @@ import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../../Storage/RadarStorage';
 import { BattleTask } from '../../Structures/BattleTask';
-import { RadarReward } from '../../Structures/RadarReward';
+import { QuantityItem } from '../../Structures/QuantityItem';
 import { ConfigStorageController } from './ConfigStorageController';
 import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
 import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
@@ -50,7 +50,7 @@ export class RadarStorageController {
         RadarRender.instance.updateInterface()
     }
 
-    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
+    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: QuantityItem[], battleTime: number) {
         RadarStorage.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
         this.updateRadarAnimation();
     }
@@ -283,18 +283,18 @@ export class RadarStorageController {
         return new Vec3(x, y, 0)
     }
 
-    static randomReward(stars: number): RadarReward[] {
+    static randomReward(stars: number): QuantityItem[] {
         let rewards = [];
         let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
         let level = GameStorageController.getLevel();
 
         let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
         for (let i = 0; i < rewardTypes.length; i++) {
-            rewards.push(new RadarReward(rewardTypes[i], quantity));
+            rewards.push(new QuantityItem(rewardTypes[i], quantity));
         }
 
         let quantityExp = ConfigStorageController.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
-        rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
+        rewards.push(new QuantityItem(TypesItems.EXPERIENCE, quantityExp));
         return rewards;
     }
 

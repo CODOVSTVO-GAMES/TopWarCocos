@@ -9,4 +9,20 @@ export class TasksGameLogic extends Component {
     public onLoad() {
         TasksGameLogic.instance = this
     }
+
+    public addTaks() {
+        console.log()
+    }
+
+    public checkTask() {
+        console.log()
+    }
+
+    public endTask() {
+        console.log()
+    }
+
+    public deleteTask() {
+        console.log()
+    }
 }

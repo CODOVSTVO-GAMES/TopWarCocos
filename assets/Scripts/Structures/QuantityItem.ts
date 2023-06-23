@@ -1,4 +1,4 @@
-export class RadarReward {
+export class QuantityItem {
     type: string;
     quantity: number;
 

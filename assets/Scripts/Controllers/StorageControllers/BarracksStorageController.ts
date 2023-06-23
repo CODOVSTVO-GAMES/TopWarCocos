@@ -7,24 +7,24 @@ import { Barrack } from '../../Structures/Barrack';
 export class BarracksStorageController {
 
     public static assignStartingValues() {
-        BarraksStorage.instance.storage = new Array
+        BarraksStorage.instance.arrayBarracks = new Array
     }
 
     public static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))
 
-            BarraksStorage.instance.storage.push(new Barrack(json.index))
-            BarraksStorage.instance.storage[i].queueSpawnObject = json.test
+            BarraksStorage.instance.arrayBarracks.push(new Barrack(json.index))
+            BarraksStorage.instance.arrayBarracks[i].queueSpawnObject = json.test
         }
     }
 
     public static saveStorage() {
         let obj: Object[] = []
-        for (let i = 0; i < BarraksStorage.instance.storage.length; i++) {
+        for (let i = 0; i < BarraksStorage.instance.arrayBarracks.length; i++) {
             obj.push({
-                index: BarraksStorage.instance.storage[i].indexBarrack,
-                test: BarraksStorage.instance.storage[i].queueSpawnObject
+                index: BarraksStorage.instance.arrayBarracks[i].indexBarrack,
+                test: BarraksStorage.instance.arrayBarracks[i].queueSpawnObject
             });
         }
         BufferStorageController.addItem(TypesStorages.BARRACKS_STORAGE, obj)

@@ -1,4 +1,4 @@
-import { TaskReward } from "./TaskReward"
+import { QuantityItem } from "./QuantityItem"
 import { Unit } from "./Unit"
 
 export class MapEnemyBattle {
@@ -10,9 +10,9 @@ export class MapEnemyBattle {
 
     power: number
 
-    reward: TaskReward[]
+    reward: QuantityItem[]
 
-    constructor(mapNumer: number, units1: Unit[], units2: Unit[], units3: Unit[], power: number, reward: TaskReward[]) {
+    constructor(mapNumer: number, units1: Unit[], units2: Unit[], units3: Unit[], power: number, reward: QuantityItem[]) {
         this.mapNumber = mapNumer
 
         this.units1 = units1

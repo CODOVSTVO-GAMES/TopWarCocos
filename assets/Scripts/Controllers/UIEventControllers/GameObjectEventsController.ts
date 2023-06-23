@@ -96,7 +96,7 @@ export class GameObjectEventsController {
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        BarracksLogic.instance.addTroops(typeObject, levelObject, indexObject)
+        BarracksLogic.instance.addTroop(typeObject, levelObject, indexObject)
     }
 
     private static processingBarrackMarine(objectParameters: ObjectParameters) {
@@ -104,7 +104,7 @@ export class GameObjectEventsController {
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        BarracksLogic.instance.addTroops(typeObject, levelObject, indexObject)
+        BarracksLogic.instance.addTroop(typeObject, levelObject, indexObject)
     }
 
     private static processingBarrackOverland(objectParameters: ObjectParameters) {
@@ -112,7 +112,7 @@ export class GameObjectEventsController {
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        BarracksLogic.instance.addTroops(typeObject, levelObject, indexObject)
+        BarracksLogic.instance.addTroop(typeObject, levelObject, indexObject)
     }
 
     private static processingCommandPost() {
@@ -196,7 +196,7 @@ export class GameObjectEventsController {
         let typeLocation = TypesLocation.EARTH
         let levelObject = 1
         let indexObject = objectParameters.index
-
+        
         SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
         objectParameters.node.destroy()
     }
