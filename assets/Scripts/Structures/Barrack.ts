@@ -1,8 +1,10 @@
+import { QueueBarrack } from "./QueueBarrack"
+
 export class Barrack {
     public indexBarrack: number
-    public queueSpawnObject: Object[]
+    public queueSpawnObject: QueueBarrack[]
 
-    constructor(index: number) {
-        this.indexBarrack = index
+    constructor(indexBarrack: number) {
+        this.indexBarrack = indexBarrack
     }
 }
