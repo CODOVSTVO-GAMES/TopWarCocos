@@ -48,7 +48,7 @@ export class ModalRadarTaskInterface extends Component {
 
     onLoad() {
         ModalRadarTaskInterface.instance = this;
-        this.schedule(this.renderModalTask, 1)
+        this.schedule(this.renderModalTask, 0.1)
     }
 
     /**r
@@ -58,9 +58,8 @@ export class ModalRadarTaskInterface extends Component {
 
     renderModalTask() {
         if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO) {
-            console.log('process')
             const task = ModalRadarTaskLogic.instance.task
-            console.log('отрисовываем задачу ' + task.id)
+            // console.log('отрисовываем задачу ' + task.id)
             if (task.status == 0) {
                 this.status.string = "Не началось";
                 this.btnText.string = "Перейти";

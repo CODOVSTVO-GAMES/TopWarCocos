@@ -15,7 +15,7 @@ import { Unit } from '../Structures/Unit';
 import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
 import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
-import { TaskReward } from '../Structures/TaskReward';
+import { QuantityItem } from '../Structures/QuantityItem';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
 const { ccclass } = _decorator;
 
@@ -214,133 +214,133 @@ export class ConfigStorage extends Component {
 
                     //награды
 
-                    let reward: TaskReward[] = []
+                    let reward: QuantityItem[] = []
 
                     if (this.isNotNullOrNotUndefined(value[l].b)) {
-                        reward.push(new TaskReward(TypesItems.BUNKER, value[l].b))
+                        reward.push(new QuantityItem(TypesItems.BUNKER, value[l].b))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].t)) {
-                        reward.push(new TaskReward(TypesItems.TREASURE, value[l].t))
+                        reward.push(new QuantityItem(TypesItems.TREASURE, value[l].t))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].tr)) {
-                        reward.push(new TaskReward(TypesItems.TRASH, value[l].tr))
+                        reward.push(new QuantityItem(TypesItems.TRASH, value[l].tr))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].mani)) {
-                        reward.push(new TaskReward(TypesItems.MANIPULATOR, value[l].mani))
+                        reward.push(new QuantityItem(TypesItems.MANIPULATOR, value[l].mani))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].main)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_COMMAND_POST, value[l].main))
+                        reward.push(new QuantityItem(TypesItems.PLAN_COMMAND_POST, value[l].main))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].msv)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].msv))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].msv))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].mvmf)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_MARINE, value[l].mvmf))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, value[l].mvmf))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].mvvs)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].mvvs))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].mvvs))
                     }
 
 
 
                     if (this.isNotNullOrNotUndefined(value[l].cob)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_BARRACK_AIR, value[l].cob))
+                        reward.push(new QuantityItem(TypesItems.PLAN_BUILD_BARRACK_AIR, value[l].cob))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].cvb)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_BARRACK_MARINE, value[l].cvb))
+                        reward.push(new QuantityItem(TypesItems.PLAN_BUILD_BARRACK_MARINE, value[l].cvb))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].cab)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_BARRACK_AIR, value[l].cab))
+                        reward.push(new QuantityItem(TypesItems.PLAN_BUILD_BARRACK_AIR, value[l].cab))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].cm)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_BUILD_GOLD_MINE, value[l].cm))
+                        reward.push(new QuantityItem(TypesItems.PLAN_BUILD_GOLD_MINE, value[l].cm))
                     }
 
 
 
                     if (this.isNotNullOrNotUndefined(value[l].mob)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].mob))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, value[l].mob))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].mvb)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_MARINE, value[l].mvb))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, value[l].mvb))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].mab)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].mab))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].mab))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].mm)) {
-                        reward.push(new TaskReward(TypesItems.PLAN_MERGE_GOLD_MINE, value[l].mm))
+                        reward.push(new QuantityItem(TypesItems.PLAN_MERGE_GOLD_MINE, value[l].mm))
                     }
 
 
 
                     if (this.isNotNullOrNotUndefined(value[l].bw)) {
-                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_WHITE, value[l].bw))
+                        reward.push(new QuantityItem(TypesItems.BOOK_EXPERIENCE_WHITE, value[l].bw))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].bg)) {
-                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_GREEN, value[l].bg))
+                        reward.push(new QuantityItem(TypesItems.BOOK_EXPERIENCE_GREEN, value[l].bg))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].bv)) {
-                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_PURPLE, value[l].bv))
+                        reward.push(new QuantityItem(TypesItems.BOOK_EXPERIENCE_PURPLE, value[l].bv))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].bb)) {
-                        reward.push(new TaskReward(TypesItems.BOOK_EXPERIENCE_BLUE, value[l].bb))
+                        reward.push(new QuantityItem(TypesItems.BOOK_EXPERIENCE_BLUE, value[l].bb))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].fb)) {
-                        reward.push(new TaskReward(TypesItems.FRAGMENT_BLUE, value[l].fb))
+                        reward.push(new QuantityItem(TypesItems.FRAGMENT_BLUE, value[l].fb))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].ph)) {
-                        reward.push(new TaskReward(TypesItems.TICKET_PREMIUM, value[l].ph))
+                        reward.push(new QuantityItem(TypesItems.TICKET_PREMIUM, value[l].ph))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].pe)) {
-                        reward.push(new TaskReward(TypesItems.TICKET_ELITE, value[l].pe))
+                        reward.push(new QuantityItem(TypesItems.TICKET_ELITE, value[l].pe))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].rh)) {
-                        reward.push(new TaskReward(TypesItems.TICKET_NORMAL, value[l].rh))
+                        reward.push(new QuantityItem(TypesItems.TICKET_NORMAL, value[l].rh))
                     }
 
 
                     if (this.isNotNullOrNotUndefined(value[l].ct)) {
-                        reward.push(new TaskReward(TypesItems.TECHNICAL_CHEST, value[l].ct))
+                        reward.push(new QuantityItem(TypesItems.TECHNICAL_CHEST, value[l].ct))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].cc)) {
-                        reward.push(new TaskReward(TypesItems.COMPONENTS_CHEST, value[l].cc))
+                        reward.push(new QuantityItem(TypesItems.COMPONENTS_CHEST, value[l].cc))
                     }
 
                     if (this.isNotNullOrNotUndefined(value[l].g)) {
-                        reward.push(new TaskReward(TypesItems.GEMS, value[l].g))
+                        reward.push(new QuantityItem(TypesItems.GEMS, value[l].g))
                     }
 
                     MapEnemyController.addEnemyCommand(new MapEnemyBattle(value[l].n, units1, units2, units3, value[l].p, reward))

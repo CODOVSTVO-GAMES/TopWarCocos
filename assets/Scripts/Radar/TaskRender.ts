@@ -30,7 +30,7 @@ export class TaskRender extends Component {
      */
 
     protected onEnable(): void {
-        this.callBack = this.schedule(this.rerender, 1)
+        this.callBack = this.schedule(this.rerender, 0.1)
     }
     protected onDisable(): void {
         this.unschedule(this.callBack)

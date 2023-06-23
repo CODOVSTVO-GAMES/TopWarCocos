@@ -7,15 +7,15 @@ const { ccclass, property } = _decorator;
 @ccclass('BuferTasks')
 export class BuferTasks extends Component {
 
-    public static instance: BuferTasks;
+    // public static instance: BuferTasks;
 
-    public ongoingSalvationTasks: BattleTask[] = [];
-    public ongoingDarkLegionTasks: BattleTask[] = [];
-    public ongoingPersonalTasks: BattleTask[] = [];
+    // public ongoingSalvationTasks: BattleTask[] = [];
+    // public ongoingDarkLegionTasks: BattleTask[] = [];
+    // public ongoingPersonalTasks: BattleTask[] = [];
 
-    onLoad() {
-        BuferTasks.instance = this;
-    }
+    // onLoad() {
+    //     BuferTasks.instance = this;
+    // }
 
     /**
      * добавление задачи в буфер и изменение статуса
@@ -24,37 +24,37 @@ export class BuferTasks extends Component {
      */
 
 
-    addTaskSalvation(task: BattleTask) {
-        this.ongoingSalvationTasks.push(task);
-        task.status = 1;
-        setTimeout(() => this.awardingSalvation(), task.battleTime * 1000)
-    }
+    // addTaskSalvation(task: BattleTask) {
+    //     this.ongoingSalvationTasks.push(task);
+    //     task.status = 1;
+    //     setTimeout(() => this.awardingSalvation(), task.battleTime * 1000)
+    // }
 
-    addTaskDarkLegion(task: BattleTask) {
-        this.ongoingDarkLegionTasks.push(task);
-        task.status = 1;
-    }
+    // addTaskDarkLegion(task: BattleTask) {
+    //     this.ongoingDarkLegionTasks.push(task);
+    //     task.status = 1;
+    // }
 
-    addTaskPersonal(task: BattleTask) {
-        this.ongoingPersonalTasks.push(task);
-        task.status = 1;
-    }
+    // addTaskPersonal(task: BattleTask) {
+    //     this.ongoingPersonalTasks.push(task);
+    //     task.status = 1;
+    // }
 
-    awardingSalvation() {
-        this.ongoingSalvationTasks[0].status = 2;
-        this.ongoingSalvationTasks.splice(0, 1);
-        if (RadarStorage.instance.task == this.ongoingSalvationTasks[0]) {
-            SecondaryInterface.instance.closeSecondLayoutModal();
-        }
-    }
+    // awardingSalvation() {
+    //     this.ongoingSalvationTasks[0].status = 2;
+    //     this.ongoingSalvationTasks.splice(0, 1);
+    //     if (RadarStorage.instance.task == this.ongoingSalvationTasks[0]) {
+    //         SecondaryInterface.instance.closeSecondLayoutModal();
+    //     }
+    // }
 
-    awardingDarkLegion() {
-        this.ongoingDarkLegionTasks[0].status = 2;
-        this.ongoingDarkLegionTasks.splice(0, 1);
-    }
+    // awardingDarkLegion() {
+    //     this.ongoingDarkLegionTasks[0].status = 2;
+    //     this.ongoingDarkLegionTasks.splice(0, 1);
+    // }
 
-    awardingPersonal() {
-        this.ongoingPersonalTasks[0].status = 2;
-        this.ongoingPersonalTasks.splice(0, 1);
-    }
+    // awardingPersonal() {
+    //     this.ongoingPersonalTasks[0].status = 2;
+    //     this.ongoingPersonalTasks.splice(0, 1);
+    // }
 }

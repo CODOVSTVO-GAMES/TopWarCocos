@@ -3,7 +3,7 @@ import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../../Storage/RadarStorage';
 import { BattleTask } from '../../Structures/BattleTask';
-import { RadarReward } from '../../Structures/RadarReward';
+import { QuantityItem } from '../../Structures/QuantityItem';
 import { ConfigStorageController } from './ConfigStorageController';
 import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
 import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
@@ -14,6 +14,7 @@ import { UserStorageController } from './UserStorageController';
 import { TypesItems } from '../../Static/TypesItems';
 import { GameStorageController } from './GameStorageController';
 import { RadarRender } from '../../Logic/RadarRender';
+import { RadarLogic } from '../../Logic/RadarLogic';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarStorageController')
@@ -26,6 +27,8 @@ export class RadarStorageController {
     }
 
     static taskResponcer(arr: object[]) {
+        console.log('пришло ')
+        console.log(arr)
         for (let l = 0; l < arr.length; l++) {
             if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
                 if (arr[l]['owner'] == UserStorageController.getAccountId()) {
@@ -44,32 +47,27 @@ export class RadarStorageController {
                 }
             }
         }
-        console.log(RadarStorage.instance.tasks)
         RadarRender.instance.updateInterface()
     }
 
-    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: RadarReward[], battleTime: number) {
+    static addRadarTasks(id: number, type: string, stars: number, time: number, reward: QuantityItem[], battleTime: number) {
         RadarStorage.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
-        console.log('создана задача ' + id)
         this.updateRadarAnimation();
     }
 
     static activateTask(task: BattleTask) {
         task.status = 1
-        MapService.attackEnemy(task.id)
+        console.log('статус 1')
+        MapService.attackStatus(task.id, task.status)
     }
 
-    static doneTask() {
-    }
 
-    static getTasks(): BattleTask[] {
-        console.log('запрошен массив')
-        console.log(RadarStorage.instance.battleTasks)
-        for (let l = 0; l < RadarStorage.instance.battleTasks.length; l++) {
-            console.log(RadarStorage.instance.battleTasks[l].id)
-        }
-        return RadarStorage.instance.battleTasks
-    }
+
+
+
+
+
+
 
 
 
@@ -109,9 +107,9 @@ export class RadarStorageController {
         RadarStorage.instance.radarExperience = json.radarExperience;
     }
 
-    static getRadarTasks(): BattleTask[] {
-        return RadarStorage.instance.battleTasks;
-    }
+    // static getRadarTasks(): BattleTask[] {
+    //     return RadarStorage.instance.battleTasks;
+    // }
 
     static isTaskExists(id: number) {
         for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
@@ -285,18 +283,18 @@ export class RadarStorageController {
         return new Vec3(x, y, 0)
     }
 
-    static randomReward(stars: number): RadarReward[] {
+    static randomReward(stars: number): QuantityItem[] {
         let rewards = [];
         let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
         let level = GameStorageController.getLevel();
 
         let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
         for (let i = 0; i < rewardTypes.length; i++) {
-            rewards.push(new RadarReward(rewardTypes[i], quantity));
+            rewards.push(new QuantityItem(rewardTypes[i], quantity));
         }
 
         let quantityExp = ConfigStorageController.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
-        rewards.push(new RadarReward(TypesItems.EXPERIENCE, quantityExp));
+        rewards.push(new QuantityItem(TypesItems.EXPERIENCE, quantityExp));
         return rewards;
     }
 

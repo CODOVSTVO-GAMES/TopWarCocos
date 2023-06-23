@@ -19,14 +19,6 @@ export class RadarRender extends Component {
         RadarRender.instance = this
     }
 
-    protected onEnable(): void {
-        this.updateInterface()
-    }
-
-    protected onDisable(): void {
-        this.cleanTasks()
-    }
-
     updateInterface() {
         this.renderLocator()
     }
@@ -47,11 +39,12 @@ export class RadarRender extends Component {
     }
 
     cleanTasks() {
-        let tasks = RadarStorageController.getTasks()
+        let tasks = RadarStorage.instance.tasks
         for (let l = 0; l < tasks.length; l++) {
             tasks[l].node.destroy()
             tasks[l].node = null
         }
+
     }
 }
 
