@@ -302,7 +302,7 @@ export class SecondaryInterface extends Component {
         }
         else if (item.modalName == TypesModals.RADAR_REWARD) {
             RadarStorage.instance.task = item.data;
-            ModalRadarRewardInterface.instance.updateInterface(RadarStorage.instance.task);
+            ModalRadarRewardInterface.instance.updateInterface();
             this.secondBackgraund.active = true;
             this.radarReward.active = true;
             AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
@@ -434,6 +434,7 @@ export class SecondaryInterface extends Component {
         }
         else if (this.activeFirstLayoutModal == TypesModals.RADAR) {
             this.radar.active = false;
+            RadarRender.instance.cleanTasks()
         }
         else if (this.activeFirstLayoutModal == TypesModals.REPAIR_SHOP) {
             this.repairShop.active = false;

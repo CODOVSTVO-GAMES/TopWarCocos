@@ -2,7 +2,6 @@ import { EventMouse, Input, NodeEventType } from 'cc';
 import { _decorator, Component, Node } from 'cc';
 import { WireCutInterface } from './WireCutInterface';
 import { SecondaryInterface } from '../../SecondaryInterface';
-import { BuferTasks } from '../../../Radar/BuferTasks';
 const { ccclass, property } = _decorator;
 
 @ccclass('WireCutLogic')
@@ -41,7 +40,7 @@ export class WireCutLogic extends Component {
             WireCutInterface.instance.renderWireCut();
             setTimeout(() => {
                 SecondaryInterface.instance.closeAllModals();
-                BuferTasks.instance.awardingPersonal();
+                // BuferTasks.instance.awardingPersonal();
             }, 1000);
         }
     }

@@ -17,7 +17,6 @@ export class BarracksStorageController {
             BarraksStorage.instance.storage.push(new Barrack(json.index))
             BarraksStorage.instance.storage[i].queueSpawnObject = json.test
         }
-        console.log(BarraksStorage.instance.storage)
     }
 
     public static saveStorage() {
