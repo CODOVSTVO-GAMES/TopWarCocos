@@ -14,8 +14,8 @@ export class BarracksStorageController {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))
 
-            BarraksStorage.instance.arrayBarracks.push(new Barrack(json.index))
-            BarraksStorage.instance.arrayBarracks[i].queueSpawnObject = json.test
+            BarraksStorage.instance.arrayBarracks.push(new Barrack(json.indexBarrack))
+            BarraksStorage.instance.arrayBarracks[i].queueSpawnObject = json.queueSpawnObject
         }
     }
 
@@ -23,9 +23,9 @@ export class BarracksStorageController {
         let obj: Object[] = []
         for (let i = 0; i < BarraksStorage.instance.arrayBarracks.length; i++) {
             obj.push({
-                index: BarraksStorage.instance.arrayBarracks[i].indexBarrack,
-                test: BarraksStorage.instance.arrayBarracks[i].queueSpawnObject
-            });
+                indexBarrack: BarraksStorage.instance.arrayBarracks[i].indexBarrack,
+                queueSpawnObject: BarraksStorage.instance.arrayBarracks[i].queueSpawnObject
+            })
         }
         BufferStorageController.addItem(TypesStorages.BARRACKS_STORAGE, obj)
     }

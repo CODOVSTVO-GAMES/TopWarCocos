@@ -56,6 +56,6 @@ export class MainInterface extends Component {
     updateCountPower() {
         let power = GameStorageController.getPower().toString()
 
-        this.countPower.string = GameStorageController.getPower().toString()
+        this.countPower.string = power
     }
 }
