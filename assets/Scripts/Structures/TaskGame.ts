@@ -10,4 +10,5 @@ export class TaskGame {
         this.quantityRequired = quantityRequired
         this.quantityCompleted = quantityCompleted
     }
+
 }
