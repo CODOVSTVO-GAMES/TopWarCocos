@@ -2,7 +2,11 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
+<<<<<<< HEAD
   "uuid": "2b18b118-5d05-4221-898b-994f4bef22e3",
+=======
+  "uuid": "a16d7f70-6080-4a8e-849a-4cd39f998c59",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   "files": [
     ".json",
     ".png"
@@ -10,14 +14,22 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
+<<<<<<< HEAD
       "uuid": "2b18b118-5d05-4221-898b-994f4bef22e3@6c48a",
+=======
+      "uuid": "a16d7f70-6080-4a8e-849a-4cd39f998c59@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Sand water base-1",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "2b18b118-5d05-4221-898b-994f4bef22e3",
+=======
+        "imageUuidOrDatabaseUri": "a16d7f70-6080-4a8e-849a-4cd39f998c59",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +46,11 @@
     },
     "f9941": {
       "importer": "sprite-frame",
+<<<<<<< HEAD
       "uuid": "2b18b118-5d05-4221-898b-994f4bef22e3@f9941",
+=======
+      "uuid": "a16d7f70-6080-4a8e-849a-4cd39f998c59@f9941",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Sand water base-1",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +130,11 @@
           ]
         },
         "isUuid": true,
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "2b18b118-5d05-4221-898b-994f4bef22e3@6c48a",
+=======
+        "imageUuidOrDatabaseUri": "a16d7f70-6080-4a8e-849a-4cd39f998c59@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +149,10 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
+<<<<<<< HEAD
     "redirect": "2b18b118-5d05-4221-898b-994f4bef22e3@f9941"
+=======
+    "redirect": "a16d7f70-6080-4a8e-849a-4cd39f998c59@f9941"
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   }
 }

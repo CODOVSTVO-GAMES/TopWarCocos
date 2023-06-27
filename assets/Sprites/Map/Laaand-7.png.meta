@@ -2,7 +2,11 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
+<<<<<<< HEAD
   "uuid": "13c509a6-777b-4b3e-8c7b-8f80c50cea95",
+=======
+  "uuid": "86f04d38-00dc-48fc-a1ec-b45d8e372512",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   "files": [
     ".json",
     ".png"
@@ -10,14 +14,22 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
+<<<<<<< HEAD
       "uuid": "13c509a6-777b-4b3e-8c7b-8f80c50cea95@6c48a",
+=======
+      "uuid": "86f04d38-00dc-48fc-a1ec-b45d8e372512@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Laaand-7",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "13c509a6-777b-4b3e-8c7b-8f80c50cea95",
+=======
+        "imageUuidOrDatabaseUri": "86f04d38-00dc-48fc-a1ec-b45d8e372512",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +46,11 @@
     },
     "f9941": {
       "importer": "sprite-frame",
+<<<<<<< HEAD
       "uuid": "13c509a6-777b-4b3e-8c7b-8f80c50cea95@f9941",
+=======
+      "uuid": "86f04d38-00dc-48fc-a1ec-b45d8e372512@f9941",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Laaand-7",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +130,11 @@
           ]
         },
         "isUuid": true,
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "13c509a6-777b-4b3e-8c7b-8f80c50cea95@6c48a",
+=======
+        "imageUuidOrDatabaseUri": "86f04d38-00dc-48fc-a1ec-b45d8e372512@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +149,10 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
+<<<<<<< HEAD
     "redirect": "13c509a6-777b-4b3e-8c7b-8f80c50cea95@f9941"
+=======
+    "redirect": "86f04d38-00dc-48fc-a1ec-b45d8e372512@f9941"
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   }
 }

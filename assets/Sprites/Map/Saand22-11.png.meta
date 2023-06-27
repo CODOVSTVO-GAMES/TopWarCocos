@@ -2,7 +2,11 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
+<<<<<<< HEAD
   "uuid": "3efcd4d6-fa22-4614-bcc5-e8db7944fc84",
+=======
+  "uuid": "aaf01f33-033b-4661-a96e-a9dfe5df7a54",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   "files": [
     ".json",
     ".png"
@@ -10,14 +14,22 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
+<<<<<<< HEAD
       "uuid": "3efcd4d6-fa22-4614-bcc5-e8db7944fc84@6c48a",
+=======
+      "uuid": "aaf01f33-033b-4661-a96e-a9dfe5df7a54@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Saand22-11",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "3efcd4d6-fa22-4614-bcc5-e8db7944fc84",
+=======
+        "imageUuidOrDatabaseUri": "aaf01f33-033b-4661-a96e-a9dfe5df7a54",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +46,11 @@
     },
     "f9941": {
       "importer": "sprite-frame",
+<<<<<<< HEAD
       "uuid": "3efcd4d6-fa22-4614-bcc5-e8db7944fc84@f9941",
+=======
+      "uuid": "aaf01f33-033b-4661-a96e-a9dfe5df7a54@f9941",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Saand22-11",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +130,11 @@
           ]
         },
         "isUuid": true,
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "3efcd4d6-fa22-4614-bcc5-e8db7944fc84@6c48a",
+=======
+        "imageUuidOrDatabaseUri": "aaf01f33-033b-4661-a96e-a9dfe5df7a54@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +149,10 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
+<<<<<<< HEAD
     "redirect": "3efcd4d6-fa22-4614-bcc5-e8db7944fc84@f9941"
+=======
+    "redirect": "aaf01f33-033b-4661-a96e-a9dfe5df7a54@f9941"
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   }
 }

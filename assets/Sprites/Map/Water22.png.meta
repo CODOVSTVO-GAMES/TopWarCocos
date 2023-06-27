@@ -2,7 +2,11 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
+<<<<<<< HEAD
   "uuid": "a4182f12-707d-42ad-9451-bb4f4be41bfa",
+=======
+  "uuid": "53aa9413-578c-4b33-bbbc-1203a46ee969",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   "files": [
     ".json",
     ".png"
@@ -10,14 +14,22 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
+<<<<<<< HEAD
       "uuid": "a4182f12-707d-42ad-9451-bb4f4be41bfa@6c48a",
+=======
+      "uuid": "53aa9413-578c-4b33-bbbc-1203a46ee969@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Water22",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "a4182f12-707d-42ad-9451-bb4f4be41bfa",
+=======
+        "imageUuidOrDatabaseUri": "53aa9413-578c-4b33-bbbc-1203a46ee969",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +46,11 @@
     },
     "f9941": {
       "importer": "sprite-frame",
+<<<<<<< HEAD
       "uuid": "a4182f12-707d-42ad-9451-bb4f4be41bfa@f9941",
+=======
+      "uuid": "53aa9413-578c-4b33-bbbc-1203a46ee969@f9941",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Water22",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +130,11 @@
           ]
         },
         "isUuid": true,
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "a4182f12-707d-42ad-9451-bb4f4be41bfa@6c48a",
+=======
+        "imageUuidOrDatabaseUri": "53aa9413-578c-4b33-bbbc-1203a46ee969@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +149,10 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
+<<<<<<< HEAD
     "redirect": "a4182f12-707d-42ad-9451-bb4f4be41bfa@f9941"
+=======
+    "redirect": "53aa9413-578c-4b33-bbbc-1203a46ee969@f9941"
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   }
 }

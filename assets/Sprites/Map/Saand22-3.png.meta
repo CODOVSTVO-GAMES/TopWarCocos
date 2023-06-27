@@ -2,7 +2,11 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
+<<<<<<< HEAD
   "uuid": "0bbe27a2-eade-447a-8997-1e80c9ab331f",
+=======
+  "uuid": "3e4973a1-3392-42d8-9fda-26ccc91ad3d3",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   "files": [
     ".json",
     ".png"
@@ -10,14 +14,22 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
+<<<<<<< HEAD
       "uuid": "0bbe27a2-eade-447a-8997-1e80c9ab331f@6c48a",
+=======
+      "uuid": "3e4973a1-3392-42d8-9fda-26ccc91ad3d3@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Saand22-3",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "0bbe27a2-eade-447a-8997-1e80c9ab331f",
+=======
+        "imageUuidOrDatabaseUri": "3e4973a1-3392-42d8-9fda-26ccc91ad3d3",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +46,11 @@
     },
     "f9941": {
       "importer": "sprite-frame",
+<<<<<<< HEAD
       "uuid": "0bbe27a2-eade-447a-8997-1e80c9ab331f@f9941",
+=======
+      "uuid": "3e4973a1-3392-42d8-9fda-26ccc91ad3d3@f9941",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
       "displayName": "Saand22-3",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +130,11 @@
           ]
         },
         "isUuid": true,
+<<<<<<< HEAD
         "imageUuidOrDatabaseUri": "0bbe27a2-eade-447a-8997-1e80c9ab331f@6c48a",
+=======
+        "imageUuidOrDatabaseUri": "3e4973a1-3392-42d8-9fda-26ccc91ad3d3@6c48a",
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +149,10 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
+<<<<<<< HEAD
     "redirect": "0bbe27a2-eade-447a-8997-1e80c9ab331f@f9941"
+=======
+    "redirect": "3e4973a1-3392-42d8-9fda-26ccc91ad3d3@f9941"
+>>>>>>> 73c1d25855708235996efef12ad09f6e244a7a51
   }
 }
