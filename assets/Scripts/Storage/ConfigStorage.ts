@@ -17,6 +17,7 @@ import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyCo
 import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
 import { QuantityItem } from '../Structures/QuantityItem';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
+import { LevelNumber } from '../Structures/LevelNumder';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigStorage')
@@ -47,6 +48,8 @@ export class ConfigStorage extends Component {
     public expirienceRadar: Array<number> = [];
 
     public goldBoxConfig: Array<number> = [];
+
+    public questReward: Array<LevelNumber> = [];
 
     onLoad() {
         ConfigStorage.instance = this;
@@ -116,6 +119,11 @@ export class ConfigStorage extends Component {
                 this.expirienceRadar.push(1)
                 for (let l = 0; l < value.length; l++) {
                     this.expirienceRadar.push(value.e);
+                }
+            }
+            else if (key == 'questReward') {
+                for (let l = 0; l < value.length; l++) {
+                    this.questReward.push(new LevelNumber(value.l, value.g))
                 }
             }
             else if (key == 'enemyTeams') {
