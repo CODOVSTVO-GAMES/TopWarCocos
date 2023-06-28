@@ -80,64 +80,52 @@ export class ModalBackpackLogic extends Component {
 
     applyItem() {
         if (this.typeSelectItem == TypesItems.PLAN_COMMAND_POST) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST);
-            ModalCommandPostLogic.instance.typeActiveModal = "repairShop";
-            UpgradeCommandPostInerface.instance.updateInterface();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST)
+            UpgradeCommandPostInerface.instance.updateInterface()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_TROOP_AIR) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeTroopAir";
-            UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR)
+            UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_TROOP_MARINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeTroopMarine";
-            UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_MARINE)
+            UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_TROOP_OVERLAND) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeTroopOverland";
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_OVERLAND)
             UpgradeOtherInterface.instance.updateInterfaceMergeTroopOverland();
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_GOLD_MINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeGoldMine";
-            UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_GOLD_MINE)
+            UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_AIR) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeBarracksAir";
-            UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_BARRACK_AIR)
+            UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_MARINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeBarracksMarine";
-            UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_BARRACK_MARINE)
+            UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_OVERLAND) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "mergeBarracksOverland";
-            UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND)
+            UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_GOLD_MINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "buildGoldMine";
-            UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_GOLD_MINE)
+            UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_AIR) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "buildBarracksAir";
-            UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_BARRACK_AIR)
+            UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_MARINE) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "buildBarracksMarine";
-            UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_BARRACK_MARINE)
+            UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine()
         }
         else if (this.typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_OVERLAND) {
-            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR);
-            ModalCommandPostLogic.instance.typeActiveModal = "buildBarracksOverland";
-            UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland();
+            SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND)
+            UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland()
         }
     }
 }

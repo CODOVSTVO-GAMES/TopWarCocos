@@ -4,11 +4,11 @@ const { ccclass } = _decorator;
 @ccclass('TouchStatus')
 export class TouchStatus extends Component {
 
-    public static instance: TouchStatus;
+    public static instance: TouchStatus
 
-    public activeTouch: boolean;
+    public activeTouch: boolean
 
-    onEnable() {
-        TouchStatus.instance = this;
+    public onEnable() {
+        TouchStatus.instance = this
     }
 }

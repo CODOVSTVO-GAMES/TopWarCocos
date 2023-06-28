@@ -11,6 +11,8 @@ import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
 import { AutocombineStorageController } from './Controllers/StorageControllers/AutocombineStorageController';
 import { CommandPostStorageController } from './Controllers/StorageControllers/CommandPostStorageController';
 import { BarracksLogic } from './Logic/BarracksLogic';
+import { TasksGameLogic } from './Logic/TasksGameLogic';
+import { TypesTasksGame } from './Static/TypesTasksGame';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -191,6 +193,18 @@ export class TouchObject extends Component {
         HomeMapStorage.instance.selectedObject = null
         BarracksLogic.instance.deleteBarrack(this.objectParameters.index)
         AutocombineStorageController.deleteGoldMine(this.objectParameters.index)
+        if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
+            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_GOLD_MINE, this.objectParameters.level, 1)
+        }
+        if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
+            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_BARRACK_AIR, this.objectParameters.level, 1)
+        }
+        if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
+            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_BARRACK_MARINE, this.objectParameters.level, 1)
+        }
+        if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
+            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_BARRACK_OVERLAND, this.objectParameters.level, 1)
+        }
         FlightGameObjects.instance.moveMerge(this.mainObject, index)
     }
 

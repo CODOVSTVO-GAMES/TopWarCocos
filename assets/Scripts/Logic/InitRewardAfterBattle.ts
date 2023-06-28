@@ -4,6 +4,8 @@ import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { ObjectParameters } from '../ObjectParameters';
 import { TypesObjects } from '../Static/TypesObjects';
 import { salam } from '../Static/salam';
+import { TasksGameLogic } from './TasksGameLogic';
+import { TypesTasksGame } from '../Static/TypesTasksGame';
 const { ccclass } = _decorator;
 
 @ccclass('InitRewardAfterBattle')
@@ -13,6 +15,8 @@ export class InitRewardAfterBattle {
 
     public static victory() {
         HomeMapStorage.instance.numberOpenZones += 1
+
+        TasksGameLogic.instance.checkTask(TypesTasksGame.OPEN_ZONE, 1, 1)
 
         for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
             if (HomeMapStorage.instance.temporaryLocalStorage[i].index == BattleStorage.instance.indexObjectBattle) {

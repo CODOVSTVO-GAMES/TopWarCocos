@@ -50,7 +50,6 @@ export class TasksGameStorageController {
 
             TasksGameStorage.instance.storage.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, rewardTrigger))
         }
-        console.log(TasksGameStorage.instance.storage)
     }
 
     public static saveStorage() {

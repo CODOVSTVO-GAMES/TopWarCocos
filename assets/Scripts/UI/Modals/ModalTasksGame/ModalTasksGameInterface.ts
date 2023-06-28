@@ -20,9 +20,8 @@ export class ModalTasksGameInterface extends Component {
     }
 
     public updateInterface() {
-        console.log("UPDATE INTERFACE")
         for (let i = 0; i < this.items.length; i++) {
-            this.items[i].destroy();
+            this.items[i].destroy()
         }
         this.items = new Array
         for (let i = 0; i < TasksGameStorage.instance.storage.length; i++) {
