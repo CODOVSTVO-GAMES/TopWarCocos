@@ -9,6 +9,7 @@ export class TypesModals {
     public static CHARACTER_INFO: string = "characterInfo"
     public static CHARACTER_PUMPING: string = "characterPumping"
     public static COMMAND_POST: string = "commandPost"
+    public static TASKS_GAME: string = "tasksGame"
 
     public static UPGRATE_COMMAND_POST: string = "upgrateCommandPost"
     public static UPGRATE_REPAIR_SHOP: string = "upgrateRepairShop"

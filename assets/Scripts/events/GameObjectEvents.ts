@@ -7,7 +7,7 @@ const { ccclass, property } = _decorator;
 export class GameObjectEvents extends Component {
 
     @property({ type: ObjectParameters })
-    public objectParameters: ObjectParameters;
+    public objectParameters: ObjectParameters
 
     public eventClickOnMessage() {
         // нажатие на сообщение сверху обьекта

@@ -30,6 +30,7 @@ import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { RadarRender } from '../Logic/RadarRender';
 import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
+import { ModalTasksGameInterface } from './Modals/ModalTasksGame/ModalTasksGameInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -75,6 +76,9 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public commandPost: Node;
+
+    @property({ type: Node })
+    public tasksGame: Node;
 
     @property({ type: Node })
     public upgrateCommandPost0: Node;
@@ -255,6 +259,11 @@ export class SecondaryInterface extends Component {
             this.firstBackgraund.active = true;
             this.commandPost.active = true;
         }
+        else if (item.modalName == TypesModals.TASKS_GAME) {
+            ModalTasksGameInterface.instance.updateInterface()
+            this.firstBackgraund.active = true;
+            this.tasksGame.active = true;
+        }
         else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost0.active = true;
@@ -371,6 +380,8 @@ export class SecondaryInterface extends Component {
 
     openCommandPost() { this.openFirstModal(TypesModals.COMMAND_POST); }
 
+    openTasksGame() { this.openFirstModal(TypesModals.TASKS_GAME); }
+
     openBank() { this.openFirstModal(TypesModals.BANK); }
 
     openAutocombine() { this.openFirstModal(TypesModals.AUTOCOMBINE); }
@@ -425,6 +436,9 @@ export class SecondaryInterface extends Component {
         }
         else if (this.activeFirstLayoutModal == TypesModals.COMMAND_POST) {
             this.commandPost.active = false;
+        }
+        else if (this.activeFirstLayoutModal == TypesModals.TASKS_GAME) {
+            this.tasksGame.active = false;
         }
         else if (this.activeFirstLayoutModal == TypesModals.BANK) {
             this.bank.active = false;
@@ -502,6 +516,7 @@ export class SecondaryInterface extends Component {
         this.characterInfo.active = false;
         this.characterPumping.active = false;
         this.commandPost.active = false;
+        this.tasksGame.active = false;
         this.upgrateCommandPost0.active = false;
         this.upgrateCommandPost1.active = false;
         this.bank.active = false;

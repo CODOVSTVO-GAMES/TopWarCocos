@@ -9,7 +9,7 @@ export class TasksGameStorageController {
     public static assignStartingValues() {
         TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.OPEN_ZONE, 2, 1, 0, false))
 
-        TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.MERGE_GOLD_MINE, 2, 5, 0, false))
+        TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.MERGE_GOLD_MINE, 2, 5, 5, true))
 
         TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.MERGE_BARRACK_AIR, 2, 2, 0, false))
         TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.MERGE_BARRACK_MARINE, 2, 2, 0, false))
@@ -35,7 +35,6 @@ export class TasksGameStorageController {
         TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_MARINE, 2, 1, 0, false))
         TasksGameStorage.instance.storage.push(new TaskGame(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_OVERLAND, 2, 1, 0, false))
 
-        console.log(TasksGameStorage.instance.storage)
         this.saveStorage()
     }
 
