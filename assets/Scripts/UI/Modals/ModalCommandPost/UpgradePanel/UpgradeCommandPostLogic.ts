@@ -7,7 +7,7 @@ import { BackpackStorageController } from '../../../../Controllers/StorageContro
 import { TypesItems } from '../../../../Static/TypesItems';
 import { HomeMapStorageController } from '../../../../Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from '../../../../Static/TypesObjects';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('UpgradeCommandPostLogic')
 export class UpgradeCommandPostLogic extends Component {
