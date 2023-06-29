@@ -3,6 +3,7 @@ import { TasksGameStorage } from '../Storage/TasksGameStorage';
 import { TaskGame } from '../Structures/TaskGame';
 import { TasksGameStorageController } from '../Controllers/StorageControllers/TasksGameStorageController';
 import { ModalTasksGameInterface } from '../UI/Modals/ModalTasksGame/ModalTasksGameInterface';
+import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TasksGameLogic')
@@ -14,7 +15,7 @@ export class TasksGameLogic extends Component {
         TasksGameLogic.instance = this
     }
 
-    public addTask(typeTask: string, levelObjectTask: number, quantityRequired: number, quantityCompleted: number, rewardTrigger: boolean) {
+    public addTask(typeTask: string, levelObjectTask: number, quantityRequired: number, quantityCompleted: number) {
         TasksGameStorage.instance.storage.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, false))
         ModalTasksGameInterface.instance.updateInterface()
     }
@@ -26,7 +27,7 @@ export class TasksGameLogic extends Component {
             if (TasksGameStorage.instance.storage[i].rewardTrigger) continue
 
             TasksGameStorage.instance.storage[i].quantityCompleted += quantity
-            
+
             if (TasksGameStorage.instance.storage[i].quantityCompleted > TasksGameStorage.instance.storage[i].quantityRequired) {
                 TasksGameStorage.instance.storage[i].quantityCompleted = TasksGameStorage.instance.storage[i].quantityRequired
                 TasksGameStorage.instance.storage[i].rewardTrigger = true
@@ -40,8 +41,11 @@ export class TasksGameLogic extends Component {
             if (TasksGameStorage.instance.storage[i].levelObjectTask != levelObjectTask) continue
             if (TasksGameStorage.instance.storage[i].rewardTrigger == false) continue
 
+            let quantityRequired = TasksGameStorage.instance.storage[i].quantityRequired
+
             this.deleteTask(i)
-            this.addTask(typeTask, levelObjectTask + 1, 0, 0, false)
+            this.addTask(typeTask, levelObjectTask + 1, quantityRequired, 0)
+            GameStorageController.addCoins(1)
             TasksGameStorageController.saveStorage()
         }
     }
