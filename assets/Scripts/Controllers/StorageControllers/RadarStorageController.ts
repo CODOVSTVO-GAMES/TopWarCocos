@@ -96,15 +96,15 @@ export class RadarStorageController {
         this.saveStorage();
     }
 
-    // static assigningSaveValues(obj: Object) {
-    //     let json = JSON.parse(JSON.stringify(obj));
-    //     RadarStorage.instance.radarLevel = json.radarLevel;
-    //     RadarStorage.instance.availableMissions = json.availableMissions;
-    //     RadarStorage.instance.timeToUpdate = json.timeToUpdate;
-    //     RadarStorage.instance.signalQuality = json.signalQuality;
-    //     RadarStorage.instance.battleTasks = json.tasks;
-    //     RadarStorage.instance.radarExperience = json.radarExperience;
-    // }
+    static assigningSaveValues(obj: Object) {
+        let json = JSON.parse(JSON.stringify(obj));
+        RadarStorage.instance.radarLevel = json.radarLevel;
+        RadarStorage.instance.availableMissions = json.availableMissions;
+        RadarStorage.instance.timeToUpdate = json.timeToUpdate;
+        RadarStorage.instance.signalQuality = json.signalQuality;
+        // RadarStorage.instance.battleTasks = json.tasks;
+        RadarStorage.instance.radarExperience = json.radarExperience;
+    }
 
     // static getRadarTasks(): BattleTask[] {
     //     return RadarStorage.instance.battleTasks;
