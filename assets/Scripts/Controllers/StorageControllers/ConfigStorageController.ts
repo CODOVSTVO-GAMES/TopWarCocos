@@ -4,6 +4,7 @@ import { TypesObjects } from '../../Static/TypesObjects';
 import { HeroConfig } from '../../Structures/HeroConfig';
 import { UnitsCongig } from '../../Structures/ConfigUnits';
 import { RadarConfig } from '../../Structures/RadarConfig';
+import { MainAndRepairBuildings } from '../../Structures/MainAndRepairBuildings';
 
 export class ConfigStorageController {
 
@@ -162,45 +163,25 @@ export class ConfigStorageController {
     //---------------------------------------------------------------------------------------------------
     //powerRepairBuildings
 
-
-    static getPowerRepairBuilding(level: number) {
+    static repairBuildings(level: number): MainAndRepairBuildings {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
             if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
                 && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].power
+                return ConfigStorage.instance.mainAndRepairBuildings[i]
             }
         }
-        // throw "Главное здание такого уровня не найдено";
         console.log("Главное здание такого уровня не найдено");
     }
+    ///--<
 
-    static getExpRepairBuilding(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].experience
-            }
-        }
-        // throw "Главное здание такого уровня не найдено";
-        console.log("Главное здание такого уровня не найдено");
-    }
+
+
 
     static getPriceUpdateRepairBuilding(level: number) {
         for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
             if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
                 && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
                 return ConfigStorage.instance.mainAndRepairBuildings[i].priceUpdate
-            }
-        }
-        // throw "Главное здание такого уровня не найдено";
-        console.log("Главное здание такого уровня не найдено");
-    }
-
-    static getImprivementResourceTypeRepairBuilding(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceType
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -217,18 +198,6 @@ export class ConfigStorageController {
         // throw "Главное здание такого уровня не найдено";
         console.log("Главное здание такого уровня не найдено");
     }
-
-    static getNumberWokrShopRepairBuilding(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].level
-            }
-        }
-        // throw "Главное здание такого уровня не найдено";
-        console.log("Главное здание такого уровня не найдено");
-    }
-
 
     //---------------------------------------------------------------------------------------------------
     //unitsConfig
@@ -613,6 +582,15 @@ export class ConfigStorageController {
         console.log("Радар такого уровня не найден")
     }
 
+    static radarConfig(level: number): RadarConfig {//смена названия
+        for (let i = 0; i < ConfigStorage.instance.radarConfig.length; i++) {
+            if (ConfigStorage.instance.radarConfig[i].level == level) {
+                return ConfigStorage.instance.radarConfig[i]
+            }
+        }
+        console.log("Радар такого уровня не найден")
+    }
+
     getHeroConfig(): HeroConfig[] {
         return ConfigStorage.instance.heroConfig
     }
@@ -654,4 +632,19 @@ export class ConfigStorageController {
 
 
     //---------------------------------------------------------------------------------------------------
+
+    //сумка в этот раз будет понятный файл! -->
+    static getValue(type: string, level: number, name: string) {
+        if (type == TypesObjects.TROOP_OVERLAND || TypesObjects.TROOP_MARINE || TypesObjects.TROOP_AIR) {
+            for (let l = 0; l < ConfigStorage.instance.unitsConfig.length; l++) {
+                if (ConfigStorage.instance.unitsConfig[l].type == type && ConfigStorage.instance.unitsConfig[l].level == level) {
+                    return ConfigStorage.instance.unitsConfig[l][name]
+                }
+            }
+        }
+
+        console.log('радуга и пони')
+    }
+    //---<
+
 }

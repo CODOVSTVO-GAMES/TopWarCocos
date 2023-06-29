@@ -30,7 +30,7 @@ export class ModalBackpackInterface extends Component {
         for (let i = 0; i < this.items.length; i++) {
             this.items[i].destroy();
         }
-        this.items = new Array();
+        this.items = new Array
         for (let i = 0; i < BackpackStorageController.getInvenoryLength(); i++) {
             let object = instantiate(PrefabsStorage.instance.getItemBackpack());
             object.parent = this.parentContent;
@@ -41,7 +41,11 @@ export class ModalBackpackInterface extends Component {
     }
 
     updateInterface() {
-        this.titleSelectItem.string = ModalBackpackLogic.instance.typeSelectItem;
-        this.usageQuantitySelectItem.string = ModalBackpackLogic.instance.usageQuantitySelectItem.toString();
+        if (ModalBackpackLogic.instance.typeSelectItem != null) {
+            this.titleSelectItem.string = ModalBackpackLogic.instance.typeSelectItem
+        }
+        if (ModalBackpackLogic.instance.usageQuantitySelectItem != null) {
+            this.usageQuantitySelectItem.string = ModalBackpackLogic.instance.usageQuantitySelectItem.toString()
+        }
     }
 }

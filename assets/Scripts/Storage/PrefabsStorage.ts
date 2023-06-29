@@ -72,6 +72,14 @@ export class PrefabsStorage extends Component {
     @property({ type: Prefab })
     private itemBackpack: Prefab
 
+    // =================================================================
+
+    @property({ type: Prefab })
+    private completedTask: Prefab
+
+    @property({ type: Prefab })
+    private unfulfiledTask: Prefab
+
 
     onLoad() {
         PrefabsStorage.instance = this;
@@ -107,5 +115,13 @@ export class PrefabsStorage extends Component {
     getItemBackpack(): Prefab {
         return this.itemBackpack
     }
-}
 
+    getItemTasksGame(type: string): Prefab {
+        if (type == "completedTask") {
+            return this.completedTask
+        }
+        else if (type == "unfulfiledTask") {
+            return this.unfulfiledTask
+        }
+    }
+}

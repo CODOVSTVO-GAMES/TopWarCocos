@@ -2,6 +2,7 @@ import { _decorator, Component, Node, EventMouse, Camera } from 'cc';
 import { MainInterface } from '../UI/MainInterface';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { MouseClickVisualization } from '../MouseClickVisualization';
+import { TouchStatus } from '../TouchStatus';
 const { ccclass, property } = _decorator;
 
 @ccclass('ZoomCamera')
@@ -31,6 +32,8 @@ export class ZoomCamera extends Component {
     }
 
     mouseScroll(e: EventMouse) {
+        if (TouchStatus.instance.activeTouch) return
+
         let scroll = e.getScrollY();
         if (scroll > 0) {
             if (this.camera.orthoHeight > 300) {

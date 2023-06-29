@@ -1518,6 +1518,14 @@
       "__uuid__": "727bee36-8f59-4e12-bb44-e944a3cc44d2",
       "__expectedType__": "cc.Prefab"
     },
+    "completedTask": {
+      "__uuid__": "1c604c20-5d49-44f9-9cf1-54fcdf8bfd7b",
+      "__expectedType__": "cc.Prefab"
+    },
+    "unfulfiledTask": {
+      "__uuid__": "6f50f19e-0292-4337-badc-692c65302360",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": "66PBU1wjlHXK0LhC1ce8mF"
   },
   {

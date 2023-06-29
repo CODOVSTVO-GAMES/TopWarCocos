@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "5c6a8c57-cdda-4753-ad78-f7e0efe82e7a",
+  "uuid": "2d167626-6eed-4d52-b897-95068135cfbb",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "5c6a8c57-cdda-4753-ad78-f7e0efe82e7a@6c48a",
+      "uuid": "2d167626-6eed-4d52-b897-95068135cfbb@6c48a",
       "displayName": "Laaand-10",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "5c6a8c57-cdda-4753-ad78-f7e0efe82e7a",
+        "imageUuidOrDatabaseUri": "2d167626-6eed-4d52-b897-95068135cfbb",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +34,7 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "5c6a8c57-cdda-4753-ad78-f7e0efe82e7a@f9941",
+      "uuid": "2d167626-6eed-4d52-b897-95068135cfbb@f9941",
       "displayName": "Laaand-10",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +114,7 @@
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "5c6a8c57-cdda-4753-ad78-f7e0efe82e7a@6c48a",
+        "imageUuidOrDatabaseUri": "2d167626-6eed-4d52-b897-95068135cfbb@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "5c6a8c57-cdda-4753-ad78-f7e0efe82e7a@f9941"
+    "redirect": "2d167626-6eed-4d52-b897-95068135cfbb@f9941"
   }
 }

@@ -5,6 +5,8 @@ import { HomeMapStorageController } from '../Controllers/StorageControllers/Home
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesLocation } from '../Static/TypesLocation';
 import { AutocombineStorageController } from '../Controllers/StorageControllers/AutocombineStorageController';
+import { HomeMapStructure } from '../Static/HomeMapStructure';
+import { HomeMapStorage } from '../Storage/HomeMapStorage';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjectsOnHomeMap')
@@ -67,7 +69,7 @@ export class SpawnObjectsOnHomeMap {
         if (type == TypesObjects.GOLD_MINE) {
             AutocombineStorageController.alo(objectParameter)
         }
-        
+
         return objectParameter
     }
 
@@ -86,6 +88,19 @@ export class SpawnObjectsOnHomeMap {
                         check = true
                         break
                     }
+
+
+                    try {
+                        if (HomeMapStructure.structure[i - arrayIndexes[j]].numberZone > HomeMapStorage.instance.numberOpenZones) {
+                            check = true
+                            break
+                        }
+                    }
+                    catch {
+
+                    }
+
+
                 }
                 if (check == false) {
                     minDistance = currentDistance

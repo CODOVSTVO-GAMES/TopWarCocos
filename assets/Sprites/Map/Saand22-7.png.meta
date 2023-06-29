@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "f1798700-a723-41f0-b4c2-d1aa17888457",
+  "uuid": "5d329eb8-1523-4958-94eb-a9962eaa3b91",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "f1798700-a723-41f0-b4c2-d1aa17888457@6c48a",
+      "uuid": "5d329eb8-1523-4958-94eb-a9962eaa3b91@6c48a",
       "displayName": "Saand22-7",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "f1798700-a723-41f0-b4c2-d1aa17888457",
+        "imageUuidOrDatabaseUri": "5d329eb8-1523-4958-94eb-a9962eaa3b91",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +34,7 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "f1798700-a723-41f0-b4c2-d1aa17888457@f9941",
+      "uuid": "5d329eb8-1523-4958-94eb-a9962eaa3b91@f9941",
       "displayName": "Saand22-7",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +114,7 @@
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "f1798700-a723-41f0-b4c2-d1aa17888457@6c48a",
+        "imageUuidOrDatabaseUri": "5d329eb8-1523-4958-94eb-a9962eaa3b91@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "f1798700-a723-41f0-b4c2-d1aa17888457@f9941"
+    "redirect": "5d329eb8-1523-4958-94eb-a9962eaa3b91@f9941"
   }
 }

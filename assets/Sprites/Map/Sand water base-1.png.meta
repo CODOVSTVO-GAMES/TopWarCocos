@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "a16d7f70-6080-4a8e-849a-4cd39f998c59",
+  "uuid": "b1314491-c96e-4d19-ae35-d76ef2edcf9c",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "a16d7f70-6080-4a8e-849a-4cd39f998c59@6c48a",
+      "uuid": "b1314491-c96e-4d19-ae35-d76ef2edcf9c@6c48a",
       "displayName": "Sand water base-1",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "a16d7f70-6080-4a8e-849a-4cd39f998c59",
+        "imageUuidOrDatabaseUri": "b1314491-c96e-4d19-ae35-d76ef2edcf9c",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,7 +34,7 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "a16d7f70-6080-4a8e-849a-4cd39f998c59@f9941",
+      "uuid": "b1314491-c96e-4d19-ae35-d76ef2edcf9c@f9941",
       "displayName": "Sand water base-1",
       "id": "f9941",
       "name": "spriteFrame",
@@ -114,7 +114,7 @@
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "a16d7f70-6080-4a8e-849a-4cd39f998c59@6c48a",
+        "imageUuidOrDatabaseUri": "b1314491-c96e-4d19-ae35-d76ef2edcf9c@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "a16d7f70-6080-4a8e-849a-4cd39f998c59@f9941"
+    "redirect": "b1314491-c96e-4d19-ae35-d76ef2edcf9c@f9941"
   }
 }

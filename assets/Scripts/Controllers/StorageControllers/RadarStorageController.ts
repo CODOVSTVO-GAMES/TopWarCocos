@@ -14,8 +14,7 @@ import { UserStorageController } from './UserStorageController';
 import { TypesItems } from '../../Static/TypesItems';
 import { GameStorageController } from './GameStorageController';
 import { RadarRender } from '../../Logic/RadarRender';
-import { RadarLogic } from '../../Logic/RadarLogic';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('RadarStorageController')
 export class RadarStorageController {
@@ -52,7 +51,7 @@ export class RadarStorageController {
 
     static addRadarTasks(id: number, type: string, stars: number, time: number, reward: QuantityItem[], battleTime: number) {
         RadarStorage.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
-        this.updateRadarAnimation();
+        // this.updateRadarAnimation();
     }
 
     static activateTask(task: BattleTask) {
@@ -103,7 +102,7 @@ export class RadarStorageController {
         RadarStorage.instance.availableMissions = json.availableMissions;
         RadarStorage.instance.timeToUpdate = json.timeToUpdate;
         RadarStorage.instance.signalQuality = json.signalQuality;
-        RadarStorage.instance.battleTasks = json.tasks;
+        // RadarStorage.instance.battleTasks = json.tasks;
         RadarStorage.instance.radarExperience = json.radarExperience;
     }
 
@@ -144,7 +143,7 @@ export class RadarStorageController {
         if (value == 0) return;
         RadarStorage.instance.availableMissions += value;
         this.saveStorage();
-        this.updateRadarAnimation();
+        // this.updateRadarAnimation();
     }
 
     static addRadarSignalQuantity(value: number) {
@@ -174,16 +173,16 @@ export class RadarStorageController {
         this.saveStorage();
     }
 
-    static reduceRadarTask(task: BattleTask) {
-        if (task == null) return;
-        for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
-            if (RadarStorage.instance.battleTasks[i] == task) {
-                RadarStorage.instance.battleTasks.splice(i, 1);
-            }
-        }
-        this.saveStorage();
-        this.updateRadarAnimation();
-    }
+    // static reduceRadarTask(task: BattleTask) {
+    //     if (task == null) return;
+    //     for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
+    //         if (RadarStorage.instance.battleTasks[i] == task) {
+    //             RadarStorage.instance.battleTasks.splice(i, 1);
+    //         }
+    //     }
+    //     this.saveStorage();
+    //     this.updateRadarAnimation();
+    // }
 
     static reduceRadarAvailableMissions(value: number) {
         if (value == 0) return;
@@ -211,30 +210,30 @@ export class RadarStorageController {
         this.saveStorage();
     }
 
-    static updateRadarAnimation() {
-        let status = 0;
-        for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
-            if (RadarStorage.instance.battleTasks[i].status < 2) {
-                if (status < 1) {
-                    status = 1;
-                }
-            }
-            else {
-                status = 2;
-            }
-        }
-        this.getMessageAnimation();
-        if (status == 1) {
-            if (this.messageAnimation != null) {
-                this.messageAnimation.startAnimation();
-            }
-        }
-        else {
-            if (this.messageAnimation != null) {
-                this.messageAnimation.stopAnimation();
-            }
-        }
-    }
+    // static updateRadarAnimation() {
+    //     let status = 0;
+    //     for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
+    //         if (RadarStorage.instance.battleTasks[i].status < 2) {
+    //             if (status < 1) {
+    //                 status = 1;
+    //             }
+    //         }
+    //         else {
+    //             status = 2;
+    //         }
+    //     }
+    //     this.getMessageAnimation();
+    //     if (status == 1) {
+    //         if (this.messageAnimation != null) {
+    //             this.messageAnimation.startAnimation();
+    //         }
+    //     }
+    //     else {
+    //         if (this.messageAnimation != null) {
+    //             this.messageAnimation.stopAnimation();
+    //         }
+    //     }
+    // }
 
     static getMessageAnimation() {
         try {

@@ -287,7 +287,7 @@ export class HomeMapStorageController {
             if (HomeMapStorage.instance.arrayObjectParameters[i].index != i) continue
 
             let objParam: ObjectParameters = new ObjectParameters
-            
+
             objParam.type = HomeMapStorage.instance.arrayObjectParameters[i].type
             objParam.level = HomeMapStorage.instance.arrayObjectParameters[i].level
             objParam.index = HomeMapStorage.instance.arrayObjectParameters[i].index
