@@ -6,10 +6,6 @@ import { Barrack } from '../../Structures/Barrack';
 
 export class BarracksStorageController {
 
-    public static assignStartingValues() {
-        BarraksStorage.instance.arrayBarracks = new Array
-    }
-
     public static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))

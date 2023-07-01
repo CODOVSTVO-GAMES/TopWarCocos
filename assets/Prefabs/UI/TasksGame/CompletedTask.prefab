@@ -27,26 +27,20 @@
         "__id__": 14
       },
       {
-        "__id__": 31
+        "__id__": 30
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 37
+        "__id__": 36
       },
       {
-        "__id__": 39
-      },
-      {
-        "__id__": 41
-      },
-      {
-        "__id__": 43
+        "__id__": 38
       }
     ],
     "_prefab": {
-      "__id__": 45
+      "__id__": 40
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -368,7 +362,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 30
+      "__id__": 29
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -652,11 +646,7 @@
     "__prefab": {
       "__id__": 28
     },
-    "clickEvents": [
-      {
-        "__id__": 29
-      }
-    ],
+    "clickEvents": [],
     "_interactable": true,
     "_transition": 0,
     "_normalColor": {
@@ -706,16 +696,6 @@
     "fileId": "6eg2HZf1FHA4fF/oZuCV9F"
   },
   {
-    "__type__": "cc.ClickEvent",
-    "target": {
-      "__id__": 1
-    },
-    "component": "",
-    "_componentId": "412b4slLOlFmrtMv2aAerDP",
-    "handler": "collectRewardTask",
-    "customEventData": ""
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -739,14 +719,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 32
+        "__id__": 31
       },
       {
-        "__id__": 34
+        "__id__": 33
       }
     ],
     "_prefab": {
-      "__id__": 36
+      "__id__": 35
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -782,11 +762,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 31
+      "__id__": 30
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 33
+      "__id__": 32
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -809,11 +789,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 31
+      "__id__": 30
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 35
+      "__id__": 34
     },
     "_customMaterial": null,
     "_srcBlendFactor": 2,
@@ -870,7 +850,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 38
+      "__id__": 37
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -897,7 +877,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 40
+      "__id__": 39
     },
     "_customMaterial": null,
     "_srcBlendFactor": 2,
@@ -931,49 +911,6 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "5aIgTeSVtOQ6NkjI/808Q3"
-  },
-  {
-    "__type__": "09fb121iR5O04QrB6UwE+Aa",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 42
-    },
-    "typeTaskText": {
-      "__id__": 5
-    },
-    "quantityReward": {
-      "__id__": 34
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "e8eg4igWVGTbJ+QykMTWMh"
-  },
-  {
-    "__type__": "412b4slLOlFmrtMv2aAerDP",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 44
-    },
-    "itemTasksGame": {
-      "__id__": 41
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "c4J0qYh9RB2J4r0yDXRoSG"
   },
   {
     "__type__": "cc.PrefabInfo",

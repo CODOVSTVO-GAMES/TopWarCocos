@@ -6,34 +6,6 @@ import { TypesStorages } from '../../Static/TypesStorages';
 
 export class BackpackStorageController {
 
-    static assignStartingValues() {
-        // this.addItem(TypesItems.PLAN_COMMAND_POST, 100)
-
-        // this.addItem(TypesItems.PLAN_MERGE_GOLD_MINE, 100)
-        // this.addItem(TypesItems.PLAN_BUILD_GOLD_MINE, 100)
-
-        // this.addItem(TypesItems.PLAN_MERGE_TROOP_AIR, 100)
-        // this.addItem(TypesItems.PLAN_MERGE_TROOP_MARINE, 100)
-        // this.addItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, 100)
-
-        // this.addItem(TypesItems.PLAN_MERGE_BARRACK_AIR, 100)
-        // this.addItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, 100)
-        // this.addItem(TypesItems.PLAN_MERGE_BARRACK_OVERLAND, 100)
-
-        // this.addItem(TypesItems.PLAN_BUILD_BARRACK_AIR, 100)
-        // this.addItem(TypesItems.PLAN_BUILD_BARRACK_MARINE, 100)
-        // this.addItem(TypesItems.PLAN_BUILD_BARRACK_OVERLAND, 100)
-
-        // for (let i = 0; i < TypesItems.BOOKS.length; i++) {
-        //     BackpackStorageController.addItem(TypesItems.BOOKS[i], 12)
-        // }
-        // for (let i = 0; i < TypesItems.FRAGMENTS.length; i++) {
-        //     BackpackStorageController.addItem(TypesItems.FRAGMENTS[i], 50)
-        // }
-
-        this.saveStorage()
-    }
-
     static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))

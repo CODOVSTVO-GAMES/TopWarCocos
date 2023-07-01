@@ -36,14 +36,9 @@ export class DataStorageService {
 
     static dataRecipient(objects: object[]) {
         if (UserStorageController.getIsNewUser()) {
-            GameStorageController.assignStartingValues()
             HomeMapStorageController.assignStartingValues()
-            BackpackStorageController.assignStartingValues()
             CharactrerStorageController.assignStartingValues()
-            CommandPostStorageController.assignStartingValues()
             RadarStorageController.assignStartingValues()
-            AutocombineStorageController.assignStartingValues()
-            BarracksStorageController.assignStartingValues()
             TasksGameStorageController.assignStartingValues()
             LoadingGame.getPostData()
             return;

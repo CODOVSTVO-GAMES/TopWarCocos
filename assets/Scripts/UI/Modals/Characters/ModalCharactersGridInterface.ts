@@ -101,7 +101,6 @@ export class ModalCharacterGridInterface extends Component {
             else {
                 return -1;
             }
-            return 0;
         })
         return arr
     }

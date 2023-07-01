@@ -10,14 +10,6 @@ import { ConfigStorageController } from './ConfigStorageController';
 
 export class AutocombineStorageController {
 
-    public static assignStartingValues() {
-        AutocombineStorage.instance.allProfit = 0
-        AutocombineStorage.instance.quantityWorkGoldMine = 0
-        AutocombineStorage.instance.quantityProfit = 0
-        AutocombineStorage.instance.quantityCollect = 0
-        AutocombineStorage.instance.isActiveAutocombine = true
-    }
-
     public static assigningSaveValues(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))

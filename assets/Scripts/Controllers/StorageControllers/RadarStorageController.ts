@@ -5,7 +5,6 @@ import { RadarStorage } from '../../Storage/RadarStorage';
 import { BattleTask } from '../../Structures/BattleTask';
 import { QuantityItem } from '../../Structures/QuantityItem';
 import { ConfigStorageController } from './ConfigStorageController';
-import { ModalRadarLogic } from '../../UI/Modals/ModalRadar/ModalRadarLogic';
 import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
 import { HomeMapStorageController } from './HomeMapStorageController';
 import { TypesObjects } from '../../Static/TypesObjects';
@@ -13,7 +12,6 @@ import { MapService } from '../NetworkControllers/MapService';
 import { UserStorageController } from './UserStorageController';
 import { TypesItems } from '../../Static/TypesItems';
 import { GameStorageController } from './GameStorageController';
-import { RadarRender } from '../../Logic/RadarRender';
 const { ccclass } = _decorator;
 
 @ccclass('RadarStorageController')
@@ -46,7 +44,6 @@ export class RadarStorageController {
                 }
             }
         }
-        RadarRender.instance.updateInterface()
     }
 
     static addRadarTasks(id: number, type: string, stars: number, time: number, reward: QuantityItem[], battleTime: number) {
@@ -160,9 +157,9 @@ export class RadarStorageController {
             RadarStorage.instance.radarLevel++;
             RadarStorage.instance.radarExperience -= targetExperience;
             targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
-            ModalRadarLogic.instance.calculationRadar();
+            // ModalRadarLogic.instance.calculationRadar();
         }
-        RadarRender.instance.updateInterface()
+        // RadarRender.instance.updateInterface()
 
         this.saveStorage();
     }

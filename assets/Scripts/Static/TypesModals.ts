@@ -1,4 +1,5 @@
 export class TypesModals {
+    public static LOADING_GAME: string = "loadingGame"
     public static PROFILE: string = "profile"
     public static SHOP_COINS: string = "shopCoins"
     public static SHOP_GEMS: string = "shopGems"
@@ -7,7 +8,7 @@ export class TypesModals {
     public static POWER: string = "power"
     public static CHARACTERS: string = "сharacters"
     public static CHARACTER_INFO: string = "characterInfo"
-    public static CHARACTER_PUMPING: string = "characterPumping"
+    public static UPGRADE_CHARACTER: string = "upgradeCharacter"
     public static COMMAND_POST: string = "commandPost"
     public static TASKS_GAME: string = "tasksGame"
 

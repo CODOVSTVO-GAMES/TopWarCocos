@@ -6,30 +6,6 @@ import { TypesObjects } from '../../Static/TypesObjects';
 
 export class CommandPostStorageController {
 
-    // =================================================================
-
-    static assignStartingValues() {
-        CommandPostStorage.instance.levelCommandPost = 1
-        CommandPostStorage.instance.levelRepairShop = 1
-
-        CommandPostStorage.instance.levelMergeGoldMine = 5
-        CommandPostStorage.instance.levelBuildGoldMine = 1
-
-        CommandPostStorage.instance.levelMergeTroopAir = 5
-        CommandPostStorage.instance.levelMergeBarracksAir = 5
-        CommandPostStorage.instance.levelBuildBarracksAir = 1
-
-        CommandPostStorage.instance.levelMergeTroopMarine = 5
-        CommandPostStorage.instance.levelMergeBarracksMarine = 5
-        CommandPostStorage.instance.levelBuildBarracksMarine = 1
-
-        CommandPostStorage.instance.levelMergeTroopOverland = 5
-        CommandPostStorage.instance.levelMergeBarracksOverland = 5
-        CommandPostStorage.instance.levelBuildBarracksOverland = 1
-
-        this.saveStorage()
-    }
-
     static assigningSaveValues(obj: Object) {
         let json = JSON.parse(JSON.stringify(obj))
         CommandPostStorage.instance.levelCommandPost = json.levelCommandPost

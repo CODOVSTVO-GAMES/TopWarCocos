@@ -1,15 +1,6 @@
 import { _decorator, Component, Node, v3 } from 'cc';
 import { TypesModals } from '../Static/TypesModals';
-import { ModalExperienceInerface } from './Modals/ModalExperience/ModalExperienceInerface';
-import { ModalPowerInterface } from './Modals/ModalPower/ModalPowerInterface';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
-import { ModalCommandPostInterface } from './Modals/ModalCommandPost/ModalCommandPostInterface';
-import { ModalAutocombineInterface } from './Modals/ModalAutocombine/ModalAutocombineInterface';
-import { ModalBackpackInterface } from './Modals/ModalBackpack/ModalBackpackInterface';
-import { ModalRepairShopInterface } from './Modals/ModalRepairShop/ModalRepairShopInterface';
-import { ModalBankInterface } from './Modals/ModalBank/ModalBankInterface';
-import { ModalBackpackLogic } from './Modals/ModalBackpack/ModalBackpackLogic';
-import { ModalShopObjectInterface } from './Modals/ModalShopObject/ModalShopObjectInterface';
 import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
@@ -22,15 +13,10 @@ import { ModalCharacterPumpingLogic } from './Modals/Characters/ModalCharacterPu
 import { ModalCharacterPumpingInterface } from './Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
 import { AnimationModals } from '../Animations/UI/AnimationModals';
 import { TypesAnimation } from '../Static/TypesAnimation';
-import { ModalRadarTaskInterface } from './Modals/ModalRadarTask/ModalRadarTaskInterface';
 import { RadarStorage } from '../Storage/RadarStorage';
-import { ModalRadarRewardInterface } from './Modals/ModalRadarReward/ModalRadarRewardInterface';
-import { ModalRadarRewardLogic } from './Modals/ModalRadarReward/ModalRadarRewardLogic';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
-import { RadarRender } from '../Logic/RadarRender';
 import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
-import { ModalTasksGameInterface } from './Modals/ModalTasksGame/ModalTasksGameInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -46,15 +32,6 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public secondBackgraund: Node;
-
-    @property({ type: Node })
-    public profile: Node;
-
-    @property({ type: Node })
-    public shopCoins: Node;
-
-    @property({ type: Node })
-    public shopGems: Node;
 
     @property({ type: Node })
     public shopObject: Node;
@@ -87,9 +64,6 @@ export class SecondaryInterface extends Component {
     public upgrateCommandPost1: Node;
 
     @property({ type: Node })
-    public bank: Node;
-
-    @property({ type: Node })
     public autocombine: Node;
 
     @property({ type: Node })
@@ -100,9 +74,6 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public radarReward: Node;
-
-    @property({ type: Node })
-    public repairShop: Node;
 
     @property({ type: Node })
     public backpack: Node;
@@ -206,28 +177,13 @@ export class SecondaryInterface extends Component {
     }
 
     private openModal(item: QueueItem) {
-        if (item.modalName == TypesModals.PROFILE) {
-            this.firstBackgraund.active = true;
-            this.profile.active = true;
-        }
-        else if (item.modalName == TypesModals.SHOP_COINS) {
-            this.firstBackgraund.active = true;
-            this.shopCoins.active = true;
-        }
-        else if (item.modalName == TypesModals.SHOP_GEMS) {
-            this.firstBackgraund.active = true;
-            this.shopGems.active = true;
-        }
-        else if (item.modalName == TypesModals.SHOP_OBJECT) {
-            ModalShopObjectInterface.instance.updateInterface();
+        if (item.modalName == TypesModals.SHOP_OBJECT) {
             this.shopObject.active = true;
         }
         else if (item.modalName == TypesModals.EXPERIENCE) {
-            ModalExperienceInerface.instance.updateInterface();
             this.experience.active = true;
         }
         else if (item.modalName == TypesModals.POWER) {
-            ModalPowerInterface.instance.updateInterface();
             this.firstBackgraund.active = true;
             this.powar.active = true;
         }
@@ -247,7 +203,7 @@ export class SecondaryInterface extends Component {
                 this.activeFirstLayoutModal = "";
             }
         }
-        else if (item.modalName == TypesModals.CHARACTER_PUMPING) {
+        else if (item.modalName == TypesModals.UPGRADE_CHARACTER) {
             ModalCharacterPumpingLogic.instance.characterIndex = CharactersStorage.instance.characterIndex;
             ModalCharacterPumpingInterface.instance.renderModalPumping(item.data["type"]);
             this.secondBackgraund.active = true;
@@ -255,12 +211,10 @@ export class SecondaryInterface extends Component {
             AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.OPEN_MODAL_CHARACTER);
         }
         else if (item.modalName == TypesModals.COMMAND_POST) {
-            ModalCommandPostInterface.instance.updateInterface();
             this.firstBackgraund.active = true;
             this.commandPost.active = true;
         }
         else if (item.modalName == TypesModals.TASKS_GAME) {
-            ModalTasksGameInterface.instance.updateInterface()
             this.firstBackgraund.active = true;
             this.tasksGame.active = true;
         }
@@ -287,44 +241,27 @@ export class SecondaryInterface extends Component {
             this.upgrateCommandPost1.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
-        else if (item.modalName == TypesModals.BANK) {
-            ModalBankInterface.instance.updateInterface();
-            this.firstBackgraund.active = true;
-            this.bank.active = true;
-        }
         else if (item.modalName == TypesModals.AUTOCOMBINE) {
-            ModalAutocombineInterface.instance.updateInterface();
             this.firstBackgraund.active = true;
             this.autocombine.active = true;
         }
         else if (item.modalName == TypesModals.RADAR) {
             RadarStorageController.getNewTasks()
-            RadarRender.instance.updateInterface()
             this.firstBackgraund.active = true;
             this.radar.active = true;
         }
         else if (item.modalName == TypesModals.RADAR_TASK_INFO) {
-            ModalRadarTaskInterface.instance.updateInterface(item.data["task"]);
             this.secondBackgraund.active = true;
             this.radarTaskInfo.active = true;
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
         }
         else if (item.modalName == TypesModals.RADAR_REWARD) {
             RadarStorage.instance.task = item.data;
-            ModalRadarRewardInterface.instance.updateInterface();
             this.secondBackgraund.active = true;
             this.radarReward.active = true;
             AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
         }
-        else if (item.modalName == TypesModals.REPAIR_SHOP) {
-            ModalRepairShopInterface.instance.updateInterface();
-            this.firstBackgraund.active = true;
-            this.repairShop.active = true;
-        }
         else if (item.modalName == TypesModals.BACKPACK) {
-            ModalBackpackLogic.instance.openModalBackpack();
-            ModalBackpackInterface.instance.spawnBackpack();
-            ModalBackpackInterface.instance.updateInterface();
             this.firstBackgraund.active = true;
             this.backpack.active = true;
         }
@@ -376,7 +313,7 @@ export class SecondaryInterface extends Component {
 
     openCharacterInfo(event, customEventData) { this.openFirstModal(TypesModals.CHARACTER_INFO, { index: customEventData }); }
 
-    openCharacterPumping(data: object) { this.openSecondModal(TypesModals.CHARACTER_PUMPING, data); }
+    openCharacterPumping(data: object) { this.openSecondModal(TypesModals.UPGRADE_CHARACTER, data); }
 
     openCommandPost() { this.openFirstModal(TypesModals.COMMAND_POST); }
 
@@ -410,15 +347,6 @@ export class SecondaryInterface extends Component {
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
             this.firstBackgraund.active = false;
         }
-        if (this.activeFirstLayoutModal == TypesModals.PROFILE) {
-            this.profile.active = false;
-        }
-        else if (this.activeFirstLayoutModal == TypesModals.SHOP_COINS) {
-            this.shopCoins.active = false;
-        }
-        else if (this.activeFirstLayoutModal == TypesModals.SHOP_GEMS) {
-            this.shopGems.active = false;
-        }
         else if (this.activeFirstLayoutModal == TypesModals.SHOP_OBJECT) {
             this.shopObject.active = false;
         }
@@ -440,18 +368,11 @@ export class SecondaryInterface extends Component {
         else if (this.activeFirstLayoutModal == TypesModals.TASKS_GAME) {
             this.tasksGame.active = false;
         }
-        else if (this.activeFirstLayoutModal == TypesModals.BANK) {
-            this.bank.active = false;
-        }
         else if (this.activeFirstLayoutModal == TypesModals.AUTOCOMBINE) {
             this.autocombine.active = false;
         }
         else if (this.activeFirstLayoutModal == TypesModals.RADAR) {
             this.radar.active = false;
-            RadarRender.instance.cleanTasks()
-        }
-        else if (this.activeFirstLayoutModal == TypesModals.REPAIR_SHOP) {
-            this.repairShop.active = false;
         }
         else if (this.activeFirstLayoutModal == TypesModals.BACKPACK) {
             this.backpack.active = false;
@@ -487,7 +408,7 @@ export class SecondaryInterface extends Component {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost1.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.CHARACTER_PUMPING) {
+        else if (this.activeSecondLayoutModal == TypesModals.UPGRADE_CHARACTER) {
             AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.CLOSE_MODAL_CHARACTER);
             setTimeout(() => this.characterPumping.active = false, 85);
         }
@@ -496,7 +417,6 @@ export class SecondaryInterface extends Component {
             setTimeout(() => this.radarTaskInfo.active = false, 85);
         }
         else if (this.activeSecondLayoutModal == TypesModals.RADAR_REWARD) {
-            ModalRadarRewardLogic.instance.giveReward();
             AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.CLOSE_MODAL_RADAR);
             setTimeout(() => this.radarReward.active = false, 85);
         }
@@ -506,9 +426,6 @@ export class SecondaryInterface extends Component {
     closeAllModals() {
         this.firstBackgraund.active = false;
         this.secondBackgraund.active = false;
-        this.profile.active = false;
-        this.shopCoins.active = false;
-        this.shopGems.active = false;
         this.shopObject.active = false;
         this.experience.active = false;
         this.powar.active = false;
@@ -519,12 +436,10 @@ export class SecondaryInterface extends Component {
         this.tasksGame.active = false;
         this.upgrateCommandPost0.active = false;
         this.upgrateCommandPost1.active = false;
-        this.bank.active = false;
         this.autocombine.active = false;
         this.radar.active = false;
         this.radarTaskInfo.active = false;
         this.radarReward.active = false;
-        this.repairShop.active = false;
         this.backpack.active = false;
         this.dialog.active = false;
         this.wireCut.active = false;

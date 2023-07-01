@@ -2,7 +2,6 @@ import { _decorator, Component } from 'cc';
 import { TasksGameStorage } from '../Storage/TasksGameStorage';
 import { TaskGame } from '../Structures/TaskGame';
 import { TasksGameStorageController } from '../Controllers/StorageControllers/TasksGameStorageController';
-import { ModalTasksGameInterface } from '../UI/Modals/ModalTasksGame/ModalTasksGameInterface';
 import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
 const { ccclass, property } = _decorator;
 
@@ -17,7 +16,6 @@ export class TasksGameLogic extends Component {
 
     public addTask(typeTask: string, levelObjectTask: number, quantityRequired: number, quantityCompleted: number) {
         TasksGameStorage.instance.storage.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, false))
-        ModalTasksGameInterface.instance.updateInterface()
     }
 
     public checkTask(typeTask: string, levelObjectTask: number, quantity: number) {
