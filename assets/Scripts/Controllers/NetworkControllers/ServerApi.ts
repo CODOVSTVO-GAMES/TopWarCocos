@@ -18,7 +18,6 @@ export class ServerApi {
     }
 
     private static request(endpoint: string, data: RequestDTO, func: Function, type: string, dataObj: object) {
-        // console.log(JSON.stringify(dataObj))
         var xhr = new XMLHttpRequest();
 
         if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
@@ -47,7 +46,6 @@ export class ServerApi {
     }
 
     private static globalResponseParser(status: number, body: any, customFunction: Function) {
-        // console.log('Глобальный парсер статус: ' + status)
         if (status == 200) {
             let json
             try {
@@ -63,7 +61,6 @@ export class ServerApi {
         else if (status == 403) {
             console.log('Сервер выдал 403. Перезагрузите клиент')
             customFunction('responseJson', false)
-            // LoadingGame.reloadGame()
         }
         else if (status == 408) {
             console.log('Сервер выдал 502 или 408. Повторите запрос позже')

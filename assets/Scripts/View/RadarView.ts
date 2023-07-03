@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Prefab, instantiate } from 'cc';
-import { RadarStorage } from '../Storage/RadarStorage';
+import { RadarModel } from '../Model/RadarModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarView')
@@ -22,7 +22,7 @@ export class RadarView extends Component {
     }
 
     renderLocator() {
-        let tasks = RadarStorage.instance.tasks
+        let tasks = RadarModel.instance.tasks
         for (let l = 0; l < tasks.length; l++) {
             if (tasks[l].node == null) {
                 let task = instantiate(this.taskPrefab)
@@ -37,7 +37,7 @@ export class RadarView extends Component {
     }
 
     cleanTasks() {
-        let tasks = RadarStorage.instance.tasks
+        let tasks = RadarModel.instance.tasks
         for (let l = 0; l < tasks.length; l++) {
             tasks[l].node.destroy()
             tasks[l].node = null

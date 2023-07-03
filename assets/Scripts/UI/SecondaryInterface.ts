@@ -7,16 +7,16 @@ import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
 import { QuestionLogic } from './Modals/Question/QuestionLogic';
 import { SwitchLogic } from './Modals/Switch/SwitchLogic';
-import { CharactersStorage } from '../Storage/CharactersStorage';
 import { ModalCharacterInfoIntarface } from './Modals/Characters/ModalCharacterInfo/ModalCharacterInfoInterface';
 import { ModalCharacterPumpingLogic } from './Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingLogic';
 import { ModalCharacterPumpingInterface } from './Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
 import { AnimationModals } from '../Animations/UI/AnimationModals';
 import { TypesAnimation } from '../Static/TypesAnimation';
-import { RadarStorage } from '../Storage/RadarStorage';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
-import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
+import { CharactersModel } from '../Model/CharactersModel';
+import { RadarModel } from '../Model/RadarModel';
+import { RadarPresenter } from '../Presenter/RadarPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -193,8 +193,8 @@ export class SecondaryInterface extends Component {
             this.characters.active = true;
         }
         else if (item.modalName == TypesModals.CHARACTER_INFO) {
-            CharactersStorage.instance.characterIndex = item.data["index"];
-            let availableCharacter = ModalCharacterInfoIntarface.instance.renderCharacter(CharactersStorage.instance.characterIndex);
+            CharactersModel.instance.characterIndex = item.data["index"];
+            let availableCharacter = ModalCharacterInfoIntarface.instance.renderCharacter(CharactersModel.instance.characterIndex);
             if (availableCharacter) {
                 this.firstBackgraund.active = true;
                 this.characterInfo.active = true;
@@ -204,7 +204,7 @@ export class SecondaryInterface extends Component {
             }
         }
         else if (item.modalName == TypesModals.UPGRADE_CHARACTER) {
-            ModalCharacterPumpingLogic.instance.characterIndex = CharactersStorage.instance.characterIndex;
+            ModalCharacterPumpingLogic.instance.characterIndex = CharactersModel.instance.characterIndex;
             ModalCharacterPumpingInterface.instance.renderModalPumping(item.data["type"]);
             this.secondBackgraund.active = true;
             this.characterPumping.active = true;
@@ -246,7 +246,7 @@ export class SecondaryInterface extends Component {
             this.autocombine.active = true;
         }
         else if (item.modalName == TypesModals.RADAR) {
-            RadarStorageController.getNewTasks()
+            RadarPresenter.getNewTasks()
             this.firstBackgraund.active = true;
             this.radar.active = true;
         }
@@ -256,7 +256,7 @@ export class SecondaryInterface extends Component {
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
         }
         else if (item.modalName == TypesModals.RADAR_REWARD) {
-            RadarStorage.instance.task = item.data;
+            RadarModel.instance.task = item.data;
             this.secondBackgraund.active = true;
             this.radarReward.active = true;
             AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
@@ -358,7 +358,7 @@ export class SecondaryInterface extends Component {
         }
         else if (this.activeFirstLayoutModal == TypesModals.CHARACTER_INFO) {
             ModalCharacterGridInterface.instance.renderCharacters();
-            ModalCharacterInfoIntarface.instance.renderCharacter(CharactersStorage.instance.characterIndex);
+            ModalCharacterInfoIntarface.instance.renderCharacter(CharactersModel.instance.characterIndex);
             this.characterInfo.active = false;
             this.activeFirstLayoutModal = TypesModals.CHARACTERS;
         }

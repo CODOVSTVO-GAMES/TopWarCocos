@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Label } from 'cc';
 import { ObjectParameters } from '../../ObjectParameters';
-import { HomeMapStorageController } from '../../Controllers/StorageControllers/HomeMapStorageController';
+import { HomeMapPresenter } from '../../Presenter/HomeMapPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameObjectInterface')
@@ -61,7 +61,7 @@ export class GameObjectInterface extends Component {
 
         if (this.quantityObject && this.subtitleObject) {
 
-            let quantityObject = (HomeMapStorageController.getQuantityObjectsByTypeAndLevel(this.objectParameters.type, this.objectParameters.level) + 1).toString()
+            let quantityObject = (HomeMapPresenter.getQuantityObjectsByTypeAndLevel(this.objectParameters.type, this.objectParameters.level) + 1).toString()
             this.quantityObjectText.string = quantityObject
             this.subtitleObjectText.string = "";
         }

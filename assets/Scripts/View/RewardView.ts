@@ -1,8 +1,8 @@
 import { _decorator, Component, Label, Sprite, SpriteFrame } from 'cc';
 import { TypesItems } from '../Static/TypesItems';
-import { RadarStorage } from '../Storage/RadarStorage';
 import { BackpackPresenter } from '../Presenter/BackpackPresenter';
 import { GamePresenter } from '../Presenter/GamePresenter';
+import { RadarModel } from '../Model/RadarModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('RewardView')
@@ -33,23 +33,23 @@ export class RewardView extends Component {
     }
 
     public giveReward() {
-        for (let i = 0; i < RadarStorage.instance.task.rewards.length; i++) {
-            if (RadarStorage.instance.task.rewards[i].type != TypesItems.EXPERIENCE) {
-                BackpackPresenter.addItemBackpack(RadarStorage.instance.task.rewards[i].type, RadarStorage.instance.task.rewards[i].quantity)
+        for (let i = 0; i < RadarModel.instance.task.rewards.length; i++) {
+            if (RadarModel.instance.task.rewards[i].type != TypesItems.EXPERIENCE) {
+                BackpackPresenter.addItemBackpack(RadarModel.instance.task.rewards[i].type, RadarModel.instance.task.rewards[i].quantity)
             }
             else {
-                GamePresenter.addExperience(RadarStorage.instance.task.rewards[i].quantity)
+                GamePresenter.addExperience(RadarModel.instance.task.rewards[i].quantity)
             }
         }
 
-        // RadarStorageController.addRadarExperience(1);
-        // RadarStorageController.reduceRadarTask(RadarStorage.instance.task);
+        // RadarModelController.addRadarExperience(1);
+        // RadarModelController.reduceRadarTask(RadarModel.instance.task);
 
-        // RadarStorageController.reduceRadarAvailableMissions(1); //добавить при победе в миссии
+        // RadarModelController.reduceRadarAvailableMissions(1); //добавить при победе в миссии
     }
 
     public renderInterface() {
-        let task = RadarStorage.instance.task
+        let task = RadarModel.instance.task
 
         for (let i = 0; i < this.rewards.length; i++) {
             this.quantity[i].string = task.rewards[i].quantity.toString()

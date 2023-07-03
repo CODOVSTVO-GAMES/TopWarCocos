@@ -1,8 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
-import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
 import { BattleTask } from '../Structures/BattleTask';
-import { RadarStorage } from '../Storage/RadarStorage';
 import { MapService } from '../Controllers/NetworkControllers/MapService';
+import { RadarModel } from '../Model/RadarModel';
 const { ccclass } = _decorator;
 
 @ccclass('RadarLogic')
@@ -19,7 +18,7 @@ export class RadarLogic extends Component {
     }
 
     taskProcessing() {
-        let tasks = RadarStorage.instance.tasks
+        let tasks = RadarModel.instance.tasks
 
         let deleteTasks: BattleTask[] = []
         for (let l = 0; l < tasks.length; l++) {
@@ -61,11 +60,11 @@ export class RadarLogic extends Component {
 
     async deleteTask(tasks: BattleTask[]) {
         for (let l = 0; l < tasks.length; l++) {
-            for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
+            for (let l = 0; l < RadarModel.instance.tasks.length; l++) {
 
-                if (RadarStorage.instance.tasks[l].id = tasks[l].id) {
+                if (RadarModel.instance.tasks[l].id = tasks[l].id) {
                     MapService.attackStatus(tasks[l].id, tasks[l].status)
-                    RadarStorage.instance.tasks.splice(l, 1)
+                    RadarModel.instance.tasks.splice(l, 1)
                     break
                 }
 

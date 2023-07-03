@@ -3,17 +3,20 @@ import { CharacterInfo } from '../Structures/CharacterInfo';
 import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
 const { ccclass } = _decorator;
 
-@ccclass('CharactersStorage')
-export class CharactersStorage extends Component {
+@ccclass('CharactersModel')
+export class CharactersModel extends Component {
 
-    public static instance: CharactersStorage
+    public static instance: CharactersModel
 
-    public characters: Array<CharacterInfo> = []
-
+    public characters: CharacterInfo[]
     public characterIndex: number
 
-    public onLoad() {
-        CharactersStorage.instance = this
+    protected onLoad(): void {
+        CharactersModel.instance = this
+    }
+
+    private assignStartingValues() {
+
     }
 
     public getRandomCharacter(): CharacterInfo {

@@ -1,21 +1,20 @@
-import { _decorator, Component, Game, Node, Vec2, Vec3 } from 'cc';
-import { BufferStorageController } from './BufferStorageController';
-import { TypesStorages } from '../../Static/TypesStorages';
-import { RadarStorage } from '../../Storage/RadarStorage';
-import { BattleTask } from '../../Structures/BattleTask';
-import { QuantityItem } from '../../Structures/QuantityItem';
-import { ConfigStorageController } from './ConfigStorageController';
-import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
-import { TypesObjects } from '../../Static/TypesObjects';
-import { MapService } from '../NetworkControllers/MapService';
-import { UserStorageController } from './UserStorageController';
-import { TypesItems } from '../../Static/TypesItems';
-import { GameModel } from '../../Model/GameModel';
-import { HomeMapPresenter } from '../../Presenter/HomeMapPresenter';
-const { ccclass } = _decorator;
+import { Vec3 } from "cc";
+import { MessageAnimation } from "../Animations/Message/MessageAnimation";
+import { MapService } from "../Controllers/NetworkControllers/MapService";
+import { BufferStorageController } from "../Controllers/StorageControllers/BufferStorageController";
+import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController";
+import { RadarModelController } from "../Controllers/StorageControllers/RadarStorageController";
+import { UserStorageController } from "../Controllers/StorageControllers/UserStorageController";
+import { RadarModel } from "../Model/RadarModel";
+import { TypesObjects } from "../Static/TypesObjects";
+import { TypesStorages } from "../Static/TypesStorages";
+import { BattleTask } from "../Structures/BattleTask";
+import { QuantityItem } from "../Structures/QuantityItem";
+import { HomeMapPresenter } from "./HomeMapPresenter";
+import { GameModel } from "../Model/GameModel";
+import { TypesItems } from "../Static/TypesItems";
 
-@ccclass('RadarStorageController')
-export class RadarStorageController {
+export class RadarPresenter {
 
     private static messageAnimation: MessageAnimation;
 
@@ -29,7 +28,7 @@ export class RadarStorageController {
         for (let l = 0; l < arr.length; l++) {
             if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
                 if (arr[l]['owner'] == UserStorageController.getAccountId()) {
-                    if (RadarStorageController.isTaskExists(arr[l]['id'])) {
+                    if (RadarModelController.isTaskExists(arr[l]['id'])) {
                         console.log('повторка')
                         continue
                     }
@@ -40,14 +39,14 @@ export class RadarStorageController {
                     const battleTime = arr[l]['battleTime']
                     let expiration = arr[l]['expiration']
                     expiration = expiration - UserStorageController.getServerTime()
-                    RadarStorageController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
+                    RadarModelController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
                 }
             }
         }
     }
 
     static addRadarTasks(id: number, type: string, stars: number, time: number, reward: QuantityItem[], battleTime: number) {
-        RadarStorage.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
+        RadarModel.instance.tasks.push(new BattleTask(id, type, stars, Math.floor(time / 1000), 0, reward, battleTime, this.generateTaskCoords()));
         // this.updateRadarAnimation();
     }
 
@@ -84,32 +83,32 @@ export class RadarStorageController {
 
 
     static assignStartingValues() {
-        RadarStorage.instance.radarLevel = 1;
-        let config = ConfigStorageController.getRadarConfigByLevel(RadarStorage.instance.radarLevel);
-        RadarStorage.instance.availableMissions = 30;
-        RadarStorage.instance.timeToUpdate = config.time;
-        RadarStorage.instance.signalQuality = 1;
-        RadarStorage.instance.radarExperience = 0;
+        RadarModel.instance.radarLevel = 1;
+        let config = ConfigStorageController.getRadarConfigByLevel(RadarModel.instance.radarLevel);
+        RadarModel.instance.availableMissions = 30;
+        RadarModel.instance.timeToUpdate = config.time;
+        RadarModel.instance.signalQuality = 1;
+        RadarModel.instance.radarExperience = 0;
         this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object) {
         let json = JSON.parse(JSON.stringify(obj));
-        RadarStorage.instance.radarLevel = json.radarLevel;
-        RadarStorage.instance.availableMissions = json.availableMissions;
-        RadarStorage.instance.timeToUpdate = json.timeToUpdate;
-        RadarStorage.instance.signalQuality = json.signalQuality;
-        // RadarStorage.instance.battleTasks = json.tasks;
-        RadarStorage.instance.radarExperience = json.radarExperience;
+        RadarModel.instance.radarLevel = json.radarLevel;
+        RadarModel.instance.availableMissions = json.availableMissions;
+        RadarModel.instance.timeToUpdate = json.timeToUpdate;
+        RadarModel.instance.signalQuality = json.signalQuality;
+        // RadarModel.instance.battleTasks = json.tasks;
+        RadarModel.instance.radarExperience = json.radarExperience;
     }
 
     // static getRadarTasks(): BattleTask[] {
-    //     return RadarStorage.instance.battleTasks;
+    //     return RadarModel.instance.battleTasks;
     // }
 
     static isTaskExists(id: number) {
-        for (let l = 0; l < RadarStorage.instance.tasks.length; l++) {
-            if (RadarStorage.instance.tasks[l].id == id) {
+        for (let l = 0; l < RadarModel.instance.tasks.length; l++) {
+            if (RadarModel.instance.tasks[l].id == id) {
                 return true
             }
         }
@@ -117,45 +116,45 @@ export class RadarStorageController {
     }
 
     static getRadarLevel(): number {
-        return RadarStorage.instance.radarLevel;
+        return RadarModel.instance.radarLevel;
     }
 
     static getRadarAvailableMissions(): number {
-        return RadarStorage.instance.availableMissions;
+        return RadarModel.instance.availableMissions;
     }
 
     static getRadarTime(): number {
-        return RadarStorage.instance.timeToUpdate;
+        return RadarModel.instance.timeToUpdate;
     }
 
     static getRadarSignal(): number {
-        return RadarStorage.instance.signalQuality;
+        return RadarModel.instance.signalQuality;
     }
 
     static getRadarExperience(): number {
-        return RadarStorage.instance.radarExperience;
+        return RadarModel.instance.radarExperience;
     }
 
     static addRadarAvailableMissions(value: number) {
         if (value == 0) return;
-        RadarStorage.instance.availableMissions += value;
+        RadarModel.instance.availableMissions += value;
         this.saveStorage();
         // this.updateRadarAnimation();
     }
 
     static addRadarSignalQuantity(value: number) {
         if (value == 0) return;
-        RadarStorage.instance.signalQuality += value;
+        RadarModel.instance.signalQuality += value;
         this.saveStorage();
     }
 
     static addRadarExperience(value: number) {
         if (value == 0) return;
-        RadarStorage.instance.radarExperience += value;
+        RadarModel.instance.radarExperience += value;
         let targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
         while (this.getRadarExperience() > targetExperience) {
-            RadarStorage.instance.radarLevel++;
-            RadarStorage.instance.radarExperience -= targetExperience;
+            RadarModel.instance.radarLevel++;
+            RadarModel.instance.radarExperience -= targetExperience;
             targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
             // ModalRadarLogic.instance.calculationRadar();
         }
@@ -166,15 +165,15 @@ export class RadarStorageController {
 
     static reduceRadarTime(value: number) {
         if (value == 0) return;
-        RadarStorage.instance.timeToUpdate -= value;
+        RadarModel.instance.timeToUpdate -= value;
         this.saveStorage();
     }
 
     // static reduceRadarTask(task: BattleTask) {
     //     if (task == null) return;
-    //     for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
-    //         if (RadarStorage.instance.battleTasks[i] == task) {
-    //             RadarStorage.instance.battleTasks.splice(i, 1);
+    //     for (let i = 0; i < RadarModel.instance.battleTasks.length; i++) {
+    //         if (RadarModel.instance.battleTasks[i] == task) {
+    //             RadarModel.instance.battleTasks.splice(i, 1);
     //         }
     //     }
     //     this.saveStorage();
@@ -183,34 +182,34 @@ export class RadarStorageController {
 
     static reduceRadarAvailableMissions(value: number) {
         if (value == 0) return;
-        RadarStorage.instance.availableMissions -= value;
+        RadarModel.instance.availableMissions -= value;
         this.saveStorage();
     }
 
     static equateRadarTime(value: number) {
-        RadarStorage.instance.timeToUpdate = value;
+        RadarModel.instance.timeToUpdate = value;
         this.saveStorage();
     }
 
     static equateRadarSignalQuantity(value: number) {
-        RadarStorage.instance.signalQuality = value;
+        RadarModel.instance.signalQuality = value;
         this.saveStorage();
     }
 
     static equateRadarAvailableMissions(value: number) {
-        RadarStorage.instance.availableMissions = value;
+        RadarModel.instance.availableMissions = value;
         this.saveStorage();
     }
 
     static equateRadarExperience(value: number) {
-        RadarStorage.instance.radarExperience = value;
+        RadarModel.instance.radarExperience = value;
         this.saveStorage();
     }
 
     // static updateRadarAnimation() {
     //     let status = 0;
-    //     for (let i = 0; i < RadarStorage.instance.battleTasks.length; i++) {
-    //         if (RadarStorage.instance.battleTasks[i].status < 2) {
+    //     for (let i = 0; i < RadarModel.instance.battleTasks.length; i++) {
+    //         if (RadarModel.instance.battleTasks[i].status < 2) {
     //             if (status < 1) {
     //                 status = 1;
     //             }
@@ -245,21 +244,21 @@ export class RadarStorageController {
 
     static saveStorage() {
         let tasks = [];
-        // for (let i = 0; i < RadarStorage.instance.tasks.length; i++) {
+        // for (let i = 0; i < RadarModel.instance.tasks.length; i++) {
         //     tasks.push({
-        //         type: RadarStorage.instance.tasks[i].type,
-        //         stars: RadarStorage.instance.tasks[i].stars,
-        //         time: RadarStorage.instance.tasks[i].time,
-        //         status: RadarStorage.instance.tasks[i].status,
-        //         rewards: RadarStorage.instance.tasks[i].rewards
+        //         type: RadarModel.instance.tasks[i].type,
+        //         stars: RadarModel.instance.tasks[i].stars,
+        //         time: RadarModel.instance.tasks[i].time,
+        //         status: RadarModel.instance.tasks[i].status,
+        //         rewards: RadarModel.instance.tasks[i].rewards
         //     });
         // }
         let obj = {
-            radarLevel: RadarStorage.instance.radarLevel,
-            availableMissions: RadarStorage.instance.availableMissions,
-            timeToUpdate: RadarStorage.instance.timeToUpdate,
-            signalQuality: RadarStorage.instance.signalQuality,
-            radarExperience: RadarStorage.instance.radarExperience,
+            radarLevel: RadarModel.instance.radarLevel,
+            availableMissions: RadarModel.instance.availableMissions,
+            timeToUpdate: RadarModel.instance.timeToUpdate,
+            signalQuality: RadarModel.instance.signalQuality,
+            radarExperience: RadarModel.instance.radarExperience,
             tasks: tasks
         };
         BufferStorageController.addItem(TypesStorages.RADAR_STORAGE, obj);
@@ -300,5 +299,6 @@ export class RadarStorageController {
         [TypesItems.PLAN_MERGE_GOLD_MINE, TypesItems.PLAN_BUILD_GOLD_MINE, TypesItems.GOLD_CHEST],
         [TypesItems.PLAN_MERGE_TROOP_MARINE, TypesItems.PLAN_BUILD_BARRACK_MARINE, TypesItems.PLAN_MERGE_BARRACK_MARINE],
         [TypesItems.PLAN_MERGE_TROOP_AIR, TypesItems.PLAN_BUILD_BARRACK_AIR, TypesItems.PLAN_MERGE_BARRACK_AIR]];
+
 
 }

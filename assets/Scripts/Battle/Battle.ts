@@ -6,7 +6,6 @@ import { TypesAttack } from '../Static/TypesAttack';
 import { TypesTeam } from '../Static/TypesTeam';
 import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { CharactrerStorageController } from '../Controllers/StorageControllers/CharactrerStorageController';
 import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
 import { BattleStorage } from '../Storage/BattleStorage';
@@ -17,6 +16,7 @@ import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyCo
 import { InitRewardAfterBattle } from '../Logic/InitRewardAfterBattle';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { GameModel } from '../Model/GameModel';
+import { CharactersPresenter } from '../Presenter/CharactersPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -529,7 +529,7 @@ export class Battle extends Component {
         let attack = 0;
         let protection = 0;
         let leadership = 0;
-        let characters = CharactrerStorageController.getCharacters();
+        let characters = CharactersPresenter.getCharacters();
 
         for (let i = 0; i < characters.length; i++) {
             let character = characters[i]

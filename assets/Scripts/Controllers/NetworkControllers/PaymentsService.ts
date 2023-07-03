@@ -3,6 +3,7 @@ import { Product } from "../../Structures/Product";
 import { ServerApi } from "./ServerApi";
 
 export class PaymentsService {
+    
     static getProducts() {
         ServerApi.get('payments/products', {}, this.parseProductsGetResponce)
     }

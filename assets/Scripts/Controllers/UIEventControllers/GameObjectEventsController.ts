@@ -3,7 +3,9 @@ import { SpawnObjectsOnHomeMap } from "../../Logic/SpawnObjectsOnHomeMap";
 import { GameModel } from "../../Model/GameModel";
 import { ObjectParameters } from "../../ObjectParameters";
 import { RedirectionToScene } from "../../Other/RedirectionToScene";
+import { AutocombinePresenter } from "../../Presenter/AutocombinePresenter";
 import { GamePresenter } from "../../Presenter/GamePresenter";
+import { HomeMapPresenter } from "../../Presenter/HomeMapPresenter";
 import { HomeMapStructure } from "../../Static/HomeMapStructure";
 import { SceneNames } from "../../Static/SceneNames";
 import { TypesLocation } from "../../Static/TypesLocation";
@@ -11,10 +13,7 @@ import { TypesModals } from "../../Static/TypesModals";
 import { TypesObjects } from "../../Static/TypesObjects";
 import { BattleStorage } from "../../Storage/BattleStorage";
 import { SecondaryInterface } from "../../UI/SecondaryInterface";
-import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
-import { HomeMapStorageController } from "../StorageControllers/HomeMapStorageController";
-import { TroopStorageController } from "../StorageControllers/TroopStorageController";
 
 export class GameObjectEventsController {
 
@@ -123,7 +122,7 @@ export class GameObjectEventsController {
     }
 
     private static processingGoldMine(objectParameters: ObjectParameters) {
-        if (AutocombineStorageController.getTimeGoldMine(objectParameters.index) == 0) {
+        if (AutocombinePresenter.getTimeGoldMine(objectParameters.index) == 0) {
             GamePresenter.addCoins(ConfigStorageController.getProdictionInTimeGoldMineByLevel(objectParameters.level))
         }
     }
@@ -135,9 +134,9 @@ export class GameObjectEventsController {
     }
 
     private static processingAutocombine() {
-        if (AutocombineStorageController.getAllProfit() > 0) {
-            GamePresenter.addCoins(AutocombineStorageController.getAllProfit())
-            AutocombineStorageController.clearAllProfit()
+        if (AutocombinePresenter.getAllProfit() > 0) {
+            GamePresenter.addCoins(AutocombinePresenter.getAllProfit())
+            AutocombinePresenter.clearAllProfit()
         }
         else {
             let typeModal = TypesModals.AUTOCOMBINE
@@ -151,7 +150,7 @@ export class GameObjectEventsController {
         let indexObject = objectParameters.index
         let nodeObject = objectParameters.nodeObject
 
-        HomeMapStorageController.setObjectParameter(null, typeObject, indexObject)
+        HomeMapPresenter.setObjectParameter(null, typeObject, indexObject)
         nodeObject.destroy()
     }
 
@@ -162,7 +161,7 @@ export class GameObjectEventsController {
     }
 
     private static processingPaddedManipulator(objectParameters: ObjectParameters) {
-        HomeMapStorageController.setObjectParameter(null, objectParameters.type, objectParameters.index)
+        HomeMapPresenter.setObjectParameter(null, objectParameters.type, objectParameters.index)
         objectParameters.nodeObject.destroy()
     }
 
@@ -206,8 +205,7 @@ export class GameObjectEventsController {
         BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
         BattleStorage.instance.indexObjectBattle = objectParameters.index
 
-        TroopStorageController.setTroopStorage()
-        HomeMapStorageController.saveStorageServer()
+        // HomeMapStorageController.saveStorageServer()
         RedirectionToScene.redirect(SceneNames.BATTLE)
     }
 } 

@@ -4,8 +4,6 @@ import { TypesStorages } from "../../Static/TypesStorages"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
 import { DataStorageDTO } from "../../Structures/DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../../Structures/DTO/DataStorageResponseDTO"
-import { RadarStorageController } from "../StorageControllers/RadarStorageController"
-import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController"
 
 export class DataStorageService {
 
@@ -29,7 +27,6 @@ export class DataStorageService {
 
     static dataRecipient(objects: object[]) {
         if (UserStorageController.getIsNewUser()) {
-            RadarStorageController.assignStartingValues()
             LoadingGame.getPostData()
             return;
         }
@@ -57,10 +54,10 @@ export class DataStorageService {
                 // CommandPostStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.RADAR_STORAGE) {
-                RadarStorageController.assigningSaveValues(jsonValue)
+                // RadarStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.AUTOCOMBINE_STORAGE) {
-                AutocombineStorageController.assigningSaveValues(jsonValue)
+                // AutocombineStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
                 // BarracksStorageController.assigningSaveValues(jsonValue)

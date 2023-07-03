@@ -3,7 +3,8 @@ import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { BattleTask } from '../Structures/BattleTask';
 import { TypesModals } from '../Static/TypesModals';
 import { BattleTaskTypes } from '../Static/BattleTaskTypes';
-import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
+import { RadarPresenter } from '../Presenter/RadarPresenter';
+
 const { ccclass, property } = _decorator; @ccclass('PowerView')
 
 export class RadarTaskView extends Component {
@@ -104,7 +105,7 @@ export class RadarTaskView extends Component {
 
     public pushButton() {
         if (this.task.type == BattleTaskTypes.TASK_SALVATION) {
-            RadarStorageController.activateTask(this.task)
+            RadarPresenter.activateTask(this.task)
         }
         else if (this.task.type == BattleTaskTypes.TASK_PERSONAL) {
             // MapService.attackEnemy(this.task)

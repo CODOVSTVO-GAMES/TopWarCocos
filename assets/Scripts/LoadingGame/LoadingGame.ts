@@ -50,7 +50,6 @@ export class LoadingGame extends Component {
         ConfigService.getStartConfig()
         MapService.getMap()
         PaymentsService.getProducts()
-        // setTimeout(MapService.getEnemy, 4000)
     }
 
     static redirectToHomeMap() {

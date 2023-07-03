@@ -21,8 +21,6 @@ export class SessionService {
         UserStorageController.setSessionHash(sessionDataDTO.sessionHash)
         UserStorageController.setSessionId(sessionDataDTO.sessionId)
         UserStorageController.setServerTime(sessionDataDTO.serverTime)
-
-        // console.log("update session № " + sessionDataDTO.sessionId + ", session hash: " + sessionDataDTO.sessionHash + ', accountId: ' + UserStorageController.getAccountId())
     }
 
     static parseGetSessionResponce(data: any, isDone: boolean) {
@@ -45,5 +43,4 @@ export class SessionService {
         sessionDataDTO.serverTime = sessionJson.serverTime
         return sessionDataDTO
     }
-
 }

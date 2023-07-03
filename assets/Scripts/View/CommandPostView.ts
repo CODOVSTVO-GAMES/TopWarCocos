@@ -1,11 +1,11 @@
 import { _decorator, Component, Node, Label, Sprite } from 'cc';
-import { GameStorage } from '../Storage/GameStorage';
 import { CommandPostModel } from '../Model/CommandPostModel';
 import { TypesObjects } from '../Static/TypesObjects';
 import { SpriteStorage } from '../Storage/SpriteStorage';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { TypesModals } from '../Static/TypesModals';
+import { GameModel } from '../Model/GameModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('CommandPostView')
@@ -272,9 +272,9 @@ export class CommandPostView extends Component {
 
 
     public renderHeader() {
-        let level = GameStorage.instance.level.toString()
-        let coins = ConvertLargeNumber.convert(GameStorage.instance.coins)
-        let gems = GameStorage.instance.gems.toString()
+        let level = GameModel.instance.level.toString()
+        let coins = ConvertLargeNumber.convert(GameModel.instance.coins)
+        let gems = GameModel.instance.gems.toString()
 
         this.level.string = level
         this.coins.string = coins
