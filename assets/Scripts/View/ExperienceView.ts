@@ -1,6 +1,6 @@
 import { _decorator, Component, Label } from 'cc';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
-import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
+import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { GameModel } from '../Model/GameModel';
 import { ExperiencePresenter } from '../Presenter/ExperiencePresenter';
 const { ccclass, property } = _decorator;
@@ -37,8 +37,8 @@ export class ExperienceView extends Component {
     }
 
     public renderInterface() {
-        let a = ConfigStorageController.getLevelExpirienceByLevel(GameModel.instance.level + 1)
-        let b = ConfigStorageController.getLevelExpirienceByLevel(GameModel.instance.level + 1) - GameModel.instance.experience
+        let a = ConfigPresenter.getLevelExpirienceByLevel(GameModel.instance.level + 1)
+        let b = ConfigPresenter.getLevelExpirienceByLevel(GameModel.instance.level + 1) - GameModel.instance.experience
         let experience = "Опыт " + ConvertLargeNumber.convert(GameModel.instance.experience) + "/" + ConvertLargeNumber.convert(a)
         let requiredExperience = "До " + (GameModel.instance.level + 1).toString() + " уровня еще требуется " + ConvertLargeNumber.convert(b)
 

@@ -1,14 +1,10 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
 import { SecondaryInterface } from '../../../SecondaryInterface';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterInfoLogic')
 export class ModalCharacterInfoLogic extends Component {
-
-    /**
-     * открытие вкладки нажатием кнопки
-     */
 
     modalParametersOpen() {
         SecondaryInterface.instance.openCharacterPumping({ type: TypesModalPumping.PARAMETERS });

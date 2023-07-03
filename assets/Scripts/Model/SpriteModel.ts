@@ -4,12 +4,10 @@ import { TypesCharacters } from '../Static/TypesCharacters';
 import { TypesItems } from '../Static/TypesItems';
 const { ccclass, property } = _decorator;
 
-@ccclass('SpriteStorage')
-export class SpriteStorage extends Component {
+@ccclass('SpriteModel')
+export class SpriteModel extends Component {
 
-    public static instance: SpriteStorage
-
-    // =================================================================
+    public static instance: SpriteModel
 
     @property({ type: SpriteFrame })
     public troopAir: SpriteFrame[] = []
@@ -144,7 +142,7 @@ export class SpriteStorage extends Component {
     public test: SpriteFrame
 
     protected onLoad(): void {
-        SpriteStorage.instance = this
+        SpriteModel.instance = this
     }
 
     public getObjectSprite(type: string, level: number): SpriteFrame {

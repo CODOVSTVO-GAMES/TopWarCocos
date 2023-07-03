@@ -1,8 +1,7 @@
-import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController"
+import { ConfigPresenter } from "./ConfigPresenter"
 import { AutocombineModel } from "../Model/AutocombineModel"
 import { ObjectParameters } from "../ObjectParameters"
 import { TypesObjects } from "../Static/TypesObjects"
-import { TypesStorages } from "../Static/TypesStorages"
 import { Autocombine } from "../Structures/Autocombine"
 import { HomeMapPresenter } from "./HomeMapPresenter"
 
@@ -36,7 +35,7 @@ export class AutocombinePresenter {
                 }
                 if (AutocombineModel.instance.indexes[i].timeProfit <= 0) {
                     AutocombineModel.instance.indexes[i].timeProfit = 60;
-                    AutocombineModel.instance.allProfit += ConfigStorageController.getProdictionInTimeGoldMineByLevel(AutocombineModel.instance.indexes[i].levelGoldMine);
+                    AutocombineModel.instance.allProfit += ConfigPresenter.getProdictionInTimeGoldMineByLevel(AutocombineModel.instance.indexes[i].levelGoldMine);
                 }
             }
             this.TEST();
@@ -79,7 +78,7 @@ export class AutocombinePresenter {
             }
             AutocombineModel.instance.quantityProfit = 0;
             for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
-                AutocombineModel.instance.quantityProfit += ConfigStorageController.getProdictionInTimeGoldMineByLevel(AutocombineModel.instance.indexes[i].levelGoldMine)
+                AutocombineModel.instance.quantityProfit += ConfigPresenter.getProdictionInTimeGoldMineByLevel(AutocombineModel.instance.indexes[i].levelGoldMine)
             }
         }
         else {

@@ -1,7 +1,6 @@
 import { _decorator, Component, Node, v3 } from 'cc';
 import { TypesModals } from '../Static/TypesModals';
 import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
-import { DIalogueLogic } from './Modals/Dialogues/DIalogueLogic';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
@@ -77,9 +76,6 @@ export class SecondaryInterface extends Component {
 
     @property({ type: Node })
     public backpack: Node;
-
-    @property({ type: Node })
-    public dialog: Node;
 
     @property({ type: Node })
     public wireCut: Node;
@@ -265,11 +261,6 @@ export class SecondaryInterface extends Component {
             this.firstBackgraund.active = true;
             this.backpack.active = true;
         }
-        else if (item.modalName == TypesModals.DIALOG) {
-            DIalogueLogic.renderDialog(0)
-            this.firstBackgraund.active = true;
-            this.dialog.active = true
-        }
         else if (item.modalName == TypesModals.WIRE_CUT) {
             WireCutInterface.instance.renderWire();
             this.firstBackgraund.active = true;
@@ -424,31 +415,30 @@ export class SecondaryInterface extends Component {
     }
 
     closeAllModals() {
-        this.firstBackgraund.active = false;
-        this.secondBackgraund.active = false;
-        this.shopObject.active = false;
-        this.experience.active = false;
-        this.powar.active = false;
-        this.characters.active = false;
-        this.characterInfo.active = false;
-        this.characterPumping.active = false;
-        this.commandPost.active = false;
-        this.tasksGame.active = false;
-        this.upgrateCommandPost0.active = false;
-        this.upgrateCommandPost1.active = false;
-        this.autocombine.active = false;
-        this.radar.active = false;
-        this.radarTaskInfo.active = false;
-        this.radarReward.active = false;
-        this.backpack.active = false;
-        this.dialog.active = false;
-        this.wireCut.active = false;
-        this.bombDisposal.active = false;
-        this.question.active = false;
-        this.switch.active = false;
-        this.spatialMine.active = false;
-        this.activeFirstLayoutModal = "";
-        this.activeSecondLayoutModal = "";
+        this.firstBackgraund.active = false
+        this.secondBackgraund.active = false
+        this.shopObject.active = false
+        this.experience.active = false
+        this.powar.active = false
+        this.characters.active = false
+        this.characterInfo.active = false
+        this.characterPumping.active = false
+        this.commandPost.active = false
+        this.tasksGame.active = false
+        this.upgrateCommandPost0.active = false
+        this.upgrateCommandPost1.active = false
+        this.autocombine.active = false
+        this.radar.active = false
+        this.radarTaskInfo.active = false
+        this.radarReward.active = false
+        this.backpack.active = false
+        this.wireCut.active = false
+        this.bombDisposal.active = false
+        this.question.active = false
+        this.switch.active = false
+        this.spatialMine.active = false
+        this.activeFirstLayoutModal = ""
+        this.activeSecondLayoutModal = ""
     }
 
     getTypeActiveFirstLayoutModal(): string {

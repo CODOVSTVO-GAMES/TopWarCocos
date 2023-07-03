@@ -1,5 +1,5 @@
 import { _decorator, Vec3 } from 'cc';
-import { SpriteStorage } from '../Model/SpriteStorage';
+import { SpriteModel } from '../Model/SpriteModel';
 import { HomeMapStructure } from '../Static/HomeMapStructure';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { HomeMapModel } from '../Model/HomeMapModel';
@@ -103,28 +103,28 @@ export class HighlightHomeMap {
 
     private static renderCoordFree(index: number) {
         if (HomeMapPresenter.getMapSize() > index) {
-            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordFree")
+            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteModel.instance.getSpriteCoord("coordFree")
             this.indexesActiveCooord.push(index)
         }
     }
 
     private static renderCoordSelect(index: number) {
         if (HomeMapPresenter.getMapSize() > index) {
-            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordSelect")
+            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteModel.instance.getSpriteCoord("coordSelect")
             this.indexesActiveCooord.push(index)
         }
     }
 
     private static renderCoordBlock(index: number) {
         if (HomeMapPresenter.getMapSize() > index) {
-            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordBlock")
+            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteModel.instance.getSpriteCoord("coordBlock")
             this.indexesActiveCooord.push(index)
         }
     }
 
     private static renderCoordHint(index: number) {
         if (HomeMapPresenter.getMapSize() > index) {
-            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteStorage.instance.getSpriteCoord("coordHint")
+            HomeMapModel.instance.spriteCoords[index].spriteFrame = SpriteModel.instance.getSpriteCoord("coordHint")
             this.indexesActiveCooord.push(index)
         }
     }

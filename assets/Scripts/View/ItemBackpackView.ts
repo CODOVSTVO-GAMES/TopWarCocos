@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
 import { BackpackPresenter } from '../Presenter/BackpackPresenter';
-import { SpriteStorage } from '../Model/SpriteStorage';
+import { SpriteModel } from '../Model/SpriteModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('ItemBackpackView')
@@ -25,7 +25,7 @@ export class ItemBackpackView extends Component {
     }
 
     public renderSpriteItem() {
-        let spriteItem = SpriteStorage.instance.getItemBackpack(this.typeItem)
+        let spriteItem = SpriteModel.instance.getItemBackpack(this.typeItem)
 
         this.spriteItem.spriteFrame = spriteItem
     }

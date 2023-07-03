@@ -1,10 +1,10 @@
 import { Vec2 } from "cc";
-import { Building, GlobalMapStorage } from "../../Model/GlobalMapModel";
-import { UserPresenter } from "../../Presenter/UserPresenter";
-import { SpawnObjectsOnGlobalMap } from "../../Presenter/SpawnObjectOnGlobalMap";
-import { RedirectionToScene } from "../../Other/RedirectionToScene";
+import { Building, GlobalMapModel } from "../Model/GlobalMapModel";
+import { UserPresenter } from "./UserPresenter";
+import { SpawnObjectsOnGlobalMap } from "./SpawnObjectOnGlobalMap";
+import { RedirectionToScene } from "../Other/RedirectionToScene";
 
-export class GlobalMapStorageController {
+export class GlobalMapPresenter {
 
     public static widthCell = 100
     public static lengthCell = 100
@@ -25,19 +25,19 @@ export class GlobalMapStorageController {
     }
 
     static setZone(zone: string) {
-        GlobalMapStorage.instance.zone = zone
+        GlobalMapModel.instance.zone = zone
     }
 
     static getZone() {
-        return GlobalMapStorage.instance.zone
+        return GlobalMapModel.instance.zone
     }
 
     static getXBace(): number {
-        return GlobalMapStorage.instance.xBaceCoord
+        return GlobalMapModel.instance.xBaceCoord
     }
 
     static getYBace(): number {
-        return GlobalMapStorage.instance.yBaceCoord
+        return GlobalMapModel.instance.yBaceCoord
     }
 
     static getCoordinatesBuilding(building: Building): Vec2 {
@@ -47,8 +47,8 @@ export class GlobalMapStorageController {
     }
 
     static getBaseCoordinates(): Vec2 {
-        let x = GlobalMapStorage.instance.xBaceCoord * this.widthCell
-        let y = GlobalMapStorage.instance.yBaceCoord * this.lengthCell
+        let x = GlobalMapModel.instance.xBaceCoord * this.widthCell
+        let y = GlobalMapModel.instance.yBaceCoord * this.lengthCell
         return new Vec2(x, y)
     }
 
@@ -63,12 +63,12 @@ export class GlobalMapStorageController {
             const level = buildings[i]['level']
             this.addBuildings([new Building(id, type, x, y, accountId, level)])
             if (accountId == UserPresenter.getAccountId()) {
-                GlobalMapStorage.instance.xBaceCoord = x
-                GlobalMapStorage.instance.yBaceCoord = y
+                GlobalMapModel.instance.xBaceCoord = x
+                GlobalMapModel.instance.yBaceCoord = y
             }
         }
 
-        // console.log('Обьектов в массиве карты: ' + (GlobalMapStorage.instance.buildings.length + 1))
+        // console.log('Обьектов в массиве карты: ' + (GlobalMapModel.instance.buildings.length + 1))
 
         if (RedirectionToScene.getSceneName() == "GlobalMap") {
             SpawnObjectsOnGlobalMap.instance.massSpawn()
@@ -76,7 +76,7 @@ export class GlobalMapStorageController {
     }
 
     static getBuildings(): Building[] {
-        return GlobalMapStorage.instance.buildings
+        return GlobalMapModel.instance.buildings
     }
 
     static addBuildings(arr: Building[]) {
@@ -85,14 +85,14 @@ export class GlobalMapStorageController {
                 //обновляем обьект
             } else {
                 //добавляем обьект
-                GlobalMapStorage.instance.buildings.push(arr[a])
+                GlobalMapModel.instance.buildings.push(arr[a])
             }
         }
     }
 
     static isObjectExists(obj: Building) {
-        for (let l = 0; l < GlobalMapStorage.instance.buildings.length; l++) {
-            if (obj.id == GlobalMapStorage.instance.buildings[l].id) {
+        for (let l = 0; l < GlobalMapModel.instance.buildings.length; l++) {
+            if (obj.id == GlobalMapModel.instance.buildings[l].id) {
                 return true
             }
         }

@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, instantiate } from 'cc';
 import { TasksGameModel } from '../Model/TasksGameModel';
-import { PrefabsStorage } from '../Model/PrefabsStorage';
+import { PrefabsModel } from '../Model/PrefabsModel';
 import { ItemTasksGameView } from './ItemTasksGameView';
 const { ccclass, property } = _decorator;
 
@@ -32,7 +32,7 @@ export class TasksGameView extends Component {
                 typeItem = "unfulfiledTask"
             }
 
-            let object = instantiate(PrefabsStorage.instance.getItemTasksGame(typeItem))
+            let object = instantiate(PrefabsModel.instance.getItemTasksGame(typeItem))
 
             object.getComponent(ItemTasksGameView).typeTask = TasksGameModel.instance.tasks[i].typeTask
             object.getComponent(ItemTasksGameView).levelObjectTask = TasksGameModel.instance.tasks[i].levelObjectTask

@@ -1,4 +1,4 @@
-import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController"
+import { ConfigPresenter } from "./ConfigPresenter"
 import { BarracksLogic } from "../Logic/BarracksLogic"
 import { BattleModel } from "../Model/BattleModel"
 import { ObjectParameters } from "../ObjectParameters"
@@ -120,7 +120,7 @@ export class GameObjectPresenter {
 
     private static processingGoldMine(objectParameters: ObjectParameters) {
         if (AutocombinePresenter.getTimeGoldMine(objectParameters.index) == 0) {
-            GamePresenter.addCoins(ConfigStorageController.getProdictionInTimeGoldMineByLevel(objectParameters.level))
+            GamePresenter.addCoins(ConfigPresenter.getProdictionInTimeGoldMineByLevel(objectParameters.level))
         }
     }
 

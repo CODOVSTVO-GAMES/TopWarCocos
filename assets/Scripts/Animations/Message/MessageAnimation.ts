@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Animation } from 'cc';
+import { _decorator, Component, Animation } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('MessageAnimation')

@@ -1,4 +1,4 @@
-import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController";
+import { ConfigPresenter } from "./ConfigPresenter";
 import { GameModel } from "../Model/GameModel";
 
 export class GamePresenter {
@@ -21,8 +21,8 @@ export class GamePresenter {
 
     public static addExperience(value: number) {
         GameModel.instance.experience += value
-        if (GameModel.instance.experience > ConfigStorageController.getLevelExpirienceByLevel(GameModel.instance.level)) {
-            GameModel.instance.level = ConfigStorageController.getLevelByExpirience(GameModel.instance.experience)
+        if (GameModel.instance.experience > ConfigPresenter.getLevelExpirienceByLevel(GameModel.instance.level)) {
+            GameModel.instance.level = ConfigPresenter.getLevelByExpirience(GameModel.instance.experience)
         }
     }
 

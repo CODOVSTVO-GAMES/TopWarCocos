@@ -1,5 +1,5 @@
 import { _decorator, instantiate, Vec3 } from 'cc';
-import { PrefabsStorage } from '../Model/PrefabsStorage';
+import { PrefabsModel } from '../Model/PrefabsModel';
 import { ObjectParameters } from '../ObjectParameters';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesLocation } from '../Static/TypesLocation';
@@ -35,7 +35,7 @@ export class SpawnObjectsOnHomeMap {
 
     public static SpawnObjectsOnHomeMapPos(type: string, location: string, level: number, index: number): ObjectParameters {
 
-        let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type))
+        let object = instantiate(PrefabsModel.instance.getObjectPrefab(type))
         let objectParameter = object.getComponent(ObjectParameters)
 
         HomeMapPresenter.setParent(object, index)

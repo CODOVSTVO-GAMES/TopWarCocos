@@ -1,10 +1,10 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { TypesModalPumping } from '../../../../Static/TypesModalPumping';
-import { CharactersStorage } from '../../../../Storage/CharactersStorage';
 import { ModalCharacterPumpingLogic } from './ModalCharacterPumpingLogic';
-import { ConfigStorageController } from '../../../../Controllers/StorageControllers/ConfigStorageController';
-import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
+import { ConfigPresenter } from '../../../../Presenter/ConfigPresenter';
 import { TypesItems } from '../../../../Static/TypesItems';
+import { CharactersModel } from '../../../../Model/CharactersModel';
+import { BackpackPresenter } from '../../../../Presenter/BackpackPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingInterface')
@@ -89,23 +89,23 @@ export class ModalCharacterPumpingInterface extends Component {
     }
 
     renderModalPumpingLevel() {
-        let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
+        let character = CharactersModel.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            let targetExp = ConfigStorageController.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
+            let targetExp = ConfigPresenter.getHeroLevelExpirienceByTypeAndLevel(character.type, character.level + 1);
             this.level.string = "Ур. " + character.level;
             this.experience.string = character.experience + "/" + targetExp;
             this.slider.fillRange = character.experience / targetExp;
             for (let i = 0; i < this.quantity.length; i++) {
-                let inventoryQuantity = BackpackStorageController.getQuantityByType(TypesItems.BOOKS[i])
+                let inventoryQuantity = BackpackPresenter.getQuantityItemByType(TypesItems.BOOKS[i])
                 this.quantity[i].string = "x" + inventoryQuantity;
             }
         }
     }
 
     renderModalPumpingStars() {
-        let character = CharactersStorage.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
+        let character = CharactersModel.instance.characters[ModalCharacterPumpingLogic.instance.characterIndex];
         if (character != null) {
-            let inventoryQuantity = BackpackStorageController.getQuantityByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
+            let inventoryQuantity = BackpackPresenter.getQuantityItemByType(ModalCharacterPumpingLogic.instance.getTypeFragment(character));
             this.starTitle.string = "Фрагменты для след. этапа: " + inventoryQuantity + "/4";
             this.sliderStars.fillRange = character.stars % 5 / 5;
             for (let i = 0; i < this.stars.length; i++) {

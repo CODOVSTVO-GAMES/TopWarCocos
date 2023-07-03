@@ -11,7 +11,6 @@ export class RadarLogic extends Component {
 
     private timing = 1
 
-
     protected onLoad(): void {
         RadarLogic.instance = this
         this.schedule(this.taskProcessing, this.timing)
@@ -22,16 +21,13 @@ export class RadarLogic extends Component {
 
         let deleteTasks: BattleTask[] = []
         for (let l = 0; l < tasks.length; l++) {
-            // console.log(l + " " + tasks[l].id)
             if (tasks[l].status == 0) {
                 this.expiration(tasks[l])
             }
             else if (tasks[l].status == 1) {
-                // console.log('1')
                 this.battle(tasks[l])
             }
             else if (tasks[l].status == 3) {
-                // this.deleteTask(tasks[l])
                 deleteTasks.push(tasks[l])
             }
         }
@@ -70,8 +66,6 @@ export class RadarLogic extends Component {
 
             }
         }
-
         MapService.getEnemy()
     }
 }
-

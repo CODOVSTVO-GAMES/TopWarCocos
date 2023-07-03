@@ -1,8 +1,8 @@
 import { _decorator, Component, Label, Node, Sprite, SpriteFrame } from 'cc';
 import { CharacterInfo } from '../../../Structures/CharacterInfo';
-import { SpriteStorage } from '../../../Model/SpriteStorage';
-import { CharactersStorage } from '../../../Storage/CharactersStorage';
+import { SpriteModel } from '../../../Model/SpriteModel';
 import { TypesCharacters } from '../../../Static/TypesCharacters';
+import { CharactersModel } from '../../../Model/CharactersModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterGridInterface')
@@ -42,8 +42,8 @@ export class ModalCharacterGridInterface extends Component {
         this.sortedCharacters();
         for (let i = 0; i < this.charactersRendered.length; i++) {
             if (this.images[i] != null && this.names[i] != null && this.levels[i] != null && this.charactersRendered[i] != null) {
-                let spriteImage = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
-                let spriteTypeTroop = SpriteStorage.instance.getObjectSprite(this.charactersRendered[i].typeTroop, 0);
+                let spriteImage = SpriteModel.instance.getObjectSprite(this.charactersRendered[i].codeName, this.charactersRendered[i].level);
+                let spriteTypeTroop = SpriteModel.instance.getObjectSprite(this.charactersRendered[i].typeTroop, 0);
                 this.images[i].spriteFrame = spriteImage;
                 this.typeTroop[i].spriteFrame = spriteTypeTroop;
                 this.names[i].string = this.charactersRendered[i].codeName;
@@ -65,21 +65,21 @@ export class ModalCharacterGridInterface extends Component {
 
     sortedCharacters() {
         let str = ''
-        for (let i = 0; i < CharactersStorage.instance.characters.length; i++) {
-            str = str + CharactersStorage.instance.characters[i].type + ','
+        for (let i = 0; i < CharactersModel.instance.characters.length; i++) {
+            str = str + CharactersModel.instance.characters[i].type + ','
         }
 
         let rCharacters = new Array<CharacterInfo>
         let srCharacters = new Array<CharacterInfo>
         let ssrCharacters = new Array<CharacterInfo>
 
-        for (let l = 0; l < CharactersStorage.instance.characters.length; l++) {
-            if (CharactersStorage.instance.characters[l].type == 'r') {
-                rCharacters.push(CharactersStorage.instance.characters[l])
-            } else if (CharactersStorage.instance.characters[l].type == 'sr') {
-                srCharacters.push(CharactersStorage.instance.characters[l])
-            } else if (CharactersStorage.instance.characters[l].type == 'ssr') {
-                ssrCharacters.push(CharactersStorage.instance.characters[l])
+        for (let l = 0; l < CharactersModel.instance.characters.length; l++) {
+            if (CharactersModel.instance.characters[l].type == 'r') {
+                rCharacters.push(CharactersModel.instance.characters[l])
+            } else if (CharactersModel.instance.characters[l].type == 'sr') {
+                srCharacters.push(CharactersModel.instance.characters[l])
+            } else if (CharactersModel.instance.characters[l].type == 'ssr') {
+                ssrCharacters.push(CharactersModel.instance.characters[l])
             }
         }
 
@@ -90,7 +90,7 @@ export class ModalCharacterGridInterface extends Component {
         this.charactersRendered = ssrCharacters
         this.charactersRendered = this.charactersRendered.concat(srCharacters)
         this.charactersRendered = this.charactersRendered.concat(rCharacters)
-        CharactersStorage.instance.characters = this.charactersRendered;
+        CharactersModel.instance.characters = this.charactersRendered;
     }
 
     private sortArrayCharacterInfoByLevel(arr: Array<CharacterInfo>): Array<CharacterInfo> {

@@ -1,11 +1,10 @@
 import { Vec3 } from "cc";
 import { MessageAnimation } from "../Animations/Message/MessageAnimation";
 import { MapService } from "../Controllers/NetworkControllers/MapService";
-import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController";
+import { ConfigPresenter } from "./ConfigPresenter";
 import { UserPresenter } from "./UserPresenter";
 import { RadarModel } from "../Model/RadarModel";
 import { TypesObjects } from "../Static/TypesObjects";
-import { TypesStorages } from "../Static/TypesStorages";
 import { BattleTask } from "../Structures/BattleTask";
 import { QuantityItem } from "../Structures/QuantityItem";
 import { HomeMapPresenter } from "./HomeMapPresenter";
@@ -82,7 +81,7 @@ export class RadarPresenter {
 
     static assignStartingValues() {
         RadarModel.instance.radarLevel = 1;
-        let config = ConfigStorageController.getRadarConfigByLevel(RadarModel.instance.radarLevel);
+        let config = ConfigPresenter.getRadarConfigByLevel(RadarModel.instance.radarLevel);
         RadarModel.instance.availableMissions = 30;
         RadarModel.instance.timeToUpdate = config.time;
         RadarModel.instance.signalQuality = 1;
@@ -149,11 +148,11 @@ export class RadarPresenter {
     static addRadarExperience(value: number) {
         if (value == 0) return;
         RadarModel.instance.radarExperience += value;
-        let targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
+        let targetExperience = ConfigPresenter.getRadarProgressNumberByLevel(this.getRadarLevel());
         while (this.getRadarExperience() > targetExperience) {
             RadarModel.instance.radarLevel++;
             RadarModel.instance.radarExperience -= targetExperience;
-            targetExperience = ConfigStorageController.getRadarProgressNumberByLevel(this.getRadarLevel());
+            targetExperience = ConfigPresenter.getRadarProgressNumberByLevel(this.getRadarLevel());
             // ModalRadarLogic.instance.calculationRadar();
         }
         // RadarRender.instance.updateInterface()
@@ -272,12 +271,12 @@ export class RadarPresenter {
         let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
         let level = GameModel.instance.level
 
-        let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
+        let quantity = ConfigPresenter.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
         for (let i = 0; i < rewardTypes.length; i++) {
             rewards.push(new QuantityItem(rewardTypes[i], quantity));
         }
 
-        let quantityExp = ConfigStorageController.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
+        let quantityExp = ConfigPresenter.getExpirienceRadarByLevel(level) * (1 + (0.25 * (stars - 1)));
         rewards.push(new QuantityItem(TypesItems.EXPERIENCE, quantityExp));
         return rewards;
     }

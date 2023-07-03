@@ -2,10 +2,10 @@ import { _decorator, Component, Prefab } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 const { ccclass, property } = _decorator;
 
-@ccclass('PrefabsStorage')
-export class PrefabsStorage extends Component {
+@ccclass('PrefabsModel')
+export class PrefabsModel extends Component {
 
-    public static instance: PrefabsStorage
+    public static instance: PrefabsModel
 
     @property({ type: Prefab })
     private troopAir: Prefab
@@ -82,7 +82,7 @@ export class PrefabsStorage extends Component {
 
 
     onLoad() {
-        PrefabsStorage.instance = this;
+        PrefabsModel.instance = this;
     }
 
     getObjectPrefab(type: string): Prefab {

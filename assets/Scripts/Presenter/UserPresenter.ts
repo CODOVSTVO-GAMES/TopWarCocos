@@ -1,78 +1,78 @@
 import { _decorator } from 'cc';
-import { UserStorage } from '../Storage/UserStorage';
 import { Product } from '../Structures/Product';
+import { UserModel } from '../Model/UserModel';
 
 export class UserPresenter {
 
     public static setSessionHash(sessionHash: string) {
-        UserStorage.instance.sessionHash = sessionHash
+        UserModel.instance.sessionHash = sessionHash
     }
 
     public static getSessionHash(): string {
-        return UserStorage.instance.sessionHash
+        return UserModel.instance.sessionHash
     }
 
     public static setSessionId(sessionId: number) {
-        UserStorage.instance.sessionId = sessionId
+        UserModel.instance.sessionId = sessionId
     }
 
     public static getSessionId(): number {
-        return UserStorage.instance.sessionId
+        return UserModel.instance.sessionId
     }
 
     public static setUserId(userId: string) {
-        UserStorage.instance.userId = userId
+        UserModel.instance.userId = userId
     }
 
     public static getUserId(): string {
-        return UserStorage.instance.userId
+        return UserModel.instance.userId
     }
 
     public static getAccountId(): string {
-        return UserStorage.instance.accountId
+        return UserModel.instance.accountId
     }
 
     public static setAccountId() {
-        UserStorage.instance.accountId = this.getUserId() + "-" + this.getAccountsId()[0]
+        UserModel.instance.accountId = this.getUserId() + "-" + this.getAccountsId()[0]
     }
 
     public static setAccountsId(accountsId: string[]) {
-        UserStorage.instance.accountsId = accountsId
+        UserModel.instance.accountsId = accountsId
     }
 
     public static getAccountsId(): string[] {
-        return UserStorage.instance.accountsId
+        return UserModel.instance.accountsId
     }
 
     public static setIsNewUser(isNewUser: boolean) {
-        UserStorage.instance.isNewUser = isNewUser
+        UserModel.instance.isNewUser = isNewUser
     }
 
     public static getIsNewUser(): boolean {
-        return UserStorage.instance.isNewUser
+        return UserModel.instance.isNewUser
     }
 
     public static setPermission(permission: string) {
-        UserStorage.instance.permission = permission
+        UserModel.instance.permission = permission
     }
 
     public static getPermission(): string {
-        return UserStorage.instance.permission
+        return UserModel.instance.permission
     }
 
     public static setServerTime(serverTime: number) {
-        UserStorage.instance.serverTime = serverTime
+        UserModel.instance.serverTime = serverTime
     }
 
     public static getServerTime() {
-        return UserStorage.instance.serverTime
+        return UserModel.instance.serverTime
     }
 
     public static setProducts(products: Product[]) {
-        UserStorage.instance.products = products
+        UserModel.instance.products = products
     }
 
     public static getProducts(): Product[] {
-        return UserStorage.instance.products
+        return UserModel.instance.products
     }
 }

@@ -3,9 +3,9 @@ import { TouchStatus } from '../TouchStatus';
 import { ZoomCamera } from './ZoomCamera';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
-import { GlobalMapStorageController } from '../Controllers/StorageControllers/GlobalMapStorageController';
 import { MapService } from '../Controllers/NetworkControllers/MapService';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { GlobalMapPresenter } from '../Presenter/GlobalMapPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovingCamera')
@@ -34,7 +34,7 @@ export class MovingCamera extends Component {
             this.movie(new Vec2(100, -1000))
         }
         else if (RedirectionToScene.getSceneName() == 'GlobalMap') {
-            this.movie(GlobalMapStorageController.getBaseCoordinates())
+            this.movie(GlobalMapPresenter.getBaseCoordinates())
         }
     }
 
@@ -90,11 +90,11 @@ export class MovingCamera extends Component {
         if (RedirectionToScene.getSceneName() == 'GlobalMap') {
             //доспавниваем карту
 
-            const cellNumberX = Math.floor(this.camera.node.position.x / GlobalMapStorageController.widthCell)
-            const chunkX = Math.floor(cellNumberX / GlobalMapStorageController.getChunksCells())
+            const cellNumberX = Math.floor(this.camera.node.position.x / GlobalMapPresenter.widthCell)
+            const chunkX = Math.floor(cellNumberX / GlobalMapPresenter.getChunksCells())
 
-            const cellNumberY = Math.floor(this.camera.node.position.y / GlobalMapStorageController.lengthCell)
-            const chunkY = Math.floor(cellNumberY / GlobalMapStorageController.getChunksCells())
+            const cellNumberY = Math.floor(this.camera.node.position.y / GlobalMapPresenter.lengthCell)
+            const chunkY = Math.floor(cellNumberY / GlobalMapPresenter.getChunksCells())
             //номер клетки = координата камеры / размер клетки  
             //номер чанка = без остатка(номер клетки / размер чанка)
 
@@ -109,20 +109,6 @@ export class MovingCamera extends Component {
                 console.log('запрос')
             }
         }
-
-
-        // if (this.xPos > 1000) {
-        //     this.xPos = 1000;
-        // }
-        // else if (this.xPos < -1000) {
-        //     this.xPos = -1000;
-        // }
-        // if (this.yPos > 1000) {
-        //     this.yPos = 1000;
-        // }
-        // else if (this.yPos < -1000) {
-        //     this.yPos = -1000;
-        // }
     }
 
     touchCancel() {

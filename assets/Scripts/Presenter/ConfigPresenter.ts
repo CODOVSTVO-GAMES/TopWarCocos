@@ -1,12 +1,12 @@
 import { _decorator } from 'cc';
-import { ConfigModel } from '../../Model/ConfigModel';
-import { TypesObjects } from '../../Static/TypesObjects';
-import { HeroConfig } from '../../Structures/HeroConfig';
-import { UnitsCongig } from '../../Structures/ConfigUnits';
-import { RadarConfig } from '../../Structures/RadarConfig';
-import { MainAndRepairBuildings } from '../../Structures/MainAndRepairBuildings';
+import { ConfigModel } from '../Model/ConfigModel';
+import { TypesObjects } from '../Static/TypesObjects';
+import { HeroConfig } from '../Structures/HeroConfig';
+import { UnitsCongig } from '../Structures/ConfigUnits';
+import { RadarConfig } from '../Structures/RadarConfig';
+import { MainAndRepairBuildings } from '../Structures/MainAndRepairBuildings';
 
-export class ConfigStorageController {
+export class ConfigPresenter {
 
     static getProdictionInTimeGoldMineByLevel(level: number): number {
         for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {

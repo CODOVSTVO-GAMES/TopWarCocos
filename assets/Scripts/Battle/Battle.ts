@@ -4,14 +4,13 @@ import { TroopRender } from './TroopRender';
 import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
 import { TypesTeam } from '../Static/TypesTeam';
-import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
+import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { CharacterInfo } from '../Structures/CharacterInfo';
 import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
 import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
-import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { GameModel } from '../Model/GameModel';
 import { CharactersPresenter } from '../Presenter/CharactersPresenter';
@@ -219,7 +218,7 @@ export class Battle extends Component {
             if (BattleModel.instance.arrayOwn[i] != null || BattleModel.instance.quantityAvailableFreeCoords <= i) continue;
 
             let unit = BattleModel.instance.arrayCards[index];
-            let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
+            let config = ConfigPresenter.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
             BattleModel.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
             unit.quantity--;
 
@@ -269,7 +268,7 @@ export class Battle extends Component {
             let unit = BattleModel.instance.arrayCards[0];
             if (unit == null || BattleModel.instance.quantityAvailableFreeCoords <= i) continue;
 
-            let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
+            let config = ConfigPresenter.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
             BattleModel.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
             unit.quantity--;
             this.spawnTroop(TypesTeam.TEAM_OWN, BattleModel.instance.arrayOwn[i]);

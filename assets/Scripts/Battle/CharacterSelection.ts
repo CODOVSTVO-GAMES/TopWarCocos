@@ -1,5 +1,5 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
-import { SpriteStorage } from '../Model/SpriteStorage';
+import { SpriteModel } from '../Model/SpriteModel';
 import { CharactersModel } from '../Model/CharactersModel';
 import { CharactersPresenter } from '../Presenter/CharactersPresenter';
 import { BattleModel } from '../Model/BattleModel';
@@ -29,7 +29,7 @@ export class CharacterSelection extends Component {
 
     saveRenderCharacter(index: number) {
         let characters = CharactersPresenter.getCharacters();
-        let spriteCharacter = SpriteStorage.instance.getObjectSprite(characters[index].codeName, characters[index].level);
+        let spriteCharacter = SpriteModel.instance.getObjectSprite(characters[index].codeName, characters[index].level);
         characters[index] = CharactersModel.instance.getRandomCharacter();
         this.images[index].spriteFrame = spriteCharacter;
         this.texts[index].string = "Ур. " + characters[index].level;

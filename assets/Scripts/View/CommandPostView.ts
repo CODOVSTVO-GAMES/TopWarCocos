@@ -1,7 +1,7 @@
 import { _decorator, Component, Node, Label, Sprite } from 'cc';
 import { CommandPostModel } from '../Model/CommandPostModel';
 import { TypesObjects } from '../Static/TypesObjects';
-import { SpriteStorage } from '../Model/SpriteStorage';
+import { SpriteModel } from '../Model/SpriteModel';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { TypesModals } from '../Static/TypesModals';
@@ -283,7 +283,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeCommandPost() {
         let levelCommandPost = CommandPostModel.instance.levelCommandPost
-        let spriteCommandPost = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, levelCommandPost)
+        let spriteCommandPost = SpriteModel.instance.getObjectSprite(TypesObjects.COMMAND_POST, levelCommandPost)
 
         this.levelCommandPost.string = "Ур. " + levelCommandPost
         this.spriteCommandPost.spriteFrame = spriteCommandPost
@@ -292,7 +292,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeRepairShop() {
         let levelRepairShop = CommandPostModel.instance.levelRepairShop
-        let spriteCommandPost = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, levelRepairShop)
+        let spriteCommandPost = SpriteModel.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, levelRepairShop)
 
         this.levelRepairShop.string = "Ур. " + levelRepairShop
         this.spriteCommandPost.spriteFrame = spriteCommandPost
@@ -301,7 +301,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeGoldMine() {
         let levelMergeGoldMine = CommandPostModel.instance.levelMergeGoldMine
-        let spriteMergeGoldMine = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, levelMergeGoldMine)
+        let spriteMergeGoldMine = SpriteModel.instance.getObjectSprite(TypesObjects.GOLD_MINE, levelMergeGoldMine)
 
         this.levelMergeGoldMine.string = "Ур. " + levelMergeGoldMine
         this.spriteMergeGoldMine.spriteFrame = spriteMergeGoldMine
@@ -310,7 +310,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeBuildGoldMine() {
         let levelBuildGoldMine = CommandPostModel.instance.levelBuildGoldMine
-        let spriteBuildGoldMine = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, levelBuildGoldMine)
+        let spriteBuildGoldMine = SpriteModel.instance.getObjectSprite(TypesObjects.GOLD_MINE, levelBuildGoldMine)
 
         this.levelBuildGoldMine.string = "Ур. " + levelBuildGoldMine
         this.spriteBuildGoldMine.spriteFrame = spriteBuildGoldMine
@@ -319,7 +319,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeTroopAir() {
         let levelMergeTroopAir = CommandPostModel.instance.levelMergeTroopAir
-        let spriteMergeTroopAir = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, levelMergeTroopAir)
+        let spriteMergeTroopAir = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_AIR, levelMergeTroopAir)
 
         this.levelMergeTroopAir.string = "Ур. " + levelMergeTroopAir
         this.spriteMergeTroopAir.spriteFrame = spriteMergeTroopAir
@@ -328,7 +328,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeTroopMarine() {
         let levelMergeTroopMarine = CommandPostModel.instance.levelMergeTroopMarine
-        let spriteMergeTroopMarine = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, levelMergeTroopMarine)
+        let spriteMergeTroopMarine = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_MARINE, levelMergeTroopMarine)
 
         this.levelMergeTroopMarine.string = "Ур. " + levelMergeTroopMarine
         this.spriteMergeTroopMarine.spriteFrame = spriteMergeTroopMarine
@@ -337,7 +337,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeTroopOverland() {
         let levelMergeTroopOverland = CommandPostModel.instance.levelMergeTroopOverland
-        let spriteMergeTroopOverland = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, levelMergeTroopOverland)
+        let spriteMergeTroopOverland = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, levelMergeTroopOverland)
 
         this.levelMergeTroopOverland.string = "Ур. " + levelMergeTroopOverland
         this.spriteMergeTroopOverland.spriteFrame = spriteMergeTroopOverland
@@ -346,7 +346,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeBarrackAir() {
         let levelMergeBarracksAir = CommandPostModel.instance.levelMergeBarracksAir
-        let spriteMergeBarracksAir = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, levelMergeBarracksAir)
+        let spriteMergeBarracksAir = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, levelMergeBarracksAir)
 
         this.levelMergeBarracksAir.string = "Ур. " + levelMergeBarracksAir
         this.spriteMergeBarracksAir.spriteFrame = spriteMergeBarracksAir
@@ -355,7 +355,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeBarrackMarine() {
         let levelMergeBarracksMarine = CommandPostModel.instance.levelMergeBarracksMarine
-        let spriteMergeBarracksMarine = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, levelMergeBarracksMarine)
+        let spriteMergeBarracksMarine = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, levelMergeBarracksMarine)
 
         this.levelMergeBarracksMarine.string = "Ур. " + levelMergeBarracksMarine
         this.spriteMergeBarracksMarine.spriteFrame = spriteMergeBarracksMarine
@@ -364,7 +364,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeMergeBarrackOverland() {
         let levelMergeBarracksOverland = CommandPostModel.instance.levelMergeBarracksOverland
-        let spriteMergeBarracksOverland = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, levelMergeBarracksOverland)
+        let spriteMergeBarracksOverland = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, levelMergeBarracksOverland)
 
         this.levelMergeBarracksOverland.string = "Ур. " + levelMergeBarracksOverland
         this.spriteMergeBarracksOverland.spriteFrame = spriteMergeBarracksOverland
@@ -373,7 +373,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeBuildBarrackAir() {
         let levelBuildBarracksAir = CommandPostModel.instance.levelBuildBarracksAir
-        let spriteBuildBarracksAir = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, levelBuildBarracksAir)
+        let spriteBuildBarracksAir = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, levelBuildBarracksAir)
 
         this.levelBuildBarracksAir.string = "Ур. " + levelBuildBarracksAir
         this.spriteBuildBarracksAir.spriteFrame = spriteBuildBarracksAir
@@ -382,7 +382,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeBuildBarrackMarine() {
         let levelBuildBarracksMarine = CommandPostModel.instance.levelBuildBarracksMarine
-        let spriteBuildBarracksMarine = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, levelBuildBarracksMarine)
+        let spriteBuildBarracksMarine = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, levelBuildBarracksMarine)
 
         this.levelBuildBarracksMarine.string = "Ур. " + levelBuildBarracksMarine
         this.spriteBuildBarracksMarine.spriteFrame = spriteBuildBarracksMarine
@@ -391,7 +391,7 @@ export class CommandPostView extends Component {
 
     public renderItemUpgradeBuildBarrackOverland() {
         let levelBuildBarracksOverland = CommandPostModel.instance.levelBuildBarracksOverland
-        let spriteBuildBarracksOverland = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, levelBuildBarracksOverland)
+        let spriteBuildBarracksOverland = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, levelBuildBarracksOverland)
 
         this.levelBuildBarracksOverland.string = "Ур. " + levelBuildBarracksOverland
         this.spriteBuildBarracksOverland.spriteFrame = spriteBuildBarracksOverland

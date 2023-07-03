@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Color, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
-import { SpriteStorage } from './Model/SpriteStorage';
+import { SpriteModel } from './Model/SpriteModel';
 import { MessageAnimation } from './Animations/Message/MessageAnimation';
 import { ArrowGameObject } from './ArrowGameObject';
 import { TypesObjects } from './Static/TypesObjects';
@@ -54,7 +54,7 @@ export class ObjectParameters extends Component {
     }
 
     public updateSprite() {
-        this.spriteObject.spriteFrame = SpriteStorage.instance.getObjectSprite(this.type, this.level)
+        this.spriteObject.spriteFrame = SpriteModel.instance.getObjectSprite(this.type, this.level)
     }
 
     public onTransparencyObject() {

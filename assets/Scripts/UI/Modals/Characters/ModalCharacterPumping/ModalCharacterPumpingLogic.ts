@@ -1,12 +1,12 @@
-import { _decorator, Component, Node } from 'cc';
-import { CharactrerStorageController } from '../../../../Controllers/StorageControllers/CharactrerStorageController';
-import { BackpackStorageController } from '../../../../Controllers/StorageControllers/BackpackStorageController';
-import { CharactersStorage } from '../../../../Storage/CharactersStorage';
+import { _decorator, Component } from 'cc';
 import { TypesCharacters } from '../../../../Static/TypesCharacters';
 import { ModalCharacterPumpingInterface } from './ModalCharacterPumpingInterface';
 import { CharacterInfo } from '../../../../Structures/CharacterInfo';
 import { ModalCharacterInfoIntarface } from '../ModalCharacterInfo/ModalCharacterInfoInterface';
 import { TypesItems } from '../../../../Static/TypesItems';
+import { BackpackPresenter } from '../../../../Presenter/BackpackPresenter';
+import { CharactersPresenter } from '../../../../Presenter/CharactersPresenter';
+import { CharactersModel } from '../../../../Model/CharactersModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('ModalCharacterPumpingLogic')
@@ -29,33 +29,33 @@ export class ModalCharacterPumpingLogic extends Component {
         let exp = 0;
         switch (customEventData) {
             case "0":
-                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
+                if (BackpackPresenter.getQuantityItemByType(TypesItems.BOOK_EXPERIENCE_WHITE) > 0) {
                     exp = 300;
-                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
+                    BackpackPresenter.reduceItemBackpack(TypesItems.BOOK_EXPERIENCE_WHITE, 1);
                 }
                 break;
             case "1":
-                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
+                if (BackpackPresenter.getQuantityItemByType(TypesItems.BOOK_EXPERIENCE_GREEN) > 0) {
                     exp = 1000;
-                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
+                    BackpackPresenter.reduceItemBackpack(TypesItems.BOOK_EXPERIENCE_GREEN, 1);
                 }
                 break;
             case "2":
-                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
+                if (BackpackPresenter.getQuantityItemByType(TypesItems.BOOK_EXPERIENCE_BLUE) > 0) {
                     exp = 3000;
-                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
+                    BackpackPresenter.reduceItemBackpack(TypesItems.BOOK_EXPERIENCE_BLUE, 1);
                 }
                 break;
             case "3":
-                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
+                if (BackpackPresenter.getQuantityItemByType(TypesItems.BOOK_EXPERIENCE_PURPLE) > 0) {
                     exp = 10000;
-                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
+                    BackpackPresenter.reduceItemBackpack(TypesItems.BOOK_EXPERIENCE_PURPLE, 1);
                 }
                 break;
             case "4":
-                if (BackpackStorageController.getQuantityByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
+                if (BackpackPresenter.getQuantityItemByType(TypesItems.BOOK_EXPERIENCE_ORANGE) > 0) {
                     exp = 30000;
-                    BackpackStorageController.reduceItem(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
+                    BackpackPresenter.reduceItemBackpack(TypesItems.BOOK_EXPERIENCE_ORANGE, 1);
                 }
                 break;
         }
@@ -63,20 +63,20 @@ export class ModalCharacterPumpingLogic extends Component {
     }
 
     spendBooks(quantity: number) {
-        CharactrerStorageController.addExperience(quantity, this.characterIndex);
+        CharactersPresenter.addExperience(quantity, this.characterIndex);
     }
 
     upgradeStars() {
-        let character = CharactersStorage.instance.characters[this.characterIndex];
+        let character = CharactersModel.instance.characters[this.characterIndex];
         let typeFragment = this.getTypeFragment(character);
-        let inventoryQuantity = BackpackStorageController.getQuantityByType(typeFragment);
+        let inventoryQuantity = BackpackPresenter.getQuantityItemByType(typeFragment);
         if (inventoryQuantity > 4) {
             character.stars++;
-            BackpackStorageController.reduceItem(typeFragment, 4);
-            CharactersStorage.instance.recalculationCharacter(this.characterIndex);
+            BackpackPresenter.reduceItemBackpack(typeFragment, 4);
+            CharactersModel.instance.recalculationCharacter(this.characterIndex);
             ModalCharacterInfoIntarface.instance.renderCharacter(this.characterIndex);
             ModalCharacterPumpingInterface.instance.renderModalPumpingStars();
-            CharactrerStorageController.saveStorage();
+            // CharactrerStorageController.saveStorage();
         }
     }
 

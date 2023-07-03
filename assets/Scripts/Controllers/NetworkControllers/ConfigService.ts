@@ -11,7 +11,6 @@ export class ConfigService {
     static parseDataStorageGetResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get config error")
         else {
-            // console.log("get config done")
             ConfigModel.instance.configRecipient(data['objects'])
         }
     }

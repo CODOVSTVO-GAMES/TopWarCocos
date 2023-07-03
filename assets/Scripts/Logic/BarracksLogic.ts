@@ -1,6 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { Barrack } from '../Structures/Barrack';
-import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
+import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { SpawnObjectsOnHomeMap } from '../Presenter/SpawnObjectsOnHomeMap';
 import { QueueBarrack } from '../Structures/QueueBarrack';
 import { BarrackModel } from '../Model/BarrackModel';
@@ -37,7 +37,7 @@ export class BarracksLogic extends Component {
 
     public addTroop(typeTroop: string, levelTroop: number, indexBarrack: number) {
 
-        let timeSpawnTroop = ConfigStorageController.getTimeCreationUnitsByTypeAndLevel(typeTroop, levelTroop)
+        let timeSpawnTroop = ConfigPresenter.getTimeCreationUnitsByTypeAndLevel(typeTroop, levelTroop)
 
         for (let i = 0; i < BarrackModel.instance.arrayBarracks.length; i++) {
             if (BarrackModel.instance.arrayBarracks[i].indexBarrack == indexBarrack) {

@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { Battle } from './Battle';
-import { SpriteStorage } from '../Model/SpriteStorage';
+import { SpriteModel } from '../Model/SpriteModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('CardTroopRender')
@@ -33,7 +33,7 @@ export class CardTroopRender extends Component {
     renderValues() {
         let cardLevel = this.level;
         let cardQuantity = this.quantity.toString();
-        let cardsSprite = SpriteStorage.instance.getObjectSprite(this.type, this.level);
+        let cardsSprite = SpriteModel.instance.getObjectSprite(this.type, this.level);
         let level = "Ур. " + cardLevel;
 
         this.levelText.string = level;

@@ -1,7 +1,7 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
 import { CommandPostPresenter } from '../Presenter/CommandPostPresenter';
 import { GamePresenter } from '../Presenter/GamePresenter';
-import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
+import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { CommandPostModel } from '../Model/CommandPostModel';
 import { BackpackPresenter } from '../Presenter/BackpackPresenter';
 import { TypesItems } from '../Static/TypesItems';
@@ -72,9 +72,9 @@ export class CommandPostUpgradeMainView extends Component {
 
     public eventUpgradeCommandPost() {
         CommandPostPresenter.addLevelCommandPost()
-        GamePresenter.reduceCoins(ConfigStorageController.getPriceUpdateMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
-        BackpackPresenter.reduceItemBackpack(TypesItems.PLAN_COMMAND_POST, ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
-        GamePresenter.addExperience(ConfigStorageController.getExpMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
+        GamePresenter.reduceCoins(ConfigPresenter.getPriceUpdateMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
+        BackpackPresenter.reduceItemBackpack(TypesItems.PLAN_COMMAND_POST, ConfigPresenter.getImprivementResourceNumberMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
+        GamePresenter.addExperience(ConfigPresenter.getExpMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
         // GamePresenter.addTechnoPower(ConfigStorageController.getPowerMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
         HomeMapPresenter.upgradeLevelObject(HomeMapPresenter.getObjectParametersByType(TypesObjects.COMMAND_POST).index)
     }

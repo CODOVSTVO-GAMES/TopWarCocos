@@ -1,4 +1,4 @@
-import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController"
+import { ConfigPresenter } from "./ConfigPresenter"
 import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 import { CommandPostModel } from "../Model/CommandPostModel"
 import { GameModel } from "../Model/GameModel"
@@ -12,7 +12,7 @@ export class ShopObjectPresenter {
     public static processingBuyBarrackOverland() {
         let levelObject = CommandPostModel.instance.levelBuildBarracksOverland
         let typeObject = TypesObjects.BARRACKS_OVERLAND
-        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
+        let price = ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
         let typeLocation = TypesLocation.EARTH
 
         GameModel.instance.coins -= price
@@ -23,7 +23,7 @@ export class ShopObjectPresenter {
     public static processingBuyBarrackMarine() {
         let levelObject = CommandPostModel.instance.levelBuildBarracksMarine
         let typeObject = TypesObjects.BARRACKS_MARINE
-        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
+        let price = ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
         let typeLocation = TypesLocation.WATER
 
         GameModel.instance.coins -= price
@@ -34,7 +34,7 @@ export class ShopObjectPresenter {
     public static processingBuyBarrackAir() {
         let levelObject = CommandPostModel.instance.levelBuildBarracksAir
         let typeObject = TypesObjects.BARRACKS_AIR
-        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
+        let price = ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
         let typeLocation = TypesLocation.EARTH
 
         GameModel.instance.coins -= price
@@ -45,7 +45,7 @@ export class ShopObjectPresenter {
     public static processingBuyGoldMine() {
         let levelObject = CommandPostModel.instance.levelBuildGoldMine
         let typeObject = TypesObjects.GOLD_MINE
-        let price = ConfigStorageController.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
+        let price = ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(typeObject, levelObject)
         let typeLocation = TypesLocation.EARTH
 
         GameModel.instance.coins -= price

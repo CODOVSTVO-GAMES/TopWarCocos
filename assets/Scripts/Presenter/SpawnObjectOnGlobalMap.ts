@@ -1,6 +1,6 @@
 import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
-import { GlobalMapStorageController } from '../Controllers/StorageControllers/GlobalMapStorageController';
 import { BuildingGlobalMapParameters } from '../BuildingGlobalMapParameters';
+import { GlobalMapPresenter } from './GlobalMapPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpawnObjectsOnGlobalMap')
@@ -42,22 +42,22 @@ export class SpawnObjectsOnGlobalMap extends Component {
     }
 
     public massSpawn() {
-        for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
-            if (GlobalMapStorageController.getBuildings()[l].node == null) {
+        for (let l = 0; l < GlobalMapPresenter.getBuildings().length; l++) {
+            if (GlobalMapPresenter.getBuildings()[l].node == null) {
                 this.spawnObject(l)
             }
         }
     }
 
     public massDespawn() {
-        for (let l = 0; l < GlobalMapStorageController.getBuildings().length; l++) {
-            GlobalMapStorageController.getBuildings()[l].node = null
+        for (let l = 0; l < GlobalMapPresenter.getBuildings().length; l++) {
+            GlobalMapPresenter.getBuildings()[l].node = null
         }
     }
 
     private spawnObject(index: number) {
-        let building = GlobalMapStorageController.getBuildings()[index]
-        let coordinates = GlobalMapStorageController.getCoordinatesBuilding(building)
+        let building = GlobalMapPresenter.getBuildings()[index]
+        let coordinates = GlobalMapPresenter.getCoordinatesBuilding(building)
 
         if (building.type == 'base') {
             const node = instantiate(this.basePrefab)
@@ -80,6 +80,6 @@ export class SpawnObjectsOnGlobalMap extends Component {
             node.setPosition(new Vec3(coordinates.x, coordinates.y, 0))
             building.node = node
         }
-        GlobalMapStorageController.getBuildings()[index] = building
+        GlobalMapPresenter.getBuildings()[index] = building
     }
 }
