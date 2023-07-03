@@ -3,7 +3,7 @@ import { md5 } from '../Librarys/md5';
 export class Cryptor {
 
     static hashGenerate(str: string): string {
-        return md5(str).toString();
+        return md5(str).toString()
     }
 
     static getRandomHash(): string {

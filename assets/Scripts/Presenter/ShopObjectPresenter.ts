@@ -1,5 +1,5 @@
 import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController"
-import { SpawnObjectsOnHomeMap } from "../Logic/SpawnObjectsOnHomeMap"
+import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 import { CommandPostModel } from "../Model/CommandPostModel"
 import { GameModel } from "../Model/GameModel"
 import { TypesLocation } from "../Static/TypesLocation"

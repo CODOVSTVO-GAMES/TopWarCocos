@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Label, Node, Prefab, Sprite } from 'cc';
+import { _decorator, Component, instantiate, Label, Node, Prefab } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TroopRender } from './TroopRender';
 import { BattleMap } from './BattleMap';
@@ -8,56 +8,20 @@ import { ConfigStorageController } from '../Controllers/StorageControllers/Confi
 import { CharacterInfo } from '../Structures/CharacterInfo';
 import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
-import { BattleStorage } from '../Storage/BattleStorage';
 import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
-import { InitRewardAfterBattle } from '../Logic/InitRewardAfterBattle';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { GameModel } from '../Model/GameModel';
 import { CharactersPresenter } from '../Presenter/CharactersPresenter';
+import { BattleModel } from '../Model/BattleModel';
+import { OpenHomeMapPresenter } from '../Presenter/OpenHomeMapPresenter';
+import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
 export class Battle extends Component {
-
-    /**
-     * +++ получить союзные свободные войска
-     * +++ получить вражеские свободные войска
-     * 
-     * +++ получить доступное количество ячеек союзных войск[1,1,6,10,16,30,40,50,70]
-     * +++ получить сколько юнитов встанет в одну ячейку
-     * 
-     * +++ отрисовать доступные по ЛВЛу ячейки + одну не доступную
-     * +++ создать массив для своих войск по кол-ву доступных ячеек по лвлу
-     * 
-     * +++ при старте игры записать вражеских юнитов в массив и отрисовать их на карте
-     * +++ при атаке на вражеские войска рендер их параметров
-     * 
-     * +++ при нажатии на корточку, поставить одного воина
-     * +++ при нажатии на кнопку автматическая расстановка, возврат выставленных своих войск в карточки, расставить свои войска автоматически
-     * 
-     * при смене героев возврат выставленных своих войск в карточки, перерасчитывается количество мест на ячейках, ихменяется ХП юнитов в карточках
-     * 
-     * +++ при нажатии на юнита возврат его в карточку
-     * 
-     * -------------------------------------------------------
-     * 
-     * +++ получить тип атакующей команды
-     * 
-     * +++при каждой атаке юнита выплнять это {
-        * +++ получение параметров атакующего юнита
-        * +++ получить атакуемых юнитов
-        * +++ включить анимацию выстрела, списать ХП
-        * +++ после анимации запустить анимацию списания ХП и перерендерить воина
-     * }
-     * 
-     *                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        после окончания атаки первой команды проверить жива ли вторая
-     * 
-     * если одна из команд померла то открываем модалку конца боя
-     * 
-     */
 
     public static instance: Battle
 
@@ -96,6 +60,25 @@ export class Battle extends Component {
         this.getQuantityAvailableFreeCoords()
     }
 
+    getCommands(mapNumber: number) {
+        for (let l = 0; l < BattleModel.instance.mapEnemyArr.length; l++) {
+            if (BattleModel.instance.mapEnemyArr[l].mapNumber == mapNumber) {
+                return BattleModel.instance.mapEnemyArr[l]
+            }
+        }
+        console.log('Не найдена такая команда. Запросите с сервера')
+    }
+
+    addEnemyCommand(mapEnemyUnits: MapEnemyBattle) {
+        for (let l = 0; l < BattleModel.instance.mapEnemyArr.length; l++) {
+            if (mapEnemyUnits.mapNumber == BattleModel.instance.mapEnemyArr[l].mapNumber) {
+                console.log('такой новер команы уже существует')
+                return
+            }
+        }
+        BattleModel.instance.mapEnemyArr.push(mapEnemyUnits)
+    }
+
     redirectToHomeMap() {
         RedirectionToScene.redirect(SceneNames.HOME_MAP)
     }
@@ -107,26 +90,26 @@ export class Battle extends Component {
 
         for (let i = 0; i < sizeTroopAir.length; i++) {
             if (sizeTroopAir[i] == 0) continue
-            BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_AIR, i + 1, sizeTroopAir[i], 10))
+            BattleModel.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_AIR, i + 1, sizeTroopAir[i], 10))
         }
         for (let i = 0; i < sizeTroopMarine.length; i++) {
             if (sizeTroopMarine[i] == 0) continue
-            BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_MARINE, i + 1, sizeTroopMarine[i], 10))
+            BattleModel.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_MARINE, i + 1, sizeTroopMarine[i], 10))
         }
         for (let i = 0; i < sizeTroopOverland.length; i++) {
             if (sizeTroopOverland[i] == 0) continue
-            BattleStorage.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_OVERLAND, i + 1, sizeTroopOverland[i], 10))
+            BattleModel.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_OVERLAND, i + 1, sizeTroopOverland[i], 10))
         }
         this.spawnCards()
     }
 
     getTroopEnemy() {
-        let troopsEnemy = MapEnemyController.getCommands(BattleStorage.instance.numberBattle)
+        let troopsEnemy = this.getCommands(BattleModel.instance.numberBattle)
 
         for (let i = 0; i < troopsEnemy.units1.length; i++) {
-            BattleStorage.instance.arrayEnemy.push(troopsEnemy.units1[i])
-            BattleStorage.instance.arrayEnemy[i].index = i
-            this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleStorage.instance.arrayEnemy[BattleStorage.instance.arrayEnemy.length - 1])
+            BattleModel.instance.arrayEnemy.push(troopsEnemy.units1[i])
+            BattleModel.instance.arrayEnemy[i].index = i
+            this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleModel.instance.arrayEnemy[BattleModel.instance.arrayEnemy.length - 1])
         }
     }
 
@@ -134,7 +117,7 @@ export class Battle extends Component {
         let a = [1, 1, 6, 10, 16, 30, 40, 50, 70];
         for (let i = 0; i < a.length; i++) {
             if (GameModel.instance.level >= a[i]) {
-                BattleStorage.instance.quantityAvailableFreeCoords += 1;
+                BattleModel.instance.quantityAvailableFreeCoords += 1;
             }
             else {
                 break;
@@ -145,8 +128,8 @@ export class Battle extends Component {
     }
 
     getQuantityTroopsOfCoord() {
-        for (let i = 0; i < BattleStorage.instance.quantityAvailableFreeCoords; i++) {
-            BattleStorage.instance.quantityPlaces[i] += 1;
+        for (let i = 0; i < BattleModel.instance.quantityAvailableFreeCoords; i++) {
+            BattleModel.instance.quantityPlaces[i] += 1;
         }
     }
 
@@ -155,7 +138,7 @@ export class Battle extends Component {
         for (let i = 0; i < BattleMap.instance.coordsOwn.length; i++) {
             BattleMap.instance.coordsOwn[i].active = false;
         }
-        for (let i = 0; i < BattleStorage.instance.quantityAvailableFreeCoords; i++) {
+        for (let i = 0; i < BattleModel.instance.quantityAvailableFreeCoords; i++) {
             BattleMap.instance.coordsOwn[i].active = true;
             this.mapQuantity[index + 1].string = "1/1";
             index = i;
@@ -196,30 +179,30 @@ export class Battle extends Component {
     }
 
     addArrays() {
-        BattleStorage.instance.arrayOwn = new Array(BattleStorage.instance.quantityAvailableFreeCoords);
+        BattleModel.instance.arrayOwn = new Array(BattleModel.instance.quantityAvailableFreeCoords);
     }
 
     spawnCards() {
-        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
-            if (BattleStorage.instance.arrayCards[i].quantity <= 0) {
-                if (BattleStorage.instance.arrayCards[i].linkToCardTroopRender != null) {
-                    BattleStorage.instance.arrayCards[i].linkToCardTroopRender.nodeObject.destroy()
+        for (let i = 0; i < BattleModel.instance.arrayCards.length; i++) {
+            if (BattleModel.instance.arrayCards[i].quantity <= 0) {
+                if (BattleModel.instance.arrayCards[i].linkToCardTroopRender != null) {
+                    BattleModel.instance.arrayCards[i].linkToCardTroopRender.nodeObject.destroy()
                 }
-                BattleStorage.instance.arrayCards.splice(i, 1);
+                BattleModel.instance.arrayCards.splice(i, 1);
             }
 
 
-            if (BattleStorage.instance.arrayCards[i]) {
-                if (BattleStorage.instance.arrayCards[i].linkToCardTroopRender != null) {
-                    BattleStorage.instance.arrayCards[i].linkToCardTroopRender.nodeObject.destroy()
+            if (BattleModel.instance.arrayCards[i]) {
+                if (BattleModel.instance.arrayCards[i].linkToCardTroopRender != null) {
+                    BattleModel.instance.arrayCards[i].linkToCardTroopRender.nodeObject.destroy()
                 }
             }
         }
 
         this.sortedArrayCards();
 
-        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
-            let arrayCard = BattleStorage.instance.arrayCards[i]
+        for (let i = 0; i < BattleModel.instance.arrayCards.length; i++) {
+            let arrayCard = BattleModel.instance.arrayCards[i]
             let card = instantiate(this.cardTroop)
             let cardTroopRender = card.getComponent(CardTroopRender)
             cardTroopRender.level = arrayCard.level
@@ -232,15 +215,15 @@ export class Battle extends Component {
     }
 
     clickOnCard(index: number) {
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            if (BattleStorage.instance.arrayOwn[i] != null || BattleStorage.instance.quantityAvailableFreeCoords <= i) continue;
+        for (let i = 0; i < BattleModel.instance.arrayOwn.length; i++) {
+            if (BattleModel.instance.arrayOwn[i] != null || BattleModel.instance.quantityAvailableFreeCoords <= i) continue;
 
-            let unit = BattleStorage.instance.arrayCards[index];
+            let unit = BattleModel.instance.arrayCards[index];
             let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
-            BattleStorage.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
+            BattleModel.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
             unit.quantity--;
 
-            this.spawnTroop(TypesTeam.TEAM_OWN, BattleStorage.instance.arrayOwn[i]);
+            this.spawnTroop(TypesTeam.TEAM_OWN, BattleModel.instance.arrayOwn[i]);
 
             this.spawnCards();
             this.renderAvailableCoords();
@@ -250,24 +233,24 @@ export class Battle extends Component {
 
     retutnUnitOnCard(index: number) {
         if (this.addQuantityTroops(index)) {
-            BattleStorage.instance.arrayCards.push(new FreeUnit(BattleStorage.instance.arrayOwn[index].type, BattleStorage.instance.arrayOwn[index].level, BattleStorage.instance.arrayOwn[index].quantity, BattleStorage.instance.arrayOwn[index].hp));
+            BattleModel.instance.arrayCards.push(new FreeUnit(BattleModel.instance.arrayOwn[index].type, BattleModel.instance.arrayOwn[index].level, BattleModel.instance.arrayOwn[index].quantity, BattleModel.instance.arrayOwn[index].hp));
             this.spawnCards();
         }
 
-        if (BattleStorage.instance.arrayOwn[index].link != null) {
-            BattleStorage.instance.arrayOwn[index].link.nodeObject.destroy();
+        if (BattleModel.instance.arrayOwn[index].link != null) {
+            BattleModel.instance.arrayOwn[index].link.nodeObject.destroy();
         }
-        BattleStorage.instance.arrayOwn[index] = null;
+        BattleModel.instance.arrayOwn[index] = null;
 
         this.renderAvailableCoords();
     }
 
     addQuantityTroops(index: number): boolean {
-        for (let i = 0; i < BattleStorage.instance.arrayCards.length; i++) {
-            if (BattleStorage.instance.arrayCards[i] == null) continue;
-            if (BattleStorage.instance.arrayCards[i].type != BattleStorage.instance.arrayOwn[index].type || BattleStorage.instance.arrayCards[i].level != BattleStorage.instance.arrayOwn[index].level) continue;
+        for (let i = 0; i < BattleModel.instance.arrayCards.length; i++) {
+            if (BattleModel.instance.arrayCards[i] == null) continue;
+            if (BattleModel.instance.arrayCards[i].type != BattleModel.instance.arrayOwn[index].type || BattleModel.instance.arrayCards[i].level != BattleModel.instance.arrayOwn[index].level) continue;
 
-            BattleStorage.instance.arrayCards[i].quantity += BattleStorage.instance.arrayOwn[index].quantity;
+            BattleModel.instance.arrayCards[i].quantity += BattleModel.instance.arrayOwn[index].quantity;
             this.spawnCards();
             return false;
         }
@@ -275,28 +258,28 @@ export class Battle extends Component {
     }
 
     quickPlacement() {
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            if (BattleStorage.instance.arrayOwn[i] == null) continue;
+        for (let i = 0; i < BattleModel.instance.arrayOwn.length; i++) {
+            if (BattleModel.instance.arrayOwn[i] == null) continue;
 
             this.retutnUnitOnCard(i);
             this.renderAvailableCoords();
         }
 
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            let unit = BattleStorage.instance.arrayCards[0];
-            if (unit == null || BattleStorage.instance.quantityAvailableFreeCoords <= i) continue;
+        for (let i = 0; i < BattleModel.instance.arrayOwn.length; i++) {
+            let unit = BattleModel.instance.arrayCards[0];
+            if (unit == null || BattleModel.instance.quantityAvailableFreeCoords <= i) continue;
 
             let config = ConfigStorageController.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
-            BattleStorage.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
+            BattleModel.instance.arrayOwn[i] = new Unit(config.hp, config.hp, config.damage, i, unit.level, 1, TypesAttack.HORIZON, config.attackType, unit.type);
             unit.quantity--;
-            this.spawnTroop(TypesTeam.TEAM_OWN, BattleStorage.instance.arrayOwn[i]);
+            this.spawnTroop(TypesTeam.TEAM_OWN, BattleModel.instance.arrayOwn[i]);
             this.spawnCards();
         }
     }
 
     sortedArrayCards() {
         // сортировка карточек
-        BattleStorage.instance.arrayCards.sort((a, b) => {
+        BattleModel.instance.arrayCards.sort((a, b) => {
             if (a == null || b == null) return 0
 
             if (a.level < b.level) {
@@ -312,16 +295,16 @@ export class Battle extends Component {
     }
 
     inBattle() {
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            if (BattleStorage.instance.arrayOwn[i] == null) continue;
-            BattleStorage.instance.isBattle = true;
-            BattleStorage.instance.attackingTeam = 0;
+        for (let i = 0; i < BattleModel.instance.arrayOwn.length; i++) {
+            if (BattleModel.instance.arrayOwn[i] == null) continue;
+            BattleModel.instance.isBattle = true;
+            BattleModel.instance.attackingTeam = 0;
             this.inBattleBtn.active = false;
             this.quickPlacementBtn.active = false;
 
-            for (let j = 0; j < BattleStorage.instance.arrayCards.length; j++) {
-                if (BattleStorage.instance.arrayCards[j] != null) {
-                    BattleStorage.instance.arrayCards[j].linkToCardTroopRender.nodeObject.destroy();
+            for (let j = 0; j < BattleModel.instance.arrayCards.length; j++) {
+                if (BattleModel.instance.arrayCards[j] != null) {
+                    BattleModel.instance.arrayCards[j].linkToCardTroopRender.nodeObject.destroy();
                 }
             }
             this.attackController();
@@ -334,20 +317,20 @@ export class Battle extends Component {
     }
 
     private getAttackUnits(): Unit[] {
-        if (BattleStorage.instance.attackingTeam == 0) {
-            return BattleStorage.instance.arrayOwn.slice(0);
+        if (BattleModel.instance.attackingTeam == 0) {
+            return BattleModel.instance.arrayOwn.slice(0);
         }
-        else if (BattleStorage.instance.attackingTeam == 1) {
-            return BattleStorage.instance.arrayEnemy.slice(0);
+        else if (BattleModel.instance.attackingTeam == 1) {
+            return BattleModel.instance.arrayEnemy.slice(0);
         }
     }
 
     private getDefendingUnits(): Unit[] {
-        if (BattleStorage.instance.attackingTeam == 0) {
-            return BattleStorage.instance.arrayEnemy.slice(0);
+        if (BattleModel.instance.attackingTeam == 0) {
+            return BattleModel.instance.arrayEnemy.slice(0);
         }
-        else if (BattleStorage.instance.attackingTeam == 1) {
-            return BattleStorage.instance.arrayOwn.slice(0);
+        else if (BattleModel.instance.attackingTeam == 1) {
+            return BattleModel.instance.arrayOwn.slice(0);
         }
     }
 
@@ -359,7 +342,7 @@ export class Battle extends Component {
 
             let time = this.attack();
             setTimeout(() => {
-                BattleStorage.instance.attackingTeam = BattleStorage.instance.attackingTeam == 0 ? 1 : 0;
+                BattleModel.instance.attackingTeam = BattleModel.instance.attackingTeam == 0 ? 1 : 0;
                 this.attackController();
             }, time * 750);
         }
@@ -369,16 +352,16 @@ export class Battle extends Component {
             }
             else if (this.howManyAliveEnemy() <= 0) {
                 this.endText.string = "ВЫИГРЫШ"
-                InitRewardAfterBattle.victory()
+                OpenHomeMapPresenter.victory()
             }
-            BattleStorage.instance.arrayOwn = new Array
-            BattleStorage.instance.arrayEnemy = new Array
-            BattleStorage.instance.arrayCards = new Array
-            BattleStorage.instance.quantityPlaces = new Array
-            BattleStorage.instance.isBattle = false
-            BattleStorage.instance.quantityAvailableFreeCoords = 0
-            BattleStorage.instance.attackingTeam = 0
-            BattleStorage.instance.attackNumber = 0
+            BattleModel.instance.arrayOwn = new Array
+            BattleModel.instance.arrayEnemy = new Array
+            BattleModel.instance.arrayCards = new Array
+            BattleModel.instance.quantityPlaces = new Array
+            BattleModel.instance.isBattle = false
+            BattleModel.instance.quantityAvailableFreeCoords = 0
+            BattleModel.instance.attackingTeam = 0
+            BattleModel.instance.attackNumber = 0
 
             this.endModal.active = true;
         }
@@ -496,8 +479,8 @@ export class Battle extends Component {
 
     howManyAliveOwn(): number {
         let quantityAlive = 0;
-        for (let i = 0; i < BattleStorage.instance.arrayOwn.length; i++) {
-            let own = BattleStorage.instance.arrayOwn[i];
+        for (let i = 0; i < BattleModel.instance.arrayOwn.length; i++) {
+            let own = BattleModel.instance.arrayOwn[i];
             if (own != null) {
                 if (own.hp > 0) {
                     quantityAlive++;
@@ -509,8 +492,8 @@ export class Battle extends Component {
 
     howManyAliveEnemy(): number {
         let quantityAlive = 0;
-        for (let i = 0; i < BattleStorage.instance.arrayEnemy.length; i++) {
-            let enemy = BattleStorage.instance.arrayEnemy[i];
+        for (let i = 0; i < BattleModel.instance.arrayEnemy.length; i++) {
+            let enemy = BattleModel.instance.arrayEnemy[i];
             if (enemy != null) {
                 if (enemy.hp > 0) {
                     quantityAlive++;

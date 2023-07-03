@@ -1,4 +1,4 @@
-import { UserStorageController } from "../StorageControllers/UserStorageController"
+import { UserPresenter } from "../../Presenter/UserPresenter"
 import { ServerApi } from "./ServerApi"
 import { TypesStorages } from "../../Static/TypesStorages"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
@@ -8,12 +8,12 @@ import { DataStorageResponseDTO } from "../../Structures/DTO/DataStorageResponse
 export class DataStorageService {
 
     static saveData(data: object[]) {
-        ServerApi.post('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), data), DataStorageService.parseDataStoragePostResponce)
+        ServerApi.post('data-storage', new DataStorageDTO(UserPresenter.getAccountId(), UserPresenter.getSessionId(), data), DataStorageService.parseDataStoragePostResponce)
     }
 
     static getData(keys: Array<string>) {
         const strKeys = JSON.parse(JSON.stringify(keys))
-        ServerApi.get('data-storage', new DataStorageDTO(UserStorageController.getAccountId(), UserStorageController.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce)
+        ServerApi.get('data-storage', new DataStorageDTO(UserPresenter.getAccountId(), UserPresenter.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce)
     }
 
     static parseDataStorageGetResponce(data: any, isDone: boolean) {
@@ -26,7 +26,7 @@ export class DataStorageService {
     }
 
     static dataRecipient(objects: object[]) {
-        if (UserStorageController.getIsNewUser()) {
+        if (UserPresenter.getIsNewUser()) {
             LoadingGame.getPostData()
             return;
         }

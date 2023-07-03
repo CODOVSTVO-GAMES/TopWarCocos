@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
 import { BackpackPresenter } from '../Presenter/BackpackPresenter';
-import { SpriteStorage } from '../Storage/SpriteStorage';
+import { SpriteStorage } from '../Model/SpriteStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('ItemBackpackView')

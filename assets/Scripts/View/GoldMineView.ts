@@ -1,8 +1,8 @@
 import { _decorator, Component, Node, Sprite } from 'cc';
 const { ccclass, property } = _decorator;
 
-@ccclass('GoldMineInterface')
-export class GoldMineInterface extends Component {
+@ccclass('GoldMineView')
+export class GoldMineView extends Component {
 
     @property({ type: Node })
     public message: Node
@@ -13,7 +13,7 @@ export class GoldMineInterface extends Component {
     @property({ type: Sprite })
     public fill: Sprite
 
-    public render(value: number) {
+    public renderFillProgress(value: number) {
         this.fill.fillRange = value
     }
 

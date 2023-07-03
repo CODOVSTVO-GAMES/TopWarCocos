@@ -1,10 +1,10 @@
 import { _decorator, CCFloat, CCString, Component, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
-@ccclass('GlobalMapStorage')
-export class GlobalMapStorage extends Component {
+@ccclass('GlobalMapModel')
+export class GlobalMapModel extends Component {
 
-    public static instance: GlobalMapStorage
+    public static instance: GlobalMapModel
 
     @property({ type: CCString })
     public zone: string
@@ -17,9 +17,11 @@ export class GlobalMapStorage extends Component {
 
     public buildings = new Array<Building>
 
+    protected onLoad(): void {
+        GlobalMapModel.instance = this
+    }
+
     public start() {
-        GlobalMapStorage.instance = this
-        // this.zone = 'testzone'
         this.xBaceCoord = 0
         this.yBaceCoord = 0
     }

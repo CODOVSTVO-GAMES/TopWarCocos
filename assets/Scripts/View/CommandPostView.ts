@@ -1,7 +1,7 @@
 import { _decorator, Component, Node, Label, Sprite } from 'cc';
 import { CommandPostModel } from '../Model/CommandPostModel';
 import { TypesObjects } from '../Static/TypesObjects';
-import { SpriteStorage } from '../Storage/SpriteStorage';
+import { SpriteStorage } from '../Model/SpriteStorage';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { TypesModals } from '../Static/TypesModals';

@@ -143,7 +143,7 @@ export class SpriteStorage extends Component {
     @property({ type: SpriteFrame })
     public test: SpriteFrame
 
-    public onLoad() {
+    protected onLoad(): void {
         SpriteStorage.instance = this
     }
 

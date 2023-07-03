@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite, SpriteFrame } from 'cc';
 import { CharacterInfo } from '../../../Structures/CharacterInfo';
-import { SpriteStorage } from '../../../Storage/SpriteStorage';
+import { SpriteStorage } from '../../../Model/SpriteStorage';
 import { CharactersStorage } from '../../../Storage/CharactersStorage';
 import { TypesCharacters } from '../../../Static/TypesCharacters';
 const { ccclass, property } = _decorator;

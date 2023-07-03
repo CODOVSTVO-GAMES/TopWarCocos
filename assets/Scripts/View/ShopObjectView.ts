@@ -1,7 +1,7 @@
 import { _decorator, Component, Label, Button, Sprite } from 'cc';
 import { CommandPostModel } from '../Model/CommandPostModel';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
-import { SpriteStorage } from '../Storage/SpriteStorage';
+import { SpriteStorage } from '../Model/SpriteStorage';
 import { TypesObjects } from '../Static/TypesObjects';
 import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
 import { GameModel } from '../Model/GameModel';

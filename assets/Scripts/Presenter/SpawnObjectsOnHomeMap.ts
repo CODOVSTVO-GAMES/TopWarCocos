@@ -1,12 +1,12 @@
 import { _decorator, instantiate, Vec3 } from 'cc';
-import { PrefabsStorage } from '../Storage/PrefabsStorage';
+import { PrefabsStorage } from '../Model/PrefabsStorage';
 import { ObjectParameters } from '../ObjectParameters';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesLocation } from '../Static/TypesLocation';
 import { HomeMapStructure } from '../Static/HomeMapStructure';
-import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { HomeMapPresenter } from './HomeMapPresenter';
 import { HomeMapModel } from '../Model/HomeMapModel';
-import { AutocombinePresenter } from '../Presenter/AutocombinePresenter';
+import { AutocombinePresenter } from './AutocombinePresenter';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjectsOnHomeMap')

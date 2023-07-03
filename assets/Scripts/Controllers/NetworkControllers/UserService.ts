@@ -1,4 +1,4 @@
-import { UserStorageController } from "../StorageControllers/UserStorageController"
+import { UserPresenter } from "../../Presenter/UserPresenter"
 import { ServerApi } from "./ServerApi"
 import { UserDTO } from "../../Structures/DTO/UserDTO"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
@@ -7,16 +7,16 @@ import { GlobalMapStorageController } from "../StorageControllers/GlobalMapStora
 export class UserService {
 
     static getUser(userId: string) {
-        ServerApi.post('user', new UserDTO(UserStorageController.getUserId()), UserService.parseGetUserResponce)
+        ServerApi.post('user', new UserDTO(UserPresenter.getUserId()), UserService.parseGetUserResponce)
     }
 
     static parseGetUserResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("get user error")
-        UserStorageController.setAccountsId(data.accountsId)
-        UserStorageController.setAccountId()
+        UserPresenter.setAccountsId(data.accountsId)
+        UserPresenter.setAccountId()
         GlobalMapStorageController.setZone(data.zone)
-        UserStorageController.setPermission(data.permission)
-        UserStorageController.setIsNewUser(data.isNewUser)
+        UserPresenter.setPermission(data.permission)
+        UserPresenter.setIsNewUser(data.isNewUser)
         LoadingGame.getSession()
     }
 }

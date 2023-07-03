@@ -1,9 +1,9 @@
 export class QuantityItem {
-    type: string;
-    quantity: number;
+    type: string
+    quantity: number
 
     constructor(type: string, quantity: number) {
-        this.type = type;
-        this.quantity = quantity;
+        this.type = type
+        this.quantity = quantity
     }
 }

@@ -1,5 +1,5 @@
 import { _decorator } from 'cc';
-import { ConfigStorage } from '../../Storage/ConfigStorage';
+import { ConfigModel } from '../../Model/ConfigModel';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { HeroConfig } from '../../Structures/HeroConfig';
 import { UnitsCongig } from '../../Structures/ConfigUnits';
@@ -9,9 +9,9 @@ import { MainAndRepairBuildings } from '../../Structures/MainAndRepairBuildings'
 export class ConfigStorageController {
 
     static getProdictionInTimeGoldMineByLevel(level: number): number {
-        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == TypesObjects.GOLD_MINE && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.mergeBuildingsConfig[i].productionInTime;
+        for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.mergeBuildingsConfig[i].type == TypesObjects.GOLD_MINE && ConfigModel.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.mergeBuildingsConfig[i].productionInTime;
             }
         }
         // throw "не существует такого уровня шахты";
@@ -19,9 +19,9 @@ export class ConfigStorageController {
     }
 
     static getLevelExpirienceByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.levelConfig.length; i++) {
-            if (ConfigStorage.instance.levelConfig[i].levelNumber == level) {
-                return ConfigStorage.instance.levelConfig[i].expirience
+        for (let i = 0; i < ConfigModel.instance.levelConfig.length; i++) {
+            if (ConfigModel.instance.levelConfig[i].levelNumber == level) {
+                return ConfigModel.instance.levelConfig[i].expirience
             }
         }
         // throw "не существует такого уровня";
@@ -29,9 +29,9 @@ export class ConfigStorageController {
     }
 
     static getLevelPowerByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.levelConfig.length; i++) {
-            if (ConfigStorage.instance.levelConfig[i].levelNumber == level) {
-                return ConfigStorage.instance.levelConfig[i].powerUponReceipt
+        for (let i = 0; i < ConfigModel.instance.levelConfig.length; i++) {
+            if (ConfigModel.instance.levelConfig[i].levelNumber == level) {
+                return ConfigModel.instance.levelConfig[i].powerUponReceipt
             }
         }
         // throw "не существует такого уровня";
@@ -39,9 +39,9 @@ export class ConfigStorageController {
     }
 
     static getLevelEnergyByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.levelConfig.length; i++) {
-            if (ConfigStorage.instance.levelConfig[i].levelNumber == level) {
-                return ConfigStorage.instance.levelConfig[i].energyUponREceipt
+        for (let i = 0; i < ConfigModel.instance.levelConfig.length; i++) {
+            if (ConfigModel.instance.levelConfig[i].levelNumber == level) {
+                return ConfigModel.instance.levelConfig[i].energyUponREceipt
             }
         }
         // throw "не существует такого уровня";
@@ -49,9 +49,9 @@ export class ConfigStorageController {
     }
 
     static getLevelByExpirience(experience: number) {
-        for (let i = 0; i < ConfigStorage.instance.levelConfig.length; i++) {
-            if (ConfigStorage.instance.levelConfig[i + 1].expirience > experience) {
-                return ConfigStorage.instance.levelConfig[i].levelNumber // будет работать корректно при сортированом массиве
+        for (let i = 0; i < ConfigModel.instance.levelConfig.length; i++) {
+            if (ConfigModel.instance.levelConfig[i + 1].expirience > experience) {
+                return ConfigModel.instance.levelConfig[i].levelNumber // будет работать корректно при сортированом массиве
             }
         }
         // throw "не существует такого уровня";
@@ -59,9 +59,9 @@ export class ConfigStorageController {
     }
 
     static getHeroLevelExpirienceByTypeAndLevel(type: string, level: number) {
-        for (let i = 0; i < ConfigStorage.instance.heroLevelConfig.length; i++) {
-            if (ConfigStorage.instance.heroLevelConfig[i].levelNumber == level && ConfigStorage.instance.heroLevelConfig[i].type == type) {
-                return ConfigStorage.instance.heroLevelConfig[i].heroExpirience
+        for (let i = 0; i < ConfigModel.instance.heroLevelConfig.length; i++) {
+            if (ConfigModel.instance.heroLevelConfig[i].levelNumber == level && ConfigModel.instance.heroLevelConfig[i].type == type) {
+                return ConfigModel.instance.heroLevelConfig[i].heroExpirience
             }
         }
         // throw "не существует такого уровня героя";
@@ -69,9 +69,9 @@ export class ConfigStorageController {
     }
 
     static getHeroLevelByExpirienceAndType(experience: number) {
-        for (let i = 0; i < ConfigStorage.instance.heroLevelConfig.length; i++) {
-            if (ConfigStorage.instance.heroLevelConfig[i + 1].heroExpirience > experience) {
-                return ConfigStorage.instance.heroLevelConfig[i].levelNumber // будет работать корректно при сортированом массиве
+        for (let i = 0; i < ConfigModel.instance.heroLevelConfig.length; i++) {
+            if (ConfigModel.instance.heroLevelConfig[i + 1].heroExpirience > experience) {
+                return ConfigModel.instance.heroLevelConfig[i].levelNumber // будет работать корректно при сортированом массиве
             }
         }
         // throw "не существует такого уровня";
@@ -79,9 +79,9 @@ export class ConfigStorageController {
     }
 
     static getHeroConfigByCodeName(codeName: string): HeroConfig {
-        for (let i = 0; i < ConfigStorage.instance.heroConfig.length; i++) {
-            if (ConfigStorage.instance.heroConfig[i].codeName == codeName) {
-                return ConfigStorage.instance.heroConfig[i]
+        for (let i = 0; i < ConfigModel.instance.heroConfig.length; i++) {
+            if (ConfigModel.instance.heroConfig[i].codeName == codeName) {
+                return ConfigModel.instance.heroConfig[i]
             }
         }
         // throw "не существует такого уровня героя";
@@ -94,10 +94,10 @@ export class ConfigStorageController {
 
 
     static getPowerMainBuildingByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].power
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].power
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -105,10 +105,10 @@ export class ConfigStorageController {
     }
 
     static getExpMainBuildingByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].experience
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].experience
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -116,10 +116,10 @@ export class ConfigStorageController {
     }
 
     static getPriceUpdateMainBuildingByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].priceUpdate
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].priceUpdate
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -127,10 +127,10 @@ export class ConfigStorageController {
     }
 
     static getImprivementResourceTypeMainBuildingByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceType
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].imprivementResourceType
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -138,10 +138,10 @@ export class ConfigStorageController {
     }
 
     static getImprivementResourceNumberMainBuildingByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceNumber
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].imprivementResourceNumber
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -149,10 +149,10 @@ export class ConfigStorageController {
     }
 
     static getAttackBonusMainBuildingByLevel(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].attackBonus
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.COMMAND_POST
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].attackBonus
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -164,10 +164,10 @@ export class ConfigStorageController {
     //powerRepairBuildings
 
     static repairBuildings(level: number): MainAndRepairBuildings {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i]
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i]
             }
         }
         console.log("Главное здание такого уровня не найдено");
@@ -178,10 +178,10 @@ export class ConfigStorageController {
 
 
     static getPriceUpdateRepairBuilding(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].priceUpdate
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].priceUpdate
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -189,10 +189,10 @@ export class ConfigStorageController {
     }
 
     static getImprivementResourceNumberRepairBuilding(level: number) {
-        for (let i = 0; i < ConfigStorage.instance.mainAndRepairBuildings.length; i++) {
-            if (ConfigStorage.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
-                && ConfigStorage.instance.mainAndRepairBuildings[i].level == level) {
-                return ConfigStorage.instance.mainAndRepairBuildings[i].imprivementResourceNumber
+        for (let i = 0; i < ConfigModel.instance.mainAndRepairBuildings.length; i++) {
+            if (ConfigModel.instance.mainAndRepairBuildings[i].type == TypesObjects.REPAIR_SHOP
+                && ConfigModel.instance.mainAndRepairBuildings[i].level == level) {
+                return ConfigModel.instance.mainAndRepairBuildings[i].imprivementResourceNumber
             }
         }
         // throw "Главное здание такого уровня не найдено";
@@ -209,9 +209,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i]
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i]
             }
         }
         // throw "не существует такого обьекта";
@@ -224,9 +224,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].experience
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].experience
             }
         }
         // throw "не существует такого обьекта";
@@ -239,9 +239,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].power
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].power
             }
         }
         // throw "не существует такого обьекта";
@@ -254,9 +254,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].hp
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].hp
             }
         }
         // throw "не существует такого обьекта";
@@ -269,9 +269,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].damage
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].damage
             }
         }
         // throw "не существует такого обьекта";
@@ -284,9 +284,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].attackType
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].attackType
             }
         }
         // throw "не существует такого обьекта";
@@ -299,9 +299,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].timeCreation
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].timeCreation
             }
         }
         // throw "не существует такого обьекта";
@@ -314,9 +314,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].priceBuy
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].priceBuy
             }
         }
         // throw "не существует такого обьекта";
@@ -329,9 +329,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].priceUpdate
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].priceUpdate
             }
         }
         // throw "не существует такого обьекта";
@@ -344,9 +344,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].imprivementResourceType
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].imprivementResourceType
             }
         }
         // throw "не существует такого обьекта";
@@ -359,9 +359,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].imprivementResourceNumber
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].imprivementResourceNumber
             }
         }
         // throw "не существует такого обьекта";
@@ -374,9 +374,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.unitsConfig.length; i++) {
-            if (ConfigStorage.instance.unitsConfig[i].type == type && ConfigStorage.instance.unitsConfig[i].level == level) {
-                return ConfigStorage.instance.unitsConfig[i].expPerSpawn
+        for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
+            if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
+                return ConfigModel.instance.unitsConfig[i].expPerSpawn
             }
         }
         // throw "не существует такого обьекта";
@@ -394,9 +394,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.mergeBuildingsConfig[i].experience
+        for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.mergeBuildingsConfig[i].type == type && ConfigModel.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.mergeBuildingsConfig[i].experience
             }
         }
         // throw "не существует такого обьекта";
@@ -409,9 +409,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.mergeBuildingsConfig[i].power
+        for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.mergeBuildingsConfig[i].type == type && ConfigModel.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.mergeBuildingsConfig[i].power
             }
         }
         // throw "не существует такого обьекта";
@@ -424,9 +424,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.mergeBuildingsConfig[i].priceUpdate
+        for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.mergeBuildingsConfig[i].type == type && ConfigModel.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.mergeBuildingsConfig[i].priceUpdate
             }
         }
         // throw "не существует такого обьекта";
@@ -439,9 +439,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.mergeBuildingsConfig[i].imprivementResourceType
+        for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.mergeBuildingsConfig[i].type == type && ConfigModel.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.mergeBuildingsConfig[i].imprivementResourceType
             }
         }
         // throw "не существует такого обьекта";
@@ -454,9 +454,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.mergeBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.mergeBuildingsConfig[i].type == type && ConfigStorage.instance.mergeBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.mergeBuildingsConfig[i].imprivementResourceNumber
+        for (let i = 0; i < ConfigModel.instance.mergeBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.mergeBuildingsConfig[i].type == type && ConfigModel.instance.mergeBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.mergeBuildingsConfig[i].imprivementResourceNumber
             }
         }
         // throw "не существует такого обьекта";
@@ -474,9 +474,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].experience
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].experience
             }
         }
         // throw "не существует такого обьекта";
@@ -489,9 +489,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].power
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].power
             }
         }
         // throw "не существует такого обьекта";
@@ -504,9 +504,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].priceBuy
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].priceBuy
             }
         }
         // throw "не существует такого обьекта";
@@ -519,9 +519,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].priceUpdate
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].priceUpdate
             }
         }
         // throw "не существует такого обьекта";
@@ -534,9 +534,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].imprivementResourceType
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].imprivementResourceType
             }
         }
         // throw "не существует такого обьекта";
@@ -549,9 +549,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].imprivementResourceNumber
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].imprivementResourceNumber
             }
         }
         // throw "не существует такого обьекта";
@@ -564,9 +564,9 @@ export class ConfigStorageController {
             console.log("Запрещено запрашивать этот тип этим методом");
         }
 
-        for (let i = 0; i < ConfigStorage.instance.spawnBuildingsConfig.length; i++) {
-            if (ConfigStorage.instance.spawnBuildingsConfig[i].type == type && ConfigStorage.instance.spawnBuildingsConfig[i].level == level) {
-                return ConfigStorage.instance.spawnBuildingsConfig[i].expPerSpawn
+        for (let i = 0; i < ConfigModel.instance.spawnBuildingsConfig.length; i++) {
+            if (ConfigModel.instance.spawnBuildingsConfig[i].type == type && ConfigModel.instance.spawnBuildingsConfig[i].level == level) {
+                return ConfigModel.instance.spawnBuildingsConfig[i].expPerSpawn
             }
         }
         // throw "не существует такого обьекта";
@@ -574,25 +574,25 @@ export class ConfigStorageController {
     }
 
     static getRadarConfigByLevel(level: number): RadarConfig {
-        for (let i = 0; i < ConfigStorage.instance.radarConfig.length; i++) {
-            if (ConfigStorage.instance.radarConfig[i].level == level) {
-                return ConfigStorage.instance.radarConfig[i]
+        for (let i = 0; i < ConfigModel.instance.radarConfig.length; i++) {
+            if (ConfigModel.instance.radarConfig[i].level == level) {
+                return ConfigModel.instance.radarConfig[i]
             }
         }
         console.log("Радар такого уровня не найден")
     }
 
     static radarConfig(level: number): RadarConfig {//смена названия
-        for (let i = 0; i < ConfigStorage.instance.radarConfig.length; i++) {
-            if (ConfigStorage.instance.radarConfig[i].level == level) {
-                return ConfigStorage.instance.radarConfig[i]
+        for (let i = 0; i < ConfigModel.instance.radarConfig.length; i++) {
+            if (ConfigModel.instance.radarConfig[i].level == level) {
+                return ConfigModel.instance.radarConfig[i]
             }
         }
         console.log("Радар такого уровня не найден")
     }
 
     getHeroConfig(): HeroConfig[] {
-        return ConfigStorage.instance.heroConfig
+        return ConfigModel.instance.heroConfig
     }
 
     //---------------------------------------------------------------------------------------------------
@@ -600,8 +600,8 @@ export class ConfigStorageController {
 
 
     static getExpirienceRadarByLevel(level: number): number {
-        if (ConfigStorage.instance.expirienceRadar.length < level) throw 'Уровень не существует'
-        return ConfigStorage.instance.expirienceRadar[level]
+        if (ConfigModel.instance.expirienceRadar.length < level) throw 'Уровень не существует'
+        return ConfigModel.instance.expirienceRadar[level]
     }
 
 
@@ -609,24 +609,24 @@ export class ConfigStorageController {
     //goldBox
 
     static getGoldByLevel(level: number): number {
-        if (ConfigStorage.instance.goldBoxConfig.length < level) throw 'Уровень не существует'
-        return ConfigStorage.instance.goldBoxConfig[level]
+        if (ConfigModel.instance.goldBoxConfig.length < level) throw 'Уровень не существует'
+        return ConfigModel.instance.goldBoxConfig[level]
     }
 
     //---------------------------------------------------------------------------------------------------
     //radarBasicRate
 
     static getRadarBasicRateByLevel(level: number) {
-        if (ConfigStorage.instance.radarBasicRate.length < level) throw 'Уровень не существует'
-        return ConfigStorage.instance.radarBasicRate[level]
+        if (ConfigModel.instance.radarBasicRate.length < level) throw 'Уровень не существует'
+        return ConfigModel.instance.radarBasicRate[level]
     }
 
     //---------------------------------------------------------------------------------------------------
     //radarProgressNumber
 
     static getRadarProgressNumberByLevel(level: number) {
-        if (ConfigStorage.instance.radarProgressNumber.length < level) throw 'Уровень не существует'
-        return ConfigStorage.instance.radarProgressNumber[level]
+        if (ConfigModel.instance.radarProgressNumber.length < level) throw 'Уровень не существует'
+        return ConfigModel.instance.radarProgressNumber[level]
     }
 
 
@@ -636,9 +636,9 @@ export class ConfigStorageController {
     //сумка в этот раз будет понятный файл! -->
     static getValue(type: string, level: number, name: string) {
         if (type == TypesObjects.TROOP_OVERLAND || TypesObjects.TROOP_MARINE || TypesObjects.TROOP_AIR) {
-            for (let l = 0; l < ConfigStorage.instance.unitsConfig.length; l++) {
-                if (ConfigStorage.instance.unitsConfig[l].type == type && ConfigStorage.instance.unitsConfig[l].level == level) {
-                    return ConfigStorage.instance.unitsConfig[l][name]
+            for (let l = 0; l < ConfigModel.instance.unitsConfig.length; l++) {
+                if (ConfigModel.instance.unitsConfig[l].type == type && ConfigModel.instance.unitsConfig[l].level == level) {
+                    return ConfigModel.instance.unitsConfig[l][name]
                 }
             }
         }

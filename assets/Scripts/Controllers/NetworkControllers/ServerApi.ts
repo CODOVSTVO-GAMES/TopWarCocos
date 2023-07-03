@@ -3,17 +3,17 @@ import { TechnicalConfig } from "../../Static/TechnicalConfig";
 import { Cryptor } from "../../Other/Cryptor";
 import { RequestDTO } from "../../Structures/DTO/RequestDTO";
 import { ResponseDTO } from "../../Structures/DTO/ResponseDTO";
-import { UserStorageController } from '../StorageControllers/UserStorageController';
+import { UserPresenter } from '../../Presenter/UserPresenter';
 
 export class ServerApi {
 
     static post(endpoint: string, data: object, func: Function) {
-        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), UserStorageController.getSessionHash(), UserStorageController.getSessionId())
+        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), UserPresenter.getSessionHash(), UserPresenter.getSessionId())
         this.request(endpoint, requestDTO, func, "POST", data)
     }
 
     static get(endpoint: string, data: object, func: Function) {
-        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), UserStorageController.getSessionHash(), UserStorageController.getSessionId())
+        const requestDTO = new RequestDTO(data, Cryptor.getHashByObj(data), UserPresenter.getSessionHash(), UserPresenter.getSessionId())
         this.request(endpoint, requestDTO, func, "GET", data)
     }
 
@@ -22,15 +22,15 @@ export class ServerApi {
 
         if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
             xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(dataObj), true);
-            xhr.setRequestHeader("sessionId", UserStorageController.getSessionId().toString());
-            xhr.setRequestHeader("sessionHash", UserStorageController.getSessionHash());
+            xhr.setRequestHeader("sessionId", UserPresenter.getSessionId().toString());
+            xhr.setRequestHeader("sessionHash", UserPresenter.getSessionHash());
             xhr.setRequestHeader("dataHash", Cryptor.getHashByObj(dataObj));
             xhr.send()
         } else {
             xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("sessionId", UserStorageController.getSessionId().toString());
-            xhr.setRequestHeader("sessionHash", UserStorageController.getSessionHash());
+            xhr.setRequestHeader("sessionId", UserPresenter.getSessionId().toString());
+            xhr.setRequestHeader("sessionHash", UserPresenter.getSessionHash());
             xhr.setRequestHeader("dataHash", Cryptor.getHashByObj(dataObj));
             xhr.send(JSON.stringify(dataObj));
         }

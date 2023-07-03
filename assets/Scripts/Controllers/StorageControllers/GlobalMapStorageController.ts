@@ -1,7 +1,7 @@
 import { Vec2 } from "cc";
-import { Building, GlobalMapStorage } from "../../Storage/GlobalMapStorage";
-import { UserStorageController } from "./UserStorageController";
-import { SpawnObjectsOnGlobalMap } from "../../Logic/SpawnObjectOnGlobalMap";
+import { Building, GlobalMapStorage } from "../../Model/GlobalMapModel";
+import { UserPresenter } from "../../Presenter/UserPresenter";
+import { SpawnObjectsOnGlobalMap } from "../../Presenter/SpawnObjectOnGlobalMap";
 import { RedirectionToScene } from "../../Other/RedirectionToScene";
 
 export class GlobalMapStorageController {
@@ -62,7 +62,7 @@ export class GlobalMapStorageController {
             const accountId = buildings[i]['accountId']
             const level = buildings[i]['level']
             this.addBuildings([new Building(id, type, x, y, accountId, level)])
-            if (accountId == UserStorageController.getAccountId()) {
+            if (accountId == UserPresenter.getAccountId()) {
                 GlobalMapStorage.instance.xBaceCoord = x
                 GlobalMapStorage.instance.yBaceCoord = y
             }

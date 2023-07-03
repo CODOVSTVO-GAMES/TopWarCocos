@@ -1,8 +1,7 @@
 import { _decorator, Component } from 'cc';
-import { TasksGameStorage } from '../Storage/TasksGameStorage';
 import { TaskGame } from '../Structures/TaskGame';
 import { GamePresenter } from '../Presenter/GamePresenter';
-import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { TasksGameModel } from '../Model/TasksGameModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('TasksGameLogic')
@@ -15,31 +14,31 @@ export class TasksGameLogic extends Component {
     }
 
     public addTask(typeTask: string, levelObjectTask: number, quantityRequired: number, quantityCompleted: number) {
-        TasksGameStorage.instance.storage.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, false))
+        TasksGameModel.instance.tasks.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, false))
     }
 
     public checkTask(typeTask: string, levelObjectTask: number, quantity: number) {
-        for (let i = 0; i < TasksGameStorage.instance.storage.length; i++) {
-            if (TasksGameStorage.instance.storage[i].typeTask != typeTask) continue
-            if (TasksGameStorage.instance.storage[i].levelObjectTask != levelObjectTask) continue
-            if (TasksGameStorage.instance.storage[i].rewardTrigger) continue
+        for (let i = 0; i < TasksGameModel.instance.tasks.length; i++) {
+            if (TasksGameModel.instance.tasks[i].typeTask != typeTask) continue
+            if (TasksGameModel.instance.tasks[i].levelObjectTask != levelObjectTask) continue
+            if (TasksGameModel.instance.tasks[i].rewardTrigger) continue
 
-            TasksGameStorage.instance.storage[i].quantityCompleted += quantity
+            TasksGameModel.instance.tasks[i].quantityCompleted += quantity
 
-            if (TasksGameStorage.instance.storage[i].quantityCompleted > TasksGameStorage.instance.storage[i].quantityRequired) {
-                TasksGameStorage.instance.storage[i].quantityCompleted = TasksGameStorage.instance.storage[i].quantityRequired
-                TasksGameStorage.instance.storage[i].rewardTrigger = true
+            if (TasksGameModel.instance.tasks[i].quantityCompleted > TasksGameModel.instance.tasks[i].quantityRequired) {
+                TasksGameModel.instance.tasks[i].quantityCompleted = TasksGameModel.instance.tasks[i].quantityRequired
+                TasksGameModel.instance.tasks[i].rewardTrigger = true
             }
         }
     }
 
     public collectReward(typeTask: string, levelObjectTask: number) {
-        for (let i = 0; i < TasksGameStorage.instance.storage.length; i++) {
-            if (TasksGameStorage.instance.storage[i].typeTask != typeTask) continue
-            if (TasksGameStorage.instance.storage[i].levelObjectTask != levelObjectTask) continue
-            if (TasksGameStorage.instance.storage[i].rewardTrigger == false) continue
+        for (let i = 0; i < TasksGameModel.instance.tasks.length; i++) {
+            if (TasksGameModel.instance.tasks[i].typeTask != typeTask) continue
+            if (TasksGameModel.instance.tasks[i].levelObjectTask != levelObjectTask) continue
+            if (TasksGameModel.instance.tasks[i].rewardTrigger == false) continue
 
-            let quantityRequired = TasksGameStorage.instance.storage[i].quantityRequired
+            let quantityRequired = TasksGameModel.instance.tasks[i].quantityRequired
 
             this.deleteTask(i)
             this.addTask(typeTask, levelObjectTask + 1, quantityRequired, 0)
@@ -49,6 +48,6 @@ export class TasksGameLogic extends Component {
     }
 
     public deleteTask(index: number) {
-        TasksGameStorage.instance.storage.splice(index, 1)
+        TasksGameModel.instance.tasks.splice(index, 1)
     }
 }

@@ -4,7 +4,7 @@ import { SessionService } from '../Controllers/NetworkControllers/SessionService
 import { TypesStorages } from '../Static/TypesStorages';
 import { DataStorageService } from '../Controllers/NetworkControllers/DataStorageService';
 import { UserService } from '../Controllers/NetworkControllers/UserService';
-import { UserStorageController } from '../Controllers/StorageControllers/UserStorageController';
+import { UserPresenter } from '../Presenter/UserPresenter';
 import { ConfigService } from '../Controllers/NetworkControllers/ConfigService';
 import { MapService } from '../Controllers/NetworkControllers/MapService';
 import { PaymentsService } from '../Controllers/NetworkControllers/PaymentsService';
@@ -24,7 +24,7 @@ export class LoadingGame extends Component {
     }
 
     static getUser() {
-        UserService.getUser(UserStorageController.getUserId())
+        UserService.getUser(UserPresenter.getUserId())
     }
 
     static getSession() {

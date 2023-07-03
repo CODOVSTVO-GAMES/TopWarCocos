@@ -1,10 +1,10 @@
 import { _decorator, Component, Node, Color, Sprite, CCString, CCFloat, CCBoolean } from 'cc';
-import { SpriteStorage } from './Storage/SpriteStorage';
-import { GameObjectInterface } from './UI/GameObjects/GameObjectInterface';
-import { GoldMineInterface } from './UI/GameObjects/GoldMineInterface';
+import { SpriteStorage } from './Model/SpriteStorage';
 import { MessageAnimation } from './Animations/Message/MessageAnimation';
 import { ArrowGameObject } from './ArrowGameObject';
 import { TypesObjects } from './Static/TypesObjects';
+import { GameObjectView } from './View/GameObjectView';
+import { GoldMineView } from './View/GoldMineView';
 const { ccclass, property } = _decorator;
 
 @ccclass('ObjectParameters')
@@ -41,8 +41,8 @@ export class ObjectParameters extends Component {
     //Links
     //=================================================
 
-    private gameObjectInterface: GameObjectInterface
-    private goldMineInterface: GoldMineInterface
+    private gameObjectView: GameObjectView
+    private goldMineView: GoldMineView
     private messageAnimation: MessageAnimation
     private arrowGameObject: ArrowGameObject
 
@@ -71,16 +71,16 @@ export class ObjectParameters extends Component {
         }
     }
 
-    public getObjectInterface(): GameObjectInterface {
-        try { this.gameObjectInterface = this.getComponent(GameObjectInterface) }
-        catch { console.log("error: gameObjectInterface not received") }
-        return this.gameObjectInterface
+    public getObjectInterface(): GameObjectView {
+        try { this.gameObjectView = this.getComponent(GameObjectView) }
+        catch { console.log("error: gameObjectView not received") }
+        return this.gameObjectView
     }
 
-    public getGoldMineInterface(): GoldMineInterface {
-        try { this.goldMineInterface = this.getComponent(GoldMineInterface) }
-        catch { console.log("error: goldMineInterface not received") }
-        return this.goldMineInterface
+    public getGoldMineInterface(): GoldMineView {
+        try { this.goldMineView = this.getComponent(GoldMineView) }
+        catch { console.log("error: goldMineView not received") }
+        return this.goldMineView
     }
 
     public getMessageAnimation(): MessageAnimation {

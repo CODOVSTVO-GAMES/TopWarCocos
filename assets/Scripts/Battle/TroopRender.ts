@@ -1,5 +1,5 @@
 import { _decorator, Animation, Component, Label, Node, Sprite } from 'cc';
-import { SpriteStorage } from '../Storage/SpriteStorage';
+import { SpriteStorage } from '../Model/SpriteStorage';
 import { Battle } from './Battle';
 import { TypesTeam } from '../Static/TypesTeam';
 import { Unit } from '../Structures/Unit';

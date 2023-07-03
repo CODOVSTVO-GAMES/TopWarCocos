@@ -1,10 +1,10 @@
-import { _decorator, Component, Node, director } from 'cc';
+import { _decorator, Component, director } from 'cc';
 const { ccclass } = _decorator;
 
 @ccclass('DontDestroyOnLoadObject')
 export class DontDestroyOnLoadObject extends Component {
 
-    public start() {
+    protected start(): void {
         director.addPersistRootNode(this.node)
     }
 }

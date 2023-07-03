@@ -1,6 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite } from 'cc';
 import { Battle } from './Battle';
-import { SpriteStorage } from '../Storage/SpriteStorage';
+import { SpriteStorage } from '../Model/SpriteStorage';
 const { ccclass, property } = _decorator;
 
 @ccclass('CardTroopRender')

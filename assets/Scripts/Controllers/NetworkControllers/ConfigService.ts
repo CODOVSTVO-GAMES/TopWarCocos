@@ -1,4 +1,4 @@
-import { ConfigStorage } from "../../Storage/ConfigStorage"
+import { ConfigModel } from "../../Model/ConfigModel"
 import { ConfigDTO } from "../../Structures/DTO/ConfigDTO"
 import { ServerApi } from "./ServerApi"
 
@@ -12,7 +12,7 @@ export class ConfigService {
         if (!isDone) console.log("get config error")
         else {
             // console.log("get config done")
-            ConfigStorage.instance.configRecipient(data['objects'])
+            ConfigModel.instance.configRecipient(data['objects'])
         }
     }
 }

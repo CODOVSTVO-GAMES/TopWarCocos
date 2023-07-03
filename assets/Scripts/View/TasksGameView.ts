@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, instantiate } from 'cc';
 import { TasksGameModel } from '../Model/TasksGameModel';
-import { PrefabsStorage } from '../Storage/PrefabsStorage';
+import { PrefabsStorage } from '../Model/PrefabsStorage';
 import { ItemTasksGameView } from './ItemTasksGameView';
 const { ccclass, property } = _decorator;
 

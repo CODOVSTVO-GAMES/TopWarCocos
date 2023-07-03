@@ -1,6 +1,5 @@
 export class LevelNumber {
-    constructor(
-        level: number,
-        number: number
-    ) { }
+    constructor(level: number, number: number) {
+
+    }
 }

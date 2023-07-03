@@ -1,4 +1,4 @@
-import { UserStorageController } from "../StorageControllers/UserStorageController";
+import { UserPresenter } from "../../Presenter/UserPresenter";
 import { Product } from "../../Structures/Product";
 import { ServerApi } from "./ServerApi";
 
@@ -17,7 +17,7 @@ export class PaymentsService {
                 let obj = array[l]
                 productArray.push(new Product(obj['id'], obj['title'], obj['description'], obj['price']))
             }
-            UserStorageController.setProducts(productArray)
+            UserPresenter.setProducts(productArray)
         }
     }
 }

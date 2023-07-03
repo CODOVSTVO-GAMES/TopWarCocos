@@ -1,10 +1,8 @@
 import { Vec3 } from "cc";
 import { MessageAnimation } from "../Animations/Message/MessageAnimation";
 import { MapService } from "../Controllers/NetworkControllers/MapService";
-import { BufferStorageController } from "../Controllers/StorageControllers/BufferStorageController";
 import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController";
-import { RadarModelController } from "../Controllers/StorageControllers/RadarStorageController";
-import { UserStorageController } from "../Controllers/StorageControllers/UserStorageController";
+import { UserPresenter } from "./UserPresenter";
 import { RadarModel } from "../Model/RadarModel";
 import { TypesObjects } from "../Static/TypesObjects";
 import { TypesStorages } from "../Static/TypesStorages";
@@ -27,8 +25,8 @@ export class RadarPresenter {
         console.log(arr)
         for (let l = 0; l < arr.length; l++) {
             if (arr[l]['type'] == 'taskPersonal' || arr[l]['type'] == 'taskSalvation') {
-                if (arr[l]['owner'] == UserStorageController.getAccountId()) {
-                    if (RadarModelController.isTaskExists(arr[l]['id'])) {
+                if (arr[l]['owner'] == UserPresenter.getAccountId()) {
+                    if (RadarPresenter.isTaskExists(arr[l]['id'])) {
                         console.log('повторка')
                         continue
                     }
@@ -38,8 +36,8 @@ export class RadarPresenter {
                     const stars = arr[l]['stars']
                     const battleTime = arr[l]['battleTime']
                     let expiration = arr[l]['expiration']
-                    expiration = expiration - UserStorageController.getServerTime()
-                    RadarModelController.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
+                    expiration = expiration - UserPresenter.getServerTime()
+                    RadarPresenter.addRadarTasks(id, type, stars, expiration, this.randomReward(stars), battleTime)
                 }
             }
         }
@@ -244,15 +242,6 @@ export class RadarPresenter {
 
     static saveStorage() {
         let tasks = [];
-        // for (let i = 0; i < RadarModel.instance.tasks.length; i++) {
-        //     tasks.push({
-        //         type: RadarModel.instance.tasks[i].type,
-        //         stars: RadarModel.instance.tasks[i].stars,
-        //         time: RadarModel.instance.tasks[i].time,
-        //         status: RadarModel.instance.tasks[i].status,
-        //         rewards: RadarModel.instance.tasks[i].rewards
-        //     });
-        // }
         let obj = {
             radarLevel: RadarModel.instance.radarLevel,
             availableMissions: RadarModel.instance.availableMissions,
@@ -261,7 +250,7 @@ export class RadarPresenter {
             radarExperience: RadarModel.instance.radarExperience,
             tasks: tasks
         };
-        BufferStorageController.addItem(TypesStorages.RADAR_STORAGE, obj);
+        // BufferStorageController.addItem(TypesStorages.RADAR_STORAGE, obj);
     }
 
 

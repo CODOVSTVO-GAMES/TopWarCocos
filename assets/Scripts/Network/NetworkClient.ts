@@ -1,8 +1,8 @@
 import { _decorator, Component } from 'cc';
-import { BufferStorageController } from '../Controllers/StorageControllers/BufferStorageController';
 import { DataStorageService } from '../Controllers/NetworkControllers/DataStorageService';
 import { EventService } from '../Controllers/NetworkControllers/EventService';
 import { SessionService } from '../Controllers/NetworkControllers/SessionService';
+import { BufferPresenter } from '../Presenter/BufferPresenter';
 const { ccclass } = _decorator;
 
 @ccclass('NetworkClient')
@@ -18,17 +18,16 @@ export class NetworkClient extends Component {
     }
 
     private sendData() {
-        if (BufferStorageController.isBufferFull()) {
-            DataStorageService.saveData(BufferStorageController.getBuffer())
-            BufferStorageController.clearBufferStorage()
+        if (BufferPresenter.isBufferFull()) {
+            DataStorageService.saveData(BufferPresenter.getBuffer())
+            BufferPresenter.clearBufferStorage()
         }
     }
 
     private sendEvents() {
-        if (BufferStorageController.isEventsQueueFull()) {
-            EventService.requestToService(BufferStorageController.getQueueEvents())
-            BufferStorageController.clearEventsQueue()
+        if (BufferPresenter.isEventsQueueFull()) {
+            EventService.requestToService(BufferPresenter.getQueueEvents())
+            BufferPresenter.clearEventsQueue()
         }
     }
 }
-

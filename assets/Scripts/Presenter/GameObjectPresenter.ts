@@ -1,25 +1,22 @@
-import { BarracksLogic } from "../../Logic/BarracksLogic";
-import { SpawnObjectsOnHomeMap } from "../../Logic/SpawnObjectsOnHomeMap";
-import { GameModel } from "../../Model/GameModel";
-import { ObjectParameters } from "../../ObjectParameters";
-import { RedirectionToScene } from "../../Other/RedirectionToScene";
-import { AutocombinePresenter } from "../../Presenter/AutocombinePresenter";
-import { GamePresenter } from "../../Presenter/GamePresenter";
-import { HomeMapPresenter } from "../../Presenter/HomeMapPresenter";
-import { HomeMapStructure } from "../../Static/HomeMapStructure";
-import { SceneNames } from "../../Static/SceneNames";
-import { TypesLocation } from "../../Static/TypesLocation";
-import { TypesModals } from "../../Static/TypesModals";
-import { TypesObjects } from "../../Static/TypesObjects";
-import { BattleStorage } from "../../Storage/BattleStorage";
-import { SecondaryInterface } from "../../UI/SecondaryInterface";
-import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
+import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController"
+import { BarracksLogic } from "../Logic/BarracksLogic"
+import { BattleModel } from "../Model/BattleModel"
+import { ObjectParameters } from "../ObjectParameters"
+import { RedirectionToScene } from "../Other/RedirectionToScene"
+import { HomeMapStructure } from "../Static/HomeMapStructure"
+import { SceneNames } from "../Static/SceneNames"
+import { TypesLocation } from "../Static/TypesLocation"
+import { TypesModals } from "../Static/TypesModals"
+import { TypesObjects } from "../Static/TypesObjects"
+import { SecondaryInterface } from "../UI/SecondaryInterface"
+import { AutocombinePresenter } from "./AutocombinePresenter"
+import { GamePresenter } from "./GamePresenter"
+import { HomeMapPresenter } from "./HomeMapPresenter"
+import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 
-export class GameObjectEventsController {
+export class GameObjectPresenter {
 
-    public static prepClickOnMessage(objectParameters: ObjectParameters) {
-        // подготовка выполнения нажатия на сообщение сверху обьекта
-
+    public static processingClickOnMessage(objectParameters: ObjectParameters) {
         if (objectParameters == null) {
             return console.log("object Parameters not found")
         }
@@ -202,8 +199,8 @@ export class GameObjectEventsController {
     }
 
     private static processingBattle(objectParameters: ObjectParameters) {
-        BattleStorage.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
-        BattleStorage.instance.indexObjectBattle = objectParameters.index
+        BattleModel.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+        BattleModel.instance.indexObjectBattle = objectParameters.index
 
         // HomeMapStorageController.saveStorageServer()
         RedirectionToScene.redirect(SceneNames.BATTLE)

@@ -1,6 +1,6 @@
 import { LoadingGame } from "../LoadingGame/LoadingGame";
 import { TechnicalConfig } from "../Static/TechnicalConfig";
-import { UserStorageController } from "../Controllers/StorageControllers/UserStorageController";
+import { UserPresenter } from "../Presenter/UserPresenter";
 
 export class OkConnector {
 
@@ -69,7 +69,7 @@ export class OkConnector {
 
     static callbackUserGetInfo(status, data, error) {
         if (data) {
-            UserStorageController.setUserId(data['uid'])
+            UserPresenter.setUserId(data['uid'])
             // console.log("OK get UserInfo done")
             LoadingGame.getUser()
         } else {

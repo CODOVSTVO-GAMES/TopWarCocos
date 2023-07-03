@@ -1,4 +1,4 @@
-import { UserStorageController } from "../StorageControllers/UserStorageController"
+import { UserPresenter } from "../../Presenter/UserPresenter"
 import { ServerApi } from "./ServerApi"
 import { MapDTO } from "../../Structures/DTO/MapDTO"
 import { GlobalMapStorageController } from "../StorageControllers/GlobalMapStorageController";
@@ -8,7 +8,7 @@ import { RadarPresenter } from "../../Presenter/RadarPresenter";
 export class MapService {
 
     public static getMap(x = GlobalMapStorageController.getXBace(), y = GlobalMapStorageController.getYBace()) {
-        ServerApi.get('map', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), x, y, GameModel.instance.level), MapService.parseMapGetResponce);
+        ServerApi.get('map', new MapDTO(UserPresenter.getAccountId(), GlobalMapStorageController.getZone(), x, y, GameModel.instance.level), MapService.parseMapGetResponce);
     }
 
     public static parseMapGetResponce(data: any, isDone: boolean) {
@@ -19,7 +19,7 @@ export class MapService {
     }
 
     public static getEnemy() {
-        ServerApi.get('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameModel.instance.level, 0, 2), MapService.parseEnemyGetResponce);
+        ServerApi.get('map/enemy', new MapDTO(UserPresenter.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameModel.instance.level, 0, 2), MapService.parseEnemyGetResponce);
     }
 
     public static parseEnemyGetResponce(data: any, isDone: boolean) {
@@ -32,7 +32,7 @@ export class MapService {
 
 
     public static attackStatus(taskId: number, status: number) {
-        ServerApi.post('map/enemy', new MapDTO(UserStorageController.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameModel.instance.level, status, 0, taskId), MapService.parseAttackResponse)
+        ServerApi.post('map/enemy', new MapDTO(UserPresenter.getAccountId(), GlobalMapStorageController.getZone(), GlobalMapStorageController.getXBace(), GlobalMapStorageController.getYBace(), GameModel.instance.level, status, 0, taskId), MapService.parseAttackResponse)
     }
 
 

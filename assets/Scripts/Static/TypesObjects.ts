@@ -12,7 +12,7 @@ export class TypesObjects {
     public static BANK: string = "bank"
     public static AUTOCOMBINE: string = "autocombine"
     public static RADAR: string = "radar"
-    public static TREASURES: string = "treasures"//
+    public static TREASURES: string = "treasures"
     public static WHOLE_MANIPULATOR: string = "wholeManipulator"
     public static PADDED_MANIPULATOR: string = "paddedManipulator"
     public static REPAIR_SHOP: string = "repairShop"

@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Prefab, Sprite, Vec3 } from 'cc';
-import { SpawnObjectsOnHomeMap } from '../Logic/SpawnObjectsOnHomeMap';
+import { SpawnObjectsOnHomeMap } from '../Presenter/SpawnObjectsOnHomeMap';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { HomeMapModel } from '../Model/HomeMapModel';
 const { ccclass, property } = _decorator;

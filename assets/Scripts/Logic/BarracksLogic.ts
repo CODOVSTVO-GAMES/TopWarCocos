@@ -1,7 +1,7 @@
 import { _decorator, Component } from 'cc';
 import { Barrack } from '../Structures/Barrack';
 import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
-import { SpawnObjectsOnHomeMap } from './SpawnObjectsOnHomeMap';
+import { SpawnObjectsOnHomeMap } from '../Presenter/SpawnObjectsOnHomeMap';
 import { QueueBarrack } from '../Structures/QueueBarrack';
 import { BarrackModel } from '../Model/BarrackModel';
 const { ccclass, property } = _decorator;

@@ -1,9 +1,5 @@
-import { _decorator, Camera, Canvas, Component, Input, instantiate, Node, Prefab, Touch, UI, UITransform, Vec2, Vec3 } from 'cc';
-import { ZoomCamera } from '../Camera/ZoomCamera';
+import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
 import { GlobalMapStorageController } from '../Controllers/StorageControllers/GlobalMapStorageController';
-import { Building } from '../Storage/GlobalMapStorage';
-import { MovingCamera } from '../Camera/MovingCamera';
-import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { BuildingGlobalMapParameters } from '../BuildingGlobalMapParameters';
 const { ccclass, property } = _decorator;
 

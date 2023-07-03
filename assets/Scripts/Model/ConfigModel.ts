@@ -13,79 +13,67 @@ import { ConfigSpawnBuildings } from '../Structures/ConfigSpawnBuildings';
 import { RadarConfig } from '../Structures/RadarConfig';
 import { Unit } from '../Structures/Unit';
 import { ConfigStorageController } from '../Controllers/StorageControllers/ConfigStorageController';
-import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
 import { QuantityItem } from '../Structures/QuantityItem';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
 import { LevelNumber } from '../Structures/LevelNumder';
+import { BattlePresenter } from '../Presenter/BattlePresenter';
 const { ccclass } = _decorator;
 
-@ccclass('ConfigStorage')
-export class ConfigStorage extends Component {
+@ccclass('ConfigModel')
+export class ConfigModel extends Component {
 
-    public static instance: ConfigStorage;
+    public static instance: ConfigModel
 
-    public mainAndRepairBuildings: Array<MainAndRepairBuildings> = [];
+    public mainAndRepairBuildings: MainAndRepairBuildings[]
+    public unitsConfig: UnitsCongig[]
+    public mergeBuildingsConfig: ConfigMergeBuildings[]
+    public spawnBuildingsConfig: ConfigSpawnBuildings[]
+    public levelConfig: Level[]
+    public heroConfig: HeroConfig[]
+    public heroLevelConfig: HeroLevel[]
+    public radarConfig: RadarConfig[]
+    public radarBasicRate: number[]
+    public radarProgressNumber: number[]
+    public expirienceRadar: number[]
+    public goldBoxConfig: number[]
+    public questReward: LevelNumber[]
 
-    public unitsConfig: Array<UnitsCongig> = [];
+    protected onLoad(): void {
+        ConfigModel.instance = this;
 
-    public mergeBuildingsConfig: Array<ConfigMergeBuildings> = [];
+        this.initHeroLevel()
+        this.initHeroConfig()
 
-    public spawnBuildingsConfig: Array<ConfigSpawnBuildings> = [];
+        this.initGoldBox()
 
-    public levelConfig: Array<Level> = [];
-
-    public heroConfig: Array<HeroConfig> = [];
-
-    public heroLevelConfig: Array<HeroLevel> = [];
-
-    public radarConfig: Array<RadarConfig> = [];
-
-    public radarBasicRate: Array<number> = [];
-
-    public radarProgressNumber: Array<number> = [];
-
-    public expirienceRadar: Array<number> = [];
-
-    public goldBoxConfig: Array<number> = [];
-
-    public questReward: Array<LevelNumber> = [];
-
-    onLoad() {
-        ConfigStorage.instance = this;
-
-        this.initHeroLevel();
-        this.initHeroConfig();
-
-        this.initGoldBox();
-
-        this.initRadarBacicRate();
-        this.initRadarConfig();
-        this.initRadarProgressNumber();
-        this.initExpirienceRadar();
+        this.initRadarBacicRate()
+        this.initRadarConfig()
+        this.initRadarProgressNumber()
+        this.initExpirienceRadar()
     }
 
     configRecipient(objects: object[]) {
-        if (objects == null) throw 'Пришел пустой обьект';
+        if (objects == null) throw 'Пришел пустой обьект'
 
         for (let i = 0; i < objects.length; i++) {
-            const json = objects[i];
-            const key = json['key'];
-            let value = JSON.parse(JSON.stringify(json['value']));
+            const json = objects[i]
+            const key = json['key']
+            let value = JSON.parse(JSON.stringify(json['value']))
 
             if (key == 'levels') {
                 for (let l = 0; l < value.length; l++) {
-                    this.levelConfig.push(new Level(value[l].l, value[l].e, 420, 50));
+                    this.levelConfig.push(new Level(value[l].l, value[l].e, 420, 50))
                 }
             }
             else if (key == 'mainBuildings') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.COMMAND_POST, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_COMMAND_POST, value[l].ru, parseFloat(value[l].pu), value[l].ba / 10));
+                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.COMMAND_POST, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_COMMAND_POST, value[l].ru, parseFloat(value[l].pu), value[l].ba / 10))
                 }
             }
             else if (key == 'repairBuildings') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.REPAIR_SHOP, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_COMMAND_POST, value[l].ru, parseFloat(value[l].pu), 0));
+                    this.mainAndRepairBuildings.push(new MainAndRepairBuildings(TypesObjects.REPAIR_SHOP, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_COMMAND_POST, value[l].ru, parseFloat(value[l].pu), 0))
                 }
             }
             else if (key == 'units') {
@@ -97,22 +85,22 @@ export class ConfigStorage extends Component {
             }
             else if (key == 'createBuildings') {
                 for (let l = 0; l < value.length; l++) {
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.GOLD_MINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_BUILD_GOLD_MINE, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es));
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_OVERLAND, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_BUILD_BARRACK_OVERLAND, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es));
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_MARINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es));
-                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_AIR, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es));
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.GOLD_MINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_BUILD_GOLD_MINE, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_OVERLAND, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_BUILD_BARRACK_OVERLAND, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_MARINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es))
+                    this.spawnBuildingsConfig.push(new ConfigSpawnBuildings(TypesObjects.BARRACKS_AIR, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_BARRACK_AIR, value[l].ru, parseFloat(value[l].pu), value[l].pc, value[l].es))
                 }
             }
             else if (key == 'mergeBarracks') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_OVERLAND, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_BARRACK_OVERLAND, value[l].ru, parseFloat(value[l].pu), 0));
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_MARINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, parseFloat(value[l].pu), 0));
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_AIR, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_AIR, value[l].ru, parseFloat(value[l].pu), 0));
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_OVERLAND, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_BARRACK_OVERLAND, value[l].ru, parseFloat(value[l].pu), 0))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_MARINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_MARINE, value[l].ru, parseFloat(value[l].pu), 0))
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.BARRACKS_AIR, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_TROOP_AIR, value[l].ru, parseFloat(value[l].pu), 0))
                 }
             }
             else if (key == 'mergeMining') {
                 for (let l = 0; l < value.length; l++) {
-                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_GOLD_MINE, value[l].ru, parseFloat(value[l].pu), parseFloat(value[l].m)));
+                    this.mergeBuildingsConfig.push(new ConfigMergeBuildings(TypesObjects.GOLD_MINE, parseFloat(value[l].l), parseFloat(value[l].e), parseFloat(value[l].p), TypesItems.PLAN_MERGE_GOLD_MINE, value[l].ru, parseFloat(value[l].pu), parseFloat(value[l].m)))
                 }
             }
             else if (key == 'radarExpirience') {
@@ -351,7 +339,7 @@ export class ConfigStorage extends Component {
                         reward.push(new QuantityItem(TypesItems.GEMS, value[l].g))
                     }
 
-                    MapEnemyController.addEnemyCommand(new MapEnemyBattle(value[l].n, units1, units2, units3, value[l].p, reward))
+                    BattlePresenter.addEnemyCommand(new MapEnemyBattle(value[l].n, units1, units2, units3, value[l].p, reward))
                 }
 
             }
@@ -477,27 +465,27 @@ export class ConfigStorage extends Component {
     }
 
     initHeroConfig() {
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36));  // hp = 120 + (24 * heroLevel + (5 * heroStarStady))
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.SSR, TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.SR, TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.SR, TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_8, 280, 340, 500, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_9, 300, 360, 500, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_10, 320, 380, 600, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_11, 340, 400, 600, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_12, 360, 420, 700, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_13, 380, 440, 700, 24, 36));
-        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36));
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.BLACK_WIDOW, 120, 180, 100, 24, 36))  // hp = 120 + (24 * heroLevel + (5 * heroStarStady))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_1, 140, 200, 100, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_2, 160, 220, 200, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.SSR, TypesCharacters.CHARACTER_3, 180, 240, 200, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.SR, TypesCharacters.CHARACTER_4, 200, 260, 300, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_5, 220, 280, 300, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_6, 240, 300, 400, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.SR, TypesCharacters.CHARACTER_7, 260, 320, 400, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_8, 280, 340, 500, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_9, 300, 360, 500, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_10, 320, 380, 600, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_11, 340, 400, 600, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_12, 360, 420, 700, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_13, 380, 440, 700, 24, 36))
+        this.heroConfig.push(new HeroConfig(TypesCharacters.R, TypesCharacters.CHARACTER_14, 400, 460, 800, 24, 36))
     }
 
     initRadarConfig() {
-        this.radarConfig.push(new RadarConfig(1, 30, 2, 65, 4800));
-        this.radarConfig.push(new RadarConfig(2, 35, 3, 70, 4500));
-        this.radarConfig.push(new RadarConfig(3, 40, 4, 75, 4200));
+        this.radarConfig.push(new RadarConfig(1, 30, 2, 65, 4800))
+        this.radarConfig.push(new RadarConfig(2, 35, 3, 70, 4500))
+        this.radarConfig.push(new RadarConfig(3, 40, 4, 75, 4200))
     }
 
     initExpirienceRadar() {
@@ -614,13 +602,13 @@ export class ConfigStorage extends Component {
     initRadarProgressNumber() {
         this.radarProgressNumber.push(1)
 
-        this.radarProgressNumber.push(3);
-        this.radarProgressNumber.push(30);
-        this.radarProgressNumber.push(300);
-        this.radarProgressNumber.push(1);
+        this.radarProgressNumber.push(3)
+        this.radarProgressNumber.push(30)
+        this.radarProgressNumber.push(300)
+        this.radarProgressNumber.push(1)
     }
 
     getHeroConfig(): HeroConfig[] {
-        return this.heroConfig;
+        return this.heroConfig
     }
 }

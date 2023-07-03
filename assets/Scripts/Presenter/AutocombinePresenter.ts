@@ -1,4 +1,3 @@
-import { BufferStorageController } from "../Controllers/StorageControllers/BufferStorageController"
 import { ConfigStorageController } from "../Controllers/StorageControllers/ConfigStorageController"
 import { AutocombineModel } from "../Model/AutocombineModel"
 import { ObjectParameters } from "../ObjectParameters"
@@ -32,7 +31,7 @@ export class AutocombinePresenter {
                 if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine)) {
                     if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface()) {
                         let time = -(1 - (((AutocombineModel.instance.indexes[i].timeProfit * 100) / 60) * 0.01))
-                        HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface().render(time);
+                        HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface().renderFillProgress(time);
                     }
                 }
                 if (AutocombineModel.instance.indexes[i].timeProfit <= 0) {
@@ -146,6 +145,6 @@ export class AutocombinePresenter {
                 time: AutocombineModel.instance.indexes[i].timeProfit
             })
         }
-        BufferStorageController.addItem(TypesStorages.AUTOCOMBINE_STORAGE, obj)
+        // BufferStorageController.addItem(TypesStorages.AUTOCOMBINE_STORAGE, obj)
     }
 }

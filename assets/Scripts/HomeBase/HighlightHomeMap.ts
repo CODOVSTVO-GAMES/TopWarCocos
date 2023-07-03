@@ -1,5 +1,5 @@
 import { _decorator, Vec3 } from 'cc';
-import { SpriteStorage } from '../Storage/SpriteStorage';
+import { SpriteStorage } from '../Model/SpriteStorage';
 import { HomeMapStructure } from '../Static/HomeMapStructure';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { HomeMapModel } from '../Model/HomeMapModel';
@@ -92,7 +92,7 @@ export class HighlightHomeMap {
         for (let i = 0; i < this.indexesActiveCooord.length; i++) {
             HomeMapModel.instance.spriteCoords[this.indexesActiveCooord[i]].spriteFrame = null
         }
-        this.indexesActiveCooord = new Array<number>
+        this.indexesActiveCooord = []
     }
 
     private static hideCoord(index: number) {
