@@ -1,8 +1,8 @@
 import { _decorator, Component } from 'cc';
 import { TasksGameStorage } from '../Storage/TasksGameStorage';
 import { TaskGame } from '../Structures/TaskGame';
-import { TasksGameStorageController } from '../Controllers/StorageControllers/TasksGameStorageController';
-import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
+import { GamePresenter } from '../Presenter/GamePresenter';
+import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('TasksGameLogic')
@@ -43,8 +43,8 @@ export class TasksGameLogic extends Component {
 
             this.deleteTask(i)
             this.addTask(typeTask, levelObjectTask + 1, quantityRequired, 0)
-            GameStorageController.addCoins(1)
-            TasksGameStorageController.saveStorage()
+            GamePresenter.addCoins(1)
+            // HomeMapPresenter.saveStorage()
         }
     }
 

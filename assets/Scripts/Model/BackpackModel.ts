@@ -7,13 +7,19 @@ export class BackpackModel extends Component {
 
     public static instance: BackpackModel
 
-    public backpack: Array<QuantityItem>
-    public itemsBackpack: Array<Node>
+    public backpack: QuantityItem[]
+    public itemsBackpack: Node[]
     public typeSelectItem: string = ""
     public quantitySelectItem: number = 0
     public usageQuantitySelectItem: number = 0
 
     protected onLoad(): void {
         BackpackModel.instance = this
+    }
+
+    private assignStartingValues() {
+        this.typeSelectItem = ""
+        this.quantitySelectItem = 0
+        this.usageQuantitySelectItem = 0
     }
 }

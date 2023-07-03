@@ -7,9 +7,13 @@ export class BarrackModel extends Component {
 
     public static instance: BarrackModel
 
-    public arrayBarracks: Array<Barrack> = []
+    public arrayBarracks: Barrack[]
 
     protected onLoad(): void {
         BarrackModel.instance = this
+    }
+
+    private assignStartingValues() {
+        this.arrayBarracks = []
     }
 }

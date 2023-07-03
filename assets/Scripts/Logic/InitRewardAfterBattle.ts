@@ -1,11 +1,11 @@
 import { _decorator } from 'cc';
 import { BattleStorage } from '../Storage/BattleStorage';
-import { HomeMapStorage } from '../Storage/HomeMapStorage';
 import { ObjectParameters } from '../ObjectParameters';
 import { TypesObjects } from '../Static/TypesObjects';
 import { salam } from '../Static/salam';
 import { TasksGameLogic } from './TasksGameLogic';
 import { TypesTasksGame } from '../Static/TypesTasksGame';
+import { HomeMapModel } from '../Model/HomeMapModel';
 const { ccclass } = _decorator;
 
 @ccclass('InitRewardAfterBattle')
@@ -14,13 +14,13 @@ export class InitRewardAfterBattle {
     public static arrayRewardObject: salam[] = []
 
     public static victory() {
-        HomeMapStorage.instance.numberOpenZones += 1
+        HomeMapModel.instance.numberOpenZones += 1
 
         TasksGameLogic.instance.checkTask(TypesTasksGame.OPEN_ZONE, 1, 1)
 
-        for (let i = 0; i < HomeMapStorage.instance.temporaryLocalStorage.length; i++) {
-            if (HomeMapStorage.instance.temporaryLocalStorage[i].index == BattleStorage.instance.indexObjectBattle) {
-                HomeMapStorage.instance.temporaryLocalStorage.splice(i, 1)
+        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
+            if (HomeMapModel.instance.temporaryLocalStorage[i].index == BattleStorage.instance.indexObjectBattle) {
+                HomeMapModel.instance.temporaryLocalStorage.splice(i, 1)
                 break
             }
         }
@@ -269,7 +269,7 @@ export class InitRewardAfterBattle {
             objParam.type = this.arrayRewardObject[i].type
             objParam.level = this.arrayRewardObject[i].level
             objParam.index = this.arrayRewardObject[i].index
-            HomeMapStorage.instance.temporaryLocalStorage.push(objParam)
+            HomeMapModel.instance.temporaryLocalStorage.push(objParam)
         }
 
         this.arrayRewardObject = new Array

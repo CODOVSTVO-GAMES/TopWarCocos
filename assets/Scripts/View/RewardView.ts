@@ -1,6 +1,8 @@
 import { _decorator, Component, Label, Sprite, SpriteFrame } from 'cc';
 import { TypesItems } from '../Static/TypesItems';
 import { RadarStorage } from '../Storage/RadarStorage';
+import { BackpackPresenter } from '../Presenter/BackpackPresenter';
+import { GamePresenter } from '../Presenter/GamePresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('RewardView')
@@ -31,24 +33,24 @@ export class RewardView extends Component {
     }
 
     public giveReward() {
-        //     for (let i = 0; i < RadarStorage.instance.task.rewards.length; i++) {
-        //         if (RadarStorage.instance.task.rewards[i].type != TypesItems.EXPERIENCE) {
-        //             BackpackStorageController.addItem(RadarStorage.instance.task.rewards[i].type, RadarStorage.instance.task.rewards[i].quantity);
-        //         }
-        //         else {
-        //             GameStorageController.addExperience(RadarStorage.instance.task.rewards[i].quantity);
-        //         }
-        //     }
+        for (let i = 0; i < RadarStorage.instance.task.rewards.length; i++) {
+            if (RadarStorage.instance.task.rewards[i].type != TypesItems.EXPERIENCE) {
+                BackpackPresenter.addItemBackpack(RadarStorage.instance.task.rewards[i].type, RadarStorage.instance.task.rewards[i].quantity)
+            }
+            else {
+                GamePresenter.addExperience(RadarStorage.instance.task.rewards[i].quantity)
+            }
+        }
 
-        //     // RadarStorageController.addRadarExperience(1);
-        //     // RadarStorageController.reduceRadarTask(RadarStorage.instance.task);
+        // RadarStorageController.addRadarExperience(1);
+        // RadarStorageController.reduceRadarTask(RadarStorage.instance.task);
 
-        //     // RadarStorageController.reduceRadarAvailableMissions(1); //добавить при победе в миссии
+        // RadarStorageController.reduceRadarAvailableMissions(1); //добавить при победе в миссии
     }
 
-    updateInterface() {
+    public renderInterface() {
         let task = RadarStorage.instance.task
-        
+
         for (let i = 0; i < this.rewards.length; i++) {
             this.quantity[i].string = task.rewards[i].quantity.toString()
 

@@ -1,9 +1,9 @@
-import { GameStorageController } from "../Controllers/StorageControllers/GameStorageController"
 import { TasksGameModel } from "../Model/TasksGameModel"
 import { TaskGame } from "../Structures/TaskGame"
 import { TasksGameView } from "../View/TasksGameView"
 import { SecondaryInterface } from "../UI/SecondaryInterface"
 import { ItemTasksGameView } from "../View/ItemTasksGameView"
+import { GamePresenter } from "./GamePresenter"
 
 export class TasksGamePresenter {
 
@@ -50,7 +50,7 @@ export class TasksGamePresenter {
             this.deleteTask(i)
             this.addTask(typeTask, levelObjectTask + 1, quantityRequired, quantityCompleted)
 
-            GameStorageController.addCoins(1)
+            GamePresenter.addCoins(1)
         }
     }
 

@@ -7,10 +7,14 @@ export class TasksGameModel extends Component {
 
     public static instance: TasksGameModel
 
-    public tasks: Array<TaskGame>
-    public itemsTasksGame: Array<Node>
+    public tasks: TaskGame[]
+    public itemsTasksGame: Node[]
 
     protected onLoad(): void {
         TasksGameModel.instance = this
+    }
+
+    private assignStartingValues() {
+
     }
 }

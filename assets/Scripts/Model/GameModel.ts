@@ -23,4 +23,20 @@ export class GameModel extends Component {
     protected onLoad(): void {
         GameModel.instance = this
     }
+
+    private assignStartingValues() {
+        this.coins = 100000000
+        this.gems = 70
+        this.energy = 75
+        this.maxEnergy = 75
+        this.experience = 0
+        this.level = 1
+        this.maxPower = 0
+        this.territoryPower = 0
+        this.technoPower = 0
+        this.heroPower = 0
+        this.arsenalPower = 0
+        this.professionPower = 0
+        this.formationPower = 0
+    }
 }

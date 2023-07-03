@@ -1,5 +1,6 @@
 import { _decorator, Component } from 'cc';
 import { Autocombine } from '../Structures/Autocombine';
+import { AutocombinePresenter } from '../Presenter/AutocombinePresenter';
 const { ccclass } = _decorator;
 
 @ccclass('AutocombineModel')
@@ -7,14 +8,25 @@ export class AutocombineModel extends Component {
 
     public static instance: AutocombineModel
 
-    public allProfit: number = 0
-    public quantityWorkGoldMine: number = 0
-    public quantityProfit: number = 0
-    public quantityCollect: number = 0
-    public indexes: Array<Autocombine> = new Array<Autocombine>()
-    public isActiveAutocombine: boolean = false
+    public allProfit: number
+    public quantityWorkGoldMine: number
+    public quantityProfit: number
+    public quantityCollect: number
+    public indexes: Autocombine[]
+    public isActiveAutocombine: boolean
 
     protected onLoad(): void {
         AutocombineModel.instance = this
+
+        AutocombinePresenter.TEST()
+    }
+
+    private assignStartingValues() {
+        this.allProfit = 0
+        this.quantityWorkGoldMine = 0
+        this.quantityProfit = 0
+        this.quantityCollect = 0
+        this.indexes = new Array<Autocombine>()
+        this.isActiveAutocombine = false
     }
 }

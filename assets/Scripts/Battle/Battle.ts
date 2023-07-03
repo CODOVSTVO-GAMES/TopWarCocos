@@ -10,14 +10,13 @@ import { CharactrerStorageController } from '../Controllers/StorageControllers/C
 import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
 import { BattleStorage } from '../Storage/BattleStorage';
-import { TroopStorageController } from '../Controllers/StorageControllers/TroopStorageController';
-import { GameStorageController } from '../Controllers/StorageControllers/GameStorageController';
 import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { MapEnemyController } from '../Controllers/StorageControllers/MapEnemyController';
 import { InitRewardAfterBattle } from '../Logic/InitRewardAfterBattle';
-import { HomeMapStorage } from '../Storage/HomeMapStorage';
+import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { GameModel } from '../Model/GameModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('Battle')
@@ -102,9 +101,9 @@ export class Battle extends Component {
     }
 
     getTroopOwn() {
-        let sizeTroopAir = TroopStorageController.getSizeTroopAir()
-        let sizeTroopMarine = TroopStorageController.getSizeTroopMarine()
-        let sizeTroopOverland = TroopStorageController.getSizeTroopOverland()
+        let sizeTroopAir = HomeMapPresenter.getSizeTroopAir()
+        let sizeTroopMarine = HomeMapPresenter.getSizeTroopMarine()
+        let sizeTroopOverland = HomeMapPresenter.getSizeTroopOverland()
 
         for (let i = 0; i < sizeTroopAir.length; i++) {
             if (sizeTroopAir[i] == 0) continue
@@ -134,7 +133,7 @@ export class Battle extends Component {
     getQuantityAvailableFreeCoords() {
         let a = [1, 1, 6, 10, 16, 30, 40, 50, 70];
         for (let i = 0; i < a.length; i++) {
-            if (GameStorageController.getLevel() >= a[i]) {
+            if (GameModel.instance.level >= a[i]) {
                 BattleStorage.instance.quantityAvailableFreeCoords += 1;
             }
             else {

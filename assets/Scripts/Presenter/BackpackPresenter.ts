@@ -1,6 +1,7 @@
 import { BackpackModel } from "../Model/BackpackModel"
 import { TypesItems } from "../Static/TypesItems"
 import { TypesModals } from "../Static/TypesModals"
+import { QuantityItem } from "../Structures/QuantityItem"
 import { SecondaryInterface } from "../UI/SecondaryInterface"
 import { BackpackView } from "../View/BackpackView"
 
@@ -128,6 +129,17 @@ export class BackpackPresenter {
             SecondaryInterface.instance.openSecondModal(typeModal)
             // UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland()
         }
+    }
+
+    public static addItemBackpack(typeItem: string, quantityItem: number) {
+        if (quantityItem == 0) return
+        for (let i = 0; i < BackpackModel.instance.backpack.length; i++) {
+            if (BackpackModel.instance.backpack[i].type == typeItem) {
+                BackpackModel.instance.backpack[i].quantity += quantityItem
+                return
+            }
+        }
+        BackpackModel.instance.backpack.push(new QuantityItem(typeItem, quantityItem))
     }
 
     public static reduceItemBackpack(typeItem: string, quantityItem: number) {

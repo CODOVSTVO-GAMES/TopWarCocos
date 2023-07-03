@@ -22,4 +22,8 @@ export class BattleModel extends Component {
     protected onLoad(): void {
         BattleModel.instance = this
     }
+
+    private assignStartingValues() {
+        
+    }
 }

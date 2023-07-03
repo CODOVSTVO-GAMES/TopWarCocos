@@ -1,6 +1,6 @@
 import { _decorator, Component, Label } from 'cc';
-import { GameStorage } from '../Storage/GameStorage';
 import { PowerPresenter } from '../Presenter/PowerPresenter';
+import { GameModel } from '../Model/GameModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('PowerView')
@@ -61,14 +61,14 @@ export class PowerView extends Component {
     }
 
     public renderInterface() {
-        let power = GameStorage.instance.maxPower.toString()
-        let maxPower = GameStorage.instance.maxPower.toString()
-        let territoryPower = GameStorage.instance.territoryPower.toString()
-        let technoPower = GameStorage.instance.technoPower.toString()
-        let heroPower = GameStorage.instance.heroPower.toString()
-        let arsenalPower = GameStorage.instance.arsenalPower.toString()
-        let professionPower = GameStorage.instance.professionPower.toString()
-        let formationPower = GameStorage.instance.formationPower.toString()
+        let power = GameModel.instance.maxPower.toString()
+        let maxPower = GameModel.instance.maxPower.toString()
+        let territoryPower = GameModel.instance.territoryPower.toString()
+        let technoPower = GameModel.instance.technoPower.toString()
+        let heroPower = GameModel.instance.heroPower.toString()
+        let arsenalPower = GameModel.instance.arsenalPower.toString()
+        let professionPower = GameModel.instance.professionPower.toString()
+        let formationPower = GameModel.instance.formationPower.toString()
 
         this.power.string = power
         this.maxPower.string = maxPower

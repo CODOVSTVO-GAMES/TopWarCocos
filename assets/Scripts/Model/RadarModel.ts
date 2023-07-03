@@ -12,11 +12,14 @@ export class RadarModel extends Component {
     public timeToUpdate: number
     public signalQuality: number
     public radarExperience: number
-    public tasks: BattleTask[] = []
-
+    public tasks: BattleTask[]
     public task: any
 
     protected onLoad(): void {
         RadarModel.instance = this
+    }
+
+    private assignStartingValues() {
+
     }
 }

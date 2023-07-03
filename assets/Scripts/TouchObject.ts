@@ -2,17 +2,17 @@ import { _decorator, Component, Input, Node, Touch, Vec3 } from 'cc';
 import { ObjectParameters } from './ObjectParameters';
 import { TouchStatus } from './TouchStatus';
 import { HighlightHomeMap } from './HomeBase/HighlightHomeMap';
-import { HomeMapStorageController } from './Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from './Static/TypesObjects';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { HomeMapStructure } from './Static/HomeMapStructure';
-import { HomeMapStorage } from './Storage/HomeMapStorage';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
-import { AutocombineStorageController } from './Controllers/StorageControllers/AutocombineStorageController';
-import { CommandPostStorageController } from './Controllers/StorageControllers/CommandPostStorageController';
 import { BarracksLogic } from './Logic/BarracksLogic';
 import { TasksGameLogic } from './Logic/TasksGameLogic';
 import { TypesTasksGame } from './Static/TypesTasksGame';
+import { CommandPostPresenter } from './Presenter/CommandPostPresenter';
+import { HomeMapPresenter } from './Presenter/HomeMapPresenter';
+import { HomeMapModel } from './Model/HomeMapModel';
+import { AutocombinePresenter } from './Presenter/AutocombinePresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -50,12 +50,12 @@ export class TouchObject extends Component {
 
         TouchStatus.instance.activeTouch = true
 
-        HomeMapStorageController.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level)
-        HomeMapStorageController.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index)
-        HomeMapStorageController.putSelectObject()
-        HomeMapStorageController.setSelectObject(this.objectParameters)
+        HomeMapPresenter.onTransparencyObjects(this.objectParameters.type, this.objectParameters.level)
+        HomeMapPresenter.setObjectParameter(null, this.objectParameters.type, this.objectParameters.index)
+        HomeMapPresenter.putSelectObject()
+        HomeMapPresenter.setSelectObject(this.objectParameters)
 
-        this.mainObject.setParent(HomeMapStorageController.getParentObject(), true)
+        this.mainObject.setParent(HomeMapPresenter.getParentObject(), true)
         this.objectParameters.getObjectInterface().openInterface(this.objectParameters)
 
         if (this.objectParameters.getArrowGameObject()) {
@@ -90,7 +90,7 @@ export class TouchObject extends Component {
 
         this.processing()
         HighlightHomeMap.hideAllCoord()
-        HomeMapStorageController.offTransparencyObjects()
+        HomeMapPresenter.offTransparencyObjects()
         TouchStatus.instance.activeTouch = false
     }
 
@@ -101,7 +101,7 @@ export class TouchObject extends Component {
             return this.putAnObject(indexObject)
         }
 
-        let arrayIndexes = HomeMapStorageController.getArrayObject(this.objectParameters.type)
+        let arrayIndexes = HomeMapPresenter.getArrayObject(this.objectParameters.type)
 
         if (this.searchAvailableMerge(indexObject, arrayIndexes)) {
             return
@@ -111,7 +111,7 @@ export class TouchObject extends Component {
             if (HomeMapStructure.structure[indexObject - arrayIndexes[i]].location != this.objectParameters.location) {
                 return this.putAnObject(this.initialIndex)
             }
-            else if (HomeMapStructure.structure[indexObject - arrayIndexes[i]].numberZone > HomeMapStorage.instance.numberOpenZones) {
+            else if (HomeMapStructure.structure[indexObject - arrayIndexes[i]].numberZone > HomeMapModel.instance.numberOpenZones) {
                 return this.putAnObject(this.initialIndex)
             }
             else {
@@ -138,8 +138,8 @@ export class TouchObject extends Component {
     private searchNearestCoord(): number {
         let minDistance = 100000
         let indexObject = 0
-        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
-            let currentDistance = Vec3.distance(this.mainObject.position, HomeMapStorageController.getCoordPosition(i))
+        for (let i = 0; i < HomeMapPresenter.getMapSize(); i++) {
+            let currentDistance = Vec3.distance(this.mainObject.position, HomeMapPresenter.getCoordPosition(i))
             if (currentDistance < minDistance) {
                 minDistance = currentDistance
                 indexObject = i
@@ -153,7 +153,7 @@ export class TouchObject extends Component {
         let quantityMatches = 0
         let indexMerge = 0
         for (let i = 0; i < arrayIndexes.length; i++) {
-            let nearbyObjectParameters = HomeMapStorageController.getObjectParameter(indexObject - arrayIndexes[i])
+            let nearbyObjectParameters = HomeMapPresenter.getObjectParameter(indexObject - arrayIndexes[i])
             if (nearbyObjectParameters != null) {
                 if (this.objectParameters.type == nearbyObjectParameters.type) {
                     if (this.objectParameters.level == nearbyObjectParameters.level) {
@@ -173,8 +173,8 @@ export class TouchObject extends Component {
         }
 
         if (quantityMatches > 0) {
-            if (CommandPostStorageController.getLevelAllMerge(this.objectParameters.type) > 0) {
-                if (this.objectParameters.level < CommandPostStorageController.getLevelAllMerge(this.objectParameters.type)) {
+            if (CommandPostPresenter.getLevelAllMerge(this.objectParameters.type) > 0) {
+                if (this.objectParameters.level < CommandPostPresenter.getLevelAllMerge(this.objectParameters.type)) {
                     this.mergeObject(indexMerge)
                     return true
                 }
@@ -190,9 +190,9 @@ export class TouchObject extends Component {
     }
 
     private mergeObject(index: number) {
-        HomeMapStorage.instance.selectedObject = null
+        HomeMapModel.instance.selectedObject = null
         BarracksLogic.instance.deleteBarrack(this.objectParameters.index)
-        AutocombineStorageController.deleteGoldMine(this.objectParameters.index)
+        AutocombinePresenter.deleteGoldMine(this.objectParameters.index)
         if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
             TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_GOLD_MINE, this.objectParameters.level, 1)
         }
@@ -213,10 +213,10 @@ export class TouchObject extends Component {
             BarracksLogic.instance.updateIndexBarrack(this.objectParameters.index, index)
         }
         else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-            AutocombineStorageController.updateIndexGoldMine(this.objectParameters.index, index)
+            AutocombinePresenter.updateIndexGoldMine(this.objectParameters.index, index)
         }
         this.objectParameters.index = index
-        HomeMapStorageController.setObjectParameter(this.objectParameters, this.objectParameters.type, index)
+        HomeMapPresenter.setObjectParameter(this.objectParameters, this.objectParameters.type, index)
         FlightGameObjects.instance.moveToCell(this.mainObject, index)
     }
 }

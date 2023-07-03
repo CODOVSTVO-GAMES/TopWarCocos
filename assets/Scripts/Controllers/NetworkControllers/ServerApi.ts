@@ -4,7 +4,6 @@ import { Cryptor } from "../../Other/Cryptor";
 import { RequestDTO } from "../../Structures/DTO/RequestDTO";
 import { ResponseDTO } from "../../Structures/DTO/ResponseDTO";
 import { UserStorageController } from '../StorageControllers/UserStorageController';
-import { ModalShopObjectLogic } from '../../UI/Modals/ModalShopObject/ModalShopObjectLogic';
 
 export class ServerApi {
 

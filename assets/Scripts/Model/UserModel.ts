@@ -13,11 +13,11 @@ export class UserModel extends Component {
     public sessionId: number
     public userId: string
     public isNewUser: boolean
-    public accountsId: Array<string>
+    public accountsId: string[]
     public accountId: string
     public permission: string
     public serverTime: number
-    public products: Array<Product>
+    public products: Product[]
 
     protected onLoad(): void {
         UserModel.instance = this

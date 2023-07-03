@@ -1,7 +1,9 @@
 import { BarracksLogic } from "../../Logic/BarracksLogic";
 import { SpawnObjectsOnHomeMap } from "../../Logic/SpawnObjectsOnHomeMap";
+import { GameModel } from "../../Model/GameModel";
 import { ObjectParameters } from "../../ObjectParameters";
 import { RedirectionToScene } from "../../Other/RedirectionToScene";
+import { GamePresenter } from "../../Presenter/GamePresenter";
 import { HomeMapStructure } from "../../Static/HomeMapStructure";
 import { SceneNames } from "../../Static/SceneNames";
 import { TypesLocation } from "../../Static/TypesLocation";
@@ -11,7 +13,6 @@ import { BattleStorage } from "../../Storage/BattleStorage";
 import { SecondaryInterface } from "../../UI/SecondaryInterface";
 import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController";
 import { ConfigStorageController } from "../StorageControllers/ConfigStorageController";
-import { GameStorageController } from "../StorageControllers/GameStorageController";
 import { HomeMapStorageController } from "../StorageControllers/HomeMapStorageController";
 import { TroopStorageController } from "../StorageControllers/TroopStorageController";
 
@@ -123,7 +124,7 @@ export class GameObjectEventsController {
 
     private static processingGoldMine(objectParameters: ObjectParameters) {
         if (AutocombineStorageController.getTimeGoldMine(objectParameters.index) == 0) {
-            GameStorageController.addCoins(ConfigStorageController.getProdictionInTimeGoldMineByLevel(objectParameters.level))
+            GamePresenter.addCoins(ConfigStorageController.getProdictionInTimeGoldMineByLevel(objectParameters.level))
         }
     }
 
@@ -135,7 +136,7 @@ export class GameObjectEventsController {
 
     private static processingAutocombine() {
         if (AutocombineStorageController.getAllProfit() > 0) {
-            GameStorageController.addCoins(AutocombineStorageController.getAllProfit())
+            GamePresenter.addCoins(AutocombineStorageController.getAllProfit())
             AutocombineStorageController.clearAllProfit()
         }
         else {
@@ -196,7 +197,7 @@ export class GameObjectEventsController {
         let typeLocation = TypesLocation.EARTH
         let levelObject = 1
         let indexObject = objectParameters.index
-        
+
         SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
         objectParameters.node.destroy()
     }

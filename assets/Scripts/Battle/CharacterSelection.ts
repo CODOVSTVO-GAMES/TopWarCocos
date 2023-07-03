@@ -21,15 +21,10 @@ export class CharacterSelection extends Component {
         CharacterSelection.instance = this;
     }
 
-    start() {
-        // this.saveRenderCharacter(0);
-        // this.saveRenderCharacter(1);
-    }
-
     randomCharacter(event, customEventData) {
         if (BattleStorage.instance.isBattle == false) {
             this.saveRenderCharacter(customEventData);
-            Battle.instance.ownRender();
+            // Battle.instance.ownRender();
         }
     }
 
@@ -39,6 +34,6 @@ export class CharacterSelection extends Component {
         characters[index] = CharactersStorage.instance.getRandomCharacter();
         this.images[index].spriteFrame = spriteCharacter;
         this.texts[index].string = "Ур. " + characters[index].level;
-        Battle.instance.characterSelection();
+        // Battle.instance.characterSelection();
     }
 }

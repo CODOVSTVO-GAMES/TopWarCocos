@@ -45,8 +45,11 @@ export class BackpackView extends Component {
         BackpackModel.instance.itemsBackpack = new Array
         for (let i = 0; i < BackpackModel.instance.backpack.length; i++) {
             let object = instantiate(this.parentContent)
-            let typeItem = BackpackModel.instance.backpack[i].type
-            let quantityItem = BackpackModel.instance.backpack[i].quantity
+
+            let { type: typeItem, quantity: quantityItem } = BackpackModel.instance.backpack[i]
+
+            // let typeItem = BackpackModel.instance.backpack[i].type
+            // let quantityItem = BackpackModel.instance.backpack[i].quantity
 
             object.parent = this.parentContent
             object.getComponent(ItemBackpackView).typeItem = typeItem

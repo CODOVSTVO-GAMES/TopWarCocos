@@ -20,7 +20,7 @@ export class AutocombineView extends Component {
     public quantityCollect: Label
 
     protected onLoad(): void {
-        AutocombineView.instance = this;
+        AutocombineView.instance = this
     }
 
     public eventGoOverGoldMine() {

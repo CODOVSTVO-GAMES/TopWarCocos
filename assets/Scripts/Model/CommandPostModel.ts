@@ -6,21 +6,36 @@ export class CommandPostModel extends Component {
 
     public static instance: CommandPostModel
 
-    public levelCommandPost: number = 1
-    public levelRepairShop: number = 1
-    public levelMergeGoldMine: number = 5
-    public levelBuildGoldMine: number = 1
-    public levelMergeTroopAir: number = 5
-    public levelMergeTroopMarine: number = 5
-    public levelMergeTroopOverland: number = 5
-    public levelMergeBarracksAir: number = 5
-    public levelMergeBarracksMarine: number = 5
-    public levelMergeBarracksOverland: number = 5
-    public levelBuildBarracksAir: number = 1
-    public levelBuildBarracksMarine: number = 1
-    public levelBuildBarracksOverland: number = 1
-
+    public levelCommandPost: number
+    public levelRepairShop: number
+    public levelMergeGoldMine: number
+    public levelBuildGoldMine: number
+    public levelMergeTroopAir: number
+    public levelMergeTroopMarine: number
+    public levelMergeTroopOverland: number
+    public levelMergeBarracksAir: number
+    public levelMergeBarracksMarine: number
+    public levelMergeBarracksOverland: number
+    public levelBuildBarracksAir: number
+    public levelBuildBarracksMarine: number
+    public levelBuildBarracksOverland: number
     protected onLoad(): void {
         CommandPostModel.instance = this
+    }
+
+    private assignStartingValues() {
+        this.levelCommandPost = 1
+        this.levelRepairShop = 1
+        this.levelMergeGoldMine = 5
+        this.levelBuildGoldMine = 1
+        this.levelMergeTroopAir = 5
+        this.levelMergeTroopMarine = 5
+        this.levelMergeTroopOverland = 5
+        this.levelMergeBarracksAir = 5
+        this.levelMergeBarracksMarine = 5
+        this.levelMergeBarracksOverland = 5
+        this.levelBuildBarracksAir = 1
+        this.levelBuildBarracksMarine = 1
+        this.levelBuildBarracksOverland = 1
     }
 }

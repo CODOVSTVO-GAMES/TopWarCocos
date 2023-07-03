@@ -2,7 +2,6 @@ import { _decorator, Color, Component, Node, Sprite } from 'cc';
 import { BattleTaskTypes } from '../Static/BattleTaskTypes';
 import { BattleTask } from '../Structures/BattleTask';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
-import { RadarStorageController } from '../Controllers/StorageControllers/RadarStorageController';
 const { ccclass, property } = _decorator;
 
 @ccclass('TaskRender')

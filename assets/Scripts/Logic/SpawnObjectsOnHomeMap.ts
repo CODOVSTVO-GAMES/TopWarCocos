@@ -1,26 +1,26 @@
 import { _decorator, instantiate, Vec3 } from 'cc';
 import { PrefabsStorage } from '../Storage/PrefabsStorage';
 import { ObjectParameters } from '../ObjectParameters';
-import { HomeMapStorageController } from '../Controllers/StorageControllers/HomeMapStorageController';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TypesLocation } from '../Static/TypesLocation';
-import { AutocombineStorageController } from '../Controllers/StorageControllers/AutocombineStorageController';
 import { HomeMapStructure } from '../Static/HomeMapStructure';
-import { HomeMapStorage } from '../Storage/HomeMapStorage';
+import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { HomeMapModel } from '../Model/HomeMapModel';
+import { AutocombinePresenter } from '../Presenter/AutocombinePresenter';
 const { ccclass } = _decorator;
 
 @ccclass('SpawnObjectsOnHomeMap')
 export class SpawnObjectsOnHomeMap {
 
     public static SpawnObjectsOnHomeMapFromStorage() {
-        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
-            if (HomeMapStorageController.getObjectParameter(i) == null) continue
-            if (HomeMapStorageController.getObjectParameter(i).index != i) continue
+        for (let i = 0; i < HomeMapPresenter.getMapSize(); i++) {
+            if (HomeMapPresenter.getObjectParameter(i) == null) continue
+            if (HomeMapPresenter.getObjectParameter(i).index != i) continue
 
-            let typeObject = HomeMapStorageController.getObjectParameter(i).type
+            let typeObject = HomeMapPresenter.getObjectParameter(i).type
             let locationObject: string
-            let levelObject = HomeMapStorageController.getObjectParameter(i).level
-            let indexObject = HomeMapStorageController.getObjectParameter(i).index
+            let levelObject = HomeMapPresenter.getObjectParameter(i).level
+            let indexObject = HomeMapPresenter.getObjectParameter(i).index
 
             if (typeObject == TypesObjects.BARRACKS_MARINE || typeObject == TypesObjects.TROOP_MARINE) {
                 locationObject = TypesLocation.WATER
@@ -38,7 +38,7 @@ export class SpawnObjectsOnHomeMap {
         let object = instantiate(PrefabsStorage.instance.getObjectPrefab(type))
         let objectParameter = object.getComponent(ObjectParameters)
 
-        HomeMapStorageController.setParent(object, index)
+        HomeMapPresenter.setParent(object, index)
 
         objectParameter.type = type
         objectParameter.location = location
@@ -64,10 +64,10 @@ export class SpawnObjectsOnHomeMap {
 
         objectParameter.level = level
         objectParameter.index = index
-        HomeMapStorageController.setObjectParameter(objectParameter, type, index)
+        HomeMapPresenter.setObjectParameter(objectParameter, type, index)
 
         if (type == TypesObjects.GOLD_MINE) {
-            AutocombineStorageController.alo(objectParameter)
+            AutocombinePresenter.alo(objectParameter)
         }
 
         return objectParameter
@@ -78,20 +78,20 @@ export class SpawnObjectsOnHomeMap {
         let indexeSpawnObject = 0
         let isSpawnObject = false
 
-        for (let i = 0; i < HomeMapStorageController.getMapSize(); i++) {
-            let currentDistance: number = Vec3.distance(HomeMapStorageController.getCoordPosition(index), HomeMapStorageController.getCoordPosition(i))
+        for (let i = 0; i < HomeMapPresenter.getMapSize(); i++) {
+            let currentDistance: number = Vec3.distance(HomeMapPresenter.getCoordPosition(index), HomeMapPresenter.getCoordPosition(i))
             if (currentDistance < minDistance) {
-                let arrayIndexes = HomeMapStorageController.getArrayObject(type)
+                let arrayIndexes = HomeMapPresenter.getArrayObject(type)
                 let check = false
                 for (let j = 0; j < arrayIndexes.length; j++) {
-                    if (HomeMapStorageController.getObjectParameter(i - arrayIndexes[j]) != null) {
+                    if (HomeMapPresenter.getObjectParameter(i - arrayIndexes[j]) != null) {
                         check = true
                         break
                     }
 
 
                     try {
-                        if (HomeMapStructure.structure[i - arrayIndexes[j]].numberZone > HomeMapStorage.instance.numberOpenZones) {
+                        if (HomeMapStructure.structure[i - arrayIndexes[j]].numberZone > HomeMapModel.instance.numberOpenZones) {
                             check = true
                             break
                         }

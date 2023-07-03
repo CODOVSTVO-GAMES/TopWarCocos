@@ -1,4 +1,5 @@
 import { CommandPostModel } from "../Model/CommandPostModel";
+import { TypesObjects } from "../Static/TypesObjects";
 
 export class CommandPostPresenter {
 
@@ -52,5 +53,29 @@ export class CommandPostPresenter {
 
     public static addLevelBuildBarracksOverland() {
         CommandPostModel.instance.levelBuildBarracksOverland += 1
+    }
+
+    public static getLevelAllMerge(typeObject: string): number {
+        if (typeObject == TypesObjects.GOLD_MINE) {
+            return CommandPostModel.instance.levelMergeGoldMine
+        }
+        else if (typeObject == TypesObjects.TROOP_AIR) {
+            return CommandPostModel.instance.levelMergeTroopAir
+        }
+        else if (typeObject == TypesObjects.TROOP_MARINE) {
+            return CommandPostModel.instance.levelMergeTroopMarine
+        }
+        else if (typeObject == TypesObjects.TROOP_OVERLAND) {
+            return CommandPostModel.instance.levelMergeTroopOverland
+        }
+        else if (typeObject == TypesObjects.BARRACKS_AIR) {
+            return CommandPostModel.instance.levelMergeBarracksAir
+        }
+        else if (typeObject == TypesObjects.BARRACKS_MARINE) {
+            return CommandPostModel.instance.levelMergeBarracksMarine
+        }
+        else if (typeObject == TypesObjects.BARRACKS_OVERLAND) {
+            return CommandPostModel.instance.levelMergeBarracksOverland
+        }
     }
 }

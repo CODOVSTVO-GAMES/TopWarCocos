@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec2, Vec3 } from 'cc';
+import { _decorator, Component, Game, Node, Vec2, Vec3 } from 'cc';
 import { BufferStorageController } from './BufferStorageController';
 import { TypesStorages } from '../../Static/TypesStorages';
 import { RadarStorage } from '../../Storage/RadarStorage';
@@ -6,12 +6,12 @@ import { BattleTask } from '../../Structures/BattleTask';
 import { QuantityItem } from '../../Structures/QuantityItem';
 import { ConfigStorageController } from './ConfigStorageController';
 import { MessageAnimation } from '../../Animations/Message/MessageAnimation';
-import { HomeMapStorageController } from './HomeMapStorageController';
 import { TypesObjects } from '../../Static/TypesObjects';
 import { MapService } from '../NetworkControllers/MapService';
 import { UserStorageController } from './UserStorageController';
 import { TypesItems } from '../../Static/TypesItems';
-import { GameStorageController } from './GameStorageController';
+import { GameModel } from '../../Model/GameModel';
+import { HomeMapPresenter } from '../../Presenter/HomeMapPresenter';
 const { ccclass } = _decorator;
 
 @ccclass('RadarStorageController')
@@ -235,7 +235,7 @@ export class RadarStorageController {
     static getMessageAnimation() {
         try {
             if (this.messageAnimation == null) {
-                this.messageAnimation = HomeMapStorageController.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
+                this.messageAnimation = HomeMapPresenter.getObjectParametersByType(TypesObjects.RADAR).getMessageAnimation();
             }
         } catch (e) {
             console.log('ошибка ' + e)
@@ -282,7 +282,7 @@ export class RadarStorageController {
     static randomReward(stars: number): QuantityItem[] {
         let rewards = [];
         let rewardTypes = this.radarRewardsTypes[Math.floor(Math.random() * this.radarRewardsTypes.length)];
-        let level = GameStorageController.getLevel();
+        let level = GameModel.instance.level
 
         let quantity = ConfigStorageController.getRadarBasicRateByLevel(level) * (1 + (0.25 * (stars - 1)));
         for (let i = 0; i < rewardTypes.length; i++) {

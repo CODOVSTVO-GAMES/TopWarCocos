@@ -4,15 +4,8 @@ import { TypesStorages } from "../../Static/TypesStorages"
 import { LoadingGame } from "../../LoadingGame/LoadingGame"
 import { DataStorageDTO } from "../../Structures/DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../../Structures/DTO/DataStorageResponseDTO"
-import { GameStorageController } from "../StorageControllers/GameStorageController"
-import { HomeMapStorageController } from "../StorageControllers/HomeMapStorageController"
-import { BackpackStorageController } from "../StorageControllers/BackpackStorageController"
-import { CharactrerStorageController } from "../StorageControllers/CharactrerStorageController"
-import { CommandPostStorageController } from "../StorageControllers/CommandPostStorageController"
 import { RadarStorageController } from "../StorageControllers/RadarStorageController"
 import { AutocombineStorageController } from "../StorageControllers/AutocombineStorageController"
-import { BarracksStorageController } from "../StorageControllers/BarracksStorageController"
-import { TasksGameStorageController } from "../StorageControllers/TasksGameStorageController"
 
 export class DataStorageService {
 
@@ -36,10 +29,7 @@ export class DataStorageService {
 
     static dataRecipient(objects: object[]) {
         if (UserStorageController.getIsNewUser()) {
-            HomeMapStorageController.assignStartingValues()
-            CharactrerStorageController.assignStartingValues()
             RadarStorageController.assignStartingValues()
-            TasksGameStorageController.assignStartingValues()
             LoadingGame.getPostData()
             return;
         }
@@ -52,19 +42,19 @@ export class DataStorageService {
             const json = objects[i]
             let jsonValue = json['value']
             if (json['key'] == TypesStorages.GAME_STORAGE) {
-                GameStorageController.assigningSaveValues(jsonValue)
+                // GameStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
-                HomeMapStorageController.assigningSaveValuesServer(jsonValue)
+                // HomeMapStorageController.assigningSaveValuesServer(jsonValue)
             }
             else if (json['key'] == TypesStorages.BACKPACK_STORAGE) {
-                BackpackStorageController.assigningSaveValues(jsonValue)
+                // BackpackStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
-                CharactrerStorageController.assigningSaveValues(jsonValue)
+                // CharactrerStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
-                CommandPostStorageController.assigningSaveValues(jsonValue)
+                // CommandPostStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.RADAR_STORAGE) {
                 RadarStorageController.assigningSaveValues(jsonValue)
@@ -73,13 +63,13 @@ export class DataStorageService {
                 AutocombineStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
-                BarracksStorageController.assigningSaveValues(jsonValue)
+                // BarracksStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
-                BarracksStorageController.assigningSaveValues(jsonValue)
+                // BarracksStorageController.assigningSaveValues(jsonValue)
             }
             else if (json['key'] == TypesStorages.TASKS_GAME_STORAGE) {
-                TasksGameStorageController.assigningSaveValues(jsonValue)
+                // TasksGameStorageController.assigningSaveValues(jsonValue)
             }
         }
         LoadingGame.getPostData()
