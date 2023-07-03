@@ -3,7 +3,7 @@ import { TouchStatus } from '../TouchStatus';
 import { ZoomCamera } from './ZoomCamera';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
-import { MapService } from '../Controllers/NetworkControllers/MapService';
+import { MapService } from '../Plugins/MapService';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
 import { GlobalMapPresenter } from '../Presenter/GlobalMapPresenter';
 const { ccclass, property } = _decorator;

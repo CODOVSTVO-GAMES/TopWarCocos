@@ -1,14 +1,10 @@
 import { _decorator, Component, Node, v3 } from 'cc';
 import { TypesModals } from '../Static/TypesModals';
-import { ModalCharacterGridInterface } from './Modals/Characters/ModalCharactersGridInterface';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
 import { QuestionLogic } from './Modals/Question/QuestionLogic';
 import { SwitchLogic } from './Modals/Switch/SwitchLogic';
-import { ModalCharacterInfoIntarface } from './Modals/Characters/ModalCharacterInfo/ModalCharacterInfoInterface';
-import { ModalCharacterPumpingLogic } from './Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingLogic';
-import { ModalCharacterPumpingInterface } from './Modals/Characters/ModalCharacterPumping/ModalCharacterPumpingInterface';
 import { AnimationModals } from '../Animations/UI/AnimationModals';
 import { TypesAnimation } from '../Static/TypesAnimation';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
@@ -16,6 +12,9 @@ import { SceneNames } from '../Static/SceneNames';
 import { CharactersModel } from '../Model/CharactersModel';
 import { RadarModel } from '../Model/RadarModel';
 import { RadarPresenter } from '../Presenter/RadarPresenter';
+import { CharacterParameters } from '../View/CharacterParameters';
+import { UpgradeCharacterView } from '../View/UpgradeCharacterView';
+import { CharactersView } from '../View/CharactersView';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -184,13 +183,13 @@ export class SecondaryInterface extends Component {
             this.powar.active = true;
         }
         else if (item.modalName == TypesModals.CHARACTERS) {
-            ModalCharacterGridInterface.instance.renderCharacters();
+            CharactersView.instance.renderCharacters();
             this.firstBackgraund.active = true;
             this.characters.active = true;
         }
         else if (item.modalName == TypesModals.CHARACTER_INFO) {
             CharactersModel.instance.characterIndex = item.data["index"];
-            let availableCharacter = ModalCharacterInfoIntarface.instance.renderCharacter(CharactersModel.instance.characterIndex);
+            let availableCharacter = CharacterParameters.instance.renderCharacter(CharactersModel.instance.characterIndex);
             if (availableCharacter) {
                 this.firstBackgraund.active = true;
                 this.characterInfo.active = true;
@@ -200,8 +199,8 @@ export class SecondaryInterface extends Component {
             }
         }
         else if (item.modalName == TypesModals.UPGRADE_CHARACTER) {
-            ModalCharacterPumpingLogic.instance.characterIndex = CharactersModel.instance.characterIndex;
-            ModalCharacterPumpingInterface.instance.renderModalPumping(item.data["type"]);
+            UpgradeCharacterView.instance.characterIndex = CharactersModel.instance.characterIndex;
+            UpgradeCharacterView.instance.renderModalPumping(item.data["type"]);
             this.secondBackgraund.active = true;
             this.characterPumping.active = true;
             AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.OPEN_MODAL_CHARACTER);
@@ -348,8 +347,8 @@ export class SecondaryInterface extends Component {
             this.characters.active = false;
         }
         else if (this.activeFirstLayoutModal == TypesModals.CHARACTER_INFO) {
-            ModalCharacterGridInterface.instance.renderCharacters();
-            ModalCharacterInfoIntarface.instance.renderCharacter(CharactersModel.instance.characterIndex);
+            CharactersView.instance.renderCharacters();
+            CharacterParameters.instance.renderCharacter(CharactersModel.instance.characterIndex);
             this.characterInfo.active = false;
             this.activeFirstLayoutModal = TypesModals.CHARACTERS;
         }

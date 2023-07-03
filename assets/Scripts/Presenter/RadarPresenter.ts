@@ -1,6 +1,6 @@
 import { Vec3 } from "cc";
 import { MessageAnimation } from "../Animations/Message/MessageAnimation";
-import { MapService } from "../Controllers/NetworkControllers/MapService";
+import { MapService } from "../Plugins/MapService";
 import { ConfigPresenter } from "./ConfigPresenter";
 import { UserPresenter } from "./UserPresenter";
 import { RadarModel } from "../Model/RadarModel";

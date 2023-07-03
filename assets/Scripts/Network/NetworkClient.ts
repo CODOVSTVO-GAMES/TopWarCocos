@@ -1,7 +1,7 @@
 import { _decorator, Component } from 'cc';
-import { DataStorageService } from '../Controllers/NetworkControllers/DataStorageService';
-import { EventService } from '../Controllers/NetworkControllers/EventService';
-import { SessionService } from '../Controllers/NetworkControllers/SessionService';
+import { DataStorageService } from '../Plugins/DataStorageService';
+import { EventService } from '../Plugins/EventService';
+import { SessionService } from '../Plugins/SessionService';
 import { BufferPresenter } from '../Presenter/BufferPresenter';
 const { ccclass } = _decorator;
 

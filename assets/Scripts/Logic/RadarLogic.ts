@@ -1,6 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { BattleTask } from '../Structures/BattleTask';
-import { MapService } from '../Controllers/NetworkControllers/MapService';
+import { MapService } from '../Plugins/MapService';
 import { RadarModel } from '../Model/RadarModel';
 const { ccclass } = _decorator;
 
