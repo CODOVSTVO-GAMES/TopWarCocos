@@ -81,11 +81,11 @@ export class PrefabsModel extends Component {
     private unfulfiledTask: Prefab
 
 
-    onLoad() {
-        PrefabsModel.instance = this;
+    protected onLoad(): void {
+        PrefabsModel.instance = this
     }
 
-    getObjectPrefab(type: string): Prefab {
+    public getObjectPrefab(type: string): Prefab {
         if (type == TypesObjects.TROOP_AIR) return this.troopAir
         else if (type == TypesObjects.TROOP_MARINE) return this.troopMarine
         else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverland
@@ -112,11 +112,11 @@ export class PrefabsModel extends Component {
         else return null
     }
 
-    getItemBackpack(): Prefab {
+    public getItemBackpack(): Prefab {
         return this.itemBackpack
     }
 
-    getItemTasksGame(type: string): Prefab {
+    public getItemTasksGame(type: string): Prefab {
         if (type == "completedTask") {
             return this.completedTask
         }

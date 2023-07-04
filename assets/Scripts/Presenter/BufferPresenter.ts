@@ -68,7 +68,7 @@ export class BufferPresenter {
                 queueSpawnObject: BarrackModel.instance.arrayBarracks[i].queueSpawnObject
             })
         }
-        this.addModelInBuffer(TypesModels.BARRACKS_MODEL, obj)
+        this.addModelInBuffer(TypesModels.BARRACKS_MODEL, obj)  
     }
 
 

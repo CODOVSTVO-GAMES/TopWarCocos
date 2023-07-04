@@ -47,7 +47,6 @@ export class HomeMapPresenter {
         for (let i = 0; i < arrayIndexes.length; i++) {
             HomeMapModel.instance.arrayObjectParameters[index - arrayIndexes[i]] = objectParameters
         }
-        // this.saveStorageServer();
     }
 
     public static setCoord(coord: Node, index: number, pos: Vec3) {
@@ -84,7 +83,6 @@ export class HomeMapPresenter {
     public static upgradeLevelObject(index: number) {
         HomeMapModel.instance.arrayObjectParameters[index].level += 1
         HomeMapModel.instance.arrayObjectParameters[index].updateSprite()
-        this.saveStorageServer()
     }
 
     public static onTransparencyObjects(type: string, level: number) {
@@ -216,23 +214,6 @@ export class HomeMapPresenter {
         }
     }
 
-    public static saveStorageServer() {
-        let obj: Object[] = []
-
-        obj.push({ numberOpenZones: HomeMapModel.instance.numberOpenZones })
-
-        for (let i = 0; i < HomeMapModel.instance.mapSize; i++) {
-            if (HomeMapModel.instance.arrayObjectParameters[i] == null) continue
-            if (HomeMapModel.instance.arrayObjectParameters[i].index != i) continue
-            obj.push({
-                type: HomeMapModel.instance.arrayObjectParameters[i].type,
-                level: HomeMapModel.instance.arrayObjectParameters[i].level,
-                index: HomeMapModel.instance.arrayObjectParameters[i].index
-            })
-        }
-        // BufferStorageController.addItem(TypesStorages.HOME_MAP_STORAGE, obj)
-    }
-
     public static saveStorageLocal() {
         for (let i = 0; i < HomeMapModel.instance.mapSize; i++) {
             if (HomeMapModel.instance.arrayObjectParameters[i] == null) continue
@@ -262,10 +243,10 @@ export class HomeMapPresenter {
         let sizeTroopAir: number[] = new Number[80].fill(0)
 
         for (let i = 0; i < this.getMapSize(); i++) {
-            if (this.getObjectParameter(i) == null) continue;
-            if (this.getObjectParameter(i).index != i) continue;
+            if (this.getObjectParameter(i) == null) continue
+            if (this.getObjectParameter(i).index != i) continue
             if (this.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
-                sizeTroopAir[this.getObjectParameter(i).level - 1] += 1;
+                sizeTroopAir[this.getObjectParameter(i).level - 1] += 1
             }
         }
 
@@ -276,10 +257,10 @@ export class HomeMapPresenter {
         let sizeTroopMarine: number[] = new Number[80].fill(0)
 
         for (let i = 0; i < this.getMapSize(); i++) {
-            if (this.getObjectParameter(i) == null) continue;
-            if (this.getObjectParameter(i).index != i) continue;
+            if (this.getObjectParameter(i) == null) continue
+            if (this.getObjectParameter(i).index != i) continue
             if (this.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
-                sizeTroopMarine[this.getObjectParameter(i).level - 1] += 1;
+                sizeTroopMarine[this.getObjectParameter(i).level - 1] += 1
             }
         }
 
@@ -290,10 +271,10 @@ export class HomeMapPresenter {
         let sizeTroopOverland: number[] = new Number[80].fill(0)
 
         for (let i = 0; i < this.getMapSize(); i++) {
-            if (this.getObjectParameter(i) == null) continue;
-            if (this.getObjectParameter(i).index != i) continue;
+            if (this.getObjectParameter(i) == null) continue
+            if (this.getObjectParameter(i).index != i) continue
             if (this.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
-                sizeTroopOverland[this.getObjectParameter(i).level - 1] += 1;
+                sizeTroopOverland[this.getObjectParameter(i).level - 1] += 1
             }
         }
 
