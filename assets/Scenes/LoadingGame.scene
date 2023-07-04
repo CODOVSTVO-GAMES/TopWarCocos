@@ -1736,12 +1736,485 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "troopAirFace": [],
-    "troopMarineFace": [],
-    "troopOverlandFace": [],
-    "troopAirBack": [],
+    "troopAirFace": [
+      {
+        "__uuid__": "b78ba01f-a4b8-43ff-820f-ddd02b9362f8@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "c9508ac1-1ae1-4b99-b03d-e455bc5bdd84@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f7800f41-c035-412f-8332-3d5f0f180ac1@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "86c820f5-9876-4139-8715-9106545fb60e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "7de1049d-a9af-494c-8048-20917b2319a9@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "a66eb06f-4486-4b96-a98c-938d9895ab4c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e81e6073-01bc-400b-8b16-49545eea7772@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae2299c9-f21a-4812-b8e8-b9b584b645a6@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8026caa5-7a3e-49b2-ac31-99d74d1088cb@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8ad5c225-96e8-4888-90e3-4fb4c7b0ed9b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "73dc81e9-0e95-42ce-a778-cfe59386795d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d7fc83c1-7363-46be-9c8a-ab2553d02183@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "a8295627-95c2-4f06-a79b-ba9fe024dcd0@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "2a2246d9-fdde-4bfd-962c-b40f878711ae@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d855e5de-ec38-44d2-be18-b276314fd3e5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f86b0b11-9d5b-4bb8-b165-62bc061ae082@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "troopMarineFace": [
+      {
+        "__uuid__": "1030c677-9711-4f72-a4db-e94cfd51a906@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e335bb54-f05a-444a-8122-79a33ce90d33@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "21d6ed2c-a678-453f-ace7-32bf7e1baf80@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "fc72ddce-20c2-41b9-b816-3c222c90578c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "2d756d1b-42c6-4d51-91c6-c36d5a65f34f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e4927ea3-6c23-4cc2-8e40-08a4b161f879@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4babc68c-9313-47de-acdf-7fa82f99f5ee@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "7773978e-7490-4381-adac-eb02de129080@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "bdb64037-243a-495c-b904-c3530ec78c3e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ed515d91-e048-48b8-b5b9-6b9bbec37fe1@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "22405822-2f6c-4f1f-b959-ebae7984049d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "796563c7-7359-46d9-837a-09492005ea4d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8df2ff5e-f17b-4a28-af2f-fa81ff0161ef@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f129b4a0-daec-4e8d-ad34-656a73c60c0f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "troopOverlandFace": [
+      {
+        "__uuid__": "6e47ce49-2f28-4b29-b942-0ac96c85ae8c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "581cdaca-91b2-4ca0-a409-e0db4df29407@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f23975e1-bcf1-4b45-8269-202a5874879a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f66632fc-5458-4538-98f6-9e70e509db19@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4dfd740c-9c48-431c-a1f7-d958bfd5f34d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "db79d2fc-bc8b-4863-b35d-4f3002a974e4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "203d24b3-6535-47ec-a50f-5ecd873d2f1f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "c2c4bd4f-2877-445f-b4cb-815a4dfadd5d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "5558951d-8b29-4606-b0cc-11ab21c446c3@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "1bde2ffe-b877-43fd-9ac8-4ebcea3d5932@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "73a19eac-92ce-425c-9ec7-115205f91f2b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "b43bcba8-85b9-4a6a-8837-cd9c9cc5ec6c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "89157c50-0f77-4a11-8a5a-6ac7b5588aee@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8207b92a-6fe9-4e73-8f2f-32e4ceb60c63@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "fa7a3aa9-a445-4bf3-ac53-16942b099d21@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "0836efdb-ad5b-41f6-99b8-d95cf49abc44@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e26f62d3-7703-4e33-aaa3-2b31017b1f0a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "16c33a0e-22cd-4b03-bc0f-06a1bd5f5c5e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "140454bc-255a-46eb-9015-a928440a9ac5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8e810be6-a550-4824-a0e0-f7f4e4fe9eec@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d288597f-5d3b-48cd-aaaf-239789625e25@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d8e30928-2f92-4c23-9148-d254b3aeec36@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "acf59646-655f-408f-9273-7313ee367c9b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "3e5d4043-82d1-4580-9186-6474edd96937@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "b52e12f5-71bf-4532-a80c-b0148cdfa6ae@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "20b66544-dcd1-45ec-8139-13431580e79f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "bc91588f-fea2-4aff-8906-f225299f91ee@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "85403a8e-618d-42f7-a14a-b691bdb6ada2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "bbcede92-ca0c-471d-b8f1-d3a771504428@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "39c17014-4bfa-4bd0-9b3c-6f25aa486f02@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
+    "troopAirBack": [
+      {
+        "__uuid__": "ce8a4fc7-2be0-4df7-ad8e-80e99ae10de0@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "40ccdd6c-d0c6-4f2c-ac4e-0d565988e644@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4109d04a-d892-48cb-bea4-fa3ed8d12a69@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "468001b2-4f01-423a-8c40-5510b7823933@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "bd8d1277-7c64-4b27-835c-e7e0e0575553@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "6fb0b030-5b52-439b-bf21-a634db2c9f70@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "3dc07272-6774-4001-8019-c25129dae6a4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "0e0362bd-bc70-42a9-8441-6d187b1dbfbb@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e9ddb6e1-3ea7-48e2-b601-59c393cdf418@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "5e9d8906-68bc-4fb1-900d-6cda11395771@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8073020d-534b-4ffd-8436-60abb79e35e0@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "891b1de6-a066-49df-b2c5-1963851e2c1c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "9cc96612-40ce-4647-b6ef-5b8f5eacf10b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "39f429f4-0853-4690-829b-ef50064ee28d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "7fb0c07c-249a-4f91-a7b8-ccce72b086c5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "83b45d2b-bcb0-4225-baff-b43d34ae0fe5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
     "troopMarineBack": [],
-    "troopOverlandBack": [],
+    "troopOverlandBack": [
+      {
+        "__uuid__": "bd0cda7a-0a63-4799-aba6-5991086148c8@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d6dfdda4-9ba4-4a86-9dfd-9d9ac6214b4d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "060879e4-3c93-4a3f-83e4-642d98d1b46c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d96b6a03-02f7-43dd-a704-de9c3bd6fb4f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f4306821-bb10-45f8-8fe5-8b5a633c6cca@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "6bc21eee-e106-43ff-bcb9-0177f2b829a4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "14c20158-8f86-4fef-af7c-c6629dfe830e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "97313e29-cc3b-4270-b923-5747ae47c49a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "b69c5390-79a9-4d40-8144-5d52966ceac4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "0e34151a-9296-4508-89cb-dfce4a43a23f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "3499c7db-cf9b-4c82-be1b-5c0d7f2795e2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "08234838-8652-4b60-9705-393fbd5e45d4@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "65fecbc7-65d0-4339-8b83-9510dc93107a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "de838bfa-4463-4be7-bfe4-b232261a493d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "eb425197-ee9d-4f2a-91e9-c179834f5e40@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "22092699-a17a-415e-85c7-d4a8d0127364@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "31df80de-e582-444f-9530-bee4ab25b138@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "11824972-293f-4256-97f6-92207b8af12b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "5893cc7e-0c0f-4072-bece-7d3c1c5ad370@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "6a979ef6-f34e-4bab-918a-290efa8495a3@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "33cfc133-15f9-40c0-b543-c1215dfee7b2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "c998a238-7c1a-4353-9cde-8f8746a7e980@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ea751985-7507-44e6-b67a-e12424f888bf@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "d7bdf934-1c43-4cc0-a7df-1d2204fd81b2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "038b2e93-97e4-4d90-a1fa-39c5b80c60b9@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "03bfa2b3-b426-4a62-b4ba-ef2d13cffb4f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "324b0b0d-bf6b-464d-af93-e55445703086@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "fc130517-d6f6-4172-834a-85d6f4875858@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "7e5abb5f-4dc7-407c-b394-34c0f9980cde@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "226843b7-9921-4f73-b980-296427cd4ae6@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "barracksAir": [],
     "barracksMarine": [],
     "barracksOverland": [],
