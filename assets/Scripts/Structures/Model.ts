@@ -1,9 +1,9 @@
-export class Buffer {
-    nameStorage: string
+export class Model {
+    nameModel: string
     obj: Object
 
     constructor(nameStorage: string, obj: Object) {
-        this.nameStorage = nameStorage
+        this.nameModel = nameStorage
         this.obj = obj
     }
 } 

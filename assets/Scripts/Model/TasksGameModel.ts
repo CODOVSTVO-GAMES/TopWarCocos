@@ -11,8 +11,8 @@ export class TasksGameModel extends Component {
     public itemsTasksGame: Node[]
 
     protected onLoad(): void {
-        this.assignStartingValues()
         TasksGameModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {

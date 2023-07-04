@@ -8,7 +8,7 @@ import { GameModel } from "../Model/GameModel";
 import { HomeMapModel } from "../Model/HomeMapModel";
 import { TasksGameModel } from "../Model/TasksGameModel";
 import { TypesModels } from "../Static/TypesStorages";
-import { Buffer } from "../Structures/Buffer";
+import { Model } from "../Structures/Model";
 
 export class BufferPresenter {
 
@@ -44,7 +44,7 @@ export class BufferPresenter {
                 time: AutocombineModel.instance.indexes[i].timeProfit
             })
         }
-        this.addItem(TypesModels.AUTOCOMBINE_MODEL, obj)
+        this.addModelInBuffer(TypesModels.AUTOCOMBINE_MODEL, obj)
     }
 
     private static preparationBackpackModel() {
@@ -56,7 +56,7 @@ export class BufferPresenter {
                 quantity: BackpackModel.instance.backpack[i].quantity
             })
         }
-        this.addItem(TypesModels.BACKPACK_MODEL, obj)
+        this.addModelInBuffer(TypesModels.BACKPACK_MODEL, obj)
     }
 
     private static preparationBarrackModel() {
@@ -68,7 +68,7 @@ export class BufferPresenter {
                 queueSpawnObject: BarrackModel.instance.arrayBarracks[i].queueSpawnObject
             })
         }
-        this.addItem(TypesModels.BARRACKS_MODEL, obj)
+        this.addModelInBuffer(TypesModels.BARRACKS_MODEL, obj)
     }
 
 
@@ -87,13 +87,11 @@ export class BufferPresenter {
                 codeName: CharactersModel.instance.characters[i].codeName
             })
         }
-        this.addItem(TypesModels.CHARACTERS_MODEL, obj)
+        this.addModelInBuffer(TypesModels.CHARACTERS_MODEL, obj)
     }
 
     private static preparationCommandPostModel() {
-        let obj: Object[] = []
-
-        obj.push({
+        let obj: Object = {
             levelCommandPost: CommandPostModel.instance.levelCommandPost,
             levelRepairShop: CommandPostModel.instance.levelRepairShop,
             levelMergeGoldMine: CommandPostModel.instance.levelMergeGoldMine,
@@ -107,14 +105,12 @@ export class BufferPresenter {
             levelBuildBarracksAir: CommandPostModel.instance.levelBuildBarracksAir,
             levelBuildBarracksMarine: CommandPostModel.instance.levelBuildBarracksMarine,
             levelBuildBarracksOverland: CommandPostModel.instance.levelBuildBarracksOverland
-        })
-        this.addItem(TypesModels.COMMAND_POST_MODEL, obj)
+        }
+        this.addModelInBuffer(TypesModels.COMMAND_POST_MODEL, obj)
     }
 
     private static preparationGameModel() {
-        let obj: Object[] = []
-
-        obj.push({
+        let obj: Object = {
             coins: GameModel.instance.coins,
             gems: GameModel.instance.gems,
             energy: GameModel.instance.energy,
@@ -128,8 +124,8 @@ export class BufferPresenter {
             arsenalPower: GameModel.instance.arsenalPower,
             professionPower: GameModel.instance.professionPower,
             formationPower: GameModel.instance.formationPower
-        })
-        this.addItem(TypesModels.GAME_MODEL, obj)
+        }
+        this.addModelInBuffer(TypesModels.GAME_MODEL, obj)
     }
 
     private static preparationGlobalMapModel() {
@@ -150,7 +146,7 @@ export class BufferPresenter {
                 index: HomeMapModel.instance.arrayObjectParameters[i].index
             })
         }
-        this.addItem(TypesModels.HOME_MAP_MODEL, obj)
+        this.addModelInBuffer(TypesModels.HOME_MAP_MODEL, obj)
     }
 
     private static preparationRadarModel() {
@@ -169,18 +165,18 @@ export class BufferPresenter {
                 rewardTrigger: TasksGameModel.instance.tasks[i].rewardTrigger
             })
         }
-        this.addItem(TypesModels.TASKS_GAME_MODEL, obj)
+        this.addModelInBuffer(TypesModels.TASKS_GAME_MODEL, obj)
     }
 
-    public static addItem(type: string, obj: Object) {
-        if (obj == null) return;
+    public static addModelInBuffer(nameModel: string, obj: Object) {
+        if (obj == null) return
         for (let i = 0; i < BufferModel.instance.arrayBuffer.length; i++) {
-            if (BufferModel.instance.arrayBuffer[i].nameStorage == type) {
+            if (BufferModel.instance.arrayBuffer[i].nameModel == nameModel) {
                 BufferModel.instance.arrayBuffer.splice(i, 1)
-                return BufferModel.instance.arrayBuffer.push(new Buffer(type, obj))
+                return BufferModel.instance.arrayBuffer.push(new Model(nameModel, obj))
             }
         }
-        BufferModel.instance.arrayBuffer.push(new Buffer(type, obj))
+        BufferModel.instance.arrayBuffer.push(new Model(nameModel, obj))
     }
 
     public static getBuffer(): object[] {

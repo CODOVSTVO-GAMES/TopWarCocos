@@ -10,8 +10,8 @@ export class BarrackModel extends Component {
     public arrayBarracks: Barrack[]
 
     protected onLoad(): void {
-        this.assignStartingValues()
         BarrackModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {

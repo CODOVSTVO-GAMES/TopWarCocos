@@ -21,12 +21,11 @@ export class GameModel extends Component {
     public formationPower: number
 
     protected onLoad(): void {
-        this.assignStartingValues()
         GameModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {
-        console.log("AYF")
         this.coins = 100000000
         this.gems = 70
         this.energy = 75

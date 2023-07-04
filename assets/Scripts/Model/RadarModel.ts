@@ -16,8 +16,8 @@ export class RadarModel extends Component {
     public task: any
 
     protected onLoad(): void {
-        this.assignStartingValues()
         RadarModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {

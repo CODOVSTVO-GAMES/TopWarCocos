@@ -1,6 +1,5 @@
 import { _decorator, Component } from 'cc';
 import { Autocombine } from '../Structures/Autocombine';
-import { AutocombinePresenter } from '../Presenter/AutocombinePresenter';
 const { ccclass } = _decorator;
 
 @ccclass('AutocombineModel')
@@ -16,9 +15,8 @@ export class AutocombineModel extends Component {
     public isActiveAutocombine: boolean
 
     protected onLoad(): void {
-        this.assignStartingValues()
         AutocombineModel.instance = this
-
+        this.assignStartingValues()
         // AutocombinePresenter.TEST()
     }
 

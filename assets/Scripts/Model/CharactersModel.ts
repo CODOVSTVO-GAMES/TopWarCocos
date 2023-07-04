@@ -12,8 +12,8 @@ export class CharactersModel extends Component {
     public characterIndex: number
 
     protected onLoad(): void {
-        this.assignStartingValues()
         CharactersModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {

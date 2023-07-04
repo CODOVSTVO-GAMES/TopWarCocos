@@ -21,8 +21,8 @@ export class CommandPostModel extends Component {
     public levelBuildBarracksOverland: number
 
     protected onLoad(): void {
-        this.assignStartingValues()
         CommandPostModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {

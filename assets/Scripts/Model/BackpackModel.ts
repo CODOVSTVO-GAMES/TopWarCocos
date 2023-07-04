@@ -14,8 +14,8 @@ export class BackpackModel extends Component {
     public usageQuantitySelectItem: number
 
     protected onLoad(): void {
-        this.assignStartingValues()
         BackpackModel.instance = this
+        this.assignStartingValues()
     }
 
     private assignStartingValues() {

@@ -47,7 +47,7 @@ export class HomeMapPresenter {
         for (let i = 0; i < arrayIndexes.length; i++) {
             HomeMapModel.instance.arrayObjectParameters[index - arrayIndexes[i]] = objectParameters
         }
-        this.saveStorageServer();
+        // this.saveStorageServer();
     }
 
     public static setCoord(coord: Node, index: number, pos: Vec3) {

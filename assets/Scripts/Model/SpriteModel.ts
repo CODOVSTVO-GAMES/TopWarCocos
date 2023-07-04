@@ -10,13 +10,22 @@ export class SpriteModel extends Component {
     public static instance: SpriteModel
 
     @property({ type: SpriteFrame })
-    public troopAir: SpriteFrame[] = []
+    public troopAirFace: SpriteFrame[] = []
 
     @property({ type: SpriteFrame })
-    public troopMarine: SpriteFrame[] = []
+    public troopMarineFace: SpriteFrame[] = []
 
     @property({ type: SpriteFrame })
-    public troopOverland: SpriteFrame[] = []
+    public troopOverlandFace: SpriteFrame[] = []
+
+    @property({ type: SpriteFrame })
+    public troopAirBack: SpriteFrame[] = []
+
+    @property({ type: SpriteFrame })
+    public troopMarineBack: SpriteFrame[] = []
+
+    @property({ type: SpriteFrame })
+    public troopOverlandBack: SpriteFrame[] = []
 
     @property({ type: SpriteFrame })
     public barracksAir: SpriteFrame[] = []
@@ -146,9 +155,9 @@ export class SpriteModel extends Component {
     }
 
     public getObjectSprite(type: string, level: number): SpriteFrame {
-        if (type == TypesObjects.TROOP_AIR) return this.troopAir[level - 1]
-        else if (type == TypesObjects.TROOP_MARINE) return this.troopMarine[level - 1]
-        else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverland[level - 1]
+        if (type == TypesObjects.TROOP_AIR) return this.troopAirFace[level - 1]
+        else if (type == TypesObjects.TROOP_MARINE) return this.troopMarineFace[level - 1]
+        else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverlandFace[level - 1]
         else if (type == TypesObjects.BARRACKS_AIR) return this.barracksAir[level - 1]
         else if (type == TypesObjects.BARRACKS_MARINE) return this.barracksMarine[level - 1]
         else if (type == TypesObjects.BARRACKS_OVERLAND) return this.barracksOverland[level - 1]

@@ -18,12 +18,11 @@ export class NetworkClient extends Component {
     }
 
     private sendData() {
-        // if (BufferPresenter.isBufferFull()) {
         BufferPresenter.preparationModels()
-        DataStorageService.saveData(BufferPresenter.getBuffer())
-        console.log("POST " + BufferPresenter.getBuffer())
-        BufferPresenter.clearBufferStorage()
-        // }
+        if (BufferPresenter.isBufferFull()) {
+            DataStorageService.saveData(BufferPresenter.getBuffer())
+            BufferPresenter.clearBufferStorage()
+        }
     }
 
     private sendEvents() {
