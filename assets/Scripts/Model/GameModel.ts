@@ -6,25 +6,27 @@ export class GameModel extends Component {
 
     public static instance: GameModel
 
-    public coins: number = 100000000
-    public gems: number = 70
-    public energy: number = 75
-    public maxEnergy: number = 75
-    public experience: number = 0
-    public level: number = 1
-    public maxPower: number = 0
-    public territoryPower: number = 0
-    public technoPower: number = 0
-    public heroPower: number = 0
-    public arsenalPower: number = 0
-    public professionPower: number = 0
-    public formationPower: number = 0
+    public coins: number
+    public gems: number
+    public energy: number
+    public maxEnergy: number
+    public experience: number
+    public level: number
+    public maxPower: number
+    public territoryPower: number
+    public technoPower: number
+    public heroPower: number
+    public arsenalPower: number
+    public professionPower: number
+    public formationPower: number
 
     protected onLoad(): void {
+        this.assignStartingValues()
         GameModel.instance = this
     }
 
     private assignStartingValues() {
+        console.log("AYF")
         this.coins = 100000000
         this.gems = 70
         this.energy = 75

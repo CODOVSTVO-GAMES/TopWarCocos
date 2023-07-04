@@ -42,15 +42,15 @@ export class ConfigModel extends Component {
     protected onLoad(): void {
         ConfigModel.instance = this;
 
-        this.initHeroLevel()
-        this.initHeroConfig()
+        // this.initHeroLevel()
+        // this.initHeroConfig()
 
-        this.initGoldBox()
+        // this.initGoldBox()
 
-        this.initRadarBacicRate()
-        this.initRadarConfig()
-        this.initRadarProgressNumber()
-        this.initExpirienceRadar()
+        // this.initRadarBacicRate()
+        // this.initRadarConfig()
+        // this.initRadarProgressNumber()
+        // this.initExpirienceRadar()
     }
 
     configRecipient(objects: object[]) {

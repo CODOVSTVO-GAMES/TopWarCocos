@@ -13,15 +13,17 @@ export class NetworkClient extends Component {
     protected onLoad(): void {
         NetworkClient.instance = this
         this.schedule(SessionService.updateSessionData, 60)
-        this.schedule(this.sendEvents, 5)
+        // this.schedule(this.sendEvents, 5)
         this.schedule(this.sendData, 4)
     }
 
     private sendData() {
-        if (BufferPresenter.isBufferFull()) {
-            DataStorageService.saveData(BufferPresenter.getBuffer())
-            BufferPresenter.clearBufferStorage()
-        }
+        // if (BufferPresenter.isBufferFull()) {
+        BufferPresenter.preparationModels()
+        DataStorageService.saveData(BufferPresenter.getBuffer())
+        console.log("POST " + BufferPresenter.getBuffer())
+        BufferPresenter.clearBufferStorage()
+        // }
     }
 
     private sendEvents() {

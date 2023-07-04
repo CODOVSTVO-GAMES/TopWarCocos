@@ -9,15 +9,17 @@ export class BackpackModel extends Component {
 
     public backpack: QuantityItem[]
     public itemsBackpack: Node[]
-    public typeSelectItem: string = ""
-    public quantitySelectItem: number = 0
-    public usageQuantitySelectItem: number = 0
+    public typeSelectItem: string
+    public quantitySelectItem: number
+    public usageQuantitySelectItem: number
 
     protected onLoad(): void {
+        this.assignStartingValues()
         BackpackModel.instance = this
     }
 
     private assignStartingValues() {
+        this.backpack = []
         this.typeSelectItem = ""
         this.quantitySelectItem = 0
         this.usageQuantitySelectItem = 0

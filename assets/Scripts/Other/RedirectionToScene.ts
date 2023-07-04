@@ -9,7 +9,7 @@ export class RedirectionToScene {
             director.loadScene("LoadingGame")
         }
         else if (name == SceneNames.HOME_MAP) {
-            HomeMapPresenter.assigningSaveValuesLocal()
+            // HomeMapPresenter.assigningSaveValuesLocal()
             director.loadScene("HomeMap")
         }
         else if (name == SceneNames.GLOBAL_MAP) {

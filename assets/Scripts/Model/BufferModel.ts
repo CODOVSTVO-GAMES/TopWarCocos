@@ -7,8 +7,8 @@ export class BufferModel extends Component {
 
     public static instance: BufferModel
 
-    public arrayBuffer: Buffer[]
-    public eventsQueue: string[] = []
+    public arrayBuffer: Buffer[] = []
+    public eventsQueue: string[]
 
     protected onLoad(): void {
         BufferModel.instance = this

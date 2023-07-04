@@ -16,10 +16,11 @@ export class RadarModel extends Component {
     public task: any
 
     protected onLoad(): void {
+        this.assignStartingValues()
         RadarModel.instance = this
     }
 
     private assignStartingValues() {
-
+        this.tasks = []
     }
 }

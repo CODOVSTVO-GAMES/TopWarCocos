@@ -1,7 +1,7 @@
 import { _decorator, Component } from 'cc';
 import { OkConnector } from '../Librarys/OkConnector';
 import { SessionService } from '../Plugins/SessionService';
-import { TypesStorages } from '../Static/TypesStorages';
+import { TypesModels } from '../Static/TypesStorages';
 import { DataStorageService } from '../Plugins/DataStorageService';
 import { UserService } from '../Plugins/UserService';
 import { UserPresenter } from '../Presenter/UserPresenter';
@@ -33,15 +33,15 @@ export class LoadingGame extends Component {
 
     static getStorages() {
         let arrayActiveStorage = [
-            TypesStorages.GAME_STORAGE,
-            TypesStorages.HOME_MAP_STORAGE,
-            TypesStorages.BACKPACK_STORAGE,
-            TypesStorages.CHARACTER_STORAGE,
-            TypesStorages.COMMAND_POST_STORAGE,
-            TypesStorages.RADAR_STORAGE,
-            TypesStorages.AUTOCOMBINE_STORAGE,
-            TypesStorages.BARRACKS_STORAGE,
-            TypesStorages.TASKS_GAME_STORAGE
+            TypesModels.GAME_MODEL,
+            TypesModels.HOME_MAP_MODEL,
+            TypesModels.BACKPACK_MODEL,
+            TypesModels.CHARACTERS_MODEL,
+            TypesModels.COMMAND_POST_MODEL,
+            TypesModels.RADAR_MODEL,
+            TypesModels.AUTOCOMBINE_MODEL,
+            TypesModels.BARRACKS_MODEL,
+            TypesModels.TASKS_GAME_MODEL
         ]
         DataStorageService.getData(arrayActiveStorage)//redirectToHomeMap вызывается после получения данных в колбеке
     }

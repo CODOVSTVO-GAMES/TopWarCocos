@@ -1,9 +1,11 @@
 import { UserPresenter } from "../Presenter/UserPresenter"
 import { ServerApi } from "./ServerApi"
-import { TypesStorages } from "../Static/TypesStorages"
+import { TypesModels } from "../Static/TypesStorages"
 import { LoadingGame } from "../LoadingGame/LoadingGame"
 import { DataStorageDTO } from "../Structures/DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../Structures/DTO/DataStorageResponseDTO"
+import { GameModel } from "../Model/GameModel"
+import { js } from "cc"
 
 export class DataStorageService {
 
@@ -11,7 +13,7 @@ export class DataStorageService {
         ServerApi.post('data-storage', new DataStorageDTO(UserPresenter.getAccountId(), UserPresenter.getSessionId(), data), DataStorageService.parseDataStoragePostResponce)
     }
 
-    public static getData(keys: Array<string>) {
+    public static getData(keys: string[]) {
         const strKeys = JSON.parse(JSON.stringify(keys))
         ServerApi.get('data-storage', new DataStorageDTO(UserPresenter.getAccountId(), UserPresenter.getSessionId(), strKeys), DataStorageService.parseDataStorageGetResponce)
     }
@@ -26,6 +28,13 @@ export class DataStorageService {
     }
 
     public static dataRecipient(objects: object[]) {
+
+        //
+        console.log(UserPresenter.getIsNewUser())
+        LoadingGame.getPostData()
+        LoadingGame.redirectToHomeMap()
+        //
+
         if (UserPresenter.getIsNewUser()) {
             LoadingGame.getPostData()
             return;
@@ -38,39 +47,57 @@ export class DataStorageService {
         for (let i = 0; i < objects.length; i++) {
             const json = objects[i]
             let jsonValue = json['value']
-            if (json['key'] == TypesStorages.GAME_STORAGE) {
-                // GameStorageController.assigningSaveValues(jsonValue)
+            if (json['key'] == TypesModels.GAME_MODEL) {
+                // this.aloo(jsonValue)
+
             }
-            else if (json['key'] == TypesStorages.HOME_MAP_STORAGE) {
-                // HomeMapStorageController.assigningSaveValuesServer(jsonValue)
+            else if (json['key'] == TypesModels.HOME_MAP_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.BACKPACK_STORAGE) {
-                // BackpackStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.BACKPACK_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.CHARACTER_STORAGE) {
-                // CharactrerStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.CHARACTERS_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.COMMAND_POST_STORAGE) {
-                // CommandPostStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.COMMAND_POST_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.RADAR_STORAGE) {
-                // RadarStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.RADAR_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.AUTOCOMBINE_STORAGE) {
-                // AutocombineStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.AUTOCOMBINE_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
-                // BarracksStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.BARRACKS_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.BARRACKS_STORAGE) {
-                // BarracksStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.BARRACKS_MODEL) {
+
+
             }
-            else if (json['key'] == TypesStorages.TASKS_GAME_STORAGE) {
-                // TasksGameStorageController.assigningSaveValues(jsonValue)
+            else if (json['key'] == TypesModels.TASKS_GAME_MODEL) {
+
+
             }
         }
         LoadingGame.getPostData()
     }
+
+    // private static aloo(obj: Object) {
+    //     console.log(obj)
+    //     let json = JSON.parse(JSON.stringify(obj))
+    //     console.log(json)
+    //     console.log(json[0].gems)
+    //     GameModel.instance.coins = json[0].coins
+    // }
 
     public static parseDataStoragePostResponce(data: any, isDone: boolean) {
         if (!isDone) console.log("Ошибка запроса дата сторадж пост")

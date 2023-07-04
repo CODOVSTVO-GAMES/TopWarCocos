@@ -16,9 +16,10 @@ export class AutocombineModel extends Component {
     public isActiveAutocombine: boolean
 
     protected onLoad(): void {
+        this.assignStartingValues()
         AutocombineModel.instance = this
 
-        AutocombinePresenter.TEST()
+        // AutocombinePresenter.TEST()
     }
 
     private assignStartingValues() {
@@ -26,7 +27,7 @@ export class AutocombineModel extends Component {
         this.quantityWorkGoldMine = 0
         this.quantityProfit = 0
         this.quantityCollect = 0
-        this.indexes = new Array<Autocombine>()
+        this.indexes = []
         this.isActiveAutocombine = false
     }
 }

@@ -22,6 +22,8 @@ export class HeaderView extends Component {
 
     protected onLoad(): void {
         HeaderView.instance = this
+        GameModel.instance.coins -= 1000000
+        this.renderCoins()
     }
 
     public renderCoins() {

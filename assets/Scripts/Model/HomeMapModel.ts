@@ -19,6 +19,7 @@ export class HomeMapModel extends Component {
     public spriteCoords: Sprite[]
 
     protected onLoad(): void {
+        // this.assignStartingValues()
         HomeMapModel.instance = this
 
 

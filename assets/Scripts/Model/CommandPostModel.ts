@@ -19,7 +19,9 @@ export class CommandPostModel extends Component {
     public levelBuildBarracksAir: number
     public levelBuildBarracksMarine: number
     public levelBuildBarracksOverland: number
+
     protected onLoad(): void {
+        this.assignStartingValues()
         CommandPostModel.instance = this
     }
 

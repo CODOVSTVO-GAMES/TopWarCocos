@@ -22,6 +22,7 @@ export class BattleModel extends Component {
     public attackNumber: number = 0
 
     protected onLoad(): void {
+        this.assignStartingValues()
         BattleModel.instance = this
     }
 
