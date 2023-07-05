@@ -22,6 +22,7 @@ export class HomeMapModel extends Component {
         HomeMapModel.instance = this
         this.coords = new Array(this.mapSize)
         this.arrayObjectParameters = new Array(this.mapSize)
+        this.temporaryLocalStorage = []
         this.spriteCoords = new Array(this.mapSize)
         this.assignStartingValues()
     }

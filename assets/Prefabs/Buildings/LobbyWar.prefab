@@ -1243,8 +1243,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "bbb76DQFClHb6bXZrcOUmXY",
-    "handler": "createTroop",
+    "_componentId": "58b29PoVKhIhoSyAEFqgwmZ",
+    "handler": "eventClickOnMessage",
     "customEventData": ""
   },
   {

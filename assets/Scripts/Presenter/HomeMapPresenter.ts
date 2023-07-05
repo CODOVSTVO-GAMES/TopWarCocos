@@ -6,38 +6,6 @@ import { TypesObjects } from "../Static/TypesObjects"
 
 export class HomeMapPresenter {
 
-    public static assigningSaveValuesServer(obj: Object[]) {
-        for (let i = 0; i < obj.length; i++) {
-            if (i == 0) {
-                let json = JSON.parse(JSON.stringify(obj[i]))
-                HomeMapModel.instance.numberOpenZones = json.numberOpenZones
-            }
-            else {
-                let json = JSON.parse(JSON.stringify(obj[i]))
-                let objParam = new ObjectParameters
-                objParam.type = json.type
-                objParam.level = json.level
-                objParam.index = json.index
-                this.setObjectParameter(objParam, objParam.type, objParam.index)
-            }
-        }
-    }
-
-    public static assigningSaveValuesLocal() {
-        if (HomeMapModel.instance.temporaryLocalStorage.length > 0) {
-            HomeMapModel.instance.arrayObjectParameters = new Array(2000)
-            for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
-
-                let objectParameter = HomeMapModel.instance.temporaryLocalStorage[i]
-                let typeObject = HomeMapModel.instance.temporaryLocalStorage[i].type
-                let indexObject = HomeMapModel.instance.temporaryLocalStorage[i].index
-
-                this.setObjectParameter(objectParameter, typeObject, indexObject)
-            }
-            HomeMapModel.instance.temporaryLocalStorage = new Array
-        }
-    }
-
     public static setParent(object: Node, index: number) {
         object.parent = HomeMapModel.instance.coords[index]
     }
@@ -214,33 +182,8 @@ export class HomeMapPresenter {
         }
     }
 
-    public static saveStorageLocal() {
-        for (let i = 0; i < HomeMapModel.instance.mapSize; i++) {
-            if (HomeMapModel.instance.arrayObjectParameters[i] == null) continue
-            if (HomeMapModel.instance.arrayObjectParameters[i].index != i) continue
-
-            let objParam: ObjectParameters = new ObjectParameters
-
-            objParam.type = HomeMapModel.instance.arrayObjectParameters[i].type
-            objParam.level = HomeMapModel.instance.arrayObjectParameters[i].level
-            objParam.index = HomeMapModel.instance.arrayObjectParameters[i].index
-
-            HomeMapModel.instance.temporaryLocalStorage.push(objParam)
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
     public static getSizeTroopAir(): number[] {
-        let sizeTroopAir: number[] = new Number[80].fill(0)
+        let sizeTroopAir: number[] = new Array(80).fill(0)
 
         for (let i = 0; i < this.getMapSize(); i++) {
             if (this.getObjectParameter(i) == null) continue
@@ -249,35 +192,32 @@ export class HomeMapPresenter {
                 sizeTroopAir[this.getObjectParameter(i).level - 1] += 1
             }
         }
-
         return sizeTroopAir
     }
 
     public static getSizeTroopMarine(): number[] {
-        let sizeTroopMarine: number[] = new Number[80].fill(0)
+        let sizeTroopMarine: number[] = new Array(80).fill(0)
 
         for (let i = 0; i < this.getMapSize(); i++) {
             if (this.getObjectParameter(i) == null) continue
             if (this.getObjectParameter(i).index != i) continue
-            if (this.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
+            if (this.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
                 sizeTroopMarine[this.getObjectParameter(i).level - 1] += 1
             }
         }
-
         return sizeTroopMarine
     }
 
     public static getSizeTroopOverland(): number[] {
-        let sizeTroopOverland: number[] = new Number[80].fill(0)
+        let sizeTroopOverland: number[] = new Array(80).fill(0)
 
         for (let i = 0; i < this.getMapSize(); i++) {
             if (this.getObjectParameter(i) == null) continue
             if (this.getObjectParameter(i).index != i) continue
-            if (this.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
+            if (this.getObjectParameter(i).type == TypesObjects.TROOP_OVERLAND) {
                 sizeTroopOverland[this.getObjectParameter(i).level - 1] += 1
             }
         }
-
         return sizeTroopOverland
     }
 }

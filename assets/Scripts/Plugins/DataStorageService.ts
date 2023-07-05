@@ -55,7 +55,7 @@ export class DataStorageService {
                     this.setGameModel(jsonValue)
                 }
                 else if (json['key'] == TypesModels.HOME_MAP_MODEL) {
-                    this.setHomeMapModel(jsonValue)
+                    this.setHomeMapModelFromServer(jsonValue)
                 }
                 else if (json['key'] == TypesModels.BACKPACK_MODEL) {
                     this.setBackpackModel(jsonValue)
@@ -100,7 +100,7 @@ export class DataStorageService {
         GameModel.instance.formationPower = json.formationPower
     }
 
-    private static setHomeMapModel(obj: Object[]) {
+    private static setHomeMapModelFromServer(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))
             if (i == 0) {
@@ -114,6 +114,22 @@ export class DataStorageService {
                 objParam.index = json.index
                 HomeMapPresenter.setObjectParameter(objParam, objParam.type, objParam.index)
             }
+        }
+    }
+
+    public static setHomeMapModelFromLocal() {
+        console.log(HomeMapModel.instance.temporaryLocalStorage)
+        if (HomeMapModel.instance.temporaryLocalStorage.length > 0) {
+            HomeMapModel.instance.arrayObjectParameters = new Array(2000)
+            for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
+
+                let objectParameter = HomeMapModel.instance.temporaryLocalStorage[i]
+                let typeObject = HomeMapModel.instance.temporaryLocalStorage[i].type
+                let indexObject = HomeMapModel.instance.temporaryLocalStorage[i].index
+
+                HomeMapPresenter.setObjectParameter(objectParameter, typeObject, indexObject)
+            }
+            HomeMapModel.instance.temporaryLocalStorage = new Array
         }
     }
 

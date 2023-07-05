@@ -7,6 +7,7 @@ import { CommandPostModel } from "../Model/CommandPostModel";
 import { GameModel } from "../Model/GameModel";
 import { HomeMapModel } from "../Model/HomeMapModel";
 import { TasksGameModel } from "../Model/TasksGameModel";
+import { ObjectParameters } from "../ObjectParameters";
 import { TypesModels } from "../Static/TypesModels";
 import { Model } from "../Structures/Model";
 
@@ -21,7 +22,7 @@ export class BufferPresenter {
         this.preparationCommandPostModel()
         this.preparationGameModel()
         this.preparationGlobalMapModel()
-        this.preparationHomeMapModel()
+        this.preparationHomeMapModelForServer()
         this.preparationRadarModel()
         this.preparationTasksGamerModel()
     }
@@ -68,7 +69,7 @@ export class BufferPresenter {
                 queueSpawnObject: BarrackModel.instance.arrayBarracks[i].queueSpawnObject
             })
         }
-        this.addModelInBuffer(TypesModels.BARRACKS_MODEL, obj)  
+        this.addModelInBuffer(TypesModels.BARRACKS_MODEL, obj)
     }
 
 
@@ -132,7 +133,7 @@ export class BufferPresenter {
         let obj: Object[] = []
     }
 
-    private static preparationHomeMapModel() {
+    private static preparationHomeMapModelForServer() {
         let obj: Object[] = []
 
         obj.push({ numberOpenZones: HomeMapModel.instance.numberOpenZones })
@@ -147,6 +148,21 @@ export class BufferPresenter {
             })
         }
         this.addModelInBuffer(TypesModels.HOME_MAP_MODEL, obj)
+    }
+
+    public static preparationHomeMapModelForLocal() {
+        for (let i = 0; i < HomeMapModel.instance.mapSize; i++) {
+            if (HomeMapModel.instance.arrayObjectParameters[i] == null) continue
+            if (HomeMapModel.instance.arrayObjectParameters[i].index != i) continue
+
+            let objParam: ObjectParameters = new ObjectParameters
+
+            objParam.type = HomeMapModel.instance.arrayObjectParameters[i].type
+            objParam.level = HomeMapModel.instance.arrayObjectParameters[i].level
+            objParam.index = HomeMapModel.instance.arrayObjectParameters[i].index
+
+            HomeMapModel.instance.temporaryLocalStorage.push(objParam)
+        }
     }
 
     private static preparationRadarModel() {

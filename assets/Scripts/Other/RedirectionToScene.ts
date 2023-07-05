@@ -1,6 +1,8 @@
 import { _decorator, director } from 'cc';
 import { SceneNames } from '../Static/SceneNames';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { DataStorageService } from '../Plugins/DataStorageService';
+import { BufferPresenter } from '../Presenter/BufferPresenter';
 
 export class RedirectionToScene {
 
@@ -9,15 +11,15 @@ export class RedirectionToScene {
             director.loadScene("LoadingGame")
         }
         else if (name == SceneNames.HOME_MAP) {
-            // HomeMapPresenter.assigningSaveValuesLocal()
+            DataStorageService.setHomeMapModelFromLocal()
             director.loadScene("HomeMap")
         }
         else if (name == SceneNames.GLOBAL_MAP) {
-            HomeMapPresenter.saveStorageLocal()
+            BufferPresenter.preparationHomeMapModelForLocal()
             director.loadScene("GlobalMap")
         }
         else if (name == SceneNames.BATTLE) {
-            HomeMapPresenter.saveStorageLocal()
+            BufferPresenter.preparationHomeMapModelForLocal()
             director.loadScene("Battle")
         }
     }
