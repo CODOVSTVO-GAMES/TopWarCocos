@@ -1,6 +1,6 @@
 import { UserPresenter } from "../Presenter/UserPresenter"
 import { ServerApi } from "./ServerApi"
-import { TypesModels } from "../Static/TypesStorages"
+import { TypesModels } from "../Static/TypesModels"
 import { LoadingGame } from "../LoadingGame/LoadingGame"
 import { DataStorageDTO } from "../Structures/DTO/DataStorageDTO"
 import { DataStorageResponseDTO } from "../Structures/DTO/DataStorageResponseDTO"
@@ -43,50 +43,41 @@ export class DataStorageService {
 
     public static dataRecipient(objects: object[]) {
 
-        //
-        console.log(UserPresenter.getIsNewUser())
-        LoadingGame.getPostData()
-        LoadingGame.redirectToHomeMap()
-        //
-
-        if (UserPresenter.getIsNewUser()) {
-            LoadingGame.getPostData()
-            return
-        }
-
         if (objects == null) {
             throw 'Пришел пустой обьект'
         }
 
-        for (let i = 0; i < objects.length; i++) {
-            const json = objects[i]
-            let jsonValue = json['value']
-            if (json['key'] == TypesModels.GAME_MODEL) {
-                this.setGameModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.HOME_MAP_MODEL) {
-                this.setHomeMapModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.BACKPACK_MODEL) {
-                this.setBackpackModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.CHARACTERS_MODEL) {
-                this.setCharactersModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.COMMAND_POST_MODEL) {
-                this.setCommandPostModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.RADAR_MODEL) {
-                this.setRadarModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.AUTOCOMBINE_MODEL) {
-                this.setAutcombineModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.BARRACKS_MODEL) {
-                this.setBarracksModel(jsonValue)
-            }
-            else if (json['key'] == TypesModels.TASKS_GAME_MODEL) {
-                this.setTasksGameModel(jsonValue)
+        if (!UserPresenter.getIsNewUser()) {
+            for (let i = 0; i < objects.length; i++) {
+                const json = objects[i]
+                let jsonValue = json['value']
+                if (json['key'] == TypesModels.GAME_MODEL) {
+                    this.setGameModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.HOME_MAP_MODEL) {
+                    this.setHomeMapModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.BACKPACK_MODEL) {
+                    this.setBackpackModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.CHARACTERS_MODEL) {
+                    this.setCharactersModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.COMMAND_POST_MODEL) {
+                    this.setCommandPostModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.RADAR_MODEL) {
+                    this.setRadarModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.AUTOCOMBINE_MODEL) {
+                    this.setAutcombineModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.BARRACKS_MODEL) {
+                    this.setBarracksModel(jsonValue)
+                }
+                else if (json['key'] == TypesModels.TASKS_GAME_MODEL) {
+                    this.setTasksGameModel(jsonValue)
+                }
             }
         }
         LoadingGame.getPostData()

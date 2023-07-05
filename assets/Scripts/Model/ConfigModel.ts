@@ -25,32 +25,32 @@ export class ConfigModel extends Component {
 
     public static instance: ConfigModel
 
-    public mainAndRepairBuildings: MainAndRepairBuildings[]
-    public unitsConfig: UnitsCongig[]
-    public mergeBuildingsConfig: ConfigMergeBuildings[]
-    public spawnBuildingsConfig: ConfigSpawnBuildings[]
-    public levelConfig: Level[]
-    public heroConfig: HeroConfig[]
-    public heroLevelConfig: HeroLevel[]
-    public radarConfig: RadarConfig[]
-    public radarBasicRate: number[]
-    public radarProgressNumber: number[]
-    public expirienceRadar: number[]
-    public goldBoxConfig: number[]
-    public questReward: LevelNumber[]
+    public mainAndRepairBuildings: MainAndRepairBuildings[] = []
+    public unitsConfig: UnitsCongig[] = []
+    public mergeBuildingsConfig: ConfigMergeBuildings[] = []
+    public spawnBuildingsConfig: ConfigSpawnBuildings[] = []
+    public levelConfig: Level[] = []
+    public heroConfig: HeroConfig[] = []
+    public heroLevelConfig: HeroLevel[] = []
+    public radarConfig: RadarConfig[] = []
+    public radarBasicRate: number[] = []
+    public radarProgressNumber: number[] = []
+    public expirienceRadar: number[] = []
+    public goldBoxConfig: number[] = []
+    public questReward: LevelNumber[] = []
 
     protected onLoad(): void {
         ConfigModel.instance = this;
 
-        // this.initHeroLevel()
-        // this.initHeroConfig()
+        this.initHeroLevel()
+        this.initHeroConfig()
 
-        // this.initGoldBox()
+        this.initGoldBox()
 
-        // this.initRadarBacicRate()
-        // this.initRadarConfig()
-        // this.initRadarProgressNumber()
-        // this.initExpirienceRadar()
+        this.initRadarBacicRate()
+        this.initRadarConfig()
+        this.initRadarProgressNumber()
+        this.initExpirienceRadar()
     }
 
     configRecipient(objects: object[]) {

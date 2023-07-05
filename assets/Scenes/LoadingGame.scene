@@ -1626,6 +1626,98 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "troopAir": {
+      "__uuid__": "5769580f-a699-4bd4-b5c5-5456565abea8",
+      "__expectedType__": "cc.Prefab"
+    },
+    "troopMarine": {
+      "__uuid__": "124ed028-0430-40db-bb32-bf297b136e7b",
+      "__expectedType__": "cc.Prefab"
+    },
+    "troopOverland": {
+      "__uuid__": "d4df606a-2f4d-4368-83b3-536ddef3afdd",
+      "__expectedType__": "cc.Prefab"
+    },
+    "barracks": {
+      "__uuid__": "368fd2f2-143e-4e24-95d9-bf22017e0c18",
+      "__expectedType__": "cc.Prefab"
+    },
+    "commandPost": {
+      "__uuid__": "7ed3dce8-286c-41ff-a141-fb41af186017",
+      "__expectedType__": "cc.Prefab"
+    },
+    "goldMine": {
+      "__uuid__": "b88719b1-6cd5-4947-a9bd-57a37f516dd8",
+      "__expectedType__": "cc.Prefab"
+    },
+    "bank": {
+      "__uuid__": "55048574-c2e7-4593-bd7e-7933378f08fc",
+      "__expectedType__": "cc.Prefab"
+    },
+    "autocombine": {
+      "__uuid__": "523e1b4a-6bef-4681-a329-2b83c1dd78ca",
+      "__expectedType__": "cc.Prefab"
+    },
+    "radar": {
+      "__uuid__": "5d865065-439b-4e10-b185-b0e35e82d83e",
+      "__expectedType__": "cc.Prefab"
+    },
+    "treasures": {
+      "__uuid__": "c9d3ad99-0679-43f7-a9ec-8381829ccc37",
+      "__expectedType__": "cc.Prefab"
+    },
+    "manipulator": {
+      "__uuid__": "d04ad12e-6396-4ebb-ba3b-c3697b13df23",
+      "__expectedType__": "cc.Prefab"
+    },
+    "repairShop": {
+      "__uuid__": "a416786c-46f7-40fd-91b7-1850fb038b09",
+      "__expectedType__": "cc.Prefab"
+    },
+    "lobbyWar": {
+      "__uuid__": "817a2519-4d44-422b-aca8-89e3f8b47f55",
+      "__expectedType__": "cc.Prefab"
+    },
+    "expedition": {
+      "__uuid__": "1dd8b9d7-2ab7-4aea-8a3f-0aa5cc3d09db",
+      "__expectedType__": "cc.Prefab"
+    },
+    "wall2x2": {
+      "__uuid__": "24379056-07b2-4a98-bff2-225e5503909f",
+      "__expectedType__": "cc.Prefab"
+    },
+    "wall4x4": {
+      "__uuid__": "036e27fc-0e45-4bc2-9175-6316fb8b651a",
+      "__expectedType__": "cc.Prefab"
+    },
+    "wall8x8": {
+      "__uuid__": "d05f5bc3-cc56-410a-8980-528bafaf8f9d",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle2x2": {
+      "__uuid__": "ea3d388b-b52c-4157-98c0-689660449dbc",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle4x4": {
+      "__uuid__": "7ba6531c-c736-4190-9cb6-57c3b926b45f",
+      "__expectedType__": "cc.Prefab"
+    },
+    "battle8x8": {
+      "__uuid__": "5a1eb555-4433-49e6-9774-c868aeef2cff",
+      "__expectedType__": "cc.Prefab"
+    },
+    "itemBackpack": {
+      "__uuid__": "727bee36-8f59-4e12-bb44-e944a3cc44d2",
+      "__expectedType__": "cc.Prefab"
+    },
+    "completedTask": {
+      "__uuid__": "1c604c20-5d49-44f9-9cf1-54fcdf8bfd7b",
+      "__expectedType__": "cc.Prefab"
+    },
+    "unfulfiledTask": {
+      "__uuid__": "6f50f19e-0292-4337-badc-692c65302360",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": "e0ZUs7Y1NFFKmj3pA9Q5ef"
   },
   {
@@ -2603,7 +2695,24 @@
       null,
       null
     ],
-    "commandPost": [],
+    "commandPost": [
+      {
+        "__uuid__": "52486c4d-376d-495e-9f34-de60ceefb19e@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4aa23c62-a8c1-452e-b85a-8a66783302f2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4dbfc86f-3cbf-4927-a869-38ca1254ddb5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "2a1185af-f019-4307-907f-4435f0b66844@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "goldMine": [
       {
         "__uuid__": "6eb11953-de80-40ac-b3a4-6b531f4a8215@f9941",
@@ -2762,6 +2871,10 @@
       "__uuid__": "c741688c-a309-49fa-8174-5fd1b11b9abb@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
+    "wall": {
+      "__uuid__": "048551ca-78ec-478d-8f55-d33aca157dbf@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "battle": {
       "__uuid__": "9fafec30-150e-4649-89d7-a43674e86f5d@f9941",
       "__expectedType__": "cc.SpriteFrame"
@@ -2849,6 +2962,10 @@
     },
     "bookExperienceOrange": {
       "__uuid__": "d589a9b9-fe2d-4913-8044-2634f5bc0dc0@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "test": {
+      "__uuid__": "7e0c9894-7332-491a-8dd6-02ad0f3fe983@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_id": "2eJvFGgjFCMIl1MufHA9zP"

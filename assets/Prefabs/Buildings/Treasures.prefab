@@ -1733,6 +1733,18 @@
     "__prefab": {
       "__id__": 78
     },
+    "titleObject": {
+      "__id__": 61
+    },
+    "levelObject": {
+      "__id__": 67
+    },
+    "titleObjectText": {
+      "__id__": 64
+    },
+    "levelObjectText": {
+      "__id__": 70
+    },
     "_id": ""
   },
   {

@@ -7,7 +7,7 @@ import { CommandPostModel } from "../Model/CommandPostModel";
 import { GameModel } from "../Model/GameModel";
 import { HomeMapModel } from "../Model/HomeMapModel";
 import { TasksGameModel } from "../Model/TasksGameModel";
-import { TypesModels } from "../Static/TypesStorages";
+import { TypesModels } from "../Static/TypesModels";
 import { Model } from "../Structures/Model";
 
 export class BufferPresenter {

@@ -31,4 +31,4 @@ export class NetworkClient extends Component {
             BufferPresenter.clearEventsQueue()
         }
     }
-}
+}  

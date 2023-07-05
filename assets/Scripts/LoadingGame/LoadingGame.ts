@@ -1,7 +1,7 @@
 import { _decorator, Component } from 'cc';
 import { OkConnector } from '../Librarys/OkConnector';
 import { SessionService } from '../Plugins/SessionService';
-import { TypesModels } from '../Static/TypesStorages';
+import { TypesModels } from '../Static/TypesModels';
 import { DataStorageService } from '../Plugins/DataStorageService';
 import { UserService } from '../Plugins/UserService';
 import { UserPresenter } from '../Presenter/UserPresenter';

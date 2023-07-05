@@ -1923,6 +1923,18 @@
     "__prefab": {
       "__id__": 88
     },
+    "titleObject": {
+      "__id__": 69
+    },
+    "levelObject": {
+      "__id__": 75
+    },
+    "titleObjectText": {
+      "__id__": 72
+    },
+    "levelObjectText": {
+      "__id__": 78
+    },
     "_id": ""
   },
   {

@@ -2013,6 +2013,30 @@
     "__prefab": {
       "__id__": 90
     },
+    "titleObject": {
+      "__id__": 61
+    },
+    "levelObject": {
+      "__id__": 67
+    },
+    "quantityObject": {
+      "__id__": 73
+    },
+    "subtitleObject": {
+      "__id__": 79
+    },
+    "titleObjectText": {
+      "__id__": 64
+    },
+    "levelObjectText": {
+      "__id__": 70
+    },
+    "quantityObjectText": {
+      "__id__": 76
+    },
+    "subtitleObjectText": {
+      "__id__": 82
+    },
     "_id": ""
   },
   {

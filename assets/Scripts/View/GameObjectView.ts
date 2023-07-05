@@ -31,14 +31,16 @@ export class GameObjectView extends Component {
     @property({ type: Label })
     public subtitleObjectText: Label
 
-    @property({ type: ObjectParameters })
     private objectParameters: ObjectParameters
 
     public eventClickOnMessage() {
         GameObjectPresenter.processingClickOnMessage(this.objectParameters)
     }
 
-    public openInterface() {
+    public openInterface(objParam: ObjectParameters) {
+        if (this.objectParameters == null) {
+            this.objectParameters = objParam
+        }
         this.titleObject.active = true
         this.levelObject.active = true
         if (this.quantityObject && this.subtitleObject) {

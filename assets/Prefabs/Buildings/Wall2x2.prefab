@@ -940,6 +940,18 @@
     "__prefab": {
       "__id__": 42
     },
+    "titleObject": {
+      "__id__": 23
+    },
+    "levelObject": {
+      "__id__": 29
+    },
+    "titleObjectText": {
+      "__id__": 26
+    },
+    "levelObjectText": {
+      "__id__": 32
+    },
     "_id": ""
   },
   {

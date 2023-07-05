@@ -20,11 +20,10 @@ export class HomeMapModel extends Component {
 
     protected onLoad(): void {
         HomeMapModel.instance = this
-        this.assignStartingValues()
-
         this.coords = new Array(this.mapSize)
         this.arrayObjectParameters = new Array(this.mapSize)
         this.spriteCoords = new Array(this.mapSize)
+        this.assignStartingValues()
     }
 
     public assignStartingValues() {
@@ -71,6 +70,7 @@ export class HomeMapModel extends Component {
         for (let i = 0; i < arrayObjects.length; i++) {
             let objParam = new ObjectParameters
             objParam.type = arrayObjects[i].type
+            objParam.level = arrayObjects[i].level
             objParam.index = arrayObjects[i].index
             HomeMapPresenter.setObjectParameter(objParam, objParam.type, objParam.index)
         }

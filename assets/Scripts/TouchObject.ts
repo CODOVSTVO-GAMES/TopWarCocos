@@ -56,7 +56,7 @@ export class TouchObject extends Component {
         HomeMapPresenter.setSelectObject(this.objectParameters)
 
         this.mainObject.setParent(HomeMapPresenter.getParentObject(), true)
-        this.objectParameters.getObjectInterface().openInterface()
+        this.objectParameters.getObjectInterface().openInterface(this.objectParameters)
 
         if (this.objectParameters.getArrowGameObject()) {
             this.objectParameters.getArrowGameObject().activeArrow()

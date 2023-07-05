@@ -20,7 +20,8 @@ export class ServerApi {
     private static request(endpoint: string, data: RequestDTO, func: Function, type: string, dataObj: object) {
         var xhr = new XMLHttpRequest();
 
-        if (type == "GET") {//спецификация HTTP не дает отправить тело в гет запросе
+        if (type == "GET") {
+            //спецификация HTTP не дает отправить тело в гет запросе
             xhr.open(type, TechnicalConfig.SERVER_DOMAIN + endpoint + '?dto=' + JSON.stringify(dataObj), true);
             xhr.setRequestHeader("sessionId", UserPresenter.getSessionId().toString());
             xhr.setRequestHeader("sessionHash", UserPresenter.getSessionHash());
@@ -47,7 +48,8 @@ export class ServerApi {
 
     private static globalResponseParser(status: number, body: any, customFunction: Function) {
         if (status == 200) {
-            let json
+            let json: any
+
             try {
                 json = JSON.parse(body)
             } catch (e) {
