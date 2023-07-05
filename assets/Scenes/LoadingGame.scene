@@ -2092,7 +2092,80 @@
       null,
       null
     ],
-    "troopMarineBack": [],
+    "troopMarineBack": [
+      {
+        "__uuid__": "a0a1d2ae-94c0-447c-a700-89796affcec6@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "39273cf2-42ee-47b4-a289-d457efe934bc@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f92cad9e-b464-410a-aae6-9bdff3abc0d9@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "3d64a69a-cf50-4fcd-bfa9-37affd6c86f9@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "2d35bc53-3986-4e1b-8a11-5831dc52f702@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "819d1692-9767-4937-b613-9d10e2dda405@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "14235ece-b6e0-47c8-a67e-259575765af7@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "02a4a2b1-c61e-4204-9c6b-5280f6778363@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "301435ee-1fe8-4535-98c5-bea14d4fafd5@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "1b036113-9a2e-4c17-a126-bcc691eebdbe@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "86991f52-2fc6-4416-8cfb-f742318c686a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4b8c056f-d770-4c4b-a157-2b72f2e5b3a7@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "76e4495c-218e-4af5-9941-8ee128943936@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "5f7ce057-65c1-4180-95e3-6b8962186b2b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
     "troopOverlandBack": [
       {
         "__uuid__": "bd0cda7a-0a63-4799-aba6-5991086148c8@f9941",
