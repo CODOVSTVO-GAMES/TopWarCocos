@@ -196,7 +196,7 @@ export class DataStorageService {
     private static setTasksGameModel(obj: Object[]) {
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))
-            TasksGameModel.instance.tasks.push(new TaskGame(json[i].typeTask, json[i].typeTask, json[i].typeTask, json[i].typeTask, json[i].typeTask))
+            TasksGameModel.instance.tasks.push(new TaskGame(json.typeTask, json.levelObjectTask, json.quantityRequired, json.quantityCompleted, json.rewardTrigger))
         }
     }
 

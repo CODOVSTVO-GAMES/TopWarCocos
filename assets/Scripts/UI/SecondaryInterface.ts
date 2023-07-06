@@ -15,6 +15,7 @@ import { RadarPresenter } from '../Presenter/RadarPresenter';
 import { CharacterParameters } from '../View/CharacterParameters';
 import { UpgradeCharacterView } from '../View/UpgradeCharacterView';
 import { CharactersView } from '../View/CharactersView';
+import { TasksGameView } from '../View/TasksGameView';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -140,14 +141,14 @@ export class SecondaryInterface extends Component {
     queueFirstModals() {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
-            try {
+            // try {
                 if (this.listOpeningFirstLayoutModals.length > 0) {
                     this.openModal(this.listOpeningFirstLayoutModals[0]);
                     this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
                     this.listOpeningFirstLayoutModals.splice(0, 1);
                 }
-            }
-            catch { console.error("Ащибка в очереди"); clearInterval(interval); }
+            // }
+            // catch { console.error("Ащибка в очереди"); clearInterval(interval); }
         }, 50);
         this.workQueueFirstLayout = false;
     }
@@ -212,6 +213,7 @@ export class SecondaryInterface extends Component {
         else if (item.modalName == TypesModals.TASKS_GAME) {
             this.firstBackgraund.active = true;
             this.tasksGame.active = true;
+            TasksGameView.instance.renderItemsTasks()
         }
         else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST) {
             this.secondBackgraund.active = true;
@@ -335,43 +337,43 @@ export class SecondaryInterface extends Component {
 
     closeFirstLayoutModal() {
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
-            this.firstBackgraund.active = false;
+            this.firstBackgraund.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.SHOP_OBJECT) {
-            this.shopObject.active = false;
+        if (this.activeFirstLayoutModal == TypesModals.SHOP_OBJECT) {
+            this.shopObject.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.EXPERIENCE) {
-            this.experience.active = false;
+            this.experience.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.CHARACTERS) {
-            this.characters.active = false;
+            this.characters.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.CHARACTER_INFO) {
             CharactersView.instance.renderCharacters();
             CharacterParameters.instance.renderCharacter(CharactersModel.instance.characterIndex);
-            this.characterInfo.active = false;
+            this.characterInfo.active = false
             this.activeFirstLayoutModal = TypesModals.CHARACTERS;
         }
         else if (this.activeFirstLayoutModal == TypesModals.COMMAND_POST) {
-            this.commandPost.active = false;
+            this.commandPost.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.TASKS_GAME) {
-            this.tasksGame.active = false;
+            this.tasksGame.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.AUTOCOMBINE) {
-            this.autocombine.active = false;
+            this.autocombine.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.RADAR) {
-            this.radar.active = false;
+            this.radar.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.BACKPACK) {
-            this.backpack.active = false;
+            this.backpack.active = false
         }
         else if (this.activeFirstLayoutModal == TypesModals.SPATIAL_MINE) {
-            this.spatialMine.active = false;
+            this.spatialMine.active = false
         }
         if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
-            this.activeFirstLayoutModal = "";
+            this.activeFirstLayoutModal = ""
         }
     }
 

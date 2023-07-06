@@ -20,7 +20,7 @@ export class TasksGamePresenter {
 
     public static addTask(typeTask: string, levelObjectTask: number, quantityRequired: number, quantityCompleted: number) {
         TasksGameModel.instance.tasks.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, false))
-        TasksGameView.instance.renderItemsTasks()
+        // TasksGameView.instance.renderItemsTasks()
     }
 
     public static checkTask(typeTask: string, levelObjectTask: number, quantity: number) {

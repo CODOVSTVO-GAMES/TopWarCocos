@@ -1,4 +1,4 @@
-import { _decorator, Component, Label } from 'cc';
+import { _decorator, Component, Label, Sprite } from 'cc';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 import { GameModel } from '../Model/GameModel';
 const { ccclass, property } = _decorator;
@@ -20,8 +20,16 @@ export class HeaderView extends Component {
     @property({ type: Label })
     public power: Label
 
+    @property({ type: Sprite })
+    public fillLevel: Sprite
+
     protected onLoad(): void {
         HeaderView.instance = this
+        this.renderCoins()
+        this.renderGems()
+        this.renderLevel()
+        this.renderFillLevel()
+        this.renderPower()
     }
 
     public renderCoins() {
@@ -40,6 +48,12 @@ export class HeaderView extends Component {
         let level = "Ур. " + GameModel.instance.level.toString()
 
         this.level.string = level
+    }
+
+    public renderFillLevel() {
+        let fillLevel = 0
+
+        this.fillLevel.fillRange = fillLevel
     }
 
     public renderPower() {
