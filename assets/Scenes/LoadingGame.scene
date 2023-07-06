@@ -56,7 +56,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 62
+      "__id__": 64
     },
     "_id": "744fc833-9456-4b30-a2f3-125339ab5e26"
   },
@@ -841,12 +841,15 @@
       },
       {
         "__id__": 58
+      },
+      {
+        "__id__": 61
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 61
+        "__id__": 63
       }
     ],
     "_prefab": null,
@@ -3180,6 +3183,61 @@
     "_id": "59E+su1CpCiaST5mPZi4AL"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "GameTimer",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 24
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 62
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "80/lRU2sNEZ6bS0UnLA9Xk"
+  },
+  {
+    "__type__": "cf49bn6Ow9OUrFNIrre6QbG",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 61
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_id": "27O8Oo9GxO0Y2sxId5hwnQ"
+  },
+  {
     "__type__": "60f9eHQfzZAALhzVlwtFqZ7",
     "_name": "",
     "_objFlags": 0,
@@ -3193,22 +3251,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 63
-    },
-    "shadows": {
-      "__id__": 64
-    },
-    "_skybox": {
       "__id__": 65
     },
-    "fog": {
+    "shadows": {
       "__id__": 66
     },
-    "octree": {
+    "_skybox": {
       "__id__": 67
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 68
+    },
+    "octree": {
+      "__id__": 69
+    },
+    "lightProbeInfo": {
+      "__id__": 70
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

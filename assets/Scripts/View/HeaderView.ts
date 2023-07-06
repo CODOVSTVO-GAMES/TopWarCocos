@@ -36,7 +36,7 @@ export class HeaderView extends Component {
         let coins = ConvertLargeNumber.convert(GameModel.instance.coins)
 
         this.coins.string = coins
-    }
+    } 
 
     public renderGems() {
         let gems = ConvertLargeNumber.convert(GameModel.instance.gems)

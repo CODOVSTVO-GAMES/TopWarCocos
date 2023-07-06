@@ -6,13 +6,13 @@ import { TypesObjects } from './Static/TypesObjects';
 import { ZoomCamera } from './Camera/ZoomCamera';
 import { HomeMapStructure } from './Static/HomeMapStructure';
 import { FlightGameObjects } from './Animations/GameObjects/FlightGameObjects';
-import { BarracksLogic } from './Logic/BarracksLogic';
-import { TasksGameLogic } from './Logic/TasksGameLogic';
 import { TypesTasksGame } from './Static/TypesTasksGame';
 import { CommandPostPresenter } from './Presenter/CommandPostPresenter';
 import { HomeMapPresenter } from './Presenter/HomeMapPresenter';
 import { HomeMapModel } from './Model/HomeMapModel';
 import { AutocombinePresenter } from './Presenter/AutocombinePresenter';
+import { BarracksPresenter } from './Presenter/BarracksPresenter';
+import { TasksGamePresenter } from './Presenter/TasksGamePresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchObject')
@@ -191,26 +191,26 @@ export class TouchObject extends Component {
 
     private mergeObject(index: number) {
         HomeMapModel.instance.selectedObject = null
-        BarracksLogic.instance.deleteBarrack(this.objectParameters.index)
+        BarracksPresenter.deleteBarrack(this.objectParameters.index)
         AutocombinePresenter.deleteGoldMine(this.objectParameters.index)
         if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
-            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_GOLD_MINE, this.objectParameters.level, 1)
+            TasksGamePresenter.checkTask(TypesTasksGame.MERGE_GOLD_MINE, this.objectParameters.level, 1)
         }
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR) {
-            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_BARRACK_AIR, this.objectParameters.level, 1)
+            TasksGamePresenter.checkTask(TypesTasksGame.MERGE_BARRACK_AIR, this.objectParameters.level, 1)
         }
         if (this.objectParameters.type == TypesObjects.BARRACKS_MARINE) {
-            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_BARRACK_MARINE, this.objectParameters.level, 1)
+            TasksGamePresenter.checkTask(TypesTasksGame.MERGE_BARRACK_MARINE, this.objectParameters.level, 1)
         }
         if (this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-            TasksGameLogic.instance.checkTask(TypesTasksGame.MERGE_BARRACK_OVERLAND, this.objectParameters.level, 1)
+            TasksGamePresenter.checkTask(TypesTasksGame.MERGE_BARRACK_OVERLAND, this.objectParameters.level, 1)
         }
         FlightGameObjects.instance.moveMerge(this.mainObject, index)
     }
 
     private putAnObject(index: number) {
         if (this.objectParameters.type == TypesObjects.BARRACKS_AIR || this.objectParameters.type == TypesObjects.BARRACKS_MARINE || this.objectParameters.type == TypesObjects.BARRACKS_OVERLAND) {
-            BarracksLogic.instance.updateIndexBarrack(this.objectParameters.index, index)
+            BarracksPresenter.updateIndexBarrack(this.objectParameters.index, index)
         }
         else if (this.objectParameters.type == TypesObjects.GOLD_MINE) {
             AutocombinePresenter.updateIndexGoldMine(this.objectParameters.index, index)

@@ -1,22 +1,15 @@
-import { _decorator, Component } from 'cc';
+import { _decorator } from 'cc';
 import { Barrack } from '../Structures/Barrack';
-import { ConfigPresenter } from '../Presenter/ConfigPresenter';
-import { SpawnObjectsOnHomeMap } from '../Presenter/SpawnObjectsOnHomeMap';
+import { ConfigPresenter } from './ConfigPresenter';
+import { SpawnObjectsOnHomeMap } from './SpawnObjectsOnHomeMap';
 import { QueueBarrack } from '../Structures/QueueBarrack';
 import { BarrackModel } from '../Model/BarrackModel';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
-@ccclass('BarracksLogic')
-export class BarracksLogic extends Component {
+@ccclass('BarracksPresenter')
+export class BarracksPresenter {
 
-    public static instance: BarracksLogic
-
-    public onLoad() {
-        BarracksLogic.instance = this
-        this.schedule(this.timer, 1)
-    }
-
-    public timer() {
+    public static timer() {
         for (let i = 0; i < BarrackModel.instance.arrayBarracks.length; i++) {
             for (let j = 0; j < BarrackModel.instance.arrayBarracks[i].queueSpawnObject.length; j++) {
 
@@ -35,7 +28,7 @@ export class BarracksLogic extends Component {
         }
     }
 
-    public addTroop(typeTroop: string, levelTroop: number, indexBarrack: number) {
+    public static addTroop(typeTroop: string, levelTroop: number, indexBarrack: number) {
 
         let timeSpawnTroop = ConfigPresenter.getTimeCreationUnitsByTypeAndLevel(typeTroop, levelTroop)
 
@@ -59,7 +52,7 @@ export class BarracksLogic extends Component {
         BarrackModel.instance.arrayBarracks[BarrackModel.instance.arrayBarracks.length - 1].queueSpawnObject.push(new QueueBarrack(typeTroop, levelTroop, timeSpawnTroop))
     }
 
-    public updateIndexBarrack(oldIndex: number, newIndex: number) {
+    public static updateIndexBarrack(oldIndex: number, newIndex: number) {
         for (let i = 0; i < BarrackModel.instance.arrayBarracks.length; i++) {
             if (BarrackModel.instance.arrayBarracks[i].indexBarrack == oldIndex) {
                 BarrackModel.instance.arrayBarracks[i].indexBarrack = newIndex
@@ -68,7 +61,7 @@ export class BarracksLogic extends Component {
         }
     }
 
-    public deleteBarrack(indexBarrack: number) {
+    public static deleteBarrack(indexBarrack: number) {
         for (let i = 0; i < BarrackModel.instance.arrayBarracks.length; i++) {
             if (BarrackModel.instance.arrayBarracks[i].indexBarrack == indexBarrack) {
                 BarrackModel.instance.arrayBarracks.slice(i, 1)
