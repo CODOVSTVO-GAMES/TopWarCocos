@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "84c3295f-d8dc-4758-8b0c-fb6b2e1ccff2",
+  "uuid": "1cec5613-6718-446b-8367-59a502aba6e3",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "84c3295f-d8dc-4758-8b0c-fb6b2e1ccff2@6c48a",
-      "displayName": "TaskBackGroundGold",
+      "uuid": "1cec5613-6718-446b-8367-59a502aba6e3@6c48a",
+      "displayName": "TaskBackGroundGoldBottom",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "84c3295f-d8dc-4758-8b0c-fb6b2e1ccff2",
+        "imageUuidOrDatabaseUri": "1cec5613-6718-446b-8367-59a502aba6e3",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,8 +34,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "84c3295f-d8dc-4758-8b0c-fb6b2e1ccff2@f9941",
-      "displayName": "TaskBackGroundGold",
+      "uuid": "1cec5613-6718-446b-8367-59a502aba6e3@f9941",
+      "displayName": "TaskBackGroundGoldBottom",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -114,7 +114,7 @@
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "84c3295f-d8dc-4758-8b0c-fb6b2e1ccff2@6c48a",
+        "imageUuidOrDatabaseUri": "1cec5613-6718-446b-8367-59a502aba6e3@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "84c3295f-d8dc-4758-8b0c-fb6b2e1ccff2@f9941"
+    "redirect": "1cec5613-6718-446b-8367-59a502aba6e3@f9941"
   }
 }
