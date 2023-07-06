@@ -20,7 +20,8 @@ export class LoadingGame extends Component {
     }
 
     static initSDKAndGetUserInfo() {
-        OkConnector.initPlugin() //getSession вызывается после получения данных в колбеке
+        // getSession вызывается после получения данных в колбеке
+        OkConnector.initPlugin()
     }
 
     static getUser() {
@@ -28,7 +29,8 @@ export class LoadingGame extends Component {
     }
 
     static getSession() {
-        SessionService.getStartSessionData()//getStorages вызывается после получения данных в колбеке
+        // getStorages вызывается после получения данных в колбеке
+        SessionService.getStartSessionData()
     }
 
     static getStorages() {
@@ -43,7 +45,8 @@ export class LoadingGame extends Component {
             TypesModels.BARRACKS_MODEL,
             TypesModels.TASKS_GAME_MODEL
         ]
-        DataStorageService.getData(arrayActiveStorage)//redirectToHomeMap вызывается после получения данных в колбеке
+        // redirectToHomeMap вызывается после получения данных в колбеке
+        DataStorageService.getData(arrayActiveStorage)
     }
 
     static getPostData() {

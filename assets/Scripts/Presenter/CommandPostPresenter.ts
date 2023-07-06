@@ -33,7 +33,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeRepairShop()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeGoldMine() {
@@ -46,7 +46,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeGoldMine()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeTroopAir() {
@@ -59,7 +59,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeTroopAir()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeTroopMarine() {
@@ -72,7 +72,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeTroopMarine()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeTroopOverland() {
@@ -85,7 +85,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeTroopOverland()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeBarracksAir() {
@@ -98,7 +98,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeBarrackAir()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeBarracksMarine() {
@@ -111,7 +111,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeBarrackMarine()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeMergeBarracksOverland() {
@@ -124,7 +124,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeMergeBarrackOverland()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeBuildGoldMine() {
@@ -137,7 +137,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeBuildGoldMine()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeBuildBarracksAir() {
@@ -150,7 +150,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeBuildBarrackAir()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeBuildBarracksMarine() {
@@ -163,7 +163,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeBuildBarrackMarine()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static processingUpgradeBuildBarracksOverland() {
@@ -176,7 +176,7 @@ export class CommandPostPresenter {
         CommandPostView.instance.renderHeader()
         CommandPostView.instance.renderItemUpgradeBuildBarrackOverland()
         CommandPostUpgradeOtherView.instance.renderInterfaceRepairShop()
-        CommandPostUpgradeOtherView.instance.renderButton()
+        CommandPostUpgradeOtherView.instance.renderSuitableButton()
     }
 
     public static getLevelAllMerge(typeObject: string): number {

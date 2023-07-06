@@ -9,10 +9,10 @@ export class RadarView extends Component {
     public static instance: RadarView
 
     @property({ type: Node })
-    public locatorNode: Node;
+    public locatorNode: Node
 
     @property({ type: Prefab })
-    public taskPrefab: Prefab;
+    public taskPrefab: Prefab
 
     protected onLoad(): void {
         RadarView.instance = this

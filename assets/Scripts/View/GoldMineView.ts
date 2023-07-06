@@ -27,4 +27,3 @@ export class GoldMineView extends Component {
         this.progress.active = false
     }
 }
-

@@ -131,104 +131,57 @@ export class CommandPostUpgradeOtherView extends Component {
         CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    renderButton() {
-        switch (SecondaryInterface.instance.getTypeActiveSecondLayoutModal()) {
-            case TypesModals.UPGRATE_REPAIR_SHOP:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_GOLD_MINE:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_TROOP_AIR:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_TROOP_MARINE:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_TROOP_OVERLAND:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_BARRACK_AIR:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_BARRACK_MARINE:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_BUILD_GOLD_MINE:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_BUILD_BARRACK_AIR:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_BUILD_BARRACK_MARINE:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
-            case TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND:
-                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
-                    this.renderUpgradeButton()
-                }
-                else {
-                    this.renderGetItemsButton()
-                }
-                break
+    public renderSuitableButton() {
+        let typeActiveView = SecondaryInterface.instance.getTypeActiveSecondLayoutModal()
+        let levelCommandPost = CommandPostModel.instance.levelCommandPost
+
+        if (typeActiveView == TypesModals.UPGRATE_REPAIR_SHOP) {
+            if (CommandPostModel.instance.levelRepairShop < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_GOLD_MINE) {
+            if (CommandPostModel.instance.levelMergeGoldMine < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_TROOP_AIR) {
+            if (CommandPostModel.instance.levelMergeTroopAir < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_TROOP_MARINE) {
+            if (CommandPostModel.instance.levelMergeTroopMarine < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND) {
+            if (CommandPostModel.instance.levelMergeTroopOverland < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_BARRACK_AIR) {
+            if (CommandPostModel.instance.levelMergeBarracksAir < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_BARRACK_MARINE) {
+            if (CommandPostModel.instance.levelMergeBarracksMarine < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND) {
+            if (CommandPostModel.instance.levelMergeBarracksOverland < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_BUILD_GOLD_MINE) {
+            if (CommandPostModel.instance.levelBuildGoldMine < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_BUILD_BARRACK_AIR) {
+            if (CommandPostModel.instance.levelBuildBarracksAir < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_BUILD_BARRACK_MARINE) {
+            if (CommandPostModel.instance.levelBuildBarracksMarine < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
+        }
+        else if (typeActiveView == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND) {
+            if (CommandPostModel.instance.levelBuildBarracksOverland < levelCommandPost) this.renderUpgradeButton()
+            else this.renderGetItemsButton()
         }
     }
 
