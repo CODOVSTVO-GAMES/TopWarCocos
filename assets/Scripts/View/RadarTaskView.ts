@@ -4,6 +4,8 @@ import { BattleTask } from '../Structures/BattleTask';
 import { TypesModals } from '../Static/TypesModals';
 import { BattleTaskTypes } from '../Static/BattleTaskTypes';
 import { RadarPresenter } from '../Presenter/RadarPresenter';
+import { RadarModel } from '../Model/RadarModel';
+import { TypesItems } from '../Static/TypesItems';
 
 const { ccclass, property } = _decorator; @ccclass('PowerView')
 
@@ -53,43 +55,43 @@ export class RadarTaskView extends Component {
 
     public renderModalTask() {
         if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO) {
-            // const task = ModalRadarTaskLogic.instance.task
-            // // console.log('отрисовываем задачу ' + task.id)
-            // if (task.status == 0) {
-            //     this.status.string = "Не началось";
-            //     this.btnText.string = "Перейти";
-            //     this.title.string = "Задание завершится через " + task.expiration;
-            // }
-            // else if (task.status == 1) {
-            //     this.title.string = "Результаты через " + task.battleTime;
-            //     this.status.string = "В походе";
-            //     this.btnText.string = "В походе...";
-            // }
+            const task = RadarModel.instance.task
+
+            if (task.status == 0) {
+                this.status.string = "Не началось";
+                this.btnText.string = "Перейти";
+                this.title.string = "Задание завершится через " + task.expiration;
+            }
+            else if (task.status == 1) {
+                this.title.string = "Результаты через " + task.battleTime;
+                this.status.string = "В походе";
+                this.btnText.string = "В походе...";
+            }
 
 
-            // this.image.color = this.getSpriteTask(task.type);
-            // for (let i = 0; i < this.stars.length; i++) {
-            //     this.stars[i].active = i < task.stars;
-            // }
-            // for (let i = 0; i < task.rewards.length; i++) {
-            //     this.quantity[i].string = task.rewards[i].quantity.toString();
-            //     switch (task.rewards[i].type) {
-            //         case TypesItems.PLAN_COMMAND_POST:
-            //             this.rewardsBG[i].spriteFrame = this.spritesBG[0];
-            //             break;
-            //         case TypesItems.EXPERIENCE:
-            //             this.rewardsBG[i].spriteFrame = this.spritesBG[1];
-            //             break;
-            //         default:
-            //             this.rewardsBG[i].spriteFrame = this.spritesBG[2];
-            //             break;
-            //     }
-            // }
+            this.image.color = this.getSpriteTask(task.type);
+            for (let i = 0; i < this.stars.length; i++) {
+                this.stars[i].active = i < task.stars;
+            }
+            for (let i = 0; i < task.rewards.length; i++) {
+                this.quantity[i].string = task.rewards[i].quantity.toString();
+                switch (task.rewards[i].type) {
+                    case TypesItems.PLAN_COMMAND_POST:
+                        this.rewardsBG[i].spriteFrame = this.spritesBG[0];
+                        break;
+                    case TypesItems.EXPERIENCE:
+                        this.rewardsBG[i].spriteFrame = this.spritesBG[1];
+                        break;
+                    default:
+                        this.rewardsBG[i].spriteFrame = this.spritesBG[2];
+                        break;
+                }
+            }
         }
     }
 
     public updateInterface(task: BattleTask) {
-        // ModalRadarTaskLogic.instance.task = task
+        RadarModel.instance.task = task
         this.renderModalTask()
     }
 

@@ -14,7 +14,6 @@ export class CharactersPresenter {
             let config = ConfigPresenter.getHeroConfigByCodeName(this.storageTypes[i]); // hp = 120 + (24 * heroLevel + 5 * heroStarStady)
             CharactersModel.instance.characters.push(new CharacterInfo(heroLevel, 0, 5, config.startDamage + (config.coefDamage * heroLevel + 5), config.startDefense + (config.coefDefense * heroLevel + 5 * 1), config.startLeader, config.type, config.codeName, TypesObjects.TROOP_OVERLAND));
         }
-        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object[]) {
@@ -52,7 +51,6 @@ export class CharactersPresenter {
         CharactersModel.instance.recalculationCharacter(index);
         // ModalCharacterInfoIntarface.instance.renderCharacter(index);
         // ModalCharacterPumpingInterface.instance.renderModalPumpingLevel();
-        this.saveStorage();
     }
 
     static getExperience(index: number): number {
@@ -61,18 +59,5 @@ export class CharactersPresenter {
 
     static getLevel(index: number) {
         return CharactersModel.instance.characters[index].level;
-    }
-
-    static saveStorage() {
-        let obj: Object[] = [];
-        for (let i = 0; i < CharactersModel.instance.characters.length; i++) {
-            obj.push({
-                level: CharactersModel.instance.characters[i].level,
-                exp: CharactersModel.instance.characters[i].experience,
-                stars: CharactersModel.instance.characters[i].stars,
-                codeName: CharactersModel.instance.characters[i].codeName
-            });
-        }
-        // BufferStorageController.addItem(TypesStorages.CHARACTER_STORAGE, obj);
     }
 }

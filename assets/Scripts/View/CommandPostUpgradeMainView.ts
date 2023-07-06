@@ -1,12 +1,12 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
-import { CommandPostPresenter } from '../Presenter/CommandPostPresenter';
-import { GamePresenter } from '../Presenter/GamePresenter';
-import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { CommandPostModel } from '../Model/CommandPostModel';
+import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
+import { GameModel } from '../Model/GameModel';
+import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { BackpackPresenter } from '../Presenter/BackpackPresenter';
 import { TypesItems } from '../Static/TypesItems';
 import { TypesObjects } from '../Static/TypesObjects';
-import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
+import { SpriteModel } from '../Model/SpriteModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('CommandPostUpgradeMainView')
@@ -70,49 +70,41 @@ export class CommandPostUpgradeMainView extends Component {
         CommandPostUpgradeMainView.instance = this
     }
 
-    public eventUpgradeCommandPost() {
-        CommandPostPresenter.addLevelCommandPost()
-        GamePresenter.reduceCoins(ConfigPresenter.getPriceUpdateMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
-        BackpackPresenter.reduceItemBackpack(TypesItems.PLAN_COMMAND_POST, ConfigPresenter.getImprivementResourceNumberMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
-        GamePresenter.addExperience(ConfigPresenter.getExpMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
-        // GamePresenter.addTechnoPower(ConfigStorageController.getPowerMainBuildingByLevel(CommandPostModel.instance.levelCommandPost))
-        HomeMapPresenter.upgradeLevelObject(HomeMapPresenter.getObjectParametersByType(TypesObjects.COMMAND_POST).index)
-    }
-
     public renderInterface() {
         let mainTitle = "Простой командный пункт"
-        // let actualLevel = "Ур. " + CommandPostStorageController.getLevelCommandPost();
-        // let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelCommandPost() + 1).toString();
-        // let level = GameStorageController.getLevel().toString();
-        // let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
-        // let actualPower = GameStorageController.getPower().toString();
-        // let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1).toString();
-        // let actualAttactBonus = ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost()).toString();
-        // let receivedAttactBonus = "+" + (ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1) - ConfigStorageController.getAttackBonusMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost())).toString();
-        // let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
-        // let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberMainBuildingByLevel(CommandPostStorageController.getLevelCommandPost() + 1));
-        // let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, CommandPostStorageController.getLevelCommandPost());
-        // let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.COMMAND_POST, (CommandPostStorageController.getLevelCommandPost() + 1));
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelCommandPost
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelCommandPost + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpMainBuildingByLevel(CommandPostModel.instance.levelCommandPost + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelCommandPost + 1).toString()
+        let actualAttactBonus = ConfigPresenter.getAttackBonusMainBuildingByLevel(CommandPostModel.instance.levelCommandPost).toString()
+        let receivedAttactBonus = "+" + (ConfigPresenter.getAttackBonusMainBuildingByLevel(CommandPostModel.instance.levelCommandPost + 1) - ConfigPresenter.getAttackBonusMainBuildingByLevel(CommandPostModel.instance.levelCommandPost)).toString()
 
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateMainBuildingByLevel(CommandPostModel.instance.levelCommandPost + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigPresenter.getImprivementResourceNumberMainBuildingByLevel(CommandPostModel.instance.levelCommandPost + 1))
+
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.COMMAND_POST, CommandPostModel.instance.levelCommandPost)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.COMMAND_POST, (CommandPostModel.instance.levelCommandPost + 1))
 
         this.mainTitle.string = mainTitle
-        // this.actualLevelObject.string = actualLevel;
-        // this.nextLevelObject.string = nextLevelObject;
-        // this.level.string = level;
-        // this.receivedExperience.string = receivedExperience;
-        // this.actualPower.string = actualPower;
-        // this.receivedPower.string = receivedPower;
-        // this.actualAttactBonus.string = actualAttactBonus
-        // this.receivedAttactBonus.string = receivedAttactBonus
-        // this.actualQuantityTroops.string = "0";
-        // this.nextQuantityTroops.string = "0";
-        // this.actualMarchingCampaign.string = "0";
-        // this.nextMarchingCampaign.string = "0";
+        this.actualLevelObject.string = actualLevel
+        this.nextLevelObject.string = nextLevelObject
+        this.level.string = level
+        this.receivedExperience.string = receivedExperience
+        this.actualPower.string = actualPower
+        this.receivedPower.string = receivedPower
+        this.actualAttactBonus.string = actualAttactBonus
+        this.receivedAttactBonus.string = receivedAttactBonus
+        this.actualQuantityTroops.string = "0"
+        this.nextQuantityTroops.string = "0"
+        this.actualMarchingCampaign.string = "0"
+        this.nextMarchingCampaign.string = "0"
 
-        // this.requirementCoins.string = requirementCoins
-        // this.requirementItems.string = requirementItems;
+        this.requirementCoins.string = requirementCoins
+        this.requirementItems.string = requirementItems
 
-        // this.actualSpriteObject.spriteFrame = actualSpriteObject;
-        // this.nextSpriteObject.spriteFrame = nextSpriteObject;
+        this.spriteActualLevelObject.spriteFrame = actualSpriteObject
+        this.spriteNextLevelObject.spriteFrame = nextSpriteObject
     }
 }

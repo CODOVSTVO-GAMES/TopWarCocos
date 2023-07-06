@@ -1,6 +1,15 @@
 import { _decorator, Component, Node, Label, Sprite, SpriteFrame } from 'cc';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { TypesModals } from '../Static/TypesModals';
+import { CommandPostModel } from '../Model/CommandPostModel';
+import { CommandPostPresenter } from '../Presenter/CommandPostPresenter';
+import { GameModel } from '../Model/GameModel';
+import { TypesItems } from '../Static/TypesItems';
+import { TypesObjects } from '../Static/TypesObjects';
+import { SpriteModel } from '../Model/SpriteModel';
+import { ConfigPresenter } from '../Presenter/ConfigPresenter';
+import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
+import { BackpackPresenter } from '../Presenter/BackpackPresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('CommandPostUpgradeOtherView')
@@ -57,7 +66,7 @@ export class CommandPostUpgradeOtherView extends Component {
         CommandPostUpgradeOtherView.instance = this
     }
 
-    eventUpgradeOther() {
+    public eventUpgradeOther() {
         let typeModal = SecondaryInterface.instance.getTypeActiveSecondLayoutModal();
 
         if (typeModal == TypesModals.UPGRATE_REPAIR_SHOP) this.eventUpgradeRepairShop()
@@ -74,371 +83,382 @@ export class CommandPostUpgradeOtherView extends Component {
         else if (typeModal == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND) this.eventUpgradeBuildBarracksOverland()
     }
 
-    eventUpgradeRepairShop() {
-        // CommandPostStorageController.addLevelRepairShop();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateRepairBuilding(CommandPostStorageController.getLevelRepairShop()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_COMMAND_POST, ConfigStorageController.getImprivementResourceNumberRepairBuilding(CommandPostStorageController.getLevelRepairShop()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop()));
-        // UpgradeOtherInterface.instance.updateInterfaceRepairShop();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeRepairShop() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeGoldMine() {
-        // CommandPostStorageController.addLevelMergeGoldMine();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_GOLD_MINE, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeGoldMine();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeGoldMine() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeTroopAir() {
-        // CommandPostStorageController.addLevelMergeTroopAir();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_TROOP_AIR, ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeTroopAir();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeTroopAir() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeTroopMarine() {
-        // CommandPostStorageController.addLevelMergeTroopMarine();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_TROOP_MARINE, ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeTroopMarine();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeTroopMarine() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeTroopOverland() {
-        // CommandPostStorageController.addLevelMergeTroopOverland();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_TROOP_OVERLAND, ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeTroopOverland();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeTroopOverland() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeBarracksAir() {
-        // CommandPostStorageController.addLevelMergeBarracksAir();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_BARRACK_AIR, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeBarracksAir();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeBarracksAir() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeBarracksMarine() {
-        // CommandPostStorageController.addLevelMergeBarracksMarine();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_BARRACK_MARINE, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeBarracksMarine();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeBarracksMarine() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeMergeBarracksOverland() {
-        // CommandPostStorageController.addLevelMergeBarracksOverland();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_BARRACK_OVERLAND, ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland()));
-        // UpgradeOtherInterface.instance.updateInterfaceMergeBarracksOverland();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeMergeBarracksOverland() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeBuildGoldMine() {
-        // CommandPostStorageController.addLevelBuildGoldMine();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_MERGE_GOLD_MINE, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelBuildGoldMine()));
-        // UpgradeOtherInterface.instance.updateInterfaceBuildGoldMine();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeBuildGoldMine() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeBuildBarracksAir() {
-        // CommandPostStorageController.addLevelBuildBarracksAir();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_BUILD_BARRACK_AIR, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir()));
-        // UpgradeOtherInterface.instance.updateInterfaceBuildBarracksAir();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeBuildBarracksAir() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeBuildBarracksMarine() {
-        // CommandPostStorageController.addLevelBuildBarracksMarine();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_BUILD_BARRACK_MARINE, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine()));
-        // UpgradeOtherInterface.instance.updateInterfaceBuildBarracksMarine();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeBuildBarracksMarine() {
+        CommandPostPresenter.processingUpgradeRepairShop()
     }
 
-    eventUpgradeBuildBarracksOverland() {
-        // CommandPostStorageController.addLevelBuildBarracksOverland();
-        // GameStorageController.reduceCoins(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
-        // BackpackStorageController.reduceItem(TypesItems.PLAN_BUILD_BARRACK_OVERLAND, ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
-        // GameStorageController.addExperience(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
-        // GameStorageController.addTechnoPower(ConfigStorageController.getPowerBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland()));
-        // UpgradeOtherInterface.instance.updateInterfaceBuildBarracksOverland();
-        // ModalCommandPostInterface.instance.updateInterface();
-        // UpgradeOtherLogic.checkBtnModal();
+    private eventUpgradeBuildBarracksOverland() {
+        CommandPostPresenter.processingUpgradeRepairShop()
+    }
+
+    renderButton() {
+        switch (SecondaryInterface.instance.getTypeActiveSecondLayoutModal()) {
+            case TypesModals.UPGRATE_REPAIR_SHOP:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_GOLD_MINE:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_TROOP_AIR:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_TROOP_MARINE:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_TROOP_OVERLAND:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_BARRACK_AIR:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_BARRACK_MARINE:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_BUILD_GOLD_MINE:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_BUILD_BARRACK_AIR:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_BUILD_BARRACK_MARINE:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+            case TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND:
+                if (CommandPostModel.instance.levelRepairShop < CommandPostModel.instance.levelCommandPost) {
+                    this.renderUpgradeButton()
+                }
+                else {
+                    this.renderGetItemsButton()
+                }
+                break
+        }
+    }
+
+    private renderUpgradeButton() {
+        this.upgradeButton.active = true
+        this.getItemsButton.active = false
+    }
+
+    private renderGetItemsButton() {
+        this.upgradeButton.active = false
+        this.getItemsButton.active = true
     }
 
     private render(mainTitle: string, actualLevel: string, nextLevelObject: string, level: string, receivedExperience: string, actualPower: string, receivedPower: string, requirementCoins: string, requirementItems: string, spriteActualLevelObject: SpriteFrame, spriteNextLevelObject: SpriteFrame, spriteUpgradeItem: SpriteFrame) {
-        this.mainTitle.string = mainTitle;
-        this.actualLevelObject_0.string = actualLevel;
-        this.actualLevelObject_1.string = actualLevel;
-        this.nextLevelObject.string = nextLevelObject;
-        this.gameLevel.string = level;
-        this.receivedExperience.string = receivedExperience;
-        this.actualPower.string = actualPower;
-        this.receivedPower.string = receivedPower;
-        this.requirementCoins.string = requirementCoins;
-        this.requirementItems.string = requirementItems;
-        this.spriteActualLevelObject.spriteFrame = spriteActualLevelObject;
-        this.spriteNextLevelObject.spriteFrame = spriteNextLevelObject;
-        this.spriteUpgradeItem.spriteFrame = spriteUpgradeItem;
+        this.mainTitle.string = mainTitle
+        this.actualLevelObject_0.string = actualLevel
+        this.actualLevelObject_1.string = actualLevel
+        this.nextLevelObject.string = nextLevelObject
+        this.gameLevel.string = level
+        this.receivedExperience.string = receivedExperience
+        this.actualPower.string = actualPower
+        this.receivedPower.string = receivedPower
+        this.requirementCoins.string = requirementCoins
+        this.requirementItems.string = requirementItems
+        this.spriteActualLevelObject.spriteFrame = spriteActualLevelObject
+        this.spriteNextLevelObject.spriteFrame = spriteNextLevelObject
+        this.spriteUpgradeItem.spriteFrame = spriteUpgradeItem
     }
 
-    // updateInterfaceRepairShop() {
-    //     let mainTitle = "Ремонтный цех";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelRepairShop();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelRepairShop() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelRepairShop() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateRepairBuilding(CommandPostStorageController.getLevelRepairShop() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigStorageController.getImprivementResourceNumberRepairBuilding(CommandPostStorageController.getLevelRepairShop() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostStorageController.getLevelRepairShop());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostStorageController.getLevelRepairShop() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_COMMAND_POST);
+    public renderInterfaceRepairShop() {
+        let mainTitle = "Ремонтный цех"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelRepairShop
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelRepairShop + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpMainBuildingByLevel(CommandPostModel.instance.levelRepairShop + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelRepairShop + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateRepairBuilding(CommandPostModel.instance.levelRepairShop + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_COMMAND_POST) + "/" + (ConfigPresenter.getImprivementResourceNumberRepairBuilding(CommandPostModel.instance.levelRepairShop + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostModel.instance.levelRepairShop)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.REPAIR_SHOP, CommandPostModel.instance.levelRepairShop + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_COMMAND_POST);
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeGoldMine() {
-    //     let mainTitle = "Обьединение золотого рудника";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeGoldMine();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeGoldMine() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeGoldMine() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_GOLD_MINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_GOLD_MINE);
+    public renderInterfaceMergeGoldMine() {
+        let mainTitle = "Обьединение золотого рудника"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeGoldMine
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeGoldMine + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeGoldMine + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_GOLD_MINE) + "/" + (ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_GOLD_MINE)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeTroopAir() {
-    //     let mainTitle = "Юнит ВВС";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeTroopAir();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeTroopAir() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeTroopAir() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_AIR) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostStorageController.getLevelMergeTroopAir() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_AIR);
+    public renderInterfaceMergeTroopAir() {
+        let mainTitle = "Юнит ВВС"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeTroopAir
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeTroopAir + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostModel.instance.levelMergeTroopAir + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeTroopAir + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostModel.instance.levelMergeTroopAir + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_TROOP_AIR) + "/" + (ConfigPresenter.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_AIR, CommandPostModel.instance.levelMergeTroopAir + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostModel.instance.levelMergeTroopAir)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_AIR, CommandPostModel.instance.levelMergeTroopAir + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_AIR)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeTroopMarine() {
-    //     let mainTitle = "Юнит ВМФ";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeTroopMarine();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeTroopMarine() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeTroopMarine() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_MARINE) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostStorageController.getLevelMergeTroopMarine() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_MARINE);
+    public renderInterfaceMergeTroopMarine() {
+        let mainTitle = "Юнит ВМФ"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeTroopMarine
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeTroopMarine + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostModel.instance.levelMergeTroopMarine + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeTroopMarine + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostModel.instance.levelMergeTroopMarine + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_TROOP_MARINE) + "/" + (ConfigPresenter.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_MARINE, CommandPostModel.instance.levelMergeTroopMarine + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostModel.instance.levelMergeTroopMarine)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_MARINE, CommandPostModel.instance.levelMergeTroopMarine + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_MARINE)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeTroopOverland() {
-    //     let mainTitle = "Юнит СВ";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeTroopOverland();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeTroopOverland() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeTroopOverland() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_TROOP_OVERLAND) + "/" + (ConfigStorageController.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostStorageController.getLevelMergeTroopOverland() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_OVERLAND);
+    public renderInterfaceMergeTroopOverland() {
+        let mainTitle = "Юнит СВ";
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeTroopOverland
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeTroopOverland + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostModel.instance.levelMergeTroopOverland + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeTroopOverland + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostModel.instance.levelMergeTroopOverland + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_TROOP_OVERLAND) + "/" + (ConfigPresenter.getImprivementResourceNumberUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, CommandPostModel.instance.levelMergeTroopOverland + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostModel.instance.levelMergeTroopOverland)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.TROOP_OVERLAND, CommandPostModel.instance.levelMergeTroopOverland + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_TROOP_OVERLAND)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeBarracksAir() {
-    //     let mainTitle = "Обьядинить базу ВВС";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeBarracksAir();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeBarracksAir() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeBarracksAir() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_AIR) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelMergeBarracksAir() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_AIR);
+    public renderInterfaceMergeBarracksAir() {
+        let mainTitle = "Обьядинить базу ВВС";
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeBarracksAir
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeBarracksAir + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeBarracksAir + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_BARRACK_AIR) + "/" + (ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_AIR)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeBarracksMarine() {
-    //     let mainTitle = "Синтезировать верфь";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeBarracksMarine();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeBarracksMarine() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeBarracksMarine() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_MARINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelMergeBarracksMarine() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_MARINE);
+    public renderInterfaceMergeBarracksMarine() {
+        let mainTitle = "Синтезировать верфь"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeBarracksMarine
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeBarracksMarine + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeBarracksMarine + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_BARRACK_MARINE) + "/" + (ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_MARINE)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceMergeBarracksOverland() {
-    //     let mainTitle = "Синтезировать казарму";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeBarracksOverland();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeBarracksOverland() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeBarracksOverland() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_MERGE_BARRACK_OVERLAND) + "/" + (ConfigStorageController.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelMergeBarracksOverland() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_OVERLAND);
+    public renderInterfaceMergeBarracksOverland() {
+        let mainTitle = "Синтезировать казарму"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelMergeBarracksOverland
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeBarracksOverland + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeBarracksOverland + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_MERGE_BARRACK_OVERLAND) + "/" + (ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_MERGE_BARRACK_OVERLAND)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceBuildGoldMine() {
-    //     let mainTitle = "Строительство золотого рудника";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelMergeGoldMine();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelMergeGoldMine() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelMergeGoldMine() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_GOLD_MINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostStorageController.getLevelMergeGoldMine() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_GOLD_MINE);
+    public renderInterfaceBuildGoldMine() {
+        let mainTitle = "Строительство золотого рудника"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelBuildGoldMine
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelMergeGoldMine + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelMergeGoldMine + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_BUILD_GOLD_MINE) + "/" + (ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_BUILD_GOLD_MINE)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceBuildBarracksAir() {
-    //     let mainTitle = "Построить базу ВВС";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelBuildBarracksAir();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelBuildBarracksAir() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelBuildBarracksAir() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_AIR) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostStorageController.getLevelBuildBarracksAir() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_AIR);
+    public renderInterfaceBuildBarracksAir() {
+        let mainTitle = "Построить базу ВВС"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelBuildBarracksAir
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelBuildBarracksAir + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelBuildBarracksAir + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_BUILD_BARRACK_AIR) + "/" + (ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_AIR)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceBuildBarracksMarine() {
-    //     let mainTitle = "Построить верфь";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelBuildBarracksMarine();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelBuildBarracksMarine() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelBuildBarracksMarine() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_MARINE) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostStorageController.getLevelBuildBarracksMarine() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_MARINE);
+    public renderInterfaceBuildBarracksMarine() {
+        let mainTitle = "Построить верфь"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelBuildBarracksMarine
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelBuildBarracksMarine + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelBuildBarracksMarine + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_BUILD_BARRACK_MARINE) + "/" + (ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_MARINE)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 
-    // updateInterfaceBuildBarracksOverland() {
-    //     let mainTitle = "Построить казарму";
-    //     let actualLevel = "Ур. " + CommandPostStorageController.getLevelBuildBarracksOverland();
-    //     let nextLevelObject = "Ур. " + (CommandPostStorageController.getLevelBuildBarracksOverland() + 1).toString();
-    //     let level = GameStorageController.getLevel().toString();
-    //     let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigStorageController.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1));
-    //     let actualPower = GameStorageController.getPower().toString();
-    //     let receivedPower = "+" + ConfigStorageController.getPowerMainBuildingByLevel(CommandPostStorageController.getLevelBuildBarracksOverland() + 1).toString();
-    //     let requirementCoins = ConvertLargeNumber.convert(GameStorageController.getCoins()) + "/" + ConvertLargeNumber.convert(ConfigStorageController.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1));
-    //     let requirementItems = BackpackStorageController.getQuantityByType(TypesItems.PLAN_BUILD_BARRACK_OVERLAND) + "/" + (ConfigStorageController.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1));
-    //     let actualSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland());
-    //     let nextSpriteObject = SpriteStorage.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostStorageController.getLevelBuildBarracksOverland() + 1);
-    //     let spriteUpgradeItem = SpriteStorage.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_OVERLAND);
+    public renderInterfaceBuildBarracksOverland() {
+        let mainTitle = "Построить казарму"
+        let actualLevel = "Ур. " + CommandPostModel.instance.levelBuildBarracksOverland
+        let nextLevelObject = "Ур. " + (CommandPostModel.instance.levelBuildBarracksOverland + 1).toString()
+        let level = GameModel.instance.level.toString()
+        let receivedExperience = "+" + ConvertLargeNumber.convert(ConfigPresenter.getExpirienceBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland + 1))
+        let actualPower = GameModel.instance.power.toString()
+        let receivedPower = "+" + ConfigPresenter.getPowerMainBuildingByLevel(CommandPostModel.instance.levelBuildBarracksOverland + 1).toString()
+        let requirementCoins = ConvertLargeNumber.convert(GameModel.instance.coins) + "/" + ConvertLargeNumber.convert(ConfigPresenter.getPriceUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland + 1))
+        let requirementItems = BackpackPresenter.getQuantityItemByType(TypesItems.PLAN_BUILD_BARRACK_OVERLAND) + "/" + (ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland + 1))
+        let actualSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland)
+        let nextSpriteObject = SpriteModel.instance.getObjectSprite(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland + 1)
+        let spriteUpgradeItem = SpriteModel.instance.getItemBackpack(TypesItems.PLAN_BUILD_BARRACK_OVERLAND)
 
-    //     this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem);
-    // }
-
-    // openUpgrade(trigger: boolean) {
-    //     this.btnUpgrade.active = true;
-    //     this.btnGetItems.active = false;
-    //     if (trigger) {
-    //         this.btnUpgrade.getComponent(Button).interactable = true;
-    //     }
-    //     else {
-    //         this.btnUpgrade.getComponent(Button).interactable = false;
-    //     }
-    // }
-
-    // openGetItems() {
-    //     this.btnUpgrade.active = false;
-    //     this.btnGetItems.active = true;
-    // }
+        this.render(mainTitle, actualLevel, nextLevelObject, level, receivedExperience, actualPower, receivedPower, requirementCoins, requirementItems, actualSpriteObject, nextSpriteObject, spriteUpgradeItem)
+    }
 }

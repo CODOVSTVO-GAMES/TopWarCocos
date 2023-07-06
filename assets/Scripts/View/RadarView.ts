@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Prefab, instantiate } from 'cc';
 import { RadarModel } from '../Model/RadarModel';
+import { ItemTaskRadarView } from './ItemTaskRadarView';
 const { ccclass, property } = _decorator;
 
 @ccclass('RadarView')
@@ -23,24 +24,24 @@ export class RadarView extends Component {
 
     renderLocator() {
         let tasks = RadarModel.instance.tasks
-        for (let l = 0; l < tasks.length; l++) {
-            if (tasks[l].node == null) {
+        for (let i = 0; i < tasks.length; i++) {
+            if (tasks[i].node == null) {
                 let task = instantiate(this.taskPrefab)
                 task.setParent(this.locatorNode)
-                task.position = tasks[l].coords
-                // let taskRender = task.getComponent(TaskRender)
-                // taskRender.render(tasks[l])
+                task.position = tasks[i].coords
+                let taskRender = task.getComponent(ItemTaskRadarView)
+                taskRender.render(tasks[i])
 
-                tasks[l].node = task
+                tasks[i].node = task
             }
         }
     }
 
     cleanTasks() {
         let tasks = RadarModel.instance.tasks
-        for (let l = 0; l < tasks.length; l++) {
-            tasks[l].node.destroy()
-            tasks[l].node = null
+        for (let i = 0; i < tasks.length; i++) {
+            tasks[i].node.destroy()
+            tasks[i].node = null
         }
     }
 }

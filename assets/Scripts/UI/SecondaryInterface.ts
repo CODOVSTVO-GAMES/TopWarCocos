@@ -21,119 +21,119 @@ const { ccclass, property } = _decorator;
 @ccclass('SecondaryInterface')
 export class SecondaryInterface extends Component {
 
-    public static instance: SecondaryInterface;
+    public static instance: SecondaryInterface
 
     @property({ type: Node })
-    public secondaryNode: Node;
+    public secondaryNode: Node
 
     @property({ type: Node })
-    public firstBackgraund: Node;
+    public firstBackgraund: Node
 
     @property({ type: Node })
-    public secondBackgraund: Node;
+    public secondBackgraund: Node
 
     @property({ type: Node })
-    public shopObject: Node;
+    public shopObject: Node
 
     @property({ type: Node })
-    public experience: Node;
+    public experience: Node
 
     @property({ type: Node })
-    public powar: Node;
+    public powar: Node
 
     @property({ type: Node })
-    public characters: Node;
+    public characters: Node
 
     @property({ type: Node })
-    public characterInfo: Node;
+    public characterInfo: Node
 
     @property({ type: Node })
-    public characterPumping: Node;
+    public characterPumping: Node
 
     @property({ type: Node })
-    public commandPost: Node;
+    public commandPost: Node
 
     @property({ type: Node })
-    public tasksGame: Node;
+    public tasksGame: Node
 
     @property({ type: Node })
-    public upgrateCommandPost0: Node;
+    public upgrateCommandPost0: Node
 
     @property({ type: Node })
-    public upgrateCommandPost1: Node;
+    public upgrateCommandPost1: Node
 
     @property({ type: Node })
-    public autocombine: Node;
+    public autocombine: Node
 
     @property({ type: Node })
-    public radar: Node;
+    public radar: Node
 
     @property({ type: Node })
-    public radarTaskInfo: Node;
+    public radarTaskInfo: Node
 
     @property({ type: Node })
-    public radarReward: Node;
+    public radarReward: Node
 
     @property({ type: Node })
-    public backpack: Node;
+    public backpack: Node
 
     @property({ type: Node })
-    public wireCut: Node;
+    public wireCut: Node
 
     @property({ type: Node })
-    public bombDisposal: Node;
+    public bombDisposal: Node
 
     @property({ type: Node })
-    public question: Node;
+    public question: Node
 
     @property({ type: Node })
-    public switch: Node;
+    public switch: Node
 
     @property({ type: Node })
-    public spatialMine: Node;
+    public spatialMine: Node
 
-    public listOpeningFirstLayoutModals: Array<QueueItem> = [];
+    public listOpeningFirstLayoutModals: QueueItem[] = []
 
-    public listOpeningSeconLayoutdModals: Array<QueueItem> = [];
+    public listOpeningSeconLayoutdModals: QueueItem[] = []
 
-    public activeFirstLayoutModal: string = "";
+    public activeFirstLayoutModal: string = ""
 
-    public activeSecondLayoutModal: string = "";
+    public activeSecondLayoutModal: string = ""
 
-    private workQueueFirstLayout: boolean = false;
+    private workQueueFirstLayout: boolean = false
 
-    private workQueueSecondLayout: boolean = false;
+    private workQueueSecondLayout: boolean = false
 
     onLoad() {
-        SecondaryInterface.instance = this;
+        SecondaryInterface.instance = this
     }
 
     start() {
-        this.closeAllModals();
+        this.closeAllModals()
     }
 
     redirectToGlobalMap() {
-        RedirectionToScene.redirect(SceneNames.GLOBAL_MAP);
+        RedirectionToScene.redirect(SceneNames.GLOBAL_MAP)
     }
 
     redirectToHomeMap() {
-        RedirectionToScene.redirect(SceneNames.HOME_MAP);
+        RedirectionToScene.redirect(SceneNames.HOME_MAP)
     }
 
     openFirstModal(type: string, data?: {}) {
         if (this.listOpeningFirstLayoutModals.find((i) => i.modalName == type) == null) {
-            this.listOpeningFirstLayoutModals.push(new QueueItem(type, data));
+            this.listOpeningFirstLayoutModals.push(new QueueItem(type, data))
             if (this.workQueueFirstLayout == false) {
-                this.queueFirstModals();
+                this.queueFirstModals()
             }
         }
     }
 
     openSecondModal(type: string, data?: {}) {
         if (this.listOpeningSeconLayoutdModals.find((i) => i.modalName == type) == null) {
-            this.listOpeningSeconLayoutdModals.push(new QueueItem(type, data));
+            this.listOpeningSeconLayoutdModals.push(new QueueItem(type, data))
             if (this.workQueueSecondLayout == false) {
-                this.queueSecondModals();
+                this.queueSecondModals()
             }
         }
     }
@@ -141,14 +141,14 @@ export class SecondaryInterface extends Component {
     queueFirstModals() {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
-            // try {
+            try {
                 if (this.listOpeningFirstLayoutModals.length > 0) {
                     this.openModal(this.listOpeningFirstLayoutModals[0]);
                     this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
                     this.listOpeningFirstLayoutModals.splice(0, 1);
                 }
-            // }
-            // catch { console.error("Ащибка в очереди"); clearInterval(interval); }
+            }
+            catch { console.error("Ащибка в очереди"); clearInterval(interval); }
         }, 50);
         this.workQueueFirstLayout = false;
     }

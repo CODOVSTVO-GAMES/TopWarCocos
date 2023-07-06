@@ -12,6 +12,7 @@ export class GameModel extends Component {
     public maxEnergy: number
     public experience: number
     public level: number
+    public power: number
     public maxPower: number
     public territoryPower: number
     public technoPower: number
@@ -32,6 +33,7 @@ export class GameModel extends Component {
         this.maxEnergy = 75
         this.experience = 0
         this.level = 1
+        this.power = 0
         this.maxPower = 0
         this.territoryPower = 0
         this.technoPower = 0

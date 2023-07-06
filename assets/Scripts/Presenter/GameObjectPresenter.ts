@@ -1,5 +1,4 @@
 import { ConfigPresenter } from "./ConfigPresenter"
-import { BarracksLogic } from "../Logic/BarracksLogic"
 import { BattleModel } from "../Model/BattleModel"
 import { ObjectParameters } from "../ObjectParameters"
 import { RedirectionToScene } from "../Other/RedirectionToScene"
@@ -13,6 +12,7 @@ import { AutocombinePresenter } from "./AutocombinePresenter"
 import { GamePresenter } from "./GamePresenter"
 import { HomeMapPresenter } from "./HomeMapPresenter"
 import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
+import { BarracksPresenter } from "./BarracksPresenter"
 
 export class GameObjectPresenter {
 
@@ -93,7 +93,7 @@ export class GameObjectPresenter {
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        BarracksLogic.instance.addTroop(typeObject, levelObject, indexObject)
+        BarracksPresenter.addTroop(typeObject, levelObject, indexObject)
     }
 
     private static processingBarrackMarine(objectParameters: ObjectParameters) {
@@ -101,7 +101,7 @@ export class GameObjectPresenter {
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        BarracksLogic.instance.addTroop(typeObject, levelObject, indexObject)
+        BarracksPresenter.addTroop(typeObject, levelObject, indexObject)
     }
 
     private static processingBarrackOverland(objectParameters: ObjectParameters) {
@@ -109,7 +109,7 @@ export class GameObjectPresenter {
         let levelObject = objectParameters.level
         let indexObject = objectParameters.index
 
-        BarracksLogic.instance.addTroop(typeObject, levelObject, indexObject)
+        BarracksPresenter.addTroop(typeObject, levelObject, indexObject)
     }
 
     private static processingCommandPost() {

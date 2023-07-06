@@ -24,22 +24,19 @@ export class AutocombinePresenter {
     }
 
     public static TEST() {
-        setTimeout(() => {
-            for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
-                AutocombineModel.instance.indexes[i].timeProfit -= 1
-                if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine)) {
-                    if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface()) {
-                        let time = -(1 - (((AutocombineModel.instance.indexes[i].timeProfit * 100) / 60) * 0.01))
-                        HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface().renderFillProgress(time);
-                    }
-                }
-                if (AutocombineModel.instance.indexes[i].timeProfit <= 0) {
-                    AutocombineModel.instance.indexes[i].timeProfit = 60;
-                    AutocombineModel.instance.allProfit += ConfigPresenter.getProdictionInTimeGoldMineByLevel(AutocombineModel.instance.indexes[i].levelGoldMine);
+        for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
+            AutocombineModel.instance.indexes[i].timeProfit -= 1
+            if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine)) {
+                if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface()) {
+                    let time = -(1 - (((AutocombineModel.instance.indexes[i].timeProfit * 100) / 60) * 0.01))
+                    HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface().renderFillProgress(time)
                 }
             }
-            this.TEST();
-        }, 1000)
+            if (AutocombineModel.instance.indexes[i].timeProfit <= 0) {
+                AutocombineModel.instance.indexes[i].timeProfit = 60
+                AutocombineModel.instance.allProfit += ConfigPresenter.getProdictionInTimeGoldMineByLevel(AutocombineModel.instance.indexes[i].levelGoldMine)
+            }
+        }
     }
 
     public static updateIndexGoldMine(oldIndex: number, newIndex: number) {
@@ -90,7 +87,6 @@ export class AutocombinePresenter {
             }
             objectParameters.getGoldMineInterface().closeMessage();
         }
-        this.saveStorage()
     }
 
     public static initQuantityWorkGoldMine() {
@@ -125,25 +121,5 @@ export class AutocombinePresenter {
 
     public static getIsActiveAutocombine(): boolean {
         return AutocombineModel.instance.isActiveAutocombine
-    }
-
-    public static saveStorage() {
-        let obj: Object[] = []
-        obj.push({
-            allProfit: AutocombineModel.instance.allProfit,
-            quantityWorkGoldMine: AutocombineModel.instance.quantityWorkGoldMine,
-            quantityProfit: AutocombineModel.instance.quantityProfit,
-            quantityCollect: AutocombineModel.instance.quantityCollect,
-            isActiveAutocombine: AutocombineModel.instance.isActiveAutocombine
-
-        })
-        for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
-            obj.push({
-                level: AutocombineModel.instance.indexes[i].levelGoldMine,
-                index: AutocombineModel.instance.indexes[i].indexGoldMine,
-                time: AutocombineModel.instance.indexes[i].timeProfit
-            })
-        }
-        // BufferStorageController.addItem(TypesStorages.AUTOCOMBINE_STORAGE, obj)
     }
 }

@@ -57,8 +57,14 @@ export class ServerApi {
             }
 
             const responseDTO = new ResponseDTO(json.data)
-            const responseJson = JSON.parse(JSON.stringify(responseDTO.data))
-            customFunction(responseJson, true)
+            if (json != null) {
+                const responseJson = JSON.parse(JSON.stringify(responseDTO.data))
+                customFunction(responseJson, true)
+            }
+            else 
+            {
+                console.log("ERROR JSON SERVER API")
+            }
         }
         else if (status == 403) {
             console.log('Сервер выдал 403. Перезагрузите клиент')
