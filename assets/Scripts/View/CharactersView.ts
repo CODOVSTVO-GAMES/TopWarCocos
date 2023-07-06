@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Label, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Component, Label, Sprite, SpriteFrame } from 'cc';
 import { CharacterInfo } from '../Structures/CharacterInfo';
 import { CharactersModel } from '../Model/CharactersModel';
 import { SpriteModel } from '../Model/SpriteModel';

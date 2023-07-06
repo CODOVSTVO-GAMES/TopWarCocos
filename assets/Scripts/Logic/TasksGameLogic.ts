@@ -43,7 +43,6 @@ export class TasksGameLogic extends Component {
             this.deleteTask(i)
             this.addTask(typeTask, levelObjectTask + 1, quantityRequired, 0)
             GamePresenter.addCoins(1)
-            // HomeMapPresenter.saveStorage()
         }
     }
 

@@ -86,7 +86,6 @@ export class RadarPresenter {
         RadarModel.instance.timeToUpdate = config.time;
         RadarModel.instance.signalQuality = 1;
         RadarModel.instance.radarExperience = 0;
-        this.saveStorage();
     }
 
     static assigningSaveValues(obj: Object) {
@@ -135,14 +134,12 @@ export class RadarPresenter {
     static addRadarAvailableMissions(value: number) {
         if (value == 0) return;
         RadarModel.instance.availableMissions += value;
-        this.saveStorage();
         // this.updateRadarAnimation();
     }
 
     static addRadarSignalQuantity(value: number) {
         if (value == 0) return;
         RadarModel.instance.signalQuality += value;
-        this.saveStorage();
     }
 
     static addRadarExperience(value: number) {
@@ -156,14 +153,11 @@ export class RadarPresenter {
             // ModalRadarLogic.instance.calculationRadar();
         }
         // RadarRender.instance.updateInterface()
-
-        this.saveStorage();
     }
 
     static reduceRadarTime(value: number) {
         if (value == 0) return;
         RadarModel.instance.timeToUpdate -= value;
-        this.saveStorage();
     }
 
     // static reduceRadarTask(task: BattleTask) {
@@ -173,34 +167,28 @@ export class RadarPresenter {
     //             RadarModel.instance.battleTasks.splice(i, 1);
     //         }
     //     }
-    //     this.saveStorage();
     //     this.updateRadarAnimation();
     // }
 
     static reduceRadarAvailableMissions(value: number) {
         if (value == 0) return;
         RadarModel.instance.availableMissions -= value;
-        this.saveStorage();
     }
 
     static equateRadarTime(value: number) {
         RadarModel.instance.timeToUpdate = value;
-        this.saveStorage();
     }
 
     static equateRadarSignalQuantity(value: number) {
         RadarModel.instance.signalQuality = value;
-        this.saveStorage();
     }
 
     static equateRadarAvailableMissions(value: number) {
         RadarModel.instance.availableMissions = value;
-        this.saveStorage();
     }
 
     static equateRadarExperience(value: number) {
         RadarModel.instance.radarExperience = value;
-        this.saveStorage();
     }
 
     // static updateRadarAnimation() {
@@ -238,20 +226,6 @@ export class RadarPresenter {
         }
 
     }
-
-    static saveStorage() {
-        let tasks = [];
-        let obj = {
-            radarLevel: RadarModel.instance.radarLevel,
-            availableMissions: RadarModel.instance.availableMissions,
-            timeToUpdate: RadarModel.instance.timeToUpdate,
-            signalQuality: RadarModel.instance.signalQuality,
-            radarExperience: RadarModel.instance.radarExperience,
-            tasks: tasks
-        };
-        // BufferStorageController.addItem(TypesStorages.RADAR_STORAGE, obj);
-    }
-
 
     private static generateTaskCoords(): Vec3 {
         let x = Math.floor(Math.random() * 200);

@@ -47,15 +47,15 @@ export class CharacterParameters extends Component {
         CharacterParameters.instance = this
     }
 
-    modalParametersOpen() {
+    public eventOpenParameters() {
         SecondaryInterface.instance.openCharacterPumping({ type: TypesModalPumping.PARAMETERS })
     }
 
-    modalPumpingLevelOpen() {
+    public eventOpenUpgradeLevel() {
         SecondaryInterface.instance.openCharacterPumping({ type: TypesModalPumping.PUMPING_LEVEL })
     }
 
-    modalPumpingStarsOpen() {
+    public eventOpenUpgradeStars() {
         SecondaryInterface.instance.openCharacterPumping({ type: TypesModalPumping.PUMPING_STARS })
     }
 

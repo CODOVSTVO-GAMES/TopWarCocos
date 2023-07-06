@@ -57,7 +57,7 @@ export class HeaderView extends Component {
     }
 
     public renderPower() {
-        let power = GameModel.instance.maxPower.toString()
+        let power = GameModel.instance.power.toString()
 
         this.power.string = power
     }

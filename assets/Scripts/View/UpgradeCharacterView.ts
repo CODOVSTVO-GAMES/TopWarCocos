@@ -103,7 +103,6 @@ export class UpgradeCharacterView extends Component {
             CharactersModel.instance.recalculationCharacter(this.characterIndex)
             CharacterParameters.instance.renderCharacter(this.characterIndex)
             this.renderModalPumpingStars();
-            // CharactrerStorageController.saveStorage();
         }
     }
 

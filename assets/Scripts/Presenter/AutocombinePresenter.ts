@@ -90,7 +90,6 @@ export class AutocombinePresenter {
             }
             objectParameters.getGoldMineInterface().closeMessage();
         }
-        this.saveStorage()
     }
 
     public static initQuantityWorkGoldMine() {
@@ -125,25 +124,5 @@ export class AutocombinePresenter {
 
     public static getIsActiveAutocombine(): boolean {
         return AutocombineModel.instance.isActiveAutocombine
-    }
-
-    public static saveStorage() {
-        let obj: Object[] = []
-        obj.push({
-            allProfit: AutocombineModel.instance.allProfit,
-            quantityWorkGoldMine: AutocombineModel.instance.quantityWorkGoldMine,
-            quantityProfit: AutocombineModel.instance.quantityProfit,
-            quantityCollect: AutocombineModel.instance.quantityCollect,
-            isActiveAutocombine: AutocombineModel.instance.isActiveAutocombine
-
-        })
-        for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
-            obj.push({
-                level: AutocombineModel.instance.indexes[i].levelGoldMine,
-                index: AutocombineModel.instance.indexes[i].indexGoldMine,
-                time: AutocombineModel.instance.indexes[i].timeProfit
-            })
-        }
-        // BufferStorageController.addItem(TypesStorages.AUTOCOMBINE_STORAGE, obj)
     }
 }

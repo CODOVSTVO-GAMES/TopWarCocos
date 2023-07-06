@@ -98,6 +98,14 @@ export class DataStorageService {
         GameModel.instance.arsenalPower = json.arsenalPower
         GameModel.instance.professionPower = json.professionPower
         GameModel.instance.formationPower = json.formationPower
+
+        GameModel.instance.power =
+            GameModel.instance.territoryPower +
+            GameModel.instance.technoPower +
+            GameModel.instance.heroPower +
+            GameModel.instance.arsenalPower +
+            GameModel.instance.professionPower +
+            GameModel.instance.formationPower
     }
 
     private static setHomeMapModelFromServer(obj: Object[]) {
