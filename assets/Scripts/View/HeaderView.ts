@@ -51,9 +51,9 @@ export class HeaderView extends Component {
     }
 
     public renderFillLevel() {
-        let fillLevel = 0
+        // let fillLevel = 0
 
-        this.fillLevel.fillRange = fillLevel
+        // this.fillLevel.fillRange = fillLevel
     }
 
     public renderPower() {
