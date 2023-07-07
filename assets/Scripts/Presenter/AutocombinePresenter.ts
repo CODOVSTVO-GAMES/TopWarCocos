@@ -25,11 +25,11 @@ export class AutocombinePresenter {
 
     public static TEST() {
         for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
-            AutocombineModel.instance.indexes[i].timeProfit -= 1
+            AutocombineModel.instance.indexes[i].timeProfit -= 12
             if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine)) {
-                if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface()) {
+                if (HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineView()) {
                     let time = -(1 - (((AutocombineModel.instance.indexes[i].timeProfit * 100) / 60) * 0.01))
-                    HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineInterface().renderFillProgress(time)
+                    HomeMapPresenter.getObjectParameter(AutocombineModel.instance.indexes[i].indexGoldMine).getGoldMineView().renderFillProgress(time)
                 }
             }
             if (AutocombineModel.instance.indexes[i].timeProfit <= 0) {
@@ -65,12 +65,12 @@ export class AutocombinePresenter {
             let check = false
             for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
                 if (AutocombineModel.instance.indexes[i].indexGoldMine == objectParameters.index) {
-                    objectParameters.getGoldMineInterface().openMessage()
+                    objectParameters.getGoldMineView().openMessage()
                     check = true
                 }
             }
             if (!check) {
-                objectParameters.getGoldMineInterface().openMessage();
+                objectParameters.getGoldMineView().openMessage();
                 AutocombineModel.instance.indexes.push(new Autocombine(objectParameters.level, objectParameters.index, 60))
             }
             AutocombineModel.instance.quantityProfit = 0;
@@ -81,11 +81,11 @@ export class AutocombinePresenter {
         else {
             for (let i = 0; i < AutocombineModel.instance.indexes.length; i++) {
                 if (AutocombineModel.instance.indexes[i].indexGoldMine == objectParameters.index) {
-                    objectParameters.getGoldMineInterface().openMessage()
+                    objectParameters.getGoldMineView().openMessage()
                     return
                 }
             }
-            objectParameters.getGoldMineInterface().closeMessage();
+            objectParameters.getGoldMineView().closeMessage();
         }
     }
 

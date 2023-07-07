@@ -87,6 +87,8 @@ export class Battle extends Component {
         let sizeTroopMarine = HomeMapPresenter.getSizeTroopMarine()
         let sizeTroopOverland = HomeMapPresenter.getSizeTroopOverland()
 
+        console.log(sizeTroopOverland)
+
         for (let i = 0; i < sizeTroopAir.length; i++) {
             if (sizeTroopAir[i] == 0) continue
             BattleModel.instance.arrayCards.push(new FreeUnit(TypesObjects.TROOP_AIR, i + 1, sizeTroopAir[i], 10))

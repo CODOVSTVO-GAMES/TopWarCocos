@@ -109,6 +109,8 @@ export class DataStorageService {
     }
 
     private static setHomeMapModelFromServer(obj: Object[]) {
+        let arrayLength = HomeMapModel.instance.mapSize
+        HomeMapModel.instance.arrayObjectParameters = new Array(arrayLength)
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))
             if (i == 0) {

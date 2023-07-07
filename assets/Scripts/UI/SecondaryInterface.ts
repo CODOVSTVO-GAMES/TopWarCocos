@@ -16,6 +16,7 @@ import { CharacterParameters } from '../View/CharacterParameters';
 import { UpgradeCharacterView } from '../View/UpgradeCharacterView';
 import { CharactersView } from '../View/CharactersView';
 import { TasksGameView } from '../View/TasksGameView';
+import { ShopObjectView } from '../View/ShopObjectView';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -174,6 +175,7 @@ export class SecondaryInterface extends Component {
 
     private openModal(item: QueueItem) {
         if (item.modalName == TypesModals.SHOP_OBJECT) {
+            ShopObjectView.instance.renderInterface()
             this.shopObject.active = true;
         }
         else if (item.modalName == TypesModals.EXPERIENCE) {

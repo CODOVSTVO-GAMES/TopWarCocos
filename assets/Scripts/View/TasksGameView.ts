@@ -20,7 +20,7 @@ export class TasksGameView extends Component {
         for (let i = 0; i < TasksGameModel.instance.itemsTasksGame.length; i++) {
             TasksGameModel.instance.itemsTasksGame[i].destroy()
         }
-        TasksGameModel.instance.itemsTasksGame = new Array
+        TasksGameModel.instance.itemsTasksGame = []
         for (let i = 0; i < TasksGameModel.instance.tasks.length; i++) {
 
             let typeItem: string

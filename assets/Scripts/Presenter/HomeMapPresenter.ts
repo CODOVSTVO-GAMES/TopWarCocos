@@ -39,8 +39,8 @@ export class HomeMapPresenter {
             if (HomeMapModel.instance.selectedObject.getArrowGameObject()) {
                 HomeMapModel.instance.selectedObject.getArrowGameObject().deactiveArrow()
             }
-            if (HomeMapModel.instance.selectedObject.getObjectInterface()) {
-                HomeMapModel.instance.selectedObject.getObjectInterface().closeInterface()
+            if (HomeMapModel.instance.selectedObject.getObjectView()) {
+                HomeMapModel.instance.selectedObject.getObjectView().closeInterface()
             }
             HomeMapModel.instance.selectedObject.nodeObject.setParent(HomeMapModel.instance.coords[HomeMapModel.instance.selectedObject.index])
             HomeMapModel.instance.selectedObject.nodeObject.position = Vec3.ZERO
@@ -185,11 +185,10 @@ export class HomeMapPresenter {
     public static getSizeTroopAir(): number[] {
         let sizeTroopAir: number[] = new Array(80).fill(0)
 
-        for (let i = 0; i < this.getMapSize(); i++) {
-            if (this.getObjectParameter(i) == null) continue
-            if (this.getObjectParameter(i).index != i) continue
-            if (this.getObjectParameter(i).type == TypesObjects.TROOP_AIR) {
-                sizeTroopAir[this.getObjectParameter(i).level - 1] += 1
+        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
+            if (HomeMapModel.instance.temporaryLocalStorage[i] == null) continue
+            if (HomeMapModel.instance.temporaryLocalStorage[i].type == TypesObjects.TROOP_AIR) {
+                sizeTroopAir[HomeMapModel.instance.temporaryLocalStorage[i].level - 1] += 1
             }
         }
         return sizeTroopAir
@@ -198,11 +197,10 @@ export class HomeMapPresenter {
     public static getSizeTroopMarine(): number[] {
         let sizeTroopMarine: number[] = new Array(80).fill(0)
 
-        for (let i = 0; i < this.getMapSize(); i++) {
-            if (this.getObjectParameter(i) == null) continue
-            if (this.getObjectParameter(i).index != i) continue
-            if (this.getObjectParameter(i).type == TypesObjects.TROOP_MARINE) {
-                sizeTroopMarine[this.getObjectParameter(i).level - 1] += 1
+        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
+            if (HomeMapModel.instance.temporaryLocalStorage[i] == null) continue
+            if (HomeMapModel.instance.temporaryLocalStorage[i].type == TypesObjects.TROOP_MARINE) {
+                sizeTroopMarine[HomeMapModel.instance.temporaryLocalStorage[i].level - 1] += 1
             }
         }
         return sizeTroopMarine
@@ -211,11 +209,10 @@ export class HomeMapPresenter {
     public static getSizeTroopOverland(): number[] {
         let sizeTroopOverland: number[] = new Array(80).fill(0)
 
-        for (let i = 0; i < this.getMapSize(); i++) {
-            if (this.getObjectParameter(i) == null) continue
-            if (this.getObjectParameter(i).index != i) continue
-            if (this.getObjectParameter(i).type == TypesObjects.TROOP_OVERLAND) {
-                sizeTroopOverland[this.getObjectParameter(i).level - 1] += 1
+        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
+            if (HomeMapModel.instance.temporaryLocalStorage[i] == null) continue
+            if (HomeMapModel.instance.temporaryLocalStorage[i].type == TypesObjects.TROOP_OVERLAND) {
+                sizeTroopOverland[HomeMapModel.instance.temporaryLocalStorage[i].level - 1] += 1
             }
         }
         return sizeTroopOverland
