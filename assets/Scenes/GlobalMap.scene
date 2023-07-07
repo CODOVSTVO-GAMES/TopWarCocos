@@ -24,7 +24,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 2312
+      "__id__": 2310
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -55,7 +55,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 2313
+      "__id__": 2311
     },
     "_id": "ddb8f741-889e-4303-abc8-39b5ea159d53"
   },
@@ -75,9 +75,6 @@
       },
       {
         "__id__": 2308
-      },
-      {
-        "__id__": 2310
       }
     ],
     "_active": true,
@@ -221,15 +218,6 @@
     "secondBackgraund": {
       "__id__": 1730
     },
-    "profile": {
-      "__id__": 367
-    },
-    "shopCoins": {
-      "__id__": 376
-    },
-    "shopGems": {
-      "__id__": 385
-    },
     "shopObject": {
       "__id__": 395
     },
@@ -257,9 +245,6 @@
     "upgrateCommandPost1": {
       "__id__": 1842
     },
-    "bank": {
-      "__id__": 1245
-    },
     "autocombine": {
       "__id__": 1255
     },
@@ -272,14 +257,8 @@
     "radarReward": {
       "__id__": 2240
     },
-    "repairShop": {
-      "__id__": 1385
-    },
     "backpack": {
       "__id__": 1395
-    },
-    "dialog": {
-      "__id__": 1462
     },
     "wireCut": {
       "__id__": 1477
@@ -9343,7 +9322,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 960,
+    "_orthoHeight": 1309.7014925373135,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -76537,18 +76516,6 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "amountCoins": {
-      "__id__": 275
-    },
-    "amountGems": {
-      "__id__": 291
-    },
-    "countLevel": {
-      "__id__": 307
-    },
-    "countPower": {
-      "__id__": 320
-    },
     "mainNode": {
       "__id__": 262
     },
@@ -76791,72 +76758,6 @@
     "_id": "98BlZFYEhIOaJADeyXGLSg"
   },
   {
-    "__type__": "cc.Node",
-    "_name": "SpawnObjectOnGlobalMap",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 2311
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "a8Ng80UspHlIIO1kypNAIv"
-  },
-  {
-    "__type__": "65ed8P+eQ9Pf5CqsBLTD9Ut",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2310
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "touchObject": {
-      "__id__": 9
-    },
-    "basePrefab": {
-      "__uuid__": "389a669a-1e99-4e81-8a73-53a97d51550e",
-      "__expectedType__": "cc.Prefab"
-    },
-    "enemyPrefab": {
-      "__uuid__": "1fb9a3b8-2807-4e37-ad2a-70012a8b1d97",
-      "__expectedType__": "cc.Prefab"
-    },
-    "_id": "117UEY51JE64p3Q1wP9oIf"
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": null,
     "asset": null,
@@ -76935,22 +76836,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 2314
+      "__id__": 2312
     },
     "shadows": {
-      "__id__": 2315
+      "__id__": 2313
     },
     "_skybox": {
-      "__id__": 2316
+      "__id__": 2314
     },
     "fog": {
-      "__id__": 2317
+      "__id__": 2315
     },
     "octree": {
-      "__id__": 2318
+      "__id__": 2316
     },
     "lightProbeInfo": {
-      "__id__": 2319
+      "__id__": 2317
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
