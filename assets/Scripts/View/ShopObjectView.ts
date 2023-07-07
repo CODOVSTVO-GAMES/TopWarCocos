@@ -127,20 +127,6 @@ export class ShopObjectView extends Component {
         this.iconBarrackOverland.spriteFrame = iconBarrackOverland
         this.iconGoldMine.spriteFrame = iconGoldMine
 
-        if (GameModel.instance.coins >= ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, levelBuildBarracksAir)) {
-            this.buttonBarrackAir.interactable = true
-        }
-        else {
-            this.buttonBarrackAir.interactable = false
-        }
-
-        if (GameModel.instance.coins >= ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, levelBuildBarracksMarine)) {
-            this.buttonBarrackMarine.interactable = true
-        }
-        else {
-            this.buttonBarrackMarine.interactable = false
-        }
-
         if (GameModel.instance.coins >= ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, levelBuildBarracksOverland)) {
             this.buttonBarrackOverland.interactable = true
         }
@@ -153,6 +139,30 @@ export class ShopObjectView extends Component {
         }
         else {
             this.buttonGoldMine.interactable = false
+        }
+
+        if (GameModel.instance.level >= 12) {
+            if (GameModel.instance.coins >= ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, levelBuildBarracksMarine)) {
+                this.buttonBarrackMarine.interactable = true
+            }
+            else {
+                this.buttonBarrackMarine.interactable = false
+            }
+        }
+        else {
+            this.buttonBarrackMarine.interactable = false
+        }
+
+        if (GameModel.instance.level >= 18) {
+            if (GameModel.instance.coins >= ConfigPresenter.getPriceBuyBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, levelBuildBarracksAir)) {
+                this.buttonBarrackAir.interactable = true
+            }
+            else {
+                this.buttonBarrackAir.interactable = false
+            }
+        }
+        else {
+            this.buttonBarrackAir.interactable = false
         }
     }
 }

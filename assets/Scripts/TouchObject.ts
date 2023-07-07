@@ -37,12 +37,14 @@ export class TouchObject extends Component {
         this.touchObject.on(Input.EventType.TOUCH_START, this.touchStart, this)
         this.touchObject.on(Input.EventType.TOUCH_MOVE, this.touchMove, this)
         this.touchObject.on(Input.EventType.TOUCH_END, this.touchEnd, this)
+        this.touchObject.on(Input.EventType.TOUCH_CANCEL, this.touchEnd, this)
     }
 
     public onDestroy() {
         this.touchObject.off(Input.EventType.TOUCH_START, this.touchStart)
         this.touchObject.off(Input.EventType.TOUCH_MOVE, this.touchMove)
         this.touchObject.off(Input.EventType.TOUCH_END, this.touchEnd)
+        this.touchObject.off(Input.EventType.TOUCH_CANCEL, this.touchEnd)
     }
 
     private touchStart() {
@@ -56,7 +58,7 @@ export class TouchObject extends Component {
         HomeMapPresenter.setSelectObject(this.objectParameters)
 
         this.mainObject.setParent(HomeMapPresenter.getParentObject(), true)
-        this.objectParameters.getObjectInterface().openInterface()
+        this.objectParameters.getObjectView().openInterface()
 
         if (this.objectParameters.getArrowGameObject()) {
             this.objectParameters.getArrowGameObject().activeArrow()

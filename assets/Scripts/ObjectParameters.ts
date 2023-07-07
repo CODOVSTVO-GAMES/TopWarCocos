@@ -71,13 +71,13 @@ export class ObjectParameters extends Component {
         }
     }
 
-    public getObjectInterface(): GameObjectView {
+    public getObjectView(): GameObjectView {
         try { this.gameObjectView = this.getComponent(GameObjectView) }
         catch { console.log("error: gameObjectView not received") }
         return this.gameObjectView
     }
 
-    public getGoldMineInterface(): GoldMineView {
+    public getGoldMineView(): GoldMineView {
         try { this.goldMineView = this.getComponent(GoldMineView) }
         catch { console.log("error: goldMineView not received") }
         return this.goldMineView

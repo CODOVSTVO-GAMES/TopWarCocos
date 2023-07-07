@@ -202,7 +202,6 @@ export class GameObjectPresenter {
         BattleModel.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
         BattleModel.instance.indexObjectBattle = objectParameters.index
 
-        // HomeMapStorageController.saveStorageServer()
         RedirectionToScene.redirect(SceneNames.BATTLE)
     }
 } 
