@@ -128,7 +128,6 @@ export class DataStorageService {
     }
 
     public static setHomeMapModelFromLocal() {
-        console.log(HomeMapModel.instance.temporaryLocalStorage)
         if (HomeMapModel.instance.temporaryLocalStorage.length > 0) {
             HomeMapModel.instance.arrayObjectParameters = new Array(2000)
             for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
@@ -139,7 +138,7 @@ export class DataStorageService {
 
                 HomeMapPresenter.setObjectParameter(objectParameter, typeObject, indexObject)
             }
-            HomeMapModel.instance.temporaryLocalStorage = new Array
+            HomeMapModel.instance.temporaryLocalStorage = []
         }
     }
 
@@ -204,6 +203,7 @@ export class DataStorageService {
     }
 
     private static setTasksGameModel(obj: Object[]) {
+        TasksGameModel.instance.tasks = []
         for (let i = 0; i < obj.length; i++) {
             let json = JSON.parse(JSON.stringify(obj[i]))
             TasksGameModel.instance.tasks.push(new TaskGame(json.typeTask, json.levelObjectTask, json.quantityRequired, json.quantityCompleted, json.rewardTrigger))

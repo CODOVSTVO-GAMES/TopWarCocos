@@ -176,7 +176,7 @@ export class BufferPresenter {
             obj.push({
                 typeTask: TasksGameModel.instance.tasks[i].typeTask,
                 levelObjectTask: TasksGameModel.instance.tasks[i].levelObjectTask,
-                indequantityRequiredx: TasksGameModel.instance.tasks[i].quantityRequired,
+                quantityRequired: TasksGameModel.instance.tasks[i].quantityRequired,
                 quantityCompleted: TasksGameModel.instance.tasks[i].quantityCompleted,
                 rewardTrigger: TasksGameModel.instance.tasks[i].rewardTrigger
             })

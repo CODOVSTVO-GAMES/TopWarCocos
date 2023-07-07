@@ -77,7 +77,14 @@ export class TroopRender extends Component {
         else if (this.team == TypesTeam.TEAM_ENEMY) {
             typeAnimation = TypesAnimation.BULLET_SHOT_ENEMY;
         }
-        this.anim.play(typeAnimation);
+        try {
+            this.anim.play(typeAnimation);
+        }
+        catch
+        {
+            console.log("error play animation")
+        }
+
     }
 
     renderDead() {
