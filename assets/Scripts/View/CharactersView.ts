@@ -61,9 +61,9 @@ export class CharactersView extends Component {
             str = str + CharactersModel.instance.characters[i].type + ','
         }
 
-        let rCharacters = new Array<CharacterInfo>
-        let srCharacters = new Array<CharacterInfo>
-        let ssrCharacters = new Array<CharacterInfo>
+        let rCharacters = []
+        let srCharacters = []
+        let ssrCharacters = []
 
         for (let l = 0; l < CharactersModel.instance.characters.length; l++) {
             if (CharactersModel.instance.characters[l].type == 'r') {

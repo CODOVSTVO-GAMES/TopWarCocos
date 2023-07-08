@@ -34,7 +34,6 @@ export class SpawnObjectsOnHomeMap {
     }
 
     public static SpawnObjectsOnHomeMapPos(type: string, location: string, level: number, index: number): ObjectParameters {
-
         let object = instantiate(PrefabsModel.instance.getObjectPrefab(type))
         let objectParameter = object.getComponent(ObjectParameters)
 
@@ -88,10 +87,12 @@ export class SpawnObjectsOnHomeMap {
                         check = true
                         break
                     }
-
-
                     try {
                         if (HomeMapStructure.structure[i - arrayIndexes[j]].numberZone > HomeMapModel.instance.numberOpenZones) {
+                            check = true
+                            break
+                        }
+                        if (HomeMapStructure.structure[i - arrayIndexes[j]].location != location) {
                             check = true
                             break
                         }
@@ -99,8 +100,6 @@ export class SpawnObjectsOnHomeMap {
                     catch {
 
                     }
-
-
                 }
                 if (check == false) {
                     minDistance = currentDistance

@@ -27,7 +27,7 @@ export class GameModel extends Component {
     }
 
     private assignStartingValues() {
-        this.coins = 100000000
+        this.coins = 30000
         this.gems = 70
         this.energy = 75
         this.maxEnergy = 75

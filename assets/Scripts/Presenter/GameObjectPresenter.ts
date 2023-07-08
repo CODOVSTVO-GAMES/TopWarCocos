@@ -13,6 +13,7 @@ import { GamePresenter } from "./GamePresenter"
 import { HomeMapPresenter } from "./HomeMapPresenter"
 import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 import { BarracksPresenter } from "./BarracksPresenter"
+import { GameModel } from "../Model/GameModel"
 
 export class GameObjectPresenter {
 
@@ -44,6 +45,9 @@ export class GameObjectPresenter {
         }
         else if (objectParameters.type == TypesObjects.RADAR) {
             this.processingRadar()
+        }
+        else if (objectParameters.type == TypesObjects.TREASURES) {
+            this.processingTreasures(objectParameters)
         }
         else if (objectParameters.type == TypesObjects.WHOLE_MANIPULATOR) {
             this.processingBattle(objectParameters)
@@ -142,6 +146,12 @@ export class GameObjectPresenter {
         }
     }
 
+    private static processingRadar() {
+        let typeModal = TypesModals.RADAR
+
+        SecondaryInterface.instance.openFirstModal(typeModal)
+    }
+
     private static processingTreasures(objectParameters: ObjectParameters) {
         let typeObject = objectParameters.type
         let indexObject = objectParameters.index
@@ -149,12 +159,6 @@ export class GameObjectPresenter {
 
         HomeMapPresenter.setObjectParameter(null, typeObject, indexObject)
         nodeObject.destroy()
-    }
-
-    private static processingRadar() {
-        let typeModal = TypesModals.RADAR
-
-        SecondaryInterface.instance.openFirstModal(typeModal)
     }
 
     private static processingPaddedManipulator(objectParameters: ObjectParameters) {
@@ -169,33 +173,66 @@ export class GameObjectPresenter {
     }
 
     private static processingWall2x2(objectParameters: ObjectParameters) {
-        let typeObject = TypesObjects.BATTLE_2X2
-        let typeLocation = TypesLocation.EARTH
-        let levelObject = 1
-        let indexObject = objectParameters.index
+        let numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+        let priceBattle = BattleModel.instance.mapEnemyArr[numberBattle - 1].power
 
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
-        objectParameters.node.destroy()
+        if (GameModel.instance.coins >= priceBattle) {
+            let typeObject = TypesObjects.BATTLE_2X2
+            let typeLocation = TypesLocation.EARTH
+            let levelObject = 1
+            let indexObject = objectParameters.index
+
+            GamePresenter.reduceCoins(priceBattle)
+            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+            objectParameters.node.destroy()
+
+            setTimeout(() => {
+                //дописать условие
+                this.processingBattle(objectParameters)
+            }, 1000)
+        }
     }
 
     private static processingWall4x4(objectParameters: ObjectParameters) {
-        let typeObject = TypesObjects.BATTLE_4X4
-        let typeLocation = TypesLocation.EARTH
-        let levelObject = 1
-        let indexObject = objectParameters.index
+        let numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+        let priceBattle = BattleModel.instance.mapEnemyArr[numberBattle - 1].power
 
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
-        objectParameters.node.destroy()
+        if (GameModel.instance.coins >= priceBattle) {
+            let typeObject = TypesObjects.BATTLE_4X4
+            let typeLocation = TypesLocation.EARTH
+            let levelObject = 1
+            let indexObject = objectParameters.index
+
+            GamePresenter.reduceCoins(priceBattle)
+            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+            objectParameters.node.destroy()
+
+            setTimeout(() => {
+                //дописать условие
+                this.processingBattle(objectParameters)
+            }, 1000)
+        }
     }
 
     private static processingWall8x8(objectParameters: ObjectParameters) {
-        let typeObject = TypesObjects.BATTLE_8X8
-        let typeLocation = TypesLocation.EARTH
-        let levelObject = 1
-        let indexObject = objectParameters.index
+        let numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
+        let priceBattle = BattleModel.instance.mapEnemyArr[numberBattle - 1].power
 
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
-        objectParameters.node.destroy()
+        if (GameModel.instance.coins >= priceBattle) {
+            let typeObject = TypesObjects.BATTLE_8X8
+            let typeLocation = TypesLocation.EARTH
+            let levelObject = 1
+            let indexObject = objectParameters.index
+
+            GamePresenter.reduceCoins(priceBattle)
+            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+            objectParameters.node.destroy()
+
+            setTimeout(() => {
+                //дописать условие
+                this.processingBattle(objectParameters)
+            }, 1000)
+        }
     }
 
     private static processingBattle(objectParameters: ObjectParameters) {

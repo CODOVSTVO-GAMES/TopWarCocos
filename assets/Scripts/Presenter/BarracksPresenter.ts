@@ -46,7 +46,7 @@ export class BarracksPresenter {
         BarrackModel.instance.arrayBarracks.push(new Barrack(indexBarrack))
 
         if (BarrackModel.instance.arrayBarracks[BarrackModel.instance.arrayBarracks.length - 1].queueSpawnObject == null) {
-            BarrackModel.instance.arrayBarracks[BarrackModel.instance.arrayBarracks.length - 1].queueSpawnObject = new Array
+            BarrackModel.instance.arrayBarracks[BarrackModel.instance.arrayBarracks.length - 1].queueSpawnObject = []
         }
 
         BarrackModel.instance.arrayBarracks[BarrackModel.instance.arrayBarracks.length - 1].queueSpawnObject.push(new QueueBarrack(typeTroop, levelTroop, timeSpawnTroop))

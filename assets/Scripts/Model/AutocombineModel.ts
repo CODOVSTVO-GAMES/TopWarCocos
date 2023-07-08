@@ -17,7 +17,6 @@ export class AutocombineModel extends Component {
     protected onLoad(): void {
         AutocombineModel.instance = this
         this.assignStartingValues()
-        // AutocombinePresenter.TEST()
     }
 
     private assignStartingValues() {

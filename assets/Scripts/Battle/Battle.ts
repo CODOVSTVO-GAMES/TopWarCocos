@@ -59,10 +59,10 @@ export class Battle extends Component {
         this.getQuantityAvailableFreeCoords()
     }
 
-    getCommands(mapNumber: number) {
-        for (let l = 0; l < BattleModel.instance.mapEnemyArr.length; l++) {
-            if (BattleModel.instance.mapEnemyArr[l].mapNumber == mapNumber) {
-                return BattleModel.instance.mapEnemyArr[l]
+    getCommands(mapNumber: number): MapEnemyBattle {
+        for (let i = 0; i < BattleModel.instance.mapEnemyArr.length; i++) {
+            if (BattleModel.instance.mapEnemyArr[i].mapNumber == mapNumber) {
+                return BattleModel.instance.mapEnemyArr[i]
             }
         }
         console.log('Не найдена такая команда. Запросите с сервера')
