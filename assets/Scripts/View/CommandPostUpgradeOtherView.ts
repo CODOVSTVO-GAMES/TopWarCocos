@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Label, Sprite, SpriteFrame } from 'cc';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
-import { TypesModals } from '../Static/TypesModals';
+import { TypesViews } from '../Static/TypesViews';
 import { CommandPostModel } from '../Model/CommandPostModel';
 import { CommandPostPresenter } from '../Presenter/CommandPostPresenter';
 import { GameModel } from '../Model/GameModel';
@@ -69,18 +69,18 @@ export class CommandPostUpgradeOtherView extends Component {
     public eventUpgradeOther() {
         let typeModal = SecondaryInterface.instance.getTypeActiveSecondLayoutModal();
 
-        if (typeModal == TypesModals.UPGRATE_REPAIR_SHOP) this.eventUpgradeRepairShop()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_GOLD_MINE) this.eventUpgradeMergeGoldMine()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_TROOP_AIR) this.eventUpgradeMergeTroopAir()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_TROOP_MARINE) this.eventUpgradeMergeTroopMarine()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND) this.eventUpgradeMergeBarracksOverland()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_BARRACK_AIR) this.eventUpgradeMergeBarracksAir()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_BARRACK_MARINE) this.eventUpgradeMergeBarracksMarine()
-        else if (typeModal == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND) this.eventUpgradeMergeBarracksOverland()
-        else if (typeModal == TypesModals.UPGRATE_BUILD_GOLD_MINE) this.eventUpgradeBuildGoldMine()
-        else if (typeModal == TypesModals.UPGRATE_BUILD_BARRACK_AIR) this.eventUpgradeBuildBarracksAir()
-        else if (typeModal == TypesModals.UPGRATE_BUILD_BARRACK_MARINE) this.eventUpgradeBuildBarracksMarine()
-        else if (typeModal == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND) this.eventUpgradeBuildBarracksOverland()
+        if (typeModal == TypesViews.UPGRATE_REPAIR_SHOP) this.eventUpgradeRepairShop()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_GOLD_MINE) this.eventUpgradeMergeGoldMine()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_TROOP_AIR) this.eventUpgradeMergeTroopAir()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_TROOP_MARINE) this.eventUpgradeMergeTroopMarine()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_TROOP_OVERLAND) this.eventUpgradeMergeBarracksOverland()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_BARRACK_AIR) this.eventUpgradeMergeBarracksAir()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_BARRACK_MARINE) this.eventUpgradeMergeBarracksMarine()
+        else if (typeModal == TypesViews.UPGRATE_MERGE_BARRACK_OVERLAND) this.eventUpgradeMergeBarracksOverland()
+        else if (typeModal == TypesViews.UPGRATE_BUILD_GOLD_MINE) this.eventUpgradeBuildGoldMine()
+        else if (typeModal == TypesViews.UPGRATE_BUILD_BARRACK_AIR) this.eventUpgradeBuildBarracksAir()
+        else if (typeModal == TypesViews.UPGRATE_BUILD_BARRACK_MARINE) this.eventUpgradeBuildBarracksMarine()
+        else if (typeModal == TypesViews.UPGRATE_BUILD_BARRACK_OVERLAND) this.eventUpgradeBuildBarracksOverland()
     }
 
     private eventUpgradeRepairShop() {
@@ -135,51 +135,51 @@ export class CommandPostUpgradeOtherView extends Component {
         let typeActiveView = SecondaryInterface.instance.getTypeActiveSecondLayoutModal()
         let levelCommandPost = CommandPostModel.instance.levelCommandPost
 
-        if (typeActiveView == TypesModals.UPGRATE_REPAIR_SHOP) {
+        if (typeActiveView == TypesViews.UPGRATE_REPAIR_SHOP) {
             if (CommandPostModel.instance.levelRepairShop < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_GOLD_MINE) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_GOLD_MINE) {
             if (CommandPostModel.instance.levelMergeGoldMine < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_TROOP_AIR) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_TROOP_AIR) {
             if (CommandPostModel.instance.levelMergeTroopAir < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_TROOP_MARINE) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_TROOP_MARINE) {
             if (CommandPostModel.instance.levelMergeTroopMarine < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_TROOP_OVERLAND) {
             if (CommandPostModel.instance.levelMergeTroopOverland < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_BARRACK_AIR) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_BARRACK_AIR) {
             if (CommandPostModel.instance.levelMergeBarracksAir < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_BARRACK_MARINE) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_BARRACK_MARINE) {
             if (CommandPostModel.instance.levelMergeBarracksMarine < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND) {
+        else if (typeActiveView == TypesViews.UPGRATE_MERGE_BARRACK_OVERLAND) {
             if (CommandPostModel.instance.levelMergeBarracksOverland < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_BUILD_GOLD_MINE) {
+        else if (typeActiveView == TypesViews.UPGRATE_BUILD_GOLD_MINE) {
             if (CommandPostModel.instance.levelBuildGoldMine < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_BUILD_BARRACK_AIR) {
+        else if (typeActiveView == TypesViews.UPGRATE_BUILD_BARRACK_AIR) {
             if (CommandPostModel.instance.levelBuildBarracksAir < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_BUILD_BARRACK_MARINE) {
+        else if (typeActiveView == TypesViews.UPGRATE_BUILD_BARRACK_MARINE) {
             if (CommandPostModel.instance.levelBuildBarracksMarine < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }
-        else if (typeActiveView == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND) {
+        else if (typeActiveView == TypesViews.UPGRATE_BUILD_BARRACK_OVERLAND) {
             if (CommandPostModel.instance.levelBuildBarracksOverland < levelCommandPost) this.renderUpgradeButton()
             else this.renderGetItemsButton()
         }

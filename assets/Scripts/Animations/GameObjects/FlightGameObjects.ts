@@ -51,7 +51,6 @@ export class FlightGameObjects extends Component {
             let pos1 = this.object_1.getWorldPosition();
             let pos2 = this.object_2.getWorldPosition();
             if (!this.triggerSeparate) {
-
                 this.object_1.setWorldPosition(
                     this.getLerp(pos1.x, this.toPos.x + 150, dt * this.speed),
                     this.getLerp(pos1.y, this.toPos.y, dt * this.speed),

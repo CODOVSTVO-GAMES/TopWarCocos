@@ -7,12 +7,12 @@ export class BattleMap extends Component {
     public static instance: BattleMap;
 
     @property({ type: Node })
-    public coordsOwn: Node[] = [];
+    public coordsOwn: Node[] = []
 
     @property({ type: Node })
-    public coordsEnemy: Node[] = [];
+    public coordsEnemy: Node[] = []
 
     onLoad() {
-        BattleMap.instance = this;
+        BattleMap.instance = this
     }
 }

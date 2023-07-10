@@ -4,22 +4,22 @@ import { BattleTask } from '../Structures/BattleTask';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 const { ccclass, property } = _decorator;
 
-@ccclass('ItemTaskRadarView')
-export class ItemTaskRadarView extends Component {
+@ccclass('ItemTasksRadarView')
+export class ItemTasksRadarView extends Component {
 
     @property({ type: Node })
-    public obj: Node
+    private obj: Node
 
     @property({ type: Node })
-    public message: Node
+    private message: Node
 
     @property({ type: Sprite })
-    public image: Sprite
+    private image: Sprite
 
     @property({ type: Node })
-    public stars: Node[] = []
+    private stars: Node[] = []
 
-    public task: BattleTask = null
+    private task: BattleTask = null
     private callBack = null
 
     protected onEnable(): void {

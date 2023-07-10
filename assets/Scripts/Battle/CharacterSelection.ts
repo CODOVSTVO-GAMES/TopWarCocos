@@ -3,6 +3,7 @@ import { SpriteModel } from '../Model/SpriteModel';
 import { CharactersModel } from '../Model/CharactersModel';
 import { CharactersPresenter } from '../Presenter/CharactersPresenter';
 import { BattleModel } from '../Model/BattleModel';
+import { Battle } from './Battle';
 const { ccclass, property } = _decorator;
 
 @ccclass('CharacterSelection')

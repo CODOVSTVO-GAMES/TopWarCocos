@@ -5,7 +5,7 @@ import { RedirectionToScene } from "../Other/RedirectionToScene"
 import { HomeMapStructure } from "../Static/HomeMapStructure"
 import { SceneNames } from "../Static/SceneNames"
 import { TypesLocation } from "../Static/TypesLocation"
-import { TypesModals } from "../Static/TypesModals"
+import { TypesViews } from "../Static/TypesViews"
 import { TypesObjects } from "../Static/TypesObjects"
 import { SecondaryInterface } from "../UI/SecondaryInterface"
 import { AutocombinePresenter } from "./AutocombinePresenter"
@@ -14,6 +14,7 @@ import { HomeMapPresenter } from "./HomeMapPresenter"
 import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 import { BarracksPresenter } from "./BarracksPresenter"
 import { GameModel } from "../Model/GameModel"
+import { GameRewardPresenter } from "./GameRewardPresenter"
 
 export class GameObjectPresenter {
 
@@ -79,8 +80,6 @@ export class GameObjectPresenter {
     }
 
     public static prepClickOnGameObejct(objectParameters: ObjectParameters) {
-        // подготовка выполнения нажатия на обьект 
-
         if (objectParameters == null) {
             return console.log("object Parameters not found")
         }
@@ -117,7 +116,7 @@ export class GameObjectPresenter {
     }
 
     private static processingCommandPost() {
-        let typeModal = TypesModals.COMMAND_POST
+        let typeModal = TypesViews.COMMAND_POST
 
         SecondaryInterface.instance.openFirstModal(typeModal)
     }
@@ -129,7 +128,7 @@ export class GameObjectPresenter {
     }
 
     private static processingBank() {
-        let typeModal = TypesModals.BANK
+        let typeModal = TypesViews.BANK
 
         SecondaryInterface.instance.openFirstModal(typeModal)
     }
@@ -140,25 +139,23 @@ export class GameObjectPresenter {
             AutocombinePresenter.clearAllProfit()
         }
         else {
-            let typeModal = TypesModals.AUTOCOMBINE
+            let typeModal = TypesViews.AUTOCOMBINE
 
             SecondaryInterface.instance.openFirstModal(typeModal)
         }
     }
 
     private static processingRadar() {
-        let typeModal = TypesModals.RADAR
+        let typeModal = TypesViews.RADAR
 
         SecondaryInterface.instance.openFirstModal(typeModal)
     }
 
     private static processingTreasures(objectParameters: ObjectParameters) {
-        let typeObject = objectParameters.type
-        let indexObject = objectParameters.index
-        let nodeObject = objectParameters.nodeObject
 
-        HomeMapPresenter.setObjectParameter(null, typeObject, indexObject)
-        nodeObject.destroy()
+        // GameRewardPresenter.initReward(BattleModel.instance.mapEnemyArr[0].reward)
+
+        SecondaryInterface.instance.openSecondModal(TypesViews.GAME_REWARD)
     }
 
     private static processingPaddedManipulator(objectParameters: ObjectParameters) {
@@ -167,7 +164,7 @@ export class GameObjectPresenter {
     }
 
     private static processingRepairShop() {
-        let typeModal = TypesModals.REPAIR_SHOP
+        let typeModal = TypesViews.REPAIR_SHOP
 
         SecondaryInterface.instance.openFirstModal(typeModal)
     }
@@ -183,7 +180,7 @@ export class GameObjectPresenter {
             let indexObject = objectParameters.index
 
             GamePresenter.reduceCoins(priceBattle)
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+            SpawnObjectsOnHomeMap.SpawnObjectsPos(typeObject, typeLocation, levelObject, indexObject)
             objectParameters.node.destroy()
 
             setTimeout(() => {
@@ -204,7 +201,7 @@ export class GameObjectPresenter {
             let indexObject = objectParameters.index
 
             GamePresenter.reduceCoins(priceBattle)
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+            SpawnObjectsOnHomeMap.SpawnObjectsPos(typeObject, typeLocation, levelObject, indexObject)
             objectParameters.node.destroy()
 
             setTimeout(() => {
@@ -225,7 +222,7 @@ export class GameObjectPresenter {
             let indexObject = objectParameters.index
 
             GamePresenter.reduceCoins(priceBattle)
-            SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapPos(typeObject, typeLocation, levelObject, indexObject)
+            SpawnObjectsOnHomeMap.SpawnObjectsPos(typeObject, typeLocation, levelObject, indexObject)
             objectParameters.node.destroy()
 
             setTimeout(() => {

@@ -12,7 +12,7 @@ const { ccclass } = _decorator;
 @ccclass('SpawnObjectsOnHomeMap')
 export class SpawnObjectsOnHomeMap {
 
-    public static SpawnObjectsOnHomeMapFromStorage() {
+    public static SpawnObjectsFromStorage() {
         for (let i = 0; i < HomeMapPresenter.getMapSize(); i++) {
             if (HomeMapPresenter.getObjectParameter(i) == null) continue
             if (HomeMapPresenter.getObjectParameter(i).index != i) continue
@@ -29,12 +29,12 @@ export class SpawnObjectsOnHomeMap {
                 locationObject = TypesLocation.EARTH
             }
 
-            this.SpawnObjectsOnHomeMapPos(typeObject, locationObject, levelObject, indexObject)
+            this.SpawnObjectsPos(typeObject, locationObject, levelObject, indexObject)
         }
     }
 
-    public static SpawnObjectsOnHomeMapPos(type: string, location: string, level: number, index: number): ObjectParameters {
-        let object = instantiate(PrefabsModel.instance.getObjectPrefab(type))
+    public static SpawnObjectsPos(type: string, location: string, level: number, index: number): ObjectParameters {
+        let object = instantiate(PrefabsModel.instance.getGameObjectPrefab(type))
         let objectParameter = object.getComponent(ObjectParameters)
 
         HomeMapPresenter.setParent(object, index)
@@ -72,7 +72,7 @@ export class SpawnObjectsOnHomeMap {
         return objectParameter
     }
 
-    public static SpawnObjectsOnHomeMapNearby(type: string, location: string, level: number, index: number) {
+    public static SpawnObjectsNearby(type: string, location: string, level: number, index: number) {
         let minDistance = 100000
         let indexeSpawnObject = 0
         let isSpawnObject = false
@@ -97,9 +97,7 @@ export class SpawnObjectsOnHomeMap {
                             break
                         }
                     }
-                    catch {
-
-                    }
+                    catch { }
                 }
                 if (check == false) {
                     minDistance = currentDistance
@@ -110,14 +108,14 @@ export class SpawnObjectsOnHomeMap {
         }
 
         if (isSpawnObject) {
-            return this.SpawnObjectsOnHomeMapPos(type, location, level, indexeSpawnObject)
+            return this.SpawnObjectsPos(type, location, level, indexeSpawnObject)
         }
         else {
             console.log("error: there is no free space.")
         }
     }
 
-    public static SpawnObjectsOnHomeMapMerge(type: string, location: string, level: number, index: number) {
-        this.SpawnObjectsOnHomeMapPos(type, location, level + 1, index)
+    public static SpawnObjectsMerge(type: string, location: string, level: number, index: number) {
+        this.SpawnObjectsPos(type, location, level + 1, index)
     }
 }

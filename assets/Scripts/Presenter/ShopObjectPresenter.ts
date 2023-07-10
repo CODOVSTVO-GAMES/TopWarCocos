@@ -16,7 +16,7 @@ export class ShopObjectPresenter {
         let typeLocation = TypesLocation.EARTH
 
         GameModel.instance.coins -= price
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, 1532)
+        SpawnObjectsOnHomeMap.SpawnObjectsNearby(typeObject, typeLocation, levelObject, 1532)
         TasksGamePresenter.checkTask(TypesTasksGame.MERGE_BARRACK_OVERLAND, levelObject, 1)
     }
 
@@ -27,7 +27,7 @@ export class ShopObjectPresenter {
         let typeLocation = TypesLocation.WATER
 
         GameModel.instance.coins -= price
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, 1532)
+        SpawnObjectsOnHomeMap.SpawnObjectsNearby(typeObject, typeLocation, levelObject, 1532)
         TasksGamePresenter.checkTask(TypesTasksGame.MERGE_BARRACK_MARINE, levelObject, 1)
     }
 
@@ -38,7 +38,7 @@ export class ShopObjectPresenter {
         let typeLocation = TypesLocation.EARTH
 
         GameModel.instance.coins -= price
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeObject, typeLocation, levelObject, 1532)
+        SpawnObjectsOnHomeMap.SpawnObjectsNearby(typeObject, typeLocation, levelObject, 1532)
         TasksGamePresenter.checkTask(TypesTasksGame.MERGE_BARRACK_AIR, levelObject, 1)
     }
 
@@ -49,7 +49,7 @@ export class ShopObjectPresenter {
         let typeLocation = TypesLocation.EARTH
 
         GameModel.instance.coins -= price
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(TypesObjects.GOLD_MINE, typeLocation, levelObject, 1532)
+        SpawnObjectsOnHomeMap.SpawnObjectsNearby(TypesObjects.GOLD_MINE, typeLocation, levelObject, 1532)
         TasksGamePresenter.checkTask(TypesTasksGame.MERGE_GOLD_MINE, levelObject, 1)
     }
 }

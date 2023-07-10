@@ -19,7 +19,7 @@ export class InitHomeMap extends Component {
     public onLoad() {
         this.fillParentObject()
         this.fillArrayCoords()
-        SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapFromStorage()
+        SpawnObjectsOnHomeMap.SpawnObjectsFromStorage()
     }
 
     private fillParentObject() {

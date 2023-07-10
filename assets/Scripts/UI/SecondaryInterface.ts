@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, v3 } from 'cc';
-import { TypesModals } from '../Static/TypesModals';
+import { TypesViews } from '../Static/TypesViews';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
 import { BombDisposalLogic } from './Modals/BombDisposal/BombDisposalLogic';
@@ -73,7 +73,7 @@ export class SecondaryInterface extends Component {
     public radarTaskInfo: Node
 
     @property({ type: Node })
-    public radarReward: Node
+    public gameReward: Node
 
     @property({ type: Node })
     public backpack: Node
@@ -93,46 +93,38 @@ export class SecondaryInterface extends Component {
     @property({ type: Node })
     public spatialMine: Node
 
-    public listOpeningFirstLayoutModals: QueueItem[] = []
-
-    public listOpeningSeconLayoutdModals: QueueItem[] = []
-
-    public activeFirstLayoutModal: string = ""
-
-    public activeSecondLayoutModal: string = ""
-
+    public listOpeningFirstLayoutView: QueueItem[] = []
+    public listOpeningSeconLayoutdView: QueueItem[] = []
+    public activeFirstLayoutView: string = ""
+    public activeSecondLayoutView: string = ""
     private workQueueFirstLayout: boolean = false
-
     private workQueueSecondLayout: boolean = false
 
-    onLoad() {
+    public onLoad(): void {
         SecondaryInterface.instance = this
-    }
-
-    start() {
         this.closeAllModals()
     }
 
-    redirectToGlobalMap() {
+    public eventRedirectToGlobalMap() {
         RedirectionToScene.redirect(SceneNames.GLOBAL_MAP)
     }
 
-    redirectToHomeMap() {
+    public eventRedirectToHomeMap() {
         RedirectionToScene.redirect(SceneNames.HOME_MAP)
     }
 
-    openFirstModal(type: string, data?: {}) {
-        if (this.listOpeningFirstLayoutModals.find((i) => i.modalName == type) == null) {
-            this.listOpeningFirstLayoutModals.push(new QueueItem(type, data))
+    public openFirstModal(type: string, data?: {}) {
+        if (this.listOpeningFirstLayoutView.find((i) => i.modalName == type) == null) {
+            this.listOpeningFirstLayoutView.push(new QueueItem(type, data))
             if (this.workQueueFirstLayout == false) {
                 this.queueFirstModals()
             }
         }
     }
 
-    openSecondModal(type: string, data?: {}) {
-        if (this.listOpeningSeconLayoutdModals.find((i) => i.modalName == type) == null) {
-            this.listOpeningSeconLayoutdModals.push(new QueueItem(type, data))
+    public openSecondModal(type: string, data?: {}) {
+        if (this.listOpeningSeconLayoutdView.find((i) => i.modalName == type) == null) {
+            this.listOpeningSeconLayoutdView.push(new QueueItem(type, data))
             if (this.workQueueSecondLayout == false) {
                 this.queueSecondModals()
             }
@@ -143,10 +135,10 @@ export class SecondaryInterface extends Component {
         this.workQueueFirstLayout = true;
         let interval = setInterval(() => {
             try {
-                if (this.listOpeningFirstLayoutModals.length > 0) {
-                    this.openModal(this.listOpeningFirstLayoutModals[0]);
-                    this.activeFirstLayoutModal = this.listOpeningFirstLayoutModals[0].modalName;
-                    this.listOpeningFirstLayoutModals.splice(0, 1);
+                if (this.listOpeningFirstLayoutView.length > 0) {
+                    this.openModal(this.listOpeningFirstLayoutView[0]);
+                    this.activeFirstLayoutView = this.listOpeningFirstLayoutView[0].modalName;
+                    this.listOpeningFirstLayoutView.splice(0, 1);
                 }
             }
             catch { console.error("Ащибка в очереди"); clearInterval(interval); }
@@ -158,10 +150,10 @@ export class SecondaryInterface extends Component {
         this.workQueueSecondLayout = true;
         let interval = setInterval(() => {
             try {
-                if (this.listOpeningSeconLayoutdModals.length > 0) {
-                    this.openModal(this.listOpeningSeconLayoutdModals[0]);
-                    this.activeSecondLayoutModal = this.listOpeningSeconLayoutdModals[0].modalName;
-                    this.listOpeningSeconLayoutdModals.splice(0, 1);
+                if (this.listOpeningSeconLayoutdView.length > 0) {
+                    this.openModal(this.listOpeningSeconLayoutdView[0]);
+                    this.activeSecondLayoutView = this.listOpeningSeconLayoutdView[0].modalName;
+                    this.listOpeningSeconLayoutdView.splice(0, 1);
                 }
             }
             catch { console.error("Ащибка в очереди"); clearInterval(interval); }
@@ -174,23 +166,23 @@ export class SecondaryInterface extends Component {
     }
 
     private openModal(item: QueueItem) {
-        if (item.modalName == TypesModals.SHOP_OBJECT) {
+        if (item.modalName == TypesViews.SHOP_OBJECT) {
             ShopObjectView.instance.renderInterface()
             this.shopObject.active = true;
         }
-        else if (item.modalName == TypesModals.EXPERIENCE) {
+        else if (item.modalName == TypesViews.EXPERIENCE) {
             this.experience.active = true;
         }
-        else if (item.modalName == TypesModals.POWER) {
+        else if (item.modalName == TypesViews.POWER) {
             this.firstBackgraund.active = true;
             this.powar.active = true;
         }
-        else if (item.modalName == TypesModals.CHARACTERS) {
+        else if (item.modalName == TypesViews.CHARACTERS) {
             CharactersView.instance.renderCharacters();
             this.firstBackgraund.active = true;
             this.characters.active = true;
         }
-        else if (item.modalName == TypesModals.CHARACTER_INFO) {
+        else if (item.modalName == TypesViews.CHARACTER_PARAMETERS) {
             CharactersModel.instance.characterIndex = item.data["index"];
             let availableCharacter = CharacterParameters.instance.renderCharacter(CharactersModel.instance.characterIndex);
             if (availableCharacter) {
@@ -198,223 +190,223 @@ export class SecondaryInterface extends Component {
                 this.characterInfo.active = true;
             }
             else {
-                this.activeFirstLayoutModal = "";
+                this.activeFirstLayoutView = "";
             }
         }
-        else if (item.modalName == TypesModals.UPGRADE_CHARACTER) {
+        else if (item.modalName == TypesViews.UPGRADE_CHARACTER) {
             UpgradeCharacterView.instance.characterIndex = CharactersModel.instance.characterIndex;
             UpgradeCharacterView.instance.renderModalPumping(item.data["type"]);
             this.secondBackgraund.active = true;
             this.characterPumping.active = true;
             AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.OPEN_MODAL_CHARACTER);
         }
-        else if (item.modalName == TypesModals.COMMAND_POST) {
+        else if (item.modalName == TypesViews.COMMAND_POST) {
             this.firstBackgraund.active = true;
             this.commandPost.active = true;
         }
-        else if (item.modalName == TypesModals.TASKS_GAME) {
+        else if (item.modalName == TypesViews.TASKS_GAME) {
             this.firstBackgraund.active = true;
             this.tasksGame.active = true;
             TasksGameView.instance.renderItemsTasks()
         }
-        else if (item.modalName == TypesModals.UPGRATE_COMMAND_POST) {
+        else if (item.modalName == TypesViews.UPGRATE_COMMAND_POST) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost0.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
         else if (
-            item.modalName == TypesModals.UPGRATE_REPAIR_SHOP ||
-            item.modalName == TypesModals.UPGRATE_MERGE_GOLD_MINE ||
-            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_AIR ||
-            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_MARINE ||
-            item.modalName == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND ||
-            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_AIR ||
-            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_MARINE ||
-            item.modalName == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND ||
-            item.modalName == TypesModals.UPGRATE_BUILD_GOLD_MINE ||
-            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_AIR ||
-            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_MARINE ||
-            item.modalName == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+            item.modalName == TypesViews.UPGRATE_REPAIR_SHOP ||
+            item.modalName == TypesViews.UPGRATE_MERGE_GOLD_MINE ||
+            item.modalName == TypesViews.UPGRATE_MERGE_TROOP_AIR ||
+            item.modalName == TypesViews.UPGRATE_MERGE_TROOP_MARINE ||
+            item.modalName == TypesViews.UPGRATE_MERGE_TROOP_OVERLAND ||
+            item.modalName == TypesViews.UPGRATE_MERGE_BARRACK_AIR ||
+            item.modalName == TypesViews.UPGRATE_MERGE_BARRACK_MARINE ||
+            item.modalName == TypesViews.UPGRATE_MERGE_BARRACK_OVERLAND ||
+            item.modalName == TypesViews.UPGRATE_BUILD_GOLD_MINE ||
+            item.modalName == TypesViews.UPGRATE_BUILD_BARRACK_AIR ||
+            item.modalName == TypesViews.UPGRATE_BUILD_BARRACK_MARINE ||
+            item.modalName == TypesViews.UPGRATE_BUILD_BARRACK_OVERLAND
         ) {
             this.secondBackgraund.active = true;
             this.upgrateCommandPost1.active = true;
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.OPEN_MODAL_UPGRADE_COMMAND_POST);
         }
-        else if (item.modalName == TypesModals.AUTOCOMBINE) {
+        else if (item.modalName == TypesViews.AUTOCOMBINE) {
             this.firstBackgraund.active = true;
             this.autocombine.active = true;
         }
-        else if (item.modalName == TypesModals.RADAR) {
+        else if (item.modalName == TypesViews.RADAR) {
             RadarPresenter.getNewTasks()
             this.firstBackgraund.active = true;
             this.radar.active = true;
         }
-        else if (item.modalName == TypesModals.RADAR_TASK_INFO) {
+        else if (item.modalName == TypesViews.TASKS_RADAR) {
             this.secondBackgraund.active = true;
             this.radarTaskInfo.active = true;
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
         }
-        else if (item.modalName == TypesModals.RADAR_REWARD) {
+        else if (item.modalName == TypesViews.GAME_REWARD) {
             RadarModel.instance.task = item.data;
             this.secondBackgraund.active = true;
-            this.radarReward.active = true;
-            AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
+            this.gameReward.active = true;
+            // AnimationModals.instance.modalAnimation(this.gameReward, TypesAnimation.OPEN_MODAL_RADAR);
         }
-        else if (item.modalName == TypesModals.BACKPACK) {
+        else if (item.modalName == TypesViews.BACKPACK) {
             this.firstBackgraund.active = true;
             this.backpack.active = true;
         }
-        else if (item.modalName == TypesModals.WIRE_CUT) {
+        else if (item.modalName == TypesViews.WIRE_CUT) {
             WireCutInterface.instance.renderWire();
             this.firstBackgraund.active = true;
             this.wireCut.active = true;
         }
-        else if (item.modalName == TypesModals.BOMB_DISPOSAL) {
+        else if (item.modalName == TypesViews.BOMB_DISPOSAL) {
             BombDisposalLogic.instance.renderModal();
             this.firstBackgraund.active = true;
             this.bombDisposal.active = true;
         }
-        else if (item.modalName == TypesModals.QUESTION) {
+        else if (item.modalName == TypesViews.QUESTION) {
             QuestionLogic.instance.renderModal();
             this.firstBackgraund.active = true;
             this.question.active = true;
         }
-        else if (item.modalName == TypesModals.SWITCH) {
+        else if (item.modalName == TypesViews.SWITCH) {
             SwitchLogic.instance.renderModal();
             this.firstBackgraund.active = true;
             this.switch.active = true;
         }
-        else if (item.modalName == TypesModals.SPATIAL_MINE) {
+        else if (item.modalName == TypesViews.SPATIAL_MINE) {
 
             this.firstBackgraund.active = true;
             this.spatialMine.active = true;
         }
     }
 
-    openProfile() { this.openFirstModal(TypesModals.PROFILE); }
+    openProfile() { this.openFirstModal(TypesViews.PROFILE); }
 
-    openShopCoins() { this.openFirstModal(TypesModals.SHOP_COINS); }
+    openShopCoins() { this.openFirstModal(TypesViews.SHOP_COINS); }
 
-    openShopGems() { this.openFirstModal(TypesModals.SHOP_GEMS); }
+    openShopGems() { this.openFirstModal(TypesViews.SHOP_GEMS); }
 
-    openShopObject() { this.openFirstModal(TypesModals.SHOP_OBJECT); }
+    openShopObject() { this.openFirstModal(TypesViews.SHOP_OBJECT); }
 
-    openExperience() { this.openFirstModal(TypesModals.EXPERIENCE); }
+    openExperience() { this.openFirstModal(TypesViews.EXPERIENCE); }
 
-    openPower() { this.openFirstModal(TypesModals.POWER); }
+    openPower() { this.openFirstModal(TypesViews.POWER); }
 
-    openCharacters() { this.openFirstModal(TypesModals.CHARACTERS); }
+    openCharacters() { this.openFirstModal(TypesViews.CHARACTERS); }
 
-    openCharacterInfo(event, customEventData) { this.openFirstModal(TypesModals.CHARACTER_INFO, { index: customEventData }); }
+    openCharacterInfo(event, customEventData) { this.openFirstModal(TypesViews.CHARACTER_PARAMETERS, { index: customEventData }); }
 
-    openCharacterPumping(data: object) { this.openSecondModal(TypesModals.UPGRADE_CHARACTER, data); }
+    openCharacterPumping(data: object) { this.openSecondModal(TypesViews.UPGRADE_CHARACTER, data); }
 
-    openCommandPost() { this.openFirstModal(TypesModals.COMMAND_POST); }
+    openCommandPost() { this.openFirstModal(TypesViews.COMMAND_POST); }
 
-    openTasksGame() { this.openFirstModal(TypesModals.TASKS_GAME); }
+    openTasksGame() { this.openFirstModal(TypesViews.TASKS_GAME); }
 
-    openBank() { this.openFirstModal(TypesModals.BANK); }
+    openBank() { this.openFirstModal(TypesViews.BANK); }
 
-    openAutocombine() { this.openFirstModal(TypesModals.AUTOCOMBINE); }
+    openAutocombine() { this.openFirstModal(TypesViews.AUTOCOMBINE); }
 
-    openRadar() { this.openFirstModal(TypesModals.RADAR); }
+    openRadar() { this.openFirstModal(TypesViews.RADAR); }
 
-    openRadarTaskInfo(data: object) { this.openSecondModal(TypesModals.RADAR_TASK_INFO, data); }
+    openRadarTaskInfo(data: object) { this.openSecondModal(TypesViews.TASKS_RADAR, data); }
 
-    openRadarReward(data: object) { this.openSecondModal(TypesModals.RADAR_REWARD, data); }
+    openRadarReward(data: object) { this.openSecondModal(TypesViews.GAME_REWARD, data); }
 
-    openRepairShop() { this.openFirstModal(TypesModals.REPAIR_SHOP); }
+    openRepairShop() { this.openFirstModal(TypesViews.REPAIR_SHOP); }
 
-    openBackpack() { this.openFirstModal(TypesModals.BACKPACK); }
+    openBackpack() { this.openFirstModal(TypesViews.BACKPACK); }
 
-    openWireCut() { this.openFirstModal(TypesModals.WIRE_CUT); }
+    openWireCut() { this.openFirstModal(TypesViews.WIRE_CUT); }
 
-    openBombDisposal() { this.openFirstModal(TypesModals.BOMB_DISPOSAL); }
+    openBombDisposal() { this.openFirstModal(TypesViews.BOMB_DISPOSAL); }
 
-    openQuestion() { this.openFirstModal(TypesModals.QUESTION); }
+    openQuestion() { this.openFirstModal(TypesViews.QUESTION); }
 
-    openSwith() { this.openFirstModal(TypesModals.SWITCH); }
+    openSwith() { this.openFirstModal(TypesViews.SWITCH); }
 
-    openSpatialMine() { this.openFirstModal(TypesModals.SPATIAL_MINE); }
+    openSpatialMine() { this.openFirstModal(TypesViews.SPATIAL_MINE); }
 
     closeFirstLayoutModal() {
-        if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
+        if (this.activeFirstLayoutView != TypesViews.CHARACTER_PARAMETERS) {
             this.firstBackgraund.active = false
         }
-        if (this.activeFirstLayoutModal == TypesModals.SHOP_OBJECT) {
+        if (this.activeFirstLayoutView == TypesViews.SHOP_OBJECT) {
             this.shopObject.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.EXPERIENCE) {
+        else if (this.activeFirstLayoutView == TypesViews.EXPERIENCE) {
             this.experience.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.CHARACTERS) {
+        else if (this.activeFirstLayoutView == TypesViews.CHARACTERS) {
             this.characters.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.CHARACTER_INFO) {
+        else if (this.activeFirstLayoutView == TypesViews.CHARACTER_PARAMETERS) {
             CharactersView.instance.renderCharacters();
             CharacterParameters.instance.renderCharacter(CharactersModel.instance.characterIndex);
             this.characterInfo.active = false
-            this.activeFirstLayoutModal = TypesModals.CHARACTERS;
+            this.activeFirstLayoutView = TypesViews.CHARACTERS;
         }
-        else if (this.activeFirstLayoutModal == TypesModals.COMMAND_POST) {
+        else if (this.activeFirstLayoutView == TypesViews.COMMAND_POST) {
             this.commandPost.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.TASKS_GAME) {
+        else if (this.activeFirstLayoutView == TypesViews.TASKS_GAME) {
             this.tasksGame.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.AUTOCOMBINE) {
+        else if (this.activeFirstLayoutView == TypesViews.AUTOCOMBINE) {
             this.autocombine.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.RADAR) {
+        else if (this.activeFirstLayoutView == TypesViews.RADAR) {
             this.radar.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.BACKPACK) {
+        else if (this.activeFirstLayoutView == TypesViews.BACKPACK) {
             this.backpack.active = false
         }
-        else if (this.activeFirstLayoutModal == TypesModals.SPATIAL_MINE) {
+        else if (this.activeFirstLayoutView == TypesViews.SPATIAL_MINE) {
             this.spatialMine.active = false
         }
-        if (this.activeFirstLayoutModal != TypesModals.CHARACTER_INFO) {
-            this.activeFirstLayoutModal = ""
+        if (this.activeFirstLayoutView != TypesViews.CHARACTER_PARAMETERS) {
+            this.activeFirstLayoutView = ""
         }
     }
 
     closeSecondLayoutModal() {
         setTimeout(() => this.secondBackgraund.active = false, 85);
-        if (this.activeSecondLayoutModal == TypesModals.UPGRATE_COMMAND_POST) {
+        if (this.activeSecondLayoutView == TypesViews.UPGRATE_COMMAND_POST) {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost0, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost0.active = false, 85);
         }
         else if (
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_REPAIR_SHOP ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_GOLD_MINE ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_AIR ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_MARINE ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_TROOP_OVERLAND ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_AIR ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_MARINE ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_GOLD_MINE ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_AIR ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_MARINE ||
-            this.activeSecondLayoutModal == TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+            this.activeSecondLayoutView == TypesViews.UPGRATE_REPAIR_SHOP ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_GOLD_MINE ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_TROOP_AIR ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_TROOP_MARINE ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_TROOP_OVERLAND ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_BARRACK_AIR ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_BARRACK_MARINE ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_MERGE_BARRACK_OVERLAND ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_BUILD_GOLD_MINE ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_BUILD_BARRACK_AIR ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_BUILD_BARRACK_MARINE ||
+            this.activeSecondLayoutView == TypesViews.UPGRATE_BUILD_BARRACK_OVERLAND
         ) {
             AnimationModals.instance.modalAnimation(this.upgrateCommandPost1, TypesAnimation.CLOSE_MODAL_UPGRADE_COMMAND_POST);
             setTimeout(() => this.upgrateCommandPost1.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.UPGRADE_CHARACTER) {
+        else if (this.activeSecondLayoutView == TypesViews.UPGRADE_CHARACTER) {
             AnimationModals.instance.modalAnimation(this.characterPumping, TypesAnimation.CLOSE_MODAL_CHARACTER);
             setTimeout(() => this.characterPumping.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO) {
+        else if (this.activeSecondLayoutView == TypesViews.TASKS_RADAR) {
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.CLOSE_MODAL_RADAR);
             setTimeout(() => this.radarTaskInfo.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.RADAR_REWARD) {
-            AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.CLOSE_MODAL_RADAR);
-            setTimeout(() => this.radarReward.active = false, 85);
+        else if (this.activeSecondLayoutView == TypesViews.GAME_REWARD) {
+            AnimationModals.instance.modalAnimation(this.gameReward, TypesAnimation.CLOSE_MODAL_RADAR);
+            setTimeout(() => this.gameReward.active = false, 85);
         }
-        this.activeSecondLayoutModal = "";
+        this.activeSecondLayoutView = "";
     }
 
     closeAllModals() {
@@ -433,22 +425,22 @@ export class SecondaryInterface extends Component {
         this.autocombine.active = false
         this.radar.active = false
         this.radarTaskInfo.active = false
-        this.radarReward.active = false
+        // this.gameReward.active = false
         this.backpack.active = false
         this.wireCut.active = false
         this.bombDisposal.active = false
         this.question.active = false
         this.switch.active = false
         this.spatialMine.active = false
-        this.activeFirstLayoutModal = ""
-        this.activeSecondLayoutModal = ""
+        this.activeFirstLayoutView = ""
+        this.activeSecondLayoutView = ""
     }
 
     getTypeActiveFirstLayoutModal(): string {
-        return this.activeFirstLayoutModal;
+        return this.activeFirstLayoutView;
     }
 
     getTypeActiveSecondLayoutModal(): string {
-        return this.activeSecondLayoutModal;
+        return this.activeSecondLayoutView;
     }
 }
