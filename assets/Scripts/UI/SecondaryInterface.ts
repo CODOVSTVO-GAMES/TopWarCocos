@@ -73,7 +73,7 @@ export class SecondaryInterface extends Component {
     public radarTaskInfo: Node
 
     @property({ type: Node })
-    public radarReward: Node
+    public gameReward: Node
 
     @property({ type: Node })
     public backpack: Node
@@ -257,8 +257,8 @@ export class SecondaryInterface extends Component {
         else if (item.modalName == TypesModals.GAME_REWARD) {
             RadarModel.instance.task = item.data;
             this.secondBackgraund.active = true;
-            this.radarReward.active = true;
-            AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.OPEN_MODAL_RADAR);
+            this.gameReward.active = true;
+            // AnimationModals.instance.modalAnimation(this.gameReward, TypesAnimation.OPEN_MODAL_RADAR);
         }
         else if (item.modalName == TypesModals.BACKPACK) {
             this.firstBackgraund.active = true;
@@ -411,8 +411,8 @@ export class SecondaryInterface extends Component {
             setTimeout(() => this.radarTaskInfo.active = false, 85);
         }
         else if (this.activeSecondLayoutModal == TypesModals.GAME_REWARD) {
-            AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.CLOSE_MODAL_RADAR);
-            setTimeout(() => this.radarReward.active = false, 85);
+            AnimationModals.instance.modalAnimation(this.gameReward, TypesAnimation.CLOSE_MODAL_RADAR);
+            setTimeout(() => this.gameReward.active = false, 85);
         }
         this.activeSecondLayoutModal = "";
     }
@@ -433,7 +433,7 @@ export class SecondaryInterface extends Component {
         this.autocombine.active = false
         this.radar.active = false
         this.radarTaskInfo.active = false
-        this.radarReward.active = false
+        // this.gameReward.active = false
         this.backpack.active = false
         this.wireCut.active = false
         this.bombDisposal.active = false
