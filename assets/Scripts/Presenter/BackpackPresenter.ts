@@ -51,10 +51,14 @@ export class BackpackPresenter {
     }
 
     public static processingSelectItem(typeItem: string) {
-        BackpackModel.instance.typeSelectItem = typeItem
-        BackpackModel.instance.quantitySelectItem = this.getQuantityItemByType(typeItem)
-        BackpackModel.instance.usageQuantitySelectItem = this.getQuantityItemByType(typeItem)
-        BackpackView.instance.renderTitleSelectItem()
+        let typeActiveFirstLayoutModal = SecondaryInterface.instance.getTypeActiveFirstLayoutModal()
+
+        if (typeActiveFirstLayoutModal == TypesModals.BACKPACK) {
+            BackpackModel.instance.typeSelectItem = typeItem
+            BackpackModel.instance.quantitySelectItem = this.getQuantityItemByType(typeItem)
+            BackpackModel.instance.usageQuantitySelectItem = this.getQuantityItemByType(typeItem)
+            BackpackView.instance.renderTitleSelectItem()
+        }
     }
 
     public static processingApplyItem() {

@@ -14,6 +14,7 @@ import { HomeMapPresenter } from "./HomeMapPresenter"
 import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 import { BarracksPresenter } from "./BarracksPresenter"
 import { GameModel } from "../Model/GameModel"
+import { GameRewardPresenter } from "./GameRewardPresenter"
 
 export class GameObjectPresenter {
 
@@ -153,12 +154,10 @@ export class GameObjectPresenter {
     }
 
     private static processingTreasures(objectParameters: ObjectParameters) {
-        let typeObject = objectParameters.type
-        let indexObject = objectParameters.index
-        let nodeObject = objectParameters.nodeObject
 
-        HomeMapPresenter.setObjectParameter(null, typeObject, indexObject)
-        nodeObject.destroy()
+        GameRewardPresenter.initReward(BattleModel.instance.mapEnemyArr[0].reward)
+
+        SecondaryInterface.instance.openSecondModal(TypesModals.GAME_REWARD)
     }
 
     private static processingPaddedManipulator(objectParameters: ObjectParameters) {

@@ -6,7 +6,8 @@ const { ccclass, property } = _decorator;
 @ccclass('ItemBackpackView')
 export class ItemBackpackView extends Component {
 
-    public typeItem: string
+    public type: string
+    public quantity: number
 
     @property({ type: Label })
     public quantityItem: Label
@@ -14,18 +15,26 @@ export class ItemBackpackView extends Component {
     @property({ type: Sprite })
     public spriteItem: Sprite
 
-    public clickItemBackpack() {
-        BackpackPresenter.processingSelectItem(this.typeItem)
+    public eventSelectItem() {
+        BackpackPresenter.processingSelectItem(this.type)
     }
 
-    public renderQuantityItem(quantity: number) {
-        let quantityItem = quantity.toString()
+    public renderInterface(type: string, quantity: number) {
+        this.type = type
+        this.quantity = quantity
+
+        this.renderQuantityItem()
+        this.renderSpriteItem()
+    }
+
+    private renderQuantityItem() {
+        let quantityItem = this.quantity.toString()
 
         this.quantityItem.string = quantityItem
     }
 
-    public renderSpriteItem() {
-        let spriteItem = SpriteModel.instance.getItemBackpack(this.typeItem)
+    private renderSpriteItem() {
+        let spriteItem = SpriteModel.instance.getItemBackpack(this.type)
 
         this.spriteItem.spriteFrame = spriteItem
     }

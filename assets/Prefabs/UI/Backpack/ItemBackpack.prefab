@@ -31,10 +31,13 @@
       },
       {
         "__id__": 12
+      },
+      {
+        "__id__": 14
       }
     ],
     "_prefab": {
-      "__id__": 14
+      "__id__": 17
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -270,7 +273,7 @@
     "fileId": "cbBG+pGStBAIH8U6qesXsp"
   },
   {
-    "__type__": "cc.Button",
+    "__type__": "9c484ZwF/JOkqx7odPZPtSU",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -280,7 +283,34 @@
     "__prefab": {
       "__id__": 13
     },
-    "clickEvents": [],
+    "quantityItem": {
+      "__id__": 5
+    },
+    "spriteItem": {
+      "__id__": 10
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "92FRmPXFhO7Ktdx9fnuyYI"
+  },
+  {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 15
+    },
+    "clickEvents": [
+      {
+        "__id__": 16
+      }
+    ],
     "_interactable": true,
     "_transition": 0,
     "_normalColor": {
@@ -326,6 +356,16 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "66zCE1h8hNWYaGfHUSCh5o"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "9c484ZwF/JOkqx7odPZPtSU",
+    "handler": "eventSelectItem",
+    "customEventData": ""
   },
   {
     "__type__": "cc.PrefabInfo",

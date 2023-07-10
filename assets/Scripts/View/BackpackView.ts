@@ -48,9 +48,7 @@ export class BackpackView extends Component {
             let { type: typeItem, quantity: quantityItem } = BackpackModel.instance.backpack[i]
 
             object.parent = this.parentContent
-            object.getComponent(ItemBackpackView).typeItem = typeItem
-            object.getComponent(ItemBackpackView).renderQuantityItem(quantityItem)
-            object.getComponent(ItemBackpackView).renderSpriteItem()
+            object.getComponent(ItemBackpackView).renderInterface(typeItem, quantityItem)
             BackpackModel.instance.itemsBackpack.push(object)
         }
     }

@@ -254,7 +254,7 @@ export class SecondaryInterface extends Component {
             this.radarTaskInfo.active = true;
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.OPEN_MODAL_RADAR);
         }
-        else if (item.modalName == TypesModals.RADAR_REWARD) {
+        else if (item.modalName == TypesModals.GAME_REWARD) {
             RadarModel.instance.task = item.data;
             this.secondBackgraund.active = true;
             this.radarReward.active = true;
@@ -321,7 +321,7 @@ export class SecondaryInterface extends Component {
 
     openRadarTaskInfo(data: object) { this.openSecondModal(TypesModals.RADAR_TASK_INFO, data); }
 
-    openRadarReward(data: object) { this.openSecondModal(TypesModals.RADAR_REWARD, data); }
+    openRadarReward(data: object) { this.openSecondModal(TypesModals.GAME_REWARD, data); }
 
     openRepairShop() { this.openFirstModal(TypesModals.REPAIR_SHOP); }
 
@@ -410,7 +410,7 @@ export class SecondaryInterface extends Component {
             AnimationModals.instance.modalAnimation(this.radarTaskInfo, TypesAnimation.CLOSE_MODAL_RADAR);
             setTimeout(() => this.radarTaskInfo.active = false, 85);
         }
-        else if (this.activeSecondLayoutModal == TypesModals.RADAR_REWARD) {
+        else if (this.activeSecondLayoutModal == TypesModals.GAME_REWARD) {
             AnimationModals.instance.modalAnimation(this.radarReward, TypesAnimation.CLOSE_MODAL_RADAR);
             setTimeout(() => this.radarReward.active = false, 85);
         }

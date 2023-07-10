@@ -69,6 +69,10 @@ export class PrefabsModel extends Component {
 
     // =================================================================
 
+
+
+    // =================================================================
+
     @property({ type: Prefab })
     private itemBackpack: Prefab
 
@@ -109,7 +113,10 @@ export class PrefabsModel extends Component {
         else if (type == TypesObjects.BATTLE_2X2) return this.battle2x2
         else if (type == TypesObjects.BATTLE_4X4) return this.battle4x4
         else if (type == TypesObjects.BATTLE_8X8) return this.battle8x8
-        else return null
+        else {
+            console.log("ERROR: Object not found")
+            return null
+        }
     }
 
     public getItemBackpack(): Prefab {
