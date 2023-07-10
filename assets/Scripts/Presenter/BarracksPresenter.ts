@@ -21,7 +21,7 @@ export class BarracksPresenter {
                     let levelTroop = BarrackModel.instance.arrayBarracks[i].queueSpawnObject[j].levelTroop
                     let indexBarrack = BarrackModel.instance.arrayBarracks[i].indexBarrack
 
-                    SpawnObjectsOnHomeMap.SpawnObjectsOnHomeMapNearby(typeTroop, locationTroop, levelTroop, indexBarrack)
+                    SpawnObjectsOnHomeMap.SpawnObjectsNearby(typeTroop, locationTroop, levelTroop, indexBarrack)
                     BarrackModel.instance.arrayBarracks[i].queueSpawnObject.splice(j, 1)
                 }
             }

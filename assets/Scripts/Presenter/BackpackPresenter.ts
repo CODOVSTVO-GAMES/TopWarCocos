@@ -1,6 +1,6 @@
 import { BackpackModel } from "../Model/BackpackModel"
 import { TypesItems } from "../Static/TypesItems"
-import { TypesModals } from "../Static/TypesModals"
+import { TypesViews } from "../Static/TypesViews"
 import { QuantityItem } from "../Structures/QuantityItem"
 import { SecondaryInterface } from "../UI/SecondaryInterface"
 import { BackpackView } from "../View/BackpackView"
@@ -53,7 +53,7 @@ export class BackpackPresenter {
     public static processingSelectItem(typeItem: string) {
         let typeActiveFirstLayoutModal = SecondaryInterface.instance.getTypeActiveFirstLayoutModal()
 
-        if (typeActiveFirstLayoutModal == TypesModals.BACKPACK) {
+        if (typeActiveFirstLayoutModal == TypesViews.BACKPACK) {
             BackpackModel.instance.typeSelectItem = typeItem
             BackpackModel.instance.quantitySelectItem = this.getQuantityItemByType(typeItem)
             BackpackModel.instance.usageQuantitySelectItem = this.getQuantityItemByType(typeItem)
@@ -65,73 +65,73 @@ export class BackpackPresenter {
         let typeSelectItem = BackpackModel.instance.typeSelectItem
 
         if (typeSelectItem == TypesItems.PLAN_COMMAND_POST) {
-            let typeModal = TypesModals.UPGRATE_COMMAND_POST
+            let typeModal = TypesViews.UPGRATE_COMMAND_POST
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeMainView.instance.renderInterface()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_TROOP_AIR) {
-            let typeModal = TypesModals.UPGRATE_MERGE_TROOP_AIR
+            let typeModal = TypesViews.UPGRATE_MERGE_TROOP_AIR
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeTroopAir()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_TROOP_MARINE) {
-            let typeModal = TypesModals.UPGRATE_MERGE_TROOP_MARINE
+            let typeModal = TypesViews.UPGRATE_MERGE_TROOP_MARINE
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeTroopMarine()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_TROOP_OVERLAND) {
-            let typeModal = TypesModals.UPGRATE_MERGE_TROOP_OVERLAND
+            let typeModal = TypesViews.UPGRATE_MERGE_TROOP_OVERLAND
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeTroopOverland()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_GOLD_MINE) {
-            let typeModal = TypesModals.UPGRATE_MERGE_GOLD_MINE
+            let typeModal = TypesViews.UPGRATE_MERGE_GOLD_MINE
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeGoldMine()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_AIR) {
-            let typeModal = TypesModals.UPGRATE_MERGE_BARRACK_AIR
+            let typeModal = TypesViews.UPGRATE_MERGE_BARRACK_AIR
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeBarracksAir()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_MARINE) {
-            let typeModal = TypesModals.UPGRATE_MERGE_BARRACK_MARINE
+            let typeModal = TypesViews.UPGRATE_MERGE_BARRACK_MARINE
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeBarracksMarine()
         }
         else if (typeSelectItem == TypesItems.PLAN_MERGE_BARRACK_OVERLAND) {
-            let typeModal = TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND
+            let typeModal = TypesViews.UPGRATE_MERGE_BARRACK_OVERLAND
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceMergeBarracksOverland()
         }
         else if (typeSelectItem == TypesItems.PLAN_BUILD_GOLD_MINE) {
-            let typeModal = TypesModals.UPGRATE_BUILD_GOLD_MINE
+            let typeModal = TypesViews.UPGRATE_BUILD_GOLD_MINE
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceBuildGoldMine()
         }
         else if (typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_AIR) {
-            let typeModal = TypesModals.UPGRATE_BUILD_BARRACK_AIR
+            let typeModal = TypesViews.UPGRATE_BUILD_BARRACK_AIR
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceBuildBarracksAir()
         }
         else if (typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_MARINE) {
-            let typeModal = TypesModals.UPGRATE_BUILD_BARRACK_MARINE
+            let typeModal = TypesViews.UPGRATE_BUILD_BARRACK_MARINE
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceBuildBarracksMarine()
         }
         else if (typeSelectItem == TypesItems.PLAN_BUILD_BARRACK_OVERLAND) {
-            let typeModal = TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND
+            let typeModal = TypesViews.UPGRATE_BUILD_BARRACK_OVERLAND
 
             SecondaryInterface.instance.openSecondModal(typeModal)
             CommandPostUpgradeOtherView.instance.renderInterfaceBuildBarracksOverland()

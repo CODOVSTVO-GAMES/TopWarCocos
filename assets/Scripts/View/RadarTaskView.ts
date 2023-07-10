@@ -1,7 +1,7 @@
 import { _decorator, Component, Node, Label, Sprite, SpriteFrame, Color } from 'cc';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
 import { BattleTask } from '../Structures/BattleTask';
-import { TypesModals } from '../Static/TypesModals';
+import { TypesViews } from '../Static/TypesViews';
 import { BattleTaskTypes } from '../Static/BattleTaskTypes';
 import { RadarPresenter } from '../Presenter/RadarPresenter';
 import { RadarModel } from '../Model/RadarModel';
@@ -54,7 +54,7 @@ export class RadarTaskView extends Component {
     }
 
     public renderModalTask() {
-        if (SecondaryInterface.instance.activeSecondLayoutModal == TypesModals.RADAR_TASK_INFO) {
+        if (SecondaryInterface.instance.activeSecondLayoutView == TypesViews.TASKS_RADAR) {
             const task = RadarModel.instance.task
 
             if (task.status == 0) {

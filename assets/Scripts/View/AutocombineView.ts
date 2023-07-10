@@ -2,7 +2,7 @@ import { _decorator, Component, Label } from 'cc';
 import { AutocombineModel } from '../Model/AutocombineModel';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
-import { TypesModals } from '../Static/TypesModals';
+import { TypesViews } from '../Static/TypesViews';
 const { ccclass, property } = _decorator;
 
 @ccclass('AutocombineView')
@@ -25,7 +25,7 @@ export class AutocombineView extends Component {
 
     public eventGoOverGoldMine() {
         SecondaryInterface.instance.closeFirstLayoutModal()
-        SecondaryInterface.instance.openFirstModal(TypesModals.SHOP_OBJECT)
+        SecondaryInterface.instance.openFirstModal(TypesViews.SHOP_OBJECT)
     }
 
     public eventCollectCoins() {

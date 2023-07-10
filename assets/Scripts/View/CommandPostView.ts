@@ -4,7 +4,7 @@ import { TypesObjects } from '../Static/TypesObjects';
 import { SpriteModel } from '../Model/SpriteModel';
 import { ConvertLargeNumber } from '../Other/ConvertLargeNumber';
 import { SecondaryInterface } from '../UI/SecondaryInterface';
-import { TypesModals } from '../Static/TypesModals';
+import { TypesViews } from '../Static/TypesViews';
 import { GameModel } from '../Model/GameModel';
 const { ccclass, property } = _decorator;
 
@@ -118,55 +118,55 @@ export class CommandPostView extends Component {
     }
 
     public eventOpenUpgradeCommandPost() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_COMMAND_POST)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_COMMAND_POST)
     }
 
     public eventOpenRepairShop() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_REPAIR_SHOP)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_REPAIR_SHOP)
     }
 
     public eventOpenMergeGoldMine() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_GOLD_MINE)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_GOLD_MINE)
     }
 
     public eventOpenMergeTroopAir() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_AIR)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_TROOP_AIR)
     }
 
     public eventOpenMergeTroopMarine() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_MARINE)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_TROOP_MARINE)
     }
 
     public eventOpenMergeTroopOverland() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_TROOP_OVERLAND)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_TROOP_OVERLAND)
     }
 
     public eventOpenMergeBarracksAir() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_BARRACK_AIR)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_BARRACK_AIR)
     }
 
     public eventOpenMergeBarracksMarine() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_BARRACK_MARINE)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_BARRACK_MARINE)
     }
 
     public eventOpenMergeBarracksOverland() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_MERGE_BARRACK_OVERLAND)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_MERGE_BARRACK_OVERLAND)
     }
 
     public eventOpenBuildGoldMine() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_GOLD_MINE)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_BUILD_GOLD_MINE)
     }
 
     public eventOpenBuildBarracksAir() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_BARRACK_AIR)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_BUILD_BARRACK_AIR)
     }
 
     public eventOpenBuildBarracksMarine() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_BARRACK_MARINE)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_BUILD_BARRACK_MARINE)
     }
 
     public eventOpenBuildBarracksOverland() {
-        SecondaryInterface.instance.openSecondModal(TypesModals.UPGRATE_BUILD_BARRACK_OVERLAND)
+        SecondaryInterface.instance.openSecondModal(TypesViews.UPGRATE_BUILD_BARRACK_OVERLAND)
     }
 
     public renderHeader() {

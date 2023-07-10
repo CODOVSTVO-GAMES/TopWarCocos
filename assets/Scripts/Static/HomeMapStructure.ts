@@ -13,7 +13,7 @@ export class Coord {
 }
 
 export class HomeMapStructure {
-    static structure: Array<Coord> = [
+    static structure: Coord[] = [
         new Coord(0, "earth", 444, 444),
         new Coord(1, "earth", 444, 444),
         new Coord(2, "earth", 444, 444),

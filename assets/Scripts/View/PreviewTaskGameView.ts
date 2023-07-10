@@ -67,7 +67,6 @@ export class PreviewTaskGameView extends Component {
             subtitleTask = "Выполнено"
         }
         else {
-            console.log(TasksGameModel.instance.tasks)
             let quantityRequired = TasksGameModel.instance.tasks[TasksGameModel.instance.tasks.length - 1].quantityRequired.toString()
             let quantityCompleted = TasksGameModel.instance.tasks[TasksGameModel.instance.tasks.length - 1].quantityCompleted.toString()
             subtitleTask = quantityCompleted + "/" + quantityRequired

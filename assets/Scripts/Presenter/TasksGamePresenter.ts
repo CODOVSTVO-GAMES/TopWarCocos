@@ -27,86 +27,85 @@ export class TasksGamePresenter {
 
     public static addTask(typeTask: string, levelObjectTask: number, quantityRequired: number, quantityCompleted: number) {
         TasksGameModel.instance.tasks.push(new TaskGame(typeTask, levelObjectTask, quantityRequired, quantityCompleted, false))
-        // TasksGameView.instance.renderItemsTasks()
     }
 
     public static preCheckTask(typeItem: string) {
         if (typeItem == TypesItems.PLAN_COMMAND_POST) {
-            let a = ConfigPresenter.getImprivementResourceNumberMainBuildingByLevel(CommandPostModel.instance.levelCommandPost)
+            let requiredQuantityItems = ConfigPresenter.getImprivementResourceNumberMainBuildingByLevel(CommandPostModel.instance.levelCommandPost)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_COMMAND_POST)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_COMMAND_POST, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_MERGE_GOLD_MINE) {
-            let a = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelMergeGoldMine)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_MERGE_GOLD_MINE)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_MERGE_GOLD_MINE, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_MERGE_BARRACK_AIR) {
-            let a = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelMergeBarracksAir)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_MERGE_BARRACK_AIR)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_MERGE_BARRACK_AIR, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_MERGE_BARRACK_MARINE) {
-            let a = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelMergeBarracksMarine)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_MERGE_BARRACK_MARINE)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_MERGE_BARRACK_MARINE, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_MERGE_BARRACK_OVERLAND) {
-            let a = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberBuildingMergeByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelMergeBarracksOverland)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_MERGE_BARRACK_OVERLAND)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_MERGE_BARRACK_OVERLAND, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_BUILD_GOLD_MINE) {
-            let a = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelBuildGoldMine)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.GOLD_MINE, CommandPostModel.instance.levelBuildGoldMine)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_BUILD_GOLD_MINE)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_BUILD_GOLD_MINE, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_BUILD_BARRACK_AIR) {
-            let a = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_AIR, CommandPostModel.instance.levelBuildBarracksAir)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_AIR)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_AIR, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_BUILD_BARRACK_MARINE) {
-            let a = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_MARINE, CommandPostModel.instance.levelBuildBarracksMarine)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_MARINE)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_MARINE, levelObjectTask, 1)
             }
         }
         else if (typeItem == TypesItems.PLAN_BUILD_BARRACK_OVERLAND) {
-            let a = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland)
+            let requiredQuantityItems = ConfigPresenter.getIimprivementResourceNumberUpdateBuildingSpawnByTypeAndLevel(TypesObjects.BARRACKS_OVERLAND, CommandPostModel.instance.levelBuildBarracksOverland)
 
-            if (BackpackPresenter.getQuantityItemByType(typeItem) > a) {
+            if (BackpackPresenter.getQuantityItemByType(typeItem) > requiredQuantityItems) {
                 let levelObjectTask = this.getLevelObjectTaskByTypeTask(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_OVERLAND)
 
                 this.checkTask(TypesTasksGame.OPEN_UPGRADE_BUILD_BARRACK_OVERLAND, levelObjectTask, 1)
