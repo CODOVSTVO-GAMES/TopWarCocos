@@ -151,6 +151,13 @@ export class PrefabsModel extends Component {
     @property({ type: Prefab })
     private unfulfiledTask: Prefab
 
+    // =================================================================
+
+    @property({ type: Prefab })
+    private itemMyAvailableTroop: Prefab
+
+    // =================================================================
+
     protected onLoad(): void {
         PrefabsModel.instance = this
     }
@@ -237,5 +244,9 @@ export class PrefabsModel extends Component {
         else if (type == "unfulfiledTask") {
             return this.unfulfiledTask
         }
+    }
+
+    public getItemMyAvailableTroop() {
+        return this.itemMyAvailableTroop
     }
 }

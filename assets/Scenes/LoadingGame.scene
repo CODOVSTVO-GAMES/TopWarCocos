@@ -1724,6 +1724,10 @@
       "__uuid__": "6f50f19e-0292-4337-badc-692c65302360",
       "__expectedType__": "cc.Prefab"
     },
+    "itemMyAvailableTroop": {
+      "__uuid__": "a3e6d38b-9269-4245-8e48-2116e16e714c",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": "e0ZUs7Y1NFFKmj3pA9Q5ef"
   },
   {

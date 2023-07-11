@@ -1,7 +1,6 @@
-import { _decorator, Component } from 'cc';
-import { Unit } from '../Structures/Unit';
-import { FreeUnit } from '../Structures/FreeUnit';
+import { _decorator, Component, Node } from 'cc';
 import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
+import { TroopBattle } from '../Structures/TroopBattle';
 const { ccclass } = _decorator;
 
 @ccclass('BattleModel')
@@ -9,10 +8,15 @@ export class BattleModel extends Component {
 
     public static instance: BattleModel
 
-    public arrayOwn: Unit[] = []
-    public arrayEnemy: Unit[] = []
-    public arrayCards: FreeUnit[] = []
+    public myTroopsBattle: TroopBattle[] = []
+    public myAvailableTroops: TroopBattle[] = []
+    public enemyTroopsBattle: TroopBattle[] = []
+
+    public itemsMyAvailableTroops: Node[] = []
+
+
     public mapEnemyArr: MapEnemyBattle[] = []
+
     public quantityPlaces: number[] = []
     public isBattle: boolean = false
     public numberBattle: number = 0;

@@ -3,6 +3,7 @@ import { HomeMapModel } from "../Model/HomeMapModel"
 import { ObjectParameters } from "../ObjectParameters"
 import { IndexesObject } from "../Static/IndexesObject"
 import { TypesObjects } from "../Static/TypesObjects"
+import { QuantityItem } from '../Structures/QuantityItem';
 
 export class HomeMapPresenter {
 
@@ -180,41 +181,5 @@ export class HomeMapPresenter {
             if (HomeMapModel.instance.arrayObjectParameters[i].level != level) continue
             return HomeMapModel.instance.arrayObjectParameters[i]
         }
-    }
-
-    public static getSizeTroopAir(): number[] {
-        let sizeTroopAir: number[] = new Array(80).fill(0)
-
-        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
-            if (HomeMapModel.instance.temporaryLocalStorage[i] == null) continue
-            if (HomeMapModel.instance.temporaryLocalStorage[i].type == TypesObjects.TROOP_AIR) {
-                sizeTroopAir[HomeMapModel.instance.temporaryLocalStorage[i].level - 1] += 1
-            }
-        }
-        return sizeTroopAir
-    }
-
-    public static getSizeTroopMarine(): number[] {
-        let sizeTroopMarine: number[] = new Array(80).fill(0)
-
-        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
-            if (HomeMapModel.instance.temporaryLocalStorage[i] == null) continue
-            if (HomeMapModel.instance.temporaryLocalStorage[i].type == TypesObjects.TROOP_MARINE) {
-                sizeTroopMarine[HomeMapModel.instance.temporaryLocalStorage[i].level - 1] += 1
-            }
-        }
-        return sizeTroopMarine
-    }
-
-    public static getSizeTroopOverland(): number[] {
-        let sizeTroopOverland: number[] = new Array(80).fill(0)
-
-        for (let i = 0; i < HomeMapModel.instance.temporaryLocalStorage.length; i++) {
-            if (HomeMapModel.instance.temporaryLocalStorage[i] == null) continue
-            if (HomeMapModel.instance.temporaryLocalStorage[i].type == TypesObjects.TROOP_OVERLAND) {
-                sizeTroopOverland[HomeMapModel.instance.temporaryLocalStorage[i].level - 1] += 1
-            }
-        }
-        return sizeTroopOverland
     }
 }

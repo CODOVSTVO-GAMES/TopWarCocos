@@ -15,6 +15,7 @@ import { SpawnObjectsOnHomeMap } from "./SpawnObjectsOnHomeMap"
 import { BarracksPresenter } from "./BarracksPresenter"
 import { GameModel } from "../Model/GameModel"
 import { GameRewardPresenter } from "./GameRewardPresenter"
+import { BattlePresenter } from "./BattlePresenter"
 
 export class GameObjectPresenter {
 
@@ -233,9 +234,7 @@ export class GameObjectPresenter {
     }
 
     private static processingBattle(objectParameters: ObjectParameters) {
-        BattleModel.instance.numberBattle = HomeMapStructure.structure[objectParameters.index].numberBattle
-        BattleModel.instance.indexObjectBattle = objectParameters.index
-
+        BattlePresenter.initBattle(objectParameters.index)
         RedirectionToScene.redirect(SceneNames.BATTLE)
     }
 } 

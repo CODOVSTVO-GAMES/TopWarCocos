@@ -38,12 +38,12 @@ export class TroopRender extends Component {
         let type;
         let level;
         if (this.team == TypesTeam.TEAM_OWN) {
-            this.unitInfo = BattleModel.instance.arrayOwn[this.index];
+            this.unitInfo = BattleModel.instance.myTroopsBattle[this.index];
             type = this.unitInfo.type;
             level = this.unitInfo.level;
         }
         else if (this.team == TypesTeam.TEAM_ENEMY) {
-            this.unitInfo = BattleModel.instance.arrayEnemy[this.index];
+            this.unitInfo = BattleModel.instance.enemyTroopsBattle[this.index];
             type = this.unitInfo.type;
             level = this.unitInfo.level;
         }
