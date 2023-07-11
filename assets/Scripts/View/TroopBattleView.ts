@@ -1,5 +1,4 @@
 import { _decorator, Component, Node, Sprite, Label } from 'cc';
-import { Unit } from '../Structures/Unit';
 import { BattlePresenter } from '../Presenter/BattlePresenter';
 const { ccclass, property } = _decorator;
 
@@ -26,14 +25,14 @@ export class TroopBattleView extends Component {
 
     public teamTroop: string
     public indexTroop: number
-    public unitInfo: Unit
-
-    protected onLoad(): void {
-
-    }
 
     public eventClickOnTroop() {
         BattlePresenter.processingClickOnTroop(this.teamTroop, this.indexTroop)
+    }
+
+    public initData() {
+
+        this.renderInterface()
     }
 
     public renderInterface() {

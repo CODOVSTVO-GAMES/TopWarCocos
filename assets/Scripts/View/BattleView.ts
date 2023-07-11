@@ -11,6 +11,12 @@ export class BattleView extends Component {
     @property({ type: Node })
     private parentContent: Node
 
+    @property({ type: Node })
+    private myCoords: Node[] = []
+
+    @property({ type: Node })
+    private enemyCoords: Node[] = []
+
     @property({ type: Label })
     private quantityTroopTop: Label
 
@@ -19,6 +25,7 @@ export class BattleView extends Component {
 
     protected onLoad(): void {
         this.renderMyAvailableTroops()
+        this.renderEnemyTroopsBattle()
     }
 
     public eventRedirectToHomeMap() {
@@ -45,5 +52,17 @@ export class BattleView extends Component {
 
     public renderCharacters() {
 
+    }
+
+    public renderMyTroopsBattle() {
+
+    }
+
+    public renderEnemyTroopsBattle() {
+        for (let i = 0; i < BattleModel.instance.enemyTroopsBattle.length; i++) {
+            let object = instantiate(PrefabsModel.instance.getTroopBattle())
+            object.parent = this.enemyCoords[i]
+            BattleModel.instance.enemyTroopsBattleOnMap.push(object)
+        }
     }
 }

@@ -1,10 +1,7 @@
 import { _decorator, Animation, Component, Label, Node, Sprite } from 'cc';
-import { SpriteModel } from '../Model/SpriteModel';
-import { Battle } from './Battle';
 import { TypesTeam } from '../Static/TypesTeam';
 import { Unit } from '../Structures/Unit';
 import { TypesAnimation } from '../Static/TypesAnimation';
-import { BattleModel } from '../Model/BattleModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopRender')
@@ -33,26 +30,6 @@ export class TroopRender extends Component {
     public anim: Animation;
 
     public unitInfo: Unit;
-
-    start() {
-        let type;
-        let level;
-        if (this.team == TypesTeam.TEAM_OWN) {
-            this.unitInfo = BattleModel.instance.myTroopsBattle[this.index];
-            type = this.unitInfo.type;
-            level = this.unitInfo.level;
-        }
-        else if (this.team == TypesTeam.TEAM_ENEMY) {
-            this.unitInfo = BattleModel.instance.enemyTroopsBattle[this.index];
-            type = this.unitInfo.type;
-            level = this.unitInfo.level;
-        }
-        this.hpText.string = this.unitInfo.hp.toString();
-        this.sliderObject.fillRange = this.unitInfo.hp / this.unitInfo.availableHp;
-        if (type != null && level != null) {
-            this.spriteObject.spriteFrame = SpriteModel.instance.getObjectSprite(type, level);
-        }
-    }
 
     shotRenderInfo(time: number) {
         setTimeout(() => this.renderInfo(), (time * 750) + 750);
@@ -94,13 +71,6 @@ export class TroopRender extends Component {
         catch
         {
             console.log("пиздец чего Даня тут понаписал, не работает :(")
-        }
-    }
-
-    clickTroop() {
-        if (this.team == TypesTeam.TEAM_OWN && BattleModel.instance.isBattle == false) {
-            Battle.instance.retutnUnitOnCard(this.index);
-            this.nodeObject.destroy();
         }
     }
 }

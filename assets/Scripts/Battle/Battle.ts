@@ -1,14 +1,11 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab } from 'cc';
 import { TypesObjects } from '../Static/TypesObjects';
 import { TroopRender } from './TroopRender';
-import { BattleMap } from './BattleMap';
 import { TypesAttack } from '../Static/TypesAttack';
 import { TypesTeam } from '../Static/TypesTeam';
 import { ConfigPresenter } from '../Presenter/ConfigPresenter';
 import { CharacterInfo } from '../Structures/CharacterInfo';
-import { FreeUnit } from '../Structures/FreeUnit';
 import { Unit } from '../Structures/Unit';
-import { CardTroopRender } from './CardTroopRender';
 import { RedirectionToScene } from '../Other/RedirectionToScene';
 import { SceneNames } from '../Static/SceneNames';
 import { HomeMapPresenter } from '../Presenter/HomeMapPresenter';
@@ -59,23 +56,23 @@ export class Battle extends Component {
         this.getQuantityAvailableFreeCoords()
     }
 
-    getCommands(mapNumber: number): MapEnemyBattle {
-        for (let i = 0; i < BattleModel.instance.mapEnemyArr.length; i++) {
-            if (BattleModel.instance.mapEnemyArr[i].numberBattle == mapNumber) {
-                return BattleModel.instance.mapEnemyArr[i]
-            }
-        }
-        console.log('Не найдена такая команда. Запросите с сервера')
-    }
+    // getCommands(mapNumber: number): MapEnemyBattle {
+    //     // for (let i = 0; i < BattleModel.instance.mapEnemyArr.length; i++) {
+    //     //     if (BattleModel.instance.mapEnemyArr[i].numberBattle == mapNumber) {
+    //     //         return BattleModel.instance.mapEnemyArr[i]
+    //     //     }
+    //     // }
+    //     // console.log('Не найдена такая команда. Запросите с сервера')
+    // }
 
     addEnemyCommand(mapEnemyUnits: MapEnemyBattle) {
-        for (let l = 0; l < BattleModel.instance.mapEnemyArr.length; l++) {
-            if (mapEnemyUnits.numberBattle == BattleModel.instance.mapEnemyArr[l].numberBattle) {
-                console.log('такой новер команы уже существует')
-                return
-            }
-        }
-        BattleModel.instance.mapEnemyArr.push(mapEnemyUnits)
+        // for (let l = 0; l < BattleModel.instance.mapEnemyArr.length; l++) {
+        //     if (mapEnemyUnits.numberBattle == BattleModel.instance.mapEnemyArr[l].numberBattle) {
+        //         console.log('такой новер команы уже существует')
+        //         return
+        //     }
+        // }
+        // BattleModel.instance.mapEnemyArr.push(mapEnemyUnits)
     }
 
     redirectToHomeMap() {
@@ -88,20 +85,20 @@ export class Battle extends Component {
     }
 
     getTroopEnemy() {
-        let troopsEnemy = this.getCommands(BattleModel.instance.numberBattle)
+        // let troopsEnemy = this.getCommands(BattleModel.instance.numberBattle)
 
-        for (let i = 0; i < troopsEnemy.units1.length; i++) {
-            // BattleModel.instance.enemyTroopsBattle.push(troopsEnemy.units1[i])
-            // BattleModel.instance.enemyTroopsBattle[i].index = i
-            // this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleModel.instance.enemyTroopsBattle[BattleModel.instance.enemyTroopsBattle.length - 1])
-        }
+        // for (let i = 0; i < troopsEnemy.units1.length; i++) {
+        //     // BattleModel.instance.enemyTroopsBattle.push(troopsEnemy.units1[i])
+        //     // BattleModel.instance.enemyTroopsBattle[i].index = i
+        //     // this.spawnTroop(TypesTeam.TEAM_ENEMY, BattleModel.instance.enemyTroopsBattle[BattleModel.instance.enemyTroopsBattle.length - 1])
+        // }
     }
 
     getQuantityAvailableFreeCoords() {
         let a = [1, 1, 6, 10, 16, 30, 40, 50, 70];
         for (let i = 0; i < a.length; i++) {
             if (GameModel.instance.level >= a[i]) {
-                BattleModel.instance.quantityAvailableFreeCoords += 1;
+                // BattleModel.instance.quantityAvailableFreeCoords += 1;
             }
             else {
                 break;
@@ -112,36 +109,36 @@ export class Battle extends Component {
     }
 
     getQuantityTroopsOfCoord() {
-        for (let i = 0; i < BattleModel.instance.quantityAvailableFreeCoords; i++) {
-            BattleModel.instance.quantityPlaces[i] += 1;
-        }
+        // for (let i = 0; i < BattleModel.instance.quantityAvailableFreeCoords; i++) {
+        //     BattleModel.instance.quantityPlaces[i] += 1;
+        // }
     }
 
     renderAvailableCoords() {
         let index = 0;
-        for (let i = 0; i < BattleMap.instance.coordsOwn.length; i++) {
-            BattleMap.instance.coordsOwn[i].active = false;
-        }
-        for (let i = 0; i < BattleModel.instance.quantityAvailableFreeCoords; i++) {
-            BattleMap.instance.coordsOwn[i].active = true;
-            this.mapQuantity[index + 1].string = "1/1";
-            index = i;
-        }
-        if (index < 9) {
-            BattleMap.instance.coordsOwn[index + 1].active = true;
-            this.mapQuantity[index + 1].string = "-";
-        }
+        // for (let i = 0; i < BattleMap.instance.coordsOwn.length; i++) {
+        //     BattleMap.instance.coordsOwn[i].active = false;
+        // }
+        // for (let i = 0; i < BattleModel.instance.quantityAvailableFreeCoords; i++) {
+        //     BattleMap.instance.coordsOwn[i].active = true;
+        //     this.mapQuantity[index + 1].string = "1/1";
+        //     index = i;
+        // }
+        // if (index < 9) {
+        //     BattleMap.instance.coordsOwn[index + 1].active = true;
+        //     this.mapQuantity[index + 1].string = "-";
+        // }
     }
 
     spawnTroop(team: string, unit: Unit) {
         let coords;
         let gameObject;
 
-        if (team == TypesTeam.TEAM_OWN) {
-            coords = BattleMap.instance.coordsOwn;
-        } else if (team == TypesTeam.TEAM_ENEMY) {
-            coords = BattleMap.instance.coordsEnemy;
-        }
+        // if (team == TypesTeam.TEAM_OWN) {
+        //     coords = BattleMap.instance.coordsOwn;
+        // } else if (team == TypesTeam.TEAM_ENEMY) {
+        //     coords = BattleMap.instance.coordsEnemy;
+        // }
 
         gameObject = instantiate(this.troop);
         gameObject.setParent(coords[unit.index]);
@@ -163,7 +160,7 @@ export class Battle extends Component {
     }
 
     addArrays() {
-        BattleModel.instance.myTroopsBattle = new Array(BattleModel.instance.quantityAvailableFreeCoords);
+        // BattleModel.instance.myTroopsBattle = new Array(BattleModel.instance.quantityAvailableFreeCoords);
     }
 
     spawnCards() {
@@ -200,7 +197,7 @@ export class Battle extends Component {
 
     clickOnCard(index: number) {
         for (let i = 0; i < BattleModel.instance.myTroopsBattle.length; i++) {
-            if (BattleModel.instance.myTroopsBattle[i] != null || BattleModel.instance.quantityAvailableFreeCoords <= i) continue;
+            // if (BattleModel.instance.myTroopsBattle[i] != null || BattleModel.instance.quantityAvailableFreeCoords <= i) continue;
 
             // let unit = BattleModel.instance.myTroopsBattle[index];
             // let config = ConfigPresenter.getConfigUnitsByTypeAndLevel(unit.type, unit.level);
@@ -340,14 +337,14 @@ export class Battle extends Component {
                 this.endText.string = "ВЫИГРЫШ"
                 OpenHomeMapPresenter.victory()
             }
-            BattleModel.instance.myTroopsBattle = new Array
-            BattleModel.instance.enemyTroopsBattle = new Array
-            BattleModel.instance.myTroopsBattle = new Array
-            BattleModel.instance.quantityPlaces = new Array
-            BattleModel.instance.isBattle = false
-            BattleModel.instance.quantityAvailableFreeCoords = 0
-            BattleModel.instance.attackingTeam = 0
-            BattleModel.instance.attackNumber = 0
+            // BattleModel.instance.myTroopsBattle = new Array
+            // BattleModel.instance.enemyTroopsBattle = new Array
+            // BattleModel.instance.myTroopsBattle = new Array
+            // BattleModel.instance.quantityPlaces = new Array
+            // BattleModel.instance.isBattle = false
+            // BattleModel.instance.quantityAvailableFreeCoords = 0
+            // BattleModel.instance.attackingTeam = 0
+            // BattleModel.instance.attackNumber = 0
 
             this.endModal.active = true;
         }

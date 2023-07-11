@@ -17,7 +17,6 @@ import { MapEnemyBattle } from '../Structures/MapEnemyUnits';
 import { QuantityItem } from '../Structures/QuantityItem';
 import { LoadingGame } from '../LoadingGame/LoadingGame';
 import { LevelNumber } from '../Structures/LevelNumder';
-import { BattlePresenter } from '../Presenter/BattlePresenter';
 const { ccclass } = _decorator;
 
 @ccclass('ConfigModel')
@@ -29,6 +28,7 @@ export class ConfigModel extends Component {
     public unitsConfig: UnitsCongig[] = []
     public mergeBuildingsConfig: ConfigMergeBuildings[] = []
     public spawnBuildingsConfig: ConfigSpawnBuildings[] = []
+    public mapEnemyBattle: MapEnemyBattle[] = []
     public levelConfig: Level[] = []
     public heroConfig: HeroConfig[] = []
     public heroLevelConfig: HeroLevel[] = []
@@ -339,9 +339,8 @@ export class ConfigModel extends Component {
                         reward.push(new QuantityItem(TypesItems.GEMS, value[l].g))
                     }
 
-                    BattlePresenter.addEnemyCommand(new MapEnemyBattle(value[l].n, units1, units2, units3, value[l].p, reward))
+                    this.mapEnemyBattle.push(new MapEnemyBattle(value[l].n, value[l].p, units1, units2, units3, reward))
                 }
-
             }
         }
         LoadingGame.redirectToHomeMap()

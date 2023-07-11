@@ -749,7 +749,7 @@
     },
     "component": "",
     "_componentId": "5096aRNTqxLnbG4/jzWiGW7",
-    "handler": "eventClickOnItem",
+    "handler": "eventClickOnMyAvailableTroop",
     "customEventData": ""
   },
   {

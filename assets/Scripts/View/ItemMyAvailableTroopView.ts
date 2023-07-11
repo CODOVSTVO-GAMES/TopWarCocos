@@ -1,5 +1,6 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
 import { SpriteModel } from '../Model/SpriteModel';
+import { BattlePresenter } from '../Presenter/BattlePresenter';
 const { ccclass, property } = _decorator;
 
 @ccclass('ItemMyAvailableTroopView')
@@ -22,8 +23,8 @@ export class ItemMyAvailableTroopView extends Component {
     private quantityTroop: number
     private hpTroop: number
 
-    public eventClickOnItem() {
-        console.log("AYF")
+    public eventClickOnMyAvailableTroop() {
+        BattlePresenter.processingClickOnItemMyAvailableTroop(this.typeTroop, this.levelTroop)
     }
 
     public renderInterface(typeTroop: string, levelTroop: number, quantityTroop: number, hpTroop: number) {

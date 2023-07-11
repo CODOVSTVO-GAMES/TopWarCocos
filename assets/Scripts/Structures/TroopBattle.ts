@@ -1,4 +1,5 @@
 export class TroopBattle {
+    teamTroop: string
     typeTroop: string
     levelTroop: number
     quantityTroop: number
@@ -7,9 +8,9 @@ export class TroopBattle {
     typeShot: string
     activeHp: number
     availableHp: number
-    attackNumber: number
 
-    constructor(typeTroop: string, levelTroop: number, quantityTroop: number, damageTroop: number, typeAttack: string, typeShot: string, activeHp: number, availableHp: number, attackNumber: number) {
+    constructor(teamTroop: string, typeTroop: string, levelTroop: number, quantityTroop: number, damageTroop: number, typeAttack: string, typeShot: string, activeHp: number, availableHp: number) {
+        this.teamTroop = teamTroop
         this.typeTroop = typeTroop
         this.levelTroop = levelTroop
         this.quantityTroop = quantityTroop
@@ -18,6 +19,5 @@ export class TroopBattle {
         this.typeShot = typeShot
         this.activeHp = activeHp
         this.availableHp = availableHp
-        this.attackNumber = attackNumber
     }
 }

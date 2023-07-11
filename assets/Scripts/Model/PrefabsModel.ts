@@ -156,6 +156,9 @@ export class PrefabsModel extends Component {
     @property({ type: Prefab })
     private itemMyAvailableTroop: Prefab
 
+    @property({ type: Prefab })
+    private troopBattle: Prefab
+
     // =================================================================
 
     protected onLoad(): void {
@@ -248,5 +251,9 @@ export class PrefabsModel extends Component {
 
     public getItemMyAvailableTroop() {
         return this.itemMyAvailableTroop
+    }
+
+    public getTroopBattle() {
+        return this.troopBattle
     }
 }
