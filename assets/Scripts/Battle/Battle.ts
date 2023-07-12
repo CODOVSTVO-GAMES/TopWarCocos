@@ -51,9 +51,9 @@ export class Battle extends Component {
     public onLoad() {
         Battle.instance = this
 
-        this.getTroopOwn()
-        this.getTroopEnemy()
-        this.getQuantityAvailableFreeCoords()
+        // this.getTroopOwn()
+        // this.getTroopEnemy()
+        // this.getQuantityAvailableFreeCoords()
     }
 
     // getCommands(mapNumber: number): MapEnemyBattle {

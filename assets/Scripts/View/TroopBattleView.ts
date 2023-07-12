@@ -1,5 +1,8 @@
-import { _decorator, Component, Node, Sprite, Label } from 'cc';
+import { _decorator, Component, Node, Sprite, Label, SpriteFrame } from 'cc';
 import { BattlePresenter } from '../Presenter/BattlePresenter';
+import { TroopBattle } from '../Structures/TroopBattle';
+import { SpriteModel } from '../Model/SpriteModel';
+import { TypesTeam } from '../Static/TypesTeam';
 const { ccclass, property } = _decorator;
 
 @ccclass('TroopBattleView')
@@ -23,19 +26,23 @@ export class TroopBattleView extends Component {
     @property({ type: Animation })
     public anim: Animation
 
-    public teamTroop: string
-    public indexTroop: number
+    private troopBattle: TroopBattle
 
     public eventClickOnTroop() {
-        BattlePresenter.processingClickOnTroop(this.teamTroop, this.indexTroop)
+        BattlePresenter.processingClickOnTroop(this.troopBattle, this.nodeObject)
     }
 
-    public initData() {
+    public renderInterface(troopBattle: TroopBattle) {
+        this.troopBattle = troopBattle
 
-        this.renderInterface()
-    }
+        let spriteTroop: SpriteFrame
+        if (this.troopBattle.teamTroop == TypesTeam.TEAM_OWN) {
+            spriteTroop = SpriteModel.instance.getTroopSprite(this.troopBattle.typeTroop, "back", this.troopBattle.levelTroop)
+        }
+        else if (this.troopBattle.teamTroop == TypesTeam.TEAM_ENEMY) {
+            spriteTroop = SpriteModel.instance.getTroopSprite(this.troopBattle.typeTroop, "face", this.troopBattle.levelTroop)
+        }
 
-    public renderInterface() {
-
+        this.spriteTroop.spriteFrame = spriteTroop
     }
 }

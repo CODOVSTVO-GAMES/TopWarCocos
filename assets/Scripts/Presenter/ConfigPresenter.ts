@@ -256,7 +256,7 @@ export class ConfigPresenter {
 
         for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
             if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
-                return ConfigModel.instance.unitsConfig[i].hp
+                return ConfigModel.instance.unitsConfig[i].activeHp
             }
         }
         // throw "не существует такого обьекта";
@@ -271,7 +271,7 @@ export class ConfigPresenter {
 
         for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
             if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
-                return ConfigModel.instance.unitsConfig[i].damage
+                return ConfigModel.instance.unitsConfig[i].damageTroop
             }
         }
         // throw "не существует такого обьекта";
@@ -286,7 +286,7 @@ export class ConfigPresenter {
 
         for (let i = 0; i < ConfigModel.instance.unitsConfig.length; i++) {
             if (ConfigModel.instance.unitsConfig[i].type == type && ConfigModel.instance.unitsConfig[i].level == level) {
-                return ConfigModel.instance.unitsConfig[i].attackType
+                return ConfigModel.instance.unitsConfig[i].typeAttack
             }
         }
         // throw "не существует такого обьекта";

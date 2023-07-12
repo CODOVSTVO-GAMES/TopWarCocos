@@ -17,6 +17,14 @@ export class BattleModel extends Component {
 
     public numberBattle: number = 0
     public indexObjectBattle: number = 0
+
+    public minimumQuantityFreeCoords: number = 0
+    public additionalQuantityFreeCoords: number = 0
+    public totalQuantityFreeCoords: number = 0
+    public remainedQuantityFreePlaces: number = 0
+    public activeQuantityTroopsOnCoords: number[] = []
+    public maximumQuantityTroopsOnCoords: number[] = []
+
     public attackingTeam: number = 0
     public attackNumber: number = 0
 

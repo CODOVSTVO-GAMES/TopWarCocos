@@ -926,6 +926,15 @@
     "__prefab": {
       "__id__": 42
     },
+    "nodeObject": {
+      "__id__": 1
+    },
+    "bullet": {
+      "__id__": 31
+    },
+    "spriteTroop": {
+      "__id__": 5
+    },
     "_id": ""
   },
   {

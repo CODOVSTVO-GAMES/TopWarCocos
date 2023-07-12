@@ -6,9 +6,9 @@ export class UnitsCongig {
     power: number
 
     //поля воинов
-    hp: number
-    damage: number
-    attackType: string
+    activeHp: number
+    damageTroop: number
+    typeAttack: string
     timeCreation: number
 
     //цена покупки
@@ -21,26 +21,16 @@ export class UnitsCongig {
 
     expPerSpawn: number
 
-    constructor(
-        type: string, level: number,
-
-        experience: number, power: number,
-
-        imprivementResourceType: string, imprivementResourceNumber: number, priceUpdate: number,
-
-        hp: number, damage: number, attackType: string, timeCreation: number, priceBuy: number,
-
-        expPerSpawn: number
-    ) {
+    constructor(type: string, level: number, experience: number, power: number, imprivementResourceType: string, imprivementResourceNumber: number, priceUpdate: number, activeHp: number, damageTroop: number, typeAttack: string, timeCreation: number, priceBuy: number, expPerSpawn: number) {
         this.type = type
         this.level = level
 
         this.experience = experience
         this.power = power
 
-        this.hp = hp
-        this.damage = damage
-        this.attackType = attackType
+        this.activeHp = activeHp
+        this.damageTroop = damageTroop
+        this.typeAttack = typeAttack
         this.timeCreation = timeCreation
         this.priceBuy = priceBuy
 

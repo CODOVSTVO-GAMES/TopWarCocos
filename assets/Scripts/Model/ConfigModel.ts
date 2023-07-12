@@ -355,7 +355,7 @@ export class ConfigModel extends Component {
     private createEnemyUnit(level: number, quantity: number): Unit {
         let config = ConfigPresenter.getConfigUnitsByTypeAndLevel(TypesObjects.TROOP_OVERLAND, level)
 
-        return new Unit(config.hp, config.hp, config.damage, 6666, config.level, quantity, config.attackType, 'Это была ловушка', config.type)
+        return new Unit(config.activeHp, config.activeHp, config.damageTroop, 6666, config.level, quantity, config.typeAttack, 'Это была ловушка', config.type)
     }
 
     initHeroLevel() {

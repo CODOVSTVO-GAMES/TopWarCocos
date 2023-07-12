@@ -186,6 +186,19 @@ export class SpriteModel extends Component {
         else if (type == TypesObjects.BATTLE_8X8) return this.battle
     }
 
+    public getTroopSprite(type: string, position: string, level: number) {
+        if (position == "face") {
+            if (type == TypesObjects.TROOP_AIR) return this.troopAirFace[level - 1]
+            else if (type == TypesObjects.TROOP_MARINE) return this.troopMarineFace[level - 1]
+            else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverlandFace[level - 1]
+        }
+        else if (position == "back") {
+            if (type == TypesObjects.TROOP_AIR) return this.troopAirBack[level - 1]
+            else if (type == TypesObjects.TROOP_MARINE) return this.troopMarineBack[level - 1]
+            else if (type == TypesObjects.TROOP_OVERLAND) return this.troopOverlandBack[level - 1]
+        }
+    }
+
     public getCharacterSprite(type: string): SpriteFrame {
         if (type == TypesCharacters.BLACK_WIDOW) return this.characters[0]
         else if (type == TypesCharacters.CHARACTER_1) return this.characters[1]
