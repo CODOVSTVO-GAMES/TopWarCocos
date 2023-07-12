@@ -35,6 +35,7 @@ export class BattleView extends Component {
     protected onLoad(): void {
         BattleView.instance = this
 
+        this.renderInterface()
         this.renderItemMyAvailableTroops()
         this.renderMyCoords()
         this.renderEnemyTroopsBattle()
@@ -50,6 +51,12 @@ export class BattleView extends Component {
 
     public eventAutomaticPlacement() {
         BattlePresenter.processingAutomaticPlacement()
+    }
+
+    public renderInterface() {
+        if (BattleModel.instance.isBattle) {
+
+        }
     }
 
     public renderItemMyAvailableTroops() {
@@ -94,7 +101,7 @@ export class BattleView extends Component {
 
     public renderMyCoords() {
         let totalQuantityFreeCoords = BattleModel.instance.totalQuantityFreeCoords
-        
+
         for (let i = 0; i < this.myCoords.length; i++) {
             this.myCoords[i].active = false
         }

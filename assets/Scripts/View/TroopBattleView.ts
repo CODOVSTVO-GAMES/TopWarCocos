@@ -14,14 +14,17 @@ export class TroopBattleView extends Component {
     @property({ type: Node })
     public bullet: Node
 
+    @property({ type: Label })
+    public quantityTroop: Label
+
+    @property({ type: Label })
+    public activeHp: Label
+
     @property({ type: Sprite })
     public spriteTroop: Sprite
 
     @property({ type: Sprite })
     public fillHpTroop: Sprite
-
-    @property({ type: Label })
-    public hpText: Label
 
     @property({ type: Animation })
     public anim: Animation

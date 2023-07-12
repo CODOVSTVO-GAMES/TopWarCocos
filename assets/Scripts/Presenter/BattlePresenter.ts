@@ -41,6 +41,7 @@ export class BattlePresenter {
     public static processingStartBattle() {
         BattleModel.instance.isPreparation = false
         BattleModel.instance.isBattle = true
+        console.log("START BATTLE")
     }
 
     public static processingAutomaticPlacement() {
