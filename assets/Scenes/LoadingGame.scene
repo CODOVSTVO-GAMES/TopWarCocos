@@ -1712,6 +1712,14 @@
       "__uuid__": "5a1eb555-4433-49e6-9774-c868aeef2cff",
       "__expectedType__": "cc.Prefab"
     },
+    "backpackView": {
+      "__uuid__": "70c3c7eb-d53b-46b6-ad16-a2323af9ad2c",
+      "__expectedType__": "cc.Prefab"
+    },
+    "tasksGameView": {
+      "__uuid__": "56b6ab75-d05e-4d22-ab8b-b0d9756b9554",
+      "__expectedType__": "cc.Prefab"
+    },
     "itemBackpack": {
       "__uuid__": "727bee36-8f59-4e12-bb44-e944a3cc44d2",
       "__expectedType__": "cc.Prefab"

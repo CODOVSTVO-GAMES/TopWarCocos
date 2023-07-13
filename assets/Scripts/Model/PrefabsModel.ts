@@ -195,7 +195,7 @@ export class PrefabsModel extends Component {
         }
     }
 
-    public getViewPrefabs(type: string): Prefab {
+    public getViewPrefab(type: string): Prefab {
         if (type == TypesViews.PROFILE) return this.profileView
         else if (type == TypesViews.SHOP_COINS) return this.shopCoinsView
         else if (type == TypesViews.SHOP_GEMS) return this.shopGemsView

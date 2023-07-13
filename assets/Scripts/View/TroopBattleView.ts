@@ -26,17 +26,15 @@ export class TroopBattleView extends Component {
     @property({ type: Sprite })
     public fillHpTroop: Sprite
 
-    @property({ type: Animation })
-    public anim: Animation
-
     private troopBattle: TroopBattle
 
     public eventClickOnTroop() {
-        BattlePresenter.processingClickOnTroop(this.troopBattle, this.nodeObject)
+        BattlePresenter.processingClickOnTroop(this.troopBattle)
     }
 
     public renderInterface(troopBattle: TroopBattle) {
         this.troopBattle = troopBattle
+        this.troopBattle.nodeObject = this.nodeObject
 
         let spriteTroop: SpriteFrame
         if (this.troopBattle.teamTroop == TypesTeam.TEAM_OWN) {

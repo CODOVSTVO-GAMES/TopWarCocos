@@ -1,7 +1,7 @@
 import { _decorator, Component, Label, Sprite } from 'cc';
 import { SpriteModel } from '../Model/SpriteModel';
 import { BattlePresenter } from '../Presenter/BattlePresenter';
-import { TroopBattle } from '../Structures/TroopBattle';
+import { BattleModel } from '../Model/BattleModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('ItemMyAvailableTroopView')
@@ -19,23 +19,24 @@ export class ItemMyAvailableTroopView extends Component {
     @property({ type: Sprite })
     private spriteTroop: Sprite
 
-    private troopBattle: TroopBattle
+    private index: number
 
     public eventClickOnMyAvailableTroop() {
-        BattlePresenter.processingClickOnItemMyAvailableTroop(this.troopBattle)
+        BattlePresenter.processingClickOnItemMyAvailableTroop(this.index)
     }
 
-    public renderInterface(troopBattle: TroopBattle) {
-        this.troopBattle = troopBattle
+    public renderInterface(index: number) {
+        this.index = index
 
-        let levelTroopText = "Ур. " + this.troopBattle.levelTroop.toString()
-        let quantityTroopText = this.troopBattle.quantityTroop.toString()
-        let hpTroopText = this.troopBattle.activeHp.toString()
-        let spriteTroop = SpriteModel.instance.getObjectSprite(this.troopBattle.typeTroop, this.troopBattle.levelTroop)
+        // let troopBattle = BattleModel.instance.myAvailableTroops[this.index]
+        // let levelTroopText = "Ур. " + troopBattle.levelTroop.toString()
+        // let quantityTroopText = troopBattle.quantityTroop.toString()
+        // let hpTroopText = troopBattle.activeHp.toString()
+        // let spriteTroop = SpriteModel.instance.getObjectSprite(troopBattle.typeTroop, troopBattle.levelTroop)
 
-        this.levelTroopText.string = levelTroopText
-        this.quantityTroopText.string = quantityTroopText
-        this.hpTroopText.string = hpTroopText
-        this.spriteTroop.spriteFrame = spriteTroop
+        // this.levelTroopText.string = levelTroopText
+        // this.quantityTroopText.string = quantityTroopText
+        // this.hpTroopText.string = hpTroopText
+        // this.spriteTroop.spriteFrame = spriteTroop
     }
 }

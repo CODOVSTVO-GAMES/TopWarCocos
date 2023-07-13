@@ -18,6 +18,18 @@ export class BattleView extends Component {
     private exitBackButton: Node
 
     @property({ type: Node })
+    private startBattleButton: Node
+
+    @property({ type: Node })
+    private automaticPlacementButton: Node
+
+    @property({ type: Node })
+    private footerPreparation: Node
+
+    @property({ type: Node })
+    private footerBattle: Node
+
+    @property({ type: Node })
     private myCoords: Node[] = []
 
     @property({ type: Node })
@@ -29,8 +41,6 @@ export class BattleView extends Component {
     @property({ type: Label })
     private quantityTroopBottom: Label
 
-    @property({ type: Label })
-    private quantityTroopsOnCoords: Label[] = []
 
     protected onLoad(): void {
         BattleView.instance = this
@@ -54,8 +64,23 @@ export class BattleView extends Component {
     }
 
     public renderInterface() {
-        if (BattleModel.instance.isBattle) {
-
+        if (BattleModel.instance.isPreparation) {
+            this.startBattleButton.active = true
+            this.automaticPlacementButton.active = true
+            this.footerPreparation.active = true
+            this.footerBattle.active = false
+        }
+        else if (BattleModel.instance.isBattle) {
+            this.startBattleButton.active = false
+            this.automaticPlacementButton.active = false
+            this.footerPreparation.active = false
+            this.footerBattle.active = true
+        }
+        else if (BattleModel.instance.isEnd) {
+            this.startBattleButton.active = false
+            this.automaticPlacementButton.active = false
+            this.footerPreparation.active = false
+            this.footerBattle.active = true
         }
     }
 
@@ -67,7 +92,7 @@ export class BattleView extends Component {
         for (let i = 0; i < BattleModel.instance.myAvailableTroops.length; i++) {
             let object = instantiate(PrefabsModel.instance.getItemMyAvailableTroop())
             object.parent = this.parentContent
-            object.getComponent(ItemMyAvailableTroopView).renderInterface(BattleModel.instance.myAvailableTroops[i])
+            object.getComponent(ItemMyAvailableTroopView).renderInterface(i)
             BattleModel.instance.itemsMyAvailableTroops.push(object)
         }
     }
@@ -111,11 +136,11 @@ export class BattleView extends Component {
             let quantityTroopsOnCoords = activeQuantityTroopsOnCoords + "/" + maximumQuantityTroopsOnCoords
 
             this.myCoords[i].active = true
-            this.quantityTroopsOnCoords[i].string = quantityTroopsOnCoords
+            // this.quantityTroopsOnCoords[i].string = quantityTroopsOnCoords
         }
         if (totalQuantityFreeCoords < 9) {
             this.myCoords[totalQuantityFreeCoords].active = true
-            this.quantityTroopsOnCoords[totalQuantityFreeCoords].string = "-"
+            // this.quantityTroopsOnCoords[totalQuantityFreeCoords].string = "-"
         }
     }
 }

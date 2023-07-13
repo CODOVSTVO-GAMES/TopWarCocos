@@ -16,6 +16,9 @@ export class BackpackView extends Component {
     private titleSelectItem: Label
 
     @property({ type: Label })
+    private subtitleSelectItem: Label
+
+    @property({ type: Label })
     private usageQuantitySelectItem: Label
 
     protected onLoad(): void {

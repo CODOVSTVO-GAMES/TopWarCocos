@@ -1,4 +1,3 @@
-import { _decorator, Node } from 'cc';
 import { BattleModel } from "../Model/BattleModel"
 import { ConfigModel } from "../Model/ConfigModel"
 import { GameModel } from "../Model/GameModel"
@@ -30,7 +29,6 @@ export class BattlePresenter {
         BattleModel.instance.activeQuantityTroopsOnCoords = []
         BattleModel.instance.maximumQuantityTroopsOnCoords = []
 
-
         BattleModel.instance.isPreparation = false
         BattleModel.instance.isBattle = false
         BattleModel.instance.isEnd = false
@@ -39,35 +37,52 @@ export class BattlePresenter {
     }
 
     public static processingStartBattle() {
-        BattleModel.instance.isPreparation = false
-        BattleModel.instance.isBattle = true
-        console.log("START BATTLE")
+        for (let i = 0; i < BattleModel.instance.activeQuantityTroopsOnCoords.length; i++) {
+            if (BattleModel.instance.activeQuantityTroopsOnCoords[i] > 0) {
+                BattleModel.instance.isPreparation = false
+                BattleModel.instance.isBattle = true
+                BattleView.instance.renderInterface()
+                return
+            }
+        }
     }
 
     public static processingAutomaticPlacement() {
-
+        // for (let i = 0; i < BattleModel.instance.myTroopsBattle.length; i++) {
+        //     if (BattleModel.instance.myTroopsBattle[i] != null) {
+        //         this.processingClickOnTroop(BattleModel.instance.myTroopsBattle[i])
+        //     }
+        // }
+        // for (let i = 0; i < BattleModel.instance.myAvailableTroops.length; i++) {
+        //     this.processingClickOnItemMyAvailableTroop(BattleModel.instance.myAvailableTroops[i])
+        // }
     }
 
-    public static processingClickOnTroop(troopBattle: TroopBattle, nodeObject: Node) {
+    public static processingClickOnTroop(troopBattle: TroopBattle) {
         if (troopBattle.teamTroop == TypesTeam.TEAM_OWN && BattleModel.instance.isBattle == false) {
+            let foundTroopInArray = false
+            let index: number
+
             for (let i = 0; i < BattleModel.instance.myAvailableTroops.length; i++) {
                 if (troopBattle.typeTroop == BattleModel.instance.myAvailableTroops[i].typeTroop && troopBattle.levelTroop == BattleModel.instance.myAvailableTroops[i].levelTroop) {
-                    BattleModel.instance.myAvailableTroops[i].quantityTroop += troopBattle.quantityTroop
-                    BattleModel.instance.myTroopsBattle[troopBattle.indexTroop] = null
-                    BattleModel.instance.remainedQuantityFreePlaces -= troopBattle.quantityTroop
-                    BattleModel.instance.activeQuantityTroopsOnCoords[troopBattle.indexTroop] -= troopBattle.quantityTroop
-                    nodeObject.destroy()
-                    this.sortMyAvailableTroops()
-                    BattleView.instance.renderItemMyAvailableTroops()
-                    BattleView.instance.renderMyTroopsBattle()
-                    BattleView.instance.renderMyCoords()
-                    return
+                    foundTroopInArray = true
+                    index = i
+                    break
                 }
             }
-            BattleModel.instance.myAvailableTroops.push(new TroopBattle(troopBattle.teamTroop, troopBattle.typeTroop, troopBattle.levelTroop, troopBattle.indexTroop, troopBattle.quantityTroop, troopBattle.damageTroop, troopBattle.typeAttack, troopBattle.activeHp, troopBattle.availableHp))
+
+            if (foundTroopInArray) {
+                BattleModel.instance.myAvailableTroops[index].quantityTroop += troopBattle.quantityTroop
+            }
+            else {
+                BattleModel.instance.myAvailableTroops.push(new TroopBattle(troopBattle.teamTroop, troopBattle.typeTroop, troopBattle.levelTroop, troopBattle.indexTroop, troopBattle.quantityTroop, troopBattle.damageTroop, troopBattle.typeAttack, troopBattle.activeHp, troopBattle.availableHp))
+            }
+
+            BattleModel.instance.myTroopsBattle[troopBattle.indexTroop] = null
             BattleModel.instance.remainedQuantityFreePlaces -= troopBattle.quantityTroop
             BattleModel.instance.activeQuantityTroopsOnCoords[troopBattle.indexTroop] -= troopBattle.quantityTroop
-            nodeObject.destroy()
+            BattleModel.instance.myTroopsBattleOnMap.splice(troopBattle.indexTroop, 1)
+            troopBattle.nodeObject.destroy()
             this.sortMyAvailableTroops()
             BattleView.instance.renderItemMyAvailableTroops()
             BattleView.instance.renderMyTroopsBattle()
@@ -75,52 +90,63 @@ export class BattlePresenter {
         }
     }
 
-    public static processingClickOnItemMyAvailableTroop(troopBattle: TroopBattle) {
+    public static processingClickOnItemMyAvailableTroop(index: number) {
         if (BattleModel.instance.remainedQuantityFreePlaces == 0) return
 
-        for (let i = 0; i < BattleModel.instance.totalQuantityFreeCoords; i++) {
-            let activeQuantityTroopsOnCoord = BattleModel.instance.activeQuantityTroopsOnCoords[i]
-            let maximumQuantityTroopsOnCoord = BattleModel.instance.maximumQuantityTroopsOnCoords[i]
+        // let troopBattle = BattleModel.instance.myAvailableTroops[index]
 
-            if (activeQuantityTroopsOnCoord == 0) {
+        console.log(BattleModel.instance.myAvailableTroops[index])
+        console.log(BattleModel.instance.myAvailableTroops)
 
-                let difference = maximumQuantityTroopsOnCoord - activeQuantityTroopsOnCoord
 
-                if (troopBattle.quantityTroop == difference) {
-                    BattleModel.instance.myAvailableTroops.splice(i, 1)
-                    BattleModel.instance.myTroopsBattle[i] = new TroopBattle(troopBattle.teamTroop, troopBattle.typeTroop, troopBattle.levelTroop, i, difference, troopBattle.damageTroop, troopBattle.typeAttack, troopBattle.activeHp, troopBattle.availableHp)
-                    BattleModel.instance.remainedQuantityFreePlaces += difference
-                    BattleModel.instance.activeQuantityTroopsOnCoords[i] += difference
-                    this.sortMyAvailableTroops()
-                    BattleView.instance.renderItemMyAvailableTroops()
-                    BattleView.instance.renderMyTroopsBattle()
-                    BattleView.instance.renderMyCoords()
-                    return
-                }
-                else if (troopBattle.quantityTroop > difference) {
-                    troopBattle.quantityTroop -= difference
-                    BattleModel.instance.myTroopsBattle[i] = new TroopBattle(troopBattle.teamTroop, troopBattle.typeTroop, troopBattle.levelTroop, i, difference, troopBattle.damageTroop, troopBattle.typeAttack, troopBattle.activeHp, troopBattle.availableHp)
-                    BattleModel.instance.remainedQuantityFreePlaces += difference
-                    BattleModel.instance.activeQuantityTroopsOnCoords[i] += difference
-                    this.sortMyAvailableTroops()
-                    BattleView.instance.renderItemMyAvailableTroops()
-                    BattleView.instance.renderMyTroopsBattle()
-                    BattleView.instance.renderMyCoords()
-                    return
-                }
-                else if (troopBattle.quantityTroop < difference) {
-                    BattleModel.instance.myAvailableTroops.splice(i, 1)
-                    BattleModel.instance.myTroopsBattle[i] = new TroopBattle(troopBattle.teamTroop, troopBattle.typeTroop, troopBattle.levelTroop, i, troopBattle.quantityTroop, troopBattle.damageTroop, troopBattle.typeAttack, troopBattle.activeHp, troopBattle.availableHp)
-                    BattleModel.instance.remainedQuantityFreePlaces += troopBattle.quantityTroop
-                    BattleModel.instance.activeQuantityTroopsOnCoords[i] += troopBattle.quantityTroop
-                    this.sortMyAvailableTroops()
-                    BattleView.instance.renderItemMyAvailableTroops()
-                    BattleView.instance.renderMyTroopsBattle()
-                    BattleView.instance.renderMyCoords()
-                    return
-                }
-            }
-        }
+        // BattleModel.instance.myAvailableTroops[index].quantityTroop -= 1
+
+
+        // console.log("===============================")
+
+        // for (let i = 0; i < BattleModel.instance.totalQuantityFreeCoords; i++) {
+        //     let activeQuantityTroopsOnCoord = BattleModel.instance.activeQuantityTroopsOnCoords[i]
+        //     let maximumQuantityTroopsOnCoord = BattleModel.instance.maximumQuantityTroopsOnCoords[i]
+
+        //     if (activeQuantityTroopsOnCoord == 0) {
+
+        //         let difference = maximumQuantityTroopsOnCoord - activeQuantityTroopsOnCoord
+
+        //         // console.log(troopBattle)
+        //         console.log(BattleModel.instance.myAvailableTroops)
+
+        //         if (BattleModel.instance.myAvailableTroops[index].quantityTroop == difference) {
+        //             console.log("IF 1")
+
+        //             BattleModel.instance.myAvailableTroops.splice(i, 1)
+        //             BattleModel.instance.myTroopsBattle[i] = new TroopBattle(BattleModel.instance.myAvailableTroops[index].teamTroop, BattleModel.instance.myAvailableTroops[index].typeTroop, BattleModel.instance.myAvailableTroops[index].levelTroop, i, difference, BattleModel.instance.myAvailableTroops[index].damageTroop, BattleModel.instance.myAvailableTroops[index].typeAttack, BattleModel.instance.myAvailableTroops[index].activeHp, BattleModel.instance.myAvailableTroops[index].availableHp)
+        //             BattleModel.instance.remainedQuantityFreePlaces += difference
+        //             BattleModel.instance.activeQuantityTroopsOnCoords[i] += difference
+        //         }
+        //         else if (BattleModel.instance.myAvailableTroops[index].quantityTroop > difference) {
+        //             console.log("IF 2")
+
+        //             BattleModel.instance.myAvailableTroops[index].quantityTroop -= difference
+        //             BattleModel.instance.myTroopsBattle[i] = new TroopBattle(BattleModel.instance.myAvailableTroops[index].teamTroop, BattleModel.instance.myAvailableTroops[index].typeTroop, BattleModel.instance.myAvailableTroops[index].levelTroop, i, difference, BattleModel.instance.myAvailableTroops[index].damageTroop, BattleModel.instance.myAvailableTroops[index].typeAttack, BattleModel.instance.myAvailableTroops[index].activeHp, BattleModel.instance.myAvailableTroops[index].availableHp)
+        //             BattleModel.instance.remainedQuantityFreePlaces += difference
+        //             BattleModel.instance.activeQuantityTroopsOnCoords[i] += difference
+        //         }
+        //         else if (BattleModel.instance.myAvailableTroops[index].quantityTroop < difference) {
+        //             console.log("IF 3")
+
+        //             BattleModel.instance.myAvailableTroops.splice(i, 1)
+        //             BattleModel.instance.myTroopsBattle[i] = new TroopBattle(BattleModel.instance.myAvailableTroops[index].teamTroop, BattleModel.instance.myAvailableTroops[index].typeTroop, BattleModel.instance.myAvailableTroops[index].levelTroop, i, BattleModel.instance.myAvailableTroops[index].quantityTroop, BattleModel.instance.myAvailableTroops[index].damageTroop, BattleModel.instance.myAvailableTroops[index].typeAttack, BattleModel.instance.myAvailableTroops[index].activeHp, BattleModel.instance.myAvailableTroops[index].availableHp)
+        //             BattleModel.instance.remainedQuantityFreePlaces += BattleModel.instance.myAvailableTroops[index].quantityTroop
+        //             BattleModel.instance.activeQuantityTroopsOnCoords[i] += BattleModel.instance.myAvailableTroops[index].quantityTroop
+        //         }
+        //         console.log(BattleModel.instance.myAvailableTroops)
+        //         this.sortMyAvailableTroops()
+        //         BattleView.instance.renderItemMyAvailableTroops()
+        //         BattleView.instance.renderMyTroopsBattle()
+        //         BattleView.instance.renderMyCoords()
+        //         return
+        //     }
+        // }
     }
 
     public static initBattle(indexObjectBattle: number) {
@@ -134,8 +160,10 @@ export class BattlePresenter {
         this.getTotalQuantityFreeCoords()
         this.getQuantityTroopsOnCoords()
 
+        console.log(BattleModel.instance.myAvailableTroops)
+
         let totalQuantityFreeCoords = BattleModel.instance.totalQuantityFreeCoords
-        BattleModel.instance.myTroopsBattle = new Array(totalQuantityFreeCoords).fill(null)
+        BattleModel.instance.myTroopsBattle = new Array(totalQuantityFreeCoords)
     }
 
     private static getMyAvailableTroops() {
@@ -221,17 +249,17 @@ export class BattlePresenter {
     }
 
     private static sortMyAvailableTroops() {
-        BattleModel.instance.myAvailableTroops.sort((a, b) => {
-            if (a == null || b == null) return 0
-            if (a.levelTroop < b.levelTroop) {
-                return 1
-            }
-            else if (a.levelTroop > b.levelTroop) {
-                return -1
-            }
-            else {
-                return 0
-            }
-        })
+        // BattleModel.instance.myAvailableTroops.sort((a, b) => {
+        //     if (a == null || b == null) return 0
+        //     if (a.levelTroop < b.levelTroop) {
+        //         return 1
+        //     }
+        //     else if (a.levelTroop > b.levelTroop) {
+        //         return -1
+        //     }
+        //     else {
+        //         return 0
+        //     }
+        // })
     }
 }

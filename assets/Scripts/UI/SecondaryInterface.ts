@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, v3 } from 'cc';
+import { _decorator, Component, instantiate, Node, v3 } from 'cc';
 import { TypesViews } from '../Static/TypesViews';
 import { QueueItem } from '../Structures/InterfaceQueueStructure';
 import { WireCutInterface } from './Modals/WireCut/WireCutInterface';
@@ -17,6 +17,7 @@ import { UpgradeCharacterView } from '../View/UpgradeCharacterView';
 import { CharactersView } from '../View/CharactersView';
 import { TasksGameView } from '../View/TasksGameView';
 import { ShopObjectView } from '../View/ShopObjectView';
+import { PrefabsModel } from '../Model/PrefabsModel';
 const { ccclass, property } = _decorator;
 
 @ccclass('SecondaryInterface')
@@ -205,9 +206,8 @@ export class SecondaryInterface extends Component {
             this.commandPost.active = true;
         }
         else if (item.modalName == TypesViews.TASKS_GAME) {
-            this.firstBackgraund.active = true;
-            this.tasksGame.active = true;
-            TasksGameView.instance.renderItemsTasks()
+            let object = instantiate(PrefabsModel.instance.getViewPrefab(TypesViews.TASKS_GAME))
+            object.parent = this.secondaryNode
         }
         else if (item.modalName == TypesViews.UPGRATE_COMMAND_POST) {
             this.secondBackgraund.active = true;
@@ -253,8 +253,8 @@ export class SecondaryInterface extends Component {
             // AnimationModals.instance.modalAnimation(this.gameReward, TypesAnimation.OPEN_MODAL_RADAR);
         }
         else if (item.modalName == TypesViews.BACKPACK) {
-            this.firstBackgraund.active = true;
-            this.backpack.active = true;
+            let object = instantiate(PrefabsModel.instance.getViewPrefab(TypesViews.BACKPACK))
+            object.parent = this.secondaryNode
         }
         else if (item.modalName == TypesViews.WIRE_CUT) {
             WireCutInterface.instance.renderWire();
